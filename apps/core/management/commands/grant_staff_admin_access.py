@@ -14,7 +14,7 @@ ENV:
 import os
 
 from django.contrib.auth import get_user_model
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 from apps.core.admin_permissions import (
     STAFF_ADMIN_USERNAME,
@@ -44,11 +44,16 @@ class Command(BaseCommand):
 
         try:
             user = User.objects.get(username=username)
-        except User.DoesNotExist as exc:
-            raise CommandError(
-                f'Користувач "{username}" не знайдений. '
-                'Створіть обліковий запис перед наданням доступу.'
-            ) from exc
+        except User.DoesNotExist:
+            # Soft-skip on fresh deploys: staff user may not exist until created
+            # manually or via a separate seed. Hard-fail would block Render builds.
+            self.stdout.write(
+                self.style.WARNING(
+                    f'⚠️  Користувач "{username}" не знайдений — '
+                    'пропускаємо grant_staff_admin_access (не фатально для деплою).'
+                )
+            )
+            return
 
         staff_permissions = get_staff_admin_permissions()
 

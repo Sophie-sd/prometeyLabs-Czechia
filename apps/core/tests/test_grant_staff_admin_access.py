@@ -1,7 +1,6 @@
 """Тести для grant_staff_admin_access management command."""
 from django.contrib.auth import get_user_model
 from django.core.management import call_command
-from django.core.management.base import CommandError
 from django.test import TestCase
 
 from apps.core.admin_permissions import STAFF_ADMIN_USERNAME
@@ -35,9 +34,9 @@ class GrantStaffAdminAccessTests(TestCase):
         self.assertFalse(self.user.is_superuser)
         self.assertTrue(self.user.has_perm('core.view_formsubmission'))
 
-    def test_fails_for_missing_user(self):
-        with self.assertRaises(CommandError):
-            call_command('grant_staff_admin_access', username='NonExistentUser')
+    def test_skips_missing_user_without_error(self):
+        # Fresh Render deploys must not fail when staff user is not seeded yet.
+        call_command('grant_staff_admin_access', username='NonExistentUser')
 
     def test_can_manage_admin_users_callback(self):
         from apps.core.admin_permissions import can_manage_admin_users
