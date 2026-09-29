@@ -205,7 +205,7 @@ HERO_SLIDES_SEED = [
     ),
     (
         'Безкоштовна доставка', 'Бесплатная доставка', 'Free Shipping', 'Doprava zdarma',
-        'При замовленні від 1000 грн по всій Україні', 'При заказе от 1000 грн по всей Украине',
+        'При замовленні від 1000 Kč po celé ČR', 'При заказе от 1000 Kč po celé ČR',
         'For orders over 1 500 Kč across Czechia', 'Při objednávce nad 1 500 Kč po celé ČR',
         'Дізнатись більше', 'Узнать больше', 'Learn More', 'Zjistit více',
         'hero/slide-2-wide.webp', 'hero/slide-2-narrow.webp',
@@ -237,10 +237,13 @@ def _seed_blocks(shop, force_images: bool = False) -> None:
                 'value_text_cs': entry.get('default_cs', ''),
             },
         )
-        # Backfill _ru/_cs для блоків, створених до додавання цих локалей.
+        # Backfill локалей для блоків, створених до додавання en/ru/cs.
         if not created and not block.value_text_ru and entry.get('default_ru'):
             block.value_text_ru = entry['default_ru']
             block.save(update_fields=['value_text_ru'])
+        if not created and not block.value_text_en and entry.get('default_en'):
+            block.value_text_en = entry['default_en']
+            block.save(update_fields=['value_text_en'])
         if not created and not block.value_text_cs and entry.get('default_cs'):
             block.value_text_cs = entry['default_cs']
             block.save(update_fields=['value_text_cs'])
@@ -273,10 +276,19 @@ def _seed_categories(shop) -> list:
                 'order': order
             },
         )
-        # Backfill _cs для категорій, створених до додавання чеської локалі.
-        if not created and not category.name_cs:
-            category.name_cs = name_cs
-            category.save(update_fields=['name_cs'])
+        if not created:
+            fields = []
+            if not category.name_ru:
+                category.name_ru = name_ru
+                fields.append('name_ru')
+            if not category.name_en:
+                category.name_en = name_en
+                fields.append('name_en')
+            if not category.name_cs:
+                category.name_cs = name_cs
+                fields.append('name_cs')
+            if fields:
+                category.save(update_fields=fields)
         categories.append(category)
     return categories
 
@@ -434,12 +446,20 @@ def _seed_hero_slides(shop, force_images: bool = False) -> None:
                 'is_active': True,
             },
         )
-        # Backfill _cs для слайдів, створених до додавання чеської локалі.
-        if not created and not slide.title_cs:
-            slide.title_cs = title_cs
-            slide.subtitle_cs = sub_cs
-            slide.cta_label_cs = cta_cs
-            slide.save(update_fields=['title_cs', 'subtitle_cs', 'cta_label_cs'])
+        if not created:
+            slide_fields = []
+            if not slide.title_en:
+                slide.title_en = title_en
+                slide.subtitle_en = sub_en
+                slide.cta_label_en = cta_en
+                slide_fields.extend(['title_en', 'subtitle_en', 'cta_label_en'])
+            if not slide.title_cs:
+                slide.title_cs = title_cs
+                slide.subtitle_cs = sub_cs
+                slide.cta_label_cs = cta_cs
+                slide_fields.extend(['title_cs', 'subtitle_cs', 'cta_label_cs'])
+            if slide_fields:
+                slide.save(update_fields=slide_fields)
 
         need_images = created or force_images or not slide.image or not slide.image_narrow
         if need_images:

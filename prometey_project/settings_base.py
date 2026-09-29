@@ -77,15 +77,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-LANGUAGE_CODE = 'uk'
+# Internationalization — PrometeyLabs Czechia (cs default, en prefixed)
+LANGUAGE_CODE = 'cs'
 LANGUAGES = [
-    ('uk', 'Українська'),
+    ('cs', 'Čeština'),
     ('en', 'English'),
-    ('ru', 'Русский'),
 ]
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
-TIME_ZONE = 'Europe/Kiev'
+TIME_ZONE = 'Europe/Prague'
 USE_I18N = True
 USE_TZ = True
 

@@ -3,7 +3,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include, re_path
 from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView
-from django.views.i18n import set_language
+from apps.core.i18n_views import set_language
 from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static

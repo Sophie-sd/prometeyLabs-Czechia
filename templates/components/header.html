@@ -4,7 +4,7 @@
     <div class="nav-container">
         <!-- Логотип PrometeyLabs -->
         <div class="nav-logo-section">
-            <a href="{% url 'home' %}" class="nav-logo" aria-label="{% trans 'PrometeyLabs - Головна сторінка' %}">
+            <a href="{% url 'home' %}" class="nav-logo" aria-label="{% trans 'PrometeyLabs Czechia - Domovská stránka' %}">
                 Prometey<span class="nav-logo-labs">Labs</span>
             </a>
         </div>
@@ -38,17 +38,11 @@
             <a href="{% url 'contacts' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "контакти" %}</a>
         </nav>
 
-        <!-- Desktop Language Switcher -->
+        <!-- Desktop Language Switcher (CS default / EN) -->
         <div class="language-switcher">
             {% get_current_language as LANGUAGE_CODE %}
-
-            {% if LANGUAGE_CODE == 'uk' or LANGUAGE_CODE == 'ru' %}
-            <a href="#" class="lang-btn {% if LANGUAGE_CODE == 'uk' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="uk">UK</a>
-            <a href="#" class="lang-btn mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="en">EN</a>
-            {% elif LANGUAGE_CODE == 'en' or LANGUAGE_CODE == 'cs' %}
-            <a href="#" class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="en">EN</a>
             <a href="#" class="lang-btn {% if LANGUAGE_CODE == 'cs' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="cs">CS</a>
-            {% endif %}
+            <a href="#" class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="en">EN</a>
         </div>
 
         <!-- Mobile Burger Button -->

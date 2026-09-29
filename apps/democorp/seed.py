@@ -17,7 +17,7 @@ from django.core.files.base import ContentFile
 from django.utils.text import slugify
 from PIL import Image, ImageDraw, ImageFont
 
-from apps.demotenant.registry import ensure_registry_blocks
+from apps.demotenant.registry import backfill_empty_locales, ensure_registry_blocks
 
 from .block_defaults import BLOCK_REGISTRY
 from .catalog_models import CorpCategory, CorpProduct, CorpProductImage
@@ -71,6 +71,7 @@ def seed_demo_corp(site, *, reset_defaults: bool = False, refresh_images: bool =
 
 def _seed_blocks(site, *, reset: bool) -> None:
     ensure_registry_blocks(CorpBlock, site, BLOCK_REGISTRY)
+    backfill_empty_locales(CorpBlock, site, BLOCK_REGISTRY)
     if not reset:
         return
     for entry in BLOCK_REGISTRY:

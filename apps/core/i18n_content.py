@@ -1,123 +1,40 @@
-"""UA→RU helpers for database-backed content localization."""
+"""Localized DB-backed content helpers for PrometeyLabs Czechia (cs + en)."""
 from __future__ import annotations
-
-import re
 
 from django.utils import translation
 
-_UA_RU_PHRASES: tuple[tuple[str, str], ...] = (
-    ('Майбутнє', 'Будущее'),
-    ('майбутнє', 'будущее'),
-    ('Що ', 'Что '),
-    ('що ', 'что '),
-    ('що буде', 'что будет'),
-    ('буде ', 'будет '),
-    ('роки ', 'годы '),
-    ('років', 'лет'),
-    ('Українська адмінпанель', 'Украинская админпанель'),
-    ('українськомовна', 'украиноязычная'),
-    ('адміністративна панель', 'административная панель'),
-    ('Персоналізована під ваш бізнес', 'Персонализирована под ваш бизнес'),
-    ('Унікальна на ринку України', 'Уникальна на рынке Украины'),
-    ('українського бізнесу', 'украинского бизнеса'),
-    ('мультимовність', 'мультиязычность'),
-    ('сповіщення', 'уведомления'),
-    ('розробка сайтів', 'разработка сайтов'),
-    ('сайти під ключ', 'сайты под ключ'),
-    ('веб-розробка', 'веб-разработка'),
-    ('веб-розробки', 'веб-разработки'),
-    ('розробки', 'разработки'),
-    ('розробка', 'разработка'),
-    ('розробку', 'разработку'),
-    ('програмування', 'программирование'),
-    ('курси програмування', 'курсы программирования'),
-    ('telegram боти', 'telegram боты'),
-    ('проєкт', 'проект'),
-    ('проєкти', 'проекты'),
-    ('з\'являться', 'появятся'),
-    ('з’являться', 'появятся'),
-    ('без зайвого', 'без лишнего'),
-    ('керування', 'управление'),
-    ('зручний', 'удобный'),
-    ('інтерфейс', 'интерфейс'),
-    ('розробник', 'разработчик'),
-    ('клієнта', 'клиента'),
-    ('замовлення', 'заказы'),
-    ('аналітика', 'аналитика'),
-    ('товарів', 'товаров'),
-    ('заявок', 'заявок'),
-)
-
-_CHAR_MAP = str.maketrans({
-    'ї': 'и',
-    'Ї': 'И',
-    'є': 'е',
-    'Є': 'Е',
-    'ґ': 'г',
-    'Ґ': 'Г',
-    'і': 'и',
-    'І': 'И',
-    'щ': 'щ',
-    'Щ': 'Щ',
-})
-
-
-def is_ru_language() -> bool:
-    return translation.get_language() == 'ru'
-
 
 def localized_text(
-    ua_value: str | None,
-    ru_value: str | None,
+    default_value: str | None,
+    ru_value: str | None = None,
     en_value: str | None = None,
     cs_value: str | None = None,
 ) -> str:
-    ua = (ua_value or '').strip()
-    ru = (ru_value or '').strip()
+    """Pick text for the active language.
+
+    Call sites historically pass ``(base, ru, en, cs)`` where ``base`` held
+    Ukrainian. For Czechia, ``base`` / ``default_value`` is Czech (or the
+    legacy primary field). English uses ``en_value``. Russian is never the
+    primary fallback.
+    """
+    default = (default_value or '').strip()
     en = (en_value or '').strip()
     cs = (cs_value or '').strip()
-    lang = translation.get_language()
+    # ru_value intentionally unused as a primary path
+    _ = ru_value
+    lang = (translation.get_language() or 'cs').split('-')[0]
     if lang == 'en' and en:
         return en
-    if lang == 'ru' and ru:
-        return ru
-    if lang == 'cs' and cs:
-        return cs
-    return ua
+    if lang == 'cs':
+        return cs or default
+    return cs or default or en
+
+
+def is_ru_language() -> bool:
+    """Deprecated on Czechia; always False for primary routing."""
+    return False
 
 
 def translate_ua_to_ru(text: str) -> str:
-    """Rule-based UA→RU for seeding *_ru fields without external APIs."""
-    if not text or not text.strip():
-        return ''
-
-    result = text
-    for ua, ru in _UA_RU_PHRASES:
-        result = result.replace(ua, ru)
-
-    # Suffix-style replacements common in UA marketing copy.
-    suffix_rules = (
-        (r'ність\b', 'ность'),
-        (r'ністью\b', 'ностью'),
-        (r'цію\b', 'цию'),
-        (r'ції\b', 'ции'),
-        (r'цій\b', 'ций'),
-        (r'ування\b', 'ование'),
-        (r'уванням\b', 'ованием'),
-        (r'уванням\b', 'ованием'),
-        (r'уват\b', 'овать'),
-        (r'ються\b', 'ются'),
-        (r'ється\b', 'ется'),
-        (r'ються', 'ются'),
-        (r'ється', 'ется'),
-        (r'ього\b', 'ого'),
-        (r'ній\b', 'ной'),
-        (r'ній', 'ной'),
-        (r'ній\b', 'ной'),
-        (r'ній', 'ной'),
-        (r'ько\b', 'ько'),
-    )
-    for pattern, replacement in suffix_rules:
-        result = re.sub(pattern, replacement, result)
-
-    return result.translate(_CHAR_MAP)
+    """No-op stub kept for import compatibility; UA→RU is not used on Czechia."""
+    return text or ''

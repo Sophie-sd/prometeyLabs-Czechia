@@ -10,13 +10,8 @@
 
         {% get_current_language as LANGUAGE_CODE %}
         <div class="mobile-lang-switcher">
-            {% if LANGUAGE_CODE == 'uk' or LANGUAGE_CODE == 'ru' %}
-            <a href="#" class="mobile-lang-btn {% if LANGUAGE_CODE == 'uk' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="uk">UK</a>
-            <a href="#" class="mobile-lang-btn mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="en">EN</a>
-            {% elif LANGUAGE_CODE == 'en' or LANGUAGE_CODE == 'cs' %}
-            <a href="#" class="mobile-lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="en">EN</a>
             <a href="#" class="mobile-lang-btn {% if LANGUAGE_CODE == 'cs' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="cs">CS</a>
-            {% endif %}
+            <a href="#" class="mobile-lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="en">EN</a>
         </div>
     </div>
 
@@ -72,7 +67,7 @@
         </div>
 
         <div class="mobile-menu-info">
-            <span class="mobile-menu-credits">PrometeyLabs © 2025</span>
+            <span class="mobile-menu-credits">PrometeyLabs Czechia © 2026</span>
         </div>
     </div>
 

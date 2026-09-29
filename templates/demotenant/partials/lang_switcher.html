@@ -1,0 +1,20 @@
+{% load i18n %}
+{% get_current_language as CURRENT_LANG %}
+<div class="dt-lang{% if extra_class %} {{ extra_class }}{% endif %}" data-dt-lang>
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}" data-dt-lang-next>
+        <select name="language"
+                class="dt-lang__select{% if select_class %} {{ select_class }}{% endif %}"
+                aria-label="{% trans 'Jazyk' %}"
+                data-dt-lang-select>
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            <option value="{{ language.code }}" {% if language.code == CURRENT_LANG %}selected{% endif %}>
+                {{ language.code|upper }}
+            </option>
+            {% endfor %}
+        </select>
+    </form>
+</div>

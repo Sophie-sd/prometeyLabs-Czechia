@@ -118,6 +118,31 @@ def ensure_registry_blocks(block_model, tenant, registry: list[dict]) -> None:
         )
 
 
+def backfill_empty_locales(block_model, tenant, registry: list[dict]) -> int:
+    """Заповнює порожні *_en/*_cs з default_* реєстру (cs/en), не чіпаючи вже введені тексти."""
+    updated = 0
+    for entry in registry:
+        if entry.get('type') == 'image':
+            continue
+        block = block_model.objects.filter(
+            tenant=tenant, page=entry['page'], key=entry['key'],
+        ).first()
+        if block is None:
+            continue
+        fields = []
+        for attr, default_key in (
+            ('value_text_en', 'default_en'),
+            ('value_text_cs', 'default_cs'),
+        ):
+            if not getattr(block, attr) and entry.get(default_key):
+                setattr(block, attr, entry[default_key])
+                fields.append(attr)
+        if fields:
+            block.save(update_fields=fields)
+            updated += 1
+    return updated
+
+
 def save_blocks(block_model, tenant, registry: list[dict], block_form: forms.Form) -> None:
     for entry in registry:
         name = f"{entry['page']}__{entry['key']}"

@@ -8,7 +8,9 @@
             </ul>
         </nav>
         <div class="dc-header__actions">
+            {% include 'demotenant/partials/lang_switcher.html' %}
             <a class="dc-header__admin" href="{% url 'democorp:admin_login' slug=site.slug %}">{% trans "Адмінка" %}</a>
+
             <button type="button" class="dc-header__menu-open" data-qa="menu-open" aria-expanded="false" aria-controls="dc-drawer" aria-label="{% trans 'Меню' %}"><span class="dc-header__bars" aria-hidden="true"></span></button>
         </div>
     </div>

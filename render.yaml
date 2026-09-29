@@ -1,7 +1,7 @@
 services:
   - type: web
     plan: starter
-    name: prometei-web
+    name: prometeylabs-czechia
     runtime: python
     region: frankfurt
     branch: main
@@ -9,26 +9,34 @@ services:
     buildCommand: "./build.sh"
     startCommand: "./scripts/start.sh"
     disk:
-      name: prometey-media
+      name: prometeylabs-czechia-media
       mountPath: /opt/render/project/src/media
       sizeGB: 1
-envVars:
+    envVars:
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
         value: False
       - key: DJANGO_SETTINGS_MODULE
         value: config.settings
+      # Placeholder until custom domain is attached. Set in Render dashboard to the
+      # real onrender hostname, e.g. prometeylabs-czechia.onrender.com — NOT prometeylabs.com.
       - key: RENDER_EXTERNAL_HOSTNAME
-        value: prometeylabs.com
+        sync: false
       - key: WEB_CONCURRENCY
         value: 2
       - key: PYTHON_VERSION
         value: 3.12.7
       - key: LANGUAGE_CODE
-        value: uk
+        value: cs
+      # Placeholder — replace with https://<service>.onrender.com (or Czechia custom domain).
+      # Must NOT be https://www.prometeylabs.com
       - key: SITE_URL
-        value: "https://www.prometeylabs.com"
+        sync: false
+      - key: ALLOWED_HOSTS
+        sync: false
+      - key: CSRF_TRUSTED_ORIGINS
+        sync: false
       - key: COOKIEYES_ID
         sync: false
       - key: EMAIL_HOST
@@ -38,9 +46,9 @@ envVars:
       - key: EMAIL_USE_TLS
         value: "True"
       - key: DEFAULT_FROM_EMAIL
-        value: "Prometey Labs <info@prometeylabs.com>"
+        sync: false
       - key: CONTACT_EMAIL
-        value: "info@prometeylabs.com"
+        sync: false
       - key: KEYCRM_API_KEY
         sync: false
       - key: KEYCRM_PIPELINE_ID

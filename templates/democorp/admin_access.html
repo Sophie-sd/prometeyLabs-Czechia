@@ -6,7 +6,7 @@
 {% block content %}
 <section class="dc-section dc-container">
     <h1>{% trans "Адмінка вашого сайту" %}</h1>
-    <p>{% trans "Керуйте текстами, фото, кольорами, процесом чаю, галереєю, відгуками та заявками." %}</p>
+    <p>{% trans "Керуйте текстами, фото, кольорами, процесом роботи, галереєю, відгуками та заявками." %}</p>
     <p><strong>{% trans "Логін" %}:</strong> {{ tenant.demo_login }}</p>
     <p><strong>{% trans "Пароль" %}:</strong> {{ tenant.demo_password }}</p>
     <a class="dc-btn dc-btn--primary" href="{% url 'democorp:admin_login' slug=tenant.slug %}" target="_blank" rel="noopener">{% trans "Перейти в адмінку" %}</a>

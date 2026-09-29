@@ -15,6 +15,7 @@
             {% if faq_visible %}<a href="#faq">{% trans "Питання" %}</a>{% endif %}
         </nav>
         <div class="dl-header__actions">
+            {% include 'demotenant/partials/lang_switcher.html' %}
             {% include 'demolanding/partials/socials.html' with extra_class='dl-socials--header' %}
             <a class="dl-header__admin" href="{% url 'demolanding:admin_login' slug=site.slug %}">{% trans "Адмінка" %}</a>
             {% if phone_href %}
