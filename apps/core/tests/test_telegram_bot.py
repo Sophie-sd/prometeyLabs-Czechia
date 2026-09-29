@@ -56,20 +56,43 @@ class TelegramBotPageTests(TestCase):
         self.assertTrue(0 < who < process < pkg < price < faq < form)
         self.assertNotIn('id="pl-bot-int-title"', html)
         self.assertNotIn('Надіслати бриф', html)
+        self.assertNotIn('Отримати прорахунок', html)
+        self.assertNotIn('Отримати кошторис', html)
         self.assertNotRegex(
             html,
             r'<button\b[^>]*type="submit"[^>]*>\s*Отримати кошторис\s*</button>',
         )
         self.assertRegex(
             html,
-            r'<a\b[^>]*href="#pl-bot-form"[^>]*>\s*Отримати прорахунок\s*</a>',
+            r'<a\b[^>]*href="#pl-bot-form"[^>]*>\s*Získat kalkulaci\s*</a>',
         )
         self.assertRegex(
             html,
-            r'<button\b[^>]*type="submit"[^>]*>\s*Отримати прорахунок\s*</button>',
+            r'<button\b[^>]*type="submit"[^>]*>\s*Získat kalkulaci\s*</button>',
         )
         self.assertIn('id="pl-bot-form-title"', html)
-        self.assertGreaterEqual(html.count('Отримати прорахунок'), 2)
+        self.assertGreaterEqual(html.count('Získat kalkulaci'), 2)
+
+    def test_cs_and_en_have_no_ukrainian_page_copy(self):
+        uk_markers = (
+            'Отримати прорахунок',
+            'Розробка Telegram-бота',
+            'Кому потрібен Telegram-бот',
+            'Часті запитання',
+            'Олена, +380',
+            'Надіслати бриф',
+        )
+        for path in ('/telegram-bot/', '/en/telegram-bot/'):
+            with self.subTest(path=path):
+                html = self.client.get(path).content.decode()
+                for marker in uk_markers:
+                    self.assertNotIn(marker, html)
+        cs = self.client.get('/telegram-bot/').content.decode()
+        en = self.client.get('/en/telegram-bot/').content.decode()
+        self.assertIn('Získat kalkulaci', cs)
+        self.assertIn('Telegram bot na klíč', cs)
+        self.assertIn('Get a quote', en)
+        self.assertIn('Turnkey Telegram bot', en)
 
     def test_hreflang_and_canonical_use_url_tag_pattern(self):
         html = self.client.get('/telegram-bot/').content.decode()
@@ -134,7 +157,7 @@ class TelegramBotFormTests(TestCase):
             'name': 'Олена Бот',
             'phone': '+380631234567',
             'source_page': 'telegram-bot',
-            'bot_task': 'Заявки та кваліфікація ліда',
+            'bot_task': 'leads-qualification',
             'details': 'Потрібен бот для запису',
         })
         self.assertEqual(response.status_code, 200)
