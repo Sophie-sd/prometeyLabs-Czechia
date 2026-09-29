@@ -127,9 +127,9 @@ def _seed_production_steps(site, *, reset: bool) -> None:
             tenant=site, order=order,
             defaults={
                 'title': data['title'], 'title_en': data['title_en'],
-                'title_cs': data['title_cs'], 'title_ru': data['title_ru'],
+                'title_cs': data['title_cs'], 'title_ru': data.get('title_ru', ''),
                 'description': data['description'], 'description_en': data['description_en'],
-                'description_cs': data['description_cs'], 'description_ru': data['description_ru'],
+                'description_cs': data['description_cs'], 'description_ru': data.get('description_ru', ''),
             },
         )
         kept.append(step.pk)
@@ -266,7 +266,7 @@ def _seed_catalog(site, *, reset: bool, refresh_images: bool = False) -> None:
             tenant=site, slug=slug,
             defaults={
                 'name': data['name'], 'name_en': data['name_en'],
-                'name_cs': data['name_cs'], 'name_ru': data['name_ru'],
+                'name_cs': data['name_cs'], 'name_ru': data.get('name_ru', ''),
                 'order': order, 'is_active': True,
             },
         )
@@ -282,9 +282,9 @@ def _seed_catalog(site, *, reset: bool, refresh_images: bool = False) -> None:
             defaults={
                 'category': categories[data['category']],
                 'name': data['name'], 'name_en': data['name_en'],
-                'name_cs': data['name_cs'], 'name_ru': data['name_ru'],
+                'name_cs': data['name_cs'], 'name_ru': data.get('name_ru', ''),
                 'excerpt': data['excerpt'], 'excerpt_en': data['excerpt_en'],
-                'excerpt_cs': data['excerpt_cs'], 'excerpt_ru': data['excerpt_ru'],
+                'excerpt_cs': data['excerpt_cs'], 'excerpt_ru': data.get('excerpt_ru', ''),
                 'specs': data['specs'],
                 'specs_en': data.get('specs_en', ''),
                 'specs_cs': data.get('specs_cs', ''),

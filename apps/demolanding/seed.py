@@ -214,11 +214,11 @@ def _seed_offers(site) -> None:
         offer.title = data['title']
         offer.title_en = data['title_en']
         offer.title_cs = data['title_cs']
-        offer.title_ru = data['title_ru']
+        offer.title_ru = data.get('title_ru', '')
         offer.description = data['description']
         offer.description_en = data['description_en']
         offer.description_cs = data['description_cs']
-        offer.description_ru = data['description_ru']
+        offer.description_ru = data.get('description_ru', '')
         offer.price_from = data['price_from']
         offer.is_active = True
         offer.order = order
@@ -238,7 +238,7 @@ def _seed_gallery(site) -> None:
         item.caption = data['caption']
         item.caption_en = data['caption_en']
         item.caption_cs = data['caption_cs']
-        item.caption_ru = data['caption_ru']
+        item.caption_ru = data.get('caption_ru', '')
         item.span = data['span']
         item.order = order
         _assign_image(item, 'image', data['image'], (1200, 900))
@@ -273,7 +273,7 @@ def _seed_testimonials(site) -> None:
             defaults={
                 'author_name': data['author_name'], 'role': data['role'],
                 'text': data['text'], 'text_en': data['text_en'],
-                'text_cs': data['text_cs'], 'text_ru': data['text_ru'],
+                'text_cs': data['text_cs'], 'text_ru': data.get('text_ru', ''),
                 'rating': data['rating'],
             },
         )
