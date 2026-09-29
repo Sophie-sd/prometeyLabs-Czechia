@@ -19,9 +19,9 @@ HEX_WIDGET = forms.TextInput(attrs={'type': 'color'})
 HeroSlideFormSet = modelformset_factory(
     ShopHeroSlide,
     fields=(
-        'image', 'image_narrow', 'title', 'title_ru', 'title_en', 'title_cs',
-        'subtitle', 'subtitle_ru', 'subtitle_en', 'subtitle_cs',
-        'cta_label', 'cta_label_ru', 'cta_label_en', 'cta_label_cs',
+        'image', 'image_narrow', 'title', 'title_cs', 'title_en',
+        'subtitle', 'subtitle_cs', 'subtitle_en',
+        'cta_label', 'cta_label_cs', 'cta_label_en',
         'is_active', 'order'
     ),
     extra=1,
@@ -52,22 +52,19 @@ class ShopThemeForm(forms.ModelForm):
 
 
 def _build_block_form(shop):
-    """Динамічна форма з полем на кожен запис BLOCK_REGISTRY."""
+    """Динамічна форма з полем на кожен запис BLOCK_REGISTRY (CS+EN only)."""
     fields = {}
     for entry in BLOCK_REGISTRY:
-        name_ua = f"{entry['page']}__{entry['key']}"
-        name_ru = f"{entry['page']}__{entry['key']}__ru"
+        name_base = f"{entry['page']}__{entry['key']}"
         name_en = f"{entry['page']}__{entry['key']}__en"
         name_cs = f"{entry['page']}__{entry['key']}__cs"
 
         if entry['type'] == 'image':
-            fields[name_ua] = forms.ImageField(required=False, label=str(entry['label']))
+            fields[name_base] = forms.ImageField(required=False, label=str(entry['label']))
         else:
             widget = forms.Textarea(attrs={'rows': 3}) if entry.get('multiline') else forms.TextInput
-            fields[name_ua] = forms.CharField(required=False, label=f"{entry['label']} (UA)", widget=widget)
-            fields[name_ru] = forms.CharField(required=False, label=f"{entry['label']} (RU)", widget=widget)
-            fields[name_en] = forms.CharField(required=False, label=f"{entry['label']} (EN)", widget=widget)
             fields[name_cs] = forms.CharField(required=False, label=f"{entry['label']} (CS)", widget=widget)
+            fields[name_en] = forms.CharField(required=False, label=f"{entry['label']} (EN)", widget=widget)
 
     form_class = type('ShopBlockForm', (forms.Form,), fields)
 
@@ -77,10 +74,8 @@ def _build_block_form(shop):
         name_base = f"{entry['page']}__{entry['key']}"
         block = blocks.get(name_base)
         if entry['type'] != 'image' and block:
-            initial[name_base] = block.value_text
-            initial[f"{name_base}__ru"] = block.value_text_ru
+            initial[f"{name_base}__cs"] = block.value_text_cs or block.value_text
             initial[f"{name_base}__en"] = block.value_text_en
-            initial[f"{name_base}__cs"] = block.value_text_cs
     return form_class(initial=initial), blocks
 
 
@@ -98,10 +93,8 @@ def _group_blocks_for_template(form, blocks):
                 'current_image': blocks.get(name_base).value_image if blocks.get(name_base) else None,
             })
         else:
-            page_group['fields'].append({'field': form[name_base], 'type': entry['type']})
-            page_group['fields'].append({'field': form[f"{name_base}__ru"], 'type': entry['type']})
-            page_group['fields'].append({'field': form[f"{name_base}__en"], 'type': entry['type']})
             page_group['fields'].append({'field': form[f"{name_base}__cs"], 'type': entry['type']})
+            page_group['fields'].append({'field': form[f"{name_base}__en"], 'type': entry['type']})
     return list(groups.values())
 
 
@@ -160,11 +153,12 @@ class ShopContentAdmin(UnfoldModelAdmin):
                             block.value_image = uploaded
                             block.save(update_fields=['value_image'])
                     else:
-                        block.value_text = block_form.cleaned_data.get(name, '')
-                        block.value_text_ru = block_form.cleaned_data.get(f"{name}__ru", '')
-                        block.value_text_en = block_form.cleaned_data.get(f"{name}__en", '')
-                        block.value_text_cs = block_form.cleaned_data.get(f"{name}__cs", '')
-                        block.save(update_fields=['value_text', 'value_text_ru', 'value_text_en', 'value_text_cs'])
+                        cs = block_form.cleaned_data.get(f"{name}__cs", '')
+                        en = block_form.cleaned_data.get(f"{name}__en", '')
+                        block.value_text_cs = cs
+                        block.value_text_en = en
+                        block.value_text = cs
+                        block.save(update_fields=['value_text', 'value_text_en', 'value_text_cs'])
 
                 theme_form.save()
 

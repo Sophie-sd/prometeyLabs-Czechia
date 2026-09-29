@@ -11,7 +11,6 @@ from apps.core.models import Client, PortfolioProject
 # суфіксів шаблонів-кандидатів, від найбільш специфічного до fallback.
 # uk отримує лише базовий `pages/{base}.html` (без суфікса).
 LEGAL_TEMPLATE_LANG_FALLBACKS = {
-    'ru': ['ru'],
     'cs': ['cs', 'en'],
     'en': ['en'],
 }

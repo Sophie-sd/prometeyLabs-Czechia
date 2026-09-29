@@ -12,7 +12,7 @@ def hreflang_links(context):
     """Рендерить <link rel="alternate" hreflang="..."> для всіх LANGUAGES + x-default.
 
     Self-referencing (поточна сторінка теж включається — вимога Google).
-    x-default → версія мовою LANGUAGE_CODE (uk, без префікса).
+    x-default → verze v LANGUAGE_CODE (cs, bez prefixu).
     Якщо жодна альтернативна URL не резолвиться (сторінка поза i18n_patterns,
     напр. /admin/) — тег нічого не рендерить.
     """

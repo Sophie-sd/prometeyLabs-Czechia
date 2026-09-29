@@ -108,30 +108,26 @@ class PortfolioModelTests(SimpleTestCase):
         from django.utils import translation
 
         project = PortfolioProject(
-            title='Покрівля',
-            title_en='Pokrivlya',
-            title_cs='Pokrivlya',
-            title_ru='Кровля',
+            title='Střechy',
+            title_en='Roofing',
+            title_cs='Střechy',
+            title_ru='',
             slug='pokrivlya',
-            card_description='UA desc',
+            card_description='CS desc',
             card_description_en='EN desc',
             card_description_cs='CS desc',
-            integrations='покрівля\nзаявка',
+            integrations='střechy\npoptávka',
             integrations_en='roofing\nenquiry',
             integrations_cs='střechy\npoptávka',
-            integrations_ru='кровля\nзаявка',
+            integrations_ru='',
         )
         translation.activate('en')
-        self.assertEqual(project.get_localized_title(), 'Pokrivlya')
+        self.assertEqual(project.get_localized_title(), 'Roofing')
         self.assertEqual(project.get_localized_card_description(), 'EN desc')
         self.assertEqual(project.get_integration_tags(), ['roofing', 'enquiry'])
         translation.activate('cs')
-        self.assertEqual(project.get_localized_title(), 'Pokrivlya')
+        self.assertEqual(project.get_localized_title(), 'Střechy')
         self.assertEqual(project.get_integration_tags(), ['střechy', 'poptávka'])
-        translation.activate('ru')
-        self.assertEqual(project.get_localized_title(), 'Кровля')
-        translation.activate('uk')
-        self.assertEqual(project.get_localized_title(), 'Покрівля')
         translation.deactivate()
 
     def test_watermark_mark(self):

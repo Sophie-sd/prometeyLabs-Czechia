@@ -30,17 +30,12 @@ def build_block_form(registry: list[dict], tenant) -> tuple[forms.Form, dict]:
             fields[base] = forms.BooleanField(required=False, label=str(entry['label']))
         else:
             widget = forms.Textarea(attrs={'rows': 3}) if entry.get('multiline') else forms.TextInput
-            fields[base] = forms.CharField(
-                required=False, label=_('Українська'), widget=widget,
-            )
-            fields[f'{base}__ru'] = forms.CharField(
-                required=False, label=_('Російська'), widget=widget,
+            # Czechia admin: CS + EN only (UA/RU fields remain in DB but are hidden).
+            fields[f'{base}__cs'] = forms.CharField(
+                required=False, label='Čeština', widget=widget,
             )
             fields[f'{base}__en'] = forms.CharField(
-                required=False, label=_('Англійська'), widget=widget,
-            )
-            fields[f'{base}__cs'] = forms.CharField(
-                required=False, label=_('Чеська'), widget=widget,
+                required=False, label='English', widget=widget,
             )
 
     form_class = type('TenantBlockForm', (forms.Form,), fields)
@@ -55,17 +50,15 @@ def build_block_form(registry: list[dict], tenant) -> tuple[forms.Form, dict]:
         if entry['type'] == 'bool':
             initial[base] = block.value_text != '0'
         elif entry['type'] != 'image':
-            initial[base] = block.value_text
-            initial[f'{base}__ru'] = block.value_text_ru
+            initial[f'{base}__cs'] = block.value_text_cs or block.value_text
             initial[f'{base}__en'] = block.value_text_en
-            initial[f'{base}__cs'] = block.value_text_cs
     return form_class(initial=initial), blocks
 
 
 def group_blocks_for_template(
     registry: list[dict], page_labels: dict[str, str], form: forms.Form, blocks: dict,
 ) -> list[dict]:
-    """Один запис реєстру = один рядок: bool/image окремо, text — UA+RU/EN/CS разом."""
+    """Один запис реєстру = один рядок: bool/image окремо, text — CS+EN разом."""
     groups: dict[str, dict] = {}
     for entry in registry:
         base = f"{entry['page']}__{entry['key']}"
@@ -88,10 +81,8 @@ def group_blocks_for_template(
             })
         else:
             langs = (
-                form[base],
-                form[f'{base}__ru'],
-                form[f'{base}__en'],
                 form[f'{base}__cs'],
+                form[f'{base}__en'],
             )
             group['fields'].append({
                 'field': langs[0],
@@ -160,8 +151,10 @@ def save_blocks(block_model, tenant, registry: list[dict], block_form: forms.For
             block.block_type = block_model.BlockType.BOOL
             block.save(update_fields=['value_text', 'block_type'])
         else:
-            block.value_text = block_form.cleaned_data.get(name, '')
-            block.value_text_ru = block_form.cleaned_data.get(f'{name}__ru', '')
-            block.value_text_en = block_form.cleaned_data.get(f'{name}__en', '')
-            block.value_text_cs = block_form.cleaned_data.get(f'{name}__cs', '')
-            block.save(update_fields=['value_text', 'value_text_ru', 'value_text_en', 'value_text_cs'])
+            cs = block_form.cleaned_data.get(f'{name}__cs', '')
+            en = block_form.cleaned_data.get(f'{name}__en', '')
+            block.value_text_cs = cs
+            block.value_text_en = en
+            # Keep primary value_text in sync with CS for localized_text fallback.
+            block.value_text = cs
+            block.save(update_fields=['value_text', 'value_text_en', 'value_text_cs'])

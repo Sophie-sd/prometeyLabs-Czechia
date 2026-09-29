@@ -41,31 +41,31 @@ OFFERS = [
 
 TESTIMONIALS = [
     {
-        'author_name': 'Олена К.', 'role': 'Салон краси, Praha', 'rating': 5,
+        'author_name': 'Elena K.', 'role': 'Salón krásy, Praha', 'rating': 5,
         'text': 'Lidé píšou sami, už desetkrát nevysvětluju služby v Directu.',
         'text_en': 'People write themselves — I no longer explain services in Direct ten times.',
         'text_cs': 'Lidé píšou sami, už desetkrát nevysvětluju služby v Directu.',
     },
     {
-        'author_name': 'Ігор М.', 'role': 'Кавʼярня, Brno', 'rating': 5,
+        'author_name': 'Igor M.', 'role': 'Kavárna, Brno', 'rating': 5,
         'text': 'V telefonu je vše hned jasné. Poptávky na kávu chodí i v noci.',
         'text_en': 'Everything is clear on the phone. Coffee orders come even at night.',
         'text_cs': 'V telefonu je vše hned jasné. Poptávky na kávu chodí i v noci.',
     },
     {
-        'author_name': 'Петро С.', 'role': 'Репетитор', 'rating': 5,
+        'author_name': 'Petr S.', 'role': 'Lektor', 'rating': 5,
         'text': 'Jedna stránka místo tří sešitů na Instagramu.',
         'text_en': 'One page instead of three notebooks in Instagram.',
         'text_cs': 'Jedna stránka místo tří sešitů na Instagramu.',
     },
     {
-        'author_name': 'Марина Т.', 'role': 'Клініка', 'rating': 5,
+        'author_name': 'Marina T.', 'role': 'Klinika', 'rating': 5,
         'text': 'Poptávky v jednom adminu, texty měním sama za minutu.',
         'text_en': 'Requests in one admin — I change the texts myself in a minute.',
         'text_cs': 'Poptávky v jednom adminu, texty měním sama za minutu.',
     },
     {
-        'author_name': 'Дмитро В.', 'role': 'Магазин', 'rating': 5,
+        'author_name': 'David V.', 'role': 'Obchod', 'rating': 5,
         'text': 'Reklama je levnější: míň lidí utíká ze stránky.',
         'text_en': 'Ads got cheaper: fewer people run away from the page.',
         'text_cs': 'Reklama je levnější: míň lidí utíká ze stránky.',

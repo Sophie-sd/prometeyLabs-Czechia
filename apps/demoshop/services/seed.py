@@ -16,122 +16,123 @@ from ..content_models import ShopBlock, ShopHeroSlide
 from .images import load_seed_image
 
 CATEGORY_SEED = [
-    ('Електроніка', 'Электроника', 'Electronics', 'Elektronika', '📱'),
-    ('Дім і побут', 'Дом и быт', 'Home & Living', 'Dům a domácnost', '🏠'),
-    ('Аксесуари', 'Аксессуары', 'Accessories', 'Doplňky', '🎒'),
-    ('Новинки', 'Новинки', 'New Arrivals', 'Novinky', '✨'),
+    # (name/default=CS, name_ru unused, name_en, name_cs, icon)
+    ('Elektronika', '', 'Electronics', 'Elektronika', '📱'),
+    ('Dům a domácnost', '', 'Home & Living', 'Dům a domácnost', '🏠'),
+    ('Doplňky', '', 'Accessories', 'Doplňky', '🎒'),
+    ('Novinky', '', 'New Arrivals', 'Novinky', '✨'),
 ]
 
 # Іменовані SKU + slug ассета в static/demoshop/seed/products/<slug>.webp
 PRODUCT_SEED = [
     {
-        'name': 'Бездротові навушники Aura',
-        'name_ru': 'Беспроводные наушники Aura',
+        'name': 'Bezdrátová sluchátka Aura',
+        'name_ru': '',
         'name_en': 'Aura Wireless Headphones',
         'name_cs': 'Bezdrátová sluchátka Aura',
         'slug': 'wireless-headphones', 'cat': 0, 'price': 2490, 'featured': True
     },
     {
-        'name': 'Смарт-годинник Horizon',
-        'name_ru': 'Смарт-часы Horizon',
+        'name': 'Chytré hodinky Horizon',
+        'name_ru': '',
         'name_en': 'Horizon Smart Watch',
         'name_cs': 'Chytré hodinky Horizon',
         'slug': 'smart-watch', 'cat': 0, 'price': 3990, 'featured': True
     },
     {
-        'name': 'Портативна колонка Echo',
-        'name_ru': 'Портативная колонка Echo',
+        'name': 'Přenosný reproduktor Echo',
+        'name_ru': '',
         'name_en': 'Echo Portable Speaker',
         'name_cs': 'Přenosný reproduktor Echo',
         'slug': 'portable-speaker', 'cat': 0, 'price': 1890, 'featured': True
     },
     {
-        'name': 'Настільна лампа Lumen',
-        'name_ru': 'Настольная лампа Lumen',
+        'name': 'Stolní lampa Lumen',
+        'name_ru': '',
         'name_en': 'Lumen Desk Lamp',
         'name_cs': 'Stolní lampa Lumen',
         'slug': 'desk-lamp', 'cat': 1, 'price': 1290, 'featured': True
     },
     {
-        'name': 'Органайзер для столу Craft',
-        'name_ru': 'Органайзер для стола Craft',
+        'name': 'Organizér na stůl Craft',
+        'name_ru': '',
         'name_en': 'Craft Desk Organizer',
         'name_cs': 'Organizér na stůl Craft',
         'slug': 'desk-organizer', 'cat': 1, 'price': 790, 'featured': False
     },
     {
-        'name': 'Термокружка Ceramic Soft',
-        'name_ru': 'Термокружка Ceramic Soft',
+        'name': 'Termohrnek Ceramic Soft',
+        'name_ru': '',
         'name_en': 'Ceramic Soft Thermo Mug',
         'name_cs': 'Termohrnek Ceramic Soft',
         'slug': 'thermo-mug', 'cat': 1, 'price': 590, 'featured': True
     },
     {
-        'name': 'Рюкзак міський Trail',
-        'name_ru': 'Рюкзак городской Trail',
+        'name': 'Městský batoh Trail',
+        'name_ru': '',
         'name_en': 'Trail City Backpack',
         'name_cs': 'Městský batoh Trail',
         'slug': 'city-backpack', 'cat': 2, 'price': 2190, 'featured': True
     },
     {
-        'name': 'Чохол для телефону SoftCase',
-        'name_ru': 'Чехол для телефона SoftCase',
+        'name': 'Obal na telefon SoftCase',
+        'name_ru': '',
         'name_en': 'SoftCase Phone Case',
         'name_cs': 'Obal na telefon SoftCase',
         'slug': 'phone-case', 'cat': 2, 'price': 390, 'featured': False
     },
     {
-        'name': 'Повербанк Charge 20K',
-        'name_ru': 'Повербанк Charge 20K',
+        'name': 'Powerbanka Charge 20K',
+        'name_ru': '',
         'name_en': 'Charge 20K Power Bank',
         'name_cs': 'Powerbanka Charge 20K',
         'slug': 'power-bank', 'cat': 0, 'price': 1190, 'featured': False
     },
     {
-        'name': 'Набір посуду Stoneware',
-        'name_ru': 'Набор посуды Stoneware',
+        'name': 'Sada nádobí Stoneware',
+        'name_ru': '',
         'name_en': 'Stoneware Dishware Set',
         'name_cs': 'Sada nádobí Stoneware',
         'slug': 'dishware-set', 'cat': 1, 'price': 1590, 'featured': False
     },
     {
-        'name': 'Плед фліс Cloud',
-        'name_ru': 'Плед флис Cloud',
+        'name': 'Fleecová deka Cloud',
+        'name_ru': '',
         'name_en': 'Cloud Fleece Blanket',
         'name_cs': 'Fleecová deka Cloud',
         'slug': 'fleece-blanket', 'cat': 1, 'price': 990, 'featured': False
     },
     {
-        'name': 'Свічка ароматична Amber',
-        'name_ru': 'Свеча ароматическая Amber',
+        'name': 'Aromatická svíčka Amber',
+        'name_ru': '',
         'name_en': 'Amber Scented Candle',
         'name_cs': 'Aromatická svíčka Amber',
         'slug': 'aroma-candle', 'cat': 1, 'price': 450, 'featured': False
     },
     {
-        'name': 'Килимок для йоги Balance',
-        'name_ru': 'Коврик для йоги Balance',
+        'name': 'Podložka na jógu Balance',
+        'name_ru': '',
         'name_en': 'Balance Yoga Mat',
         'name_cs': 'Podložka na jógu Balance',
         'slug': 'yoga-mat', 'cat': 3, 'price': 890, 'featured': False
     },
     {
-        'name': 'Гарнітура ігрова Pulse',
-        'name_ru': 'Гарнитура игровая Pulse',
+        'name': 'Herní sluchátka Pulse',
+        'name_ru': '',
         'name_en': 'Pulse Gaming Headset',
         'name_cs': 'Herní sluchátka Pulse',
         'slug': 'gaming-headset', 'cat': 0, 'price': 2790, 'featured': False
     },
     {
-        'name': 'Тримач для телефону Stand',
-        'name_ru': 'Держатель для телефона Stand',
+        'name': 'Držák na telefon Stand',
+        'name_ru': '',
         'name_en': 'Stand Phone Holder',
         'name_cs': 'Držák na telefon Stand',
         'slug': 'phone-holder', 'cat': 2, 'price': 349, 'featured': False
     },
     {
-        'name': 'Кабель USB-C Braided',
-        'name_ru': 'Кабель USB-C Braided',
+        'name': 'Kabel USB-C Braided',
+        'name_ru': '',
         'name_en': 'Braided USB-C Cable',
         'name_cs': 'Kabel USB-C Braided',
         'slug': 'usb-c-cable', 'cat': 2, 'price': 299, 'featured': False
@@ -140,81 +141,82 @@ PRODUCT_SEED = [
 
 REVIEW_SEED = [
     {
-        'author': 'Олена',
+        'author': 'Elena',
         'rating': 5,
         'product_slug': 'wireless-headphones',
         'text': (
-            'Aura тримають заряд два робочі дні. '
-            'У метро нічого не свистить, навіть на максимумі.'
+            'Aura drží nabití dva pracovní dny. '
+            'V metru nic nesviští, ani na maximum.'
         ),
     },
     {
-        'author': 'Ігор',
+        'author': 'Igor',
         'rating': 5,
         'product_slug': 'city-backpack',
         'text': (
-            'Trail взяв на щодень: ноут 15" сідає рівно, '
-            'блискавка не клинить після місяця.'
+            'Trail beru každý den: 15" notebook sedí rovně, '
+            'zip se nezasekává ani po měsíci.'
         ),
     },
     {
-        'author': 'Марія',
+        'author': 'Marie',
         'rating': 5,
         'product_slug': 'desk-lamp',
         'text': (
-            'Lumen стоїть на столі біля вікна. '
-            'Ввечері світло тепле, очі не ріже.'
+            'Lumen stojí na stole u okna. '
+            'Večer je světlo teplé, oči neřeže.'
         ),
     },
     {
-        'author': 'Андрій',
+        'author': 'Adam',
         'rating': 4,
         'product_slug': 'power-bank',
         'text': (
-            'Charge 20K зарядив телефон двічі в дорозі. '
-            'Трохи важчий, ніж думав, але тримає.'
+            'Charge 20K nabíjel telefon dvakrát na cestě. '
+            'Trochu těžší, než jsem čekal, ale drží.'
         ),
     },
     {
-        'author': 'Наталія',
+        'author': 'Natálie',
         'rating': 5,
         'product_slug': 'thermo-mug',
         'text': (
-            'Кава в Ceramic Soft тепла ще опівдні. '
-            'Кришка не тече в сумці — перевірила.'
+            'Káva v Ceramic Soft je teplá ještě v poledne. '
+            'Víčko neteče v tašce — ověřeno.'
         ),
     },
     {
-        'author': 'Дмитро',
+        'author': 'David',
         'rating': 5,
         'product_slug': 'portable-speaker',
         'text': (
-            'Echo возив на дачу. Бас нормальний для такого розміру, '
-            'сусіди не скаржились.'
+            'Echo jsem vozil na chatu. Bas je v pohodě na tu velikost, '
+            'sousedé si nestěžovali.'
         ),
     },
 ]
 
 HERO_SLIDES_SEED = [
+    # (title, title_ru, title_en, title_cs, subtitle..., cta..., images)
     (
-        'Нова колекція вже тут', 'Новая коллекция уже здесь', 'New collection is here', 'Nová kolekce je tady',
-        'Встигніть обрати найкраще за акційними цінами', 'Успейте выбрать лучшее по акционным ценам',
+        'Nová kolekce je tady', '', 'New collection is here', 'Nová kolekce je tady',
+        'Vyberte si nejlepší za akční ceny, než zmizí', '',
         'Choose the best at promotional prices', 'Vyberte si nejlepší za akční ceny, než zmizí',
-        'До каталогу', 'В каталог', 'To Catalog', 'Do katalogu',
+        'Do katalogu', '', 'To Catalog', 'Do katalogu',
         'hero/slide-1-wide.webp', 'hero/slide-1-narrow.webp',
     ),
     (
-        'Безкоштовна доставка', 'Бесплатная доставка', 'Free Shipping', 'Doprava zdarma',
-        'При замовленні від 1000 Kč po celé ČR', 'При заказе от 1000 Kč po celé ČR',
+        'Doprava zdarma', '', 'Free Shipping', 'Doprava zdarma',
+        'Při objednávce nad 1 500 Kč po celé ČR', '',
         'For orders over 1 500 Kč across Czechia', 'Při objednávce nad 1 500 Kč po celé ČR',
-        'Дізнатись більше', 'Узнать больше', 'Learn More', 'Zjistit více',
+        'Zjistit více', '', 'Learn More', 'Zjistit více',
         'hero/slide-2-wide.webp', 'hero/slide-2-narrow.webp',
     ),
     (
-        'Гарантія повернення 14 днів', 'Гарантия возврата 14 дней', '14-Day Return Guarantee', 'Záruka vrácení 14 dní',
-        'Купуйте впевнено — повернення без питань', 'Покупайте уверенно — возврат без вопросов',
+        'Záruka vrácení 14 dní', '', '14-Day Return Guarantee', 'Záruka vrácení 14 dní',
+        'Nakupujte s jistotou — vrácení bez otázek', '',
         'Shop with confidence — no-questions-asked returns', 'Nakupujte s jistotou — vrácení bez otázek',
-        'Обрати товар', 'Выбрать товар', 'Choose a Product', 'Vybrat produkt',
+        'Vybrat produkt', '', 'Choose a Product', 'Vybrat produkt',
         'hero/slide-3-wide.webp', 'hero/slide-3-narrow.webp',
     ),
 ]
@@ -351,8 +353,8 @@ def _seed_products(shop, categories, force_images: bool = False) -> list:
         old_price = (price * Decimal('1.25')).quantize(Decimal('1')) if has_sale else None
         sale_end = (now + timedelta(days=5 + (index % 5))) if has_sale else None
 
-        gift = 'Міні-свічка в подарунок до замовлення' if item['slug'] in GIFT_PROMO_SLUGS else ''
-        gift_ru = 'Мини-свеча в подарок к заказу' if item['slug'] in GIFT_PROMO_SLUGS else ''
+        gift = 'Mini svíčka jako dárek k objednávce' if item['slug'] in GIFT_PROMO_SLUGS else ''
+        gift_ru = ''
         gift_en = 'Mini-candle as a gift with your order' if item['slug'] in GIFT_PROMO_SLUGS else ''
         gift_cs = 'Mini svíčka jako dárek k objednávce' if item['slug'] in GIFT_PROMO_SLUGS else ''
 
@@ -365,18 +367,15 @@ def _seed_products(shop, categories, force_images: bool = False) -> list:
                 'name_ru': item['name_ru'],
                 'name_en': item['name_en'],
                 'name_cs': item['name_cs'],
-                'short_description': 'Демо-товар для перевірки каталогу, кошика і CMS.',
-                'short_description_ru': 'Демо-товар для проверки каталога, корзины и CMS.',
+                'short_description': 'Demo produkt pro testování katalogu, košíku a CMS.',
+                'short_description_ru': '',
                 'short_description_en': 'Demo product for testing catalog, cart and CMS.',
                 'short_description_cs': 'Demo produkt pro testování katalogu, košíku a CMS.',
                 'description': (
-                    'Це демонстраційний товар з преміальним фото. '
-                    'Замініть назву, опис і зображення в адмінці «Мій магазин».'
+                    'Toto je ukázkový produkt s prémiovou fotografií. '
+                    'Název, popis a obrázky upravíte v administraci „Můj obchod“.'
                 ),
-                'description_ru': (
-                    'Это демонстрационный товар с премиальным фото. '
-                    'Замените название, описание и изображения в админке «Мой магазин».'
-                ),
+                'description_ru': '',
                 'description_en': (
                     'This is a demo product with a premium photo. '
                     'Replace the title, description and images in the "My Shop" admin.'

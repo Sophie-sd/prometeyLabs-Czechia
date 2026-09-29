@@ -98,7 +98,7 @@ class FormValidationTests(TestCase):
         self.assertEqual(response.status_code, 400)
         json_data = json.loads(response.content)
         self.assertFalse(json_data['success'])
-        self.assertIn('ім\'я', json_data['message'].lower())
+        self.assertIn('jméno', json_data['message'].lower())
 
     def test_form_with_invalid_name_only_digits(self):
         data = _lead(form_type='footer-consultation', name='12345')
@@ -112,7 +112,7 @@ class FormValidationTests(TestCase):
         self.assertEqual(response.status_code, 400)
         json_data = json.loads(response.content)
         self.assertFalse(json_data['success'])
-        self.assertIn('номер телефону', json_data['message'].lower())
+        self.assertIn('telefon', json_data['message'].lower())
 
     def test_form_with_international_phone(self):
         data = _lead(form_type='footer-consultation', phone='+44 20 7946 0958')

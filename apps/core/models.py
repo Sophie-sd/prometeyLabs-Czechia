@@ -65,7 +65,6 @@ class FormSubmission(models.Model):
     PREFERRED_LANGUAGE_CHOICES = [
         ('cs', 'Čeština'),
         ('en', 'English'),
-        ('uk', _('Українська')),
     ]
     
     # ===== КОНТАКТНІ ДАНІ =====

@@ -1,4 +1,4 @@
-"""Ідемпотентний seed demo-корпоративного сайту PrometeyLabs (UA/EN/CS/RU).
+"""Ідемпотентний seed demo-корпоративного сайту PrometeyLabs (CS/EN).
 
 Без `reset_defaults` існуючі CMS-блоки й колекції не перезаписуються.
 `refresh_images` перекладає hero / gallery / partners / about.photo з seed-файлів
