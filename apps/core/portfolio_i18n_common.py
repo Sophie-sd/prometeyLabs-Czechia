@@ -7,7 +7,7 @@ SHOP_TAGS_RU = (
     'доставка по Украине',
 )
 SHOP_TAGS_EN = (
-    'product catalog',
+    'product catalogue',
     'cart and checkout',
     'online payment',
     'delivery across Ukraine',
@@ -26,7 +26,7 @@ CATALOG_TAGS_RU = (
     'контакты',
 )
 CATALOG_TAGS_EN = (
-    'product catalog',
+    'product catalogue',
     'quote request',
     'work gallery',
     'contacts',

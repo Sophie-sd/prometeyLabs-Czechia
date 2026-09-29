@@ -1,4 +1,4 @@
-"""URL зображень портфоліо: media, якщо файл є на диску, інакше static fallback."""
+"""URL зображень портфоліо: static screens з репо, інакше media на диску."""
 from pathlib import Path
 
 from django.conf import settings
@@ -36,14 +36,20 @@ def resolve_static_portfolio_url(project, field_name: str) -> str:
 
 
 def resolve_portfolio_image_url(project, field_name: str) -> str:
-    """Повертає URL зображення або порожній рядок."""
+    """Картки: static screens (collectstatic), щоб прод не показував leftover media.
+
+    Media лише якщо static-файлу для slug немає (адмінський аплоад без seed-знімку).
+    """
+    static_url_value = resolve_static_portfolio_url(project, field_name)
+    if static_url_value:
+        return static_url_value
+
     field = getattr(project, field_name, None)
     if field and getattr(field, 'name', None):
         media_path = Path(settings.MEDIA_ROOT) / field.name
         if media_path.is_file():
             return field.url
-
-    return resolve_static_portfolio_url(project, field_name)
+    return ''
 
 
 def portfolio_image_available(project, field_name: str) -> bool:

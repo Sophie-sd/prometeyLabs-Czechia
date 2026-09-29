@@ -1,7 +1,10 @@
 """
-Ідемпотентне наповнення портфоліо з static-зображень.
+Ідемпотентне наповнення портфоліо з static-зображень (CS primary + EN).
 
-Після деплою: python manage.py migrate && python manage.py seed_portfolio_projects
+Після деплою (build.sh / start.sh):
+  python manage.py migrate && python manage.py seed_portfolio_projects --prune
+
+Див. docs/PORTFOLIO_SEED.md.
 """
 from pathlib import Path
 
@@ -11,12 +14,11 @@ from django.core.management.base import BaseCommand
 
 from apps.core.models import PortfolioProject
 from apps.core.portfolio_i18n import PORTFOLIO_I18N_CS, PORTFOLIO_I18N_EN
-from apps.core.portfolio_i18n_common import integrations_ru_for
 from apps.core.portfolio_seed_data import IMAGE_FIELD_MAP, PORTFOLIO_PROJECTS
 
 
 class Command(BaseCommand):
-    help = 'Створює або оновлює проєкти портфоліо з поточного static-контенту'
+    help = 'Створює або оновлює проєкти портфоліо (CS+EN) з static-контенту'
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -42,31 +44,47 @@ class Command(BaseCommand):
             slug = item['slug']
             en = PORTFOLIO_I18N_EN.get(slug) or {}
             cs = PORTFOLIO_I18N_CS.get(slug) or {}
-            uk_tags = item.get('integrations', '')
+
+            title_cs = (cs.get('title') or item.get('title') or '').strip()
+            title_en = (en.get('title') or title_cs).strip()
+            subtitle_cs = (cs.get('subtitle') or item.get('subtitle') or '').strip()
+            subtitle_en = (en.get('subtitle') or subtitle_cs).strip()
+            desc_cs = (
+                cs.get('card_description') or item.get('card_description') or ''
+            ).strip()
+            desc_en = (en.get('card_description') or desc_cs).strip()
+            tags_cs = (cs.get('integrations') or item.get('integrations') or '').strip()
+            tags_en = (en.get('integrations') or tags_cs).strip()
+            alt_cs = (cs.get('card_image_alt') or item.get('card_image_alt') or title_cs).strip()
+            alt_en = (en.get('card_image_alt') or title_en).strip()
+
+            # Primary public fields = Czech; EN in *_en; no UK/RU on public fields.
             defaults = {
-                'title': item['title'],
-                'title_ru': item.get('title_ru', ''),
-                'title_en': en.get('title', ''),
-                'title_cs': cs.get('title', ''),
-                'subtitle': item.get('subtitle', ''),
-                'subtitle_ru': item.get('subtitle_ru', ''),
-                'subtitle_en': en.get('subtitle', ''),
-                'subtitle_cs': cs.get('subtitle', ''),
-                'card_description': item['card_description'],
-                'card_description_ru': item.get('card_description_ru', ''),
-                'card_description_en': en.get('card_description', ''),
-                'card_description_cs': cs.get('card_description', ''),
-                'integrations': uk_tags,
-                'integrations_ru': integrations_ru_for(uk_tags),
-                'integrations_en': en.get('integrations', ''),
-                'integrations_cs': cs.get('integrations', ''),
-                'card_image_alt': item.get('card_image_alt', ''),
-                'card_image_alt_ru': item.get('card_image_alt_ru', ''),
-                'card_image_alt_en': en.get('card_image_alt', ''),
-                'card_image_alt_cs': cs.get('card_image_alt', ''),
+                'title': title_cs,
+                'title_ru': '',
+                'title_en': title_en,
+                'title_cs': title_cs,
+                'subtitle': subtitle_cs,
+                'subtitle_ru': '',
+                'subtitle_en': subtitle_en,
+                'subtitle_cs': subtitle_cs,
+                'card_description': desc_cs,
+                'card_description_ru': '',
+                'card_description_en': desc_en,
+                'card_description_cs': desc_cs,
+                'integrations': tags_cs,
+                'integrations_ru': '',
+                'integrations_en': tags_en,
+                'integrations_cs': tags_cs,
+                'card_image_alt': alt_cs,
+                'card_image_alt_ru': '',
+                'card_image_alt_en': alt_en,
+                'card_image_alt_cs': alt_cs,
                 'site_url': item.get('site_url', ''),
-                'home_story_label': item.get('home_story_label', ''),
-                'modal_content': item.get('modal_content', ''),
+                'home_story_label': '',
+                'home_story_label_ru': '',
+                'modal_content': '',
+                'modal_content_ru': '',
                 'order': item.get('order', 0),
                 'home_order': item.get('home_order', 0),
                 'show_on_portfolio': item.get('show_on_portfolio', False),
@@ -93,9 +111,20 @@ class Command(BaseCommand):
             pruned = stale.count()
             stale.delete()
 
+        hidden = (
+            PortfolioProject.objects.exclude(slug__in=seed_slugs)
+            .filter(show_on_portfolio=True)
+            .count()
+        )
+        PortfolioProject.objects.exclude(slug__in=seed_slugs).update(
+            show_on_portfolio=False,
+            show_on_homepage=False,
+        )
+
         self.stdout.write(
             self.style.SUCCESS(
                 f'Портфоліо: створено {created}, оновлено {updated}, видалено {pruned}, '
+                f'сховано застарілих {hidden}, '
                 f'всього {PortfolioProject.objects.count()} записів.'
             )
         )
