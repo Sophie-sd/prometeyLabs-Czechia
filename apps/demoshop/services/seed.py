@@ -355,7 +355,7 @@ def _seed_products(shop, categories, force_images: bool = False) -> list:
 
         gift = 'Mini svíčka jako dárek k objednávce' if item['slug'] in GIFT_PROMO_SLUGS else ''
         gift_ru = ''
-        gift_en = 'Mini-candle as a gift with your order' if item['slug'] in GIFT_PROMO_SLUGS else ''
+        gift_en = 'A mini candle as a gift with your order' if item['slug'] in GIFT_PROMO_SLUGS else ''
         gift_cs = 'Mini svíčka jako dárek k objednávce' if item['slug'] in GIFT_PROMO_SLUGS else ''
 
         product, _created = ShopProduct.objects.update_or_create(
