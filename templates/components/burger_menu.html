@@ -32,15 +32,19 @@
             data-index="04">
             {% trans "Корпоративні сайти та лендінги" %}
         </a>
-        <a href="{% url 'calculator' %}" class="mobile-nav-link mobile-touch-target mobile-focus-visible"
+        <a href="{% url 'telegram_bot' %}" class="mobile-nav-link mobile-touch-target mobile-focus-visible"
             data-index="05">
+            {% trans "Telegram-боти" %}
+        </a>
+        <a href="{% url 'calculator' %}" class="mobile-nav-link mobile-touch-target mobile-focus-visible"
+            data-index="06">
             {% trans "Розрахувати пропозицію" %}
         </a>
         <a href="{% url 'blog:blog_list' %}" class="mobile-nav-link mobile-touch-target mobile-focus-visible"
-            data-index="06">
+            data-index="07">
             {% trans "Блог" %}
         </a>
-        <a href="{% url 'contacts' %}" class="mobile-nav-link mobile-touch-target mobile-focus-visible" data-index="07">
+        <a href="{% url 'contacts' %}" class="mobile-nav-link mobile-touch-target mobile-focus-visible" data-index="08">
             {% trans "Контакти" %}
         </a>
     </div>

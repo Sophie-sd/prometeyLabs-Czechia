@@ -13,7 +13,7 @@
         <nav class="nav-menu" role="navigation" aria-label="{% trans 'Основне меню' %}">
             <a href="{% url 'home' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "головна" %}</a>
             <a href="{% url 'portfolio' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "портфоліо" %}</a>
-            <div class="nav-dropdown{% if request.resolver_match.url_name == 'internet_shop_v2' or request.resolver_match.url_name == 'corporate_website_v2' %} is-active{% endif %}">
+            <div class="nav-dropdown{% if request.resolver_match.url_name == 'internet_shop_v2' or request.resolver_match.url_name == 'corporate_website_v2' or request.resolver_match.url_name == 'telegram_bot' %} is-active{% endif %}">
                 <button type="button"
                     class="nav-link nav-dropdown__toggle mobile-touch-target mobile-focus-visible"
                     aria-expanded="false"
@@ -31,6 +31,9 @@
                     <a href="{% url 'corporate_website_v2' %}"
                         class="nav-dropdown__link mobile-touch-target mobile-focus-visible"
                         role="menuitem">{% trans "корпоративні сайти та лендінги" %}</a>
+                    <a href="{% url 'telegram_bot' %}"
+                        class="nav-dropdown__link mobile-touch-target mobile-focus-visible"
+                        role="menuitem">{% trans "Telegram-боти" %}</a>
                 </div>
             </div>
             <a href="{% url 'calculator' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "розрахувати пропозицію" %}</a>

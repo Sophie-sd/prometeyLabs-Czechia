@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.views.generic import DetailView
 from django.db.models import Q
+from django.utils.translation import gettext as _
 from .models import BlogPost
 
 
@@ -34,10 +35,10 @@ def blog_list(request):
         'page_obj': page_obj,
         'popular_posts': popular_posts,
         'category': category,
-        'page_title': 'Блог про веб-розробку та курси програмування',
-        'meta_description': 'Корисні статті про веб-розробку, курси програмування, створення сайтів під ключ та Telegram ботів. Читайте експертні поради та навчальні матеріали.',
-        'og_title': 'Блог про веб-розробку та курси програмування',
-        'keywords': 'блог веб-розробка, курси програмування, створення сайтів, розробка сайтів під ключ, telegram боти, python django',
+        'page_title': _('Блог про веб-розробку та курси програмування'),
+        'meta_description': _('Корисні статті про веб-розробку, курси програмування, створення сайтів під ключ та Telegram ботів. Читайте експертні поради та навчальні матеріали.'),
+        'og_title': _('Блог про веб-розробку та курси програмування'),
+        'keywords': _('блог веб-розробка, курси програмування, створення сайтів, розробка сайтів під ключ, telegram боти, python django'),
     }
     return render(request, 'pages/blog.html', context)
 
@@ -83,8 +84,14 @@ def blog_search(request):
         if query:
             posts = posts.filter(
                 Q(title__icontains=query) |
+                Q(title_en__icontains=query) |
+                Q(title_cs__icontains=query) |
                 Q(content__icontains=query) |
-                Q(keywords__icontains=query)
+                Q(content_en__icontains=query) |
+                Q(content_cs__icontains=query) |
+                Q(keywords__icontains=query) |
+                Q(keywords_en__icontains=query) |
+                Q(keywords_cs__icontains=query)
             )
     except Exception:
         posts = BlogPost.objects.none()

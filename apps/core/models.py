@@ -22,6 +22,7 @@ class FormSubmission(models.Model):
         ('footer-consultation', _('Заявка з футера')),
         ('test_result', _('Результат тесту калькулятора')),
         ('tz_generator', _('Генератор ТЗ для сайту')),
+        ('telegram-bot', _('Заявка на Telegram-бота')),
     ]
     
     # Вибір статусів
@@ -273,6 +274,7 @@ class FormSubmission(models.Model):
             'footer-consultation': 'Футер',
             'test_result': 'Тест',
             'tz_generator': 'ТЗ',
+            'telegram-bot': 'Telegram-бот',
         }
         return display_map.get(self.form_type, self.get_form_type_display())
 

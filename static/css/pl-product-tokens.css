@@ -1,0 +1,45 @@
+/* Shared tokens for dark-first product landings (shop / corp / bot family).
+   Opt-in: load this file, then page CSS. Do not copy *-anim.css here. */
+
+.pl-bot-body,
+.pl-bot,
+.pl-shop-page,
+.pl-corp-page {
+    --pl-bg: #0A0A0A;
+    --pl-acc: #E65100;
+    --pl-acc-h: #FF6D00;
+    --pl-acc-rgb: 230, 81, 0;
+    --pl-surface: #101010;
+    --pl-surface-2: #141414;
+    --pl-border: #232323;
+    --pl-border-strong: #333333;
+    --pl-text: #ffffff;
+    --pl-muted: #a3a3a3;
+    --pl-muted-2: #8a8a8a;
+    --pl-header-offset: 80px;
+    --pl-radius: 12px;
+    --pl-radius-btn: 11px;
+    --pl-radius-card: 18px;
+    --pl-radius-panel: 20px;
+    --pl-font: 'Space Grotesk', system-ui, sans-serif;
+    --pl-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.pl-bot-body,
+.pl-bot {
+    --pl-bot-bg: var(--pl-bg);
+    --pl-bot-acc: var(--pl-acc);
+    --pl-bot-acc-h: var(--pl-acc-h);
+    --pl-bot-acc-rgb: var(--pl-acc-rgb);
+    --pl-bot-surface: var(--pl-surface);
+    --pl-bot-surface-2: var(--pl-surface-2);
+    --pl-bot-border: var(--pl-border);
+    --pl-bot-border-strong: var(--pl-border-strong);
+    --pl-bot-text: var(--pl-text);
+    --pl-bot-muted: var(--pl-muted);
+    --pl-bot-header-offset: var(--pl-header-offset);
+    --pl-bot-radius: var(--pl-radius);
+    --pl-bot-radius-btn: var(--pl-radius-btn);
+    --pl-bot-radius-card: var(--pl-radius-card);
+    --pl-bot-radius-panel: var(--pl-radius-panel);
+}

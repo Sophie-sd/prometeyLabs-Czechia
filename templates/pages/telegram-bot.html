@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block body_attrs %} class="pl-bot-body" data-modal-source-page="telegram-bot-modal"{% endblock %}
+
+{% block title %}{% trans "Розробка Telegram-бота під ключ — пакети, строки, інтеграції | PrometeyLabs" %}{% endblock %}
+{% block description %}{% trans "Замовити Telegram-бота під ключ: заявки, запис, CRM і оплата в чаті. Індивідуальний кошторис після брифу." %}{% endblock %}
+{% block keywords %}{% trans "розробка telegram бота під ключ, замовити telegram бота, telegram бот ціна, чат-бот telegram для бізнесу" %}{% endblock %}
+{% block og_title %}{% trans "Telegram-бот під ключ для бізнесу | PrometeyLabs" %}{% endblock %}
+{% block og_description %}{% trans "Сценарій, інтеграції та запуск Telegram-бота під ключ. Кошторис після короткого брифу — без вигаданих пакетних цін." %}{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.prometeylabs.com{% url 'telegram_bot' %}">
+<link rel="alternate" hreflang="cs" href="https://www.prometeylabs.com/telegram-bot/">
+<link rel="alternate" hreflang="en" href="https://www.prometeylabs.com/en/telegram-bot/">
+<link rel="alternate" hreflang="x-default" href="https://www.prometeylabs.com/telegram-bot/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{% trans "Розробка Telegram-бота під ключ" %}",
+  "provider": {
+    "@type": "Organization",
+    "name": "PrometeyLabs",
+    "url": "https://www.prometeylabs.com"
+  },
+  "description": "{% trans "Telegram-бот для заявок, запису, CRM та оплати в чаті. Індивідуальний кошторис після брифу." %}",
+  "url": "https://www.prometeylabs.com{% url 'telegram_bot' %}",
+  "areaServed": "CZ"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "{% trans "Скільки коштує Telegram-бот під ключ у PrometeyLabs?" %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% trans "Ціну рахуємо після брифу: сценарій, інтеграції, чи потрібні оплата або Mini App. Публічного прайсу немає — надішліть задачу й отримаєте кошторис." %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% trans "Скільки триває розробка бота?" %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% trans "Від сценарію й інтеграцій. Орієнтир — у кошторисі після брифу, не один дедлайн на всі боти." %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% trans "Що входить у вартість, а що оплачується окремо?" %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% trans "У кошторисі: сценарій, розробка, тести, запуск. Хостинг, домен, платні API й токени ШІ — окремо, якщо потрібні." %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% trans "Чи інтегруєте CRM, таблиці та оплату?" %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% trans "Так — під ваш проєкт. На оцінці називаємо лише сервіси, з якими вже працювали." %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% trans "Де хоститься бот і хто володіє кодом після оплати?" %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% trans "Після повної оплати передаємо доступи, токен і код — як в оферті. Хостинг: ваш сервер або узгоджена інфраструктура." %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% trans "Чи робите AI-відповіді в Telegram?" %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% trans "Додаємо за запитом і з межами: бот не вигадує ціни чи наявність поза базою знань." %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% trans "Як відбувається оплата проєкту?" %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% trans "Етапами за договором. За потреби — покупка частинами monobank (окрема сторінка)." %}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "{% trans "Що з підтримкою після запуску?" %}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{% trans "1 рік на техбаги з нашої вини — як в оферті. Нові функції й сторонні API в гарантію не входять." %}"
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pl-product-tokens.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/telegram-bot.css' %}?v=3">
+{% endblock %}
+
+{% block content %}
+<div id="plBotRoot" class="pl-bot pl-bot-page">
+    <section class="pl-bot__hero" aria-labelledby="pl-bot-hero-title">
+        <div class="pl-bot__inner">
+            <div class="pl-bot__hero-row">
+                <div class="pl-bot__hero-copy">
+                    <p class="pl-bot__eyebrow">{% trans "Telegram-бот під ключ" %}</p>
+                    <h1 id="pl-bot-hero-title" class="pl-bot__h1">
+                        {% trans "Telegram-бот під ключ для бізнесу: заявки, CRM і оплата в чаті" %}
+                    </h1>
+                    <p class="pl-bot__lead">
+                        {% trans "Бот як частина системи PrometeyLabs: сценарій → інтеграції → за бажанням сайт або реклама. Кошторис після брифу, без вигаданих «від N євро»." %}
+                    </p>
+                    <div class="pl-bot__hero-actions">
+                        <a href="#pl-bot-form" class="pl-bot__btn pl-bot__btn--primary mobile-touch-target">{% trans "Отримати прорахунок" %}</a>
+                        <a href="{{ site_contact.telegram_url }}" class="pl-bot__btn pl-bot__btn--ghost mobile-touch-target" target="_blank" rel="noopener noreferrer">{% trans "Написати в Telegram" %}</a>
+                    </div>
+                    <p class="pl-bot__next">
+                        {% trans "Що далі: після брифу надішлемо орієнтир по сценарію та інтеграціях — без публічного прайса." %}
+                    </p>
+                    <p class="pl-bot__trust">
+                        <a href="{% url 'offer' %}">{% trans "Оферта" %}</a>
+                        · {% trans "після оплати код і токен — у замовника" %}
+                        · {% trans "гарантія 1 рік на багфікс" %}
+                    </p>
+                </div>
+
+                <figure class="pl-bot__hero-stage pl-bot__demo" aria-labelledby="pl-bot-demo-cap">
+                    <div class="pl-bot__phone">
+                        <div class="pl-bot__tg-bar">
+                            <span class="pl-bot__tg-avatar" aria-hidden="true">PL</span>
+                            <div class="pl-bot__tg-meta">
+                                <span class="pl-bot__tg-name">{% trans "Бот студії" %}</span>
+                                <span class="pl-bot__tg-status">{% trans "онлайн" %}</span>
+                            </div>
+                        </div>
+                        <div class="pl-bot__tg-thread">
+                            <p class="pl-bot__bubble">{% trans "Вітаю. Оберіть дію в меню — зберу заявку і передам менеджеру." %}</p>
+                            <ul class="pl-bot__tg-menu" aria-label="{% trans "Меню бота" %}">
+                                <li class="pl-bot__tg-key">{% trans "Заявка" %}</li>
+                                <li class="pl-bot__tg-key">{% trans "Запис на послуги" %}</li>
+                                <li class="pl-bot__tg-key">{% trans "Статус" %}</li>
+                                <li class="pl-bot__tg-key">{% trans "FAQ" %}</li>
+                            </ul>
+                            <p class="pl-bot__bubble pl-bot__bubble--user">{% trans "Заявка" %}</p>
+                            <p class="pl-bot__bubble">{% trans "Ім'я та телефон — передам у CRM команди." %}</p>
+                            <p class="pl-bot__bubble pl-bot__bubble--user">{% trans "Олена, +380 63 123 45 67" %}</p>
+                            <p class="pl-bot__bubble">{% trans "Заявку надіслано. Менеджер відповість у робочі години." %}</p>
+                        </div>
+                        <div class="pl-bot__tg-composer" aria-hidden="true">
+                            <span class="pl-bot__tg-field">{% trans "Повідомлення" %}</span>
+                        </div>
+                    </div>
+                    <figcaption id="pl-bot-demo-cap" class="pl-bot__demo-cap">{% trans "Демо: меню бота → заявка → CRM" %}</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="pl-bot__section" aria-labelledby="pl-bot-who-title">
+        <div class="pl-bot__inner">
+            <h2 id="pl-bot-who-title" class="pl-bot__h2">{% trans "Кому потрібен Telegram-бот" %}</h2>
+            <ul class="pl-bot__grid">
+                <li>
+                    <h3 class="pl-bot__h3">{% trans "Заявки й кваліфікація ліда" %}</h3>
+                    <p>{% trans "Збирає контакти, фільтрує запити й передає менеджеру замість нічного листування в чаті." %}</p>
+                </li>
+                <li>
+                    <h3 class="pl-bot__h3">{% trans "Запис на послуги" %}</h3>
+                    <p>{% trans "Слот, підтвердження, нагадування — менше ручних дзвінків для салону, школи чи сервісу." %}</p>
+                </li>
+                <li>
+                    <h3 class="pl-bot__h3">{% trans "Статуси замовлень / e-com" %}</h3>
+                    <p>{% trans "Каталог, кошик і статуси доставки в чаті. Для магазину можна поєднати з окремим сайтом." %}</p>
+                </li>
+                <li>
+                    <h3 class="pl-bot__h3">{% trans "FAQ підтримки" %}</h3>
+                    <p>{% trans "Типові відповіді 24/7 і кнопка «людина», коли сценарій закінчується." %}</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pl-bot__section" aria-labelledby="pl-bot-process-title">
+        <div class="pl-bot__inner">
+            <h2 id="pl-bot-process-title" class="pl-bot__h2">{% trans "Як ми працюємо" %}</h2>
+            <ol class="pl-bot__steps">
+                <li><span>01</span>{% trans "Бриф: ніша, задача, інтеграції" %}</li>
+                <li><span>02</span>{% trans "Сценарій діалогу й узгодження" %}</li>
+                <li><span>03</span>{% trans "Розробка та підключення сервісів" %}</li>
+                <li><span>04</span>{% trans "Тест гілок і крайніх випадків" %}</li>
+                <li><span>05</span>{% trans "Запуск і передача доступів" %}</li>
+                <li><span>06</span>{% trans "Гарантійний супровід за офертою" %}</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="pl-bot__section" aria-labelledby="pl-bot-pkg-title">
+        <div class="pl-bot__inner">
+            <h2 id="pl-bot-pkg-title" class="pl-bot__h2">{% trans "Пакети розробки" %}</h2>
+            <p class="pl-bot__note">{% trans "Орієнтири за складністю — не прайс. Суму скажемо після оцінки вашого сценарію." %}</p>
+            <div class="pl-bot__pkg-grid">
+                <article class="pl-bot__pkg">
+                    <p class="pl-bot__pkg-name">{% trans "MVP / заявки" %}</p>
+                    <p class="pl-bot__pkg-price">{% trans "Індивідуальний кошторис" %}</p>
+                    <p class="pl-bot__pkg-desc">{% trans "Меню, фільтр запитів і заявка менеджеру." %}</p>
+                    <ul>
+                        <li>{% trans "Діалог і кнопки меню" %}</li>
+                        <li>{% trans "Ім'я та телефон" %}</li>
+                        <li>{% trans "Сповіщення команді в чат" %}</li>
+                    </ul>
+                </article>
+                <article class="pl-bot__pkg pl-bot__pkg--featured">
+                    <p class="pl-bot__pkg-name">{% trans "Бізнес / CRM" %}</p>
+                    <p class="pl-bot__pkg-price">{% trans "Індивідуальний кошторис" %}</p>
+                    <p class="pl-bot__pkg-desc">{% trans "Запис і статуси з передачею в CRM чи таблицю." %}</p>
+                    <ul>
+                        <li>{% trans "Гілки під вашу нішу" %}</li>
+                        <li>{% trans "Інтеграція, яку підтвердимо на оцінці" %}</li>
+                        <li>{% trans "Лід з полями угоди в CRM" %}</li>
+                    </ul>
+                </article>
+                <article class="pl-bot__pkg">
+                    <p class="pl-bot__pkg-name">{% trans "Каталог / оплата" %}</p>
+                    <p class="pl-bot__pkg-price">{% trans "Індивідуальний кошторис" %}</p>
+                    <p class="pl-bot__pkg-desc">{% trans "Оплата в чаті чи Mini App — лише якщо це треба вам." %}</p>
+                    <ul>
+                        <li>{% trans "Каталог або кошик у боті" %}</li>
+                        <li>{% trans "Платіжка за домовленістю" %}</li>
+                        <li>{% trans "Mini App — опція, не за замовчуванням" %}</li>
+                    </ul>
+                </article>
+            </div>
+            <aside class="pl-bot__int-note">
+                <p class="pl-bot__eyebrow">{% trans "Інтеграції" %}</p>
+                <p>{% trans "Підключаємо те, що підтвердимо на оцінці: CRM, оплата, таблиці, склад, сайт. Не обіцяємо сервіси, яких команда не впроваджувала." %}</p>
+            </aside>
+        </div>
+    </section>
+
+    <section class="pl-bot__section" aria-labelledby="pl-bot-price-title">
+        <div class="pl-bot__inner pl-bot__inner--narrow">
+            <h2 id="pl-bot-price-title" class="pl-bot__h2">{% trans "Що впливає на ціну" %}</h2>
+            <ul class="pl-bot__checklist">
+                <li>{% trans "Кількість гілок сценарію та мов" %}</li>
+                <li>{% trans "Інтеграції: CRM, оплата, склад, таблиці" %}</li>
+                <li>{% trans "Чи потрібен Mini App замість кнопок" %}</li>
+                <li>{% trans "AI-база знань і модерація відповідей" %}</li>
+                <li>{% trans "Хто хостить бота і хто адмініструє після запуску" %}</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="pl-bot__section" id="pl-bot-faq" aria-labelledby="pl-bot-faq-title">
+        <div class="pl-bot__inner pl-bot__inner--narrow">
+            <h2 id="pl-bot-faq-title" class="pl-bot__h2">{% trans "Часті запитання" %}</h2>
+            <div class="pl-bot__faq">
+                <details>
+                    <summary>{% trans "Скільки коштує Telegram-бот під ключ у PrometeyLabs?" %}</summary>
+                    <p>{% trans "Ціну рахуємо після брифу: сценарій, інтеграції, чи потрібні оплата або Mini App. Публічного прайсу немає — надішліть задачу й отримаєте кошторис." %}</p>
+                </details>
+                <details>
+                    <summary>{% trans "Скільки триває розробка бота?" %}</summary>
+                    <p>{% trans "Від сценарію й інтеграцій. Орієнтир — у кошторисі після брифу, не один дедлайн на всі боти." %}</p>
+                </details>
+                <details>
+                    <summary>{% trans "Що входить у вартість, а що оплачується окремо?" %}</summary>
+                    <p>{% trans "У кошторисі: сценарій, розробка, тести, запуск. Хостинг, домен, платні API й токени ШІ — окремо, якщо потрібні." %}</p>
+                </details>
+                <details>
+                    <summary>{% trans "Чи інтегруєте CRM, таблиці та оплату?" %}</summary>
+                    <p>{% trans "Так — під ваш проєкт. На оцінці називаємо лише сервіси, з якими вже працювали." %}</p>
+                </details>
+                <details>
+                    <summary>{% trans "Де хоститься бот і хто володіє кодом після оплати?" %}</summary>
+                    <p>{% trans "Після повної оплати передаємо доступи, токен і код — як в оферті. Хостинг: ваш сервер або узгоджена інфраструктура." %}</p>
+                </details>
+                <details>
+                    <summary>{% trans "Чи робите AI-відповіді в Telegram?" %}</summary>
+                    <p>{% trans "Додаємо за запитом і з межами: бот не вигадує ціни чи наявність поза базою знань." %}</p>
+                </details>
+                <details>
+                    <summary>{% trans "Як відбувається оплата проєкту?" %}</summary>
+                    <p>{% trans "Етапами за договором. За потреби — покупка частинами monobank (окрема сторінка)." %} <a href="{% url 'monobank_chastynamy' %}">{% trans "Покупка частинами monobank" %}</a></p>
+                </details>
+                <details>
+                    <summary>{% trans "Що з підтримкою після запуску?" %}</summary>
+                    <p>{% trans "1 рік на техбаги з нашої вини — як в оферті. Нові функції й сторонні API в гарантію не входять." %}</p>
+                </details>
+            </div>
+            <p class="pl-bot__legal-note">
+                {% trans "Як у публічній оферті: 1 рік на багфікс з нашої вини. Не «пожиттєво» і не «5 років»." %}
+                <a href="{% url 'offer' %}">{% trans "Оферта" %}</a>
+            </p>
+        </div>
+    </section>
+
+    <section class="pl-bot__section" id="pl-bot-form" aria-labelledby="pl-bot-form-title">
+        <div class="pl-bot__inner pl-bot__inner--narrow">
+            <h2 id="pl-bot-form-title" class="pl-bot__h2">{% trans "Отримати прорахунок" %}</h2>
+            <p class="pl-bot__note">{% trans "Ніша й задача — відповімо орієнтиром по боту. Це не калькулятор сайтів." %}</p>
+            <form
+                class="pl-bot__form pl-bot__form-panel"
+                method="post"
+                action="{% url 'form_submit' %}"
+                data-form-type="telegram-bot"
+                data-qa="lead-form"
+            >
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="telegram-bot">
+                <input type="hidden" name="source_page" value="telegram-bot">
+                <input type="text" name="honeypot" class="pl-bot__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                <div class="pl-bot__field">
+                    <label for="pl-bot-name">{% trans "Ім'я" %} <span class="required">*</span></label>
+                    <input id="pl-bot-name" type="text" name="name" class="form-input mobile-touch-target" required autocomplete="given-name" placeholder="{% trans "Як до вас звертатися" %}">
+                </div>
+                <div class="pl-bot__field">
+                    <label for="pl-bot-phone">{% trans "Телефон" %} <span class="required">*</span></label>
+                    <input id="pl-bot-phone" type="tel" name="phone" class="form-input mobile-touch-target" required autocomplete="tel" inputmode="tel" placeholder="+38(___)__-__-___">
+                </div>
+                <div class="pl-bot__field">
+                    <label for="pl-bot-task">{% trans "Що має робити бот?" %}</label>
+                    <select id="pl-bot-task" name="bot_task" class="form-input mobile-touch-target">
+                        <option value="">{% trans "Оберіть задачу" %}</option>
+                        <option value="Заявки та кваліфікація ліда">{% trans "Заявки й кваліфікація ліда" %}</option>
+                        <option value="Запис на послуги">{% trans "Запис на послуги" %}</option>
+                        <option value="Замовлення / e-com">{% trans "Замовлення / e-com" %}</option>
+                        <option value="FAQ підтримки">{% trans "FAQ підтримки" %}</option>
+                        <option value="Ще не визначився">{% trans "Ще вирішую" %}</option>
+                    </select>
+                </div>
+                <div class="pl-bot__field">
+                    <label for="pl-bot-int">{% trans "Інтеграції (за потреби)" %}</label>
+                    <input id="pl-bot-int" type="text" name="integrations" class="form-input mobile-touch-target" placeholder="{% trans "CRM, оплата, таблиці…" %}">
+                </div>
+                <div class="pl-bot__field">
+                    <label for="pl-bot-details">{% trans "Коротко про задачу" %}</label>
+                    <textarea id="pl-bot-details" name="details" class="form-input mobile-touch-target" rows="4" maxlength="1000" placeholder="{% trans "Ніша, функції бота, де хостити" %}"></textarea>
+                </div>
+                <button type="submit" class="pl-bot__btn pl-bot__btn--primary pl-bot__btn--full mobile-touch-target">{% trans "Отримати прорахунок" %}</button>
+            </form>
+            <p class="pl-bot__links">
+                <a href="{% url 'internet_shop_v2' %}">{% trans "Інтернет-магазини" %}</a>
+                ·
+                <a href="{% url 'corporate_website_v2' %}">{% trans "Корпоративні сайти" %}</a>
+                ·
+                <a href="{% url 'monobank_chastynamy' %}">{% trans "Покупка частинами" %}</a>
+            </p>
+        </div>
+    </section>
+</div>
+{% endblock %}
