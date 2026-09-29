@@ -22,29 +22,7 @@
                 <a class="ds-nav__link" href="{% url 'demoshop:promotions' shop_slug=shop.slug %}">{% trans "Акції" %}</a>
             </nav>
             <div class="ds-header__actions">
-                {% get_current_language as CURRENT_LANG %}
-                <div class="ds-lang-switcher">
-                    <form action="{% url 'set_language' %}" method="post" id="ds-lang-form">
-                        {% csrf_token %}
-                        <input name="next" type="hidden" value="{{ request.path }}" id="ds-lang-next">
-                        <select name="language"
-                            onchange="document.getElementById('ds-lang-next').value = (window.location.pathname.replace(/^\/(en|ru|cs)\//, '/') + window.location.search); this.form.submit();"
-                            class="ds-lang-select">
-                            {% get_available_languages as LANGUAGES %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                            {% if language.code != 'ru' %}
-                            <option value="{{ language.code }}" {% if language.code == CURRENT_LANG %}selected{% endif %}>
-                                {{ language.code|upper }}
-                            </option>
-                            {% endif %}
-                            {% endfor %}
-                        </select>
-                        {% if CURRENT_LANG == 'ru' %}
-                        <span class="ds-lang-select__current" aria-hidden="true">RU</span>
-                        {% endif %}
-                    </form>
-                </div>
+                {% include 'demotenant/partials/lang_switcher.html' with extra_class='ds-lang-switcher' select_class='ds-lang-select' %}
 
                 <a class="ds-wish-link" href="{% url 'demoshop:wishlist' shop_slug=shop.slug %}" aria-label="{% trans "Обране" %}" data-qa="wishlist-count">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">

@@ -15,6 +15,7 @@
             <li><a href="#cta">{% trans "Контакти" %}</a></li>
             <li><a href="{% url 'demolanding:admin_login' slug=site.slug %}">{% trans "Адмінка" %}</a></li>
         </ul>
+        {% include 'demotenant/partials/lang_switcher.html' with extra_class='dt-lang--drawer' %}
         {% include 'demolanding/partials/socials.html' with extra_class='dl-socials--drawer' %}
         {% if phone_href %}
         <a class="drawer__tel" href="tel:{{ phone_href }}">{{ header_phone }}</a>

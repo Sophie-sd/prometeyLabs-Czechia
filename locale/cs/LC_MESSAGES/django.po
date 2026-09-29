@@ -53,10 +53,8 @@ msgstr "Nadpis (EN)"
 #: apps/blog/models.py:15 apps/core/models.py:690
 #: apps/core/proposal_models.py:32 apps/core/proposal_models.py:209
 #: apps/core/proposal_models.py:369 apps/demoshop/content_models.py:63
-#, fuzzy
-#| msgid "Заголовок (RU)"
 msgid "Заголовок (CS)"
-msgstr "Nadpis (RU)"
+msgstr "Nadpis (CS)"
 
 #: apps/blog/models.py:16 apps/democorp/catalog_models.py:58
 #: apps/demoshop/catalog_models.py:64
@@ -70,10 +68,8 @@ msgstr "Krátký popis (EN)"
 
 #: apps/blog/models.py:18 apps/democorp/catalog_models.py:60
 #: apps/demoshop/catalog_models.py:66
-#, fuzzy
-#| msgid "Короткий опис (RU)"
 msgid "Короткий опис (CS)"
-msgstr "Krátký popis (RU)"
+msgstr "Krátký popis (CS)"
 
 #: apps/blog/models.py:19
 msgid "Контент (RU)"
@@ -361,7 +357,7 @@ msgstr "Povoleny jsou interní cesty (/…) nebo http(s)/mailto/tel."
 #: apps/core/proposal_admin.py:140 apps/demolanding/collection_admin.py:29
 #: apps/demoshop/catalog_admin.py:62 apps/demoshop/catalog_admin.py:84
 msgid "Основне"
-msgstr "Základní"
+msgstr "Hlavní"
 
 #: apps/core/admin.py:571
 #, fuzzy
@@ -392,7 +388,7 @@ msgstr "Modální okno"
 #: apps/core/admin.py:613 apps/demoshop/block_defaults.py:9
 #: templates/components/tz_generator/coverflow_set.html:9
 msgid "Головна сторінка"
-msgstr "Hlavní stránka"
+msgstr "Úvodní stránka"
 
 #: apps/core/admin.py:616 apps/core/admin.py:670
 msgid "Відображення"
@@ -570,7 +566,7 @@ msgstr "Ukrajinština"
 #: templates/components/lead_form_fields.html:14
 #: templates/components/lead_gdpr_min.html:7
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 #: apps/core/models.py:75
 msgid "Посилання на месенджер"
@@ -1004,10 +1000,8 @@ msgid "Підзаголовок (EN)"
 msgstr "Podtitulek (EN)"
 
 #: apps/core/models.py:693 apps/demoshop/content_models.py:67
-#, fuzzy
-#| msgid "Підзаголовок (RU)"
 msgid "Підзаголовок (CS)"
-msgstr "Podtitulek (RU)"
+msgstr "Podtitulek (CS)"
 
 #: apps/core/models.py:694
 msgid "Короткий опис (картка) (RU)"
@@ -1066,10 +1060,8 @@ msgid "Текст кнопки (EN)"
 msgstr "Text tlačítka (EN)"
 
 #: apps/core/models.py:737 apps/demoshop/content_models.py:71
-#, fuzzy
-#| msgid "Текст кнопки (RU)"
 msgid "Текст кнопки (CS)"
-msgstr "Text tlačítka (RU)"
+msgstr "Text tlačítka (CS)"
 
 #: apps/core/models.py:742
 msgid "Посилання кнопки"
@@ -1239,7 +1231,7 @@ msgstr "Záruka"
 
 #: apps/core/proposal_admin.py:174 apps/demoshop/admin.py:32
 msgid "Мета"
-msgstr "Cíl"
+msgstr "Meta"
 
 #: apps/core/proposal_admin.py:180 apps/payment/admin.py:306
 msgid "Відкрити"
@@ -1356,10 +1348,8 @@ msgstr "Text CTA (RU)"
 #: apps/demolanding/collection_models.py:123
 #: apps/demolanding/content_models.py:16 apps/demolanding/lead_models.py:10
 #: templates/demolanding/admin/my_landing_content.html:13
-#, fuzzy
-#| msgid "Лендінги:"
 msgid "Лендінг"
-msgstr "Landing page:"
+msgstr "Landing"
 
 #: apps/core/proposal_models.py:100
 #: templates/components/tz_generator/quiz.html:27
@@ -1392,7 +1382,7 @@ msgstr ""
 #: apps/demolanding/models.py:41 apps/demoshop/models.py:46
 #: templates/proposal/base_proposal.html:29
 msgid "Комерційна пропозиція"
-msgstr "Obchodní nabídka"
+msgstr "Nabídka"
 
 #: apps/core/proposal_models.py:125 config/settings.py:141
 msgid "Комерційні пропозиції"
@@ -1447,10 +1437,8 @@ msgstr "Popis (EN)"
 
 #: apps/core/proposal_models.py:214 apps/democorp/collection_models.py:23
 #: apps/demolanding/collection_models.py:21 apps/demoshop/catalog_models.py:70
-#, fuzzy
-#| msgid "Опис (RU)"
 msgid "Опис (CS)"
-msgstr "Popis (RU)"
+msgstr "Popis (CS)"
 
 #: apps/core/proposal_models.py:245
 msgid "Назва пакету"
@@ -1475,7 +1463,7 @@ msgstr "Název balíčku (RU)"
 #: apps/core/proposal_models.py:261
 #: templates/components/pb_step_heading.html:26
 msgid "Що входить"
-msgstr "Co je zahrnuto"
+msgstr "Co je v ceně"
 
 #: apps/core/proposal_models.py:262
 msgid "Що входить (RU)"
@@ -1554,10 +1542,8 @@ msgstr "Text (EN)"
 #: apps/core/proposal_models.py:374 apps/democorp/collection_models.py:81
 #: apps/demolanding/collection_models.py:103 apps/demoshop/content_models.py:32
 #: apps/demotenant/models_abstract.py:122
-#, fuzzy
-#| msgid "Текст (RU)"
 msgid "Текст (CS)"
-msgstr "Text (RU)"
+msgstr "Text (CS)"
 
 #: apps/core/tz_views.py:73
 msgid "Заповніть імʼя, телефон і email"
@@ -1917,38 +1903,30 @@ msgid "Заявка з footer - Консультація"
 msgstr "Poptávka z patičky - Konzultace"
 
 #: apps/democorp/admin.py:27 apps/demolanding/admin.py:25
-#, fuzzy
-#| msgid "Деактивувати вибрані посилання"
 msgid "Деактивувати (вимкнути клієнтський логін)"
-msgstr "Deaktivovat vybrané odkazy"
+msgstr "Deaktivovat (vypnout klientský login)"
 
 #: apps/democorp/admin.py:31
-#, fuzzy, python-format
-#| msgid "Деактивовано: %(n)s"
+#, python-format
 msgid "Деактивовано %(count)d сайт(ів)."
-msgstr "Deaktivováno: %(n)s"
+msgstr "Deaktivováno webů: %(count)d."
 
 #: apps/democorp/admin.py:33 apps/demolanding/admin.py:31
-#, fuzzy
-#| msgid "Активна"
 msgid "Активувати"
-msgstr "Aktivní"
+msgstr "Aktivovat"
 
 #: apps/democorp/admin.py:40
-#, fuzzy, python-format
-#| msgid "Активовано: %(n)s"
+#, python-format
 msgid "Активовано %(count)d сайт(ів)."
-msgstr "Aktivováno: %(n)s"
+msgstr "Aktivováno webů: %(count)d."
 
 #: apps/democorp/apps.py:8 apps/democorp/models.py:61
-#, fuzzy
-#| msgid "Строгий корпоративний"
 msgid "Демо-сайти (корпоративні)"
-msgstr "Striktně firemní"
+msgstr "Demo weby (firemní)"
 
 #: apps/democorp/block_defaults.py:9 apps/demolanding/block_defaults.py:9
 msgid "Хедер"
-msgstr ""
+msgstr "Hlavička"
 
 #: apps/democorp/block_defaults.py:10 templates/components/burger_menu.html:26
 #: templates/components/footer.html:19
@@ -1964,17 +1942,13 @@ msgstr "Domů"
 #: apps/democorp/block_defaults.py:11 config/settings.py:198
 #: templates/democorp/partials/drawer.html:7
 #: templates/democorp/partials/header.html:8
-#, fuzzy
-#| msgid "Виробництво / опт"
 msgid "Виробництво"
-msgstr "Výroba / velkoobchod"
+msgstr "Výroba"
 
 #: apps/democorp/block_defaults.py:12 templates/democorp/partials/drawer.html:9
 #: templates/democorp/partials/header.html:10
-#, fuzzy
-#| msgid "Фото «Про нас»"
 msgid "Про нас"
-msgstr "Foto „O nás“"
+msgstr "O nás"
 
 #: apps/democorp/block_defaults.py:14 apps/demoshop/block_defaults.py:10
 #: templates/democorp/admin/my_site_content.html:15
@@ -1991,28 +1965,26 @@ msgstr "Patička"
 
 #: apps/democorp/block_defaults.py:16 apps/demolanding/block_defaults.py:20
 msgid "SEO"
-msgstr ""
+msgstr "SEO"
 
 #: apps/democorp/block_defaults.py:20 apps/demolanding/block_defaults.py:24
-#, fuzzy
-#| msgid "Назва магазину (лого)"
 msgid "Назва компанії (лого)"
-msgstr "Název obchodu (logo)"
+msgstr "Název firmy (logo)"
 
 #: apps/democorp/block_defaults.py:23 apps/demolanding/block_defaults.py:27
 #: apps/demoshop/block_defaults.py:23
 msgid "Заголовок hero"
-msgstr "Nadpis hero sekce"
+msgstr "Nadpis hero"
 
 #: apps/democorp/block_defaults.py:28 apps/demolanding/block_defaults.py:32
 #: apps/demoshop/block_defaults.py:26
 msgid "Підзаголовок hero"
-msgstr "Podtitulek hero sekce"
+msgstr "Podtitulek hero"
 
 #: apps/democorp/block_defaults.py:33 apps/demolanding/block_defaults.py:37
 #: apps/demoshop/block_defaults.py:31
 msgid "Текст кнопки hero"
-msgstr "Text tlačítka hero sekce"
+msgstr "Text tlačítka hero"
 
 #: apps/democorp/block_defaults.py:36 apps/demolanding/block_defaults.py:44
 #, fuzzy
@@ -2039,22 +2011,16 @@ msgid "Статистика: дилерів"
 msgstr "Statistika: klientů"
 
 #: apps/democorp/block_defaults.py:44
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати відгуки на головній"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit recenze na úvodu"
 
 #: apps/democorp/block_defaults.py:45
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати партнерів на головній"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit partnery na úvodu"
 
 #: apps/democorp/block_defaults.py:46
-#, fuzzy
-#| msgid "Заголовок каталогу"
 msgid "Заголовок блоку каталогу на головній"
-msgstr "Nadpis katalogu"
+msgstr "Nadpis bloku katalogu na úvodu"
 
 #: apps/democorp/block_defaults.py:50
 #, fuzzy
@@ -2063,26 +2029,24 @@ msgid "Заголовок сторінки «Виробництво»"
 msgstr "Nadpis „O nás“"
 
 #: apps/democorp/block_defaults.py:53
-#, fuzzy
-#| msgid "Наступний проект"
 msgid "Вступний текст"
-msgstr "Další projekt"
+msgstr "Úvodní text"
 
 #: apps/democorp/block_defaults.py:58
 msgid "Етап 1"
-msgstr ""
+msgstr "Etapa 1"
 
 #: apps/democorp/block_defaults.py:61
 msgid "Етап 2"
-msgstr ""
+msgstr "Etapa 2"
 
 #: apps/democorp/block_defaults.py:64
 msgid "Етап 3"
-msgstr ""
+msgstr "Etapa 3"
 
 #: apps/democorp/block_defaults.py:67
 msgid "Етап 4"
-msgstr ""
+msgstr "Etapa 4"
 
 #: apps/democorp/block_defaults.py:70
 #, fuzzy
@@ -2100,41 +2064,31 @@ msgstr "Text „O nás“"
 
 #: apps/democorp/block_defaults.py:79 templates/democorp/about.html:16
 msgid "Місія"
-msgstr ""
+msgstr "Mise"
 
 #: apps/democorp/block_defaults.py:88
-#, fuzzy
-#| msgid "Графік роботи: Цілодобово"
 msgid "Графік роботи"
-msgstr "Provozní doba: Nepřetržitě"
+msgstr "Provozní doba"
 
 #: apps/democorp/block_defaults.py:92 apps/demoshop/block_defaults.py:50
 msgid "Заголовок каталогу"
 msgstr "Nadpis katalogu"
 
 #: apps/democorp/block_defaults.py:95
-#, fuzzy
-#| msgid "Текст кнопки"
 msgid "Текст кнопки «Купити»"
-msgstr "Text tlačítka"
+msgstr "Text tlačítka „Koupit“"
 
 #: apps/democorp/block_defaults.py:98
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати партнерів у футері"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit partnery v patičce"
 
 #: apps/democorp/block_defaults.py:100 apps/demolanding/block_defaults.py:134
-#, fuzzy
-#| msgid "OG Title"
 msgid "SEO title"
-msgstr "OG Title"
+msgstr "SEO title"
 
 #: apps/democorp/block_defaults.py:103 apps/demolanding/block_defaults.py:137
-#, fuzzy
-#| msgid "OG Description"
 msgid "SEO description"
-msgstr "OG Description"
+msgstr "SEO description"
 
 #: apps/democorp/catalog_admin.py:41 apps/democorp/catalog_models.py:103
 #: apps/democorp/collection_models.py:51
@@ -2149,7 +2103,7 @@ msgstr "Foto"
 #: apps/democorp/catalog_models.py:110 apps/demoshop/catalog_admin.py:50
 #: apps/demoshop/catalog_models.py:169 apps/demoshop/catalog_models.py:170
 msgid "Фото товару"
-msgstr "Foto produktu"
+msgstr "Fotky produktu"
 
 #: apps/democorp/catalog_models.py:15 apps/democorp/catalog_models.py:46
 #: apps/democorp/collection_models.py:14 apps/democorp/collection_models.py:49
@@ -2177,10 +2131,8 @@ msgstr "Název (EN)"
 #: apps/democorp/collection_models.py:19
 #: apps/demolanding/collection_models.py:17 apps/demoshop/catalog_models.py:22
 #: apps/demoshop/catalog_models.py:61
-#, fuzzy
-#| msgid "Назва (RU)"
 msgid "Назва (CS)"
-msgstr "Název (RU)"
+msgstr "Název (CS)"
 
 #: apps/democorp/catalog_models.py:22 apps/demolanding/collection_models.py:26
 #: apps/demoshop/catalog_models.py:25 apps/payment/models.py:81
@@ -2188,64 +2140,44 @@ msgid "Активна"
 msgstr "Aktivní"
 
 #: apps/democorp/catalog_models.py:28
-#, fuzzy
-#| msgid "До каталогу"
 msgid "Категорія каталогу"
-msgstr "Do katalogu"
+msgstr "Kategorie katalogu"
 
 #: apps/democorp/catalog_models.py:29 config/settings.py:200
-#, fuzzy
-#| msgid "До каталогу"
 msgid "Категорії каталогу"
-msgstr "Do katalogu"
+msgstr "Kategorie katalogu"
 
 #: apps/democorp/catalog_models.py:61
-#, fuzzy
-#| msgid "Практичні навички"
 msgid "Характеристики"
-msgstr "Praktické dovednosti"
+msgstr "Parametry"
 
 #: apps/democorp/catalog_models.py:62
-#, fuzzy
-#| msgid "Адреса доставки (RU)"
 msgid "Характеристики (RU)"
-msgstr "Adresa doručení (RU)"
+msgstr "Parametry (RU)"
 
 #: apps/democorp/catalog_models.py:63
-#, fuzzy
-#| msgid "Адреса доставки (EN)"
 msgid "Характеристики (EN)"
-msgstr "Adresa doručení (EN)"
+msgstr "Parametry (EN)"
 
 #: apps/democorp/catalog_models.py:64
-#, fuzzy
-#| msgid "Адреса доставки (RU)"
 msgid "Характеристики (CS)"
-msgstr "Adresa doručení (RU)"
+msgstr "Parametry (CS)"
 
 #: apps/democorp/catalog_models.py:66 apps/demolanding/collection_models.py:23
-#, fuzzy
-#| msgid "Ціна"
 msgid "Ціна від"
-msgstr "Cena"
+msgstr "Cena od"
 
 #: apps/democorp/catalog_models.py:68
-#, fuzzy
-#| msgid "Популярне"
 msgid "Популярний"
-msgstr "Populární"
+msgstr "Oblíbený"
 
 #: apps/democorp/catalog_models.py:75
-#, fuzzy
-#| msgid "До каталогу"
 msgid "Товар каталогу"
-msgstr "Do katalogu"
+msgstr "Produkt katalogu"
 
 #: apps/democorp/catalog_models.py:76 config/settings.py:201
-#, fuzzy
-#| msgid "До каталогу"
 msgid "Товари каталогу"
-msgstr "Do katalogu"
+msgstr "Produkty katalogu"
 
 #: apps/democorp/catalog_models.py:101 apps/demoshop/catalog_models.py:98
 #: apps/demoshop/catalog_models.py:160 apps/demoshop/catalog_models.py:182
@@ -2260,10 +2192,8 @@ msgid "Головне фото"
 msgstr "Hlavní foto"
 
 #: apps/democorp/collection_models.py:16
-#, fuzzy
-#| msgid "Назва пакету"
 msgid "Назва етапу"
-msgstr "Název balíčku"
+msgstr "Název etapy"
 
 #: apps/democorp/collection_models.py:28
 #, fuzzy
@@ -2292,42 +2222,32 @@ msgstr "Specifikace"
 #: apps/democorp/collection_models.py:52
 #: apps/demolanding/collection_models.py:56
 #: apps/demolanding/collection_models.py:80
-#, fuzzy
-#| msgid "Підписка"
 msgid "Підпис"
-msgstr "Předplatné"
+msgstr "Popisek"
 
 #: apps/democorp/collection_models.py:53
 #: apps/demolanding/collection_models.py:57
-#, fuzzy
-#| msgid "Опис (RU)"
 msgid "Підпис (RU)"
-msgstr "Popis (RU)"
+msgstr "Popisek (RU)"
 
 #: apps/democorp/collection_models.py:54
 #: apps/demolanding/collection_models.py:58
-#, fuzzy
-#| msgid "Опис (EN)"
 msgid "Підпис (EN)"
-msgstr "Popis (EN)"
+msgstr "Popisek (EN)"
 
 #: apps/democorp/collection_models.py:55
 #: apps/demolanding/collection_models.py:59
-#, fuzzy
-#| msgid "Опис (RU)"
 msgid "Підпис (CS)"
-msgstr "Popis (RU)"
+msgstr "Popisek (CS)"
 
 #: apps/democorp/collection_models.py:61
 #: apps/demolanding/collection_models.py:65
-#, fuzzy
-#| msgid "Фото товару"
 msgid "Фото галереї"
-msgstr "Foto produktu"
+msgstr "Foto galerie"
 
 #: apps/democorp/collection_models.py:62 config/settings.py:199
 msgid "Галерея / сертифікати"
-msgstr ""
+msgstr "Galerie / certifikáty"
 
 #: apps/democorp/collection_models.py:76
 #: apps/demolanding/collection_models.py:98 apps/demoshop/catalog_models.py:184
@@ -2370,41 +2290,37 @@ msgstr "Název profilu"
 
 #: apps/democorp/collection_models.py:103
 #: apps/demolanding/collection_models.py:126
-#, fuzzy
-#| msgid "Логотип"
 msgid "Лого"
 msgstr "Logo"
 
 #: apps/democorp/collection_models.py:108
 #: apps/demolanding/collection_models.py:131
 msgid "Партнер"
-msgstr ""
+msgstr "Partner"
 
 #: apps/democorp/collection_models.py:109
 #: apps/demolanding/collection_models.py:132 config/settings.py:203
 #: config/settings.py:216
 msgid "Партнери"
-msgstr ""
+msgstr "Partneři"
 
 #: apps/democorp/content_admin.py:55
-#, fuzzy
-#| msgid "Мій магазин — контент і кольори"
 msgid "Мій сайт — контент і стиль"
-msgstr "Můj obchod — obsah a barvy"
+msgstr "Můj web — obsah a styl"
 
 #: apps/democorp/content_models.py:25 apps/demolanding/content_models.py:25
 #: apps/demoshop/content_models.py:41
 msgid "Блок контенту"
-msgstr "Obsahový blok"
+msgstr "Blok obsahu"
 
 #: apps/democorp/content_models.py:26 apps/demolanding/content_models.py:26
 #: apps/demoshop/content_models.py:42
 msgid "Блоки контенту"
-msgstr "Obsahové bloky"
+msgstr "Bloky obsahu"
 
 #: apps/democorp/lead_models.py:16
 msgid "Товар (якщо «Купити»)"
-msgstr ""
+msgstr "Produkt (pokud „Koupit“)"
 
 #: apps/democorp/lead_models.py:18 apps/demolanding/lead_models.py:12
 #: templates/components/corporate_website_v2/brief.html:202
@@ -2418,10 +2334,8 @@ msgid "Повідомлення"
 msgstr "Zpráva"
 
 #: apps/democorp/lead_models.py:23 apps/demolanding/lead_models.py:17
-#, fuzzy
-#| msgid "Питання"
 msgid "Прочитано"
-msgstr "Otázka"
+msgstr "Přečteno"
 
 #: apps/democorp/models.py:20
 msgid "Editorial (paper + ink)"
@@ -2434,59 +2348,49 @@ msgstr ""
 #: apps/democorp/models.py:44 apps/demolanding/models.py:49
 #: apps/demoshop/models.py:54
 msgid "Клієнтський логін"
-msgstr "Klientské přihlášení"
+msgstr "Klientský login"
 
 #: apps/democorp/models.py:47 apps/demolanding/models.py:52
 msgid "Стиль"
-msgstr ""
+msgstr "Styl"
 
 #: apps/democorp/models.py:51
-#, fuzzy
-#| msgid "Каталог / послуги"
 msgid "Каталог продукції"
-msgstr "Katalog / služby"
+msgstr "Katalog produktů"
 
 #: apps/democorp/models.py:52
 msgid "Без оплат/кошика — кнопка «Купити» відкриває заявку"
-msgstr ""
+msgstr "Bez plateb/košíku — tlačítko „Koupit“ otevře poptávku"
 
 #: apps/democorp/models.py:55
 msgid "Hero — фото"
-msgstr ""
+msgstr "Hero — foto"
 
 #: apps/democorp/models.py:60
-#, fuzzy
-#| msgid "Строгий корпоративний"
 msgid "Демо-сайт (корпоративний)"
-msgstr "Striktně firemní"
+msgstr "Demo web (firemní)"
 
 #: apps/demolanding/admin.py:29
-#, fuzzy, python-format
-#| msgid "Деактивовано: %(n)s"
+#, python-format
 msgid "Деактивовано %(count)d лендінг(ів)."
-msgstr "Deaktivováno: %(n)s"
+msgstr "Deaktivováno landingů: %(count)d."
 
 #: apps/demolanding/admin.py:38
-#, fuzzy, python-format
-#| msgid "Активовано: %(n)s"
+#, python-format
 msgid "Активовано %(count)d лендінг(ів)."
-msgstr "Aktivováno: %(n)s"
+msgstr "Aktivováno landingů: %(count)d."
 
 #: apps/demolanding/apps.py:8 apps/demolanding/models.py:73
-#, fuzzy
-#| msgid "Лендінги:"
 msgid "Демо-лендінги"
-msgstr "Landing page:"
+msgstr "Demo landingy"
 
 #: apps/demolanding/block_defaults.py:10
 msgid "Hero"
-msgstr ""
+msgstr "Hero"
 
 #: apps/demolanding/block_defaults.py:11
-#, fuzzy
-#| msgid "Статистика: рейтинг"
 msgid "Статистика"
-msgstr "Statistika: hodnocení"
+msgstr "Statistika"
 
 #: apps/demolanding/block_defaults.py:12
 #: apps/demolanding/collection_models.py:32 apps/payment/invoice_admin.py:65
@@ -2500,37 +2404,31 @@ msgid "Послуги"
 msgstr "Služby"
 
 #: apps/demolanding/block_defaults.py:13
-#, fuzzy
-#| msgid "В роботі"
 msgid "Процес роботи"
-msgstr "V řešení"
+msgstr "Proces práce"
 
 #: apps/demolanding/block_defaults.py:14
 #: apps/demolanding/collection_models.py:66 config/settings.py:213
 msgid "Галерея"
-msgstr ""
+msgstr "Galerie"
 
 #: apps/demolanding/block_defaults.py:15
 #: apps/demolanding/collection_models.py:87
 #: apps/demolanding/collection_models.py:88 config/settings.py:214
 msgid "До / після"
-msgstr ""
+msgstr "Před / po"
 
 #: apps/demolanding/block_defaults.py:17
-#, fuzzy
-#| msgid "Списання по підписці"
 msgid "Питання й відповіді"
-msgstr "Platba za předplatné"
+msgstr "Otázky a odpovědi"
 
 #: apps/demolanding/block_defaults.py:18
 msgid "Заклик до дії"
-msgstr ""
+msgstr "Výzva k akci"
 
 #: apps/demolanding/block_defaults.py:41
-#, fuzzy
-#| msgid "Активувати підписку"
 msgid "Показувати статистику"
-msgstr "Aktivovat předplatné"
+msgstr "Zobrazit statistiku"
 
 #: apps/demolanding/block_defaults.py:42
 #, fuzzy
@@ -2540,97 +2438,67 @@ msgstr "Statistika: klientů"
 
 #: apps/demolanding/block_defaults.py:46 apps/demoshop/block_defaults.py:45
 msgid "Статистика: клієнтів"
-msgstr "Statistika: klientů"
+msgstr "Statistika: klienti"
 
 #: apps/demolanding/block_defaults.py:51
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати послуги"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit služby"
 
 #: apps/demolanding/block_defaults.py:52
-#, fuzzy
-#| msgid "Заголовок каталогу"
 msgid "Заголовок секції послуг"
-msgstr "Nadpis katalogu"
+msgstr "Nadpis sekce služeb"
 
 #: apps/demolanding/block_defaults.py:56
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати процес роботи"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit proces práce"
 
 #: apps/demolanding/block_defaults.py:57
-#, fuzzy
-#| msgid "Заголовок «Про нас»"
 msgid "Заголовок процесу"
-msgstr "Nadpis „O nás“"
+msgstr "Nadpis procesu"
 
 #: apps/demolanding/block_defaults.py:60
-#, fuzzy
-#| msgid "Крок"
 msgid "Крок 1"
-msgstr "Krok"
+msgstr "Krok 1"
 
 #: apps/demolanding/block_defaults.py:63
-#, fuzzy
-#| msgid "Крок"
 msgid "Крок 2"
-msgstr "Krok"
+msgstr "Krok 2"
 
 #: apps/demolanding/block_defaults.py:66
-#, fuzzy
-#| msgid "Крок"
 msgid "Крок 3"
-msgstr "Krok"
+msgstr "Krok 3"
 
 #: apps/demolanding/block_defaults.py:69
-#, fuzzy
-#| msgid "Крок"
 msgid "Крок 4"
-msgstr "Krok"
+msgstr "Krok 4"
 
 #: apps/demolanding/block_defaults.py:73
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати галерею"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit galerii"
 
 #: apps/demolanding/block_defaults.py:74
-#, fuzzy
-#| msgid "Заголовок каталогу"
 msgid "Заголовок галереї"
-msgstr "Nadpis katalogu"
+msgstr "Nadpis galerie"
 
 #: apps/demolanding/block_defaults.py:78
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати «до/після»"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit před/po"
 
 #: apps/demolanding/block_defaults.py:79
-#, fuzzy
-#| msgid "Заголовок «Про нас»"
 msgid "Заголовок «до/після»"
-msgstr "Nadpis „O nás“"
+msgstr "Nadpis před/po"
 
 #: apps/demolanding/block_defaults.py:83
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати відгуки"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit recenze"
 
 #: apps/demolanding/block_defaults.py:84
-#, fuzzy
-#| msgid "Заголовок каталогу"
 msgid "Заголовок відгуків"
-msgstr "Nadpis katalogu"
+msgstr "Nadpis recenzí"
 
 #: apps/demolanding/block_defaults.py:88
-#, fuzzy
-#| msgid "Показувати на /portfolio/"
 msgid "Показувати FAQ"
-msgstr "Zobrazit na /portfolio/"
+msgstr "Zobrazit FAQ"
 
 #: apps/demolanding/block_defaults.py:89
 msgid "FAQ 1: питання"
@@ -2657,22 +2525,16 @@ msgid "FAQ 3: відповідь"
 msgstr "FAQ 3: odpověď"
 
 #: apps/demolanding/block_defaults.py:120
-#, fuzzy
-#| msgid "Заголовок (RU)"
 msgid "Заголовок CTA-секції"
-msgstr "Nadpis (RU)"
+msgstr "Nadpis CTA sekce"
 
 #: apps/demolanding/block_defaults.py:123
-#, fuzzy
-#| msgid "Підписка"
 msgid "Підпис CTA-секції"
-msgstr "Předplatné"
+msgstr "Popisek CTA sekce"
 
 #: apps/demolanding/block_defaults.py:129
-#, fuzzy
-#| msgid "Показувати на головній"
 msgid "Показувати партнерів"
-msgstr "Zobrazit na hlavní stránce"
+msgstr "Zobrazit partnery"
 
 #: apps/demolanding/collection_admin.py:34 apps/demoshop/catalog_admin.py:63
 #: apps/demoshop/catalog_admin.py:93
@@ -2680,10 +2542,8 @@ msgid "Видимість"
 msgstr "Viditelnost"
 
 #: apps/demolanding/collection_models.py:14
-#, fuzzy
-#| msgid "Наші послуги"
 msgid "Назва послуги"
-msgstr "Naše služby"
+msgstr "Název služby"
 
 #: apps/demolanding/collection_models.py:31 apps/payment/invoice_admin.py:64
 #: apps/payment/invoice_models.py:201
@@ -2692,29 +2552,23 @@ msgstr "Služba"
 
 #: apps/demolanding/collection_models.py:60
 msgid "Розмір у сітці"
-msgstr ""
+msgstr "Velikost v mřížce"
 
 #: apps/demolanding/collection_models.py:81
-#, fuzzy
-#| msgid "або"
 msgid "До"
-msgstr "nebo"
+msgstr "Před"
 
 #: apps/demolanding/collection_models.py:82
 msgid "Після"
-msgstr ""
+msgstr "Po"
 
 #: apps/demolanding/collection_models.py:99
-#, fuzzy
-#| msgid "Реальні проєкти"
 msgid "Роль / проєкт"
-msgstr "Reálné projekty"
+msgstr "Role / projekt"
 
 #: apps/demolanding/content_admin.py:54
-#, fuzzy
-#| msgid "Мій магазин — контент і кольори"
 msgid "Мій лендінг — контент і стиль"
-msgstr "Můj obchod — obsah a barvy"
+msgstr "Můj landing — obsah a styl"
 
 #: apps/demolanding/models.py:20
 msgid "Dark Premium"
@@ -2729,44 +2583,36 @@ msgid "Light Minimal"
 msgstr ""
 
 #: apps/demolanding/models.py:25
-#, fuzzy
-#| msgid "Premium UI/UX + кінематографічна анімація"
 msgid "Кінематографічне фото"
-msgstr "Prémiové UI/UX + kinematografická animace"
+msgstr "Filmová fotka"
 
 #: apps/demolanding/models.py:26
 msgid "Scroll-scrubbed відео"
-msgstr ""
+msgstr "Scroll-scrubbed video"
 
 #: apps/demolanding/models.py:55
 msgid "Режим hero"
-msgstr ""
+msgstr "Režim hero"
 
 #: apps/demolanding/models.py:58
-#, fuzzy
-#| msgid "Фото (широке)"
 msgid "Hero — фото (широке)"
-msgstr "Foto (široké)"
+msgstr "Hero — foto (široké)"
 
 #: apps/demolanding/models.py:61
-#, fuzzy
-#| msgid "Фото (вузьке / мобільне)"
 msgid "Hero — фото (мобільне)"
-msgstr "Foto (úzké / mobilní)"
+msgstr "Hero — foto (mobil)"
 
 #: apps/demolanding/models.py:64
 msgid "Hero — відео (scroll-video)"
-msgstr ""
+msgstr "Hero — video (scroll-video)"
 
 #: apps/demolanding/models.py:67
 msgid "Hero — poster для відео"
-msgstr ""
+msgstr "Hero — poster k videu"
 
 #: apps/demolanding/models.py:72
-#, fuzzy
-#| msgid "Сайт / лендінг"
 msgid "Демо-лендінг"
-msgstr "Web / landing page"
+msgstr "Demo landing"
 
 #: apps/demoshop/admin.py:25 apps/demoshop/catalog_models.py:17
 #: apps/demoshop/catalog_models.py:52 apps/demoshop/catalog_models.py:178
@@ -2778,7 +2624,7 @@ msgstr "Obchod"
 
 #: apps/demoshop/admin.py:29 templates/demoshop/admin/my_shop_content.html:40
 msgid "Кольори теми"
-msgstr "Barvy tématu"
+msgstr "Barvy motivu"
 
 #: apps/demoshop/admin.py:39
 msgid "КП"
@@ -2786,7 +2632,7 @@ msgstr "Nabídka"
 
 #: apps/demoshop/admin.py:44
 msgid "Вітрина"
-msgstr "Výloha"
+msgstr "Vitrína"
 
 #: apps/demoshop/admin.py:49
 msgid "Вхід клієнта"
@@ -2798,7 +2644,7 @@ msgstr "Demo obchody"
 
 #: apps/demoshop/block_defaults.py:8
 msgid "Хедер і стрічка"
-msgstr "Záhlaví a pásek"
+msgstr "Hlavička a páska"
 
 #: apps/demoshop/block_defaults.py:15
 msgid "Назва магазину (лого)"
@@ -2806,7 +2652,7 @@ msgstr "Název obchodu (logo)"
 
 #: apps/demoshop/block_defaults.py:17
 msgid "Текст бігучої стрічки"
-msgstr "Text běžícího pásu"
+msgstr "Text běžící pásky"
 
 #: apps/demoshop/block_defaults.py:42
 msgid "Фото «Про нас»"
@@ -2814,7 +2660,7 @@ msgstr "Foto „O nás“"
 
 #: apps/demoshop/block_defaults.py:43
 msgid "Статистика: замовлень"
-msgstr "Statistika: objednávek"
+msgstr "Statistika: objednávky"
 
 #: apps/demoshop/block_defaults.py:47
 msgid "Статистика: рейтинг"
@@ -2834,7 +2680,7 @@ msgstr "Telefon v patičce"
 
 #: apps/demoshop/block_defaults.py:66
 msgid "Email у футері"
-msgstr "E-mail v patičce"
+msgstr "Email v patičce"
 
 #: apps/demoshop/catalog_admin.py:89
 msgid "Ціна та акція"
@@ -2875,10 +2721,8 @@ msgid "Подарунок до замовлення (EN)"
 msgstr "Dárek k objednávce (EN)"
 
 #: apps/demoshop/catalog_models.py:88
-#, fuzzy
-#| msgid "Подарунок до замовлення (RU)"
 msgid "Подарунок до замовлення (CS)"
-msgstr "Dárek k objednávce (RU)"
+msgstr "Dárek k objednávce (CS)"
 
 #: apps/demoshop/catalog_models.py:91
 #: templates/demoshop/partials/product_card.html:11
@@ -2897,7 +2741,7 @@ msgstr "Alt text"
 
 #: apps/demoshop/content_admin.py:137
 msgid "До вашого акаунту не привʼязано жодного демо-магазину."
-msgstr "K vašemu účtu není přiřazen žádný demo obchod."
+msgstr "K vašemu účtu není připojen žádný demo obchod."
 
 #: apps/demoshop/content_admin.py:185
 msgid "Магазин оновлено."
@@ -2926,15 +2770,15 @@ msgstr "Foto (široké)"
 
 #: apps/demoshop/content_models.py:58
 msgid "Фото (вузьке / мобільне)"
-msgstr "Foto (úzké / mobilní)"
+msgstr "Foto (úzké / mobil)"
 
 #: apps/demoshop/content_models.py:77
 msgid "Слайд головної"
-msgstr "Slide hlavní stránky"
+msgstr "Snímek úvodu"
 
 #: apps/demoshop/content_models.py:78
 msgid "Слайди головної"
-msgstr "Slidy hlavní stránky"
+msgstr "Snímky úvodu"
 
 #: apps/demoshop/models.py:15 apps/demotenant/models_abstract.py:21
 msgid "Формат кольору: #RRGGBB"
@@ -2942,7 +2786,7 @@ msgstr "Formát barvy: #RRGGBB"
 
 #: apps/demoshop/models.py:61
 msgid "URL: /demo/<slug>/ — генерується автоматично, невгадуваний"
-msgstr "URL: /demo/<slug>/ — generuje se automaticky, neuhodnutelné"
+msgstr "URL: /demo/<slug>/ — generuje se automaticky, neuhádnutelná"
 
 #: apps/demoshop/models.py:63
 msgid "Назва магазину"
@@ -2950,11 +2794,11 @@ msgstr "Název obchodu"
 
 #: apps/demoshop/models.py:68 apps/demotenant/models_abstract.py:44
 msgid "Вимкнено — вітрина й адмінка клієнта повертають 404"
-msgstr "Vypnuto — výloha i klientská administrace vrací 404"
+msgstr "Vypnuto — vitrína i administrace klienta vrátí 404"
 
 #: apps/demoshop/models.py:70 apps/demotenant/models_abstract.py:46
 msgid "Логін (демо)"
-msgstr "Přihlašovací jméno (demo)"
+msgstr "Login (demo)"
 
 #: apps/demoshop/models.py:74 apps/demotenant/models_abstract.py:50
 msgid "Пароль (демо)"
@@ -2962,7 +2806,7 @@ msgstr "Heslo (demo)"
 
 #: apps/demoshop/models.py:75 apps/demotenant/models_abstract.py:51
 msgid "Показується лише в цій адмінці — для передачі клієнту"
-msgstr "Zobrazuje se pouze v této administraci — pro předání klientovi"
+msgstr "Zobrazuje se jen v této administraci — k předání klientovi"
 
 #: apps/demoshop/models.py:79 apps/demotenant/models_abstract.py:55
 msgid "Основний колір"
@@ -2978,7 +2822,7 @@ msgstr "Hlavní barva (hover)"
 
 #: apps/demoshop/models.py:87 apps/demotenant/models_abstract.py:63
 msgid "Акцентний колір"
-msgstr "Akcentní barva"
+msgstr "Akcentová barva"
 
 #: apps/demoshop/models.py:91 apps/demotenant/models_abstract.py:67
 msgid "Фон секцій"
@@ -2994,11 +2838,11 @@ msgstr "Demo obchod"
 
 #: apps/demoshop/order_admin.py:38
 msgid "Доставка (тестовий довідник НП)"
-msgstr "Doprava (testovací číselník Packeta)"
+msgstr "Doručení (testovací seznam NP)"
 
 #: apps/demoshop/order_models.py:15
 msgid "Нове"
-msgstr "Nová"
+msgstr "Nové"
 
 #: apps/demoshop/order_models.py:16
 msgid "Підтверджено"
@@ -3006,11 +2850,11 @@ msgstr "Potvrzeno"
 
 #: apps/demoshop/order_models.py:17
 msgid "Виконано"
-msgstr "Splněno"
+msgstr "Hotovo"
 
 #: apps/demoshop/order_models.py:23 templates/demoshop/checkout.html:43
 msgid "Відділення Нової Пошти"
-msgstr "Pobočka Zásilkovna (Z-Point)"
+msgstr "Pobočka Nova Poshta"
 
 #: apps/demoshop/order_models.py:24 templates/demoshop/checkout.html:47
 msgid "Адресна доставка"
@@ -3033,10 +2877,8 @@ msgid "Місто НП (EN)"
 msgstr "Město NP (EN)"
 
 #: apps/demoshop/order_models.py:38
-#, fuzzy
-#| msgid "Місто НП (RU)"
 msgid "Місто НП (CS)"
-msgstr "Město NP (RU)"
+msgstr "Město NP (CS)"
 
 #: apps/demoshop/order_models.py:39
 msgid "Ref міста НП"
@@ -3055,10 +2897,8 @@ msgid "Відділення НП (EN)"
 msgstr "Pobočka NP (EN)"
 
 #: apps/demoshop/order_models.py:43
-#, fuzzy
-#| msgid "Відділення НП (RU)"
 msgid "Відділення НП (CS)"
-msgstr "Pobočka NP (RU)"
+msgstr "Pobočka NP (CS)"
 
 #: apps/demoshop/order_models.py:44
 msgid "Ref відділення НП"
@@ -3077,10 +2917,8 @@ msgid "Адреса доставки (EN)"
 msgstr "Adresa doručení (EN)"
 
 #: apps/demoshop/order_models.py:48
-#, fuzzy
-#| msgid "Адреса доставки (RU)"
 msgid "Адреса доставки (CS)"
-msgstr "Adresa doručení (RU)"
+msgstr "Adresa doručení (CS)"
 
 #: apps/demoshop/order_models.py:52 apps/payment/invoice_admin.py:286
 #: apps/payment/invoice_models.py:89 apps/payment/invoice_models.py:196
@@ -3101,11 +2939,11 @@ msgstr "Objednávky"
 
 #: apps/demoshop/order_models.py:87
 msgid "Назва (знімок)"
-msgstr "Název (snapshot)"
+msgstr "Název (snímek)"
 
 #: apps/demoshop/order_models.py:88
 msgid "Ціна (знімок)"
-msgstr "Cena (snapshot)"
+msgstr "Cena (snímek)"
 
 #: apps/demoshop/order_models.py:89
 #: templates/demoshop/partials/_cart_lines.html:15
@@ -3122,27 +2960,23 @@ msgstr "Položky objednávky"
 
 #: apps/demoshop/sales_notes.py:12
 msgid "Сайт не губить рекламу"
-msgstr "Web nepromarní reklamu"
+msgstr "Web neplýtvá reklamou"
 
 #: apps/demoshop/sales_notes.py:14
 msgid ""
 "На повільній вітрині людина закриває оголошення, не встигнувши побачити "
 "товар. Тут легкі фото й відкладене завантаження — без важкого конструктора."
-msgstr ""
-"Na pomalé výloze člověk zavře reklamu dřív, než uvidí zboží. Tady jsou "
-"lehká fota a odložené načítání — bez těžkého builderu."
+msgstr "Na pomalé vitríně člověk zavře reklamu dřív, než uvidí produkt. Tady jsou lehké fotky a odložené načtení — bez těžkého konstruktoru."
 
 #: apps/demoshop/sales_notes.py:23
 msgid "Телефон — окремий кадр"
-msgstr "Telefon má vlastní záběr"
+msgstr "Telefon je zvlášť"
 
 #: apps/demoshop/sales_notes.py:25
 msgid ""
 "У конструкторі телефон — стиснутий комп’ютер. Тут інший перший екран, кнопки "
 "під палець і відступ під виріз iPhone."
-msgstr ""
-"V builderu je telefon zmáčknutý desktop. Tady je jiná první obrazovka, "
-"tlačítka pod prst a odsazení pod výřez iPhonu."
+msgstr "V konstruktoru je telefon zmáčknutý počítač. Tady je jiná úvodní obrazovka, tlačítka pod palec a odsazení pod výřez iPhonu."
 
 #: apps/demoshop/sales_notes.py:33
 msgid "Тексти міняєте самі"
@@ -3152,9 +2986,7 @@ msgstr "Texty měníte sami"
 msgid ""
 "Назва, фото і колір — у вашій адмінці. Зберегли — вітрина вже нова. Чекати "
 "розробника не треба."
-msgstr ""
-"Název, fotky a barva jsou v administraci. Uložíte — výloha je už nová. "
-"Čekat na vývojáře nemusíte."
+msgstr "Název, foto i barva — ve vaší administraci. Uložíte — vitrína je nová. Na vývojáře čekat nemusíte."
 
 #: apps/demoshop/sales_notes.py:43
 msgid "Каталог замість переписок"
@@ -3163,9 +2995,7 @@ msgstr "Katalog místo chatů"
 #: apps/demoshop/sales_notes.py:45
 msgid ""
 "Покупець шукає товар на сайті, не в месенджері. Фільтр, пошук і ціна вже тут."
-msgstr ""
-"Zákazník hledá zboží na webu, ne v messengeru. Filtr, hledání a cena už tu "
-"jsou."
+msgstr "Zákazník hledá produkt na webu, ne v messengeru. Filtr, hledání i cena už tu jsou."
 
 #: apps/demoshop/sales_notes.py:53
 msgid "Акція з картки товару"
@@ -3173,7 +3003,7 @@ msgstr "Akce z karty produktu"
 
 #: apps/demoshop/sales_notes.py:55
 msgid "Таймер і подарунок задаєте в товарі. На вітрині з’являються самі."
-msgstr "Časovač a dárek nastavíte u produktu. Na výloze se objeví samy."
+msgstr "Časovač i dárek nastavíte u produktu. Na vitríně se objeví samy."
 
 #: apps/demoshop/sales_notes.py:63
 msgid "Список бажань без акаунта"
@@ -3182,7 +3012,7 @@ msgstr "Seznam přání bez účtu"
 #: apps/demoshop/sales_notes.py:65
 msgid ""
 "Гість зберігає товари в браузері. Після оновлення сторінки список на місці."
-msgstr "Host si zboží uloží v prohlížeči. Po obnovení stránky seznam zůstane."
+msgstr "Host si produkty uloží v prohlížeči. Po obnovení stránky seznam zůstane."
 
 #: apps/demoshop/sales_notes.py:73
 msgid "Кошик без реєстрації"
@@ -3190,7 +3020,7 @@ msgstr "Košík bez registrace"
 
 #: apps/demoshop/sales_notes.py:75
 msgid "Кількість міняється одразу. Акаунт для покупки не потрібен."
-msgstr "Počet se mění hned. Účet ke koupi není potřeba."
+msgstr "Množství se mění hned. Účet k nákupu nepotřebujete."
 
 #: apps/demoshop/sales_notes.py:83
 msgid "Нова Пошта в оформленні"
@@ -3200,9 +3030,7 @@ msgstr "Nova Poshta v pokladně"
 msgid ""
 "Місто й відділення підказуються самі. У демо — тестовий список, у роботі — "
 "живий довідник."
-msgstr ""
-"Město a výdejna se napovídají samy. V demu je testovací seznam, v provozu "
-"živý adresář."
+msgstr "Město i pobočka se napoví samy. V demu testovací seznam, v provozu živý adresář."
 
 #: apps/demoshop/sales_notes.py:93
 msgid "Оплата на ваш рахунок"
@@ -3219,19 +3047,15 @@ msgstr "Objednávky v jedné tabulce"
 #: apps/demoshop/sales_notes.py:105
 msgid ""
 "Ім’я, телефон, відділення і сума — в адмінці. Статус змінюєте ви, не в чаті."
-msgstr ""
-"Jméno, telefon, výdejna a částka jsou v administraci. Stav měníte vy, ne v "
-"chatu."
+msgstr "Jméno, telefon, pobočka i částka — v administraci. Stav měníte vy, ne v chatu."
 
 #: apps/demoshop/sales_notes.py:113
 msgid "Мови без другої збірки"
-msgstr "Jazyky bez druhého buildu"
+msgstr "Jazyky bez druhé stavby"
 
 #: apps/demoshop/sales_notes.py:115
 msgid "Перемикач мови вже в шапці. Тексти товарів і кнопок — поля в адмінці."
-msgstr ""
-"Přepínač jazyka je už v hlavičce. Texty produktů a tlačítek jsou pole v "
-"administraci."
+msgstr "Přepínač jazyka je už v hlavičce. Texty produktů i tlačítek jsou pole v administraci."
 
 #: apps/demoshop/sales_notes.py:123
 msgid "Адмінка лише цього магазину"
@@ -3239,7 +3063,7 @@ msgstr "Administrace jen tohoto obchodu"
 
 #: apps/demoshop/sales_notes.py:125
 msgid "Логін відкриває тільки цей магазин. Не спільна панель на всіх клієнтів."
-msgstr "Přihlášení otevře jen tento obchod. Ne sdílený panel pro všechny klienty."
+msgstr "Login otevře jen tento obchod. Ne společný panel pro všechny klienty."
 
 #: apps/demoshop/views.py:250 templates/demoshop/partials/_cart_lines.html:38
 msgid "Кошик порожній."
@@ -3247,32 +3071,24 @@ msgstr "Košík je prázdný."
 
 #: apps/demotenant/apps.py:14
 msgid "Демо-тенанти (фундамент)"
-msgstr ""
+msgstr "Demo tenanty (základ)"
 
 #: apps/demotenant/content_admin_base.py:32 config/settings.py:197
 #: config/settings.py:211
-#, fuzzy
-#| msgid "Контент і кольори"
 msgid "Контент і стиль"
-msgstr "Obsah a barvy"
+msgstr "Obsah a styl"
 
 #: apps/demotenant/content_admin_base.py:58
-#, fuzzy
-#| msgid "До вашого акаунту не привʼязано жодного демо-магазину."
 msgid "До вашого акаунту не привʼязано жодного демо-сайту."
-msgstr "K vašemu účtu není přiřazen žádný demo obchod."
+msgstr "K vašemu účtu není připojen žádný demo web."
 
 #: apps/demotenant/content_admin_base.py:71
-#, fuzzy
-#| msgid "Магазин оновлено."
 msgid "Сайт оновлено."
-msgstr "Obchod byl aktualizován."
+msgstr "Web byl aktualizován."
 
 #: apps/demotenant/models_abstract.py:111
-#, fuzzy
-#| msgid "пошукова видимість"
 msgid "Перемикач (видимість секції)"
-msgstr "viditelnost ve vyhledávání"
+msgstr "Přepínač (viditelnost sekce)"
 
 #: apps/payment/admin.py:45
 msgid "Реквізити"
@@ -7325,13 +7141,11 @@ msgstr "Zdarma. Bez spamu. PDF okamžitě."
 #: templates/demolanding/admin/my_landing_content.html:14
 #: templates/demoshop/admin/my_shop_content.html:14
 msgid "Переглянути вітрину"
-msgstr "Zobrazit výlohu"
+msgstr "Zobrazit vitrínu"
 
 #: templates/democorp/admin/my_site_content.html:37
-#, fuzzy
-#| msgid "Контент і кольори"
 msgid "Стиль, hero-фото, кольори"
-msgstr "Obsah a barvy"
+msgstr "Styl, hero foto, barvy"
 
 #: templates/democorp/admin/my_site_content.html:46
 #: templates/demolanding/admin/my_landing_content.html:45
@@ -7346,10 +7160,8 @@ msgid "Вхід в адмінку"
 msgstr "Přihlášení do administrace"
 
 #: templates/democorp/admin_access.html:8
-#, fuzzy
-#| msgid "Адмінка вашого магазину"
 msgid "Адмінка вашого сайту"
-msgstr "Administrace vašeho obchodu"
+msgstr "Administrace vašeho webu"
 
 #: templates/democorp/admin_access.html:9
 msgid ""
@@ -7361,7 +7173,7 @@ msgstr ""
 #: templates/demolanding/admin_access.html:10
 #: templates/demoshop/admin_access.html:13
 msgid "Логін"
-msgstr "Přihlašovací jméno"
+msgstr "Login"
 
 #: templates/democorp/admin_access.html:11
 #: templates/demolanding/admin_access.html:11
@@ -7378,13 +7190,11 @@ msgstr "Přejít do administrace"
 #: templates/democorp/base.html:32 templates/demolanding/base.html:35
 #: templates/demoshop/base.html:26 templates/proposal/base_proposal.html:21
 msgid "Перейти до змісту"
-msgstr "Přejít na obsah"
+msgstr "Přejít k obsahu"
 
 #: templates/democorp/catalog.html:14
-#, fuzzy
-#| msgid "Ні"
 msgid "Усі"
-msgstr "Ne"
+msgstr "Vše"
 
 #: templates/democorp/catalog.html:37
 msgid "У цій категорії поки немає прикладів."
@@ -7408,7 +7218,7 @@ msgstr "Další obrazovky"
 
 #: config/settings.py
 msgid "Етапи роботи"
-msgstr "Fáze práce"
+msgstr "Etapy práce"
 
 #: config/settings.py
 msgid "Приклади сайтів"
@@ -7431,7 +7241,7 @@ msgstr "Prototyp — proces spolupráce"
 #: templates/demolanding/partials/drawer.html:2
 #: templates/demolanding/partials/header.html:13
 msgid "Меню"
-msgstr ""
+msgstr "Menu"
 
 #: templates/democorp/partials/header.html:5
 #: templates/demolanding/partials/header.html:5
@@ -7439,12 +7249,19 @@ msgstr ""
 msgid "Основна навігація"
 msgstr "Hlavní navigace"
 
+msgid "Адмінка"
+msgstr "Administrace"
+
+msgid "Мова"
+msgstr "Jazyk"
+
+msgid "Подзвонити"
+msgstr "Zavolat"
+
 #: templates/democorp/partials/lead_form.html:13
 #: templates/demolanding/partials/lead_form.html:12
-#, fuzzy
-#| msgid "Переглянути портфоліо"
 msgid "Перевірте поля форми."
-msgstr "Zobrazit portfolio"
+msgstr "Zkontrolujte pole formuláře."
 
 #: templates/democorp/partials/lead_form.html:15
 #, fuzzy
@@ -7461,32 +7278,24 @@ msgstr "Nezávazná poptávka"
 
 #: templates/democorp/partials/lead_success.html:2
 #: templates/demolanding/partials/lead_success.html:2
-#, fuzzy
-#| msgid "Дякуємо! Ми зв'яжемося з вами найближчим часом."
 msgid "Дякуємо! Ми зв'яжемося з вами протягом дня."
-msgstr "Děkujeme! Brzy se s vámi spojíme."
+msgstr "Děkujeme! Ozveme se vám během dne."
 
 #: templates/demolanding/admin/my_landing_content.html:36
-#, fuzzy
-#| msgid "Контент і кольори"
 msgid "Стиль, hero, кольори"
-msgstr "Obsah a barvy"
+msgstr "Styl, hero, barvy"
 
 #: templates/demolanding/admin_access.html:8
-#, fuzzy
-#| msgid "Адмінка вашого магазину"
 msgid "Адмінка вашого лендінгу"
-msgstr "Administrace vašeho obchodu"
+msgstr "Administrace vašeho landingu"
 
 #: templates/demolanding/admin_access.html:9
 msgid "Керуйте текстами, фото, кольорами, послугами, галереєю та заявками."
-msgstr ""
+msgstr "Spravujte texty, fotky, barvy, služby, galerii a poptávky."
 
 #: templates/demolanding/home.html:29
-#, fuzzy
-#| msgid "Читати далі"
 msgid "Гортайте далі"
-msgstr "Číst dál"
+msgstr "Posouvejte dál"
 
 #: templates/demolanding/partials/header.html
 msgid "Ефекти"
@@ -7510,7 +7319,7 @@ msgstr "hodin příjmu"
 
 #: templates/demolanding/home.html
 msgid "з телефону"
-msgstr "v telefonu"
+msgstr "z telefonu"
 
 #: templates/demolanding/partials/drawer.html:7
 #: templates/demolanding/partials/header.html:8
@@ -7521,19 +7330,17 @@ msgstr "V řešení"
 
 #: templates/demoshop/admin/my_shop_content.html:17
 msgid "Тексти без квитка розробнику"
-msgstr "Texty bez tiketu na vývojáře"
+msgstr "Texty bez lístku vývojáři"
 
 #: templates/demoshop/admin/my_shop_content.html:18
 msgid ""
 "Текст і колір міняєте самі. Зберегли — вітрина вже нова. Чекати розробника "
 "не треба."
-msgstr ""
-"Text a barvu měníte sami. Uložíte — výloha je už nová. Čekat na vývojáře "
-"nemusíte."
+msgstr "Text i barvu měníte sami. Uložíte — vitrína je nová. Na vývojáře čekat nemusíte."
 
 #: templates/demoshop/admin/my_shop_content.html:50
 msgid "Слайди головної (hero)"
-msgstr "Slidy hlavní stránky (hero)"
+msgstr "Snímky úvodu (hero)"
 
 #: templates/demoshop/admin_access.html:8
 msgid "Адмінка вашого магазину"
@@ -7561,7 +7368,7 @@ msgstr "Všechny produkty"
 
 #: templates/demoshop/catalog.html:25
 msgid "Пошук"
-msgstr "Vyhledávání"
+msgstr "Hledat"
 
 #: templates/demoshop/catalog.html:26
 msgid "Назва товару…"
@@ -7569,19 +7376,19 @@ msgstr "Název produktu…"
 
 #: templates/demoshop/catalog.html:30
 msgid "Сортування"
-msgstr "Seřazení"
+msgstr "Řazení"
 
 #: templates/demoshop/catalog.html:32
 msgid "Популярне"
-msgstr "Populární"
+msgstr "Oblíbené"
 
 #: templates/demoshop/catalog.html:33
 msgid "Ціна: спочатку дешеві"
-msgstr "Cena: od nejlevnějších"
+msgstr "Cena: od nejnižší"
 
 #: templates/demoshop/catalog.html:34
 msgid "Ціна: спочатку дорогі"
-msgstr "Cena: od nejdražších"
+msgstr "Cena: od nejvyšší"
 
 #: templates/demoshop/catalog.html:35
 msgid "Новинки"
@@ -7593,7 +7400,7 @@ msgstr "produktů"
 
 #: templates/demoshop/checkout.html:4 templates/demoshop/checkout.html:8
 msgid "Оформлення замовлення"
-msgstr "Vytvoření objednávky"
+msgstr "Dokončení objednávky"
 
 #: templates/demoshop/checkout.html:10
 msgid "Кроки оформлення"
@@ -7603,7 +7410,7 @@ msgstr "Kroky objednávky"
 #: templates/demoshop/checkout.html:104
 #: templates/demoshop/order_success.html:14
 msgid "Доставка"
-msgstr "Doprava"
+msgstr "Doručení"
 
 #: templates/demoshop/checkout.html:13
 msgid "Підтвердження"
@@ -7615,7 +7422,7 @@ msgstr "Jméno a příjmení"
 
 #: templates/demoshop/checkout.html:39
 msgid "тестовий довідник НП"
-msgstr "testovací číselník Packeta"
+msgstr "testovací seznam NP"
 
 #: templates/demoshop/checkout.html:53
 msgid "Місто"
@@ -7623,7 +7430,7 @@ msgstr "Město"
 
 #: templates/demoshop/checkout.html:54
 msgid "Почніть вводити місто…"
-msgstr "Začněte psát název města…"
+msgstr "Začněte psát město…"
 
 #: templates/demoshop/checkout.html:59
 msgid "Відділення"
@@ -7643,7 +7450,7 @@ msgstr "Nejprve vyberte město"
 
 #: templates/demoshop/checkout.html:72
 msgid "Вулиця, будинок, квартира"
-msgstr "Ulice, číslo domu, byt"
+msgstr "Ulice, dům, byt"
 
 #: templates/demoshop/checkout.html:77
 msgid "Підтвердити замовлення"
@@ -7680,7 +7487,7 @@ msgstr "Nejoblíbenější produkty obchodu"
 
 #: templates/demoshop/hits.html:16
 msgid "Зараз немає хітів продажів."
-msgstr "Momentálně žádné nejprodávanější produkty."
+msgstr "Zatím tu nejsou nejprodávanější."
 
 #: templates/demoshop/hits.html:16
 #: templates/demoshop/partials/_cart_lines.html:38
@@ -7690,20 +7497,20 @@ msgstr "Do katalogu"
 
 #: templates/demoshop/home.html:65
 msgid "Попередній слайд"
-msgstr "Předchozí slide"
+msgstr "Předchozí snímek"
 
 #: templates/demoshop/home.html:68
 msgid "Слайди банера"
-msgstr "Slidy banneru"
+msgstr "Snímky banneru"
 
 #: templates/demoshop/home.html:76
 #, python-format
 msgid "Слайд %(n)s"
-msgstr "Slide %(n)s"
+msgstr "Snímek %(n)s"
 
 #: templates/demoshop/home.html:80
 msgid "Наступний слайд"
-msgstr "Další slide"
+msgstr "Další snímek"
 
 #: templates/demoshop/home.html:126 templates/demoshop/home.html:186
 msgid "Дивитись усі"
@@ -7728,11 +7535,10 @@ msgstr "Akce"
 
 #: templates/demoshop/home.html:211
 msgid "Відгуки клієнтів"
-msgstr "Recenze klientů"
+msgstr "Recenze zákazníků"
 
 #: templates/demoshop/home.html:219
-#, fuzzy, python-format
-#| msgid "Оцінка"
+#, python-format
 msgid "Оцінка %(n)s з 5"
 msgstr "Hodnocení %(n)s z 5"
 
@@ -7742,7 +7548,7 @@ msgstr "z 5"
 
 #: templates/demoshop/order_success.html:4
 msgid "Замовлення прийнято"
-msgstr "Objednávka byla přijata"
+msgstr "Objednávka přijata"
 
 #: templates/demoshop/order_success.html:10
 #, python-format
@@ -7754,13 +7560,11 @@ msgstr "Děkujeme, %(name)s!"
 msgid ""
 "Замовлення №%(order_id)s на суму %(total)s %(cur)s прийнято. Це "
 "демонстраційний магазин — оплата не стягується."
-msgstr ""
-"Objednávka č. %(order_id)s na částku %(total)s %(cur)s byla přijata. Toto je "
-"demonstrační obchod — platba se nestrhává."
+msgstr "Objednávka č. %(order_id)s na %(total)s %(cur)s byla přijata. Toto je demo obchod — platba se nestrhává."
 
 #: templates/demoshop/order_success.html:20
 msgid "На головну"
-msgstr "Na hlavní stránku"
+msgstr "Na úvod"
 
 #: templates/demoshop/partials/_cart_confirm.html:17
 msgid "Додано в кошик"
@@ -7781,7 +7585,7 @@ msgstr "Odstranit"
 
 #: templates/demoshop/partials/_cart_lines.html:34
 msgid "Оформити замовлення"
-msgstr "Vytvořit objednávku"
+msgstr "K pokladně"
 
 #: templates/demoshop/partials/_pagination.html:3
 msgid "Пагінація"
@@ -7789,23 +7593,21 @@ msgstr "Stránkování"
 
 #: templates/demoshop/partials/_product_grid.html:8
 msgid "Товарів не знайдено. Спробуйте змінити фільтр або пошук."
-msgstr "Nebyly nalezeny žádné produkty. Zkuste změnit filtr nebo vyhledávání."
+msgstr "Produkty nenalezeny. Zkuste jiný filtr nebo hledání."
 
 #: templates/demoshop/partials/_sales_chrome.html:12
 #: templates/demoshop/partials/_sales_chrome.html:14
 msgid "Чому не конструктор"
-msgstr "Proč ne builder"
+msgstr "Proč ne konstruktor"
 
 #: templates/demoshop/partials/_sales_chrome.html:20
 msgid "Це не конструктор"
-msgstr "Toto není builder"
+msgstr "Toto není konstruktor"
 
 #: templates/demoshop/partials/_sales_chrome.html:23
 msgid ""
 "Це робоча вітрина вашого магазину. Тексти й фото вже можна міняти в адмінці."
-msgstr ""
-"Toto je funkční výloha vašeho obchodu. Texty a fotky už lze měnit v "
-"administraci."
+msgstr "Toto je živá vitrína vašeho obchodu. Texty a fotky už měníte v administraci."
 
 #: templates/demoshop/partials/_sales_chrome.html:38
 msgid "Відкрити мою адмінку"
@@ -7817,7 +7619,7 @@ msgstr "Nezobrazovat"
 
 #: templates/demoshop/partials/_sales_chrome.html:40
 msgid "Показати підказки"
-msgstr "Zobrazit nápovědy"
+msgstr "Zobrazit tipy"
 
 #: templates/demoshop/partials/footer.html:13
 msgid ""
@@ -7860,11 +7662,11 @@ msgstr "Akce platí ještě"
 
 #: templates/demoshop/product_detail.html:66
 msgid "Деталі подарунка"
-msgstr "Detaily dárku"
+msgstr "Podrobnosti dárku"
 
 #: templates/demoshop/product_detail.html:67
 msgid "Подарунок додається до замовлення автоматично на етапі демонстрації."
-msgstr "Dárek se k objednávce přidává automaticky ve fázi ukázky."
+msgstr "Dárek se v demu přidá k objednávce automaticky."
 
 #: templates/demoshop/product_detail.html:81
 msgid "В обраному"
@@ -7889,15 +7691,15 @@ msgstr "Přidat do košíku"
 
 #: templates/demoshop/product_detail.html:122
 msgid "Схожі товари"
-msgstr "Podobné produkty"
+msgstr "Související produkty"
 
 #: templates/demoshop/promotions.html:10
 msgid "Товари зі знижкою та зворотним відліком"
-msgstr "Produkty se slevou a odpočítáváním"
+msgstr "Zlevněné produkty s odpočtem"
 
 #: templates/demoshop/promotions.html:16
 msgid "Зараз немає активних акцій."
-msgstr "Momentálně žádné aktivní akce."
+msgstr "Momentálně nejsou aktivní akce."
 
 #: templates/demoshop/wishlist.html:10
 msgid "Товари, збережені в цьому браузері"
@@ -7905,7 +7707,7 @@ msgstr "Produkty uložené v tomto prohlížeči"
 
 #: templates/demoshop/wishlist.html:18
 msgid "Поки порожньо. Додайте товари серцем на картці."
-msgstr "Zatím prázdné. Přidejte produkty srdíčkem na kartě."
+msgstr "Zatím prázdné. Přidejte srdíčkem na kartě."
 
 #: templates/pages/blog.html:32
 msgid "БЛОГ"
@@ -8599,7 +8401,7 @@ msgstr "Vypočítat cenu online"
 
 #: templates/pages/home.html:69
 msgid "Залишити заявку"
-msgstr "Nezávazná poptávka"
+msgstr "Nechat poptávku"
 
 #: templates/pages/home.html:90 templates/pages/home.html:112
 msgid "Веб-додатки"
@@ -9368,32 +9170,226 @@ msgstr "Vyberte soubor k odeslání"
 #~ "Demo obchod vygenerován společností PrometeyLabs · interní testovací "
 #~ "prostředí"
 
-#~ msgid "Проєкти портфоліо скоро з’являться."
-#~ msgstr "Projekty portfolia se brzy objeví."
+msgid "Далі"
+msgstr "Další"
 
-#~ msgid "Наші проекти"
-#~ msgstr "Naše projekty"
+msgid "Графік"
+msgstr "Provozní doba"
 
-#~ msgid "Дізнатись більше"
-#~ msgstr "Zjistit více"
+msgid "каталог"
+msgstr "katalog"
 
-#~ msgid "Навігація каруселі"
-#~ msgstr "Navigace karuselu"
+msgid "Для кого"
+msgstr "Pro koho"
 
-#~ msgid "Попередній проект"
-#~ msgstr "Předchozí projekt"
+msgid "Колекції"
+msgstr "Kolekce"
 
-#~ msgid "Переваги нашого підходу"
-#~ msgstr "Výhody našeho přístupu"
+#, python-format
+msgid "Фото %(n)s"
+msgstr "Foto %(n)s"
 
-#~ msgid "Огляд проєкту"
-#~ msgstr "Přehled projektu"
+msgid "Як збираємо"
+msgstr "Jak sestavujeme"
 
-#~ msgid "Планшетна версія"
-#~ msgstr "Tabletová verze"
+msgid "без конструктора"
+msgstr "bez konstruktoru"
 
-#~ msgid "Десктопна версія"
-#~ msgstr "Desktopová verze"
+msgid "Інформація про товар"
+msgstr "Informace o produktu"
 
-#~ msgid "← Повернутись до портфоліо"
-#~ msgstr "← Zpět na portfolio"
+msgid "Заявка приходить вам"
+msgstr "Poptávka přijde k vám"
+
+msgid "Каталог і замовлення"
+msgstr "Katalog a objednávky"
+
+msgid "Порівняння до і після"
+msgstr "Porovnání před a po"
+
+msgid "Не лендінг і не шаблон"
+msgstr "Není landing ani šablona"
+
+msgid "Сайт виглядає серйозно"
+msgstr "Web působí seriózně"
+
+msgid "Лендінг не губить рекламу"
+msgstr "Landing neplýtvá reklamou"
+
+msgid "Тексти й заявки в адмінці"
+msgstr "Texty a poptávky v administraci"
+
+msgid "Форма й телефон одразу. Заявка не губиться в Direct."
+msgstr "Formulář i telefon hned. Poptávka se neztratí v Directu."
+
+msgid "Оберіть корпоративний демо-сайт для редагування контенту."
+msgstr "Vyberte firemní demo web pro úpravu obsahu."
+
+msgid "Кнопки під палець, відступ під виріз, зрозумілий шлях до заявки."
+msgstr "Tlačítka pod palec, odsazení pod výřez, jasná cesta k poptávce."
+
+msgid "Робоча вітрина лендінгу. Тексти, фото й заявки міняєте в адмінці."
+msgstr "Živá vitrína landingu. Texty, fotky a poptávky měníte v administraci."
+
+msgid "У пошуку й з телефону: людина заходить — розуміє — залишає заявку."
+msgstr "Ve vyhledávání i v telefonu: člověk přijde, pochopí, nechá poptávku."
+
+msgid "Головна, послуги, про нас, контакти — кілька сторінок під компанію."
+msgstr "Domů, služby, o nás, kontakty — pár stránek pro firmu."
+
+msgid "Оберіть демо-лендінг — односторінкова вітрина, контент секцій нижче."
+msgstr "Vyberte demo landing — jednostránková vitrína, obsah sekcí níže."
+
+msgid "Це робоча вітрина корпоративного сайту. Тексти й заявки міняєте в адмінці."
+msgstr "Toto je živá vitrína firemního webu. Texty a poptávky měníte v administraci."
+
+msgid "Галерея, до/після, відгуки — міняєте самі. Заявка з форми з’являється одразу."
+msgstr "Galerie, před/po, recenze — upravujete sami. Poptávka z formuláře se objeví hned."
+
+msgid "Керуйте текстами, фото, кольорами, процесом роботи, галереєю, відгуками та заявками."
+msgstr "Spravujte texty, fotky, barvy, proces práce, galerii, recenze a poptávky."
+
+msgid "Швидкий перший екран і легкі фото — без важкого конструктора. Людина встигає побачити офер і CTA."
+msgstr "Rychlá úvodní obrazovka a lehké fotky — bez těžkého konstruktoru. Člověk stihne nabídku i CTA."
+
+msgid "Картка товару"
+msgstr "Karta produktu"
+
+msgid "Підпис біля лого"
+msgstr "Popisek u loga"
+
+msgid "Телефон у хедері"
+msgstr "Telefon v hlavičce"
+
+msgid "Вкладка «Доставка»"
+msgstr "Záložka „Doručení“"
+
+msgid "Статистика: днів до старту"
+msgstr "Statistika: dny do startu"
+
+msgid "Статистика: сторінок"
+msgstr "Statistika: stránky"
+
+msgid "Статистика: години заявок"
+msgstr "Statistika: hodiny poptávek"
+
+msgid "Статистика: зручно з телефону"
+msgstr "Statistika: pohodlné v telefonu"
+
+msgid "Статистика: мов"
+msgstr "Statistika: jazyky"
+
+msgid "Заголовок FAQ"
+msgstr "Nadpis FAQ"
+
+msgid "Текст кнопки відправки заявки"
+msgstr "Text tlačítka odeslání poptávky"
+
+msgid "Фото поруч із формою"
+msgstr "Foto vedle formuláře"
+
+msgid "Підпис KPI: сторінки"
+msgstr "Popisek KPI: stránky"
+
+msgid "Підпис KPI: дні"
+msgstr "Popisek KPI: dny"
+
+msgid "Підпис KPI: телефон"
+msgstr "Popisek KPI: telefon"
+
+msgid "Підпис KPI: мови"
+msgstr "Popisek KPI: jazyky"
+
+msgid "Заголовок сторінки «Як працюємо»"
+msgstr "Nadpis stránky „Jak pracujeme“"
+
+msgid "Показувати додаткові екрани"
+msgstr "Zobrazit další obrazovky"
+
+msgid "Пункт CTA 01"
+msgstr "Položka CTA 01"
+
+msgid "Пункт CTA 02"
+msgstr "Položka CTA 02"
+
+msgid "Пункт CTA 03"
+msgstr "Položka CTA 03"
+
+msgid "Примітка під кнопкою заявки"
+msgstr "Poznámka pod tlačítkem poptávky"
+
+msgid "Російська"
+msgstr "Ruština"
+
+msgid "Англійська"
+msgstr "Angličtina"
+
+msgid "Чеська"
+msgstr "Čeština"
+
+msgid "Немає жодного демо-сайту для редагування."
+msgstr "Není tu žádný demo web k úpravě."
+
+msgid "Етап роботи"
+msgstr "Etapa práce"
+
+msgid "Роль / компанія"
+msgstr "Role / firma"
+
+msgid "Kontur+ Dark (ink canvas)"
+msgstr "Kontur+ Dark (ink canvas)"
+
+msgid "Kontur+ Mixed (cream + photo hero)"
+msgstr "Kontur+ Mixed (cream + photo hero)"
+
+msgid "Kontur+ Light"
+msgstr "Kontur+ Light"
+
+msgid "Dark luxury (bark / gold)"
+msgstr "Dark luxury (bark / gold)"
+
+msgid "Dark luxury (slot contrast)"
+msgstr "Dark luxury (slot contrast)"
+
+msgid "Ink / dark CTA, напр. #16181A"
+msgstr "Ink / dark CTA, např. #16181A"
+
+msgid "Hover dark CTA, напр. #33383C"
+msgstr "Hover dark CTA, např. #33383C"
+
+msgid "Lime CTA, напр. #DFF250"
+msgstr "Lime CTA, např. #DFF250"
+
+msgid "Cream canvas, напр. #F7F6F4"
+msgstr "Cream canvas, např. #F7F6F4"
+
+msgid "Основний текст, напр. #16181A"
+msgstr "Hlavní text, např. #16181A"
+
+msgid "Полотно"
+msgstr "Plátno"
+
+msgid "Фон сторінки"
+msgstr "Pozadí stránky"
+
+msgid "Шапка сайту"
+msgstr "Hlavička webu"
+
+msgid "Слоти"
+msgstr "Sloty"
+
+msgid "Статистика, картки, поля форми"
+msgstr "Statistiky, karty, pole formuláře"
+
+msgid "Текст і CTA"
+msgstr "Text a CTA"
+
+msgid "Основний текст і кнопка"
+msgstr "Hlavní text a tlačítko"
+
+msgid "Золото"
+msgstr "Zlato"
+
+msgid "Акценти й лінії"
+msgstr "Akcenty a linky"
+

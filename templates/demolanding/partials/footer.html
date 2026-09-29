@@ -7,11 +7,11 @@
             <p class="dl-footer__name">{% tenant_text blocks_map registry "header" "company_name" %}</p>
         </div>
         <div class="dl-footer__col dl-footer__col--address">
-            <p class="dl-footer__label">Адреса</p>
+            <p class="dl-footer__label">{% trans "Адреса" %}</p>
             <p class="dl-footer__address">{% tenant_text blocks_map registry "footer" "address" %}</p>
         </div>
         <div class="dl-footer__col dl-footer__col--contacts">
-            <p class="dl-footer__label">Контакти</p>
+            <p class="dl-footer__label">{% trans "Контакти" %}</p>
             {% if phone_href %}
             <a class="dl-footer__phone" href="tel:{{ phone_href }}">{{ footer_phone }}</a>
             {% endif %}

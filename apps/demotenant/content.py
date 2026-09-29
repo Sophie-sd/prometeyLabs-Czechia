@@ -11,13 +11,13 @@ def get_blocks_map(tenant) -> dict:
 
 
 def _entry_default(entry: dict, lang: str) -> str:
+    lang = (lang or 'cs').split('-')[0]
     if lang == 'en' and entry.get('default_en'):
         return entry['default_en']
-    if lang == 'ru' and entry.get('default_ru'):
-        return entry['default_ru']
     if lang == 'cs' and entry.get('default_cs'):
         return entry['default_cs']
-    return entry.get('default', '')
+    # Primary `default` is Czech for PrometeyLabs Czechia
+    return entry.get('default', '') or entry.get('default_cs', '')
 
 
 def get_text(blocks_map: dict, registry: list[dict], page: str, key: str) -> str:
