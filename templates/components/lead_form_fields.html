@@ -1,6 +1,5 @@
 {% load i18n %}
-{# Unified lead contract: name optional; phone|email|telegram min 1; consent*; no project_type.
-   Vars: prefix, compact (True → hide comment), input_class (optional override) #}
+{% comment %}Unified lead: name optional; phone|email|telegram min 1; consent; no project_type. Vars: prefix, compact, input_class.{% endcomment %}
 {% url 'privacy' as privacy_url %}
 {% with p=prefix|default:"lead" ic=input_class|default:"form-input lead-form-input mobile-touch-target" %}
 <div class="lead-form-fields{% if compact %} lead-form-fields--compact{% endif %}" data-lead-form-fields>
