@@ -96,9 +96,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <link rel="preload" href="{% static 'css/base-bundle.css' %}?v=35" as="style">
     <link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=35" media="print" data-async-css>
     <noscript><link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=35"></noscript>
-    <link rel="preload" href="{% static 'css/components/lead-form.css' %}?v=2" as="style">
-    <link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=2" media="print" data-async-css>
-    <noscript><link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=2"></noscript>
+    <link rel="preload" href="{% static 'css/components/lead-form.css' %}?v=3" as="style">
+    <link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=3" media="print" data-async-css>
+    <noscript><link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=3"></noscript>
 
     <!-- Page specific CSS -->
     {% block page_css %}{% endblock %}
@@ -130,7 +130,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         "contactPoint": {
             "@type": "ContactPoint",
             {% get_current_language as LANGUAGE_CODE %}
-            "telephone": "+{{ site_contact.phone_e164|default:'380639520565' }}",
+            {% if site_contact.phone_e164 %}"telephone": "+{{ site_contact.phone_e164 }}",{% endif %}
+            {% if site_contact.email %}"email": "{{ site_contact.email }}",{% endif %}
             {% if LANGUAGE_CODE == 'cs' or LANGUAGE_CODE == 'en' %}
             "areaServed": "CZ",
             {% else %}
@@ -201,7 +202,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             nameNeedsLetter: "{% filter escapejs %}{% trans "Введіть коректне ім'я (хоча б одна літера)" %}{% endfilter %}",
             phoneRequired: "{% filter escapejs %}{% trans 'Введіть номер телефону' %}{% endfilter %}",
             phoneInvalid: "{% filter escapejs %}{% trans 'Введіть коректний номер телефону' %}{% endfilter %}",
-            phoneStartsWithZero: "{% filter escapejs %}{% trans 'Номер має починатися з 0' %}{% endfilter %}"
+            phoneStartsWithZero: "{% filter escapejs %}{% trans 'Номер має починатися з 0' %}{% endfilter %}",
+            emailInvalid: "{% filter escapejs %}{% trans 'Введіть коректний email.' %}{% endfilter %}",
+            contactRule: "{% filter escapejs %}{% trans 'Zadejte telefon, e-mail nebo Telegram.' %}{% endfilter %}",
+            telegramInvalid: "{% filter escapejs %}{% trans 'Zadejte platný Telegram (@username).' %}{% endfilter %}"
         };
     </script>
     {% block base_js %}
@@ -212,7 +216,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <script src="{% static 'js/mobile-core.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/core/phone-mask.js' %}" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/core/phone-mask-intl.js' %}" nonce="{{ csp_nonce }}" defer></script>
-    <script src="{% static 'js/base.js' %}?v=32" nonce="{{ csp_nonce }}" defer></script>
+    <script src="{% static 'js/base.js' %}?v=33" nonce="{{ csp_nonce }}" defer></script>
     <!-- video-system.js: load only on pages that actually contain <video> (skips landings without media) -->
     <script nonce="{{ csp_nonce }}">
     (function(){

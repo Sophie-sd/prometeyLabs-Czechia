@@ -46,6 +46,7 @@
     </a>
 </li>
 <li>
+{% if site_contact.get_whatsapp_href %}
     <a href="{{ site_contact.get_whatsapp_href }}" class="contact-channel-icon" target="_blank" rel="noopener noreferrer"
         aria-label="WhatsApp">
         <svg class="contact-channel-icon__svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

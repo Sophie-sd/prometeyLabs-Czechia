@@ -69,7 +69,7 @@ class FormSubmission(models.Model):
     ]
     
     # ===== КОНТАКТНІ ДАНІ =====
-    name = models.CharField(max_length=200, verbose_name=_('Ім\'я'))
+    name = models.CharField(max_length=200, blank=True, default='', verbose_name=_('Ім\'я'))
     phone = models.CharField(max_length=20, blank=True, verbose_name=_('Телефон'))
     email = models.EmailField(blank=True, verbose_name=_('Email'))
     messenger_link = models.URLField(blank=True, verbose_name=_('Посилання на месенджер'))
@@ -466,6 +466,25 @@ class SiteContactSettings(models.Model):
         blank=True,
         verbose_name=_('Адреса (CS)'),
     )
+    czechia_address = models.CharField(
+        max_length=255,
+        blank=True,
+        default='Praha, Česko',
+        verbose_name=_('Адреса в Чехії'),
+        help_text=_('Друга публічна адреса (CZ). Порожнє = не показувати.'),
+    )
+    czechia_address_en = models.CharField(
+        max_length=255,
+        blank=True,
+        default='Prague, Czechia',
+        verbose_name=_('Адреса в Чехії (EN)'),
+    )
+    czechia_address_cs = models.CharField(
+        max_length=255,
+        blank=True,
+        default='Praha, Česko',
+        verbose_name=_('Адреса в Чехії (CS)'),
+    )
     legal_name = models.CharField(
         max_length=255,
         default='ФОП Дмитренко Софія Дмитрівна',
@@ -569,6 +588,17 @@ class SiteContactSettings(models.Model):
 
         return localized_text(
             self.address, self.address_ru, self.address_en, self.address_cs,
+        )
+
+    def get_localized_czechia_address(self):
+        from .i18n_content import localized_text
+
+        # No RU public locale on Czechia — reuse CS as default/fallback base.
+        return localized_text(
+            self.czechia_address,
+            self.czechia_address_cs,
+            self.czechia_address_en,
+            self.czechia_address_cs,
         )
 
     def get_localized_legal_name(self):

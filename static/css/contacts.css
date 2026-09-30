@@ -560,3 +560,18 @@
     }
 }
 
+
+
+.contact-address__label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-brand-orange, #E65100);
+    margin-bottom: 4px;
+}
+
+.contact-address--cz {
+    margin-top: 12px;
+}

@@ -1,71 +1,46 @@
 {% load i18n %}
-{# shared lead fields: prefix=footer|contact|call; compact=True → name,email,phone,consent only #}
+{# Unified lead contract: name optional; phone|email|telegram min 1; consent*; no project_type.
+   Vars: prefix, compact (True → hide comment), input_class (optional override) #}
 {% url 'privacy' as privacy_url %}
-{% with p=prefix|default:"lead" %}
-<div class="lead-form-fields{% if compact %} lead-form-fields--compact{% endif %}">
+{% with p=prefix|default:"lead" ic=input_class|default:"form-input lead-form-input mobile-touch-target" %}
+<div class="lead-form-fields{% if compact %} lead-form-fields--compact{% endif %}" data-lead-form-fields>
     <div class="form-group">
-        <label for="{{ p }}-name" class="form-label">{% trans "Ім'я" %} <span class="required">*</span></label>
-        <input type="text" id="{{ p }}-name" name="name" class="form-input lead-form-input mobile-touch-target"
-               autocomplete="given-name" inputmode="text" required
-               placeholder="{% trans "Введіть ваше ім'я" %}">
+        <label for="{{ p }}-name" class="form-label">{% trans "Jméno" %}</label>
+        <input type="text" id="{{ p }}-name" name="name" class="{{ ic }}"
+               autocomplete="given-name" inputmode="text"
+               placeholder="{% trans "Vaše jméno" %}">
     </div>
 
     <div class="form-group">
-        <label for="{{ p }}-email" class="form-label">{% trans "Email" %} <span class="required">*</span></label>
-        <input type="email" id="{{ p }}-email" name="email" class="form-input lead-form-input mobile-touch-target"
-               autocomplete="email" inputmode="email" required
-               placeholder="{% trans "you@email.com" %}">
-    </div>
-
-    <div class="form-group">
-        <label for="{{ p }}-phone" class="form-label">{% trans "Телефон / месенджер" %}</label>
-        <input type="tel" id="{{ p }}-phone" name="phone" class="form-input lead-form-input mobile-touch-target"
+        <label for="{{ p }}-phone" class="form-label">{% trans "Telefon" %}</label>
+        <input type="tel" id="{{ p }}-phone" name="phone" class="{{ ic }}"
                autocomplete="tel" inputmode="tel"
                placeholder="{{ phone_placeholder }}">
     </div>
 
+    <div class="form-group lead-form-telegram">
+        <label for="{{ p }}-telegram" class="form-label">{% trans "Telegram" %}</label>
+        <div class="lead-form-telegram__wrap">
+            <span class="lead-form-telegram__prefix" aria-hidden="true">@</span>
+            <input type="text" id="{{ p }}-telegram" name="telegram" class="{{ ic }} lead-form-telegram__input"
+                   autocomplete="username" inputmode="text" spellcheck="false"
+                   placeholder="username"
+                   data-telegram-input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ p }}-email" class="form-label">{% trans "Email" %}</label>
+        <input type="email" id="{{ p }}-email" name="email" class="{{ ic }}"
+               autocomplete="email" inputmode="email"
+               placeholder="{% trans "you@email.com" %}">
+    </div>
+
     {% if not compact %}
     <div class="form-group">
-        <label for="{{ p }}-messenger" class="form-label">{% trans "Як зручніше зв'язатись" %}</label>
-        <select id="{{ p }}-messenger" name="messenger_type" class="form-input lead-form-input lead-form-select mobile-touch-target">
-            <option value="">{% trans "Оберіть…" %}</option>
-            <option value="phone">{% trans "Телефон" %}</option>
-            <option value="whatsapp">WhatsApp</option>
-            <option value="telegram">Telegram</option>
-            <option value="viber">Viber</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="{{ p }}-project-type" class="form-label">{% trans "Тип проєкту" %}</label>
-        <select id="{{ p }}-project-type" name="project_type" class="form-input lead-form-input lead-form-select mobile-touch-target">
-            <option value="">{% trans "Оберіть…" %}</option>
-            <option value="site">{% trans "Сайт / лендінг" %}</option>
-            <option value="eshop">{% trans "Інтернет-магазин" %}</option>
-            <option value="webapp">{% trans "Веб-застосунок" %}</option>
-            <option value="other">{% trans "Інше" %}</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="{{ p }}-budget" class="form-label">{% trans "Орієнтовний бюджет" %}</label>
-        <select id="{{ p }}-budget" name="budget" class="form-input lead-form-input lead-form-select mobile-touch-target">
-            <option value="">{% trans "Оберіть…" %}</option>
-            <option value="to_500">{% trans "до 500 €" %}</option>
-            <option value="500_1500">{% trans "500–1500 €" %}</option>
-            <option value="1500_3000">{% trans "1500–3000 €" %}</option>
-            <option value="3000_plus">{% trans "від 3000 €" %}</option>
-            <option value="discuss">{% trans "Обговоримо" %}</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="{{ p }}-lang" class="form-label">{% trans "Бажана мова спілкування" %}</label>
-        <select id="{{ p }}-lang" name="preferred_language" class="form-input lead-form-input lead-form-select mobile-touch-target">
-            <option value="">{% trans "Оберіть…" %}</option>
-            <option value="cs">Čeština</option>
-            <option value="en">English</option>
-        </select>
+        <label for="{{ p }}-comment" class="form-label">{% trans "Komentář" %}</label>
+        <textarea id="{{ p }}-comment" name="message" class="form-textarea lead-form-input {{ ic }}" rows="4"
+                  placeholder="{% trans "Stručně o projektu nebo otázce" %}"></textarea>
     </div>
     {% endif %}
 
@@ -73,11 +48,12 @@
         <label class="form-checkbox lead-form-checkbox">
             <input type="checkbox" name="consent" value="1" required>
             <span>
-                {% blocktrans trimmed with privacy_url=privacy_url %}Даю згоду на обробку персональних даних згідно з <a href="{{ privacy_url }}" class="lead-form-policy-link" target="_blank" rel="noopener">політики конфіденційності</a>.{% endblocktrans %}
+                {% blocktrans trimmed with privacy_url=privacy_url %}Souhlasím se zpracováním osobních údajů dle <a href="{{ privacy_url }}" class="lead-form-policy-link" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>.{% endblocktrans %}
             </span>
         </label>
     </div>
 
-    <p class="lead-form-expect">{% trans "Відповімо по email протягом 24 годин…" %}</p>
+    <p class="lead-form-contact-rule" data-lead-contact-rule hidden role="alert"></p>
+    <p class="lead-form-expect">{% trans "Ozveme se do 24 hodin…" %}</p>
 </div>
 {% endwith %}

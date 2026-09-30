@@ -17,8 +17,8 @@
             action="{% url 'form_submit' %}"
             data-form-type="site_request"
             data-source-label="Інтернет-магазин v2"
-            data-error-phone-missing="{% trans 'Додайте номер телефону разом із Telegram або вкажіть телефон для звʼязку.' %}"
-            data-error-phone-invalid="{% trans 'Введіть коректний номер телефону або Telegram з номером.' %}"
+            data-error-contact-rule="{% trans 'Zadejte telefon, e-mail nebo Telegram.' %}"
+            data-error-phone-invalid="{% trans 'Введіть коректний номер телефону' %}"
             data-reveal
         >
             {% csrf_token %}
@@ -159,39 +159,13 @@
                 <p class="pl-shop__quiz-hint">{% trans "Залишіть контакти — і ми покажемо орієнтовну вартість за вашими відповідями." %}</p>
 
                 <div class="pl-shop__quiz-fields pl-shop__quiz-fields--contact">
-                    <div class="pl-shop__quiz-field">
-                        <label class="pl-shop__quiz-field-label" for="pl-shop-quiz-name">{% trans "Ваше імʼя" %}</label>
-                        <input
-                            type="text"
-                            id="pl-shop-quiz-name"
-                            name="name"
-                            class="pl-shop__quiz-input mobile-touch-target"
-                            autocomplete="given-name"
-                            inputmode="text"
-                            required
-                            placeholder="{% trans 'Імʼя' %}"
-                        >
-                    </div>
-                    <div class="pl-shop__quiz-field">
-                        <label class="pl-shop__quiz-field-label" for="pl-shop-quiz-phone">{% trans "Телефон" %}</label>
-                        <input
-                            type="tel"
-                            id="pl-shop-quiz-phone"
-                            name="phone"
-                            class="pl-shop__quiz-input mobile-touch-target"
-                            autocomplete="tel"
-                            inputmode="tel"
-                            required
-                            placeholder="{{ phone_placeholder }}"
-                        >
-                    </div>
-                    {% include 'components/lead_gdpr_min.html' with prefix='pl-shop-quiz' input_class='pl-shop__quiz-input mobile-touch-target' wrap_class='pl-shop__quiz-gdpr' %}
+                    {% include 'components/lead_form_fields.html' with prefix='pl-shop-quiz' input_class='pl-shop__quiz-input mobile-touch-target' %}
                     <button
                         type="submit"
                         class="pl-shop__btn pl-shop__btn--primary pl-shop__quiz-reveal mobile-touch-target"
                         data-quiz-reveal
                     >
-                        {% trans "Отримати розрахунок →" %}
+                        {% trans "Nezávazná poptávka" %}
                     </button>
                 </div>
             </div>

@@ -148,3 +148,65 @@
         }
     }
 }
+
+
+.lead-form-telegram__wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 2px solid var(--color-gray, #ddd);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--color-white, #fff);
+}
+
+.lead-form-telegram__prefix {
+    flex: 0 0 auto;
+    padding: 0 0 0 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    line-height: 1;
+}
+
+.lead-form-telegram__input {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent;
+}
+
+.lead-form-telegram__wrap:focus-within {
+    border-color: var(--color-brand-orange, #E65100);
+}
+
+.lead-form-contact-rule {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.lead-form-contact-rule--error {
+    color: #d32f2f;
+    font-weight: 600;
+}
+
+/* Modal body lock: page fixed, modal panel scrolls */
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+.modal.active {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+.modal.active .modal-content--lead,
+.modal.active .modal-content {
+    max-height: min(92dvh, 920px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
