@@ -277,6 +277,39 @@ body.modal-open {
     outline: none;
 }
 
+#call-request-modal .lead-form-telegram__wrap {
+    background: rgba(10, 10, 10, 0.55);
+    border: 1px solid #2a2a2a;
+    border-radius: 11px;
+    color: #fff;
+}
+
+#call-request-modal .lead-form-telegram__prefix {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+#call-request-modal .lead-form-telegram__input.form-input,
+#call-request-modal .lead-form-telegram__input.lead-form-input {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #fff;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+#call-request-modal .lead-form-telegram__wrap:focus-within {
+    background: rgba(10, 10, 10, 0.72);
+    border-color: var(--color-brand-orange);
+}
+
+#call-request-modal .lead-form-telegram__input.form-input:focus {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #fff;
+    outline: none;
+}
+
 #call-request-modal .modal-close {
     color: var(--color-brand-orange);
     background: none;

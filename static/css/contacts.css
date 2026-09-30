@@ -346,6 +346,41 @@
     min-height: 120px;
 }
 
+/* Telegram @+username: one dark field (match sibling .form-input) */
+.contacts-page .contact-form .lead-form-telegram__wrap {
+    background: var(--contacts-input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: var(--color-white);
+}
+
+.contacts-page .contact-form .lead-form-telegram__prefix {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.contacts-page .contact-form .lead-form-telegram__input.form-input,
+.contacts-page .contact-form .lead-form-telegram__input.lead-form-input {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--color-white);
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.contacts-page .contact-form .lead-form-telegram__wrap:focus-within {
+    border-color: var(--color-brand-orange);
+    background: rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 0 1px rgba(230, 81, 0, 0.25);
+}
+
+.contacts-page .contact-form .lead-form-telegram__input.form-input:focus,
+.contacts-page .contact-form .lead-form-telegram__input.form-input:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
 .contacts-page .contact-form .submit-btn {
     background-color: var(--color-brand-orange);
     color: #ffffff;
