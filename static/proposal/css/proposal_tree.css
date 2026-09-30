@@ -17,6 +17,12 @@
     font-weight: 400;
     font-size: clamp(1.25rem, 2.3vw, 2rem);
     letter-spacing: -0.01em;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+    padding-inline: 0.5rem;
+    line-height: 1.2;
 }
 
 .prop-tree__h {
@@ -59,6 +65,12 @@
     font-size: clamp(1.0625rem, 1.9vw, 1.625rem);
     letter-spacing: -0.01em;
     text-align: center;
+    line-height: 1.25;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+    padding-inline: 0.35rem;
+    min-width: 0;
     transition: color var(--motion-soft) var(--ease-out);
 }
 
@@ -93,10 +105,14 @@
     margin-top: clamp(0.75rem, 1.6vh, 1.125rem);
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--prop-muted-faint);
     text-align: center;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+    max-width: 100%;
+    padding-inline: 0.35rem;
 }
 
 .prop-intro {
@@ -126,10 +142,12 @@
 .prop-intro__title {
     margin: 0 0 1.75rem;
     font-size: var(--prop-h2);
+    max-width: 100%;
 }
 
 .prop-prose {
-    max-width: 64ch;
+    max-width: min(100%, 64ch);
+    overflow-wrap: break-word;
 }
 
 .prop-prose p {
@@ -189,6 +207,8 @@
     font-size: clamp(1.1875rem, 1.8vw, 1.625rem);
     letter-spacing: -0.02em;
     margin-bottom: 0.625rem;
+    overflow-wrap: break-word;
+    line-height: 1.25;
 }
 
 .prop-prose li > strong {
@@ -283,6 +303,10 @@
 
     .prop-intro {
         grid-template-columns: minmax(8.75rem, 13.75rem) minmax(0, 1fr);
+    }
+
+    .prop-tree__col {
+        min-width: 0;
     }
 
     .prop-intro__sticky {

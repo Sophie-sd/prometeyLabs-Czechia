@@ -231,6 +231,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .prop-mask {
+        overflow: visible;
+    }
+
     .prop-reveal,
     .prop-word,
     .prop-hero__meta,

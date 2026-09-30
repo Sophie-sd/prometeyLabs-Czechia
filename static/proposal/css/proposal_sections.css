@@ -29,13 +29,17 @@
 }
 
 .prop-section__title,
-.prop-hero__title {
+.prop-hero__title,
+.prop-intro__title {
     margin: 0;
     font-family: var(--prop-display);
     font-weight: 300;
     letter-spacing: -0.035em;
-    line-height: 0.98;
+    line-height: 1.12;
     text-wrap: balance;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .prop-section__title {
@@ -45,11 +49,14 @@
 .prop-mask {
     display: block;
     overflow: hidden;
-    padding-bottom: 0.09em;
+    padding-block: 0.14em 0.2em;
+    max-width: 100%;
 }
 
 .prop-mask > span {
     display: block;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .prop-cta {
@@ -68,6 +75,10 @@
     text-transform: uppercase;
     text-decoration: none;
     background: transparent;
+    white-space: normal;
+    text-align: center;
+    max-width: 100%;
+    overflow-wrap: break-word;
     transition:
         border-color var(--duration-ui) var(--ease-out),
         background var(--duration-ui) var(--ease-out),
@@ -118,7 +129,8 @@
 /* —— Hero —— */
 .prop-hero {
     position: relative;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
@@ -179,12 +191,15 @@
 }
 
 .prop-hero__title {
-    max-width: 22ch;
+    max-width: min(100%, 34ch);
     font-size: var(--prop-mega);
 }
 
 .prop-word {
     display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
 }
 
 .prop-word--accent {
@@ -200,10 +215,11 @@
 
 .prop-hero__lead {
     margin: 0 0 1.75rem;
-    max-width: 34ch;
+    max-width: min(100%, 42ch);
     font-size: clamp(0.9375rem, 1.15vw, 1.125rem);
     line-height: 1.65;
     color: var(--prop-muted);
+    overflow-wrap: break-word;
 }
 
 .prop-hero__actions {
@@ -247,6 +263,8 @@
 .prop-hero__aside-list li {
     font-size: 0.8125rem;
     color: var(--prop-text);
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .prop-scroll-hint {

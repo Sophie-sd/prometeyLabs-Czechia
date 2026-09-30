@@ -47,8 +47,11 @@
     font-family: var(--prop-display);
     font-weight: 300;
     font-size: clamp(1.3125rem, 2.2vw, 2rem);
-    line-height: 1.1;
+    line-height: 1.2;
     letter-spacing: -0.025em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .prop-price__text {
@@ -120,10 +123,11 @@
     font-family: var(--prop-display);
     font-weight: 300;
     font-size: clamp(1.5rem, 3vw, 3.125rem);
-    line-height: 1.2;
+    line-height: 1.25;
     letter-spacing: -0.03em;
-    max-width: 28ch;
+    max-width: min(100%, 36ch);
     color: var(--prop-text);
+    overflow-wrap: break-word;
 }
 
 .prop-gua .prop-prose strong {
@@ -224,20 +228,25 @@
     margin: 0 0 0.75rem;
     font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+    line-height: 1.45;
 }
 
 .prop-pay__body {
     margin: 0;
-    max-width: 40ch;
+    max-width: min(100%, 48ch);
     font-size: 0.9375rem;
     line-height: 1.7;
     color: var(--prop-muted);
+    overflow-wrap: break-word;
 }
 
 .prop-cta-sec {
-    overflow: hidden;
+    overflow: visible;
     text-align: center;
     padding-bottom: clamp(3rem, 8vh, 5.625rem);
 }
@@ -253,10 +262,15 @@
     position: relative;
     z-index: 1;
     margin: clamp(1.75rem, 4.5vh, 2.75rem) auto clamp(2.5rem, 7vh, 4.5rem);
-    max-width: 16ch;
+    max-width: min(100%, 22ch);
+    font-family: var(--prop-display);
+    font-weight: 300;
     font-size: clamp(2.25rem, 7vw, 7.25rem);
-    line-height: 0.95;
+    line-height: 1.08;
     letter-spacing: -0.04em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-wrap: balance;
 }
 
 .prop-cta-sec__grid {
@@ -271,10 +285,11 @@
 
 .prop-cta-sec__lead {
     margin: 0 0 2rem;
-    max-width: 34ch;
+    max-width: min(100%, 42ch);
     font-size: clamp(0.9375rem, 1.15vw, 1.125rem);
     line-height: 1.7;
     color: var(--prop-muted);
+    overflow-wrap: break-word;
 }
 
 .prop-contacts {
@@ -296,6 +311,8 @@
     color: var(--prop-text);
     text-decoration: none;
     min-height: 2.75rem;
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
     transition: color var(--duration-ui) var(--ease-out), padding-left var(--duration-ui) var(--ease-out);
 }
 
@@ -316,7 +333,7 @@
 
     .prop-gua,
     .prop-pay {
-        grid-template-columns: minmax(8.75rem, 13.75rem) minmax(0, 1fr);
+        grid-template-columns: minmax(12rem, 22rem) minmax(0, 1fr);
     }
 
     .prop-gua__sticky,
