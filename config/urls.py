@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include, re_path
 from django.conf.urls.i18n import i18n_patterns
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from apps.core.i18n_views import set_language
 from django.views.static import serve
 from django.conf import settings
@@ -12,6 +12,11 @@ from apps.core.sitemaps import sitemaps
 
 # URL без префіксу мови
 urlpatterns = [
+    path(
+        'favicon.ico',
+        RedirectView.as_view(url='/static/images/favicon.ico', permanent=True),
+        name='favicon',
+    ),
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('i18n/set_language/', set_language, name='set_language'),
