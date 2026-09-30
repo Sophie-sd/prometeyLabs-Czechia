@@ -400,14 +400,16 @@ class SiteContactSettings(models.Model):
 
     phone_display = models.CharField(
         max_length=32,
-        default='+38 (063) 952-05-65',
+        blank=True,
+        default='',
         verbose_name=_('Телефон (відображення)'),
     )
     phone_e164 = models.CharField(
         max_length=20,
-        default='380639520565',
+        blank=True,
+        default='',
         verbose_name=_('Телефон (цифри для посилань)'),
-        help_text=_('Без +, наприклад 380639520565'),
+        help_text=_('Без +, наприклад 380639520565. Залиште порожнім, якщо телефон не показуємо.'),
     )
     email = models.EmailField(
         default='info@prometeylabs.com',
@@ -446,7 +448,7 @@ class SiteContactSettings(models.Model):
     )
     address = models.CharField(
         max_length=255,
-        default='Київ, бульвар Тараса Шевченка 46а',
+        default='Київ, бульвар Тараса Шевченка 46а, Україна',
         verbose_name=_('Адреса'),
     )
     address_ru = models.CharField(
@@ -492,7 +494,7 @@ class SiteContactSettings(models.Model):
     )
     legal_address = models.CharField(
         max_length=255,
-        default='Полтавська обл., м. Миргород, вул. Кваші, буд 2',
+        default='Полтавська обл., м. Миргород, вул. Кваші, буд 2, Україна',
         verbose_name=_('Юридична адреса (Impressum)'),
         help_text=_('Місце реєстрації ФОП; фактична адреса — поле «Адреса» вище.'),
     )

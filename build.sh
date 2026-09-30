@@ -59,6 +59,9 @@ python manage.py seed_portfolio_projects --prune --force-images
 echo "👥 Seeding homepage clients (from static assets)..."
 python manage.py seed_clients
 
+echo "📍 Seeding site contact settings (address/map, no phone)..."
+python manage.py seed_site_contact_settings
+
 echo "📄 Seeding B2B Parts commercial proposal..."
 python manage.py seed_proposal_b2b_parts
 
