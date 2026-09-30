@@ -76,3 +76,24 @@ class CSPMiddleware:
         ])
         response['Content-Security-Policy'] = csp
         return response
+
+
+class AdminLocaleMiddleware:
+    """Force Ukrainian for Django/Unfold admin without touching public CS/EN i18n.
+
+    Public LANGUAGES stay cs+en. Admin path activates Django's built-in `uk`
+    catalog (and any project locale/uk if added later).
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        from django.utils import translation
+
+        path = request.path_info or ""
+        if path == "/admin" or path.startswith("/admin/"):
+            translation.activate("uk")
+            request.LANGUAGE_CODE = "uk"
+        return self.get_response(request)
+
