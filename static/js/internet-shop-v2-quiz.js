@@ -241,23 +241,45 @@
     }
 
     function validateContactFields() {
-        var valid = true;
+        var emailInput = form.querySelector('#pl-shop-quiz-email');
+        var phoneInputLocal = form.querySelector('#pl-shop-quiz-phone');
+        var telegramInput = form.querySelector('#pl-shop-quiz-telegram');
+        var consentInput = form.querySelector('[name="consent"]');
+        var nameInputLocal = form.querySelector('#pl-shop-quiz-name');
+        var ruleEl = form.querySelector('[data-lead-contact-rule]');
 
-        if (nameInput) {
-            if (!nameInput.checkValidity()) {
-                nameInput.reportValidity();
-                valid = false;
-            }
+        if (nameInputLocal && nameInputLocal.value.trim() && nameInputLocal.value.trim().length < 2) {
+            nameInputLocal.reportValidity();
+            return false;
         }
-
-        if (phoneInput) {
-            if (!phoneInput.checkValidity()) {
-                phoneInput.reportValidity();
-                valid = false;
-            }
+        if (emailInput && emailInput.value.trim() && !emailInput.checkValidity()) {
+            emailInput.reportValidity();
+            return false;
         }
-
-        return valid;
+        if (consentInput && !consentInput.checked) {
+            consentInput.reportValidity();
+            return false;
+        }
+        var phoneDigits = phoneInputLocal ? phoneInputLocal.value.replace(/\D/g, '') : '';
+        var phoneOk = phoneDigits.length >= 7;
+        var emailOk = emailInput && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((emailInput.value || '').trim());
+        var tg = telegramInput ? telegramInput.value.trim().replace(/^@+/, '') : '';
+        if (telegramInput) telegramInput.value = tg;
+        var tgOk = /^[A-Za-z0-9_]{5,32}$/.test(tg);
+        if (!(phoneOk || emailOk || tgOk)) {
+            var msg = form.getAttribute('data-error-contact-rule') || (window.I18N && window.I18N.contactRule) || 'Zadejte telefon, e-mail nebo Telegram.';
+            if (ruleEl) {
+                ruleEl.hidden = false;
+                ruleEl.textContent = msg;
+                ruleEl.classList.add('lead-form-contact-rule--error');
+            }
+            return false;
+        }
+        if (ruleEl) {
+            ruleEl.hidden = true;
+            ruleEl.textContent = '';
+        }
+        return true;
     }
 
     function compileDetails() {

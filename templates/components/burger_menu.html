@@ -52,6 +52,7 @@
     <!-- Footer з контактами та інфо -->
     <div class="mobile-menu-footer">
         <div class="mobile-menu-contacts">
+            {% if site_contact.phone_display and site_contact.get_tel_href %}
             <a href="{{ site_contact.get_tel_href }}"
                 class="mobile-contact-btn mobile-touch-target mobile-focus-visible"
                 aria-label="{% trans 'Зателефонувати' %} {{ site_contact.phone_display }}">
@@ -60,6 +61,7 @@
                 </svg>
                 <span class="mobile-contact-btn__label">{{ site_contact.phone_display }}</span>
             </a>
+            {% endif %}
             <a href="{{ site_contact.telegram_url }}" target="_blank" rel="noopener noreferrer"
                 class="mobile-contact-btn mobile-touch-target mobile-focus-visible"
                 aria-label="{% trans 'Написати в Telegram' %}">

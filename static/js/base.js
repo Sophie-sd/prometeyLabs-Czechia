@@ -371,7 +371,7 @@ class PrometeyApp {
         modal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('modal-open');
         document.body.style.top = `-${this.scrollPosition}px`;
-        document.body.style.overflow = 'hidden';
+        // overflow/position locked via body.modal-open CSS; modal-content scrolls
 
         this.state.activeModal = modalId;
 
@@ -393,8 +393,11 @@ class PrometeyApp {
         modal.classList.remove('active');
         modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('modal-open');
-        document.body.style.overflow = '';
         document.body.style.top = '';
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.height = '';
 
         this.state.activeModal = null;
         this.restoreScrollPosition();
@@ -704,11 +707,58 @@ class PrometeyApp {
             }
         }
 
+        const telegramField = form.querySelector('[name="telegram"]');
+        if (telegramField && telegramField.value.trim()) {
+            let tg = telegramField.value.trim().replace(/^@+/, '');
+            if (tg.startsWith('https://t.me/') || tg.startsWith('http://t.me/')) {
+                tg = tg.replace(/\/$/, '').split('/').pop();
+            }
+            telegramField.value = tg;
+            if (!/^[A-Za-z0-9_]{5,32}$/.test(tg)) {
+                telegramField.classList.add('error');
+                this.showFieldError(telegramField, window.I18N?.telegramInvalid || 'Zadejte platný Telegram (@username).');
+                isValid = false;
+            } else {
+                telegramField.classList.remove('error');
+                this.clearFieldError(telegramField);
+            }
+        }
+
+        // FAIL-CLOSED contact rule for shared lead fields
+        if (form.querySelector('[data-lead-form-fields]')) {
+            const phoneDigits = phoneField ? phoneField.value.replace(/\D/g, '') : '';
+            const phoneOk = phoneDigits.length >= 7;
+            const emailOk = emailField && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((emailField.value || '').trim());
+            const tgRaw = telegramField ? telegramField.value.trim().replace(/^@+/, '') : '';
+            const tgOk = /^[A-Za-z0-9_]{5,32}$/.test(tgRaw);
+            const ruleEl = form.querySelector('[data-lead-contact-rule]');
+            if (!(phoneOk || emailOk || tgOk)) {
+                const msg = window.I18N?.contactRule || 'Zadejte telefon, e-mail nebo Telegram.';
+                if (ruleEl) {
+                    ruleEl.hidden = false;
+                    ruleEl.textContent = msg;
+                    ruleEl.classList.add('lead-form-contact-rule--error');
+                }
+                isValid = false;
+            } else if (ruleEl) {
+                ruleEl.hidden = true;
+                ruleEl.textContent = '';
+                ruleEl.classList.remove('lead-form-contact-rule--error');
+            }
+        }
+
         return isValid;
     }
 
     showFieldError(field, message) {
-        const errorEl = field.parentElement?.querySelector('.calc-field__error');
+        const errorEl = field.parentElement?.querySelector('.calc-field__error')
+            || field.closest('.form-group')?.querySelector('.lead-form-contact-rule');
+        if (errorEl && errorEl.hasAttribute && errorEl.hasAttribute('data-lead-contact-rule')) {
+            errorEl.hidden = false;
+            errorEl.textContent = message;
+            errorEl.classList.add('lead-form-contact-rule--error');
+            return;
+        }
         if (errorEl) {
             errorEl.textContent = message;
             errorEl.classList.add('show');

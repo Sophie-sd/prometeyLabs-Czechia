@@ -330,44 +330,54 @@
     function validateContactFields() {
         var valid = true;
         var emailInput = form.querySelector('#pl-corp-quiz-email');
+        var phoneInputLocal = form.querySelector('#pl-corp-quiz-phone');
+        var telegramInput = form.querySelector('#pl-corp-quiz-telegram');
         var consentInput = form.querySelector('[name="consent"]');
+        var nameInputLocal = form.querySelector('#pl-corp-quiz-name');
+        var ruleEl = form.querySelector('[data-lead-contact-rule]');
 
-        if (nameInput && !nameInput.checkValidity()) {
-            nameInput.reportValidity();
-            valid = false;
+        if (nameInputLocal && nameInputLocal.value.trim()) {
+            if (nameInputLocal.value.trim().length < 2) {
+                nameInputLocal.reportValidity();
+                return false;
+            }
         }
-
         if (emailInput && emailInput.value.trim() && !emailInput.checkValidity()) {
             emailInput.reportValidity();
-            valid = false;
-        }
-
-        if (consentInput && !consentInput.checked) {
-            consentInput.reportValidity();
-            valid = false;
-        }
-
-        if (!phoneInput) return valid;
-
-        clearPhoneError();
-        var contact = phoneInput.value.trim();
-        var digits = countDigits(contact);
-
-        if (!contact) {
-            phoneInput.reportValidity();
             return false;
         }
-
-        if (contact.charAt(0) === '@') {
-            if (digits < 7) {
-                showPhoneError(form.dataset.errorPhoneMissing || 'Додайте номер телефону разом із Telegram або вкажіть телефон для звʼязку.');
-                valid = false;
-            }
-        } else if (digits < 7) {
-            showPhoneError(form.dataset.errorPhoneInvalid || 'Введіть коректний номер телефону або Telegram з номером.');
-            valid = false;
+        if (consentInput && !consentInput.checked) {
+            consentInput.reportValidity();
+            return false;
         }
-
+        var phoneDigits = phoneInputLocal ? phoneInputLocal.value.replace(/\D/g, '') : '';
+        var phoneOk = phoneDigits.length >= 7;
+        var emailOk = emailInput && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((emailInput.value || '').trim());
+        var tg = telegramInput ? telegramInput.value.trim().replace(/^@+/, '') : '';
+        if (telegramInput) telegramInput.value = tg;
+        var tgOk = /^[A-Za-z0-9_]{5,32}$/.test(tg);
+        if (tg && !tgOk) {
+            if (ruleEl) {
+                ruleEl.hidden = false;
+                ruleEl.textContent = form.getAttribute('data-error-phone-invalid') || (window.I18N && window.I18N.telegramInvalid) || 'Zadejte platný Telegram (@username).';
+                ruleEl.classList.add('lead-form-contact-rule--error');
+            }
+            return false;
+        }
+        if (!(phoneOk || emailOk || tgOk)) {
+            var msg = form.getAttribute('data-error-contact-rule') || (window.I18N && window.I18N.contactRule) || 'Zadejte telefon, e-mail nebo Telegram.';
+            if (ruleEl) {
+                ruleEl.hidden = false;
+                ruleEl.textContent = msg;
+                ruleEl.classList.add('lead-form-contact-rule--error');
+            }
+            return false;
+        }
+        if (ruleEl) {
+            ruleEl.hidden = true;
+            ruleEl.textContent = '';
+            ruleEl.classList.remove('lead-form-contact-rule--error');
+        }
         return valid;
     }
 

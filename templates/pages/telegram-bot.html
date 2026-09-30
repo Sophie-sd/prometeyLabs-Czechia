@@ -326,14 +326,7 @@
                 <input type="hidden" name="source_page" value="telegram-bot">
                 <input type="text" name="honeypot" class="pl-bot__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-                <div class="pl-bot__field">
-                    <label for="pl-bot-name">{% trans "Ім'я" %} <span class="required">*</span></label>
-                    <input id="pl-bot-name" type="text" name="name" class="form-input mobile-touch-target" required autocomplete="given-name" placeholder="{% trans "Як до вас звертатися" %}">
-                </div>
-                <div class="pl-bot__field">
-                    <label for="pl-bot-phone">{% trans "Телефон" %} <span class="required">*</span></label>
-                    <input id="pl-bot-phone" type="tel" name="phone" class="form-input mobile-touch-target" required autocomplete="tel" inputmode="tel" placeholder="+38(___)__-__-___">
-                </div>
+                {% include 'components/lead_form_fields.html' with prefix='pl-bot' %}
                 <div class="pl-bot__field">
                     <label for="pl-bot-task">{% trans "Що має робити бот?" %}</label>
                     <select id="pl-bot-task" name="bot_task" class="form-input mobile-touch-target">
@@ -353,7 +346,7 @@
                     <label for="pl-bot-details">{% trans "Коротко про задачу" %}</label>
                     <textarea id="pl-bot-details" name="details" class="form-input mobile-touch-target" rows="4" maxlength="1000" placeholder="{% trans "Ніша, функції бота, де хостити" %}"></textarea>
                 </div>
-                <button type="submit" class="pl-bot__btn pl-bot__btn--primary pl-bot__btn--full mobile-touch-target">{% trans "Отримати прорахунок" %}</button>
+                <button type="submit" class="pl-bot__btn pl-bot__btn--primary pl-bot__btn--full mobile-touch-target">{% trans "Nezávazná poptávka" %}</button>
             </form>
             <p class="pl-bot__links">
                 <a href="{% url 'internet_shop_v2' %}">{% trans "Інтернет-магазини" %}</a>

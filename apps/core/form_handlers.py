@@ -41,11 +41,44 @@ _CHECKED = frozenset({'1', 'on', 'true', 'yes'})
 LEAD_FORM_TYPES = frozenset({
     'contact',
     'call_request',
+    'call-request',
     'footer-consultation',
     'consultation',
     'site-request',
     'site_request',
+    'telegram-bot',
+    'telegram_bot',
+    'developer',
 })
+
+_TELEGRAM_RE = re.compile(r'^@?[A-Za-z0-9_]{5,32}$')
+
+
+def normalize_telegram(value: str) -> str:
+    raw = (value or '').strip()
+    if not raw:
+        return ''
+    if raw.startswith('https://t.me/') or raw.startswith('http://t.me/'):
+        raw = raw.rstrip('/').rsplit('/', 1)[-1]
+    if raw.startswith('@'):
+        raw = raw[1:]
+    return raw
+
+
+def validate_telegram(value: str) -> bool:
+    raw = normalize_telegram(value)
+    if not raw:
+        return False
+    return bool(_TELEGRAM_RE.match(raw))
+
+
+def has_lead_contact(phone: str = '', email: str = '', telegram: str = '') -> bool:
+    """FAIL-CLOSED: at least one of phone OR email OR telegram."""
+    phone_ok = bool(phone and validate_phone(phone))
+    email_ok = bool(email and validate_email(email))
+    tg_ok = bool(telegram and validate_telegram(telegram))
+    # Phone may be prefix-only (+420) — treat as empty via validate_phone digits>=7
+    return phone_ok or email_ok or tg_ok
 
 
 def validate_email(email):
@@ -105,6 +138,7 @@ def create_form_data(form_type, name, phone, request, **extra_fields):
         'project_type': request.POST.get('project_type', '').strip(),
         'budget': request.POST.get('budget', '').strip(),
         'preferred_language': request.POST.get('preferred_language', '').strip(),
+        'telegram': normalize_telegram(request.POST.get('telegram', '')),
     }
     if has_consent(request):
         form_data['consent_at'] = timezone.now()
@@ -234,7 +268,7 @@ def save_form_submission(form_type, form_data, email_success=False):
         extra_fields = ['course_type', 'experience', 'company', 'answers',
                        'alt_services_checked', 'event_title', 'source_page',
                        'landing_page', 'landing_referrer', 'quiz', 'upsell',
-                       'pdf_token']
+                       'pdf_token', 'telegram', 'bot_task', 'integrations']
         for field in extra_fields:
             if form_data.get(field):
                 extra_data[field] = form_data[field]

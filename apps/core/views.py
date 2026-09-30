@@ -4,6 +4,7 @@ from django.utils import timezone
 from .mixins import BasePageView, LocalizedLegalTemplateMixin, homepage_clients, portfolio_page_projects
 from .form_handlers import (
     validate_phone, validate_name, validate_email, has_consent,
+    has_lead_contact, validate_telegram,
     create_form_response, get_form_type_from_path,
     create_form_data, send_form_email, save_form_submission,
     send_test_result_email, LEAD_FORM_TYPES,
@@ -224,6 +225,7 @@ def handle_form_submission(request):
         phone = request.POST.get('phone', '').strip()
         email = request.POST.get('email', '').strip()
 
+        telegram = request.POST.get('telegram', '').strip()
         is_lead = form_type in LEAD_FORM_TYPES
 
         if is_lead:
@@ -233,36 +235,35 @@ def handle_form_submission(request):
                     _('Підтвердіть згоду на обробку персональних даних.'),
                     status=400,
                 )
-            email_optional = form_type in {'site_request', 'site-request'}
-            if email_optional:
-                if email and not validate_email(email):
-                    return create_form_response(
-                        False,
-                        _('Введіть коректний email.'),
-                        status=400,
-                    )
-            elif not email or not validate_email(email):
-                return create_form_response(
-                    False,
-                    _('Введіть коректний email.'),
-                    status=400,
-                )
-            if not name:
-                return create_form_response(
-                    False,
-                    _('Заповніть обов\'язкові поля: ім\'я та email'),
-                    status=400,
-                )
-            if not validate_name(name):
+            # Name optional — validate only when provided.
+            if name and not validate_name(name):
                 return create_form_response(
                     False,
                     _('Введіть коректне ім\'я (мінімум 2 символи, хоча б одна літера)'),
+                    status=400,
+                )
+            if email and not validate_email(email):
+                return create_form_response(
+                    False,
+                    _('Введіть коректний email.'),
                     status=400,
                 )
             if phone and not validate_phone(phone):
                 return create_form_response(
                     False,
                     _('Введіть коректний номер телефону'),
+                    status=400,
+                )
+            if telegram and not validate_telegram(telegram):
+                return create_form_response(
+                    False,
+                    _('Zadejte platný Telegram (@username).'),
+                    status=400,
+                )
+            if not has_lead_contact(phone=phone, email=email, telegram=telegram):
+                return create_form_response(
+                    False,
+                    _('Zadejte telefon, e-mail nebo Telegram.'),
                     status=400,
                 )
         else:
@@ -281,7 +282,7 @@ def handle_form_submission(request):
                     False,
                     _('Введіть коректний номер телефону'),
                 )
-        
+
         # Обробка різних типів форм
         handlers = {
             'site-request': handle_site_request,

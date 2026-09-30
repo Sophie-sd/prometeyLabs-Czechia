@@ -445,3 +445,52 @@ button.footer-cookie-settings-btn:hover {
         }
     }
 }
+
+
+/* Shared lead fields inside dark footer chrome */
+.footer-form .lead-form-input,
+.footer-form .form-input,
+.footer-form .form-textarea,
+.footer-form select.lead-form-input {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #f2f2f2;
+}
+
+.footer-form .lead-form-input::placeholder,
+.footer-form .form-input::placeholder,
+.footer-form .form-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.42);
+}
+
+.footer-form .lead-form-input:focus,
+.footer-form .form-input:focus,
+.footer-form .form-textarea:focus {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: var(--color-brand-orange, #E65100);
+    outline: none;
+    box-shadow: none;
+}
+
+.footer-form .lead-form-checkbox,
+.footer-form .lead-form-expect {
+    color: #a8a8a8;
+}
+
+.footer-form .lead-form-telegram__wrap {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.footer-form .lead-form-telegram__prefix {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.footer-form .lead-form-telegram__input {
+    background: transparent;
+    border: none;
+}
+
+.footer-form .lead-form-contact-rule--error {
+    color: #ff8a65;
+}

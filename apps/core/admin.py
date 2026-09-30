@@ -450,6 +450,7 @@ class SiteContactSettingsAdmin(UnfoldModelAdmin):
             'fields': (
                 'phone_display', 'phone_e164', 'email',
                 'address', 'address_ru', 'address_en', 'address_cs',
+                'czechia_address', 'czechia_address_en', 'czechia_address_cs',
             ),
         }),
         (_('Impressum / трейдер (футер сайту)'), {

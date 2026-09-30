@@ -41,8 +41,12 @@
             <div class="footer-section">
                 <h3>{% trans "КОНТАКТИ" %}</h3>
                 <div class="footer-accordion-content">
+                    {% if site_contact.phone_display and site_contact.get_tel_href %}
                     <a href="{{ site_contact.get_tel_href }}" class="footer-contact-link">{{ site_contact.phone_display }}</a>
+                    {% endif %}
+                    {% if site_contact.email %}
                     <a href="mailto:{{ site_contact.email }}" class="footer-contact-link">{{ site_contact.email }}</a>
+                    {% endif %}
                     <span class="footer-contact-text">{% trans "Графік роботи: Цілодобово" %}</span>
                     <div class="footer-social">
                         <a href="{{ site_contact.telegram_url }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
@@ -72,12 +76,12 @@
             </div>
 
             <div class="footer-section footer-form-section">
-                <h3>{% trans "ОТРИМАТИ КОНСУЛЬТАЦІЮ" %}</h3>
+                <h3>{% trans "Nezávazná poptávka" %}</h3>
                 <form class="footer-form" data-form-type="footer-consultation">
                     {% csrf_token %}
                     <input type="hidden" name="form_type" value="footer-consultation">
                     {% include 'components/lead_form_fields.html' with prefix='footer' compact=True %}
-                    <button type="submit" class="btn btn-primary footer-submit-btn">{% trans "Відправити" %}</button>
+                    <button type="submit" class="btn btn-primary footer-submit-btn">{% trans "Nezávazná poptávka" %}</button>
                 </form>
             </div>
         </div>

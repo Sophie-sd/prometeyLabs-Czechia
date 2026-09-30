@@ -2,18 +2,18 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Контакти | PrometeyLabs" %}{% endblock %}
+{% block title %}{% trans "Kontakty | PrometeyLabs" %}{% endblock %}
 
 {% block description %}
-{% trans "Зв'яжіться з командою PrometeyLabs. Ми завжди на зв'язку для обговорення вашого проекту, консультації чи навчання. Київ, Україна." %}
+{% trans "Kontaktujte tým PrometeyLabs. Konzultace, weby, e-shopy a Telegram boty. Česká republika a Ukrajina." %}
 {% endblock %}
 
-{% block og_title %}{% trans "Контакти | PrometeyLabs" %}{% endblock %}
+{% block og_title %}{% trans "Kontakty | PrometeyLabs" %}{% endblock %}
 
-{% block og_description %}{% trans "Зв'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, реклами чи навчання. Швидка відповідь." %}{% endblock %}
+{% block og_description %}{% trans "Napište PrometeyLabs — rychlá odpověď k webu, e-shopu, Telegram botu nebo reklamě." %}{% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{% static 'css/contacts.css' %}?v=4">
+<link rel="stylesheet" href="{% static 'css/contacts.css' %}?v=5">
 {% endblock %}
 
 {% block content %}
@@ -23,32 +23,40 @@
             <div class="contacts-grid">
                 <div class="contacts-info">
                     <div class="contact-block">
-                        <h2 class="medium-title">{% trans "Зв'язок з нами" %}</h2>
-                        <p class="contact-text">{% trans "Потрібна консультація? Маєте питання про наші послуги? Зв'яжіться з нами будь-яким зручним способом:" %}</p>
+                        <h2 class="medium-title">{% trans "Spojte se s námi" %}</h2>
+                        <p class="contact-text">{% trans "Potřebujete konzultaci? Máte otázky k našim službám? Napište nám e-mailem nebo přes formulář:" %}</p>
 
                         <div class="contact-primary">
                             <div class="contact-primary-row">
                                 <div class="contact-item">
-                                    <h3>{% trans "Звʼязок" %}</h3>
-                                    <a href="{{ site_contact.get_tel_href }}" class="contact-link">{{ site_contact.phone_display }}</a>
-                                    <a href="mailto:info@prometeylabs.com" class="contact-link contact-link--email">info@prometeylabs.com</a>
+                                    <h3>{% trans "Kontakt" %}</h3>
+                                    {% if site_contact.email %}
+                                    <a href="mailto:{{ site_contact.email }}" class="contact-link contact-link--email">{{ site_contact.email }}</a>
+                                    {% endif %}
                                 </div>
-                                {% if site_contact.address %}
                                 <div class="contact-item">
-                                    <h3>{% trans "Адреса" %}</h3>
-                                    <p class="contact-address">{{ site_contact.get_localized_address }}</p>
+                                    <h3>{% trans "Adresy" %}</h3>
+                                    <p class="contact-address contact-address--ua">
+                                        <span class="contact-address__label">{% trans "Ukrajina" %}</span>
+                                        {{ site_contact.get_localized_address }}
+                                    </p>
+                                    {% if site_contact.get_localized_czechia_address %}
+                                    <p class="contact-address contact-address--cz">
+                                        <span class="contact-address__label">{% trans "Česko" %}</span>
+                                        {{ site_contact.get_localized_czechia_address }}
+                                    </p>
+                                    {% endif %}
                                 </div>
-                                {% endif %}
                             </div>
 
                             <div class="contact-item contact-item--channels">
-                                <h3>{% trans "Соцмережі" %}</h3>
+                                <h3>{% trans "Sociální sítě" %}</h3>
                                 <ul class="contact-channels" role="list">
                                     {% include "components/contact_social_icons.html" %}
                                 </ul>
                                 {% if site_contact.get_maps_embed_src %}
                                 <div class="contact-map">
-                                    <h3 class="contact-map__label">{% trans "Ми на карті" %}</h3>
+                                    <h3 class="contact-map__label">{% trans "Jsme na mapě" %}</h3>
                                     <div class="contact-map__frame-wrap">
                                         <iframe
                                             class="contact-map__iframe"
@@ -68,22 +76,17 @@
 
                 <div class="contact-form-container">
                     <div class="contact-form-wrapper">
-                        <h2 class="medium-title">{% trans "Напишіть нам" %}</h2>
-                        <p class="form-intro">{% trans "Заповніть форму, і ми зв'яжемося з вами протягом 15 хвилин" %}</p>
+                        <h2 class="medium-title">{% trans "Nezávazná poptávka" %}</h2>
+                        <p class="form-intro">{% trans "Vyplňte formulář — ozveme se vám co nejdříve." %}</p>
 
-                        <form id="contactForm" class="contact-form" data-form-type="contact">
+                        <form id="contactForm" class="contact-form" data-form-type="contact" action="{% url 'form_submit' %}" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="form_type" value="contact">
+                            <input type="hidden" name="source_page" value="contacts">
                             {% include 'components/lead_form_fields.html' with prefix='contact' %}
 
                             <div class="form-group full-width">
-                                <label for="contact-message" class="form-label">{% trans "Повідомлення" %}</label>
-                                <textarea id="contact-message" name="message" class="form-textarea lead-form-input" rows="5"
-                                    placeholder="{% trans 'Опишіть ваш проект або задайте питання' %}"></textarea>
-                            </div>
-
-                            <div class="form-group full-width">
-                                <button type="submit" class="submit-btn">{% trans "Надіслати повідомлення" %}</button>
+                                <button type="submit" class="submit-btn">{% trans "Nezávazná poptávka" %}</button>
                             </div>
 
                             <div class="form-response" id="formResponse"></div>
