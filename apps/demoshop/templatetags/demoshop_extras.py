@@ -36,7 +36,7 @@ def ideal_cols(count, max_cols=4):
 
 @register.filter
 def tel_href(value):
-    """Нормалізує CMS-телефон у tel:+380... для iOS Safari."""
+    """Нормалізує CMS-телефон у tel:+… для iOS Safari."""
     raw = str(value or '')
     kept = ''.join(ch for ch in raw if ch.isdigit() or ch == '+')
     if not kept:
@@ -57,30 +57,37 @@ def money(value):
 
 @register.simple_tag(takes_context=True)
 def currency_symbol(context):
-    """₴ для uk/ru, Kč для cs/en."""
+    """Kč for public cs|en (Czechia); ₴ only if a legacy uk/ru locale is active."""
     request = context.get('request')
     lang = ''
     if request is not None:
         lang = getattr(request, 'LANGUAGE_CODE', '') or ''
     if not lang:
         from django.utils.translation import get_language
-        lang = get_language() or 'uk'
+        lang = get_language() or 'cs'
     lang = lang.split('-')[0].lower()
-    if lang in ('cs', 'en'):
-        return 'Kč'
-    return '₴'
+    if lang in ('uk', 'ru'):
+        return '₴'
+    return 'Kč'
 
 
 # Тематичні фото для Color Wipe карток категорій (static/demoshop/seed/…)
 _CATEGORY_IMAGES = {
-    'електроніка': 'demoshop/seed/products/wireless-headphones.webp',
+    # CS primary slugs (slugify allow_unicode) + ASCII fallbacks + legacy UA keys
+    'elektronika': 'demoshop/seed/products/wireless-headphones.webp',
     'electronics': 'demoshop/seed/products/wireless-headphones.webp',
-    'дім-і-побут': 'demoshop/seed/products/desk-lamp.webp',
+    'електроніка': 'demoshop/seed/products/wireless-headphones.webp',
+    'dům-a-domácnost': 'demoshop/seed/products/desk-lamp.webp',
+    'dum-a-domacnost': 'demoshop/seed/products/desk-lamp.webp',
     'home-living': 'demoshop/seed/products/desk-lamp.webp',
-    'аксесуари': 'demoshop/seed/products/city-backpack.webp',
+    'дім-і-побут': 'demoshop/seed/products/desk-lamp.webp',
+    'doplňky': 'demoshop/seed/products/city-backpack.webp',
+    'doplnky': 'demoshop/seed/products/city-backpack.webp',
     'accessories': 'demoshop/seed/products/city-backpack.webp',
-    'новинки': 'demoshop/seed/products/portable-speaker.webp',
+    'аксесуари': 'demoshop/seed/products/city-backpack.webp',
+    'novinky': 'demoshop/seed/products/portable-speaker.webp',
     'new-arrivals': 'demoshop/seed/products/portable-speaker.webp',
+    'новинки': 'demoshop/seed/products/portable-speaker.webp',
 }
 
 

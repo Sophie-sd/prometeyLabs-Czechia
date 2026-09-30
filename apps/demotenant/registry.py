@@ -109,8 +109,24 @@ def ensure_registry_blocks(block_model, tenant, registry: list[dict]) -> None:
         )
 
 
+# Exact legacy UA/demo placeholders still present after the Czechia fork.
+# Only these exact strings are rewritten on seed backfill — never free-form CMS copy.
+_KNOWN_UA_LEFTOVERS = frozenset({
+    '+38 (063) 952-05-65',
+    '+380 67 000 00 00',
+    '+380670000000',
+    'Kyjev, Tarase Ševčenka 46a',
+    'Київ, Тараса Шевченка 46а',
+    'Киев, Тараса Шевченко 46а',
+})
+
+
 def backfill_empty_locales(block_model, tenant, registry: list[dict]) -> int:
-    """Заповнює порожні *_en/*_cs з default_* реєстру (cs/en), не чіпаючи вже введені тексти."""
+    """Заповнює порожні *_en/*_cs з default_* реєстру (cs/en).
+
+    Також замінює *точні* UA-заглушки (+38 / Kyjev) у value_text / *_cs / *_en
+    на default/default_cs/default_en — без wipe довільного CMS-контенту.
+    """
     updated = 0
     for entry in registry:
         if entry.get('type') == 'image':
@@ -125,11 +141,24 @@ def backfill_empty_locales(block_model, tenant, registry: list[dict]) -> int:
             ('value_text_en', 'default_en'),
             ('value_text_cs', 'default_cs'),
         ):
-            if not getattr(block, attr) and entry.get(default_key):
-                setattr(block, attr, entry[default_key])
-                fields.append(attr)
+            current = getattr(block, attr) or ''
+            default = entry.get(default_key) or ''
+            if not default:
+                continue
+            if not current or current.strip() in _KNOWN_UA_LEFTOVERS:
+                if current != default:
+                    setattr(block, attr, default)
+                    fields.append(attr)
+        # Primary value_text is CS fallback — fix UA leftovers / empty there too.
+        primary_default = entry.get('default') or entry.get('default_cs') or ''
+        if primary_default and entry.get('type') != 'bool':
+            current = block.value_text or ''
+            if not current or current.strip() in _KNOWN_UA_LEFTOVERS:
+                if current != primary_default:
+                    block.value_text = primary_default
+                    fields.append('value_text')
         if fields:
-            block.save(update_fields=fields)
+            block.save(update_fields=list(dict.fromkeys(fields)))
             updated += 1
     return updated
 

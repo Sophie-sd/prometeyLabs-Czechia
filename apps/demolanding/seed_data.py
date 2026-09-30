@@ -96,10 +96,11 @@ GALLERY = [
 ]
 
 BEFORE_AFTER = [
-    {'title': 'Сторінка з конструктора → зібрана під вас',
+    # Single title field on LandingBeforeAfter — CS primary (public cs|en; EN via gettext N/A).
+    {'title': 'Stránka z konstruktoru → sestavená pro vás',
      'before': 'before_after/facade-before.webp',
      'after': 'before_after/facade-after.webp'},
-    {'title': 'З телефону незручно → зручно з першого дотику',
+    {'title': 'Nepohodlné v telefonu → pohodlné od prvního dotyku',
      'before': 'before_after/roof-before.webp',
      'after': 'before_after/roof-after.webp'},
 ]
