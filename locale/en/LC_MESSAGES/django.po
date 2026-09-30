@@ -1405,6 +1405,10 @@ msgstr "Homepage order"
 msgid "Проєкт портфоліо"
 msgstr "Portfolio project"
 
+#: apps/core/models.py:794
+msgid "Проєкти портфоліо"
+msgstr "Portfolio projects"
+
 
 #: templates/pages/portfolio.html:39
 #| msgid "Переглянути портфоліо"

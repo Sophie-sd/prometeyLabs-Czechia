@@ -1092,6 +1092,10 @@ msgstr "Порядок на головній"
 msgid "Проєкт портфоліо"
 msgstr "Проєкт портфоліо"
 
+#: apps/core/models.py:794
+msgid "Проєкти портфоліо"
+msgstr "Проєкти портфоліо"
+
 #: templates/pages/portfolio.html:39
 msgctxt "portfolio"
 msgid "Проєкти портфоліо"
