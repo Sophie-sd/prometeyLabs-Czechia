@@ -486,9 +486,25 @@ button.footer-cookie-settings-btn:hover {
     color: rgba(255, 255, 255, 0.55);
 }
 
-.footer-form .lead-form-telegram__input {
-    background: transparent;
-    border: none;
+.footer-form .lead-form-telegram__input,
+.footer-form .lead-form-telegram__input.form-input,
+.footer-form .lead-form-telegram__input.lead-form-input {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: #f2f2f2;
+    box-shadow: none !important;
+}
+
+.footer-form .lead-form-telegram__wrap:focus-within {
+    border-color: var(--color-brand-orange, #E65100);
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.footer-form .lead-form-telegram__input.form-input:focus,
+.footer-form .lead-form-telegram__input.lead-form-input:focus {
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .footer-form .lead-form-contact-rule--error {

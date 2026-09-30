@@ -158,6 +158,10 @@
     border-radius: 8px;
     overflow: hidden;
     background: var(--color-white, #fff);
+    color: var(--color-black, #111);
+    box-sizing: border-box;
+    min-height: 44px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .lead-form-telegram__prefix {
@@ -167,13 +171,34 @@
     font-weight: 600;
     color: #666;
     line-height: 1;
+    user-select: none;
 }
 
-.lead-form-telegram__input {
+/* Keep @ + username one surface: never let .form-input paint its own fill */
+.lead-form-telegram__input,
+.lead-form-telegram__input.form-input,
+.lead-form-telegram__input.lead-form-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
-    background: transparent;
+    background: transparent !important;
+    background-color: transparent !important;
+    color: inherit;
+    padding-left: 6px;
+}
+
+.lead-form-telegram__input:focus,
+.lead-form-telegram__input.form-input:focus,
+.lead-form-telegram__input.lead-form-input:focus,
+.lead-form-telegram__input:focus-visible,
+.lead-form-telegram__input.form-input:focus-visible {
+    outline: none;
+    box-shadow: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 .lead-form-telegram__wrap:focus-within {
