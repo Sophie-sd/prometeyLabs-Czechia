@@ -62,19 +62,68 @@ class SiteContactSettingsTests(TestCase):
         self.assertEqual(first.pk, 1)
 
     def test_localized_address_english(self):
-        self.settings_obj.address = 'Київ, бульвар Тараса Шевченка 46а'
+        self.settings_obj.address = 'Київ, бульвар Тараса Шевченка 46а, Україна'
+        self.settings_obj.address_en = '46a Taras Shevchenko Blvd, Kyiv, Ukraine'
+        self.settings_obj.address_cs = 'bulvár Tarase Ševčenka 46a, Kyjev, Ukrajina'
         self.settings_obj.save()
         with translation.override('en'):
             self.assertEqual(
                 self.settings_obj.get_localized_address(),
-                'Kyiv, Taras Shevchenko Boulevard 46a',
+                '46a Taras Shevchenko Blvd, Kyiv, Ukraine',
             )
 
-    def test_localized_address_ukrainian(self):
-        self.settings_obj.address = 'Київ, бульвар Тараса Шевченка 46а'
+    def test_localized_address_czech(self):
+        self.settings_obj.address = 'Київ, бульвар Тараса Шевченка 46а, Україна'
+        self.settings_obj.address_en = '46a Taras Shevchenko Blvd, Kyiv, Ukraine'
+        self.settings_obj.address_cs = 'bulvár Tarase Ševčenka 46a, Kyjev, Ukrajina'
         self.settings_obj.save()
-        with translation.override('uk'):
+        with translation.override('cs'):
             self.assertEqual(
                 self.settings_obj.get_localized_address(),
-                'Київ, бульвар Тараса Шевченка 46а',
+                'bulvár Tarase Ševčenka 46a, Kyjev, Ukrajina',
             )
+
+
+class SiteContactSeedTests(TestCase):
+    def test_seed_clears_phone_and_sets_ukraine_addresses(self):
+        from django.core.management import call_command
+        from apps.core.utils import SITE_CONTACT_DEFAULTS
+
+        obj, _ = SiteContactSettings.objects.get_or_create(pk=1)
+        obj.phone_display = '+38 (063) 952-05-65'
+        obj.phone_e164 = '380639520565'
+        obj.address_en = '46a Taras Shevchenko Blvd, Kyiv'
+        obj.address_cs = 'bulvár Tarase Ševčenka 46a, Kyjev'
+        obj.maps_latitude = None
+        obj.maps_longitude = None
+        obj.save()
+
+        call_command('seed_site_contact_settings')
+        obj.refresh_from_db()
+
+        self.assertEqual(obj.phone_display, '')
+        self.assertEqual(obj.phone_e164, '')
+        self.assertEqual(obj.address_en, SITE_CONTACT_DEFAULTS['address_en'])
+        self.assertEqual(obj.address_cs, SITE_CONTACT_DEFAULTS['address_cs'])
+        self.assertIn('Ukraine', obj.address_en)
+        self.assertIn('Ukrajina', obj.address_cs)
+        self.assertEqual(str(obj.maps_latitude), '50.444600')
+        self.assertEqual(str(obj.maps_longitude), '30.505800')
+        self.assertTrue(obj.get_maps_embed_src())
+
+    def test_seed_is_idempotent(self):
+        from django.core.management import call_command
+
+        call_command('seed_site_contact_settings')
+        call_command('seed_site_contact_settings')
+        self.assertEqual(SiteContactSettings.objects.count(), 1)
+
+    def test_localized_address_cs_en_from_seed(self):
+        from django.core.management import call_command
+
+        call_command('seed_site_contact_settings')
+        obj = SiteContactSettings.objects.get(pk=1)
+        with translation.override('en'):
+            self.assertEqual(obj.get_localized_address(), obj.address_en)
+        with translation.override('cs'):
+            self.assertEqual(obj.get_localized_address(), obj.address_cs)
