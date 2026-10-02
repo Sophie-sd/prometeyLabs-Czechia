@@ -20,7 +20,7 @@ class ShopOrder(models.Model):
         DemoShop, on_delete=models.CASCADE, related_name='orders', verbose_name=_('Магазин'),
     )
     class DeliveryMethod(models.TextChoices):
-        NP_WAREHOUSE = 'np_warehouse', _('Відділення Нової Пошти')
+        NP_WAREHOUSE = 'np_warehouse', _('Výdejní místo Zásilkovna')
         ADDRESS = 'address', _('Адресна доставка')
 
     customer_name = models.CharField(max_length=150, verbose_name=_('Клієнт'))
@@ -32,16 +32,16 @@ class ShopOrder(models.Model):
         default=DeliveryMethod.NP_WAREHOUSE,
         verbose_name=_('Спосіб доставки'),
     )
-    np_city_name = models.CharField(max_length=255, blank=True, verbose_name=_('Місто НП'))
-    np_city_name_ru = models.CharField(max_length=255, blank=True, verbose_name=_('Місто НП (RU)'))
-    np_city_name_en = models.CharField(max_length=255, blank=True, verbose_name=_('Місто НП (EN)'))
-    np_city_name_cs = models.CharField(max_length=255, blank=True, verbose_name=_('Місто НП (CS)'))
-    np_city_ref = models.CharField(max_length=64, blank=True, verbose_name=_('Ref міста НП'))
-    np_warehouse_name = models.CharField(max_length=512, blank=True, verbose_name=_('Відділення НП'))
-    np_warehouse_name_ru = models.CharField(max_length=512, blank=True, verbose_name=_('Відділення НП (RU)'))
-    np_warehouse_name_en = models.CharField(max_length=512, blank=True, verbose_name=_('Відділення НП (EN)'))
-    np_warehouse_name_cs = models.CharField(max_length=512, blank=True, verbose_name=_('Відділення НП (CS)'))
-    np_warehouse_ref = models.CharField(max_length=64, blank=True, verbose_name=_('Ref відділення НП'))
+    np_city_name = models.CharField(max_length=255, blank=True, verbose_name=_('Město (doprava)'))
+    np_city_name_ru = models.CharField(max_length=255, blank=True, verbose_name=_('Město (RU)'))
+    np_city_name_en = models.CharField(max_length=255, blank=True, verbose_name=_('Město (EN)'))
+    np_city_name_cs = models.CharField(max_length=255, blank=True, verbose_name=_('Město (CS)'))
+    np_city_ref = models.CharField(max_length=64, blank=True, verbose_name=_('Ref města'))
+    np_warehouse_name = models.CharField(max_length=512, blank=True, verbose_name=_('Výdejní místo'))
+    np_warehouse_name_ru = models.CharField(max_length=512, blank=True, verbose_name=_('Výdejní místo (RU)'))
+    np_warehouse_name_en = models.CharField(max_length=512, blank=True, verbose_name=_('Výdejní místo (EN)'))
+    np_warehouse_name_cs = models.CharField(max_length=512, blank=True, verbose_name=_('Výdejní místo (CS)'))
+    np_warehouse_ref = models.CharField(max_length=64, blank=True, verbose_name=_('Ref výdejního místa'))
     address = models.CharField(max_length=300, blank=True, verbose_name=_('Адреса доставки'))
     address_ru = models.CharField(max_length=300, blank=True, verbose_name=_('Адреса доставки (RU)'))
     address_en = models.CharField(max_length=300, blank=True, verbose_name=_('Адреса доставки (EN)'))

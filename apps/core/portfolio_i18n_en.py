@@ -41,14 +41,14 @@ PORTFOLIO_I18N_EN = {
     'zatyshnyi-dvir': loc(
         'Zatyshnyi Dvir',
         'Home and garden',
-        'Home, garden, and lifestyle shop: product catalogue with fast checkout and delivery across Ukraine.',
-        ('product catalogue', 'cart and checkout', 'Nova Poshta delivery', 'online payment'),
+        'Home, garden, and lifestyle shop: product catalogue with fast checkout and delivery across Czechia.',
+        ('product catalogue', 'cart and checkout', 'Zásilkovna delivery', 'online payment'),
     ),
     'droproom': loc(
         'DropRoom',
         'Outlet brands',
         'Original European and US outlet brands at below-retail prices from leftover and outlet collections.',
-        ('filtered catalogue', 'cart and checkout', 'online payment', 'delivery across Ukraine'),
+        ('filtered catalogue', 'cart and checkout', 'online payment', 'delivery across Czechia'),
     ),
     'vezhi-rozhnovskogo': loc(
         'Ukrkotlobud',
@@ -83,7 +83,7 @@ PORTFOLIO_I18N_EN = {
     'beauty-opt': loc(
         'Beauty Shop',
         'Cosmetics store',
-        'Wholesale cosmetics shop: brand catalogue, fast checkout, and delivery across Ukraine.',
+        'Wholesale cosmetics shop: brand catalogue, fast checkout, and delivery across Czechia.',
         SHOP_TAGS_EN,
     ),
     'gordimarket': loc(
@@ -101,7 +101,7 @@ PORTFOLIO_I18N_EN = {
     'carpet-haus': loc(
         'Kylymy',
         'Rugs',
-        'Rug shop: a wide catalogue with size and style filters, plus delivery across Ukraine.',
+        'Rug shop: a wide catalogue with size and style filters, plus delivery across Czechia.',
         SHOP_TAGS_EN,
     ),
     'svitpc': loc(
@@ -113,7 +113,7 @@ PORTFOLIO_I18N_EN = {
     'geer': loc(
         'Geer',
         'Military and outdoor gear',
-        'Military and outdoor gear shop: equipment catalogue with delivery across Ukraine.',
+        'Military and outdoor gear shop: equipment catalogue with delivery across Czechia.',
         SHOP_TAGS_EN,
     ),
     'oyra': loc(
@@ -137,7 +137,7 @@ PORTFOLIO_I18N_EN = {
     'soliron': loc(
         'Soliron',
         'Solar panels',
-        'Solar panels and green-energy equipment shop with delivery across Ukraine.',
+        'Solar panels and green-energy equipment shop with delivery across Czechia.',
         SHOP_TAGS_EN,
     ),
     'ogemed': loc(
@@ -173,7 +173,7 @@ PORTFOLIO_I18N_EN = {
     'benzovoz': loc(
         'Benzovoz',
         'Spare parts',
-        'Spare-parts catalogue for tank trucks and special vehicles: items, enquiry, delivery across Ukraine.',
+        'Spare-parts catalogue for tank trucks and special vehicles: items, enquiry, delivery across Czechia.',
         CATALOG_TAGS_EN,
     ),
     'notenhaus': loc(
