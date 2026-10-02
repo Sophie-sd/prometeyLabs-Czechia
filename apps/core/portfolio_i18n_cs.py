@@ -41,14 +41,14 @@ PORTFOLIO_I18N_CS = {
     'zatyshnyi-dvir': loc(
         'Zatyshnyi Dvir',
         'Dům a zahrada',
-        'Obchod pro dům, zahradu a pohodlí: katalog s rychlou objednávkou a dopravou po Ukrajině.',
-        ('katalog produktů', 'košík a objednávka', 'doprava Nova Poshta', 'online platba'),
+        'Obchod pro dům, zahradu a pohodlí: katalog s rychlou objednávkou a dopravou po Česku.',
+        ('katalog produktů', 'košík a objednávka', 'doprava Zásilkovna', 'online platba'),
     ),
     'droproom': loc(
         'DropRoom',
         'Outletové značky',
         'Originální evropské a americké outletové značky pod maloobchodní cenou ze zbytkových kolekcí.',
-        ('katalog s filtry', 'košík a objednávka', 'online platba', 'doprava po Ukrajině'),
+        ('katalog s filtry', 'košík a objednávka', 'online platba', 'doprava po Česku'),
     ),
     'vezhi-rozhnovskogo': loc(
         'Ukrkotlobud',
@@ -83,7 +83,7 @@ PORTFOLIO_I18N_CS = {
     'beauty-opt': loc(
         'Beauty Shop',
         'Obchod s kosmetikou',
-        'Velkoobchodní e-shop s kosmetikou: katalog značek, rychlá objednávka a doprava po Ukrajině.',
+        'Velkoobchodní e-shop s kosmetikou: katalog značek, rychlá objednávka a doprava po Česku.',
         SHOP_TAGS_CS,
     ),
     'gordimarket': loc(
@@ -101,7 +101,7 @@ PORTFOLIO_I18N_CS = {
     'carpet-haus': loc(
         'Kylymy',
         'Koberce',
-        'Obchod s koberci: široký katalog s filtry velikosti a stylu, doprava po Ukrajině.',
+        'Obchod s koberci: široký katalog s filtry velikosti a stylu, doprava po Česku.',
         SHOP_TAGS_CS,
     ),
     'svitpc': loc(
@@ -113,7 +113,7 @@ PORTFOLIO_I18N_CS = {
     'geer': loc(
         'Geer',
         'Vojenské a outdoorové vybavení',
-        'Obchod s vojenským a turistickým vybavením: katalog s dopravou po Ukrajině.',
+        'Obchod s vojenským a turistickým vybavením: katalog s dopravou po Česku.',
         SHOP_TAGS_CS,
     ),
     'oyra': loc(
@@ -137,7 +137,7 @@ PORTFOLIO_I18N_CS = {
     'soliron': loc(
         'Soliron',
         'Solární panely',
-        'Obchod se solárními panely a vybavením pro zelenou energii s dopravou po Ukrajině.',
+        'Obchod se solárními panely a vybavením pro zelenou energii s dopravou po Česku.',
         SHOP_TAGS_CS,
     ),
     'ogemed': loc(
@@ -173,7 +173,7 @@ PORTFOLIO_I18N_CS = {
     'benzovoz': loc(
         'Benzovoz',
         'Náhradní díly',
-        'Katalog dílů pro cisterny a speciální techniku: položky, poptávka, doprava po Ukrajině.',
+        'Katalog dílů pro cisterny a speciální techniku: položky, poptávka, doprava po Česku.',
         CATALOG_TAGS_CS,
     ),
     'notenhaus': loc(

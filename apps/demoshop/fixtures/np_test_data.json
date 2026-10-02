@@ -1,51 +1,236 @@
 {
   "cities": [
-    {"ref": "kyiv", "name": "Київ", "area": "Київська"},
-    {"ref": "lviv", "name": "Львів", "area": "Львівська"},
-    {"ref": "odesa", "name": "Одеса", "area": "Одеська"},
-    {"ref": "dnipro", "name": "Дніпро", "area": "Дніпропетровська"},
-    {"ref": "kharkiv", "name": "Харків", "area": "Харківська"},
-    {"ref": "vinnytsia", "name": "Вінниця", "area": "Вінницька"},
-    {"ref": "ivano-frankivsk", "name": "Івано-Франківськ", "area": "Івано-Франківська"},
-    {"ref": "poltava", "name": "Полтава", "area": "Полтавська"},
-    {"ref": "zaporizhzhia", "name": "Запоріжжя", "area": "Запорізька"},
-    {"ref": "chernivtsi", "name": "Чернівці", "area": "Чернівецька"}
+    {
+      "ref": "praha",
+      "name": "Praha",
+      "area": "Hlavní město Praha"
+    },
+    {
+      "ref": "brno",
+      "name": "Brno",
+      "area": "Jihomoravský kraj"
+    },
+    {
+      "ref": "ostrava",
+      "name": "Ostrava",
+      "area": "Moravskoslezský kraj"
+    },
+    {
+      "ref": "plzen",
+      "name": "Plzeň",
+      "area": "Plzeňský kraj"
+    },
+    {
+      "ref": "liberec",
+      "name": "Liberec",
+      "area": "Liberecký kraj"
+    },
+    {
+      "ref": "olomouc",
+      "name": "Olomouc",
+      "area": "Olomoucký kraj"
+    },
+    {
+      "ref": "ceske-budejovice",
+      "name": "České Budějovice",
+      "area": "Jihočeský kraj"
+    },
+    {
+      "ref": "hradec-kralove",
+      "name": "Hradec Králové",
+      "area": "Královéhradecký kraj"
+    },
+    {
+      "ref": "ustí",
+      "name": "Ústí nad Labem",
+      "area": "Ústecký kraj"
+    },
+    {
+      "ref": "pardubice",
+      "name": "Pardubice",
+      "area": "Pardubický kraj"
+    }
   ],
   "warehouses": [
-    {"ref": "kyiv-1", "city_ref": "kyiv", "number": "1", "description": "Відділення №1: вул. Хрещатик, 22"},
-    {"ref": "kyiv-2", "city_ref": "kyiv", "number": "2", "description": "Відділення №2: пр. Перемоги, 45"},
-    {"ref": "kyiv-3", "city_ref": "kyiv", "number": "3", "description": "Відділення №3: вул. Саксаганського, 12"},
-    {"ref": "kyiv-4", "city_ref": "kyiv", "number": "12", "description": "Відділення №12: вул. Бориспільська, 9"},
-    {"ref": "kyiv-5", "city_ref": "kyiv", "number": "25", "description": "Відділення №25: вул. Оболонська, 7"},
-    {"ref": "lviv-1", "city_ref": "lviv", "number": "1", "description": "Відділення №1: пл. Ринок, 1"},
-    {"ref": "lviv-2", "city_ref": "lviv", "number": "2", "description": "Відділення №2: вул. Городоцька, 174"},
-    {"ref": "lviv-3", "city_ref": "lviv", "number": "5", "description": "Відділення №5: вул. Сихівська, 16"},
-    {"ref": "lviv-4", "city_ref": "lviv", "number": "8", "description": "Відділення №8: вул. Личаківська, 88"},
-    {"ref": "odesa-1", "city_ref": "odesa", "number": "1", "description": "Відділення №1: вул. Дерибасівська, 10"},
-    {"ref": "odesa-2", "city_ref": "odesa", "number": "3", "description": "Відділення №3: вул. Академіка Корольова, 51"},
-    {"ref": "odesa-3", "city_ref": "odesa", "number": "7", "description": "Відділення №7: пр. Шевченка, 4"},
-    {"ref": "odesa-4", "city_ref": "odesa", "number": "11", "description": "Відділення №11: вул. Фонтанська дорога, 16"},
-    {"ref": "dnipro-1", "city_ref": "dnipro", "number": "1", "description": "Відділення №1: пр. Дмитра Яворницького, 50"},
-    {"ref": "dnipro-2", "city_ref": "dnipro", "number": "4", "description": "Відділення №4: вул. Робоча, 146"},
-    {"ref": "dnipro-3", "city_ref": "dnipro", "number": "9", "description": "Відділення №9: вул. Героїв АТО, 15"},
-    {"ref": "kharkiv-1", "city_ref": "kharkiv", "number": "1", "description": "Відділення №1: вул. Сумська, 35"},
-    {"ref": "kharkiv-2", "city_ref": "kharkiv", "number": "2", "description": "Відділення №2: пр. Гагаріна, 20"},
-    {"ref": "kharkiv-3", "city_ref": "kharkiv", "number": "6", "description": "Відділення №6: вул. Героїв Праці, 17"},
-    {"ref": "kharkiv-4", "city_ref": "kharkiv", "number": "14", "description": "Відділення №14: вул. Клочківська, 190"},
-    {"ref": "vinnytsia-1", "city_ref": "vinnytsia", "number": "1", "description": "Відділення №1: вул. Соборна, 24"},
-    {"ref": "vinnytsia-2", "city_ref": "vinnytsia", "number": "3", "description": "Відділення №3: вул. Келецька, 51"},
-    {"ref": "vinnytsia-3", "city_ref": "vinnytsia", "number": "5", "description": "Відділення №5: вул. Пирогова, 12"},
-    {"ref": "ivano-frankivsk-1", "city_ref": "ivano-frankivsk", "number": "1", "description": "Відділення №1: вул. Незалежності, 12"},
-    {"ref": "ivano-frankivsk-2", "city_ref": "ivano-frankivsk", "number": "2", "description": "Відділення №2: вул. Галицька, 48"},
-    {"ref": "ivano-frankivsk-3", "city_ref": "ivano-frankivsk", "number": "4", "description": "Відділення №4: вул. Вовчинецька, 225"},
-    {"ref": "poltava-1", "city_ref": "poltava", "number": "1", "description": "Відділення №1: вул. Соборності, 30"},
-    {"ref": "poltava-2", "city_ref": "poltava", "number": "2", "description": "Відділення №2: вул. Зіньківська, 9"},
-    {"ref": "poltava-3", "city_ref": "poltava", "number": "6", "description": "Відділення №6: пр. Першотравневий, 17"},
-    {"ref": "zaporizhzhia-1", "city_ref": "zaporizhzhia", "number": "1", "description": "Відділення №1: пр. Соборний, 160"},
-    {"ref": "zaporizhzhia-2", "city_ref": "zaporizhzhia", "number": "4", "description": "Відділення №4: вул. Перемоги, 65"},
-    {"ref": "zaporizhzhia-3", "city_ref": "zaporizhzhia", "number": "8", "description": "Відділення №8: вул. Чумаченка, 28"},
-    {"ref": "chernivtsi-1", "city_ref": "chernivtsi", "number": "1", "description": "Відділення №1: вул. Головна, 55"},
-    {"ref": "chernivtsi-2", "city_ref": "chernivtsi", "number": "2", "description": "Відділення №2: вул. Руська, 220"},
-    {"ref": "chernivtsi-3", "city_ref": "chernivtsi", "number": "5", "description": "Відділення №5: вул. Героїв Майдану, 140"}
+    {
+      "ref": "praha-1",
+      "city_ref": "praha",
+      "number": "1",
+      "description": "Výdejní místo Zásilkovna №1: Václavské nám. 1"
+    },
+    {
+      "ref": "praha-2",
+      "city_ref": "praha",
+      "number": "2",
+      "description": "Výdejní místo №2: Národní 28"
+    },
+    {
+      "ref": "praha-3",
+      "city_ref": "praha",
+      "number": "3",
+      "description": "Výdejní místo №3: Vinohradská 12"
+    },
+    {
+      "ref": "praha-4",
+      "city_ref": "praha",
+      "number": "12",
+      "description": "Výdejní místo №12: Anděl, Plzeňská 8"
+    },
+    {
+      "ref": "praha-5",
+      "city_ref": "praha",
+      "number": "25",
+      "description": "Výdejní místo №25: Letňany, Beladova 3"
+    },
+    {
+      "ref": "brno-1",
+      "city_ref": "brno",
+      "number": "1",
+      "description": "Výdejní místo №1: nám. Svobody 1"
+    },
+    {
+      "ref": "brno-2",
+      "city_ref": "brno",
+      "number": "2",
+      "description": "Výdejní místo №2: Česká 10"
+    },
+    {
+      "ref": "brno-3",
+      "city_ref": "brno",
+      "number": "5",
+      "description": "Výdejní místo №5: Campus Square"
+    },
+    {
+      "ref": "brno-4",
+      "city_ref": "brno",
+      "number": "8",
+      "description": "Výdejní místo №8: Vaňkovka"
+    },
+    {
+      "ref": "ostrava-1",
+      "city_ref": "ostrava",
+      "number": "1",
+      "description": "Výdejní místo №1: Masarykovo nám. 4"
+    },
+    {
+      "ref": "ostrava-2",
+      "city_ref": "ostrava",
+      "number": "3",
+      "description": "Výdejní místo №3: Nová Karolina"
+    },
+    {
+      "ref": "ostrava-3",
+      "city_ref": "ostrava",
+      "number": "7",
+      "description": "Výdejní místo №7: Poruba, Hlavní třída 15"
+    },
+    {
+      "ref": "plzen-1",
+      "city_ref": "plzen",
+      "number": "1",
+      "description": "Výdejní místo №1: nám. Republiky 1"
+    },
+    {
+      "ref": "plzen-2",
+      "city_ref": "plzen",
+      "number": "4",
+      "description": "Výdejní místo №4: Americká 24"
+    },
+    {
+      "ref": "plzen-3",
+      "city_ref": "plzen",
+      "number": "9",
+      "description": "Výdejní místo №9: Lochotín"
+    },
+    {
+      "ref": "liberec-1",
+      "city_ref": "liberec",
+      "number": "1",
+      "description": "Výdejní místo №1: nám. Dr. E. Beneše 1"
+    },
+    {
+      "ref": "liberec-2",
+      "city_ref": "liberec",
+      "number": "2",
+      "description": "Výdejní místo №2: Nisa, České mládeže 456"
+    },
+    {
+      "ref": "liberec-3",
+      "city_ref": "liberec",
+      "number": "6",
+      "description": "Výdejní místo №6: Rochlice"
+    },
+    {
+      "ref": "olomouc-1",
+      "city_ref": "olomouc",
+      "number": "1",
+      "description": "Výdejní místo №1: Horní nám. 1"
+    },
+    {
+      "ref": "olomouc-2",
+      "city_ref": "olomouc",
+      "number": "2",
+      "description": "Výdejní místo №2: Šantovka"
+    },
+    {
+      "ref": "olomouc-3",
+      "city_ref": "olomouc",
+      "number": "6",
+      "description": "Výdejní místo №6: Nová Ulice"
+    },
+    {
+      "ref": "ceske-budejovice-1",
+      "city_ref": "ceske-budejovice",
+      "number": "1",
+      "description": "Výdejní místo №1: nám. Přemysla Otakara II."
+    },
+    {
+      "ref": "ceske-budejovice-2",
+      "city_ref": "ceske-budejovice",
+      "number": "2",
+      "description": "Výdejní místo №2: IGY Centrum"
+    },
+    {
+      "ref": "hradec-kralove-1",
+      "city_ref": "hradec-kralove",
+      "number": "1",
+      "description": "Výdejní místo №1: Velké náměstí"
+    },
+    {
+      "ref": "hradec-kralove-2",
+      "city_ref": "hradec-kralove",
+      "number": "3",
+      "description": "Výdejní místo №3: Aupark"
+    },
+    {
+      "ref": "ustí-1",
+      "city_ref": "ustí",
+      "number": "1",
+      "description": "Výdejní místo №1: Mírové nám."
+    },
+    {
+      "ref": "ustí-2",
+      "city_ref": "ustí",
+      "number": "4",
+      "description": "Výdejní místo №4: Forum Ústí"
+    },
+    {
+      "ref": "pardubice-1",
+      "city_ref": "pardubice",
+      "number": "1",
+      "description": "Výdejní místo №1: Pernštýnské nám."
+    },
+    {
+      "ref": "pardubice-2",
+      "city_ref": "pardubice",
+      "number": "2",
+      "description": "Výdejní místo №2: Palác Pardubice"
+    },
+    {
+      "ref": "pardubice-3",
+      "city_ref": "pardubice",
+      "number": "5",
+      "description": "Výdejní místo №5: Dubina"
+    }
   ]
 }

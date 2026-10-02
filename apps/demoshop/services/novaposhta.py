@@ -1,4 +1,7 @@
-"""Stub Нової Пошти для демо-магазину (фаза 0.5): fixture, без API-ключа і без ТТН."""
+"""Stub dopravce pro demo-shop (CZ): fixture měst/výdejních míst, bez API klíče a bez zásilek.
+
+Historicky pojmenováno novaposhta; checkout stále používá np_* pole. Data = CZ demo (Zásilkovna-style).
+"""
 from __future__ import annotations
 
 import json
