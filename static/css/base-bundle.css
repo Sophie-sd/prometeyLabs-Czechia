@@ -2164,13 +2164,15 @@ body.menu-open .contact-widget {
 
 /* ===== MOBILE CONTACT FAB ===== */
 
-.mobile-contact-fab {
-    display: none;
+.mobile-contact-fab,
+.mobile-contact-fab.mobile-touch-target {
+    display: none !important; /* beat .mobile-touch-target { display:flex } on desktop */
 }
 
 @media (max-width: 767px) {
-    .mobile-contact-fab {
-        display: flex;
+    .mobile-contact-fab,
+    .mobile-contact-fab.mobile-touch-target {
+        display: flex !important;
         align-items: center;
         justify-content: center;
         position: fixed;
@@ -2912,6 +2914,11 @@ body.modal-open {
     border-top: 3px solid var(--color-brand-orange);
     position: relative;
     z-index: var(--z-content-base, 10);
+}
+
+/* Global .container { margin-top: 60px } is for fixed header clearance — not for footer */
+.main-footer .container {
+    margin-top: 0;
 }
 
 /* Footer не повинен перекривати модальні вікна */

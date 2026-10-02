@@ -86,22 +86,23 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .modal.active{opacity:1;visibility:visible;pointer-events:auto}
 .service-modal-content{background:#000;color:#fff}
 .contact-widget{position:fixed;bottom:80px;right:2%;z-index:10000}
-@media(max-width:767px){.contact-widget{display:none}.mobile-contact-fab{display:flex;align-items:center;justify-content:center;position:fixed;right:clamp(16px,4vw,24px);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:9999;width:67px;height:67px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;box-shadow:0 4px 24px rgba(0,0,0,.2)}body.menu-open .mobile-contact-fab,body.modal-open .mobile-contact-fab{visibility:hidden;pointer-events:none;opacity:0}}
+.mobile-contact-fab{display:none}
+@media(max-width:767px){.contact-widget{display:none}.mobile-contact-fab,.mobile-contact-fab.mobile-touch-target{display:flex!important;align-items:center;justify-content:center;position:fixed;right:clamp(16px,4vw,24px);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:9999;width:67px;height:67px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;box-shadow:0 4px 24px rgba(0,0,0,.2)}body.menu-open .mobile-contact-fab,body.modal-open .mobile-contact-fab{visibility:hidden;pointer-events:none;opacity:0}}
 .lang-suggest{position:fixed;top:76px;left:50%;transform:translate(-50%,-16px);z-index:1500;display:none;pointer-events:none}
 .lang-suggest:not([hidden]){display:block}
 .is-sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9000}
     </style>
 
     <!-- CSS Base Bundle — non-blocking (preload + media-print swap on load) -->
-    <link rel="preload" href="{% static 'css/base-bundle.css' %}?v=35" as="style">
-    <link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=35" media="print" data-async-css>
-    <noscript><link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=35"></noscript>
+    <link rel="preload" href="{% static 'css/base-bundle.css' %}?v=36" as="style">
+    <link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=36" media="print" data-async-css>
+    <noscript><link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=36"></noscript>
     <link rel="preload" href="{% static 'css/components/lead-form.css' %}?v=3" as="style">
     <link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=3" media="print" data-async-css>
     <noscript><link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=3"></noscript>
-    <link rel="preload" href="{% static 'css/components/footer.css' %}?v=1" as="style">
-    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}?v=1" media="print" data-async-css>
-    <noscript><link rel="stylesheet" href="{% static 'css/components/footer.css' %}?v=1"></noscript>
+    <link rel="preload" href="{% static 'css/components/footer.css' %}?v=2" as="style">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}?v=2" media="print" data-async-css>
+    <noscript><link rel="stylesheet" href="{% static 'css/components/footer.css' %}?v=2"></noscript>
 
     <!-- Page specific CSS -->
     {% block page_css %}{% endblock %}
