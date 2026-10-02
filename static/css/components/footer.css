@@ -13,6 +13,11 @@
     z-index: var(--z-content-base, 10);
 }
 
+/* Global .container { margin-top: 60px } is for fixed header clearance — not for footer */
+.main-footer .container {
+    margin-top: 0;
+}
+
 /* Footer не повинен перекривати модальні вікна */
 /* Модальні вікна мають position: fixed + z-index: 10002-10003, тому автоматично вище */
 body.modal-open .main-footer {

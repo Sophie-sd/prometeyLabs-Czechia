@@ -1,12 +1,14 @@
 /* Mobile contact FAB — opens call-request-modal on small screens */
 
-.mobile-contact-fab {
-    display: none;
+.mobile-contact-fab,
+.mobile-contact-fab.mobile-touch-target {
+    display: none !important; /* beat .mobile-touch-target { display:flex } on desktop */
 }
 
 @media (max-width: 767px) {
-    .mobile-contact-fab {
-        display: flex;
+    .mobile-contact-fab,
+    .mobile-contact-fab.mobile-touch-target {
+        display: flex !important;
         align-items: center;
         justify-content: center;
         position: fixed;
