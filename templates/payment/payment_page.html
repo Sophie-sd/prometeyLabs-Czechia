@@ -226,7 +226,7 @@
     {% if payment_link.use_acquiring %}
     <div class="pay-section pay-section--action">
         <p class="pay-acquiring-title">{% trans "Або оплатіть онлайн" %}</p>
-        <p class="pay-acquiring-sub">{% trans "Картка · Apple Pay · Google Pay · Monobank" %}</p>
+        <p class="pay-acquiring-sub">{% trans "Картка · Apple Pay · Google Pay" %}</p>
         <form method="post" action="{% url 'payment:create_invoice' unique_id=payment_link.unique_id %}">
             {% csrf_token %}
             {% include 'payment/partials/_checkout_consents.html' %}

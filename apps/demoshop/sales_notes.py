@@ -80,10 +80,10 @@ NOTES = (
         'id': 'np',
         'pages': ('checkout',),
         'admin_scopes': ('order',),
-        'title': _('Нова Пошта в оформленні'),
+        'title': _('Doručení ve checkoutu'),
         'body': _(
-            'Місто й відділення підказуються самі. '
-            'У демо — тестовий список, у роботі — живий довідник.'
+            'Město a výdejní místo se napovídají. '
+            'V demu testovací seznam, v provozu živý adresář dopravce.'
         ),
     },
     {

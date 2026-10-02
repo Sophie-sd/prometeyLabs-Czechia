@@ -99,6 +99,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <link rel="preload" href="{% static 'css/components/lead-form.css' %}?v=3" as="style">
     <link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=3" media="print" data-async-css>
     <noscript><link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=3"></noscript>
+    <link rel="preload" href="{% static 'css/components/footer.css' %}?v=1" as="style">
+    <link rel="stylesheet" href="{% static 'css/components/footer.css' %}?v=1" media="print" data-async-css>
+    <noscript><link rel="stylesheet" href="{% static 'css/components/footer.css' %}?v=1"></noscript>
 
     <!-- Page specific CSS -->
     {% block page_css %}{% endblock %}
@@ -167,6 +170,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
     <!-- Modals -->
     {% include 'components/modals.html' %}
+
+    <!-- Mobile contact FAB (leads-pack) -->
+    {% include 'components/mobile_contact_fab.html' %}
 
     {# Lang-suggest toast — must live at <body> level (NOT inside <header>) #}
     {# because `.main-navigation` has `transform: translate3d(0,0,0)`, which #}

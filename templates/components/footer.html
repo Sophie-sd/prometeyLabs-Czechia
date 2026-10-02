@@ -31,10 +31,6 @@
                     <a href="{% url 'cookies' %}" class="footer-link">{% trans "Політика cookies" %}</a>
                     <a href="{% url 'refund' %}" class="footer-link">{% trans "Політика повернення коштів" %}</a>
                     <a href="{% url 'intellectual_property' %}" class="footer-link">{% trans "Інтелектуальна власність" %}</a>
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% if LANGUAGE_CODE == 'uk' or LANGUAGE_CODE == 'ru' %}
-                    <a href="{% url 'monobank_chastynamy' %}" class="footer-link">{% trans "Покупка частинами monobank" %}</a>
-                    {% endif %}
                 </div>
             </div>
 
