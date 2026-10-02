@@ -396,19 +396,7 @@
     min-height: 48px;
 }
 
-.pl-corp__calc-promo-monobank {
-    grid-column: 2;
-    display: block;
-    align-self: center;
-    line-height: 0;
-    text-decoration: none;
-}
 
-.pl-corp__calc-promo-monobank img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
 
 .pl-corp__calc-promo--solo {
     padding-top: clamp(24px, 4vw, 40px);
@@ -429,12 +417,6 @@
 @media (max-width: 767px) {
     .pl-corp__calc-promo-row {
         grid-template-columns: 1fr;
-    }
-
-    .pl-corp__calc-promo-monobank {
-        grid-column: 1;
-        max-width: min(100%, 480px);
-        margin: 0 auto;
     }
 
     .pl-corp__calc-promo-btn {

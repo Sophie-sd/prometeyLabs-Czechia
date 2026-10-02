@@ -47,7 +47,6 @@ class StaticViewSitemap(AbsoluteSitemap):
         'calculator': (0.8, 'weekly'),
         'contacts': (0.8, 'monthly'),
         'developer': (0.6, 'monthly'),
-        'monobank_chastynamy': (0.5, 'monthly'),
         'offer': (0.3, 'yearly'),
         'privacy': (0.3, 'yearly'),
         'cookies': (0.3, 'yearly'),

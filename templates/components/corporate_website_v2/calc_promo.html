@@ -1,9 +1,8 @@
 {% load static %}
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
-<section id="calc-promo" class="pl-corp__calc-promo pl-corp__section{% if LANGUAGE_CODE != 'uk' and LANGUAGE_CODE != 'ru' %} pl-corp__calc-promo--solo{% endif %}" aria-labelledby="pl-corp-calc-promo-title">
+<section id="calc-promo" class="pl-corp__calc-promo pl-corp__section pl-corp__calc-promo--solo" aria-labelledby="pl-corp-calc-promo-title">
     <div class="pl-corp__inner">
-        <div class="pl-corp__calc-promo-row{% if LANGUAGE_CODE != 'uk' and LANGUAGE_CODE != 'ru' %} pl-corp__calc-promo-row--solo{% endif %}">
+        <div class="pl-corp__calc-promo-row pl-corp__calc-promo-row--solo">
             <div class="pl-corp__calc-promo-card" data-reveal>
                 <h2 id="pl-corp-calc-promo-title" class="pl-corp__calc-promo-title">
                     {% trans "Отримайте безкоштовний розрахунок вартості вашого сайту" %}
@@ -12,18 +11,6 @@
                     {% trans "Калькулятор розрахунку" %}
                 </a>
             </div>
-            {% if LANGUAGE_CODE == 'uk' or LANGUAGE_CODE == 'ru' %}
-            <a href="{% url 'monobank_chastynamy' %}" class="pl-corp__calc-promo-monobank" data-reveal aria-label="{% trans 'Покупка частинами monobank' %}">
-                <img
-                    src="{% static 'images/monobank/label-black-outline-15.png' %}"
-                    alt="{% trans 'Покупка частинами monobank' %}"
-                    width="1500"
-                    height="493"
-                    loading="lazy"
-                    decoding="async"
-                >
-            </a>
-            {% endif %}
         </div>
     </div>
 </section>

@@ -39,21 +39,7 @@
                                 <p class="calc-benefit__text">{% trans "Жодних щомісячних або прихованих платежів (повна прозорість)." %}</p>
                             </div>
                         </div>
-
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% if LANGUAGE_CODE == 'uk' or LANGUAGE_CODE == 'ru' %}
-                        <a href="{% url 'monobank_chastynamy' %}" class="calc-monobank-banner" aria-label="{% trans 'Покупка частинами monobank | Universal Bank' %}">
-                            <img
-                                src="{% static 'images/monobank/pch-banner-black.jpg' %}"
-                                alt="{% trans 'Покупка частинами monobank | Universal Bank' %}"
-                                width="1024"
-                                height="218"
-                                loading="lazy"
-                                decoding="async"
-                            >
-                        </a>
-                        {% endif %}
-                    </div>
+</div>
 
                     <aside class="calc-hero__sidebar">
                         <div class="calc-hero__cta">

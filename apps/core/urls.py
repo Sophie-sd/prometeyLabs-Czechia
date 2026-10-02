@@ -17,7 +17,6 @@ urlpatterns = [
     path('cookies/', views.CookiesView.as_view(), name='cookies'),
     path('refund/', views.RefundPolicyView.as_view(), name='refund'),
     path('intellectual-property/', views.IntellectualPropertyView.as_view(), name='intellectual_property'),
-    path('monobank-chastynamy/', views.MonobankChastView.as_view(), name='monobank_chastynamy'),
     path('internet-shop/', views.InternetShopView.as_view(), name='internet_shop'),
     path('internet-shop-v2/', views.InternetShopV2View.as_view(), name='internet_shop_v2'),
     path('corporate-website-v2/', views.CorporateWebsiteV2View.as_view(), name='corporate_website_v2'),

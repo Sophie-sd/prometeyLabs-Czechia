@@ -1935,12 +1935,10 @@ msgstr "Tvorba e-shopů na klíč | PrometeyLabs"
 #: apps/core/views.py:158
 msgid ""
 "Розробка інтернет-магазинів під ключ від PrometeyLabs. Кастомний код, зручна "
-"адмінка, інтеграції з платіжними системами та Новою Поштою. Міграція з Prom, "
-"Rozetka."
+"адмінка, інтеграції з платіжними системами та службами доставки."
 msgstr ""
-"Tvorba e-shopů na klíč od PrometeyLabs. Vlastní kód, přehledná administrace, "
-"integrace s platebními branami a Zásilkovnou. Migrace ze Shoptet, Alza "
-"Marketplace."
+"Vývoj e-shopů na klíč od PrometeyLabs. Vlastní kód, přehledná administrace, "
+"integrace platebních systémů a dopravců."
 
 #: apps/core/views.py:159
 msgid "Інтернет-магазини під ключ — PrometeyLabs"
@@ -3124,7 +3122,7 @@ msgstr "Demo obchod"
 
 #: apps/demoshop/order_admin.py:38
 msgid "Доставка (тестовий довідник НП)"
-msgstr "Doručení (testovací seznam NP)"
+msgstr "Doručení (demo seznam výdejen)"
 
 #: apps/demoshop/order_models.py:15
 msgid "Нове"
@@ -3139,8 +3137,8 @@ msgid "Виконано"
 msgstr "Hotovo"
 
 #: apps/demoshop/order_models.py:23 templates/demoshop/checkout.html:43
-msgid "Відділення Нової Пошти"
-msgstr "Pobočka Nova Poshta"
+msgid "Výdejní místo"
+msgstr "Výdejní místo"
 
 #: apps/demoshop/order_models.py:24 templates/demoshop/checkout.html:47
 msgid "Адресна доставка"
@@ -3320,14 +3318,12 @@ msgid "Кількість міняється одразу. Акаунт для �
 msgstr "Množství se mění hned. Účet k nákupu nepotřebujete."
 
 #: apps/demoshop/sales_notes.py:83
-msgid "Нова Пошта в оформленні"
-msgstr "Nova Poshta v pokladně"
+msgid "Doručení ve checkoutu"
+msgstr "Doručení ve checkoutu"
 
 #: apps/demoshop/sales_notes.py:85
-msgid ""
-"Місто й відділення підказуються самі. У демо — тестовий список, у роботі — "
-"живий довідник."
-msgstr ""
+msgid "Město a výdejní místo se napovídají. V demu testovací seznam, v provozu živý adresář dopravce."
+msgstr "Město a výdejní místo se napovídají. V demu testovací seznam, v provozu živý adresář dopravce."
 "Město i pobočka se napoví samy. V demu testovací seznam, v provozu živý "
 "adresář."
 
@@ -4487,14 +4483,8 @@ msgstr "Získejte bezplatnou kalkulaci ceny vašeho webu"
 msgid "Калькулятор розрахунку"
 msgstr "Kalkulačka ceny"
 
-#: templates/components/corporate_website_v2/calc_promo.html:16
-#: templates/components/corporate_website_v2/calc_promo.html:19
-#: templates/components/footer.html:36
-#: templates/components/internet_shop_v2/packages.html:16
-#: templates/components/internet_shop_v2/packages.html:19
-#: templates/pages/telegram-bot.html:299
-msgid "Покупка частинами monobank"
-msgstr "Nákup na splátky Twisto"
+#~ msgid "Покупка частинами monobank"
+#~ msgstr "Nákup na splátky Twisto"
 
 #: templates/components/corporate_website_v2/clients.html:4
 msgid "Бізнеси, що вже працюють на нашому коді"
@@ -7360,8 +7350,8 @@ msgstr "Krátký popis projektu"
 #| msgid ""
 #| "Сайти під ключ, лендінги, інтернет-магазини, веб-додатки, телеграм-боти"
 msgid ""
-"Наприклад: потрібен інтернет-магазин косметики з доставкою Новою поштою..."
-msgstr "Weby na klíč, landing page, e-shopy, webové aplikace, telegram boti"
+"Наприклад: потрібен інтернет-магазин косметики з доставкою..."
+msgstr "Například: potřebuji e-shop s kosmetikou s dopravou..."
 
 #: templates/components/tz_generator/quiz.html:116
 msgid "Додаткові побажання (необов'язково)"
@@ -7807,8 +7797,8 @@ msgid "Ім'я та прізвище"
 msgstr "Jméno a příjmení"
 
 #: templates/demoshop/checkout.html:39
-msgid "тестовий довідник НП"
-msgstr "testovací seznam NP"
+msgid "demo seznam výdejen"
+msgstr "demo seznam výdejen"
 
 #: templates/demoshop/checkout.html:53
 msgid "Місто"
@@ -8207,9 +8197,8 @@ msgstr "Doživotní záruka na naše softwarové produkty."
 msgid "Жодних щомісячних або прихованих платежів (повна прозорість)."
 msgstr "Žádné měsíční ani skryté platby (plná transparentnost)."
 
-#: templates/pages/calculator.html:45 templates/pages/calculator.html:48
-msgid "Покупка частинами monobank | Universal Bank"
-msgstr "Nákup na splátky Twisto | Comgate / GoPay"
+#~ msgid "Покупка частинами monobank | Universal Bank"
+#~ msgstr "Nákup na splátky Twisto | Comgate / GoPay"
 
 #: templates/pages/calculator.html:62
 msgid "5 простих питань"
@@ -8799,10 +8788,13 @@ msgstr "Tvorba e-shopů na klíč | PrometeyLabs"
 
 #: templates/pages/internet-shop.html:8
 msgid ""
-"Створення інтернет-магазину під ключ. Розробка з нуля, міграція з Prom/"
-"Rozetka, дропшиппінг-платформи. Запуск за 3 тижні, 1 рік підтримки. Власна "
-"CRM, Нова Пошта, онлайн-оплати. Розрахуємо вартість у брифі."
+"Створення інтернет-магазину під ключ. Розробка з нуля, міграція з існуючих "
+"платформ, дропшиппінг-платформи. Запуск за 3 тижні, 1 рік підтримки. Власна "
+"CRM, доставка, онлайн-оплати. Розрахуємо вартість у брифі."
 msgstr ""
+"Tvorba e-shopu na klíč. Vývoj od nuly, migrace z existujících platforem, "
+"dropshipping. Spuštění za 3 týdny, 1 rok podpory. Vlastní CRM, doprava, online "
+"platby. Cenu spočítáme v briefu."
 
 #: templates/pages/internet-shop.html:9
 #, fuzzy
@@ -8969,12 +8961,8 @@ msgid "Як відбувається оплата проєкту?"
 msgstr "Jak probíhá platba za projekt?"
 
 #: templates/pages/telegram-bot.html:95 templates/pages/telegram-bot.html:299
-msgid ""
-"Етапами за договором. За потреби — покупка частинами monobank (окрема "
-"сторінка)."
-msgstr ""
-"Po etapách dle smlouvy. Podle potřeby — nákup na splátky Twisto (samostatná "
-"stránka)."
+msgid "Етапами за договором згідно з офертою."
+msgstr "Po etapách dle smlouvy / nabídky."
 
 #: templates/pages/telegram-bot.html:100 templates/pages/telegram-bot.html:302
 msgid "Що з підтримкою після запуску?"
@@ -9295,9 +9283,8 @@ msgstr "Stručně o úkolu"
 msgid "Ніша, функції бота, де хостити"
 msgstr "Obor, funkce bota, kde hostovat"
 
-#: templates/pages/telegram-bot.html:356
-msgid "Покупка частинами"
-msgstr "Nákup na splátky"
+#~ msgid "Покупка частинами"
+#~ msgstr "Nákup na splátky"
 
 #: templates/pages/thank_you.html:5
 msgid "Дякуємо за вашу заявку"
@@ -9538,8 +9525,8 @@ msgid "Або оплатіть онлайн"
 msgstr "Nebo zaplaťte online"
 
 #: templates/payment/payment_page.html:229
-msgid "Картка · Apple Pay · Google Pay · Monobank"
-msgstr "Karta · Apple Pay · Google Pay · Comgate"
+msgid "Картка · Apple Pay · Google Pay"
+msgstr "Karta · Apple Pay · Google Pay"
 
 #: templates/payment/payment_page.html:234
 msgid "Перейти до оплати"

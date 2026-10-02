@@ -145,17 +145,12 @@ class IntellectualPropertyView(LocalizedLegalTemplateMixin, BasePageView):
     page_title = _('Політика щодо інтелектуальної власності | PrometeyLabs')
     meta_description = _('Політика щодо інтелектуальної власності від PrometeyLabs. Дізнайтеся про права на контент та захист авторських прав.')
 
-class MonobankChastView(BasePageView):
-    page_title = 'Покупка частинами monobank | Universal Bank | PrometeyLabs'
-    meta_description = 'Юридична інформація щодо послуги Покупка частинами від monobank | Universal Bank.'
-    template_name = 'pages/monobank-chastynamy.html'
-
 
 class InternetShopView(BasePageView):
     """Internet-shop landing (cs default / en prefixed). No RU/UK language paths."""
     template_name = 'pages/internet-shop.html'
     page_title = _('Розробка інтернет-магазинів під ключ | PrometeyLabs')
-    meta_description = _('Розробка інтернет-магазинів під ключ від PrometeyLabs. Кастомний код, зручна адмінка, інтеграції з платіжними системами та Новою Поштою. Міграція з Prom, Rozetka.')
+    meta_description = _('Розробка інтернет-магазинів під ключ від PrometeyLabs. Кастомний код, зручна адмінка, інтеграції з платіжними системами та службами доставки.')
     og_title = _('Інтернет-магазини під ключ — PrometeyLabs')
 
 

@@ -872,28 +872,11 @@ body.pl-shop-body {
     min-width: 0;
 }
 
-.pl-shop__monobank-label {
-    flex: 0 0 clamp(120px, 28vw, 300px);
-    display: block;
-    line-height: 0;
-    text-decoration: none;
-}
 
-.pl-shop__monobank-label img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
 
 @media (min-width: 768px) {
     .pl-shop__packages-intro {
         gap: clamp(12px, 3vw, 28px);
-    }
-
-    .pl-shop__monobank-label {
-        flex: 0 0 clamp(148px, 32vw, 360px);
-        margin-right: clamp(8px, 1.5vw, 20px);
-        transform: translateX(8px);
     }
 }
 
@@ -903,18 +886,6 @@ body.pl-shop-body {
         align-items: stretch;
         gap: 28px;
         margin-bottom: 28px;
-    }
-
-    .pl-shop__monobank-label {
-        order: -1;
-        flex: none;
-        width: calc(100vw - 32px - env(safe-area-inset-left) - env(safe-area-inset-right));
-        max-width: 100%;
-        margin-inline: calc(50% - 50vw + 16px + (env(safe-area-inset-left) - env(safe-area-inset-right)) / 2);
-        margin-top: -14px;
-        margin-bottom: 4px;
-        margin-right: 0;
-        transform: none;
     }
 }
 

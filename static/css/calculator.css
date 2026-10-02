@@ -193,21 +193,7 @@
     margin: 0;
 }
 
-.calc-monobank-banner {
-    display: block;
-    margin-top: 28px;
-    width: 106%;
-    max-width: 1086px;
-    margin-left: -3%;
-    text-decoration: none;
-}
 
-.calc-monobank-banner img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-}
 
 .calc-hero__cta {
     width: 100%;
@@ -990,12 +976,6 @@
     .calc-benefit__text {
         font-size: 16px;
         line-height: 1.7;
-    }
-
-    .calc-monobank-banner {
-        margin-top: 20px;
-        width: 108%;
-        margin-left: -4%;
     }
 
     .calc-hero__wrapper:has(#test-section:not(.hidden)) {

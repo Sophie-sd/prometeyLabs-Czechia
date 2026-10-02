@@ -11,20 +11,7 @@
                     {% trans "Базова якість однакова — пакет визначає масштаб ШІ, інтеграцій і маркетингу." %}
                 </p>
             </div>
-            {% get_current_language as LANGUAGE_CODE %}
-            {% if LANGUAGE_CODE == 'uk' or LANGUAGE_CODE == 'ru' %}
-            <a href="{% url 'monobank_chastynamy' %}" class="pl-shop__monobank-label" aria-label="{% trans 'Покупка частинами monobank' %}">
-                <img
-                    src="{% static 'images/monobank/label-black-outline-15.webp' %}"
-                    alt="{% trans 'Покупка частинами monobank' %}"
-                    width="360"
-                    height="118"
-                    loading="lazy"
-                    decoding="async"
-                >
-            </a>
-            {% endif %}
-        </div>
+</div>
 
         <aside class="pl-shop__pkg-foundation-wrap" data-reveal aria-label="{% trans 'Що входить у кожен пакет' %}">
             <article class="pl-shop__pkg-foundation">

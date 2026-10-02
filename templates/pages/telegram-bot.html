@@ -92,7 +92,7 @@
       "name": "{% trans "Як відбувається оплата проєкту?" %}",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "{% trans "Етапами за договором. За потреби — покупка частинами monobank (окрема сторінка)." %}"
+        "text": "{% trans "Етапами за договором згідно з офертою." %}"
       }
     },
     {
@@ -296,7 +296,7 @@
                 </details>
                 <details>
                     <summary>{% trans "Як відбувається оплата проєкту?" %}</summary>
-                    <p>{% trans "Етапами за договором. За потреби — покупка частинами monobank (окрема сторінка)." %} <a href="{% url 'monobank_chastynamy' %}">{% trans "Покупка частинами monobank" %}</a></p>
+                    <p>{% trans "Етапами за договором згідно з офертою." %}</p>
                 </details>
                 <details>
                     <summary>{% trans "Що з підтримкою після запуску?" %}</summary>
@@ -352,8 +352,6 @@
                 <a href="{% url 'internet_shop_v2' %}">{% trans "Інтернет-магазини" %}</a>
                 ·
                 <a href="{% url 'corporate_website_v2' %}">{% trans "Корпоративні сайти" %}</a>
-                ·
-                <a href="{% url 'monobank_chastynamy' %}">{% trans "Покупка частинами" %}</a>
             </p>
         </div>
     </section>
