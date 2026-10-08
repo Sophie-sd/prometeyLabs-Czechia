@@ -1,0 +1,30 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="316" height="316" viewBox="0 0 316 316" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Decorative Rings" opacity="0.8">
+<g id="Ellipse 2" filter="url(#filter0_f_0_30)">
+<circle cx="158" cy="158" r="85" fill="#FF2F00" fill-opacity="0.8"/>
+</g>
+<g id="Ellipse 1" filter="url(#filter1_f_0_30)">
+<circle cx="166.293" cy="167.675" r="61.5041" fill="#FF6600" fill-opacity="0.8"/>
+</g>
+<g id="Ellipse 3" filter="url(#filter2_f_0_30)">
+<circle cx="185.631" cy="185.631" r="57.3577" fill="white" fill-opacity="0.8"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_30" x="0" y="0" width="316" height="316" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="36.5" result="effect1_foregroundBlur_0_30"/>
+</filter>
+<filter id="filter1_f_0_30" x="61.7888" y="63.1707" width="209.008" height="209.008" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="21.5" result="effect1_foregroundBlur_0_30"/>
+</filter>
+<filter id="filter2_f_0_30" x="73.2736" y="73.2733" width="224.715" height="224.715" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="27.5" result="effect1_foregroundBlur_0_30"/>
+</filter>
+</defs>
+</svg>

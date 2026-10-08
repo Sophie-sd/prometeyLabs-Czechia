@@ -1,0 +1,46 @@
+{% load i18n static %}
+<section class="pl-web__section pl-web__section--admin" aria-labelledby="pl-web-admin-title">
+    <div class="pl-web__inner pl-web__admin">
+        <div class="pl-web__admin-copy">
+            <h2 id="pl-web-admin-title" class="pl-web__h2 pl-web__h2--admin">{% trans "Administraci máte ve svých rukou" %}</h2>
+            <p class="pl-web__note">{% trans "Texty, ceny, poptávky i bannery upravujete sami. Kvůli každé čárce nemusíte volat programátora." %}</p>
+        </div>
+        {# Demo CMS window. Tabs = progressive enhancement: without JS the first pane shows. #}
+        <div class="pl-web__screen" data-pl-web-cms>
+            <img class="pl-web__screen-rings pl-web__screen-rings--a" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="183" height="183" decoding="async" aria-hidden="true">
+            <img class="pl-web__screen-rings pl-web__screen-rings--b" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="183" height="183" decoding="async" aria-hidden="true">
+            <div class="pl-web__screen-bar" aria-hidden="true">
+                <span class="pl-web__dot pl-web__dot--acc"></span>
+                <span class="pl-web__dot"></span>
+                <span class="pl-web__dot"></span>
+                <em>cms</em>
+            </div>
+            <div class="pl-web__screen-body">
+                <div class="pl-web__screen-nav" role="tablist" aria-orientation="vertical" aria-label="{% trans "Ukázka administrace: sekce" %}">
+                    <span class="pl-web__screen-ind" aria-hidden="true" data-pl-web-cms-ind></span>
+                    <button type="button" class="pl-web__screen-tab is-on" role="tab" id="pl-web-cms-tab-pages" aria-controls="pl-web-cms-pane-pages" aria-selected="true" data-pl-web-cms-tab>{% trans "Stránky" %}</button>
+                    <button type="button" class="pl-web__screen-tab" role="tab" id="pl-web-cms-tab-leads" aria-controls="pl-web-cms-pane-leads" aria-selected="false" tabindex="-1" data-pl-web-cms-tab>{% trans "Poptávky" %}</button>
+                    <button type="button" class="pl-web__screen-tab" role="tab" id="pl-web-cms-tab-prices" aria-controls="pl-web-cms-pane-prices" aria-selected="false" tabindex="-1" data-pl-web-cms-tab>{% trans "Ceny" %}</button>
+                </div>
+                <div class="pl-web__screen-panes">
+                    <div class="pl-web__screen-rows pl-web__screen-pane is-on" role="tabpanel" id="pl-web-cms-pane-pages" aria-labelledby="pl-web-cms-tab-pages" data-pl-web-cms-pane>
+                        <p><span class="pl-web__screen-name">{% trans "Úvod" %}</span><b>{% trans "Publikováno" %}</b></p>
+                        <p><span class="pl-web__screen-name">{% trans "Služby" %}</span><b>{% trans "Publikováno" %}</b></p>
+                        <p><span class="pl-web__screen-name">{% trans "Ceník" %}</span><b>{% trans "Publikováno" %}</b></p>
+                    </div>
+                    <div class="pl-web__screen-rows pl-web__screen-pane" role="tabpanel" id="pl-web-cms-pane-leads" aria-labelledby="pl-web-cms-tab-leads" data-pl-web-cms-pane hidden>
+                        <p><span class="pl-web__screen-name">{% trans "Tereza · Landing page" %}</span><small class="pl-web__screen-time">10:24</small><b class="pl-web__screen-st pl-web__screen-st--new">{% trans "Nová" %}</b></p>
+                        <p><span class="pl-web__screen-name">{% trans "Martin · E-shop" %}</span><small class="pl-web__screen-time">{% trans "Včera" %}</small><b class="pl-web__screen-st pl-web__screen-st--work">{% trans "V řešení" %}</b></p>
+                        <p><span class="pl-web__screen-name">{% trans "Jana · Firemní web" %}</span><small class="pl-web__screen-time">{% trans "12. 9." %}</small><b class="pl-web__screen-st pl-web__screen-st--done">{% trans "Uzavřeno" %}</b></p>
+                    </div>
+                    <div class="pl-web__screen-rows pl-web__screen-pane" role="tabpanel" id="pl-web-cms-pane-prices" aria-labelledby="pl-web-cms-tab-prices" data-pl-web-cms-pane hidden>
+                        {# Same lower bounds as the price guide above; follow the currency switch. #}
+                        <p><span class="pl-web__screen-name">{% trans "Landing page" context "singular" %}</span><em class="pl-web__screen-price">{% include 'components/web_development/amount.html' with eur=web_prices.landing.eur_from czk=web_prices.landing.czk_from %}</em><b class="pl-web__screen-act">{% trans "Upravit" %}</b></p>
+                        <p><span class="pl-web__screen-name">{% trans "Firemní web" %}</span><em class="pl-web__screen-price">{% include 'components/web_development/amount.html' with eur=web_prices.corporate.eur_from czk=web_prices.corporate.czk_from %}</em><b class="pl-web__screen-act">{% trans "Upravit" %}</b></p>
+                        <p><span class="pl-web__screen-name">{% trans "E-shop" %}</span><em class="pl-web__screen-price">{% include 'components/web_development/amount.html' with eur=web_prices.shop.eur_from czk=web_prices.shop.czk_from %}</em><b class="pl-web__screen-act">{% trans "Upravit" %}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

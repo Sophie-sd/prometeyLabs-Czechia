@@ -1,0 +1,65 @@
+{% load i18n static %}
+{# Cases from the Czechia portfolio; screens scroll on hover like /portfolio/ (data-pf-screen / data-pf-shot -> js/portfolio-screen-scroll.js). #}
+<section class="pl-web__section pl-web__section--work" aria-labelledby="pl-web-work-title" data-pl-web-portfolio>
+    <div class="pl-web__inner">
+        <div class="pl-web__work-head">
+            <h2 id="pl-web-work-title" class="pl-web__h2 pl-web__h2--work">{% trans "Naše realizace" %}</h2>
+            <div class="pl-web__work-nav" role="group" aria-label="{% trans "Procházení realizací" %}">
+                <button type="button" class="pl-web__work-btn" data-pl-web-prev aria-label="{% trans "Předchozí realizace" %}">
+                    <img src="{% static 'images/web-development/arrow-nav.svg' %}" alt="" width="24" height="24" decoding="async" class="pl-web__work-arrow pl-web__work-arrow--prev">
+                </button>
+                <button type="button" class="pl-web__work-btn" data-pl-web-next aria-label="{% trans "Další realizace" %}">
+                    <img src="{% static 'images/web-development/arrow-nav.svg' %}" alt="" width="24" height="24" decoding="async" class="pl-web__work-arrow">
+                </button>
+            </div>
+        </div>
+
+        <div class="pl-web__work-track" data-pl-web-track tabindex="0" aria-label="{% trans "Realizace" %}">
+            {% if portfolio_strip %}
+                {% for project in portfolio_strip %}
+                <article class="pl-web__work-card">
+                    {% with shot=project.get_home_image_src %}
+                    {% if shot %}
+                    <a class="pl-web__work-shot pl-web__work-shot--screen" href="{% url 'portfolio' %}" data-pf-screen>
+                        <img src="{{ shot }}" alt="{{ project.get_card_alt }}" width="358" height="234" loading="lazy" decoding="async" data-pf-shot>
+                    </a>
+                    {% else %}
+                    <a class="pl-web__work-shot" href="{% url 'portfolio' %}">
+                        <img src="{% static 'images/web-development/card-feder.webp' %}" alt="{{ project.get_card_alt }}" width="358" height="234" loading="lazy" decoding="async">
+                    </a>
+                    {% endif %}
+                    {% endwith %}
+                    <div class="pl-web__work-foot">
+                        <p class="pl-web__work-name">{{ project.get_localized_title }}</p>
+                        <a class="pl-web__pill pl-web__pill--work" href="{% url 'portfolio' %}">{% trans "Podrobnosti" %}</a>
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                <article class="pl-web__work-card">
+                    <a class="pl-web__work-shot" href="{% url 'portfolio' %}">
+                        <img src="{% static 'images/web-development/card-feder.webp' %}" alt="{% trans "Ukázka realizace" %}" width="358" height="234" loading="lazy" decoding="async">
+                    </a>
+                    <div class="pl-web__work-foot">
+                        <p class="pl-web__work-name">{% trans "Všechny realizace najdete v portfoliu." %}</p>
+                        <a class="pl-web__pill pl-web__pill--work" href="{% url 'portfolio' %}">{% trans "Podrobnosti" %}</a>
+                    </div>
+                </article>
+                <article class="pl-web__work-card">
+                    <a class="pl-web__work-shot" href="{% url 'portfolio' %}">
+                        <img src="{% static 'images/web-development/card-elit.webp' %}" alt="{% trans "Ukázka realizace" %}" width="358" height="234" loading="lazy" decoding="async">
+                    </a>
+                    <div class="pl-web__work-foot">
+                        <p class="pl-web__work-name">{% trans "Všechny realizace najdete v portfoliu." %}</p>
+                        <a class="pl-web__pill pl-web__pill--work" href="{% url 'portfolio' %}">{% trans "Podrobnosti" %}</a>
+                    </div>
+                </article>
+            {% endif %}
+        </div>
+
+        <a class="pl-web__work-more" href="{% url 'portfolio' %}">
+            <span>{% trans "Prohlédnout portfolio" %}</span>
+            <img src="{% static 'images/web-development/arrow-orange.svg' %}" alt="" width="24" height="24" decoding="async">
+        </a>
+    </div>
+</section>

@@ -7,11 +7,11 @@
 <head>
     <meta charset="UTF-8">
     {% include 'partials/gtm_head.html' %}
-    <!-- iOS Safari оптимізований viewport -->
+    <!-- iOS Safari optimised viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- Відключення кешування для розробки -->
+    <!-- Disable caching in development -->
     {% if debug %}
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -120,7 +120,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     })();
     </script>
 
-    <!-- CSRF Token для JavaScript -->
+    <!-- CSRF token for JavaScript -->
     <meta name="csrf-token" content="{{ csrf_token }}">
 
     <!-- Schema.org structured data -->
@@ -196,7 +196,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     </div>
     {% endif %}
 
-    <!-- Modern JavaScript Systems (2025) - чіткий порядок завантаження -->
+    <!-- Modern JavaScript Systems (2025) - strict load order -->
     <!-- Translations for JavaScript -->
     <script nonce="{{ csp_nonce }}">
         window.I18N = {

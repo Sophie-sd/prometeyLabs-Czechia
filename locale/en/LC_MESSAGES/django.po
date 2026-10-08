@@ -10855,3 +10855,305 @@ msgstr "Choose file to upload"
 
 #~ msgid "Як до вас звертатися"
 #~ msgstr "How should we address you"
+
+# web-development page (pages/web-development.html, components/web_development/*)
+#: templates/pages/web-development.html
+msgid "Tvorba webových stránek na klíč | PrometeyLabs"
+msgstr "Turnkey Website Development | PrometeyLabs"
+
+#: templates/pages/web-development.html
+msgid "Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 600–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, bezplatná podpora a roční záruka na kód."
+msgstr "Turnkey websites: landing pages €400–700, company websites €700–1,000, online stores €1,600–2,800, web apps €2,800–8,000. Price and deadline fixed in the contract, free support and a 1-year code warranty."
+
+#: templates/pages/web-development.html
+msgid "tvorba webových stránek, web na klíč, landing page, firemní web, e-shop, webová aplikace, PrometeyLabs"
+msgstr "website development, turnkey website, landing page, company website, online store, web application, PrometeyLabs"
+
+#: templates/pages/web-development.html
+msgid "Weby na klíč pro projekty jakékoli složitosti | PrometeyLabs"
+msgstr "Turnkey Websites for Projects of Any Complexity | PrometeyLabs"
+
+#: templates/pages/web-development.html
+msgid "Tvorba webových stránek na klíč"
+msgstr "Turnkey website development"
+
+#: templates/pages/web-development.html
+msgid "Tvorba webových stránek"
+msgstr "Website development"
+
+#: templates/pages/web-development.html templates/components/web_development/hero.html
+msgid "Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: rozpočet a termíny zakotvíme ve smlouvě. Bezplatná podpora a roční záruka na kód."
+msgstr "Landing pages, company websites, online stores and web apps. Straightforward terms: budget and deadlines are fixed in the contract. Free support and a 1-year code warranty."
+
+#: templates/pages/web-development.html templates/components/web_development/admin.html templates/components/web_development/hero.html templates/components/web_development/products.html
+msgid "Landing page"
+msgstr "Landing pages"
+
+#: templates/pages/web-development.html templates/components/web_development/hero.html templates/components/web_development/products.html
+msgid "Firemní weby"
+msgstr "Company websites"
+
+#: templates/pages/web-development.html templates/components/web_development/hero.html templates/components/web_development/products.html
+msgid "E-shopy"
+msgstr "Online stores"
+
+#: templates/pages/web-development.html templates/components/web_development/hero.html templates/components/web_development/products.html
+msgid "Webové aplikace"
+msgstr "Web apps"
+
+#: templates/components/web_development/admin.html
+msgid "Administraci máte ve svých rukou"
+msgstr "The admin panel stays in your hands"
+
+#: templates/components/web_development/admin.html
+msgid "Texty, ceny, poptávky i bannery upravujete sami. Kvůli každé čárce nemusíte volat programátora."
+msgstr "You edit texts, prices, leads and banners yourself. No need to call a developer over every comma."
+
+#: templates/components/web_development/admin.html
+msgid "Ukázka administrace: sekce"
+msgstr "Admin demo: sections"
+
+#: templates/components/web_development/admin.html
+msgid "Stránky"
+msgstr "Pages"
+
+#: templates/components/web_development/admin.html
+msgid "Poptávky"
+msgstr "Leads"
+
+#: templates/components/web_development/admin.html
+msgid "Ceny"
+msgstr "Prices"
+
+#: templates/components/web_development/admin.html
+msgid "Úvod"
+msgstr "Home"
+
+#: templates/components/web_development/admin.html
+msgid "Publikováno"
+msgstr "Published"
+
+#: templates/components/web_development/admin.html
+msgid "Služby"
+msgstr "Services"
+
+#: templates/components/web_development/admin.html
+msgid "Ceník"
+msgstr "Pricing"
+
+#: templates/components/web_development/admin.html
+msgid "Tereza · Landing page"
+msgstr "Tereza · Landing page"
+
+#: templates/components/web_development/admin.html
+msgid "Nová"
+msgstr "New"
+
+#: templates/components/web_development/admin.html
+msgid "Martin · E-shop"
+msgstr "Martin · Online store"
+
+#: templates/components/web_development/admin.html
+msgid "Včera"
+msgstr "Yesterday"
+
+#: templates/components/web_development/admin.html
+msgid "V řešení"
+msgstr "In progress"
+
+#: templates/components/web_development/admin.html
+msgid "Jana · Firemní web"
+msgstr "Jana · Company website"
+
+#: templates/components/web_development/admin.html
+msgid "12. 9."
+msgstr "12 Sep"
+
+#: templates/components/web_development/admin.html
+msgid "Uzavřeno"
+msgstr "Closed"
+
+#: templates/components/web_development/admin.html
+msgid "Upravit"
+msgstr "Edit"
+
+#: templates/components/web_development/admin.html
+msgid "Firemní web"
+msgstr "Company website"
+
+#: templates/components/web_development/admin.html
+msgid "E-shop"
+msgstr "Online store"
+
+#: templates/components/web_development/calc.html
+msgid "Spočítejte si rozpočet ještě před hovorem"
+msgstr "Work out your budget before we talk"
+
+#: templates/components/web_development/calc.html
+msgid "Čtyři orientační ceny jsou jen začátek. Přesnou částku a termín zakotvíme po briefu ve smlouvě."
+msgstr "Four price guides to start the conversation. The exact amount and deadline go into the contract after the brief."
+
+#: templates/components/web_development/calc.html
+msgid "Otevřít kalkulačku"
+msgstr "Open the calculator"
+
+#: templates/components/web_development/calc.html
+msgid "Napsat na Telegram"
+msgstr "Message us on Telegram"
+
+#: templates/components/web_development/calc.html
+msgid "Zavolat hned teď"
+msgstr "Call us now"
+
+#: templates/components/web_development/calc.html
+msgid "Napsat e-mail"
+msgstr "Send us an email"
+
+#: templates/components/web_development/hero.html
+msgid "Pevně ve smlouvě"
+msgstr "Fixed in the contract"
+
+#: templates/components/web_development/hero.html
+msgid "Měna orientačních cen"
+msgstr "Price guide currency"
+
+#: templates/components/web_development/hero.html
+msgid "Ceny v eurech"
+msgstr "Prices in euros"
+
+#: templates/components/web_development/hero.html
+msgid "Ceny v korunách (orientačně)"
+msgstr "Prices in Czech koruna (approximate)"
+
+#: templates/components/web_development/hero.html
+msgid "Weby na klíč pro projekty jakékoli složitosti"
+msgstr "Turnkey websites for projects of any complexity"
+
+#: templates/components/web_development/hero.html
+msgid "Získat konzultaci"
+msgstr "Request a consultation"
+
+#: templates/components/web_development/hero.html
+msgid "Vypočítat cenu"
+msgstr "Get a cost estimate"
+
+#: templates/components/web_development/hero.html
+msgid "3–7 dní"
+msgstr "3–7 days"
+
+#: templates/components/web_development/hero.html
+msgid "V ceně: návrh, kódování, formulář, responzivita"
+msgstr "Included: design, build, contact form, responsive layout"
+
+#: templates/components/web_development/hero.html
+msgid "Mimo cenu: reklama, texty od nuly, externí API"
+msgstr "Not included: ads, copywriting from scratch, third-party APIs"
+
+#: templates/components/web_development/hero.html
+msgid "7–14 dní"
+msgstr "7–14 days"
+
+#: templates/components/web_development/hero.html
+msgid "V ceně: struktura stránek, CMS, responzivita, základní SEO"
+msgstr "Included: page structure, CMS, responsive layout, basic SEO"
+
+#: templates/components/web_development/hero.html
+msgid "Mimo cenu: plnění obsahem, reklama, složité integrace"
+msgstr "Not included: content entry, ads, complex integrations"
+
+#: templates/components/web_development/hero.html
+msgid "14–21 dní"
+msgstr "14–21 days"
+
+#: templates/components/web_development/hero.html
+msgid "V ceně: katalog, košík, základ plateb a dopravy, správa objednávek"
+msgstr "Included: catalog, cart, payment and shipping setup, order management"
+
+#: templates/components/web_development/hero.html
+msgid "Mimo cenu: plnění produkty, marketing, integrace na míru"
+msgstr "Not included: product entry, marketing, custom integrations"
+
+#: templates/components/web_development/hero.html
+msgid "14–30 dní"
+msgstr "14–30 days"
+
+#: templates/components/web_development/hero.html
+msgid "V ceně: MVP podle zadání v daném rozpětí"
+msgstr "Included: an MVP agreed in the brief, within the range"
+
+#: templates/components/web_development/hero.html
+msgid "Mimo cenu: nové moduly po předání, licence třetích stran"
+msgstr "Not included: new modules after handover, third-party licenses"
+
+#: templates/components/web_development/hero.html
+msgid "Orientační ceny"
+msgstr "Price guide"
+
+#: templates/components/web_development/portfolio.html
+msgid "Naše realizace"
+msgstr "Our work"
+
+#: templates/components/web_development/portfolio.html
+msgid "Procházení realizací"
+msgstr "Browse projects"
+
+#: templates/components/web_development/portfolio.html
+msgid "Předchozí realizace"
+msgstr "Previous projects"
+
+#: templates/components/web_development/portfolio.html
+msgid "Další realizace"
+msgstr "Next projects"
+
+#: templates/components/web_development/portfolio.html
+msgid "Realizace"
+msgstr "Projects"
+
+#: templates/components/web_development/portfolio.html templates/components/web_development/products.html
+msgid "Podrobnosti"
+msgstr "Learn more"
+
+#: templates/components/web_development/portfolio.html
+msgid "Ukázka realizace"
+msgstr "Project example"
+
+#: templates/components/web_development/portfolio.html
+msgid "Všechny realizace najdete v portfoliu."
+msgstr "All our projects are in the portfolio."
+
+#: templates/components/web_development/portfolio.html
+msgid "Prohlédnout portfolio"
+msgstr "View portfolio"
+
+#: templates/components/web_development/products.html
+msgid "Co stavíme na klíč"
+msgstr "What we build, turnkey"
+
+#: templates/components/web_development/products.html
+msgid "Jedna stránka pro kampaň: nabídka, formulář, rychlé spuštění."
+msgstr "One page for your campaign: offer, form, fast launch."
+
+#: templates/components/web_development/products.html
+msgid "Představení firmy, služby a základ SEO."
+msgstr "Your company, your services and an SEO foundation."
+
+#: templates/components/web_development/products.html
+msgid "Katalog, platby, doprava a objednávky v administraci."
+msgstr "Catalog, payments, shipping and orders in the admin."
+
+#: templates/components/web_development/products.html
+msgid "Klientské zóny, role a integrace – když web nestačí."
+msgstr "Client portals, roles and integrations – when a website is not enough."
+
+#: templates/components/web_development/products.html
+msgid "Telegram boti"
+msgstr "Telegram bots"
+
+#: templates/components/web_development/products.html
+msgid "Poptávky a CRM přímo v chatu, vedle webu."
+msgstr "Leads and CRM right in the chat, next to your site."
+
+#: templates/components/web_development/admin.html
+msgctxt "singular"
+msgid "Landing page"
+msgstr "Landing page"

@@ -1,7 +1,11 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.utils import timezone
-from .mixins import BasePageView, LocalizedLegalTemplateMixin, homepage_clients, portfolio_page_projects
+from .mixins import (
+    BasePageView, LocalizedLegalTemplateMixin, homepage_clients, portfolio_page_projects,
+    portfolio_strip,
+)
+from .web_development import web_dev_prices
 from .form_handlers import (
     validate_phone, validate_name, validate_email, has_consent,
     has_lead_contact, validate_telegram,
@@ -183,6 +187,18 @@ class CorporateWebsiteV2View(BasePageView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['home_clients'] = homepage_clients()
+        return context
+
+
+class WebDevelopmentView(BasePageView):
+    """Web development hub (cs default / en prefixed): price guide, services, admin demo, cases."""
+
+    template_name = 'pages/web-development.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['portfolio_strip'] = portfolio_strip()
+        context['web_prices'] = web_dev_prices()
         return context
 
 

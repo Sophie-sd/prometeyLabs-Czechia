@@ -1,0 +1,78 @@
+{% load i18n static %}
+{# Each tile -> existing service page + its most relevant section (#id exists in the target template). #}
+<section class="pl-web__section pl-web__section--services" aria-labelledby="pl-web-products-title">
+    <div class="pl-web__inner">
+        <h2 id="pl-web-products-title" class="pl-web__h2 pl-web__h2--center">{% trans "Co stavíme na klíč" %}</h2>
+        <div class="pl-web__products">
+            <a class="pl-web__product" href="{% url 'corporate_website_v2' %}#scale" data-pl-web-service="landing">
+                <img class="pl-web__product-glow" src="{% static 'images/web-development/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-web__product-top">
+                    <div class="pl-web__product-head">
+                        <span class="pl-web__product-name">{% trans "Landing page" %}</span>
+                        <span class="pl-web__product-meta">{% include 'components/web_development/amount.html' with eur=web_prices.landing.eur czk=web_prices.landing.czk %}</span>
+                    </div>
+                    <span class="pl-web__idx" aria-hidden="true">01</span>
+                </div>
+                <div class="pl-web__product-bottom">
+                    <span class="pl-web__product-text">{% trans "Jedna stránka pro kampaň: nabídka, formulář, rychlé spuštění." %}</span>
+                    <span class="pl-web__pill">{% trans "Podrobnosti" %}</span>
+                </div>
+            </a>
+            <a class="pl-web__product" href="{% url 'corporate_website_v2' %}#economy" data-pl-web-service="corporate">
+                <img class="pl-web__product-glow" src="{% static 'images/web-development/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-web__product-top">
+                    <div class="pl-web__product-head">
+                        <span class="pl-web__product-name">{% trans "Firemní weby" %}</span>
+                        <span class="pl-web__product-meta">{% include 'components/web_development/amount.html' with eur=web_prices.corporate.eur czk=web_prices.corporate.czk %}</span>
+                    </div>
+                    <span class="pl-web__idx" aria-hidden="true">02</span>
+                </div>
+                <div class="pl-web__product-bottom">
+                    <span class="pl-web__product-text">{% trans "Představení firmy, služby a základ SEO." %}</span>
+                    <span class="pl-web__pill">{% trans "Podrobnosti" %}</span>
+                </div>
+            </a>
+            <a class="pl-web__product" href="{% url 'internet_shop_v2' %}#packages" data-pl-web-service="shop">
+                <img class="pl-web__product-glow" src="{% static 'images/web-development/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-web__product-top">
+                    <div class="pl-web__product-head">
+                        <span class="pl-web__product-name">{% trans "E-shopy" %}</span>
+                        <span class="pl-web__product-meta">{% include 'components/web_development/amount.html' with eur=web_prices.shop.eur czk=web_prices.shop.czk %}</span>
+                    </div>
+                    <span class="pl-web__idx" aria-hidden="true">03</span>
+                </div>
+                <div class="pl-web__product-bottom">
+                    <span class="pl-web__product-text">{% trans "Katalog, platby, doprava a objednávky v administraci." %}</span>
+                    <span class="pl-web__pill">{% trans "Podrobnosti" %}</span>
+                </div>
+            </a>
+            <a class="pl-web__product pl-web__product--wide" href="{% url 'corporate_website_v2' %}#tech" data-pl-web-service="app">
+                <img class="pl-web__product-glow" src="{% static 'images/web-development/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-web__product-top">
+                    <div class="pl-web__product-head">
+                        <span class="pl-web__product-name">{% trans "Webové aplikace" %}</span>
+                        <span class="pl-web__product-meta">{% include 'components/web_development/amount.html' with eur=web_prices.app.eur czk=web_prices.app.czk %}</span>
+                    </div>
+                    <span class="pl-web__idx" aria-hidden="true">04</span>
+                </div>
+                <div class="pl-web__product-bottom">
+                    <span class="pl-web__product-text">{% trans "Klientské zóny, role a integrace – když web nestačí." %}</span>
+                    <span class="pl-web__pill">{% trans "Podrobnosti" %}</span>
+                </div>
+            </a>
+            <a class="pl-web__product pl-web__product--wide" href="{% url 'telegram_bot' %}" data-pl-web-service="telegram">
+                <img class="pl-web__product-glow" src="{% static 'images/web-development/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-web__product-top">
+                    <div class="pl-web__product-head">
+                        <span class="pl-web__product-name">{% trans "Telegram boti" %}</span>
+                    </div>
+                    <span class="pl-web__idx" aria-hidden="true">05</span>
+                </div>
+                <div class="pl-web__product-bottom">
+                    <span class="pl-web__product-text">{% trans "Poptávky a CRM přímo v chatu, vedle webu." %}</span>
+                    <span class="pl-web__pill">{% trans "Podrobnosti" %}</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>

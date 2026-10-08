@@ -1,0 +1,28 @@
+{% load i18n static %}
+<section class="pl-web__calc" id="pl-web-calc" aria-labelledby="pl-web-calc-title">
+    <div class="pl-web__inner">
+        <div class="pl-web__calc-card">
+            <img class="pl-web__calc-rings pl-web__calc-rings--a" src="{% static 'images/web-development/rings-cta1.svg' %}" alt="" width="414" height="414" decoding="async" aria-hidden="true">
+            <img class="pl-web__calc-rings pl-web__calc-rings--b" src="{% static 'images/web-development/rings-cta2.svg' %}" alt="" width="414" height="414" decoding="async" aria-hidden="true">
+            <div class="pl-web__calc-body">
+                <h2 id="pl-web-calc-title" class="pl-web__h2 pl-web__h2--calc">{% trans "Spočítejte si rozpočet ještě před hovorem" %}</h2>
+                <p class="pl-web__note pl-web__note--center">{% trans "Čtyři orientační ceny jsou jen začátek. Přesnou částku a termín zakotvíme po briefu ve smlouvě." %}</p>
+                <div class="pl-web__calc-actions">
+                    <a class="pl-web__cta pl-web__cta--calc mobile-touch-target" href="{% url 'calculator' %}">
+                        <span>{% trans "Otevřít kalkulačku" %}</span>
+                        <img src="{% static 'images/web-development/arrow-cta.svg' %}" alt="" width="24" height="24" decoding="async">
+                    </a>
+                    <button type="button" class="pl-web__pill pl-web__pill--calc pl-web__pill--muted mobile-touch-target" data-modal="call-request-modal">{% trans "Nezávazná poptávka" %}</button>
+                    {% if site_contact.telegram_url %}
+                    <a class="pl-web__pill pl-web__pill--calc pl-web__pill--muted mobile-touch-target" href="{{ site_contact.telegram_url }}" target="_blank" rel="noopener noreferrer">{% trans "Napsat na Telegram" %}</a>
+                    {% endif %}
+                    {% if site_contact.get_tel_href %}
+                    <a class="pl-web__pill pl-web__pill--calc pl-web__pill--muted mobile-touch-target" href="{{ site_contact.get_tel_href }}">{% trans "Zavolat hned teď" %}</a>
+                    {% elif site_contact.email %}
+                    <a class="pl-web__pill pl-web__pill--calc pl-web__pill--muted mobile-touch-target" href="mailto:{{ site_contact.email }}">{% trans "Napsat e-mail" %}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

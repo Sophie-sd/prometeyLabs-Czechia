@@ -1,7 +1,7 @@
 {% load i18n %}
 <!-- Modern Creative Mobile Menu -->
 <nav class="mobile-menu" role="navigation" aria-label="{% trans 'Мобільне меню' %}">
-    <!-- Header з close button та перемикачем мов -->
+    <!-- Header with close button and language switcher -->
     <div class="mobile-menu-header">
         <button class="mobile-menu-close mobile-touch-target mobile-focus-visible"
             aria-label="{% trans 'Закрити меню' %}">
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <!-- Navigation Links з великою типографікою -->
+    <!-- Navigation links with large typography -->
     <div class="mobile-menu-content">
         <a href="{% url 'home' %}" class="mobile-nav-link mobile-touch-target mobile-focus-visible" data-index="01">
             {% trans "Головна" %}
@@ -49,7 +49,7 @@
         </a>
     </div>
 
-    <!-- Footer з контактами та інфо -->
+    <!-- Footer with contacts and info -->
     <div class="mobile-menu-footer">
         <div class="mobile-menu-contacts">
             {% if site_contact.phone_display and site_contact.get_tel_href %}
@@ -77,6 +77,6 @@
         </div>
     </div>
 
-    <!-- Декоративний елемент -->
+    <!-- Decorative element -->
     <div class="mobile-menu-decoration"></div>
 </nav>

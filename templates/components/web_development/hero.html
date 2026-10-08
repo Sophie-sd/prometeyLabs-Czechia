@@ -1,0 +1,105 @@
+{% load i18n static %}
+<section class="pl-web__hero" aria-labelledby="pl-web-h1">
+    <div class="pl-web__hero-bg" aria-hidden="true">
+        <img class="pl-web__hero-bg-img" src="{% static 'images/web-development/hero-bg.webp' %}" alt="" width="1983" height="793" decoding="async" fetchpriority="high">
+    </div>
+    <div class="pl-web__inner pl-web__hero-stage">
+        {# Copy + CTA first (mobile); price cards follow as a 2x2 grid <=767, floating cards >=1100. #}
+        <div class="pl-web__hero-copy">
+            <div class="pl-web__kicker">
+                <p class="pl-web__eyebrow">{% trans "Pevně ve smlouvě" %}</p>
+                <div class="pl-web__cur" role="group" aria-label="{% trans "Měna orientačních cen" %}" data-pl-web-cur-switch>
+                    <button type="button" class="pl-web__cur-btn is-on" aria-pressed="true" data-pl-web-cur-btn="eur" aria-label="{% trans "Ceny v eurech" %}">€</button>
+                    <button type="button" class="pl-web__cur-btn" aria-pressed="false" data-pl-web-cur-btn="czk" aria-label="{% trans "Ceny v korunách (orientačně)" %}">Kč</button>
+                </div>
+            </div>
+            <h1 id="pl-web-h1" class="pl-web__h1">{% trans "Weby na klíč pro projekty jakékoli složitosti" %}</h1>
+            <p class="pl-web__lead">{% trans "Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: rozpočet a termíny zakotvíme ve smlouvě. Bezplatná podpora a roční záruka na kód." %}</p>
+            <button type="button" class="pl-web__cta mobile-touch-target" data-modal="call-request-modal">
+                <span>{% trans "Získat konzultaci" %}</span>
+                <img src="{% static 'images/web-development/arrow-hero.svg' %}" alt="" width="24" height="24" decoding="async">
+            </button>
+            {# Mobile-only secondary CTA (<=767); primary stays the consultation modal. #}
+            <a class="pl-web__cta-alt mobile-touch-target" href="{% url 'calculator' %}">{% trans "Vypočítat cenu" %}</a>
+        </div>
+
+        <div class="pl-web__floats" aria-hidden="true">
+            <article class="pl-web__float pl-web__float--tl">
+                <img class="pl-web__float-rings" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
+                <p class="pl-web__float-title">{% trans "Landing page" %}</p>
+                <p class="pl-web__float-num">{% include 'components/web_development/amount.html' with eur=web_prices.landing.eur czk=web_prices.landing.czk %}</p>
+                <p class="pl-web__float-chip">
+                    <img src="{% static 'images/web-development/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
+                    <span>{% trans "3–7 dní" %}</span>
+                </p>
+                <p class="pl-web__scope-in">{% trans "V ceně: návrh, kódování, formulář, responzivita" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: reklama, texty od nuly, externí API" %}</p>
+            </article>
+            <article class="pl-web__float pl-web__float--tr">
+                <img class="pl-web__float-rings" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
+                <p class="pl-web__float-title">{% trans "Firemní weby" %}</p>
+                <p class="pl-web__float-num">{% include 'components/web_development/amount.html' with eur=web_prices.corporate.eur czk=web_prices.corporate.czk %}</p>
+                <p class="pl-web__float-chip">
+                    <img src="{% static 'images/web-development/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
+                    <span>{% trans "7–14 dní" %}</span>
+                </p>
+                <p class="pl-web__scope-in">{% trans "V ceně: struktura stránek, CMS, responzivita, základní SEO" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: plnění obsahem, reklama, složité integrace" %}</p>
+            </article>
+            <article class="pl-web__float pl-web__float--bl">
+                <img class="pl-web__float-rings" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
+                <p class="pl-web__float-title">{% trans "E-shopy" %}</p>
+                <p class="pl-web__float-num">{% include 'components/web_development/amount.html' with eur=web_prices.shop.eur czk=web_prices.shop.czk %}</p>
+                <p class="pl-web__float-chip">
+                    <img src="{% static 'images/web-development/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
+                    <span>{% trans "14–21 dní" %}</span>
+                </p>
+                <p class="pl-web__scope-in">{% trans "V ceně: katalog, košík, základ plateb a dopravy, správa objednávek" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: plnění produkty, marketing, integrace na míru" %}</p>
+            </article>
+            <article class="pl-web__float pl-web__float--br">
+                <img class="pl-web__float-rings" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
+                <p class="pl-web__float-title">{% trans "Webové aplikace" %}</p>
+                <p class="pl-web__float-num">{% include 'components/web_development/amount.html' with eur=web_prices.app.eur czk=web_prices.app.czk %}</p>
+                <p class="pl-web__float-chip">
+                    <img src="{% static 'images/web-development/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
+                    <span>{% trans "14–30 dní" %}</span>
+                </p>
+                <p class="pl-web__scope-in">{% trans "V ceně: MVP podle zadání v daném rozpětí" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: nové moduly po předání, licence třetích stran" %}</p>
+            </article>
+        </div>
+
+        {# Accessible price list (visually replaced by the floating cards); kept for screen readers. #}
+        <div class="pl-web__prices" role="list" aria-label="{% trans "Orientační ceny" %}">
+            <div class="pl-web__price" role="listitem">
+                <p class="pl-web__price-num">{% include 'components/web_development/amount.html' with eur=web_prices.landing.eur czk=web_prices.landing.czk %}</p>
+                <p class="pl-web__price-name">{% trans "Landing page" %}</p>
+                <p class="pl-web__price-time">{% trans "3–7 dní" %}</p>
+                <p class="pl-web__scope-in">{% trans "V ceně: návrh, kódování, formulář, responzivita" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: reklama, texty od nuly, externí API" %}</p>
+            </div>
+            <div class="pl-web__price pl-web__price--mid" role="listitem">
+                <p class="pl-web__price-num">{% include 'components/web_development/amount.html' with eur=web_prices.corporate.eur czk=web_prices.corporate.czk %}</p>
+                <p class="pl-web__price-name">{% trans "Firemní weby" %}</p>
+                <p class="pl-web__price-time">{% trans "7–14 dní" %}</p>
+                <p class="pl-web__scope-in">{% trans "V ceně: struktura stránek, CMS, responzivita, základní SEO" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: plnění obsahem, reklama, složité integrace" %}</p>
+            </div>
+            <div class="pl-web__price" role="listitem">
+                <p class="pl-web__price-num">{% include 'components/web_development/amount.html' with eur=web_prices.shop.eur czk=web_prices.shop.czk %}</p>
+                <p class="pl-web__price-name">{% trans "E-shopy" %}</p>
+                <p class="pl-web__price-time">{% trans "14–21 dní" %}</p>
+                <p class="pl-web__scope-in">{% trans "V ceně: katalog, košík, základ plateb a dopravy, správa objednávek" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: plnění produkty, marketing, integrace na míru" %}</p>
+            </div>
+            <div class="pl-web__price" role="listitem">
+                <p class="pl-web__price-num">{% include 'components/web_development/amount.html' with eur=web_prices.app.eur czk=web_prices.app.czk %}</p>
+                <p class="pl-web__price-name">{% trans "Webové aplikace" %}</p>
+                <p class="pl-web__price-time">{% trans "14–30 dní" %}</p>
+                <p class="pl-web__scope-in">{% trans "V ceně: MVP podle zadání v daném rozpětí" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: nové moduly po předání, licence třetích stran" %}</p>
+            </div>
+        </div>
+    </div>
+</section>
