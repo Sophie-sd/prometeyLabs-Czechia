@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import RedirectView
 from . import proposal_views
 from . import tz_views
 from . import views
@@ -17,12 +18,17 @@ urlpatterns = [
     path('cookies/', views.CookiesView.as_view(), name='cookies'),
     path('refund/', views.RefundPolicyView.as_view(), name='refund'),
     path('intellectual-property/', views.IntellectualPropertyView.as_view(), name='intellectual_property'),
-    path('internet-shop/', views.InternetShopView.as_view(), name='internet_shop'),
-    path('internet-shop-v2/', views.InternetShopV2View.as_view(), name='internet_shop_v2'),
-    path('corporate-website-v2/', views.CorporateWebsiteV2View.as_view(), name='corporate_website_v2'),
+    # v2-сторінки зайняли канонічні URL; старі v1-view більше не маршрутизуються
+    # (шаблони збережено). Імена internet_shop / corporate_website — аліаси.
+    path('internet-shop/', views.InternetShopV2View.as_view(), name='internet_shop_v2'),
+    path('internet-shop/', views.InternetShopV2View.as_view(), name='internet_shop'),
+    path('corporate-website/', views.CorporateWebsiteV2View.as_view(), name='corporate_website_v2'),
+    path('corporate-website/', views.CorporateWebsiteV2View.as_view(), name='corporate_website'),
+    # 301 зі старих v2-URL (query string зберігається; #anchor браузер переносить сам)
+    path('internet-shop-v2/', RedirectView.as_view(pattern_name='internet_shop_v2', permanent=True, query_string=True)),
+    path('corporate-website-v2/', RedirectView.as_view(pattern_name='corporate_website_v2', permanent=True, query_string=True)),
     path('web-development/', views.WebDevelopmentView.as_view(), name='web_development'),
     path('tz-dlia-saitu/', tz_views.TzGeneratorView.as_view(), name='tz_generator'),
-    path('corporate-website/', views.CorporateWebsiteView.as_view(), name='corporate_website'),
     path('thank-you/', views.ThankYouView.as_view(), name='thank_you'),
     path(
         'proposal/<slug:slug>/',

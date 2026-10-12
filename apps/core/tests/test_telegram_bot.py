@@ -144,7 +144,7 @@ class TelegramBotSitemapResponseTests(TestCase):
         self.assertEqual(response.status_code, 200)
         text = response.content.decode()
         self.assertIn('/telegram-bot/', text)
-        self.assertIn('/internet-shop-v2/', text)
+        self.assertIn('/internet-shop/', text)
 
 
 class TelegramBotFormTests(TestCase):
