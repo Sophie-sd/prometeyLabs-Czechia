@@ -95,7 +95,7 @@
     height: 84px;
     border-radius: 50%;
     padding: 2px;
-    background: linear-gradient(135deg, #FF6B1A 0%, #FFB74D 50%, #E65100 100%);
+    background: linear-gradient(135deg, #FF6B1A 0%, #FFB74D 50%, #f60 100%);
     box-shadow: 0 0 0 1px rgba(255, 107, 26, 0.5), 0 16px 40px rgba(255, 107, 26, 0.35);
 }
 

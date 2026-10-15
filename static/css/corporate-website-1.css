@@ -276,7 +276,7 @@
     line-height: 0.85;
     letter-spacing: -10px;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(230, 81, 0, 0.55);
+    -webkit-text-stroke: 2px rgba(255, 102, 0, 0.55);
     user-select: none;
 }
 
@@ -414,8 +414,8 @@
     background: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(230, 81, 0, 0.18);
-    border-bottom: 1px solid rgba(230, 81, 0, 0.18);
+    border-top: 1px solid rgba(255, 102, 0, 0.18);
+    border-bottom: 1px solid rgba(255, 102, 0, 0.18);
     padding: 10px 0;
 }
 
@@ -459,7 +459,7 @@
 .cw-anchor-nav__list a:focus {
     color: var(--color-white);
     border-color: var(--color-brand-orange);
-    background: rgba(230, 81, 0, 0.12);
+    background: rgba(255, 102, 0, 0.12);
     outline: none;
 }
 
@@ -558,13 +558,13 @@
 }
 
 .cw-pricing-card:hover {
-    border-color: rgba(230, 81, 0, 0.45);
+    border-color: rgba(255, 102, 0, 0.45);
     transform: translateY(-2px);
 }
 
 .cw-pricing-card--featured {
-    background: linear-gradient(180deg, rgba(230, 81, 0, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
-    border-color: rgba(230, 81, 0, 0.5);
+    background: linear-gradient(180deg, rgba(255, 102, 0, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border-color: rgba(255, 102, 0, 0.5);
 }
 
 .cw-pricing-card__badge {

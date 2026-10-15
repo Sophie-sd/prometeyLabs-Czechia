@@ -48,7 +48,7 @@
     line-height: 0.82;
     letter-spacing: -0.05em;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(230, 81, 0, 0.22);
+    -webkit-text-stroke: 1px rgba(255, 102, 0, 0.22);
     pointer-events: none;
     user-select: none;
     transition: -webkit-text-stroke-color 0.5s ease;
@@ -56,7 +56,7 @@
 
 .pf-flow__step--hero.is-revealing .pf-flow__step-num,
 .pf-flow__step--hero.is-visible .pf-flow__step-num {
-    -webkit-text-stroke-color: rgba(230, 81, 0, 0.32);
+    -webkit-text-stroke-color: rgba(255, 102, 0, 0.32);
     color: transparent;
 }
 

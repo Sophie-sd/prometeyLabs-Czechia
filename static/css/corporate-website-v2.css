@@ -5,10 +5,10 @@
    ================================= */
 
 .pl-corp-page {
-    --pl-corp-acc: #E65100;
-    --pl-corp-acc-h: #FF6D00;
+    --pl-corp-acc: #f60;
+    --pl-corp-acc-h: #f60;
     --pl-corp-acc-rgb: 230, 81, 0;
-    --pl-corp-demo: #E65100;
+    --pl-corp-demo: #f60;
     --pl-corp-bg: #0A0A0A;
     --pl-corp-header-offset: 80px;
     background: var(--pl-corp-bg);
@@ -462,7 +462,7 @@ body.pl-corp-body .main-content {
 .pl-corp__hero-win-card.is-active {
     border-color: var(--pl-corp-acc);
     color: #fff;
-    box-shadow: 0 0 0 1px rgba(230, 81, 0, 0.25), 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 1px rgba(255, 102, 0, 0.25), 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 767px) {

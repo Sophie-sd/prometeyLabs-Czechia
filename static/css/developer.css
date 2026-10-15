@@ -4,7 +4,7 @@
 .status-badge {
     display: inline-block;
     padding: 12px 20px;
-    background: rgba(230, 81, 0, 0.1);
+    background: rgba(255, 102, 0, 0.1);
     border: 1px solid var(--color-brand-orange);
     border-radius: 4px;
     max-width: 500px;
@@ -89,7 +89,7 @@
 
 .target-audience-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(230, 81, 0, 0.15);
+    box-shadow: 0 8px 24px rgba(255, 102, 0, 0.15);
 }
 
 .card-title {
@@ -162,7 +162,7 @@
 
 .program-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(230, 81, 0, 0.2);
+    box-shadow: 0 8px 24px rgba(255, 102, 0, 0.2);
 }
 
 .program-title {
@@ -179,8 +179,8 @@
 
 .program-modules {
     padding: 20px 0;
-    border-top: 1px solid rgba(230, 81, 0, 0.3);
-    border-bottom: 1px solid rgba(230, 81, 0, 0.3);
+    border-top: 1px solid rgba(255, 102, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 102, 0, 0.3);
 }
 
 .modules-title,
@@ -224,12 +224,12 @@
 
 .program-status {
     padding-top: 10px;
-    border-top: 1px solid rgba(230, 81, 0, 0.3);
+    border-top: 1px solid rgba(255, 102, 0, 0.3);
 }
 
 .status-text {
     font-size: var(--font-small);
-    color: rgba(230, 81, 0, 0.9);
+    color: rgba(255, 102, 0, 0.9);
     font-weight: 600;
     line-height: 1.5;
 }
@@ -319,7 +319,7 @@
 
 .format-list li {
     padding: var(--space-sm) 0;
-    border-bottom: 1px solid rgba(230, 81, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 102, 0, 0.3);
 }
 
 .format-list li:last-child {

@@ -1,0 +1,125 @@
+/* =====================================================================
+   RENOVA THEME LAYER (CZ restyle, feature/renova-restyle)
+   Loaded LAST on every public page (base.html, after page CSS) so the
+   Renova look (black / #f5f5f5 / #f60, Inter, pill buttons, 30px cards,
+   1330px container) wins over legacy page CSS without touching markup,
+   texts or logic. Tokens: core/tokens-renova.css.
+   ===================================================================== */
+
+/* ---------- 1. Base ---------- */
+html{background:#000;color-scheme:dark}
+body{background:#000!important;color:var(--rn-white);font-family:var(--rn-font);font-weight:400;letter-spacing:-.01em}
+body :where(h1,h2,h3,h4,h5,h6){font-family:var(--rn-font);letter-spacing:-.03em}
+::selection{background:var(--rn-orange);color:#000}
+a:hover{color:var(--rn-orange)}
+.main-content{background:#000}
+
+/* Renova container: 1330 + 55 gutters */
+.container,.rn-wrap{max-width:calc(var(--rn-container) + var(--rn-pad)*2);margin-left:auto;margin-right:auto;padding-left:var(--rn-pad);padding-right:var(--rn-pad)}
+@media (max-width:1399px){:root{--rn-pad:32px}}
+@media (max-width:767px){:root{--rn-pad:16px}}
+
+/* Typography helpers used across legacy pages */
+.text-mega,.text-large,.color-brand-orange{color:var(--rn-orange)}
+.color-white{color:var(--rn-white)}
+
+/* ---------- 2. Header / navigation (Renova) ---------- */
+.main-navigation{font-family:var(--rn-font)}
+.main-navigation.scrolled,.main-navigation.is-scrolled,.main-navigation--solid{background:rgba(0,0,0,.72)!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:none!important;border-bottom:1px solid var(--rn-line)}
+.nav-container{max-width:calc(var(--rn-container) + var(--rn-pad)*2);padding:0 var(--rn-pad)}
+.nav-logo{color:var(--rn-white)!important;font-family:var(--rn-font);font-weight:600;letter-spacing:-.04em}
+.nav-logo-labs{color:var(--rn-orange)!important}
+.nav-link{color:var(--rn-white);font-weight:500;letter-spacing:-.02em;text-transform:none;border-radius:var(--rn-radius-pill);padding:8px 12px;transition:color .2s,background-color .2s}
+.nav-link:hover,.nav-link:focus-visible,.nav-link.active,.nav-link[aria-current="page"]{color:#000!important;background:var(--rn-white)}
+.nav-dropdown__menu{background:var(--rn-bubble)!important;border:1px solid var(--rn-line)!important;border-radius:20px!important;box-shadow:0 20px 50px rgba(0,0,0,.6)!important}
+.nav-dropdown__menu a{color:var(--rn-white)!important;border-radius:12px}
+.nav-dropdown__menu a:hover,.nav-dropdown__menu a:focus-visible{background:var(--rn-white)!important;color:#000!important}
+.lang-btn{border-radius:var(--rn-radius-pill)!important;border-color:rgba(245,245,245,.35)!important;color:var(--rn-white)!important;background:transparent;font-family:var(--rn-font)}
+.lang-btn.active{background:var(--rn-orange)!important;border-color:var(--rn-orange)!important;color:#000!important}
+.lang-btn:not(.active):hover,.lang-btn:not(.active):focus-visible{background:var(--rn-white)!important;color:#000!important;border-color:var(--rn-white)!important}
+.burger-line{background:var(--rn-white)!important}
+
+/* Burger / mobile menu */
+.mobile-menu{background:#000!important;color:var(--rn-white)}
+.mobile-menu a{color:var(--rn-white)}
+.mobile-menu a:hover,.mobile-menu a:focus-visible{color:var(--rn-orange)}
+
+/* ---------- 3. Buttons: pill, Renova sizes, contrasting hover ---------- */
+.btn,.v2-btn,.v3-btn,.hf-btn,.cta-button,.calc-cta-btn,.search-button,.footer-submit-btn,
+.pl-shop__btn,.pl-corp__btn,.pl-bot__btn,.pl-wd__btn,.pl-tz__btn,.lead-form-submit,.form-submit,.submit-btn,.modal-submit,
+button[type="submit"]:not(.modal-close):not([class*="burger"]):not([class*="quiz-option"]){
+  border-radius:var(--rn-radius-pill)!important;font-family:var(--rn-font);font-weight:500;letter-spacing:-.03em;text-transform:none}
+.btn{min-height:44px;padding:12px 20px;font-size:14px;border-width:1px}
+.btn-large,.v2-btn-lg,.v3-btn-lg{min-height:50px}
+
+/* filled / primary = light pill w/ orange text (Renova .hf-btn--light) */
+.btn.btn-primary,.v2-btn-primary{background:var(--rn-white)!important;color:var(--rn-orange)!important;border-color:var(--rn-white)!important;box-shadow:none!important}
+/* secondary / ghost = glass pill w/ white border (Renova .hf-btn--ghost) */
+.btn.btn-secondary,.v2-btn:not(.v2-btn-primary),.v3-btn{background:rgba(255,255,255,.05)!important;color:var(--rn-white)!important;border:1px solid var(--rn-white)!important;-webkit-backdrop-filter:blur(2.6px);backdrop-filter:blur(2.6px);box-shadow:none!important}
+/* brand fill */
+.calc-cta-btn,.footer-submit-btn,.lead-form-submit,.form-submit,.modal-submit,.submit-btn{background:var(--rn-orange-deep)!important;color:#fff!important;border-color:var(--rn-orange-deep)!important}
+
+/* contrasting hover / focus / active (WCAG AA) */
+:is(.btn.btn-primary,.v2-btn-primary,.hf-btn--light):is(:hover,:focus-visible,:active){background:#fff!important;color:#111!important;border-color:#fff!important;-webkit-text-fill-color:#111!important;transform:none}
+:is(.btn.btn-secondary,.v2-btn:not(.v2-btn-primary),.v3-btn,.hf-btn--ghost):is(:hover,:focus-visible,:active){background:var(--rn-white)!important;color:#111!important;border-color:var(--rn-white)!important;-webkit-text-fill-color:#111!important;transform:none}
+:is(.btn.btn-primary,.v2-btn-primary,.hf-btn--light,.btn.btn-secondary,.v2-btn,.v3-btn,.hf-btn--ghost):is(:hover,:focus-visible,:active) :is(span,b,strong){color:#111!important}
+:is(.calc-cta-btn,.footer-submit-btn,.lead-form-submit,.form-submit,.modal-submit,.submit-btn,.hf-btn--brand,.search-button):is(:hover,:focus-visible,:active){background:var(--rn-white)!important;color:#111!important;border-color:var(--rn-white)!important;-webkit-text-fill-color:#111!important}
+:is(.btn,.v2-btn,.v3-btn,.hf-btn,.calc-cta-btn,.footer-submit-btn,.lead-form-submit,.form-submit,.modal-submit,.submit-btn,.search-button,.lang-btn,.nav-link):focus-visible{outline:2px solid var(--rn-orange)!important;outline-offset:3px}
+
+/* ---------- 4. Cards ---------- */
+.card,.hf-card,.v2-why-shell,.v2-why-core,.service-card,.pricing-card,.blog-card,.post-card,.legal-card{border-radius:var(--rn-radius-card)}
+
+/* ---------- 5. Forms (Renova inputs) ---------- */
+.form-input,.form-textarea,.lead-form-input,.calc-field__input,.footer-input,.modal input[type="text"],.modal input[type="email"],.modal input[type="tel"],.modal textarea{
+  background:rgba(20,20,20,.6)!important;color:var(--rn-white)!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:var(--rn-radius-input)!important;font-family:var(--rn-font)!important;font-size:16px;min-height:50px;box-shadow:none!important}
+.form-input::placeholder,.form-textarea::placeholder,.lead-form-input::placeholder,.calc-field__input::placeholder,.footer-input::placeholder{color:#7d7d7d!important}
+.form-input:focus,.form-textarea:focus,.lead-form-input:focus,.calc-field__input:focus,.footer-input:focus{border-color:var(--rn-orange)!important;outline:none;box-shadow:0 0 0 3px rgba(255,102,0,.25)!important}
+.form-label,.calc-field__label{color:var(--rn-white)!important;font-family:var(--rn-font);font-weight:500}
+.form-checkbox,.lead-form-checkbox{color:var(--rn-gray)}
+.form-checkbox input[type="checkbox"],.lead-form-checkbox input[type="checkbox"]{accent-color:var(--rn-orange)}
+.lead-form-policy-link{color:var(--rn-orange)!important;text-decoration:underline}
+.lead-form-expect{color:var(--rn-gray)}
+.lead-form-contact-rule{color:#ff6b6b}
+
+/* Modals */
+.modal-backdrop{background:rgba(0,0,0,.75)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.modal-content{background:linear-gradient(180deg,#161616 0%,#120a05 100%)!important;color:var(--rn-white)!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:var(--rn-radius-card)!important;font-family:var(--rn-font)}
+.modal-content :is(h2,h3,.modal-title){color:var(--rn-white)}
+.modal-close{color:var(--rn-white)!important;border-radius:50%;background:rgba(255,255,255,.08)!important}
+.modal-close:hover,.modal-close:focus-visible{background:var(--rn-white)!important;color:#111!important}
+
+/* ---------- 6. Footer (Renova) ---------- */
+.footer,.site-footer,footer.footer{background:#000!important;color:var(--rn-gray);border-top:1px solid var(--rn-line);font-family:var(--rn-font)}
+.footer :is(h2,h3,h4,.footer-title,.footer-heading){color:var(--rn-white)!important}
+.footer a{color:var(--rn-white)}
+.footer a:hover,.footer a:focus-visible{color:var(--rn-orange)!important}
+
+/* ---------- 7. Contact widget / FAB ---------- */
+.contact-widget__toggle,.contact-widget__button{background:var(--rn-orange)!important;border-color:var(--rn-orange)!important;color:#000!important}
+@media(max-width:767px){.mobile-contact-fab,.mobile-contact-fab.mobile-touch-target{width:56px!important;height:56px!important;background:rgba(30,30,30,.85)!important;border:1px solid rgba(255,255,255,.18)!important;color:var(--rn-white)!important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.mobile-contact-fab:is(:hover,:focus-visible,:active){background:var(--rn-white)!important;color:#111!important}}
+/* label is for screen readers only (rule lived in an unloaded file → text overflowed the FAB) */
+.mobile-contact-fab__label{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.contact-widget__toggle:hover,.contact-widget__button:hover{background:var(--rn-white)!important;color:#111!important}
+.contact-widget__panel{background:var(--rn-bubble)!important;border:1px solid var(--rn-line)!important;border-radius:20px!important;color:var(--rn-white)}
+
+/* ---------- 8. Notifications ---------- */
+.notification{border-radius:20px!important;font-family:var(--rn-font)}
+
+/* ---------- 9. EU phone field (static/js/core/phone-mask-intl.js) ---------- */
+.eu-phone{position:relative;display:flex;align-items:stretch;width:100%;gap:0}
+.eu-phone__cc{position:relative;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;min-width:72px;padding:0 26px 0 16px;margin:0;
+  border:1px solid rgba(255,255,255,.14);border-right:0;border-radius:16px 0 0 16px;background:rgba(20,20,20,.85);color:var(--rn-white);
+  font:500 14px/1 var(--rn-font);letter-spacing:-.02em;cursor:pointer}
+.eu-phone__cc::after{content:'';position:absolute;right:11px;top:50%;width:7px;height:7px;margin-top:-5px;border-right:1.5px solid var(--rn-gray);border-bottom:1.5px solid var(--rn-gray);transform:rotate(45deg)}
+.eu-phone__select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px;color:#000}
+.eu-phone__select:focus-visible{opacity:0}
+.eu-phone__cc:focus-within{outline:2px solid var(--rn-orange);outline-offset:2px}
+.eu-phone > input[type="tel"]{flex:1 1 auto;min-width:0;width:auto!important;margin:0!important;border-top-left-radius:0!important;border-bottom-left-radius:0!important;font-variant-numeric:tabular-nums}
+.eu-phone.is-invalid .eu-phone__cc,.eu-phone.is-invalid > input[type="tel"]{border-color:#ff5c5c!important}
+.eu-phone.is-invalid > input[type="tel"]{box-shadow:0 0 0 3px rgba(255,92,92,.18)!important}
+.eu-phone__error{display:flex;align-items:flex-start;gap:8px;margin:8px 0 0;font:400 13px/1.35 var(--rn-font);color:#ff8a8a;text-align:left}
+.eu-phone__error::before{content:'!';flex:0 0 16px;height:16px;border-radius:50%;background:#ff5c5c;color:#000;font-weight:700;font-size:11px;line-height:16px;text-align:center}
+.eu-phone__error[hidden]{display:none}
+/* pill-shaped field hosts (Renova contacts/footer/quiz inputs with 100px radius) */
+.eu-phone:has(> input[style*="border-radius"]) .eu-phone__cc{border-radius:100px 0 0 100px}

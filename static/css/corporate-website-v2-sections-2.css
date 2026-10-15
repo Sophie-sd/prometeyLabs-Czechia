@@ -42,8 +42,8 @@
     width: 34px;
     height: 34px;
     border-radius: 9px;
-    background: rgba(230, 81, 0, 0.1);
-    border: 1px solid rgba(230, 81, 0, 0.25);
+    background: rgba(255, 102, 0, 0.1);
+    border: 1px solid rgba(255, 102, 0, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +72,7 @@
 .pl-corp__admin-mock-glow {
     position: absolute;
     inset: -30px;
-    background: radial-gradient(circle at 60% 40%, rgba(230, 81, 0, 0.12), transparent 60%);
+    background: radial-gradient(circle at 60% 40%, rgba(255, 102, 0, 0.12), transparent 60%);
     filter: blur(10px);
     pointer-events: none;
 }
@@ -84,7 +84,7 @@
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
-    --pl-corp-demo: #E65100;
+    --pl-corp-demo: #f60;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transition:

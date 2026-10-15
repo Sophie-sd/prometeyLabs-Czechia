@@ -204,7 +204,7 @@
     width: 100%;
     height: 130px;
     overflow: visible;
-    filter: drop-shadow(0 0 14px rgba(230, 81, 0, 0.2));
+    filter: drop-shadow(0 0 14px rgba(255, 102, 0, 0.2));
 }
 
 /* Device mockups */

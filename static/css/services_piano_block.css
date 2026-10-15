@@ -1,7 +1,7 @@
 /* Services piano block v2 — scoped under #svc-piano */
 
 #svc-piano {
-    --svc-piano-orange: #E65100;
+    --svc-piano-orange: #f60;
     --svc-piano-orange-soft: #FF6B1A;
     --svc-piano-glass: rgba(255, 255, 255, 0.06);
     --svc-piano-glass-hi: rgba(255, 255, 255, 0.1);
@@ -134,7 +134,7 @@
     font-size: clamp(50px, 6.4vw, 102px);
     line-height: 0.82;
     letter-spacing: -0.04em;
-    color: var(--color-brand-purple, #7B2CBF);
+    color: var(--color-brand-purple, #f60);
 }
 
 #svc-piano:has(.svc-piano__unit.is-active) .svc-piano__subheading,
@@ -421,10 +421,10 @@
 
 #svc-piano .svc-piano__unit.is-active .svc-piano__key-shell {
     height: var(--svc-piano-key-h-open);
-    border-color: rgba(230, 81, 0, 0.55);
+    border-color: rgba(255, 102, 0, 0.55);
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.14),
-        0 10px 28px rgba(230, 81, 0, 0.14);
+        0 10px 28px rgba(255, 102, 0, 0.14);
 }
 
 #svc-piano .svc-piano__unit.is-active .svc-piano__rise {
@@ -462,10 +462,10 @@
     #svc-piano .svc-piano__unit:hover .svc-piano__key-shell,
     #svc-piano .svc-piano__unit:focus-within .svc-piano__key-shell {
         height: var(--svc-piano-key-h-open);
-        border-color: rgba(230, 81, 0, 0.55);
+        border-color: rgba(255, 102, 0, 0.55);
         box-shadow:
             inset 0 1px 0 rgba(255, 255, 255, 0.14),
-            0 10px 28px rgba(230, 81, 0, 0.14);
+            0 10px 28px rgba(255, 102, 0, 0.14);
     }
 
     #svc-piano .svc-piano__unit:hover .svc-piano__rise,

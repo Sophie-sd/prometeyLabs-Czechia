@@ -18,7 +18,7 @@
 
 /* ===== PIANO SECTION LAYOUT ===== */
 #svc-piano.cta-section {
-    --v2-orange: #E65100;
+    --v2-orange: #f60;
     --svc-piano-pad-x: max(clamp(16px, 4vw, 20px), env(safe-area-inset-left));
     --svc-piano-pad-r: max(clamp(16px, 4vw, 20px), env(safe-area-inset-right));
     min-height: clamp(520px, 70vh, 840px);

@@ -225,7 +225,7 @@ body.modal-open {
     border-radius: 20px;
     box-shadow:
         0 28px 72px rgba(0, 0, 0, 0.52),
-        0 0 40px rgba(230, 81, 0, 0.1),
+        0 0 40px rgba(255, 102, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
     color: #fff;
     padding: clamp(26px, 4vw, 34px);
@@ -239,7 +239,7 @@ body.modal-open {
     right: 10%;
     height: 2px;
     border-radius: 99px;
-    background: linear-gradient(90deg, transparent, rgba(230, 81, 0, 0.85), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.85), transparent);
     opacity: 0.6;
     pointer-events: none;
 }
@@ -335,7 +335,7 @@ body.modal-open {
     border-color: var(--color-brand-orange);
     border-radius: 11px;
     font-weight: 700;
-    box-shadow: 0 10px 34px rgba(230, 81, 0, 0.28);
+    box-shadow: 0 10px 34px rgba(255, 102, 0, 0.28);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -344,7 +344,7 @@ body.modal-open {
     color: #0a0a0a;
     border-color: var(--color-brand-orange);
     transform: translateY(-2px);
-    box-shadow: 0 14px 40px rgba(230, 81, 0, 0.38);
+    box-shadow: 0 14px 40px rgba(255, 102, 0, 0.38);
 }
 
 /* ===== CALL REQUEST MODAL - DIRECT CONTACT SECTION ===== */
@@ -406,8 +406,8 @@ body.modal-open {
 }
 
 #call-request-modal .modal-social-link:hover {
-    background: rgba(230, 81, 0, 0.18);
-    border-color: rgba(230, 81, 0, 0.45);
+    background: rgba(255, 102, 0, 0.18);
+    border-color: rgba(255, 102, 0, 0.45);
     color: #fff;
     transform: translateY(-2px);
 }

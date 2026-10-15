@@ -248,7 +248,7 @@
 .nav-dropdown__link:hover,
 .nav-dropdown__link.is-active,
 .nav-dropdown__link:focus-visible {
-    background: rgba(230, 81, 0, 0.14);
+    background: rgba(255, 102, 0, 0.14);
     color: var(--color-brand-orange);
 }
 
@@ -910,9 +910,9 @@
 
 .lang-suggest__card {
     background: #1a1a1a;
-    border: 2px solid var(--color-brand-orange, #E65100);
+    border: 2px solid var(--color-brand-orange, #f60);
     border-radius: 16px;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(230, 81, 0, 0.18);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 102, 0, 0.18);
     padding: 32px 28px 26px;
     max-width: 420px;
     width: 100%;
@@ -942,7 +942,7 @@
 }
 
 .lang-suggest__text strong {
-    color: var(--color-brand-orange, #E65100);
+    color: var(--color-brand-orange, #f60);
     font-weight: 700;
 }
 
@@ -956,9 +956,9 @@
 .lang-suggest__yes {
     flex: 1;
     padding: 13px 22px;
-    background: var(--color-brand-orange, #E65100);
+    background: var(--color-brand-orange, #f60);
     color: #fff;
-    border: 2px solid var(--color-brand-orange, #E65100);
+    border: 2px solid var(--color-brand-orange, #f60);
     border-radius: 10px;
     font-size: 14px;
     font-weight: 700;

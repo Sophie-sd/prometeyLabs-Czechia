@@ -5,9 +5,9 @@
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
     --stagger-reveal: 120ms;
     --pf-snap-h: calc(100dvh - var(--nav-height, 60px) - env(safe-area-inset-top, 0px));
-    --pf-wash-orange: var(--color-brand-orange, #E65100);
+    --pf-wash-orange: var(--color-brand-orange, #f60);
     --pf-wash-gray: #8a8a8a;
-    --pf-wash-purple: var(--color-brand-purple, #7B2CBF);
+    --pf-wash-purple: var(--color-brand-purple, #f60);
     --pf-wash: var(--pf-wash-orange);
     --pf-wash-opacity: 0.22;
     --pf-mark-opacity: 0.09;
@@ -186,7 +186,7 @@ html.pf-snap-off {
     --slab-depth: 0.075em;
     --slab-steps: 16;
     --slab-paper: #0a0a0a;
-    --slab-color: var(--color-brand-orange, #E65100);
+    --slab-color: var(--color-brand-orange, #f60);
     --slab-shadow: #050505;
     --slab-sx: calc(var(--slab-depth) * var(--slab-x) / var(--slab-steps));
     --slab-sy: calc(var(--slab-depth) * var(--slab-y) / var(--slab-steps));
@@ -261,7 +261,7 @@ html.pf-snap-off {
 }
 
 .pf-snap__hash {
-    color: var(--color-brand-orange, #E65100);
+    color: var(--color-brand-orange, #f60);
     font-weight: 700;
 }
 

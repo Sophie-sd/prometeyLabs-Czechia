@@ -262,8 +262,8 @@
     left: 50%;
     margin-left: -50vw;
     background: var(--color-black);
-    border-top: 1px solid rgba(230, 81, 0, 0.5);
-    border-bottom: 1px solid rgba(230, 81, 0, 0.5);
+    border-top: 1px solid rgba(255, 102, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 102, 0, 0.5);
     overflow: hidden;
     padding: 14px 0;
     margin-top: 28px;
@@ -328,7 +328,7 @@
     background: transparent;
     /* Drop-shadow замість box-shadow (працює з прозорістю) */
     filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.55))
-            drop-shadow(0 8px 16px rgba(230, 81, 0, 0.12));
+            drop-shadow(0 8px 16px rgba(255, 102, 0, 0.12));
     /* Floating animation */
     animation: is-float 4s ease-in-out infinite;
     will-change: transform;
@@ -377,9 +377,9 @@
     inset: 0;
     background: linear-gradient(
         105deg,
-        rgba(230, 81, 0, 0.28) 0%,
-        rgba(230, 81, 0, 0.1) 28%,
-        rgba(230, 81, 0, 0.03) 38%,
+        rgba(255, 102, 0, 0.28) 0%,
+        rgba(255, 102, 0, 0.1) 28%,
+        rgba(255, 102, 0, 0.03) 38%,
         transparent 52%
     );
     pointer-events: none;
@@ -450,7 +450,7 @@
 }
 
 .is-keyword-anchors__card {
-    background: var(--color-beige-alt, #FAF7F2);
+    background: var(--color-beige-alt, #0a0a0a);
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: var(--radius-md, 12px);
     padding: 20px 22px;
@@ -599,7 +599,7 @@
 
 .is-migration-block {
     background: #111111;
-    border: 1px solid rgba(230, 81, 0, 0.3);
+    border: 1px solid rgba(255, 102, 0, 0.3);
     border-radius: var(--radius-md);
     padding: 28px 24px;
 }
@@ -686,7 +686,7 @@
 }
 
 .is-tech-card:hover {
-    border-color: rgba(230, 81, 0, 0.4);
+    border-color: rgba(255, 102, 0, 0.4);
     transform: translateY(-3px);
 }
 
@@ -1040,18 +1040,18 @@
 }
 
 .is-quiz__option:hover {
-    border-color: rgba(230, 81, 0, 0.35);
-    background: rgba(230, 81, 0, 0.04);
+    border-color: rgba(255, 102, 0, 0.35);
+    background: rgba(255, 102, 0, 0.04);
     color: var(--color-white);
 }
 
 .is-quiz__option:hover::before {
-    border-color: rgba(230, 81, 0, 0.5);
+    border-color: rgba(255, 102, 0, 0.5);
 }
 
 .is-quiz__option--selected {
     border-color: var(--color-brand-orange);
-    background: rgba(230, 81, 0, 0.08);
+    background: rgba(255, 102, 0, 0.08);
     color: var(--color-white);
 }
 
@@ -1094,8 +1094,8 @@
 }
 
 .is-brief .form-input:focus {
-    border-color: rgba(230, 81, 0, 0.7);
-    box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.15);
+    border-color: rgba(255, 102, 0, 0.7);
+    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.15);
     outline: none;
 }
 
@@ -1120,7 +1120,7 @@
 
 /* "Все з переліченого" — виділяємо рамкою */
 .is-quiz__option--all {
-    border-color: rgba(230, 81, 0, 0.25);
+    border-color: rgba(255, 102, 0, 0.25);
 }
 
 /* Кнопка "Далі" — в .is-quiz__nav поруч із "Назад" */
@@ -1362,7 +1362,7 @@
         height: 10px;
         border-radius: 50%;
         background: var(--color-brand-orange);
-        box-shadow: 0 0 12px rgba(230, 81, 0, 0.5);
+        box-shadow: 0 0 12px rgba(255, 102, 0, 0.5);
     }
 
     .is-portfolio-cta__title {
@@ -1552,8 +1552,8 @@
     background: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(230, 81, 0, 0.18);
-    border-bottom: 1px solid rgba(230, 81, 0, 0.18);
+    border-top: 1px solid rgba(255, 102, 0, 0.18);
+    border-bottom: 1px solid rgba(255, 102, 0, 0.18);
     padding: 10px 0;
 }
 
@@ -1597,7 +1597,7 @@
 .is-anchor-nav__list a:focus {
     color: var(--color-white);
     border-color: var(--color-brand-orange);
-    background: rgba(230, 81, 0, 0.12);
+    background: rgba(255, 102, 0, 0.12);
     outline: none;
 }
 
@@ -1709,13 +1709,13 @@
 }
 
 .is-pricing-card:hover {
-    border-color: rgba(230, 81, 0, 0.45);
+    border-color: rgba(255, 102, 0, 0.45);
     transform: translateY(-2px);
 }
 
 .is-pricing-card--featured {
-    background: linear-gradient(180deg, rgba(230, 81, 0, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
-    border-color: rgba(230, 81, 0, 0.5);
+    background: linear-gradient(180deg, rgba(255, 102, 0, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border-color: rgba(255, 102, 0, 0.5);
 }
 
 .is-pricing-card__badge {

@@ -16,11 +16,11 @@
 }
 
 .main-navigation .nav-logo {
-    color: #E65100 !important;
+    color: #f60 !important;
 }
 
 .main-navigation .burger-line {
-    background: #E65100 !important;
+    background: #f60 !important;
 }
 
 /* ===== PRIVACY ARTICLE (контейнер для ізоляції стилів) ===== */
@@ -44,7 +44,7 @@
 .privacy-article .privacy-title {
     font-size: clamp(28px, 5vw, 48px);
     font-weight: 700;
-    color: #E65100;
+    color: #f60;
     margin: 0 0 15px 0;
     line-height: 1.2;
     letter-spacing: -1px;
@@ -84,7 +84,7 @@
 .privacy-article .privacy-section h2 {
     font-size: 18px;
     font-weight: 700;
-    color: #E65100;
+    color: #f60;
     margin: 0 0 30px 0;
     line-height: 1.2;
     letter-spacing: -0.5px;

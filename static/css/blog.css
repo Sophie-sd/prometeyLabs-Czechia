@@ -52,7 +52,7 @@ body {
 
 .blog-search .search-input:focus {
     border-color: var(--color-brand-orange);
-    box-shadow: 0 0 0 3px rgba(230, 81, 0, 0.1);
+    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
 }
 
 .blog-search .search-button {
@@ -113,7 +113,7 @@ body {
     border-color: var(--color-brand-orange);
     transform: translateY(-5px);
     background: var(--color-black);
-    box-shadow: 0 4px 12px rgba(230, 81, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
 }
 
 /* Card Header */
@@ -500,7 +500,7 @@ body {
     content: '';
     display: block;
     border: none;
-    border-top: 1px solid rgba(230, 81, 0, 0.3);
+    border-top: 1px solid rgba(255, 102, 0, 0.3);
     width: 60%;
     margin: 0 auto 1.5em;
 }
@@ -510,7 +510,7 @@ body {
     content: '';
     display: block;
     border: none;
-    border-top: 1px solid rgba(230, 81, 0, 0.3);
+    border-top: 1px solid rgba(255, 102, 0, 0.3);
     width: 60%;
     margin: 1.5em auto 0;
 }
@@ -543,7 +543,7 @@ body {
 .article-text blockquote .quote-divider {
     display: block;
     border: none;
-    border-top: 1px solid rgba(230, 81, 0, 0.3);
+    border-top: 1px solid rgba(255, 102, 0, 0.3);
     width: 60%;
     margin: 1.5em auto;
     height: 0;
@@ -583,7 +583,7 @@ body {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(230, 81, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.15);
     display: flex;
     flex-direction: column;
     opacity: 0;
@@ -611,7 +611,7 @@ body {
 .related-card:hover {
     border-color: var(--color-brand-orange);
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 35px rgba(230, 81, 0, 0.3);
+    box-shadow: 0 12px 35px rgba(255, 102, 0, 0.3);
 }
 
 .related-card:hover::before {
@@ -783,7 +783,7 @@ body {
     background: var(--color-brand-orange);
     color: var(--color-white);
     border-color: var(--color-brand-orange);
-    box-shadow: 0 4px 12px rgba(230, 81, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
 }
 
 /* Фільтри по категоріях */
@@ -821,7 +821,7 @@ body {
 .category-filter.active {
     background: var(--color-brand-orange);
     color: var(--color-white);
-    box-shadow: 0 4px 12px rgba(230, 81, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
 }
 
 /* ===== АДАПТАЦІЯ ПЛАНШЕТИ ===== */
@@ -1122,7 +1122,7 @@ body {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(230, 81, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.15);
 }
 
 .popular-card::before {
@@ -1140,7 +1140,7 @@ body {
 .popular-card:hover {
     border-color: var(--color-brand-orange);
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 35px rgba(230, 81, 0, 0.3);
+    box-shadow: 0 12px 35px rgba(255, 102, 0, 0.3);
 }
 
 .popular-card:hover::before {

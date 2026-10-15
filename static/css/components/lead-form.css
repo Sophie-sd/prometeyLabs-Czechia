@@ -42,13 +42,13 @@
     width: 20px;
     height: 20px;
     margin-top: 2px;
-    accent-color: var(--color-brand-orange, #E65100);
+    accent-color: var(--color-brand-orange, #f60);
     cursor: pointer;
 }
 
 .lead-form-policy-link {
     text-decoration: underline;
-    color: var(--color-brand-orange, #E65100);
+    color: var(--color-brand-orange, #f60);
 }
 
 .lead-form-expect {
@@ -202,7 +202,7 @@
 }
 
 .lead-form-telegram__wrap:focus-within {
-    border-color: var(--color-brand-orange, #E65100);
+    border-color: var(--color-brand-orange, #f60);
 }
 
 .lead-form-contact-rule {

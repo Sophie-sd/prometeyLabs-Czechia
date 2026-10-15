@@ -1,7 +1,7 @@
 /* Final variant orchestration — .home-redesign.vf */
 
 .home-redesign.vf {
-  --v2-orange: #E65100;
+  --v2-orange: #f60;
   background: #000;
   position: relative;
   overflow: hidden;
@@ -47,7 +47,7 @@
   right: -10%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(230, 81, 0, 0.45), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.45), transparent 70%);
 }
 
 .home-redesign.vf > .v3-bg-grid {

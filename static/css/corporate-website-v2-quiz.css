@@ -422,7 +422,7 @@
 }
 
 .pl-corp__quiz-gdpr .lead-form-policy-link {
-    color: var(--pl-corp-acc, #E65100);
+    color: var(--pl-corp-acc, #f60);
 }
 
 .pl-corp__quiz-gdpr .lead-form-checkbox input[type="checkbox"] {

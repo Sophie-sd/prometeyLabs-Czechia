@@ -5,7 +5,7 @@
   --v3-bg: #050505;
   --v3-fg: #fff;
   --v3-orange: #FF6B1A;
-  --v3-orange-deep: #E65100;
+  --v3-orange-deep: #f60;
   --v3-mute: rgba(255,255,255,0.65);
   --v3-mute-2: rgba(255,255,255,0.45);
   --v3-card: rgba(255,255,255,0.04);
@@ -35,7 +35,7 @@
 
 .home-redesign .v3-glow-a{ top: 12%; left: -10%; width: 520px; height: 520px; background: radial-gradient(circle, rgba(255,107,26,0.6), transparent 70%); }
 
-.home-redesign .v3-glow-b{ top: 55%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(230,81,0,0.45), transparent 70%); }
+.home-redesign .v3-glow-b{ top: 55%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255, 102, 0,0.45), transparent 70%); }
 
 .home-redesign .v3-bg-grid{
   position: absolute; inset: 0;

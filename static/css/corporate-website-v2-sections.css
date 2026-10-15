@@ -46,7 +46,7 @@
     right: -80px;
     width: 240px;
     height: 240px;
-    background: radial-gradient(circle, rgba(230, 81, 0, 0.22), transparent 65%);
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.22), transparent 65%);
     filter: blur(10px);
     pointer-events: none;
 }
@@ -76,8 +76,8 @@
 }
 
 .pl-corp__economy-tag--good {
-    background: rgba(230, 81, 0, 0.12);
-    border: 1px solid rgba(230, 81, 0, 0.4);
+    background: rgba(255, 102, 0, 0.12);
+    border: 1px solid rgba(255, 102, 0, 0.4);
     color: var(--pl-corp-acc);
 }
 
@@ -304,7 +304,7 @@
 }
 
 .pl-corp__free-analysis-gdpr .lead-form-policy-link {
-    color: var(--pl-corp-acc, #E65100);
+    color: var(--pl-corp-acc, #f60);
 }
 
 .pl-corp__free-analysis-gdpr .pl-corp__free-analysis-input {

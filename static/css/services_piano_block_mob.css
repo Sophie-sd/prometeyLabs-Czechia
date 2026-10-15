@@ -111,10 +111,10 @@
 
     #svc-piano .svc-piano__mob-face--back {
         transform: rotateY(180deg) translateZ(1px);
-        border-color: rgba(230, 81, 0, 0.45);
+        border-color: rgba(255, 102, 0, 0.45);
         box-shadow:
             inset 0 1px 0 rgba(255, 255, 255, 0.12),
-            0 10px 28px rgba(230, 81, 0, 0.12);
+            0 10px 28px rgba(255, 102, 0, 0.12);
     }
 
     #svc-piano .svc-piano__rise {

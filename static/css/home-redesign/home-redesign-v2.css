@@ -4,14 +4,14 @@
 .home-redesign .v2{
   --v2-bg: #000;
   --v2-fg: #fff;
-  --v2-orange: #E65100;
-  --v2-orange-2: #FF6D00;
+  --v2-orange: #f60;
+  --v2-orange-2: #f60;
   --v2-card: rgba(255,255,255,0.04);
   --v2-card-br: rgba(255,255,255,0.14);
   --v2-mute: rgba(255,255,255,0.62);
   --v2-mute-2: rgba(255,255,255,0.45);
-  --v2-line-grad-v: linear-gradient(180deg, transparent, rgba(230, 81, 0, 0.85), transparent);
-  --v2-line-grad-h: linear-gradient(90deg, transparent, rgba(230, 81, 0, 0.85), transparent);
+  --v2-line-grad-v: linear-gradient(180deg, transparent, rgba(255, 102, 0, 0.85), transparent);
+  --v2-line-grad-h: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.85), transparent);
   font-family: 'Space Grotesk', system-ui, sans-serif;
   background: var(--v2-bg);
   color: var(--v2-fg);
@@ -253,7 +253,7 @@
     conic-gradient(from 0deg, var(--v2-orange), var(--v2-orange-2), #FFB74D, var(--v2-orange));
   padding: 2px;
   position: relative;
-  box-shadow: 0 0 0 2px #000, 0 0 0 3px var(--v2-orange), 0 12px 30px rgba(230,81,0,0.35), 0 0 40px rgba(230,81,0,0.2);
+  box-shadow: 0 0 0 2px #000, 0 0 0 3px var(--v2-orange), 0 12px 30px rgba(255, 102, 0,0.35), 0 0 40px rgba(255, 102, 0,0.2);
 }
 
 .home-redesign .v2-client-inner{

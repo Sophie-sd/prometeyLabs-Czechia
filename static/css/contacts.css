@@ -205,7 +205,7 @@
 .contact-channel-icon:focus-visible {
     color: var(--color-brand-orange);
     border-color: var(--color-brand-orange);
-    background: rgba(230, 81, 0, 0.12);
+    background: rgba(255, 102, 0, 0.12);
     transform: translateY(-2px);
 }
 
@@ -272,7 +272,7 @@
     border-radius: 16px;
     padding: 40px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35),
-                0 0 40px rgba(230, 81, 0, 0.08),
+                0 0 40px rgba(255, 102, 0, 0.08),
                 inset 0 1px 0 var(--contacts-glass-highlight);
 }
 
@@ -338,7 +338,7 @@
     border-color: var(--color-brand-orange);
     outline: none;
     background: rgba(0, 0, 0, 0.45);
-    box-shadow: 0 0 0 1px rgba(230, 81, 0, 0.25);
+    box-shadow: 0 0 0 1px rgba(255, 102, 0, 0.25);
 }
 
 .contacts-page .contact-form .form-textarea {
@@ -370,7 +370,7 @@
 .contacts-page .contact-form .lead-form-telegram__wrap:focus-within {
     border-color: var(--color-brand-orange);
     background: rgba(0, 0, 0, 0.45);
-    box-shadow: 0 0 0 1px rgba(230, 81, 0, 0.25);
+    box-shadow: 0 0 0 1px rgba(255, 102, 0, 0.25);
 }
 
 .contacts-page .contact-form .lead-form-telegram__input.form-input:focus,
@@ -603,7 +603,7 @@
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--color-brand-orange, #E65100);
+    color: var(--color-brand-orange, #f60);
     margin-bottom: 4px;
 }
 

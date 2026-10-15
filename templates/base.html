@@ -55,11 +55,11 @@
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <!-- Critical above-the-fold CSS (header + body + fixed widgets) — inline, eliminates render-blocking AND CLS -->
     <style>
-:root{--color-brand-orange:#E65100;--color-brand-purple:#7B2CBF;--color-black:#000;--color-white:#FFF;--color-beige:#bab8b7;--color-beige-alt:#FAF7F2;--color-gray:#F8F8F8;--font-medium:clamp(20px,3vw,24px);--font-base:14px;--space-xs:clamp(16px,2vw,20px);--transition-normal:300ms;--easing-default:ease-out;--radius-sm:8px;--z-navigation:1000;--z-burger-button:10001;--z-mobile-menu:10000;--z-modal-backdrop:10002;--pl-col:280px;--pl-container:calc(4 * var(--pl-col) + 3 * 14px);--pl-gutter:max(clamp(16px,4vw,20px),env(safe-area-inset-left));--pl-shell:calc(var(--pl-container) + 2 * var(--pl-gutter))}
+:root{--color-brand-orange:#f60;--color-brand-purple:#f60;--color-black:#000;--color-white:#FFF;--color-beige:#000;--color-beige-alt:#0a0a0a;--color-gray:#141414;--rn-white:#f5f5f5;--rn-orange:#f60;--rn-font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--font-medium:clamp(20px,3vw,24px);--font-base:14px;--space-xs:clamp(16px,2vw,20px);--transition-normal:300ms;--easing-default:ease-out;--radius-sm:8px;--z-navigation:1000;--z-burger-button:10001;--z-mobile-menu:10000;--z-modal-backdrop:10002;--pl-col:280px;--pl-container:calc(4 * var(--pl-col) + 3 * 14px);--pl-gutter:max(clamp(16px,4vw,20px),env(safe-area-inset-left));--pl-shell:calc(var(--pl-container) + 2 * var(--pl-gutter))}
 @media(min-width:768px){:root{--pl-gutter:max(64px,env(safe-area-inset-left))}}
 *{margin:0;padding:0;box-sizing:border-box}
-html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
-body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-weight:400;line-height:1.5;color:#000;background-color:var(--color-beige);overflow-x:hidden}
+html{background:#000;font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+body{font-family:var(--rn-font);font-weight:400;line-height:1.5;color:var(--rn-white);background-color:#000;overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 a{text-decoration:none;color:inherit}
 ul,ol{list-style:none}
@@ -68,12 +68,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .main-navigation{position:fixed;top:0;left:0;right:0;z-index:var(--z-navigation);padding:var(--space-xs) 0;background:transparent;transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .nav-container{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:var(--pl-shell);margin:0 auto;padding:0 var(--pl-gutter);box-sizing:border-box}
 .nav-logo-section{flex:0 0 auto}
-.nav-logo{font-size:var(--font-medium);font-weight:700;color:var(--color-white);text-decoration:none;letter-spacing:-.5px}
-.nav-logo-labs{color:var(--color-brand-purple)}
+.nav-logo{font-size:var(--font-medium);font-weight:600;color:var(--rn-white);text-decoration:none;letter-spacing:-.5px}
+.nav-logo-labs{color:var(--rn-orange)}
 .nav-menu{display:flex;align-items:center;gap:clamp(16px,2vw,24px);list-style:none;margin:0;padding:0;justify-content:center;flex-wrap:wrap}
-.nav-link{font-size:var(--font-base);font-weight:700;color:var(--color-white);text-decoration:none;text-transform:lowercase;letter-spacing:.5px;white-space:nowrap;padding:8px 4px}
+.nav-link{font-size:var(--font-base);font-weight:500;color:var(--rn-white);text-decoration:none;text-transform:none;letter-spacing:-.02em;border-radius:200px;white-space:nowrap;padding:8px 4px}
 .language-switcher{display:flex;gap:8px;align-items:center}
-.lang-btn{padding:6px 12px;border-radius:var(--radius-sm);text-decoration:none;font-weight:500;font-size:14px;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.lang-btn{padding:6px 12px;border-radius:200px;text-decoration:none;font-weight:500;font-size:14px;color:#fff;border:1px solid rgba(255,255,255,.3)}
 .lang-btn.active{background:var(--color-brand-orange);border-color:var(--color-brand-orange)}
 .burger-menu{display:none;width:40px;height:40px;position:relative;cursor:pointer;background:transparent;border:none;padding:0;z-index:var(--z-burger-button)}
 .burger-line{position:absolute;width:26px;height:2px;background:var(--color-white);left:50%;transform:translateX(-50%);transition:all .4s cubic-bezier(.68,-.55,.265,1.55)}
@@ -93,10 +93,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .is-sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9000}
     </style>
 
+    <!-- Renova restyle: Inter (latin + latin-ext) + design tokens -->
+    <link rel="preload" href="{% static 'fonts/inter/inter-400-adb775.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{% static 'css/fonts-inter.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'css/core/tokens-renova.css' %}?v=1">
+
     <!-- CSS Base Bundle — non-blocking (preload + media-print swap on load) -->
-    <link rel="preload" href="{% static 'css/base-bundle.css' %}?v=36" as="style">
-    <link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=36" media="print" data-async-css>
-    <noscript><link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=36"></noscript>
+    <link rel="preload" href="{% static 'css/base-bundle.css' %}?v=37" as="style">
+    <link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=37" media="print" data-async-css>
+    <noscript><link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=37"></noscript>
     <link rel="preload" href="{% static 'css/components/lead-form.css' %}?v=3" as="style">
     <link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=3" media="print" data-async-css>
     <noscript><link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=3"></noscript>
@@ -107,6 +112,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <!-- Page specific CSS -->
     {% block page_css %}{% endblock %}
     {% block extra_css %}{% endblock %}
+
+    <!-- Renova theme layer — MUST stay after page CSS (wins the cascade) -->
+    <link rel="stylesheet" href="{% static 'css/renova-theme.css' %}?v=1">
 
     <!-- Activate non-blocking CSS as soon as it loads (eliminates FOUC, no defer wait) -->
     <script nonce="{{ csp_nonce }}">
@@ -218,11 +226,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     {% block base_js %}
     <script src="{% static 'js/core/analytics.js' %}" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/core/gclid-capture.js' %}" nonce="{{ csp_nonce }}" defer></script>
-    <script src="{% static 'js/core/ec-phone.js' %}" nonce="{{ csp_nonce }}" defer></script>
+    <script src="{% static 'js/core/ec-phone.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/core/utils.js' %}" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/mobile-core.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
-    <script src="{% static 'js/core/phone-mask.js' %}" nonce="{{ csp_nonce }}" defer></script>
-    <script src="{% static 'js/core/phone-mask-intl.js' %}" nonce="{{ csp_nonce }}" defer></script>
+    {# EU phone field (country selector, +420 default, E.164). UA-only phone-mask.js removed. #}
+    <script src="{% static 'js/core/phone-mask-intl.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/base.js' %}?v=33" nonce="{{ csp_nonce }}" defer></script>
     <!-- video-system.js: load only on pages that actually contain <video> (skips landings without media) -->
     <script nonce="{{ csp_nonce }}">

@@ -1,0 +1,40 @@
+/* =====================================================================
+   Renova design tokens (Figma 7uoVJKPxBEi4MiARfaDeZV, hf-/tgf- layer).
+   Single source for the CZ restyle. Loaded early (before page CSS).
+   ===================================================================== */
+:root{
+  --rn-black:#000;
+  --rn-bubble:#141414;
+  --rn-surface:#0d0d0d;
+  --rn-white:#f5f5f5;
+  --rn-orange:#f60;
+  --rn-orange-deep:#d05300;
+  --rn-orange-hover:#b8410c;     /* AA (5.3:1) with white text */
+  --rn-gray:#a2a2a2;
+  --rn-gray-2:#929292;
+  --rn-line:rgba(255,255,255,.12);
+  --rn-row-bg:rgba(255,255,255,.1);
+  --rn-card-bg:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(255,102,0,.1) 100%);
+  --rn-radius-card:30px;
+  --rn-radius-pill:200px;
+  --rn-radius-input:16px;
+  --rn-container:1330px;
+  --rn-pad:55px;
+  --rn-font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --rn-font-display:Helvetica,'Helvetica Neue',Arial,sans-serif;
+
+  /* legacy tokens re-pointed to Renova */
+  --color-brand-orange:#f60;
+  --color-brand-orange-active:#d05300;
+  --color-brand-purple:#f60;
+  --color-black:#000;
+  --color-beige:#000;
+  --color-beige-alt:#0a0a0a;
+  --color-gray:#141414;
+
+  /* hf aliases so ported Renova markup works everywhere */
+  --hf-orange:#f60;--hf-orange-deep:#d05300;--hf-white:#f5f5f5;--hf-gray:#a2a2a2;--hf-gray-quote:#929292;--hf-black:#000;
+  --hf-card-bg:var(--rn-card-bg);--hf-row-bg:var(--rn-row-bg);--hf-radius-card:30px;--hf-pad:55px;
+  --hf-font:var(--rn-font);--hf-font-display:var(--rn-font-display);
+}
+@media (max-width:767px){:root{--rn-pad:16px;--hf-pad:16px}}
