@@ -23,8 +23,8 @@ class TelegramBotPageTests(TestCase):
                 self.assertEqual(response.status_code, 200)
                 html = response.content.decode()
                 self.assertIn('plBotRoot', html)
-                self.assertIn('telegram-bot.css', html)
-                self.assertIn('pl-product-tokens.css', html)
+                # Renova restyle: page is built on Renova tg-figma layout
+                self.assertIn('tg-figma/tg-figma.css', html)
                 self.assertNotIn('internet-shop-v2.js', html)
                 self.assertNotIn('internet-shop-v2.css', html)
                 self.assertNotIn('internet-shop-v2-anim.css', html)
@@ -42,8 +42,9 @@ class TelegramBotPageTests(TestCase):
                 self.assertIn('name="honeypot"', html)
                 self.assertIn('class="pl-bot__honeypot"', html)
                 self.assertIn('id="pl-bot-form"', html)
-                self.assertIn('pl-bot__demo', html)
-                self.assertIn('pl-bot__tg-thread', html)
+                # Renova tg-figma demo chat
+                self.assertIn('tgf-demo', html)
+                self.assertIn('tgf-msg', html)
 
     def test_section_order_and_cta_copy(self):
         html = self.client.get('/telegram-bot/').content.decode()
