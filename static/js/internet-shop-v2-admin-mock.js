@@ -1,274 +1,320 @@
 (function () {
     'use strict';
 
+    var isRu = (document.documentElement.lang || '').toLowerCase().indexOf('ru') === 0
+        || /\/ru\//.test(location.pathname);
+
     var STATUS_CYCLE = ['paid', 'pending', 'shipped'];
-
-    var I18N_LOCALE = (function() {
-        var lang = (document.documentElement.getAttribute('lang') || 'uk').toLowerCase();
-        if (lang.indexOf('en') === 0) return 'en';
-        if (lang.indexOf('cs') === 0) return 'cs';
-        if (lang.indexOf('ru') === 0) return 'ru';
-        return 'uk';
-    })();
-
-    var I18N_CURRENCY = (I18N_LOCALE === 'en' || I18N_LOCALE === 'cs') ? '€' : '₴';
-    var demoPhones = (I18N_LOCALE === 'en' || I18N_LOCALE === 'cs')
-        ? ['+420 777 123 456', '+420 602 987 654', '+420 777 456 789', '+420 603 234 567', '+420 777 345 678']
-        : ['+380 67 123 45 67', '+380 50 987 65 43', '+380 93 456 78 90', '+380 66 234 56 78', '+380 97 345 67 89'];
-
-    var names = {
-        'Olena K.': { uk: 'Олена К.', ru: 'Елена К.', en: 'Elena K.', cs: 'Alena K.' },
-        'Andriy M.': { uk: 'Андрій М.', ru: 'Андрей М.', en: 'Andrew M.', cs: 'Andrej M.' },
-        'Iryna V.': { uk: 'Ірина В.', ru: 'Ирина В.', en: 'Irene V.', cs: 'Irena V.' },
-        'Maksym T.': { uk: 'Максим Т.', ru: 'Максим Т.', en: 'Max T.', cs: 'Maxim T.' },
-        'Sofiia L.': { uk: 'Софія Л.', ru: 'София Л.', en: 'Sofiia L.', cs: 'Sofie L.' },
-        'Nike Air Max': { uk: 'Кросівки Nike Air Max', ru: 'Кроссовки Nike Air Max', en: 'Nike Air Max Shoes', cs: 'Tenisky Nike Air Max' },
-        'Cotton Socks': { uk: 'Шкарпетки бавовняні', ru: 'Носки хлопковые', en: 'Cotton Socks', cs: 'Bavlněné ponožky' },
-        'Winter Jacket': { uk: 'Куртка зимова', ru: 'Куртка зимняя', en: 'Winter Jacket', cs: 'Zimní bunda' },
-        'Scarf': { uk: 'Шарф вовняний', ru: 'Шарф шерстяной', en: 'Wool Scarf', cs: 'Vlněná šála' },
-        'Leather Bag': { uk: 'Сумка шкіряна', ru: 'Сумка кожаная', en: 'Leather Bag', cs: 'Kožená taška' },
-        'Casio Watch': { uk: 'Годинник Casio', ru: 'Часы Casio', en: 'Casio Watch', cs: 'Hodinky Casio' },
-        'Oversize T-shirt': { uk: 'Футболка oversize', ru: 'Футболка oversize', en: 'Oversize T-shirt', cs: 'Oversize tričko' },
-        'Shoes': { uk: 'Взуття', ru: 'Обувь', en: 'Shoes', cs: 'Obuv' },
-        'Clothing': { uk: 'Одяг', ru: 'Одежда', en: 'Clothing', cs: 'Oblečení' },
-        'Accessories': { uk: 'Аксесуари', ru: 'Аксессуары', en: 'Accessories', cs: 'Doplňky' }
+    var STATUS_META = {
+        paid: { label: 'Оплачено', className: 'pl-shop__status--paid' },
+        pending: { label: 'В обробці', className: 'pl-shop__status--pending' },
+        shipped: { label: 'Відправлено', className: 'pl-shop__status--shipped' }
     };
 
-    function t(key) {
-        if (!names[key]) return key;
-        return names[key][I18N_LOCALE] || names[key].en || key;
-    }
+    var TITLE_MAP = {
+        orders: 'Адмін / Замовлення',
+        products: 'Адмін / Товари',
+        analytics: 'Адмін / Аналітика'
+    };
 
     var state = {
         orders: [
             {
                 id: '10428',
-                customer: t('Olena K.'),
-                sum: I18N_CURRENCY + ' 1 290',
+                customer: 'Олена К.',
+                sum: '₴1 290',
                 status: 'paid',
-                phone: demoPhones[0],
+                phone: '+380 67 123 45 67',
                 email: 'olena.k@email.com',
                 items: [
-                    { name: t('Nike Air Max'), qty: 1, price: I18N_CURRENCY + ' 990' },
-                    { name: t('Cotton Socks'), qty: 2, price: I18N_CURRENCY + ' 150' }
+                    { name: 'Кросівки Nike Air', qty: 1, price: '₴990' },
+                    { name: 'Шкарпетки бавовняні', qty: 2, price: '₴150' }
                 ]
             },
             {
                 id: '10427',
-                customer: t('Andriy M.'),
-                sum: I18N_CURRENCY + ' 3 480',
+                customer: 'Андрій М.',
+                sum: '₴3 099',
                 status: 'pending',
-                phone: demoPhones[1],
+                phone: '+380 50 987 65 43',
                 email: 'andriy.m@email.com',
                 items: [
-                    { name: t('Winter Jacket'), qty: 1, price: I18N_CURRENCY + ' 2 890' },
-                    { name: t('Scarf'), qty: 1, price: I18N_CURRENCY + ' 590' }
+                    { name: 'Куртка зимова', qty: 1, price: '₴2 509' },
+                    { name: 'Шарф', qty: 1, price: '₴590' }
                 ]
             },
             {
                 id: '10426',
-                customer: t('Iryna V.'),
-                sum: I18N_CURRENCY + ' 890',
-                status: 'paid',
-                phone: demoPhones[2],
+                customer: 'Ірина В.',
+                sum: '₴1 999',
+                status: 'shipped',
+                phone: '+380 93 456 78 90',
                 email: 'iryna.v@email.com',
                 items: [
-                    { name: t('Leather Bag'), qty: 1, price: I18N_CURRENCY + ' 890' }
+                    { name: 'Сумка шкіряна', qty: 1, price: '₴1 999' }
                 ]
             },
             {
                 id: '10425',
-                customer: t('Maksym T.'),
-                sum: I18N_CURRENCY + ' 2 150',
-                status: 'shipped',
-                phone: demoPhones[3],
+                customer: 'Максим Е.',
+                sum: '₴2 489',
+                status: 'paid',
+                phone: '+380 66 234 56 78',
                 email: 'max.t@email.com',
                 items: [
-                    { name: t('Casio Watch'), qty: 1, price: I18N_CURRENCY + ' 2 150' }
+                    { name: 'Годинник Casio', qty: 1, price: '₴2 489' }
                 ]
             },
             {
                 id: '10424',
-                customer: t('Sofiia L.'),
-                sum: I18N_CURRENCY + ' 560',
+                customer: 'Софія Л.',
+                sum: '₴690',
                 status: 'pending',
-                phone: demoPhones[4],
+                phone: '+380 97 345 67 89',
                 email: 'sofia.l@email.com',
                 items: [
-                    { name: t('Oversize T-shirt'), qty: 2, price: I18N_CURRENCY + ' 280' }
+                    { name: 'Футболка oversize', qty: 2, price: '₴345' }
                 ]
             }
         ],
         products: [
             {
                 sku: 'NK-001',
-                name: t('Nike Air Max'),
-                price: I18N_CURRENCY + ' 990',
+                name: 'Кросівки Nike Air',
+                price: '₴990',
                 stock: 42,
-                category: t('Shoes'),
+                category: 'Взуття',
                 visibility: 'active',
-                visibilityLabel: 'Active',
+                visibilityLabel: 'Активний',
                 sales30: 128,
-                desc: (I18N_LOCALE === 'uk' ? 'Бестселер категорії. Синхронізація з Prom і Rozetka без ручного оновлення.' :
-                       I18N_LOCALE === 'ru' ? 'Бестселлер категории. Синхронизация с Prom и Rozetka без ручного обновления.' :
-                       I18N_LOCALE === 'cs' ? 'Bestseller kategorie. Synchronizace s prodejními kanály bez ruční aktualizace.' :
-                       'Category bestseller. Sync with marketplaces without manual updates.')
+                desc: 'Бестселер категорії. Синхронізація з Prom і Rozetka без ручного оновлення.'
             },
             {
                 sku: 'JK-204',
-                name: t('Winter Jacket'),
-                price: I18N_CURRENCY + ' 2 890',
+                name: 'Куртка зимова',
+                price: '₴2 890',
                 stock: 8,
-                category: t('Clothing'),
+                category: 'Одяг',
                 visibility: 'active',
-                visibilityLabel: 'Active',
+                visibilityLabel: 'Активний',
                 sales30: 54,
-                desc: (I18N_LOCALE === 'uk' ? 'Преміум-позиція з високим середнім чеком. Залишки оновлюються після кожного замовлення.' :
-                       I18N_LOCALE === 'ru' ? 'Премиум-позиция с высоким средним чеком. Остатки обновляются после каждого заказа.' :
-                       I18N_LOCALE === 'cs' ? 'Prémiová položka s vysokou průměrnou hodnotou. Zásoby se aktualizují po každé objednávce.' :
-                       'Premium item with high average check. Stock updates automatically.')
+                desc: 'Преміум-позиція з високим середнім чеком. Залишки оновлюються після кожного замовлення.'
             },
             {
                 sku: 'BG-118',
-                name: t('Leather Bag'),
-                price: I18N_CURRENCY + ' 890',
+                name: 'Сумка шкіряна',
+                price: '₴890',
                 stock: 15,
-                category: t('Accessories'),
+                category: 'Аксесуари',
                 visibility: 'active',
-                visibilityLabel: 'Active',
+                visibilityLabel: 'Активний',
                 sales30: 41,
-                desc: (I18N_LOCALE === 'uk' ? 'Стабільні продажі з органічного трафіку. SEO-картка оптимізована під Google Shopping.' :
-                       I18N_LOCALE === 'ru' ? 'Стабильные продажи из органического трафика. SEO-карточка оптимизирована под Google Shopping.' :
-                       I18N_LOCALE === 'cs' ? 'Stabilní organické prodeje. SEO karta optimalizována pro Google Shopping.' :
-                       'Stable organic sales. SEO-optimized for Google Shopping.')
+                desc: 'Стабільні продажі з органічного трафіку. SEO-картка оптимізована під Google Shopping.'
             },
             {
                 sku: 'CS-440',
-                name: t('Casio Watch'),
-                price: I18N_CURRENCY + ' 2 150',
+                name: 'Годинник Casio',
+                price: '₴2 150',
                 stock: 3,
-                category: t('Accessories'),
+                category: 'Аксесуари',
                 visibility: 'low',
-                visibilityLabel: 'Low Stock',
+                visibilityLabel: 'Мало на складі',
                 sales30: 22,
-                desc: (I18N_LOCALE === 'uk' ? 'Залишок критично низький — система вже надіслала push-сповіщення менеджеру.' :
-                       I18N_LOCALE === 'ru' ? 'Остаток критически низкий — система уже отправила push-уведомление менеджеру.' :
-                       I18N_LOCALE === 'cs' ? 'Kriticky nízké zásoby — systém již odeslal push notifikaci manažerovi.' :
-                       'Critically low stock — push notification sent to manager.')
+                desc: 'Залишок критично низький — система вже надіслала push-сповіщення менеджеру.'
             },
             {
                 sku: 'TS-772',
-                name: t('Oversize T-shirt'),
-                price: I18N_CURRENCY + ' 280',
+                name: 'Футболка oversize',
+                price: '₴280',
                 stock: 120,
-                category: t('Clothing'),
+                category: 'Одяг',
                 visibility: 'active',
-                visibilityLabel: 'Active',
+                visibilityLabel: 'Активний',
                 sales30: 312,
-                desc: (I18N_LOCALE === 'uk' ? 'Топ-1 за кількістю замовлень за останні 30 днів. Автопідняття в каталозі увімкнено.' :
-                       I18N_LOCALE === 'ru' ? 'Топ-1 по количеству заказов за последние 30 дней. Автоподнятие в каталоге включено.' :
-                       I18N_LOCALE === 'cs' ? 'Top 1 v počtu objednávek za posledních 30 dní. Automatické zvýraznění v katalogu zapnuto.' :
-                       'Top-1 by orders in last 30 days. Catalog auto-boost enabled.')
+                desc: 'Топ-1 за кількістю замовлень за останні 30 днів. Автопідняття в каталозі увімкнено.'
             },
             {
                 sku: 'SK-009',
-                name: t('Cotton Socks'),
-                price: I18N_CURRENCY + ' 75',
+                name: 'Шкарпетки бавовняні',
+                price: '₴75',
                 stock: 340,
-                category: t('Accessories'),
+                category: 'Аксесуари',
                 visibility: 'active',
-                visibilityLabel: 'Active',
+                visibilityLabel: 'Активний',
                 sales30: 89,
-                desc: (I18N_LOCALE === 'uk' ? 'Допродаж у кошику. Пакетна ціна та знижка від 3 пар працюють автоматично.' :
-                       I18N_LOCALE === 'ru' ? 'Допродажа в корзине. Пакетная цена и скидка от 3 пар работают автоматически.' :
-                       I18N_LOCALE === 'cs' ? 'Doplňkový prodej v košíku. Balíčková cena a sleva od 3 párů fungují automaticky.' :
-                       'Cart upsell. Bundle price and bulk discount work automatically.')
+                desc: 'Допродаж у кошику. Пакетна ціна та знижка від 3 пар працюють автоматично.'
             }
         ],
         analyticsTop: [
-            { name: t('Nike Air Max'), sales: 128, revenue: I18N_CURRENCY + ' 126k' },
-            { name: t('Winter Jacket'), sales: 54, revenue: I18N_CURRENCY + ' 156k' },
-            { name: t('Oversize T-shirt'), sales: 312, revenue: I18N_CURRENCY + ' 87k' },
-            { name: t('Leather Bag'), sales: 41, revenue: I18N_CURRENCY + ' 36k' },
-            { name: t('Casio Watch'), sales: 22, revenue: I18N_CURRENCY + ' 47k' }
+            { name: 'Кросівки Nike Air', sales: 128, revenue: '₴126k' },
+            { name: 'Куртка зимова', sales: 54, revenue: '₴156k' },
+            { name: 'Футболка oversize', sales: 312, revenue: '₴87k' },
+            { name: 'Сумка шкіряна', sales: 41, revenue: '₴36k' },
+            { name: 'Годинник Casio', sales: 22, revenue: '₴47k' }
         ]
     };
 
+
+    function applyRuLocale() {
+        if (!isRu) return;
+
+        STATUS_META.paid.label = 'Оплачено';
+        STATUS_META.pending.label = 'В обработке';
+        STATUS_META.shipped.label = 'Отправлено';
+
+        TITLE_MAP.orders = 'Админ / Заказы';
+        TITLE_MAP.products = 'Админ / Товары';
+        TITLE_MAP.analytics = 'Админ / Аналитика';
+
+        state.orders = [
+            {
+                id: '10428',
+                customer: 'Елена К.',
+                sum: '₴1 290',
+                status: 'paid',
+                phone: '+380 67 123 45 67',
+                email: 'olena.k@email.com',
+                items: [
+                    { name: 'Кроссовки Nike Air', qty: 1, price: '₴990' },
+                    { name: 'Носки хлопковые', qty: 2, price: '₴150' }
+                ]
+            },
+            {
+                id: '10427',
+                customer: 'Андрей М.',
+                sum: '₴3 099',
+                status: 'pending',
+                phone: '+380 50 987 65 43',
+                email: 'andriy.m@email.com',
+                items: [
+                    { name: 'Куртка зимняя', qty: 1, price: '₴2 509' },
+                    { name: 'Шарф', qty: 1, price: '₴590' }
+                ]
+            },
+            {
+                id: '10426',
+                customer: 'Ирина В.',
+                sum: '₴1 999',
+                status: 'shipped',
+                phone: '+380 93 456 78 90',
+                email: 'iryna.v@email.com',
+                items: [
+                    { name: 'Сумка кожаная', qty: 1, price: '₴1 999' }
+                ]
+            },
+            {
+                id: '10425',
+                customer: 'Максим Е.',
+                sum: '₴2 489',
+                status: 'paid',
+                phone: '+380 66 234 56 78',
+                email: 'max.t@email.com',
+                items: [
+                    { name: 'Часы Casio', qty: 1, price: '₴2 489' }
+                ]
+            },
+            {
+                id: '10424',
+                customer: 'София Л.',
+                sum: '₴690',
+                status: 'pending',
+                phone: '+380 97 345 67 89',
+                email: 'sofia.l@email.com',
+                items: [
+                    { name: 'Футболка oversize', qty: 2, price: '₴345' }
+                ]
+            }
+        ];
+
+        state.products = [
+            {
+                sku: 'NK-001',
+                name: 'Кроссовки Nike Air',
+                price: '₴990',
+                stock: 42,
+                category: 'Обувь',
+                visibility: 'active',
+                visibilityLabel: 'Активный',
+                sales30: 128,
+                desc: 'Бестселлер категории. Синхронизация с Prom и Rozetka без ручного обновления.'
+            },
+            {
+                sku: 'JK-204',
+                name: 'Куртка зимняя',
+                price: '₴2 890',
+                stock: 8,
+                category: 'Одежда',
+                visibility: 'active',
+                visibilityLabel: 'Активный',
+                sales30: 54,
+                desc: 'Премиум-позиция с высоким средним чеком. Остатки обновляются после каждого заказа.'
+            },
+            {
+                sku: 'BG-118',
+                name: 'Сумка кожаная',
+                price: '₴890',
+                stock: 15,
+                category: 'Аксессуары',
+                visibility: 'active',
+                visibilityLabel: 'Активный',
+                sales30: 41,
+                desc: 'Стабильные продажи с органического трафика. SEO-карточка оптимизирована под Google Shopping.'
+            },
+            {
+                sku: 'CS-440',
+                name: 'Часы Casio',
+                price: '₴2 150',
+                stock: 3,
+                category: 'Аксессуары',
+                visibility: 'low',
+                visibilityLabel: 'Мало на складе',
+                sales30: 22,
+                desc: 'Остаток критически низкий — система уже отправила push-уведомление менеджеру.'
+            },
+            {
+                sku: 'TS-772',
+                name: 'Футболка oversize',
+                price: '₴280',
+                stock: 120,
+                category: 'Одежда',
+                visibility: 'active',
+                visibilityLabel: 'Активный',
+                sales30: 312,
+                desc: 'Топ-1 по количеству заказов за последние 30 дней. Автоподнятие в каталоге включено.'
+            },
+            {
+                sku: 'SK-009',
+                name: 'Носки хлопковые',
+                price: '₴75',
+                stock: 340,
+                category: 'Аксессуары',
+                visibility: 'active',
+                visibilityLabel: 'Активный',
+                sales30: 89,
+                desc: 'Допродажа в корзине. Пакетная цена и скидка от 3 пар работают автоматически.'
+            }
+        ];
+
+        state.analyticsTop = [
+            { name: 'Кроссовки Nike Air', sales: 128, revenue: '₴126k' },
+            { name: 'Куртка зимняя', sales: 54, revenue: '₴156k' },
+            { name: 'Футболка oversize', sales: 312, revenue: '₴87k' },
+            { name: 'Сумка кожаная', sales: 41, revenue: '₴36k' },
+            { name: 'Часы Casio', sales: 22, revenue: '₴47k' }
+        ];
+    }
+
+    applyRuLocale();
+
     function initAdminMock() {
         var mock = document.querySelector('[data-admin-mock]');
-        if (!mock || mock.__plAdminInited) return;
-        mock.__plAdminInited = 1;
+        if (!mock) return;
 
         var panel = mock.querySelector('#pl-admin-panel');
         var titleEl = mock.querySelector('#pl-admin-title');
         var backBtn = mock.querySelector('#pl-admin-back');
         var tabBtns = mock.querySelectorAll('[data-admin-tab]');
         if (!panel || !titleEl) return;
-
-        var d = mock.dataset;
-        var I18N = {
-            statusPaid: d.i18nStatusPaid || 'Оплачено',
-            statusPending: d.i18nStatusPending || 'В обробці',
-            statusShipped: d.i18nStatusShipped || 'Відправлено',
-            titleOrders: d.i18nTitleOrders || 'Замовлення',
-            titleProducts: d.i18nTitleProducts || 'Товари',
-            titleAnalytics: d.i18nTitleAnalytics || 'Аналітика',
-            titleProduct: d.i18nTitleProduct || 'Товар',
-            colOrder: d.i18nColOrder || 'Замовлення',
-            colSum: d.i18nColSum || 'Сума',
-            colStatus: d.i18nColStatus || 'Статус',
-            colProduct: d.i18nColProduct || 'Товар',
-            colPrice: d.i18nColPrice || 'Ціна',
-            colStock: d.i18nColStock || 'Залишок',
-            colTop: d.i18nColTop || 'Топ товар',
-            colSales: d.i18nColSales || 'Продажі',
-            colRevenue: d.i18nColRevenue || 'Виручка',
-            metricOrdersToday: d.i18nMetricOrdersToday || 'Замовлень сьогодні',
-            metricRevenue: d.i18nMetricRevenue || 'Виручка',
-            metricConversion: d.i18nMetricConversion || 'Конверсія',
-            metricSalesWeek: d.i18nMetricSalesWeek || 'Продажі за тиждень',
-            metricSku: d.i18nMetricSku || 'SKU в каталозі',
-            metricInstock: d.i18nMetricInstock || 'На складі',
-            metricNewWeek: d.i18nMetricNewWeek || 'Нових за тиждень',
-            metricVisitors: d.i18nMetricVisitors || 'Відвідувачі',
-            metricAvgCheck: d.i18nMetricAvgCheck || 'Середній чек',
-            visibilityActive: d.i18nVisibilityActive || 'Активний',
-            visibilityLow: d.i18nVisibilityLow || 'Мало на складі',
-            visibilityOut: d.i18nVisibilityOut || 'Немає в наявності',
-            unit: d.i18nUnit || 'од.',
-            together: d.i18nTogether || 'Разом',
-            updateStock: d.i18nUpdateStock || 'Оновити залишок',
-            sales30Label: d.i18nSales30 || 'Продажі / 30 дн',
-            openProduct: d.i18nOpenProduct || 'Відкрити картку товару',
-            changeStatus: d.i18nChangeStatus || 'Змінити статус замовлення',
-            decreaseStock: d.i18nDecreaseStock || 'Зменшити залишок',
-            increaseStock: d.i18nIncreaseStock || 'Збільшити залишок'
-        };
-
-        var STATUS_META = {
-            paid: { label: I18N.statusPaid, className: 'pl-shop__status--paid' },
-            pending: { label: I18N.statusPending, className: 'pl-shop__status--pending' },
-            shipped: { label: I18N.statusShipped, className: 'pl-shop__status--shipped' }
-        };
-
-        var TITLE_MAP = {
-            orders: 'admin · ' + I18N.titleOrders,
-            products: 'admin · ' + I18N.titleProducts,
-            analytics: 'admin · ' + I18N.titleAnalytics
-        };
-
-        state.products.forEach(function (product) {
-            if (product.stock <= 0) {
-                product.visibility = 'out';
-                product.visibilityLabel = I18N.visibilityOut;
-            } else if (product.stock <= 5) {
-                product.visibility = 'low';
-                product.visibilityLabel = I18N.visibilityLow;
-            } else {
-                product.visibility = 'active';
-                product.visibilityLabel = I18N.visibilityActive;
-            }
-        });
 
         var reduceMotion = window.matchMedia &&
             window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -306,16 +352,16 @@
         function syncProductVisibility(product) {
             if (product.stock <= 0) {
                 product.visibility = 'out';
-                product.visibilityLabel = I18N.visibilityOut;
+                product.visibilityLabel = isRu ? 'Нет в наличии' : 'Немає в наявності';
                 return;
             }
             if (product.stock <= 5) {
                 product.visibility = 'low';
-                product.visibilityLabel = I18N.visibilityLow;
+                product.visibilityLabel = isRu ? 'Мало на складе' : 'Мало на складі';
                 return;
             }
             product.visibility = 'active';
-            product.visibilityLabel = I18N.visibilityActive;
+            product.visibilityLabel = isRu ? 'Активный' : 'Активний';
         }
 
         function nextStatus(current) {
@@ -327,7 +373,7 @@
             var meta = STATUS_META[order.status];
             return '<button type="button" class="pl-shop__status ' + meta.className +
                 '" data-admin-status="' + escapeHtml(order.id) +
-                '" aria-label="' + escapeHtml(I18N.changeStatus) + ' #' + escapeHtml(order.id) + '">' +
+                '" aria-label="' + (isRu ? 'Изменить статус заказа #' : 'Змінити статус замовлення #') + escapeHtml(order.id) + '">' +
                 escapeHtml(meta.label) + '</button>';
         }
 
@@ -342,22 +388,23 @@
                 escapeHtml(value) + '</div></div>';
         }
 
-        function renderBars() {
-            return '<div class="pl-shop__admin-metric">' +
-                '<div class="pl-shop__admin-metric-label">' + escapeHtml(I18N.metricConversion) + '</div>' +
-                '<div class="pl-shop__admin-bars" aria-hidden="true">' +
-                '<span class="pl-shop__admin-bar-col"></span>' +
-                '<span class="pl-shop__admin-bar-col"></span>' +
-                '<span class="pl-shop__admin-bar-col"></span>' +
-                '<span class="pl-shop__admin-bar-col pl-shop__admin-bar-col--acc"></span>' +
-                '<span class="pl-shop__admin-bar-col pl-shop__admin-bar-col--acc"></span>' +
-                '</div></div>';
+        function renderChartMetric() {
+            var src = mock.getAttribute('data-chart-src');
+            var srcMobile = mock.getAttribute('data-chart-src-mobile');
+            var chart = src
+                ? '<picture class="pl-shop__admin-chart" aria-hidden="true">' +
+                    (srcMobile ? '<source media="(max-width: 767px)" srcset="' + escapeHtml(srcMobile) + '">' : '') +
+                    '<img src="' + escapeHtml(src) + '" alt="" width="160" height="94" decoding="async"></picture>'
+                : '';
+            return '<div class="pl-shop__admin-metric pl-shop__admin-metric--chart">' +
+                '<div class="pl-shop__admin-metric-label">' + (isRu ? 'Конверсия' : 'Конверсія') + '</div>' +
+                chart + '</div>';
         }
 
         function renderAnalyticsBars() {
             var heights = [35, 55, 42, 78, 100];
             var html = '<div class="pl-shop__admin-metric pl-shop__admin-metric--wide">' +
-                '<div class="pl-shop__admin-metric-label">' + escapeHtml(I18N.metricSalesWeek) + '</div>' +
+                '<div class="pl-shop__admin-metric-label">' + (isRu ? 'Продажи за неделю' : 'Продажі за тиждень') + '</div>' +
                 '<div class="pl-shop__admin-bars pl-shop__admin-bars--tall" aria-hidden="true">';
             heights.forEach(function (h, i) {
                 var acc = i >= 3 ? ' pl-shop__admin-bar-col--acc' : '';
@@ -378,16 +425,18 @@
 
         function renderOrdersView() {
             var metrics = renderMetrics(
-                renderMetric(I18N.metricOrdersToday, '47') +
-                renderMetric(I18N.metricRevenue, I18N_CURRENCY + '84k', 'pl-shop__admin-metric-val--acc') +
-                renderBars()
+                renderMetric(isRu ? 'Заказов сегодня' : 'Замовлень сьогодні', '47') +
+                renderMetric(isRu ? 'Выручка' : 'Виручка', '₴84k', 'pl-shop__admin-metric-val--acc') +
+                renderChartMetric()
             );
 
             var rows = '';
             state.orders.forEach(function (order, i) {
                 rows += '<div class="pl-shop__admin-table-row pl-shop__admin-table-row--clickable" role="button" tabindex="0" data-admin-order="' +
                     escapeHtml(order.id) + '" style="--admin-row-i:' + i + '">' +
-                    '<span class="pl-shop__admin-col-order">#' + escapeHtml(order.id) + ' · ' + escapeHtml(order.customer) + '</span>' +
+                    '<span class="pl-shop__admin-col-order"><span class="pl-shop__admin-order-id">#' + escapeHtml(order.id) + '</span>' +
+                    '<span class="pl-shop__admin-order-dot" aria-hidden="true"></span>' +
+                    '<span class="pl-shop__admin-order-name">' + escapeHtml(order.customer) + '</span></span>' +
                     '<span class="pl-shop__admin-col-sum">' + escapeHtml(order.sum) + '</span>' +
                     '<span class="pl-shop__admin-col-status">' + renderStatusButton(order) + '</span>' +
                     '</div>';
@@ -397,27 +446,27 @@
                 '<div class="pl-shop__admin-table-wrap">' +
                 '<div class="pl-shop__admin-table">' +
                 renderTableHead([
-                    { className: 'pl-shop__admin-col-order', label: I18N.colOrder },
-                    { className: 'pl-shop__admin-col-sum', label: I18N.colSum },
-                    { className: 'pl-shop__admin-col-status', label: I18N.colStatus }
+                    { className: 'pl-shop__admin-col-order', label: isRu ? 'Заказы' : 'Замовлення' },
+                    { className: 'pl-shop__admin-col-sum', label: isRu ? 'Сумма' : 'Сума' },
+                    { className: 'pl-shop__admin-col-status', label: isRu ? 'Статус' : 'Статус' }
                 ]) + rows + '</div></div>';
         }
 
         function renderProductsView() {
             var metrics = renderMetrics(
-                renderMetric(I18N.metricSku, '1 248') +
-                renderMetric(I18N.metricInstock, '892', 'pl-shop__admin-metric-val--acc') +
-                renderMetric(I18N.metricNewWeek, '12')
+                renderMetric(isRu ? 'SKU в каталоге' : 'SKU в каталозі', '1 248') +
+                renderMetric(isRu ? 'На складе' : 'На складі', '892', 'pl-shop__admin-metric-val--acc') +
+                renderMetric(isRu ? 'Новых за неделю' : 'Нових за тиждень', '12')
             );
 
             var rows = '';
             state.products.forEach(function (product, i) {
                 rows += '<div class="pl-shop__admin-table-row pl-shop__admin-table-row--clickable" role="button" tabindex="0" data-admin-product="' +
-                    escapeHtml(product.sku) + '" aria-label="' + escapeHtml(I18N.openProduct) + ' ' + escapeHtml(product.name) +
+                    escapeHtml(product.sku) + '" aria-label="' + (isRu ? 'Открыть карточку товара ' : 'Відкрити картку товару ') + escapeHtml(product.name) +
                     '" style="--admin-row-i:' + i + '">' +
                     '<span class="pl-shop__admin-col-order">' + escapeHtml(product.name) + '</span>' +
                     '<span class="pl-shop__admin-col-sum">' + escapeHtml(product.price) + '</span>' +
-                    '<span class="pl-shop__admin-col-status pl-shop__admin-col-stock">' + escapeHtml(String(product.stock)) + ' ' + escapeHtml(I18N.unit) + '</span>' +
+                    '<span class="pl-shop__admin-col-status pl-shop__admin-col-stock">' + escapeHtml(String(product.stock)) + (isRu ? ' шт.</span>' : ' од.</span>') +
                     '</div>';
             });
 
@@ -425,17 +474,17 @@
                 '<div class="pl-shop__admin-table-wrap">' +
                 '<div class="pl-shop__admin-table">' +
                 renderTableHead([
-                    { className: 'pl-shop__admin-col-order', label: I18N.colProduct },
-                    { className: 'pl-shop__admin-col-sum', label: I18N.colPrice },
-                    { className: 'pl-shop__admin-col-status', label: I18N.colStock }
+                    { className: 'pl-shop__admin-col-order', label: isRu ? 'Товар' : 'Товар' },
+                    { className: 'pl-shop__admin-col-sum', label: isRu ? 'Цена' : 'Ціна' },
+                    { className: 'pl-shop__admin-col-status', label: isRu ? 'Остаток' : 'Залишок' }
                 ]) + rows + '</div></div>';
         }
 
         function renderAnalyticsView() {
             var metrics = renderMetrics(
-                renderMetric(I18N.metricVisitors, '2 840') +
-                renderMetric(I18N.metricConversion, '3.2%', 'pl-shop__admin-metric-val--acc') +
-                renderMetric(I18N.metricAvgCheck, I18N_CURRENCY + ' 1 840')
+                renderMetric(isRu ? 'Посетители' : 'Відвідувачі', '2 840') +
+                renderMetric(isRu ? 'Конверсия' : 'Конверсія', '3.2%', 'pl-shop__admin-metric-val--acc') +
+                renderMetric(isRu ? 'Средний чек' : 'Середній чек', '₴1 840')
             );
 
             var rows = '';
@@ -451,9 +500,9 @@
                 '<div class="pl-shop__admin-table-wrap">' +
                 '<div class="pl-shop__admin-table">' +
                 renderTableHead([
-                    { className: 'pl-shop__admin-col-order', label: I18N.colTop },
-                    { className: 'pl-shop__admin-col-sum', label: I18N.colSales },
-                    { className: 'pl-shop__admin-col-status', label: I18N.colRevenue }
+                    { className: 'pl-shop__admin-col-order', label: isRu ? 'Топ товар' : 'Топ товар' },
+                    { className: 'pl-shop__admin-col-sum', label: isRu ? 'Продажи' : 'Продажі' },
+                    { className: 'pl-shop__admin-col-status', label: isRu ? 'Выручка' : 'Виручка' }
                 ]) + rows + '</div></div>';
         }
 
@@ -478,7 +527,7 @@
                 '</div>' +
                 '<div class="pl-shop__admin-detail-items">' + itemsHtml + '</div>' +
                 '<div class="pl-shop__admin-detail-total">' +
-                '<span>' + escapeHtml(I18N.together) + '</span><strong>' + escapeHtml(order.sum) + '</strong>' +
+                '<span>' + (isRu ? 'Итого' : 'Разом') + '</span><strong>' + escapeHtml(order.sum) + '</strong>' +
                 '</div></div>';
         }
 
@@ -499,25 +548,25 @@
                 '</div>' +
                 '<div class="pl-shop__admin-detail-specs">' +
                 '<div class="pl-shop__admin-detail-spec" style="--admin-row-i:0">' +
-                '<span class="pl-shop__admin-detail-spec-label">' + escapeHtml(I18N.colPrice) + '</span>' +
+                '<span class="pl-shop__admin-detail-spec-label">' + (isRu ? 'Цена' : 'Ціна') + '</span>' +
                 '<strong class="pl-shop__admin-detail-spec-val">' + escapeHtml(product.price) + '</strong></div>' +
                 '<div class="pl-shop__admin-detail-spec" style="--admin-row-i:1">' +
-                '<span class="pl-shop__admin-detail-spec-label">' + escapeHtml(I18N.colStock) + '</span>' +
+                '<span class="pl-shop__admin-detail-spec-label">' + (isRu ? 'Остаток' : 'Залишок') + '</span>' +
                 '<strong class="pl-shop__admin-detail-spec-val" data-admin-stock-val="' + escapeHtml(product.sku) + '">' +
-                escapeHtml(String(product.stock)) + ' ' + escapeHtml(I18N.unit) + '</strong></div>' +
+                escapeHtml(String(product.stock)) + (isRu ? ' шт.</strong></div>' : ' од.</strong></div>') +
                 '<div class="pl-shop__admin-detail-spec" style="--admin-row-i:2">' +
-                '<span class="pl-shop__admin-detail-spec-label">' + escapeHtml(I18N.sales30Label) + '</span>' +
+                '<span class="pl-shop__admin-detail-spec-label">' + (isRu ? 'Продажи / 30 дн' : 'Продажі / 30 дн') + '</span>' +
                 '<strong class="pl-shop__admin-detail-spec-val pl-shop__admin-detail-spec-val--acc">' +
                 escapeHtml(String(product.sales30)) + '</strong></div>' +
                 '</div>' +
                 '<p class="pl-shop__admin-detail-desc">' + escapeHtml(product.desc) + '</p>' +
                 '<div class="pl-shop__admin-stock-control">' +
-                '<span class="pl-shop__admin-stock-label">' + escapeHtml(I18N.updateStock) + '</span>' +
+                '<span class="pl-shop__admin-stock-label">' + (isRu ? 'Обновить остаток' : 'Оновити залишок') + '</span>' +
                 '<div class="pl-shop__admin-stock-actions">' +
                 '<button type="button" class="pl-shop__admin-stock-btn" data-admin-stock-minus="' + escapeHtml(product.sku) +
-                '" aria-label="' + escapeHtml(I18N.decreaseStock) + '">−</button>' +
+                '" aria-label="' + (isRu ? 'Уменьшить остаток' : 'Зменшити залишок') + '">−</button>' +
                 '<button type="button" class="pl-shop__admin-stock-btn pl-shop__admin-stock-btn--plus" data-admin-stock-plus="' +
-                escapeHtml(product.sku) + '" aria-label="' + escapeHtml(I18N.increaseStock) + '">+</button>' +
+                escapeHtml(product.sku) + '" aria-label="' + (isRu ? 'Увеличить остаток' : 'Збільшити залишок') + '">+</button>' +
                 '</div></div></div>';
         }
 
@@ -527,7 +576,7 @@
 
         function updateChrome(viewState) {
             if (viewState.view === 'order-detail') {
-                titleEl.textContent = 'admin · ' + I18N.titleOrders + ' #' + viewState.id;
+                titleEl.textContent = (isRu ? 'Админ / Заказы #' : 'Адмін / Замовлення #') + viewState.id;
                 if (backBtn) backBtn.hidden = false;
                 tabBtns.forEach(function (btn) {
                     btn.setAttribute('aria-disabled', 'true');
@@ -539,8 +588,8 @@
             if (viewState.view === 'product-detail') {
                 var product = getProduct(viewState.id);
                 titleEl.textContent = product
-                    ? 'admin · ' + product.name
-                    : 'admin · ' + I18N.titleProduct;
+                    ? (isRu ? 'Админ / ' : 'Адмін / ') + product.name
+                    : (isRu ? 'Админ / Товар' : 'Адмін / Товар');
                 if (backBtn) backBtn.hidden = false;
                 tabBtns.forEach(function (btn) {
                     btn.setAttribute('aria-disabled', 'true');
@@ -628,7 +677,7 @@
             var meta = STATUS_META[order.status];
             btn.className = 'pl-shop__status ' + meta.className;
             btn.textContent = meta.label;
-            btn.setAttribute('aria-label', I18N.changeStatus + ' #' + orderId);
+            btn.setAttribute('aria-label', (isRu ? 'Изменить статус заказа #' : 'Змінити статус замовлення #') + orderId);
             if (!reduceMotion) {
                 btn.classList.add('pl-shop__status--changing');
                 setTimeout(function () {
@@ -641,7 +690,7 @@
             syncProductVisibility(product);
             var stockEl = panel.querySelector('[data-admin-stock-val="' + product.sku + '"]');
             if (stockEl) {
-                stockEl.textContent = product.stock + ' ' + I18N.unit;
+                stockEl.textContent = product.stock + (isRu ? ' шт.' : ' од.');
                 if (!reduceMotion) {
                     stockEl.classList.add('pl-shop__admin-stock-val--changing');
                     setTimeout(function () {

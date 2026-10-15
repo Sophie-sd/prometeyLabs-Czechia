@@ -1,14 +1,17 @@
 {% load i18n %}
-<table class="pl-shop__pkg-matrix-table" aria-label="{% trans 'Порівняння пакетів BASE, PREMIUM та PLATINUM' %}">
+<table class="pl-shop__pkg-matrix-table" aria-label="{% trans 'Порівняння пакетів Base, Premium та Platinum' %}">
     <thead>
         <tr>
             <th scope="col">{% trans "Параметр / послуга" %}</th>
-            <th scope="col">BASE</th>
-            <th scope="col">PREMIUM</th>
-            <th scope="col">PLATINUM</th>
+            <th scope="col">Base</th>
+            <th scope="col">Premium</th>
+            <th scope="col">Platinum</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="pl-shop__pkg-matrix-group">
+        <tr class="pl-shop__pkg-matrix-group-row">
+            <th scope="rowgroup" colspan="4">{% trans "Магазин" %}</th>
+        </tr>
         <tr>
             <th scope="row">{% trans "Архітектура, чистий код &amp; швидкість 90+" %}</th>
             <td><span class="pl-shop__pkg-check" aria-label="{% trans 'Так' %}">✓</span></td>
@@ -19,73 +22,82 @@
             <th scope="row">{% trans "Стиль та концепція UI/UX" %}</th>
             <td>{% trans "Базовий продуманий" %}</td>
             <td>{% trans "Індивідуальний з нуля" %}</td>
-            <td>{% trans "Ексклюзивний + premium анімація" %}</td>
-        </tr>
-        <tr>
-            <th scope="row">{% trans "Генерація медіа та копірайтинг" %}</th>
-            <td>{% trans "ШІ (Medium)" %}</td>
-            <td>{% trans "ШІ (Premium) + ручний текст" %}</td>
-            <td>{% trans "Extra-High ШІ + ручні тексти" %}</td>
-        </tr>
-        <tr>
-            <th scope="row">{% trans "Рівень SEO-оптимізації" %}</th>
-            <td>{% trans "Базова підготовка" %}</td>
-            <td>{% trans "Розширена оптимізація" %}</td>
-            <td>{% trans "Максимальна (UA + світ)" %}</td>
+            <td>{% trans "Дизайн вітрини під нішу" %}</td>
         </tr>
         <tr>
             <th scope="row">{% trans "Мовність та переклад" %}</th>
             <td>{% trans "1 основна мова" %}</td>
             <td>{% trans "Мультимовність" %}</td>
-            <td>{% trans "До 10 мов (проф. переклад)" %}</td>
+            <td>{% trans "До 10 мовних версій" %}</td>
         </tr>
         <tr>
             <th scope="row">{% trans "Можливості адмін-панелі" %}</th>
             <td>{% trans "Редагування текстів та фото" %}</td>
             <td>{% trans "Нові блоки, ролі, порядок секцій" %}</td>
-            <td>{% trans "AI-асистент, кастомний дизайн, нові сторінки" %}</td>
-        </tr>
-        <tr>
-            <th scope="row">{% trans "Канали заявок / CRM" %}</th>
-            <td>{% trans "Вбудована адмінка сайту" %}</td>
-            <td>{% trans "Email / Telegram" %}</td>
-            <td>{% trans "Персональна CRM + ШІ-помічник" %}</td>
-        </tr>
-        <tr>
-            <th scope="row">{% trans "ШІ-адміністратор" %}</th>
-            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
-            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
-            <td><span class="pl-shop__pkg-check" aria-label="{% trans 'Так' %}">✓</span></td>
-        </tr>
-        <tr>
-            <th scope="row">{% trans "Персональний Telegram-бот" %}</th>
-            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
-            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
-            <td><span class="pl-shop__pkg-check" aria-label="{% trans 'Так' %}">✓</span></td>
-        </tr>
-        <tr>
-            <th scope="row">{% trans "SEO-статті та супровід" %}</th>
-            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
-            <td>{% trans "Стартовий пакет статей" %}</td>
-            <td>{% trans "6 місяців регулярного ведення" %}</td>
-        </tr>
-        <tr>
-            <th scope="row">{% trans "Органічні відгуки Google Maps" %}</th>
-            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
-            <td>{% trans "10 відгуків" %}</td>
-            <td>{% trans "60 відгуків" %}</td>
-        </tr>
-        <tr>
-            <th scope="row">{% trans "Реклама та просування" %}</th>
-            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
-            <td>{% trans "1 кабінет / 1 кампанія (старт)" %}</td>
-            <td>{% trans "До 5 кампаній + 3 міс. ведення" %}</td>
+            <td>{% trans "Адмінка з ролями і чатом ШІ-менеджера" %}</td>
         </tr>
         <tr>
             <th scope="row">{% trans "Розгортання (домен / хостинг)" %}</th>
             <td><span class="pl-shop__pkg-check" aria-label="{% trans 'Так' %}">✓</span></td>
             <td><span class="pl-shop__pkg-check" aria-label="{% trans 'Так' %}">✓</span></td>
+            <td>{% trans "Розгортання на домені клієнта" %}</td>
+        </tr>
+    </tbody>
+    <tbody class="pl-shop__pkg-matrix-group">
+        <tr class="pl-shop__pkg-matrix-group-row">
+            <th scope="rowgroup" colspan="4">{% trans "Продажі" %}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% trans "Канали заявок / CRM" %}</th>
+            <td>{% trans "Вбудована адмінка сайту" %}</td>
+            <td>Email / Telegram</td>
+            <td>{% trans "Персональна CRM і ШІ-помічник продажів" %}</td>
+        </tr>
+        <tr>
+            <th scope="row">{% trans "Telegram-бот для замовлень" %}</th>
+            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
+            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
             <td><span class="pl-shop__pkg-check" aria-label="{% trans 'Так' %}">✓</span></td>
+        </tr>
+        <tr>
+            <th scope="row">{% trans "ШІ-адміністратор сайту" %}</th>
+            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
+            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
+            <td><span class="pl-shop__pkg-check" aria-label="{% trans 'Так' %}">✓</span></td>
+        </tr>
+    </tbody>
+    <tbody class="pl-shop__pkg-matrix-group">
+        <tr class="pl-shop__pkg-matrix-group-row">
+            <th scope="rowgroup" colspan="4">{% trans "Реклама" %}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% trans "Рекламні кабінети та кампанії" %}</th>
+            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
+            <td>{% trans "1 кабінет / 1 кампанія (старт)" %}</td>
+            <td>{% trans "Кабінети Meta, Google і TikTok, до 5 кампаній, супровід 3 місяці" %}</td>
+        </tr>
+    </tbody>
+    <tbody class="pl-shop__pkg-matrix-group">
+        <tr class="pl-shop__pkg-matrix-group-row">
+            <th scope="rowgroup" colspan="4">{% trans "Пошук і контент" %}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% trans "Рівень SEO-оптимізації" %}</th>
+            <td>{% trans "Базова підготовка" %}</td>
+            <td>{% trans "Розширена оптимізація" %}</td>
+            <td>{% trans "SEO під Україну і зовнішні ринки" %}</td>
+        </tr>
+        <tr>
+            <th scope="row">{% trans "SEO-статті та супровід" %}</th>
+            <td><span class="pl-shop__pkg-dash" aria-label="{% trans 'Ні' %}">—</span></td>
+            <td>{% trans "Стартовий пакет статей" %}</td>
+            <td>{% trans "Статті й контент 6 місяців" %}</td>
+        </tr>
+        <tr>
+            <th scope="row">{% trans "Генерація медіа та копірайтинг" %}</th>
+            <td>{% trans "ШІ (Medium)" %}</td>
+            <td>{% trans "ШІ (Premium) + ручний текст" %}</td>
+            <td>{% trans "Тексти і медіа для сторінок магазину" %}</td>
         </tr>
     </tbody>
 </table>

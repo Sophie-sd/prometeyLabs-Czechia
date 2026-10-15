@@ -1,0 +1,17 @@
+/* CZ layer over Renova internet-shop-v2.css: GDPR e-mail + consent and EU phone inside Renova forms. */
+.pl-shop__hero-gdpr{display:flex;flex-direction:column;gap:10px;margin:0;text-align:left}
+.pl-shop__hero-gdpr .form-group{margin:0}
+.pl-shop__hero-gdpr .form-label{display:none}
+.pl-shop__field-input--plain{padding-left:20px!important}
+.pl-shop__hero-gdpr .lead-form-checkbox,.pl-shop__quiz .lead-form-checkbox{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.4;color:#a2a2a2}
+.pl-shop__hero-gdpr .lead-form-policy-link,.pl-shop__quiz .lead-form-policy-link{color:#f60}
+.pl-shop__hero-gdpr .lead-form-expect{display:none}
+.pl-shop__quiz .lead-form-fields{display:flex;flex-direction:column;gap:12px}
+.pl-shop__quiz .form-group{margin:0}
+.pl-shop__quiz .form-label{display:block;margin:0 0 6px;font-size:13px;color:#a2a2a2}
+.pl-shop__quiz .lead-form-expect{font-size:12px;color:#a2a2a2;margin:0}
+.pl-shop__hero-gdpr .pl-shop__field-input{width:100%;height:50px;padding:0 20px!important;border:1px solid transparent;border-radius:200px;background:rgba(20,20,20,.2)}
+.pl-shop__hero-gdpr .pl-shop__field-input:focus{border-color:#f60}
+.pl-shop__field .eu-phone{height:100%;align-items:center}
+.pl-shop__field .eu-phone__cc{height:100%;min-width:58px;padding:0 22px 0 0;border:0;border-radius:0;background:transparent}
+.pl-shop__field .eu-phone > input[type="tel"]{height:100%;border:0!important;background:transparent!important;padding:0!important;box-shadow:none!important}

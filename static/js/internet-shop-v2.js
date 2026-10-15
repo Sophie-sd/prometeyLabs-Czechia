@@ -7,96 +7,24 @@
     var reduceMotion = window.matchMedia &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    function scriptNonce() {
-        var tagged = document.querySelector('script[nonce]');
-        if (!tagged) return '';
-        return tagged.nonce || tagged.getAttribute('nonce') || '';
-    }
-
-    function loadPageScript(src, onload) {
-        if (!src) return;
-        var loaded = window.__plShopScripts || (window.__plShopScripts = {});
-        if (loaded[src] === 'done') {
-            if (onload) onload();
-            return;
-        }
-        if (loaded[src] === 'pending') {
-            if (onload) {
-                document.querySelectorAll('script[src="' + src + '"]').forEach(function (el) {
-                    el.addEventListener('load', onload, { once: true });
-                });
-            }
-            return;
-        }
-        loaded[src] = 'pending';
-        var s = document.createElement('script');
-        s.src = src;
-        s.defer = true;
-        var nonce = scriptNonce();
-        if (nonce) {
-            s.setAttribute('nonce', nonce);
-            s.nonce = nonce;
-        }
-        s.addEventListener('load', function () {
-            loaded[src] = 'done';
-            if (onload) onload();
-        }, { once: true });
-        s.addEventListener('error', function () {
-            loaded[src] = 'done';
-        }, { once: true });
-        document.body.appendChild(s);
-    }
-
-    function loadStylesheet(href) {
-        if (!href || document.querySelector('link[href="' + href + '"]')) return;
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = href;
-        document.head.appendChild(link);
-    }
-
-    function whenNear(selector, onNear, rootMargin) {
-        var el = root.querySelector(selector) || document.querySelector(selector);
-        if (!el) return;
-
-        function go() {
-            onNear();
-        }
-
-        if (!('IntersectionObserver' in window)) {
-            go();
-            return;
-        }
-
-        var io = new IntersectionObserver(function (entries) {
-            if (entries.some(function (entry) { return entry.isIntersecting; })) {
-                io.disconnect();
-                go();
-            }
-        }, { rootMargin: rootMargin || '480px 0px' });
-        io.observe(el);
-    }
-
-    function loadWhenNear(selector, src, onload) {
-        if (!src) return;
-        whenNear(selector, function () {
-            loadPageScript(src, onload);
-        });
-    }
-
     function initReveal() {
         var els = root.querySelectorAll('[data-reveal]');
         if (!els.length) return;
 
-        if (reduceMotion) {
-            els.forEach(function (el) { el.classList.add('is-in'); });
-            return;
-        }
+        // CZ: never hide content behind a scroll observer (full-page captures, slow devices).
+        if (reduceMotion || true) return;
 
-        root.classList.add('is-reveal-ready');
+        els.forEach(function (el) {
+            if (el.__rev) return;
+            el.__rev = 1;
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(28px)';
+            el.style.transition = 'opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1)';
+        });
 
         function reveal(el) {
-            el.classList.add('is-in');
+            el.style.opacity = '1';
+            el.style.transform = 'none';
         }
 
         if ('IntersectionObserver' in window) {
@@ -110,116 +38,25 @@
             }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 
             els.forEach(function (el) {
-                io.observe(el);
+                if (!el.__obs) {
+                    el.__obs = 1;
+                    io.observe(el);
+                }
+            });
+
+            requestAnimationFrame(function () {
+                var vh = window.innerHeight || 800;
+                els.forEach(function (el) {
+                    var r = el.getBoundingClientRect();
+                    if (r.top < vh * 0.95) {
+                        reveal(el);
+                        io.unobserve(el);
+                    }
+                });
             });
         } else {
             els.forEach(reveal);
         }
-    }
-
-    function prepareHeroChartDraw(chartWrap, line) {
-        if (!line) return;
-
-        requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-                var len = line.getTotalLength();
-                if (!len || len < 50) len = 2800;
-                line.style.strokeDasharray = len + ' ' + len;
-                line.style.strokeDashoffset = String(len);
-                if (chartWrap) chartWrap.classList.remove('is-drawn');
-            });
-        });
-    }
-
-    function playHeroChartDraw(chartWrap, line) {
-        if (!line) return;
-
-        requestAnimationFrame(function () {
-            line.style.strokeDashoffset = '0';
-            if (chartWrap) chartWrap.classList.add('is-drawn');
-
-            line.addEventListener('transitionend', function onDrawEnd(e) {
-                if (e.propertyName !== 'stroke-dashoffset') return;
-                line.removeEventListener('transitionend', onDrawEnd);
-                line.style.strokeDasharray = 'none';
-                line.style.strokeDashoffset = '0';
-            });
-        });
-    }
-
-    function whenHeroReady(img, done) {
-        var settled = false;
-        function finish() {
-            if (settled) return;
-            settled = true;
-            done();
-        }
-
-        if (!img) {
-            finish();
-            return;
-        }
-
-        if (img.complete && img.naturalWidth) {
-            if (typeof img.decode === 'function') {
-                img.decode().then(finish).catch(finish);
-            } else {
-                finish();
-            }
-            return;
-        }
-
-        img.addEventListener('load', function () {
-            if (typeof img.decode === 'function') {
-                img.decode().then(finish).catch(finish);
-            } else {
-                finish();
-            }
-        }, { once: true });
-        img.addEventListener('error', finish, { once: true });
-        setTimeout(finish, 2500);
-    }
-
-    function initHeroSequence() {
-        var img = root.querySelector('[data-hero-img]');
-        if (!img) return;
-
-        var chartWrap = root.querySelector('[data-hero-chart-wrap]');
-        var line = root.querySelector('[data-hero-line]');
-        var chips = root.querySelectorAll('[data-hero-chip]');
-
-        function enableGlow() {
-            if (!reduceMotion) root.classList.add('is-hero-glow');
-        }
-
-        function finish() {
-            enableGlow();
-            if (chartWrap) chartWrap.classList.add('is-in');
-            playHeroChartDraw(chartWrap, line);
-            chips.forEach(function (c) { c.classList.add('is-in'); });
-        }
-
-        if (reduceMotion) {
-            finish();
-            return;
-        }
-
-        whenHeroReady(img, function () {
-            prepareHeroChartDraw(chartWrap, line);
-            enableGlow();
-            requestAnimationFrame(function () {
-                setTimeout(function () {
-                    if (chartWrap) chartWrap.classList.add('is-in');
-                    playHeroChartDraw(chartWrap, line);
-                }, 420);
-                setTimeout(function () {
-                    if (chips[0]) chips[0].classList.add('is-in');
-                }, 1200);
-                setTimeout(function () {
-                    if (chips[1]) chips[1].classList.add('is-in');
-                }, 1520);
-            });
-        });
     }
 
     function initCalcPkgLinks() {
@@ -232,34 +69,6 @@
                 } catch (e) { /* ignore */ }
             });
         });
-    }
-
-    function initClientsMarquee() {
-        var container = root.querySelector('.pl-shop__clients-stories-container');
-        if (!container) return;
-
-        container.setAttribute('aria-label', container.dataset.marqueeLabel || container.getAttribute('aria-label') || '');
-        container.setAttribute('role', 'marquee');
-
-        function start() {
-            container.classList.add('marquee-active');
-        }
-
-        if (reduceMotion) return;
-
-        if ('IntersectionObserver' in window) {
-            var observer = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        requestAnimationFrame(start);
-                        observer.unobserve(container);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '50px' });
-            observer.observe(container);
-        } else {
-            requestAnimationFrame(start);
-        }
     }
 
     function observeReveal(el, onReveal) {
@@ -281,6 +90,14 @@
             }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
 
             io.observe(el);
+
+            requestAnimationFrame(function () {
+                var rect = el.getBoundingClientRect();
+                if (rect.top < (window.innerHeight || 800) * 0.92) {
+                    onReveal();
+                    io.disconnect();
+                }
+            });
         } else {
             onReveal();
         }
@@ -296,29 +113,8 @@
                 var isOpen = btn.getAttribute('aria-expanded') === 'true';
                 btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
                 extra.hidden = isOpen;
-                btn.textContent = isOpen
-                    ? (btn.dataset.labelMore || btn.textContent)
-                    : (btn.dataset.labelLess || btn.textContent);
+                btn.textContent = btn.getAttribute(isOpen ? 'data-label-open' : 'data-label-close') || btn.textContent;
             });
-        });
-    }
-
-    function initPkgStagger() {
-        var grid = root.querySelector('[data-pkg-stagger]');
-        if (!grid) return;
-
-        var cards = grid.querySelectorAll('.pl-shop__pkg-card');
-        cards.forEach(function (card, cardIndex) {
-            card.style.setProperty('--pkg-i', String(cardIndex));
-            var mainList = card.querySelector('.pl-shop__pkg-features > .pl-shop__pkg-list');
-            if (!mainList) return;
-            mainList.querySelectorAll('li').forEach(function (item, itemIndex) {
-                item.style.setProperty('--pkg-li', String(itemIndex));
-            });
-        });
-
-        observeReveal(grid, function () {
-            grid.classList.add('is-revealed');
         });
     }
 
@@ -352,7 +148,7 @@
             var suffix = el.getAttribute('data-count-suffix') || '';
             var unitSpan = el.querySelector('span');
             var duration = target >= 1000 ? 1600 : 1100;
-            var delay = 720 + index * 140;
+            var delay = index * 140;
             var startTime = null;
 
             function updateDisplay(value) {
@@ -389,22 +185,7 @@
         var block = root.querySelector('[data-svoboda-reveal]');
         if (!block) return;
 
-        block.querySelectorAll('.pl-shop__card').forEach(function (card, cardIndex) {
-            card.style.setProperty('--sv-i', String(cardIndex));
-            card.querySelectorAll('.pl-shop__list-item').forEach(function (item, itemIndex) {
-                item.style.setProperty('--sv-li', String(itemIndex));
-            });
-        });
-
-        block.querySelectorAll('.pl-shop__stat').forEach(function (stat, statIndex) {
-            stat.style.setProperty('--sv-stat', String(statIndex));
-            stat.querySelectorAll('.pl-shop__stat-num').forEach(function (numEl) {
-                numEl.style.setProperty('--sv-stat', String(statIndex));
-            });
-        });
-
         observeReveal(block, function () {
-            block.classList.add('is-revealed');
             if (reduceMotion) {
                 setSvobodaStatFinalValues(block);
             } else {
@@ -446,82 +227,16 @@
         });
     }
 
-    function attachPhoneMasks() {
-        var app = window.prometeyApp;
-        if (app && typeof app.initPhoneMasksForElement === 'function') {
-            app.initPhoneMasksForElement(document);
-        }
-    }
-
-    function loadPhoneMasks(done) {
-        var primary = root.getAttribute('data-phone-mask-js');
-        var intl = root.getAttribute('data-phone-mask-intl-js');
-        if (!primary) {
-            if (done) done();
-            return;
-        }
-
-        loadPageScript(primary, function () {
-            if (!intl) {
-                attachPhoneMasks();
-                if (done) done();
-                return;
-            }
-            loadPageScript(intl, function () {
-                attachPhoneMasks();
-                if (done) done();
-            });
-        });
-    }
-
-    function initDeferredPhoneMasks() {
-        whenNear('#calculator', function () {
-            loadPhoneMasks();
-        });
-
-        document.addEventListener('click', function onModalIntent(e) {
-            var trigger = e.target.closest('[data-modal], .modal input[type="tel"], input[type="tel"]');
-            if (!trigger) return;
-            document.removeEventListener('click', onModalIntent, true);
-            loadPhoneMasks();
-        }, true);
-
-        document.addEventListener('focusin', function onPhoneFocus(e) {
-            if (!e.target || e.target.type !== 'tel') return;
-            document.removeEventListener('focusin', onPhoneFocus, true);
-            loadPhoneMasks();
-        }, true);
-    }
-
-    function initDeferredMonoFonts() {
-        var href = root.getAttribute('data-mono-fonts-css');
-        if (!href) return;
-        whenNear('.pl-shop__clients-block', function () {
-            loadStylesheet(href);
-        }, '200px 0px');
-    }
-
-    function initDeferredSections() {
-        loadWhenNear('[data-admin-mock]', root.getAttribute('data-admin-js'), function () {
-            if (typeof window.initAdminMock === 'function') {
-                window.initAdminMock();
-            }
-        });
-        loadWhenNear('#calculator', root.getAttribute('data-quiz-js'));
-        initDeferredPhoneMasks();
-        initDeferredMonoFonts();
-    }
-
     function init() {
         initReveal();
-        initPkgStagger();
         initPkgReadMore();
         initSvobodaReveal();
-        initHeroSequence();
         initCalcPkgLinks();
-        initClientsMarquee();
+        /* Clients marquee → static/js/components/clients-marquee.js (спільний з головною). */
         initPkgCompareTabs();
-        initDeferredSections();
+        if (typeof window.initAdminMock === 'function') {
+            window.initAdminMock();
+        }
     }
 
     if (document.readyState === 'loading') {
