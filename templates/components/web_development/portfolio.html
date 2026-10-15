@@ -21,7 +21,7 @@
                     {% with shot=project.get_home_image_src %}
                     {% if shot %}
                     <a class="pl-web__work-shot pl-web__work-shot--screen" href="{% url 'portfolio' %}" data-pf-screen>
-                        <img src="{{ shot }}" alt="{{ project.get_card_alt }}" width="358" height="234" loading="lazy" decoding="async" data-pf-shot>
+                        <img src="{{ shot }}" alt="{{ project.get_card_alt }}" width="358" height="234" loading="{% if forloop.counter <= 3 %}eager{% else %}lazy{% endif %}" decoding="async" data-pf-shot>
                     </a>
                     {% else %}
                     <a class="pl-web__work-shot" href="{% url 'portfolio' %}">
