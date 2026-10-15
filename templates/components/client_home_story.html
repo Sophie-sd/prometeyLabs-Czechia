@@ -3,7 +3,10 @@
     <div class="v3-client-ring">
         <div class="v3-client-inner">
             {% if client.get_logo_url %}
-            <img src="{{ client.get_logo_url }}" alt="{{ client.name }}" width="296" height="296" loading="lazy" decoding="async">
+            <picture>
+                {% if client.get_logo_webp_228_url %}<source type="image/webp" srcset="{{ client.get_logo_webp_228_url }} 1x{% if client.get_logo_webp_456_url %}, {{ client.get_logo_webp_456_url }} 2x{% endif %}">{% endif %}
+                <img src="{{ client.get_logo_url }}" alt="{% if is_clone %}{% else %}{{ client.name }}{% endif %}" width="296" height="296" loading="{% if is_clone %}lazy{% else %}eager{% endif %}" decoding="async">
+            </picture>
             {% endif %}
         </div>
     </div>

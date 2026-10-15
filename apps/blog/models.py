@@ -107,14 +107,10 @@ class BlogPost(models.Model):
         return localized_text(self.keywords, self.keywords_ru, self.keywords_en, self.keywords_cs)
     
     def get_reading_time_text(self):
-        """Повертає текст часу читання"""
-        if self.reading_time == 1:
-            return "1 хвилина"
-        elif self.reading_time < 5:
-            return f"{self.reading_time} хвилини"
-        else:
-            return f"{self.reading_time} хвилин"
-    
+        """Повертає текст часу читання (локалізовано: cs/en → "N min")."""
+        from django.utils.translation import gettext
+        return gettext("%(n)s хв") % {"n": self.reading_time}
+
     def get_clean_content(self):
         """Повертає контент без зірочок та форматований для журнального стилю"""
         import re

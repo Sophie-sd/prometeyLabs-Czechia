@@ -82,7 +82,7 @@
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
     --shadow-xl: 0 25px 60px rgba(0, 0, 0, 0.3);
 
-    /* Помаранчеві тіні для бренду та акцентів (Deep Orange RGB: 230, 81, 0) */
+    /* Помаранчеві тіні для бренду та акцентів (Deep Orange RGB: 255, 102, 0) */
     --shadow-orange-sm: 0 2px 8px rgba(255, 102, 0, 0.1);
     --shadow-orange-md: 0 4px 12px rgba(255, 102, 0, 0.2);
     --shadow-orange-lg: 0 25px 60px rgba(255, 102, 0, 0.3);

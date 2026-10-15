@@ -1,0 +1,35 @@
+/* Renova restyle for payment pages (loaded last). Black / #f5f5f5 / #f60, Inter, 30px cards, pill buttons. */
+:root {
+    --orange: #f60; --orange-d: #d05300; --purple: #f60;
+    --black: #f5f5f5; --gray-700: #d4d4d4; --gray-500: #a2a2a2; --gray-300: #3a3a3a; --gray-100: #1c1c1c; --gray-50: #141414;
+    --bg: #000; --white: #141414; --radius: 30px; --shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+.pay-body { background: #000 radial-gradient(60% 40% at 50% 0%, rgba(255,102,0,.18), transparent 70%) no-repeat; color: #f5f5f5; }
+.pay-logo-text, .pay-logo-text strong { color: #f5f5f5; }
+.pay-logo-text strong { color: #f60; }
+.pay-card { background: linear-gradient(180deg, #161616 0%, #0d0d0d 100%); border: 1px solid rgba(255,255,255,.1); }
+.pay-section { border-bottom-color: rgba(255,255,255,.08); }
+.pay-section--client, .pay-section--amount, .pay-section--instructions { background: transparent; }
+.req-list { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.1); border-radius: 20px; }
+.req-row { background: #111; }
+.req-row:first-child { border-radius: 19px 19px 0 0; } .req-row:last-child { border-radius: 0 0 19px 19px; } .req-row:only-child { border-radius: 19px; }
+.btn-copy-row { border-color: rgba(255,255,255,.2); color: #a2a2a2; border-radius: 50%; }
+.btn-copy-row:hover, .btn-copy-row:focus-visible { background: #f5f5f5; border-color: #f5f5f5; color: #111; }
+.btn-copy-row.copied { background: rgba(29,154,82,.15); }
+.bank-info-block { background: #111; border-color: rgba(255,255,255,.1); border-radius: 20px; }
+.btn-copy-all, .btn-telegram, .btn-doc, .btn-pay { border-radius: 200px; }
+.btn-copy-all { color: #f5f5f5; border-color: rgba(255,255,255,.35); }
+.btn-copy-all:hover, .btn-copy-all:focus-visible { background: #f5f5f5; border-color: #f5f5f5; color: #111; }
+.btn-telegram:hover, .btn-telegram:focus-visible { background: #f5f5f5; color: #111; }
+.btn-doc { background: #111; border-color: rgba(255,255,255,.12); color: #d4d4d4; }
+.btn-doc:hover, .btn-doc:focus-visible { background: #f5f5f5; border-color: #f5f5f5; color: #111; }
+.btn-doc:hover .doc-icon, .btn-doc:hover .doc-dl-icon { color: #111; }
+.doc-badge { background: #f60; color: #000; }
+.btn-pay { background: #f5f5f5; color: #f60; letter-spacing: -.01em; text-transform: none; font-size: 16px; font-weight: 600; }
+.btn-pay:hover, .btn-pay:focus-visible { background: #f60; color: #fff; }
+.btn-pay:disabled { background: #2a2a2a; color: #777; }
+.btn-pay:focus-visible, .btn-doc:focus-visible, .btn-copy-all:focus-visible { outline: 2px solid #f60; outline-offset: 3px; }
+.instr-link { border-bottom-color: rgba(255,102,0,.4); }
+.pay-status-waiver { background: #141414 !important; color: #a2a2a2; border-radius: 20px; }
+.pay-consent-item input[type="checkbox"] { accent-color: #f60; }
+.pay-method-logo { background: #fff; padding: 2px 4px; }

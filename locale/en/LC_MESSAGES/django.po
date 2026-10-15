@@ -11157,3 +11157,23 @@ msgstr "Leads and CRM right in the chat, next to your site."
 msgctxt "singular"
 msgid "Landing page"
 msgstr "Landing page"
+
+msgid "Обговорити проєкт"
+msgstr "Discuss the project"
+
+msgid "хв"
+msgstr "min"
+
+msgid "грн"
+msgstr "UAH"
+
+msgid "%(n)s хв"
+msgstr "%(n)s min"
+
+msgctxt "time unit"
+msgid "хв"
+msgstr "min"
+
+msgctxt "time unit"
+msgid "год"
+msgstr "h"

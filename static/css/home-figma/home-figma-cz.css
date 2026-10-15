@@ -59,7 +59,7 @@
 /* ---------- Clients (CZ client_home_story: logo circle + visible name) ---------- */
 .hf-clients__list { align-items: flex-start; }
 .hf-clients .project-story { flex: 0 0 auto; width: 128px; height: auto; overflow: visible; border-radius: 0; background: none; text-align: center; }
-.hf-clients .v3-client-ring { width: 128px; height: 128px; overflow: hidden; border-radius: 50%; background: #fff; }
+.hf-clients .v3-client-ring { width: 128px; height: 128px; overflow: hidden; border-radius: 50%; background: #141414; border: 1px solid rgba(255,255,255,.12); }
 .hf-clients .v3-client-halo { display: none; }
 .hf-clients .v3-client-name { display: block; margin-top: 12px; font-size: 13px; line-height: 1.25; letter-spacing: -.26px; color: var(--hf-gray); white-space: normal; }
 @media (max-width: 767px) {
@@ -91,3 +91,21 @@
 .hf-service, .hf-service:first-child { height: auto; min-height: 274px; }
 .hf-services__list { align-items: stretch; }
 @media (min-width: 1100px) { .hf-service__title { font-size: 30px; letter-spacing: -1.4px; } }
+
+/* ---------- QA round 2 (design review) ---------- */
+/* CZ row labels must never be cut with an ellipsis: let rows grow */
+.hf-row { height: auto; min-height: 44px; padding: 10px 20px; white-space: normal; line-height: 1.25; }
+.hf-row__key { overflow: visible; text-overflow: clip; }
+.hf-row__val { white-space: nowrap; }
+/* No mid-word auto hyphenation in headings (looked broken: "pomo-ci", "so-ciálních") */
+.hf-step__title, .hf-service__title { hyphens: manual; overflow-wrap: normal; word-break: normal; }
+/* CTA: Czech diacritics (Ř, Č) were clipped by line-height .86 */
+.hf-cta__title { line-height: 1.02; padding-top: .06em; }
+.hf-cta__title .hf-accent, .hf-cta__title span { text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+@media (max-width: 767px) {
+  .hf-service__title { font-size: 26px; }
+  .hf-step__title { font-size: 15px; }
+}
+@media (max-width: 400px) {
+  .hf-hero__title { font-size: 14.5vw; letter-spacing: -.07em; }
+}

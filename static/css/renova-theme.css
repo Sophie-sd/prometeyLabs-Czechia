@@ -25,6 +25,8 @@ a:hover{color:var(--rn-orange)}
 
 /* ---------- 2. Header / navigation (Renova) ---------- */
 .main-navigation{font-family:var(--rn-font)}
+/* QA2: legacy page CSS (contacts/calculator/legal/offer/privacy) painted the top bar #1a1a1a; Renova header is transparent until scroll */
+.main-navigation:not(.scrolled):not(.is-scrolled){background:transparent!important}
 .main-navigation.scrolled,.main-navigation.is-scrolled,.main-navigation--solid{background:rgba(0,0,0,.72)!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:none!important;border-bottom:1px solid var(--rn-line)}
 .nav-container{max-width:calc(var(--rn-container) + var(--rn-pad)*2);padding:0 var(--rn-pad)}
 .nav-logo{color:var(--rn-white)!important;font-family:var(--rn-font);font-weight:600;letter-spacing:-.04em}
@@ -60,9 +62,11 @@ button[type="submit"]:not(.modal-close):not([class*="burger"]):not([class*="quiz
 .calc-cta-btn,.footer-submit-btn,.lead-form-submit,.form-submit,.modal-submit,.submit-btn{background:var(--rn-orange-deep)!important;color:#fff!important;border-color:var(--rn-orange-deep)!important}
 
 /* contrasting hover / focus / active (WCAG AA) */
-:is(.btn.btn-primary,.v2-btn-primary,.hf-btn--light):is(:hover,:focus-visible,:active){background:#fff!important;color:#111!important;border-color:#fff!important;-webkit-text-fill-color:#111!important;transform:none}
+/* QA2: light pill hover used to stay white (only text changed) → too subtle; now inverts to orange w/ black text (7.3:1) */
+:is(.btn.btn-primary,.v2-btn-primary,.hf-btn--light,.contacts-page .submit-btn):is(:hover,:focus-visible,:active){background:var(--rn-orange)!important;color:#000!important;border-color:var(--rn-orange)!important;-webkit-text-fill-color:#000!important;transform:none}
 :is(.btn.btn-secondary,.v2-btn:not(.v2-btn-primary),.v3-btn,.hf-btn--ghost):is(:hover,:focus-visible,:active){background:var(--rn-white)!important;color:#111!important;border-color:var(--rn-white)!important;-webkit-text-fill-color:#111!important;transform:none}
 :is(.btn.btn-primary,.v2-btn-primary,.hf-btn--light,.btn.btn-secondary,.v2-btn,.v3-btn,.hf-btn--ghost):is(:hover,:focus-visible,:active) :is(span,b,strong){color:#111!important}
+:is(.btn.btn-primary,.v2-btn-primary,.hf-btn--light):is(:hover,:focus-visible,:active) :is(span,b,strong){color:#000!important}
 :is(.calc-cta-btn,.footer-submit-btn,.lead-form-submit,.form-submit,.modal-submit,.submit-btn,.hf-btn--brand,.search-button):is(:hover,:focus-visible,:active){background:var(--rn-white)!important;color:#111!important;border-color:var(--rn-white)!important;-webkit-text-fill-color:#111!important}
 :is(.btn,.v2-btn,.v3-btn,.hf-btn,.calc-cta-btn,.footer-submit-btn,.lead-form-submit,.form-submit,.modal-submit,.submit-btn,.search-button,.lang-btn,.nav-link):focus-visible{outline:2px solid var(--rn-orange)!important;outline-offset:3px}
 
@@ -213,3 +217,31 @@ body:has(.legal-article) .legal-article code{background:#141414;color:var(--rn-o
 :is(.pl-shop__btn--primary,.pl-corp__btn--primary,.pl-bot__btn--primary,.pl-tz__btn--primary){background:var(--rn-white)!important;color:var(--rn-orange)!important;border:1px solid var(--rn-white)!important;box-shadow:none!important;-webkit-text-fill-color:var(--rn-orange)}
 :is(.pl-shop__btn--primary,.pl-corp__btn--primary,.pl-bot__btn--primary,.pl-tz__btn--primary) :is(span,svg){color:inherit!important}
 :is(.pl-shop__btn--ghost,.pl-corp__btn--ghost,.pl-bot__btn--ghost,.pl-tz__btn--ghost){background:rgba(255,255,255,.05)!important;color:var(--rn-white)!important;border:1px solid var(--rn-white)!important;-webkit-backdrop-filter:blur(2.6px);backdrop-filter:blur(2.6px)}
+
+/* ---- QA2: contacts per Renova contacts-figma: light full-width submit, pill fields ---- */
+.contacts-page .submit-btn{width:100%;min-height:50px;background:var(--rn-white)!important;color:var(--rn-orange)!important;border-color:var(--rn-white)!important;font-size:16px}
+.contacts-page .contact-form input:not([type=checkbox]):not([type=hidden]),.contacts-page .contact-form select{border-radius:100px!important;background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.08)!important}
+.contacts-page .contact-form .eu-phone__cc{border-radius:100px 0 0 100px}
+.contacts-page .contact-form .eu-phone > input[type=tel]{border-radius:0 100px 100px 0!important}
+.contacts-page .contact-form textarea{border-radius:20px!important;background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.08)!important}
+
+/* ---- QA2: Telegram "@" field wrapper was white (legacy light lead-form style) on tg/shop/corp/tz lead forms ---- */
+.lead-form-telegram__wrap{background:rgba(20,20,20,.6)!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:16px;color:var(--rn-gray)}
+.lead-form-telegram__wrap:focus-within{border-color:var(--rn-orange)!important}
+.lead-form-telegram__wrap .lead-form-telegram__input{background:transparent!important;border:0!important;box-shadow:none!important}
+.contacts-page .lead-form-telegram__wrap{border-radius:100px}
+
+/* ---- QA2: telegram-bot price/FAQ/form columns were 720px and visually off the 1180 grid ---- */
+@media (min-width:768px){.pl-bot .pl-bot__inner--narrow{width:min(1180px,calc(100% - 48px))}
+  .pl-bot .pl-bot__inner--narrow > :is(p,ul,ol,form,.lead-form,details,.pl-bot__faq){max-width:860px}}
+
+/* ---- QA2: calc subtitles sat on the bright Figma swirl/planet with low contrast ---- */
+.pl-shop__calc-subtitle,.pl-corp__calc-subtitle,#pl-shop-calc-title,#pl-corp-calc-title{text-shadow:0 1px 2px rgba(0,0,0,.7),0 0 18px rgba(0,0,0,.65)}
+.pl-shop__calc-subtitle,.pl-corp__calc-subtitle{color:#fff!important}
+
+/* ---- QA2: tg-bot lead form overflowed 320px viewport by ~45px (flex min-width:auto) ---- */
+.pl-bot__form,.pl-bot__form > *,.lead-form-fields,.lead-form-fields > .form-group{min-width:0;max-width:100%;box-sizing:border-box}
+.lead-form-fields .form-input,.lead-form-fields textarea,.lead-form-fields select{max-width:100%;box-sizing:border-box}
+
+/* ---- QA2: calculator — square numbered badges & shouting CTA → Renova circles + sentence case ---- */
+.calc-benefit__number,.calc-question__number{border-radius:50%!important;display:inline-flex;align-items:center;justify-content:center}

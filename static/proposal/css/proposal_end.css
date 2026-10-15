@@ -365,3 +365,6 @@
 .prop-cta--fill { color: #000; }
 .prop-cta--fill:is(:hover, :focus-visible) { background: #fff; color: #111; border-color: #fff; }
 .prop-cta:focus-visible { outline: 2px solid #f60; outline-offset: 3px; }
+
+/* QA2: decorative grain/CTA glow caused horizontal scroll (33/78/146px at 320/768/1440) */
+html:has(.prop-body), .prop-body { overflow-x: clip; }

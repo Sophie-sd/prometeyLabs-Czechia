@@ -31,7 +31,7 @@
         </div>
         {% if payment_link.currency != 'UAH' %}
         <p class="exchange-rate">
-            {% trans "Курс:" %} <strong>{{ payment_link.exchange_rate|floatformat:2 }} грн/{{ payment_link.currency }}</strong>
+            {% trans "Курс:" %} <strong>{{ payment_link.exchange_rate|floatformat:2 }} {% trans "грн" %}/{{ payment_link.currency }}</strong>
         </p>
         {% endif %}
     </div>

@@ -198,7 +198,13 @@ class Proposal(models.Model):
     def get_localized_cta_label(self) -> str:
         from .i18n_content import localized_text
 
-        return localized_text(self.cta_label, self.cta_label_ru, self.cta_label_en, self.cta_label_cs)
+        from django.utils.translation import gettext
+
+        label = localized_text(self.cta_label, self.cta_label_ru, self.cta_label_en, self.cta_label_cs)
+        # Default UA label without a cs/en override → use the catalog translation.
+        if label == 'Обговорити проєкт':
+            return gettext('Обговорити проєкт')
+        return label
 
     def get_localized_intro_html(self) -> str:
         from .i18n_content import localized_text
