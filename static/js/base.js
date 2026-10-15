@@ -775,7 +775,8 @@ class PrometeyApp {
 
     localizedFormUrl(path) {
         const lang = (document.documentElement.lang || 'uk').split('-')[0].toLowerCase();
-        if (!lang || lang === 'uk') return path;
+        // cs = LANGUAGE_CODE, i18n_patterns(prefix_default_language=False) → без префікса (/cs/... = 404)
+        if (!lang || lang === 'uk' || lang === 'cs') return path;
         return `/${lang}${path}`;
     }
 
