@@ -1,8 +1,9 @@
 /* Proposal motion: reveal, hero words, tree, reduced-motion */
 
 .prop-reveal {
-    opacity: 0;
-    transform: translate3d(0, 1.125rem, 0);
+    /* CZ: visible by default — never hidden waiting for a scroll observer */
+    opacity: 1;
+    transform: none;
 }
 
 .prop-reveal.is-revealed {

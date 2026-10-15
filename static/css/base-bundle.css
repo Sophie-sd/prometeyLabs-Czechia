@@ -2164,15 +2164,13 @@ body.menu-open .contact-widget {
 
 /* ===== MOBILE CONTACT FAB ===== */
 
-.mobile-contact-fab,
-.mobile-contact-fab.mobile-touch-target {
-    display: none !important; /* beat .mobile-touch-target { display:flex } on desktop */
+.mobile-contact-fab {
+    display: none;
 }
 
 @media (max-width: 767px) {
-    .mobile-contact-fab,
-    .mobile-contact-fab.mobile-touch-target {
-        display: flex !important;
+    .mobile-contact-fab {
+        display: flex;
         align-items: center;
         justify-content: center;
         position: fixed;
@@ -2226,6 +2224,18 @@ body.menu-open .contact-widget {
         }
     }
 }
+
+/* Desktop: .mobile-touch-target (display:flex, без media-запиту, нижче в каскаді)
+   переважає .mobile-contact-fab{display:none} через рівну специфічність і порядок
+   джерела — кнопка "спливала" 44px-смугою під футером. body-префікс піднімає
+   специфічність без !important, не займаючи спільний .mobile-touch-target. */
+@media (min-width: 768px) {
+    body .mobile-contact-fab {
+        display: none;
+    }
+}
+
+.mobile-contact-fab__label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ===== BUTTON SIZES ===== */
 

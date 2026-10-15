@@ -635,8 +635,9 @@ body.pl-tz-body .main-content {
 /* Reveal: visible by default; hide only when JS marks pending */
 .pl-tz [data-reveal].is-pending-reveal,
 .pl-tz .reveal.is-pending-reveal {
-    opacity: 0;
-    transform: translateY(28px);
+    /* CZ: never hidden waiting for scroll (full-page captures, slow devices) */
+    opacity: 1;
+    transform: none;
     transition: opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 

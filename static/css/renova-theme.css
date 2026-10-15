@@ -36,9 +36,9 @@ a:hover{color:var(--rn-orange)}
 .nav-dropdown__menu{background:var(--rn-bubble)!important;border:1px solid var(--rn-line)!important;border-radius:20px!important;box-shadow:0 20px 50px rgba(0,0,0,.6)!important}
 .nav-dropdown__menu a{color:var(--rn-white)!important;border-radius:12px}
 .nav-dropdown__menu a:hover,.nav-dropdown__menu a:focus-visible{background:var(--rn-white)!important;color:#000!important}
-.lang-btn{border-radius:var(--rn-radius-pill)!important;border-color:rgba(245,245,245,.35)!important;color:var(--rn-white)!important;background:transparent;font-family:var(--rn-font)}
-.lang-btn.active{background:var(--rn-orange)!important;border-color:var(--rn-orange)!important;color:#000!important}
-.lang-btn:not(.active):hover,.lang-btn:not(.active):focus-visible{background:var(--rn-white)!important;color:#000!important;border-color:var(--rn-white)!important}
+.lang-btn{border-radius:8px!important;border:1px solid rgba(255,255,255,.3)!important;color:#fff!important;background:transparent;font-family:var(--rn-font)} /* = Renova navigation.css */
+.lang-btn.active{background:#B33D00!important;border-color:#B33D00!important;color:#fff!important}
+.lang-btn:not(.active):hover,.lang-btn:not(.active):focus-visible{background:rgba(255,255,255,.1)!important;color:#fff!important;border-color:rgba(255,255,255,.5)!important}
 .burger-line{background:var(--rn-white)!important}
 
 /* Burger / mobile menu */

@@ -586,8 +586,8 @@ body {
     box-shadow: 0 4px 15px rgba(255, 102, 0, 0.15);
     display: flex;
     flex-direction: column;
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: none;
     will-change: transform, opacity;
 }
 
@@ -1233,8 +1233,9 @@ body {
 /* Cascade animation для blog cards */
 /* Видалено дублювання .visible класу - використовується з animations.css */
 .blog-card {
-    opacity: 0;
-    transform: translateY(30px);
+    /* CZ: visible by default — no content hidden behind a scroll observer */
+    opacity: 1;
+    transform: none;
     transition: opacity 0.15s ease-out, transform 0.15s ease-out;
     will-change: transform, opacity;
 }
@@ -1245,8 +1246,8 @@ body {
 }
 
 .popular-card {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: none;
     transition: opacity 0.15s ease-out, transform 0.15s ease-out;
     will-change: transform, opacity;
 }
