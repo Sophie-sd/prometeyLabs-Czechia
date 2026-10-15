@@ -254,7 +254,7 @@
         border: 1px solid rgba(255, 107, 26, 0.45);
         border-radius: 999px;
         background: rgba(255, 107, 26, 0.12);
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-family: 'Inter', sans-serif;
         font-size: clamp(9px, 2.4vw, 10px);
         font-weight: 500;
         letter-spacing: 0.08em;

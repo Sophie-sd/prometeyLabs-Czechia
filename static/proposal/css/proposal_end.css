@@ -357,3 +357,11 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Renova restyle: pill CTAs, Inter, contrasting hover (AA) */
+.prop-body { font-family: var(--prop-font); background: #000; }
+.prop-cta { text-transform: none; letter-spacing: -0.02em; font-weight: 500; font-size: 0.875rem; }
+.prop-cta:not(.prop-cta--fill):not(.prop-cta--ghost):is(:hover, :focus-visible) { background: #f5f5f5; color: #111; border-color: #f5f5f5; }
+.prop-cta--fill { color: #000; }
+.prop-cta--fill:is(:hover, :focus-visible) { background: #fff; color: #111; border-color: #fff; }
+.prop-cta:focus-visible { outline: 2px solid #f60; outline-offset: 3px; }

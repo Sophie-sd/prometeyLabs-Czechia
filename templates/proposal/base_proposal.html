@@ -13,16 +13,14 @@
     <title>{% block title %}{{ page_title }}{% endblock %} — PrometeyLabs</title>
     <meta name="description" content="{% block description %}{{ meta_description }}{% endblock %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_tokens.css' %}?v=27">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_layout.css' %}?v=27">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_sections.css' %}?v=27">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_tree.css' %}?v=27">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_extras.css' %}?v=27">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_end.css' %}?v=27">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_motion.css' %}?v=27">
+    <link rel="stylesheet" href="{% static 'css/fonts-inter.css' %}?v=1">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_tokens.css' %}?v=28">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_layout.css' %}?v=28">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_sections.css' %}?v=28">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_tree.css' %}?v=28">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_extras.css' %}?v=28">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_end.css' %}?v=28">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_motion.css' %}?v=28">
     {% block page_css %}{% endblock %}
 </head>
 <body class="prop-body">
@@ -67,7 +65,7 @@
     </div>
 
     {% block page_js %}
-    <script src="{% static 'proposal/js/proposal_reveal.js' %}?v=27" nonce="{{ csp_nonce }}" defer></script>
+    <script src="{% static 'proposal/js/proposal_reveal.js' %}?v=28" nonce="{{ csp_nonce }}" defer></script>
     {% endblock %}
 </body>
 </html>

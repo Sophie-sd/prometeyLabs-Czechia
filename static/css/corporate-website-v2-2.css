@@ -130,7 +130,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 11px;
     color: #2ecc71;
@@ -159,7 +159,7 @@
 }
 
 .pl-corp__hero-timer-val {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 22px;
     color: #fff;
@@ -311,7 +311,7 @@
     border-radius: 8px;
     background: #16181a;
     border: 1px solid #232527;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     font-size: 11px;
     color: #8a8a8a;
 }

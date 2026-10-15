@@ -21,8 +21,8 @@
     --pl-radius-btn: 11px;
     --pl-radius-card: 18px;
     --pl-radius-panel: 20px;
-    --pl-font: 'Space Grotesk', system-ui, sans-serif;
-    --pl-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --pl-font: 'Inter', system-ui, sans-serif;
+    --pl-font-mono: 'Inter', sans-serif;
 }
 
 .pl-bot-body,

@@ -123,3 +123,93 @@ button[type="submit"]:not(.modal-close):not([class*="burger"]):not([class*="quiz
 .eu-phone__error[hidden]{display:none}
 /* pill-shaped field hosts (Renova contacts/footer/quiz inputs with 100px radius) */
 .eu-phone:has(> input[style*="border-radius"]) .eu-phone__cc{border-radius:100px 0 0 100px}
+
+/* =====================================================================
+   10. PAGES — Renova Figma look applied over CZ markup (texts/logic intact)
+   ===================================================================== */
+
+/* Product pages share Renova tokens */
+.pl-shop,.pl-corp,.pl-bot,.pl-wd,.pl-tz,.pl-shop-page{--pl-font:var(--rn-font);font-family:var(--rn-font)}
+:is(.pl-shop,.pl-corp,.pl-bot,.pl-tz) :is(h1,h2,h3){font-family:var(--rn-font);font-weight:500;letter-spacing:-.05em}
+
+/* ---- Internet shop: Renova Figma hero / calc backgrounds ---- */
+.pl-shop__hero{background:#000 url('../images/internet_shop_v2/figma/bg-hero-v3-1440.webp') center top / cover no-repeat}
+.pl-shop__hero-glow-a,.pl-shop__hero-grid{opacity:.25}
+.pl-shop__calc{background:#000 url('../images/internet_shop_v2/figma/bg-calc-v3-1440.webp') center / cover no-repeat}
+@media (max-width:1100px){.pl-shop__hero{background-image:url('../images/internet_shop_v2/figma/bg-hero-v3-960.webp')}.pl-shop__calc{background-image:url('../images/internet_shop_v2/figma/bg-calc-v3-960.webp')}}
+@media (max-width:767px){.pl-shop__hero{background-image:url('../images/internet_shop_v2/figma/bg-hero-v3-mobile.webp')}.pl-shop__calc{background-image:url('../images/internet_shop_v2/figma/bg-calc-v3-mobile.webp')}}
+
+/* ---- Corporate website ---- */
+.pl-corp__hero{background:#000 url('../images/corporate_website_v2/figma/bg-hero-1440.webp') center top / cover no-repeat}
+.pl-corp__hero-grid{opacity:.25}
+.pl-corp__calc{background:#000 url('../images/corporate_website_v2/figma/bg-calc-1440.webp') center / cover no-repeat}
+@media (max-width:1100px){.pl-corp__hero{background-image:url('../images/corporate_website_v2/figma/bg-hero-960.webp')}.pl-corp__calc{background-image:url('../images/corporate_website_v2/figma/bg-calc-960.webp')}}
+@media (max-width:767px){.pl-corp__hero{background-image:url('../images/corporate_website_v2/figma/bg-hero-m.webp')}.pl-corp__calc{background-image:url('../images/corporate_website_v2/figma/bg-calc-m.webp')}}
+
+/* product cards / panels → Renova cards */
+:is(.pl-shop,.pl-corp,.pl-bot,.pl-tz) :is([class*="__card"]:not([class*="__card-"]),[class*="__panel"]:not([class*="__panel-"]),[class*="__pkg"]:not([class*="__pkg-"])){border-radius:var(--rn-radius-card)}
+:is(.pl-shop,.pl-corp,.pl-bot,.pl-tz) :is([class*="__btn"]:not([class*="__btn-"]),[class*="__cta"]:not([class*="__cta-"])){border-radius:var(--rn-radius-pill)}
+/* light & accent product buttons: contrasting hover */
+:is(.pl-shop__btn,.pl-corp__btn,.pl-bot__btn,.pl-tz__btn):is(:hover,:focus-visible,:active){background:#fff!important;color:#111!important;border-color:#fff!important;-webkit-text-fill-color:#111!important}
+:is(.pl-shop__btn,.pl-corp__btn,.pl-bot__btn,.pl-tz__btn):is(:hover,:focus-visible,:active) :is(span,b,strong,svg){color:#111!important}
+/* product inputs → Renova pill inputs */
+:is(.pl-shop,.pl-corp,.pl-bot,.pl-tz) :is(input[type="text"],input[type="email"],input[type="tel"],textarea,select:not(.eu-phone__select)){background:rgba(20,20,20,.6)!important;border:1px solid rgba(255,255,255,.14)!important;color:var(--rn-white)!important;font-family:var(--rn-font)!important}
+:is(.pl-shop,.pl-corp,.pl-bot,.pl-tz) :is(input,textarea):focus{border-color:var(--rn-orange)!important}
+
+/* ---- Telegram bot: Renova tg-figma hero ---- */
+.pl-bot__hero{position:relative;background:#000 url('../images/tg-figma/hero-bg.webp') center top / cover no-repeat}
+@media (max-width:767px){.pl-bot__hero{background-image:url('../images/tg-figma/hero-bg-800.webp')}}
+.pl-bot__hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.7));pointer-events:none}
+.pl-bot__hero > *{position:relative}
+.pl-bot__section{background:#000}
+
+/* ---- Contacts (Renova contacts-figma: glows, 70px title, glass form card) ---- */
+.contacts-page{position:relative;overflow:hidden;background:#000;color:var(--rn-white)}
+.contacts-page::before,.contacts-page::after{content:'';position:absolute;pointer-events:none;z-index:0;width:1735px;height:1720px;background:url('../images/ct-figma/g1.svg') center / contain no-repeat}
+.contacts-page::before{left:-855px;top:34px}
+.contacts-page::after{background-image:url('../images/ct-figma/g2.svg');left:calc(50% - 53px);top:-473px}
+.contacts-main{position:relative;z-index:1;background:transparent!important;padding-top:120px}
+.contacts-page .medium-title{font-size:clamp(34px,5vw,70px);font-weight:500;line-height:1;letter-spacing:-.05em;color:var(--rn-white)}
+.contact-form-wrapper .medium-title{font-size:clamp(28px,3vw,38px)}
+.contact-text,.form-intro{color:var(--rn-gray)!important;font-size:16px}
+.contact-item{background:#141414;border-radius:20px;padding:20px}
+.contact-item h3,.contact-map__label{color:var(--rn-white)!important;font-weight:500;font-size:22px;letter-spacing:-.03em}
+.contact-link,.contact-address{color:var(--rn-orange)!important}
+.contact-address__label{color:var(--rn-gray)!important}
+.contact-map__frame-wrap{border-radius:14px;overflow:hidden}
+.contact-form-wrapper{border-radius:var(--rn-radius-card)!important;border:1px solid rgba(255,255,255,.14)!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(255,252,249,.1) 41.4%,rgba(255,102,0,.1) 100%)!important;
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:none!important}
+.contact-channels a{border-radius:100px;border:1px solid rgba(255,255,255,.14);color:var(--rn-orange)}
+.contact-channels a:is(:hover,:focus-visible){background:var(--rn-white);color:#111;border-color:var(--rn-white)}
+
+/* ---- Portfolio cards ---- */
+.pf-snaps,.portfolio-projects{background:#000}
+
+/* ---- Calculator / developer / thank-you / tz ---- */
+.calculator-page,.calc-page,.developer-page,.thank-you-page,.pl-tz{background:#000;color:var(--rn-white)}
+.calc-intro,.calc-card,.calc-test,.calc-step{border-radius:var(--rn-radius-card)}
+
+/* ---- Legal pages (offer / privacy / cookies / refund / IP) — dark Renova ---- */
+body:has(.legal-article) .legal-article,.legal-article,.legal-header,.legal-content,.legal-wrapper{background:#000!important;color:var(--rn-white)!important}
+body:has(.legal-article) .legal-article :is(h1,.legal-title){color:var(--rn-white)!important;font-size:clamp(34px,5vw,70px);font-weight:500;letter-spacing:-.05em;line-height:1}
+body:has(.legal-article) .legal-article :is(h2,h3){color:var(--rn-orange)!important;font-weight:500;letter-spacing:-.03em}
+body:has(.legal-article) .legal-article :is(p,li,td,dd,dt,span){color:#d6d6d6}
+body:has(.legal-article) .legal-article a{color:var(--rn-orange)!important;text-decoration:underline;text-underline-offset:2px}
+body:has(.legal-article) .legal-article a:hover{color:var(--rn-white)!important}
+body:has(.legal-article) .legal-article table{border-collapse:separate;border-spacing:0;border:1px solid rgba(255,255,255,.12)!important;border-radius:20px;overflow:hidden;background:#0d0d0d!important}
+body:has(.legal-article) .legal-article thead th,body:has(.legal-article) .legal-article th{background:#141414!important;color:var(--rn-white)!important;border-color:rgba(255,255,255,.1)!important}
+body:has(.legal-article) .legal-article td{background:transparent!important;border-color:rgba(255,255,255,.08)!important}
+body:has(.legal-article) .legal-article tr:nth-child(even) td{background:rgba(255,255,255,.03)!important}
+body:has(.legal-article) .legal-article strong,body:has(.legal-article) .legal-article b{color:var(--rn-white)!important}
+body:has(.legal-article) .legal-article code{background:#141414;color:var(--rn-orange);border-radius:6px;padding:0 4px}
+
+/* ---- Blog ---- */
+.blog-page,.blog-detail,.blog-list,.blog-search-page,.blog-content{background:#000!important;color:var(--rn-white)}
+:is(.blog-card,.related-card,.post-card,.article-card){background:var(--rn-card-bg)!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:var(--rn-radius-card)!important;color:var(--rn-white)!important;box-shadow:none!important}
+:is(.blog-card,.related-card,.post-card,.article-card) :is(h2,h3,.title){color:var(--rn-white)!important}
+:is(.blog-card,.related-card,.post-card,.article-card) :is(p,.excerpt,time,.meta){color:var(--rn-gray)!important}
+/* product primary = Renova light pill (white bg, orange text); ghost = glass pill */
+:is(.pl-shop__btn--primary,.pl-corp__btn--primary,.pl-bot__btn--primary,.pl-tz__btn--primary){background:var(--rn-white)!important;color:var(--rn-orange)!important;border:1px solid var(--rn-white)!important;box-shadow:none!important;-webkit-text-fill-color:var(--rn-orange)}
+:is(.pl-shop__btn--primary,.pl-corp__btn--primary,.pl-bot__btn--primary,.pl-tz__btn--primary) :is(span,svg){color:inherit!important}
+:is(.pl-shop__btn--ghost,.pl-corp__btn--ghost,.pl-bot__btn--ghost,.pl-tz__btn--ghost){background:rgba(255,255,255,.05)!important;color:var(--rn-white)!important;border:1px solid var(--rn-white)!important;-webkit-backdrop-filter:blur(2.6px);backdrop-filter:blur(2.6px)}

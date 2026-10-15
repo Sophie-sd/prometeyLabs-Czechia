@@ -111,7 +111,7 @@
 
 .pl-corp__admin-mock-title {
     margin-left: 12px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     font-size: 12px;
     color: #6a6a6a;
 }
@@ -124,7 +124,7 @@
     font-size: 12px;
     color: #6a6a6a;
     margin-bottom: 13px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     text-transform: uppercase;
     letter-spacing: 0.06em;
 }
@@ -163,7 +163,7 @@
     font-size: 11px;
     color: #6a6a6a;
     margin-bottom: 10px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     display: flex;
     align-items: center;
     gap: 7px;
@@ -202,7 +202,7 @@
 }
 
 .pl-corp__admin-preview-brand {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 12px;
     color: var(--pl-corp-bg);

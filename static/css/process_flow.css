@@ -7,7 +7,7 @@
     width: 100%;
     background: #000000;
     color: #ffffff;
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     padding:
         clamp(48px, 10vw, 100px)
         clamp(20px, 5vw, 40px);
@@ -27,7 +27,7 @@
 }
 
 .pf-flow__tag {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -228,7 +228,7 @@
 
 .pf-flow__step-num {
     display: block;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-family: 'Inter', sans-serif;
     font-size: 12px;
     letter-spacing: 0.06em;
     color: rgba(255, 255, 255, 0.35);

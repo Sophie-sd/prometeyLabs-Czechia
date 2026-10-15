@@ -12,7 +12,7 @@
   --v2-mute-2: rgba(255,255,255,0.45);
   --v2-line-grad-v: linear-gradient(180deg, transparent, rgba(255, 102, 0, 0.85), transparent);
   --v2-line-grad-h: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.85), transparent);
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background: var(--v2-bg);
   color: var(--v2-fg);
   width: 100%;
@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -66,7 +66,7 @@
 /* ===== H2 ===== */
 
 .home-redesign .v2-h2{
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(48px, 6vw, 96px);
   font-weight: 700;
   line-height: 0.92;
@@ -90,7 +90,7 @@
 /* Why cards shell/list — home-why-cards.css */
 
 .home-redesign .v2-tag{
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -168,7 +168,7 @@
   background: var(--v2-orange);
   color: #000;
   padding: 4px 10px 6px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
 }
 
@@ -188,7 +188,7 @@
 }
 
 .home-redesign .v2-svc-title{
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 22px;
   font-weight: 700;
   line-height: 1.05;
@@ -215,7 +215,7 @@
   background: transparent;
   border: 1px solid var(--v2-orange);
   color: var(--v2-orange);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.08em;
@@ -270,7 +270,7 @@
 }
 
 .home-redesign .v2-client-name{
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
   letter-spacing: 0.06em;
   text-transform: uppercase;

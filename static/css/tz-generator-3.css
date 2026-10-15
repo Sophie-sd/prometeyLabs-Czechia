@@ -230,7 +230,7 @@
 }
 
 .pl-tz__quiz-question {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: clamp(18px, 2.5vw, 22px);
     font-weight: 700;
     color: #fff;
@@ -523,7 +523,7 @@
 }
 
 .pl-tz__success-title {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     font-size: clamp(20px, 2.6vw, 26px);
     font-weight: 700;
     color: #fff;

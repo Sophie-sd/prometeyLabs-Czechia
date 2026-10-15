@@ -1,0 +1,23 @@
+/* Portfolio hero — Figma A5BXwq4Lyx5lyOBVUCw1Zu (Desktop 1:14, Mobile 1:38) */
+.pff-hero{position:relative;overflow:hidden;background:#000;height:896px;font-family:'Inter',system-ui,sans-serif}
+.pff-hero__bg{position:absolute;left:0;right:0;top:51px;height:845px;display:block}
+.pff-hero__img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.pff-hero__title{position:relative;z-index:1;margin:0 auto;padding:210px 0 .2em;width:759px;max-width:calc(100% - 32px);
+  font-weight:500;font-size:70px;line-height:1;letter-spacing:-.05em;color:#f5f5f5;text-align:center;text-transform:none;background:none}
+@media (max-width:1100px){
+  .pff-hero{height:auto;aspect-ratio:1440/896;min-height:640px}
+  .pff-hero__bg{top:calc(51/896*100%);height:auto;bottom:0}
+  .pff-hero__title{padding-top:min(210px,19vw);font-size:clamp(48px,6.4vw,70px)}
+}
+@media (max-width:767px){
+  .pff-hero{aspect-ratio:auto;height:621px;min-height:0}
+  .pff-hero__bg{top:-9px;bottom:auto;left:50%;right:auto;transform:translateX(calc(-50% - 7px));width:max(445px,calc(100% + 52px));height:854px}
+  .pff-hero__img{object-position:50% 50%}
+  .pff-hero__title{width:330px;padding-top:158px;font-size:34px}
+}
+.pff-hero__title{font-family:'Inter',system-ui,sans-serif}
+.pff-hero + .portfolio-projects{margin-top:0}
+/* CZ: two-line title (h1 + subtitle span) — same msgids as before */
+.pff-hero__title{text-transform:none}
+.pff-hero__sub{display:block;margin-top:.12em;color:#f60}
+@media (max-width:767px){.pff-hero__title{font-size:30px;width:340px}}

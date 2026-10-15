@@ -3,7 +3,7 @@
    Fonts: self-hosted Inter + JetBrains Mono variable subsets (static/fonts), latin + latin-ext. */
 
 @font-face {
-    font-family: "PL Web Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
@@ -12,7 +12,7 @@
 }
 
 @font-face {
-    font-family: "PL Web Inter";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
@@ -21,7 +21,7 @@
 }
 
 @font-face {
-    font-family: "PL Web Mono";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400 800;
     font-display: swap;
@@ -30,7 +30,7 @@
 }
 
 @font-face {
-    font-family: "PL Web Mono";
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400 800;
     font-display: swap;
@@ -54,8 +54,8 @@
     --pl-web-text: #f5f5f5;
     --pl-web-muted: #a1a1aa;
     --pl-web-caption: #a2a2a2;
-    --pl-web-font: "PL Web Inter", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    --pl-web-mono: "PL Web Mono", "JetBrains Mono", ui-monospace, monospace;
+    --pl-web-font: 'Inter', "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --pl-web-mono: 'Inter', 'Inter', sans-serif;
     background: var(--pl-web-bg);
     color: var(--pl-web-text);
     overflow-x: clip;

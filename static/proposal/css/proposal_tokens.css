@@ -1,19 +1,19 @@
-/* Proposal design tokens — dark cinematic (folder redesign) */
+/* Proposal design tokens — Renova restyle: #000 / #f5f5f5 / #f60, Inter, 30px radius */
 :root {
-    --prop-bg: #0a0a0a;
+    --prop-bg: #000;
     --prop-bg-2: #0d0d0d;
     --prop-bg-3: #111214;
-    --prop-text: #f3eee7;
-    --prop-muted: rgba(243, 238, 231, 0.6);
+    --prop-text: #f5f5f5;
+    --prop-muted: #a2a2a2;
     --prop-muted-faint: rgba(243, 238, 231, 0.38);
     --prop-line: rgba(243, 238, 231, 0.14);
     --prop-line-strong: rgba(243, 238, 231, 0.26);
-    --prop-accent: #e1520e;
-    --prop-accent-soft: rgba(225, 82, 15, 0.14);
+    --prop-accent: #f60;
+    --prop-accent-soft: rgba(255, 102, 0, 0.14);
     --prop-ink: #0a0a0a;
 
-    --prop-font: "Manrope", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --prop-display: "Onest", "Manrope", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --prop-font: 'Inter', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --prop-display: 'Inter', 'Inter', "Helvetica Neue", Helvetica, Arial, sans-serif;
 
     --prop-mega: clamp(1.875rem, 5.6vw, 6.25rem);
     --prop-h2: clamp(1.625rem, 3.6vw, 4.125rem);
@@ -29,7 +29,7 @@
 
     --prop-pad: clamp(1.25rem, 5.5vw, 5.5rem);
     --prop-gutter: 1.25rem;
-    --prop-radius: 0.125rem;
+    --prop-radius: 200px; /* pill buttons (Renova) */
     --prop-container: 90rem;
 
     --duration-fast: 160ms;

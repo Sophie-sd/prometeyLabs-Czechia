@@ -6,34 +6,23 @@
 {% block description %}{% trans "Наше портфоліо веб-сайтів під ключ. Приклади сучасних веб-рішень для різних сфер бізнесу." context "portfolio" %}{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/portfolio.css' %}?v=snap14">
+<link rel="preload" as="image" href="{% static 'images/pf-figma/hero-desktop.webp' %}" media="(min-width: 1101px)">
+<link rel="stylesheet" href="{% static 'css/portfolio-figma/portfolio-figma.css' %}?v=cz1">
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}?v=snap15">
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap2.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-screen.css' %}?v=screen3">
 {% endblock %}
 
 {% block content %}
-<!-- Hero Section з фоновим відео -->
-<section class="hero-section full-height">
-    <!-- Фонові відео для декстопу та мобільних -->
-    <video class="video-background desktop-video" autoplay muted loop playsinline>
-        <source src="{% static 'videos/desktop/portfolio.mp4' %}" type="video/mp4">
-    </video>
-    <video class="video-background mobile-video" autoplay muted loop playsinline>
-        <source src="{% static 'videos/mobile/portfoliomobile.mp4' %}" type="video/mp4">
-    </video>
-
-    <!-- Overlay для кращої читабельності -->
-    <div class="video-overlay"></div>
-
-    <div class="hero-content">
-        <div class="container">
-            <div class="hero-text text-center">
-                <h1 class="text-mega color-brand-orange mb-lg">{% trans "СТВОРЕНІ НАМИ" %}</h1>
-                <p class="text-large color-white mb-xl">{% trans "САЙТИ ПІД КЛЮЧ" %}</p>
-            </div>
-        </div>
-    </div>
+{# Hero за Figma Renova (pff-). Тексти CZ без змін: h1 + підзаголовок. #}
+<section class="pff-hero" aria-labelledby="pff-hero-title">
+    <picture class="pff-hero__bg" aria-hidden="true">
+        <source media="(max-width: 767px)" srcset="{% static 'images/pf-figma/hero-mobile.webp' %}">
+        <source media="(max-width: 1100px)" srcset="{% static 'images/pf-figma/hero-desktop-1100.webp' %}">
+        <img class="pff-hero__img" src="{% static 'images/pf-figma/hero-desktop.webp' %}" alt="" width="1440" height="845" fetchpriority="high" decoding="async">
+    </picture>
+    <h1 class="pff-hero__title" id="pff-hero-title">{% trans "СТВОРЕНІ НАМИ" %}<span class="pff-hero__sub">{% trans "САЙТИ ПІД КЛЮЧ" %}</span></h1>
 </section>
 
 <section class="portfolio-projects content-section--first pf-snaps" data-portfolio-snap aria-label="{% trans 'Проєкти портфоліо' context 'portfolio' %}">

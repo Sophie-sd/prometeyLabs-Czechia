@@ -42,7 +42,7 @@
     justify-content: flex-end;
     margin: 0;
     padding: 0 clamp(2px, 1.2vw, 10px) 0 0;
-    font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     font-size: clamp(76px, 19vw, 148px);
     font-weight: 800;
     line-height: 0.82;

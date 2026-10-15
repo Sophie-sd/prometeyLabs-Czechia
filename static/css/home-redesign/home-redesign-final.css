@@ -93,11 +93,11 @@
 
 /* Space Grotesk base; JetBrains Mono for tags & rule rows (marquee → footer only) */
 .home-redesign.vf {
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .home-redesign.vf .v3 {
-  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .home-redesign.vf .v2-h2,
@@ -120,7 +120,7 @@
 .home-redesign.vf .v2-why-eyebrow,
 .home-redesign.vf .v2-why-note,
 .home-redesign.vf .v2-li-val {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: 'Inter', sans-serif;
 }
 
 .home-redesign.vf .vf-host .v3-bg-glow,

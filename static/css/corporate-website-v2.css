@@ -13,7 +13,7 @@
     --pl-corp-header-offset: 80px;
     background: var(--pl-corp-bg);
     color: #fff;
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     line-height: 1.6;
     overflow-x: clip;
     -webkit-font-smoothing: antialiased;
@@ -90,7 +90,7 @@ body.pl-corp-body .main-content {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     font-weight: 600;
     font-size: 12px;
     letter-spacing: 0.2em;
@@ -107,7 +107,7 @@ body.pl-corp-body .main-content {
 }
 
 .pl-corp__title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: #fff;
@@ -347,7 +347,7 @@ body.pl-corp-body .main-content {
     border: 1px solid #232527;
     border-radius: 7px;
     padding: 5px 10px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     font-size: 11px;
     color: #6a6a6a;
     display: flex;
@@ -366,7 +366,7 @@ body.pl-corp-body .main-content {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     font-size: 9.5px;
     letter-spacing: 0.16em;
     text-transform: uppercase;

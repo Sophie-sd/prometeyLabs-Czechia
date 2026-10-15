@@ -41,7 +41,7 @@
 }
 
 .pl-corp__scale-case-label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -117,7 +117,7 @@
 }
 
 .pl-corp__scale-card-path {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     font-size: clamp(8px, 2.2vw, 10px);
     color: #8a8a8a;
     margin-bottom: 12px;
@@ -199,7 +199,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     border-radius: 7px;
     white-space: nowrap;
 }
@@ -246,7 +246,7 @@
 .pl-corp__scale-caption {
     margin: 18px 0 0;
     text-align: center;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', monospace;
     font-size: 12px;
     color: #7a7a7a;
 }
@@ -274,7 +274,7 @@
 }
 
 .pl-corp__scale-guarantee-val {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: clamp(26px, 3.4vw, 40px);
     color: var(--pl-corp-acc);

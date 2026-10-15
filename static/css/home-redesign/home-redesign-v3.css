@@ -10,7 +10,7 @@
   --v3-mute-2: rgba(255,255,255,0.45);
   --v3-card: rgba(255,255,255,0.04);
   --v3-card-br: rgba(255,255,255,0.08);
-  font-family: 'Unbounded', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background: var(--v3-bg);
   color: var(--v3-fg);
   position: relative;
@@ -66,7 +66,7 @@
 }
 
 .home-redesign .v3-h2{
-  font-family: 'Unbounded', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(40px, 5.4vw, 76px);
   font-weight: 500;
   line-height: 1.0;
@@ -152,7 +152,7 @@
 
 
 .home-redesign .v3-why-num{
-  font-family: 'Unbounded', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 32px;
   font-weight: 200;
   line-height: 1;
@@ -162,7 +162,7 @@
 
 
 .home-redesign .v3-why-title{
-  font-family: 'Unbounded', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.18;
@@ -294,7 +294,7 @@
   position: absolute;
   top: 18px; right: 22px;
   z-index: 2;
-  font-family: 'Unbounded', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 80px;
   font-weight: 300;
   line-height: 1;
@@ -314,7 +314,7 @@
 }
 
 .home-redesign .v3-svc-title{
-  font-family: 'Unbounded', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 22px;
   font-weight: 500;
   line-height: 1.1;

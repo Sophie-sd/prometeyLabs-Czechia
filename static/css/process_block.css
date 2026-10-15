@@ -24,7 +24,7 @@
     padding-inline-end: max(clamp(16px, 4vw, 20px), env(safe-area-inset-right));
     background: var(--pb-bg);
     color: var(--pb-text);
-    font-family: "Manrope", system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     overflow: hidden;
     isolation: isolate;
 }
