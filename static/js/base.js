@@ -750,6 +750,23 @@ class PrometeyApp {
         return isValid;
     }
 
+    showNotification(message, type) {
+        // Toast for server/network errors (was called but never defined -> TypeError, no feedback)
+        let t = document.getElementById('pl-toast');
+        if (!t) {
+            t = document.createElement('div');
+            t.id = 'pl-toast';
+            t.setAttribute('role', 'alert');
+            t.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:10050;max-width:min(92vw,520px);padding:14px 22px;border-radius:30px;font:500 15px/1.4 Inter,system-ui,sans-serif;color:#f5f5f5;background:#1a1a1a;border:1px solid #f60;box-shadow:0 8px 30px rgba(0,0,0,.5);text-align:center';
+            document.body.appendChild(t);
+        }
+        t.textContent = message;
+        t.style.borderColor = type === 'error' ? '#ff4d4f' : '#f60';
+        t.hidden = false;
+        clearTimeout(this._toastTimer);
+        this._toastTimer = setTimeout(() => { t.hidden = true; }, 6000);
+    }
+
     showFieldError(field, message) {
         const errorEl = field.parentElement?.querySelector('.calc-field__error')
             || field.closest('.form-group')?.querySelector('.lead-form-contact-rule');

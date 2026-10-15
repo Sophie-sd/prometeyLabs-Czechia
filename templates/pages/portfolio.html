@@ -7,7 +7,7 @@
 
 {% block extra_css %}
 <link rel="preload" as="image" href="{% static 'images/pf-figma/hero-desktop.webp' %}" media="(min-width: 1101px)">
-<link rel="stylesheet" href="{% static 'css/portfolio-figma/portfolio-figma.css' %}?v=cz1">
+<link rel="stylesheet" href="{% static 'css/portfolio-figma/portfolio-figma.css' %}?v=cz2">
 <link rel="stylesheet" href="{% static 'css/portfolio.css' %}?v=snap15">
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap2.css' %}?v=snap13">
@@ -22,7 +22,7 @@
         <source media="(max-width: 1100px)" srcset="{% static 'images/pf-figma/hero-desktop-1100.webp' %}">
         <img class="pff-hero__img" src="{% static 'images/pf-figma/hero-desktop.webp' %}" alt="" width="1440" height="845" fetchpriority="high" decoding="async">
     </picture>
-    <h1 class="pff-hero__title" id="pff-hero-title">{% trans "СТВОРЕНІ НАМИ" %}<span class="pff-hero__sub">{% trans "САЙТИ ПІД КЛЮЧ" %}</span></h1>
+    <h1 class="pff-hero__title" id="pff-hero-title">{% trans "Створені нами сайти під ключ" context "portfolio" %}</h1>
 </section>
 
 <section class="portfolio-projects content-section--first pf-snaps" data-portfolio-snap aria-label="{% trans 'Проєкти портфоліо' context 'portfolio' %}">

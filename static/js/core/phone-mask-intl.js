@@ -89,7 +89,7 @@
         input.setAttribute('data-eu-phone', '');
         input.setAttribute('autocomplete', 'tel');
         input.setAttribute('inputmode', 'tel');
-        if (!input.getAttribute('placeholder') || /^\+?\d[\d\s]*$/.test(input.getAttribute('placeholder') || '')) {
+        if (!input.getAttribute('placeholder') || /^\+?[\d\s]*$/.test(input.getAttribute('placeholder') || '')) {
             input.setAttribute('placeholder', '+420 777 123 456');
         }
         var wrap = document.createElement('div');

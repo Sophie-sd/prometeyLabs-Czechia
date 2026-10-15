@@ -45,4 +45,6 @@
     window.dataLayer.push({ event: 'generate_lead', page_type: 'thank_you' });
     if (typeof window._loadGTM === 'function') { window._loadGTM(); }
 </script>
+{# Footer lead form on this page needs the shared stack (base.js submit + EU phone field) #}
+{{ block.super }}
 {% endblock %}

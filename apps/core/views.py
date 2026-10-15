@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils import timezone
 from .mixins import (
     BasePageView, LocalizedLegalTemplateMixin, homepage_clients, portfolio_page_projects,
@@ -231,7 +232,7 @@ def handle_form_submission(request):
             return create_form_response(
                 True,
                 _('Дякуємо! Заявку на Telegram-бота отримано. Ми зв\'яжемося з вами найближчим часом.'),
-                redirect='/thank-you/'
+                redirect=reverse('thank_you')
             )
         name = request.POST.get('name', '').strip()
         phone = strip_prefix_only(request.POST.get('phone', '').strip())
@@ -354,7 +355,7 @@ def handle_site_request(request, name, phone):
     return create_form_response(
         True,
         _('Дякуємо! Ваша заявка отримана. Ми зв\'яжемося з вами найближчим часом.'),
-        redirect='/thank-you/'
+        redirect=reverse('thank_you')
     )
 
 
@@ -398,7 +399,7 @@ def handle_telegram_bot_request(request, name, phone):
     return create_form_response(
         True,
         _('Дякуємо! Заявку на Telegram-бота отримано. Ми зв\'яжемося з вами найближчим часом.'),
-        redirect='/thank-you/'
+        redirect=reverse('thank_you')
     )
 
 
@@ -428,7 +429,7 @@ def handle_developer_request(request, name, phone):
     return create_form_response(
         True,
         _('Дякуємо! Ваша заявка на курси отримана. Ми надішлемо детальну інформацію.'),
-        redirect='/thank-you/'
+        redirect=reverse('thank_you')
     )
 
 def handle_consultation_request(request, name, phone):
@@ -455,7 +456,7 @@ def handle_consultation_request(request, name, phone):
     return create_form_response(
         True,
         _('Дякуємо! Наш спеціаліст зв\'яжеться з вами протягом 15 хвилин.'),
-        redirect='/thank-you/'
+        redirect=reverse('thank_you')
     )
 
 def handle_contact_request(request, name, phone):
@@ -482,7 +483,7 @@ def handle_contact_request(request, name, phone):
     return create_form_response(
         True,
         _('Дякуємо за ваше повідомлення! Ми зв\'яжемося з вами найближчим часом.'),
-        redirect='/thank-you/'
+        redirect=reverse('thank_you')
     )
 
 
@@ -578,7 +579,7 @@ def handle_test_submission(request):
             success_message,
             answers=answers,
             alt_services_checked=alt_services_checked,
-            redirect='/thank-you/',
+            redirect=reverse('thank_you'),
         )
         
     except Exception as e:
@@ -606,7 +607,7 @@ def handle_call_request(request, name, phone):
     return create_form_response(
         True,
         _('Дякуємо! Наш менеджер зателефонує вам протягом 15 хвилин.'),
-        redirect='/thank-you/'
+        redirect=reverse('thank_you')
     )
 
 def handle_footer_consultation(request, name, phone):
@@ -630,6 +631,6 @@ def handle_footer_consultation(request, name, phone):
     return create_form_response(
         True,
         _('Дякуємо! Ми зв\'яжемося з вами найближчим часом.'),
-        redirect='/thank-you/'
+        redirect=reverse('thank_you')
     )
 

@@ -610,3 +610,18 @@
 .contact-address--cz {
     margin-top: 12px;
 }
+
+/* Renova contacts-figma parity (ctf__title / ctf-form__title metrics) */
+.contacts-page .contact-block > .medium-title{font-weight:500;font-size:70px;line-height:1;letter-spacing:-.05em;color:#f5f5f5;padding-bottom:.12em;margin-bottom:12px}
+.contacts-page .contact-form-wrapper > .medium-title{font-weight:500;font-size:38px;line-height:1;letter-spacing:-.05em;text-align:center;padding-bottom:.1em}
+.contacts-page .contact-form-wrapper > .form-intro{text-align:center}
+@media (min-width:1024px){
+  .contacts-page .contact-form-wrapper .lead-form-fields{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+  .contacts-page .contact-form-wrapper .lead-form-fields > .form-group:has(textarea),
+  .contacts-page .contact-form-wrapper .lead-form-fields > .form-group:has(.lead-form-checkbox),
+  .contacts-page .contact-form-wrapper .lead-form-fields > p{grid-column:1/-1}
+}
+@media (max-width:767px){
+  .contacts-page .contact-block > .medium-title{font-size:34px}
+  .contacts-page .contact-form-wrapper > .medium-title{font-size:30px}
+}

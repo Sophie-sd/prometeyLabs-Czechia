@@ -170,10 +170,9 @@ msgid "Статті блогу"
 msgstr "Blog Posts"
 
 #: apps/blog/views.py:38 apps/blog/views.py:40
-#, fuzzy
 #| msgid "Заявка на курси програмування"
 msgid "Блог про веб-розробку та курси програмування"
-msgstr "Programming Courses"
+msgstr "Blog about web development"
 
 #: apps/blog/views.py:39
 msgid "Корисні статті про веб-розробку, курси програмування, створення сайтів під ключ та Telegram ботів. Читайте експертні поради та навчальні матеріали."
@@ -8023,7 +8022,7 @@ msgstr "Go to homepage"
 
 #: templates/pages/thank_you.html:32
 msgid "Перейти до контактів"
-msgstr "Go to Payment Page"
+msgstr "Go to contacts"
 
 #: templates/pages/tz-dlia-saitu.html:7
 msgid "Створити ТЗ для сайту безкоштовно за 3 хвилини | PrometeyLabs"
@@ -9998,3 +9997,19 @@ msgstr "AI for your business tasks"
 
 #~ msgid "Як до вас звертатися"
 #~ msgstr "How should we address you"
+
+msgid "AI-автоматизація"
+msgstr "AI automation"
+
+msgid "Базові терміни виконання"
+msgstr "Standard delivery times"
+
+msgid "Гарантія включає"
+msgstr "Warranty includes"
+
+msgid "Мобільна версія"
+msgstr "Mobile version"
+
+msgctxt "portfolio"
+msgid "Створені нами сайти під ключ"
+msgstr "Turnkey websites we have built"

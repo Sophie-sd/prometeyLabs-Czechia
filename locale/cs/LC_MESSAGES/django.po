@@ -182,10 +182,9 @@ msgid "Статті блогу"
 msgstr "Články blogu"
 
 #: apps/blog/views.py:38 apps/blog/views.py:40
-#, fuzzy
 #| msgid "Заявка на курси програмування"
 msgid "Блог про веб-розробку та курси програмування"
-msgstr "Poptávka na kurzy programování"
+msgstr "Blog o tvorbě webů a vývoji"
 
 #: apps/blog/views.py:39
 msgid "Корисні статті про веб-розробку, курси програмування, створення сайтів під ключ та Telegram ботів. Читайте експертні поради та навчальні матеріали."
@@ -6425,8 +6424,6 @@ msgid "Короткий опис проєкту"
 msgstr "Krátký popis projektu"
 
 #: templates/components/tz_generator/quiz.html:113
-#, fuzzy
-#| msgid "Сайти під ключ, лендінги, інтернет-магазини, веб-додатки, телеграм-боти"
 msgid "Наприклад: потрібен інтернет-магазин косметики з доставкою..."
 msgstr "Například: potřebuji e-shop s kosmetikou s dopravou..."
 
@@ -6452,7 +6449,7 @@ msgstr "Základní zadání je hotové!"
 
 #: templates/components/tz_generator/quiz.html:149
 msgid "Завантажте PDF зараз. Розширене ТЗ зі структурою сторінок надішлемо на email протягом доби."
-msgstr ""
+msgstr "Stáhněte si PDF hned. Rozšířené zadání se strukturou stránek vám pošleme e-mailem do 24 hodin."
 
 #: templates/components/tz_generator/quiz.html:156
 msgid "Що робимо далі?"
@@ -9706,3 +9703,19 @@ msgstr "Nasazení AI do vašich obchodních úkolů"
 
 #~ msgid "Як до вас звертатися"
 #~ msgstr "Jak vás máme oslovit"
+
+msgid "AI-автоматизація"
+msgstr "AI automatizace"
+
+msgid "Базові терміни виконання"
+msgstr "Základní termíny realizace"
+
+msgid "Гарантія включає"
+msgstr "Záruka zahrnuje"
+
+msgid "Мобільна версія"
+msgstr "Mobilní verze"
+
+msgctxt "portfolio"
+msgid "Створені нами сайти під ключ"
+msgstr "Weby na klíč, které jsme vytvořili"

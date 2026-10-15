@@ -17,7 +17,5 @@
 }
 .pff-hero__title{font-family:'Inter',system-ui,sans-serif}
 .pff-hero + .portfolio-projects{margin-top:0}
-/* CZ: two-line title (h1 + subtitle span) — same msgids as before */
+/* CZ: single sentence-case title as in Renova */
 .pff-hero__title{text-transform:none}
-.pff-hero__sub{display:block;margin-top:.12em;color:#f60}
-@media (max-width:767px){.pff-hero__title{font-size:30px;width:340px}}
