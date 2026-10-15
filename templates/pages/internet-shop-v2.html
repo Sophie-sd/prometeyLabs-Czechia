@@ -13,7 +13,6 @@
 <link rel="canonical" href="https://www.prometeylabs.com/internet-shop/">
 <link rel="preload" as="image" type="image/webp" href="{% static 'images/shop_hero_720.webp' %}" media="(max-width: 767px)" fetchpriority="high">
 <link rel="preload" as="image" type="image/webp" href="{% static 'images/shop_hero_720.webp' %}" media="(min-width: 768px)" fetchpriority="high">
-<link rel="preload" as="font" type="font/woff2" href="{% static 'fonts/space-grotesk/space-grotesk-400-adb775.woff2' %}" crossorigin>
 {% endblock %}
 
 {% block page_css %}
@@ -66,9 +65,6 @@ body.pl-shop-body{background:#0A0A0A;overflow-x:clip}
 .pl-shop-page .project-story .v3-client-ring{width:120px;height:120px;padding:3px}
 }
 </style>
-<link rel="preload" href="{% static 'css/pl-shop-fonts.css' %}?v=1" as="style">
-<link rel="stylesheet" href="{% static 'css/pl-shop-fonts.css' %}?v=1" media="print" data-async-css>
-<noscript><link rel="stylesheet" href="{% static 'css/pl-shop-fonts.css' %}?v=1"></noscript>
 <link rel="preload" href="{% static 'css/internet-shop-v2.css' %}?v=122" as="style">
 <link rel="stylesheet" href="{% static 'css/internet-shop-v2.css' %}?v=122" media="print" data-async-css>
 <noscript><link rel="stylesheet" href="{% static 'css/internet-shop-v2.css' %}?v=122"></noscript>
@@ -79,8 +75,7 @@ body.pl-shop-body{background:#0A0A0A;overflow-x:clip}
 <div id="plShopRoot" class="pl-shop pl-shop-page"
      data-admin-js="{% static 'js/internet-shop-v2-admin-mock.js' %}?v=3"
      data-quiz-js="{% static 'js/internet-shop-v2-quiz.js' %}?v=8"
-     data-phone-mask-js="{% static 'js/core/phone-mask-intl.js' %}?v=2"
-     data-mono-fonts-css="{% static 'css/pl-shop-mono-fonts.css' %}?v=1">
+     data-phone-mask-js="{% static 'js/core/phone-mask-intl.js' %}?v=2">
     {% include 'components/internet_shop_v2/hero.html' %}
     {% include 'components/internet_shop_v2/clients.html' %}
     {% include 'components/internet_shop_v2/svoboda.html' %}

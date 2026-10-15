@@ -6,6 +6,8 @@ base-bundle.css or fonts.css — those load separately.
 """
 from __future__ import annotations
 
+import posixpath
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,17 +16,9 @@ OUT = STATIC_CSS / "home-page-bundle.css"
 
 SOURCES = [
     "home.css",
-    "components/marquee-why-choose.css",
-    "home-redesign/home-redesign-v2.css",
-    "home-redesign/home-redesign-v3.css",
-    "home-redesign/home-redesign-final.css",
-    "home-redesign/home-redesign-bridge.css",
-    "home-redesign/home-why-cards.css",
-    "process_block.css",
-    "services_piano_block.css",
-    "services_piano_block_mob.css",
-    "services_piano_video.css",
-    "home-motion.css",
+    "home-figma/home-figma.css",
+    "components/clients-marquee.css",
+    "home-figma/home-figma-cz.css",
 ]
 
 
@@ -38,7 +32,17 @@ def main() -> None:
         if not path.is_file():
             raise SystemExit(f"Missing CSS source: {path}")
         parts.append(f"\n/* ===== {rel} ===== */\n")
-        parts.append(path.read_text(encoding="utf-8"))
+        css = path.read_text(encoding="utf-8")
+        base = posixpath.dirname(rel)
+        if base:
+            # Rebase relative url(...) from the source subdir to static/css/.
+            def _rebase(m: re.Match) -> str:
+                q, u = m.group(1), m.group(2)
+                if re.match(r"^(data:|https?:|/|#)", u):
+                    return m.group(0)
+                return f"url({q}{posixpath.normpath(posixpath.join(base, u))}{q})"
+            css = re.sub(r"url\(\s*(['\"]?)([^'\")]+)\1\s*\)", _rebase, css)
+        parts.append(css)
         if not parts[-1].endswith("\n"):
             parts.append("\n")
 

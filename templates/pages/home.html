@@ -12,11 +12,15 @@
 
 {% block page_css %}
 {# Головна за Figma Renova 7uoVJKPxBEi4MiARfaDeZV (hf-). Тексти — CZ msgid без змін. #}
-{# home.css — лише заради стилів сервісних модалок (як у Renova) #}
+{# home.css — лише заради стилів сервісних модалок (як у Renova). Prod: scripts/build_home_css.py #}
+{% if DEBUG %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}?v=13">
 <link rel="stylesheet" href="{% static 'css/home-figma/home-figma.css' %}?v=cz1">
 <link rel="stylesheet" href="{% static 'css/components/clients-marquee.css' %}?v=1">
 <link rel="stylesheet" href="{% static 'css/home-figma/home-figma-cz.css' %}?v=1">
+{% else %}
+<link rel="stylesheet" href="{% static 'css/home-page-bundle.css' %}?v=2">
+{% endif %}
 {% endblock %}
 
 {% block content %}
