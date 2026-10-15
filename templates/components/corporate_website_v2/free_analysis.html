@@ -1,39 +1,24 @@
-{% load i18n %}
-<section id="free-analysis" class="pl-corp__free-analysis pl-corp__section" aria-labelledby="pl-corp-free-analysis-title">
+{% load static i18n %}
+<section id="free-analysis" class="pl-corp__lead-cta" aria-labelledby="pl-corp-free-analysis-title">
     <div class="pl-corp__inner">
-        <div class="pl-corp__free-analysis-card" data-reveal>
-            <h2 id="pl-corp-free-analysis-title" class="pl-corp__free-analysis-title">
-                {% trans "Безкоштовний аналіз вашого бізнесу" %}
-            </h2>
-            <p class="pl-corp__free-analysis-desc">
-                {% trans "Залиште номер телефону — підготуємо короткий аналіз і зателефонуємо з рекомендаціями." %}
-            </p>
-            <form
-                class="pl-corp__free-analysis-form"
-                method="post"
-                action="{% url 'form_submit' %}"
-                data-form-type="call_request"
-            >
+        <div class="pl-corp__lead-cta-row" data-reveal>
+            <div class="pl-corp__lead-cta-copy">
+                <h2 id="pl-corp-free-analysis-title" class="pl-corp__lead-cta-title"><span class="pl-corp__accent">{% trans "Безкоштовний" %}</span> {% trans "аналіз вашого бізнесу" %}</h2>
+                <p class="pl-corp__lead-cta-text">{% trans "Залиште номер телефону — підготуємо короткий аналіз і зателефонуємо з рекомендаціями." %}</p>
+            </div>
+            <form class="pl-corp__lead-cta-form" method="post" action="{% url 'form_submit' %}" data-form-type="call_request">
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="call_request">
                 <input type="hidden" name="source_page" value="corporate-website-v2-free-analysis">
                 <input type="hidden" name="name" value="Безкоштовний аналіз">
-                <div class="pl-corp__free-analysis-row">
-                    <input
-                        type="tel"
-                        name="phone"
-                        class="pl-corp__free-analysis-input mobile-touch-target"
-                        autocomplete="tel"
-                        inputmode="tel"
-                        placeholder="{{ phone_placeholder }}"
-                        required
-                        aria-label="{% trans 'Номер телефону' %}"
-                    >
-                    <button type="submit" class="pl-corp__btn pl-corp__btn--primary pl-corp__free-analysis-submit mobile-touch-target">
-                        {% trans "Отримати консультацію" %}
-                    </button>
+                <div class="pl-corp__lead-cta-fields">
+                    <label class="pl-corp__field">
+                        <span class="pl-corp__sr-only">{% trans "Номер телефону" %}</span>
+                        <input type="tel" name="phone" class="pl-corp__field-input mobile-touch-target" autocomplete="tel" inputmode="tel" placeholder="{{ phone_placeholder }}" required aria-label="{% trans 'Номер телефону' %}">
+                    </label>
+                    <button type="submit" class="pl-corp__btn pl-corp__btn--accent mobile-touch-target">{% trans "Отримати консультацію" %}</button>
                 </div>
-                {% include 'components/lead_gdpr_min.html' with prefix='pl-corp-free' input_class='pl-corp__free-analysis-input mobile-touch-target' wrap_class='pl-corp__free-analysis-gdpr' %}
+                {% include 'components/lead_gdpr_min.html' with prefix='pl-corp-free' input_class='pl-corp__field-input mobile-touch-target' wrap_class='pl-corp__lead-cta-gdpr' %}
             </form>
         </div>
     </div>

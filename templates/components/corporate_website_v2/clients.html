@@ -1,19 +1,19 @@
 {% load i18n %}
-<section class="pl-corp__clients-block" aria-labelledby="pl-corp-clients-title">
+<section class="pl-corp__section pl-corp__clients" aria-labelledby="pl-corp-clients-title">
     <div class="pl-corp__inner">
-        <p class="pl-corp__clients-label" id="pl-corp-clients-title">{% trans "Бізнеси, що вже працюють на нашому коді" %}</p>
+        <h2 class="pl-corp__title pl-corp__clients-title" id="pl-corp-clients-title">{% trans "Бізнеси, що вже працюють на нашому коді" %}</h2>
     </div>
-
-    <div class="pl-corp__clients-wrap">
-        <div class="pl-corp__clients-stories-wrapper">
-            <div class="pl-corp__clients-stories-container projects-stories-container" role="list" data-marquee-label="{% trans 'Наші клієнти — автоматична демонстрація' %}">
-                {% for client in home_clients %}
-                {% include 'components/client_home_story.html' with client=client is_clone=False %}
-                {% endfor %}
-                {% for client in home_clients %}
-                {% include 'components/client_home_story.html' with client=client is_clone=True %}
-                {% endfor %}
-            </div>
+    <div class="pl-corp__clients-track">
+        <div class="pl-corp__clients-stories-container" role="list">
+            {% for client in home_clients %}
+            {% include 'components/client_home_story.html' with client=client is_clone=False %}
+            {% endfor %}
+            {% for client in home_clients %}
+            {% include 'components/client_home_story.html' with client=client is_clone=True %}
+            {% endfor %}
         </div>
+    </div>
+    <div class="pl-corp__inner">
+        <a href="{% url 'portfolio' %}" class="pl-corp__clients-link">{% trans "Переглянути портфоліо" %} <span aria-hidden="true">↗</span></a>
     </div>
 </section>

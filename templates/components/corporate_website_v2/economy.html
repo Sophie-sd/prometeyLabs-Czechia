@@ -1,82 +1,48 @@
-{% load i18n %}
-<section id="economy" class="pl-corp__economy pl-corp__section" aria-labelledby="pl-corp-economy-title">
+{% load static i18n %}
+<section id="economy" class="pl-corp__section pl-corp__dev" aria-labelledby="pl-corp-economy-title">
     <div class="pl-corp__inner">
-        <div class="pl-corp__economy-head" data-reveal>
-            <h2 id="pl-corp-economy-title" class="pl-corp__title pl-corp__title--section">
-                {% blocktrans trimmed %}Чому ваші конкуренти платять за рекламу <span class="pl-corp__accent">більше, ніж ви?</span>{% endblocktrans %}
-            </h2>
-        </div>
+        <h2 id="pl-corp-economy-title" class="pl-corp__title pl-corp__title--center pl-corp__dev-title" data-reveal>{% trans "Що входить у розробку під ключ" %}</h2>
 
-        <div class="pl-corp__economy-grid">
-            <div class="pl-corp__economy-card" data-reveal>
-                <div class="pl-corp__economy-tag pl-corp__economy-tag--bad">
-                    <span class="pl-corp__economy-tag-dot pl-corp__economy-tag-dot--bad" aria-hidden="true"></span>
-                    {% trans "Стандартні CMS · WordPress / Tilda / Wix" %}
-                </div>
-                <p class="pl-corp__economy-card-title">{% trans "Ви переплачуєте за кожен клік" %}</p>
-                <ul class="pl-corp__economy-list pl-corp__economy-list--bad">
-                    <li>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a4a44" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-                        {% trans "Перевантажені плагінами — низькі оцінки швидкості" %}
-                    </li>
-                    <li>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a4a44" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-                        {% trans "Висока вартість кліку в Google Ads" %}
-                    </li>
-                    <li>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a4a44" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-                        {% trans "Постійні «дірки» у безпеці через сторонній код" %}
-                    </li>
-                    <li>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7a4a44" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-                        {% trans "Залежність від оновлень, які ламають сайт" %}
-                    </li>
+        <div class="pl-corp__dev-grid">
+            <article class="pl-corp__dev-card" data-reveal>
+                <p class="pl-corp__tag pl-corp__tag--bad"><span class="pl-corp__tag-dot" aria-hidden="true"></span>{% trans "Стандартні CMS · WordPress / Tilda / Wix" %}</p>
+                <h3 class="pl-corp__dev-card-title">{% trans "Повільна сторінка після кліку" %}</h3>
+                <ul class="pl-corp__dev-list">
+                    <li class="pl-corp__dev-item"><img class="pl-corp__dev-icon pl-corp__dev-icon--cross" src="{% static 'images/corporate_website_v2/figma/icon-cross.svg' %}" alt="" width="16" height="16">{% trans "Перевантажені плагінами — низькі оцінки швидкості" %}</li>
+                    <li class="pl-corp__dev-item"><img class="pl-corp__dev-icon pl-corp__dev-icon--cross" src="{% static 'images/corporate_website_v2/figma/icon-cross.svg' %}" alt="" width="16" height="16">{% trans "Гірший досвід після кліку з реклами" %}</li>
+                    <li class="pl-corp__dev-item"><img class="pl-corp__dev-icon pl-corp__dev-icon--cross" src="{% static 'images/corporate_website_v2/figma/icon-cross.svg' %}" alt="" width="16" height="16">{% trans "Постійні «дірки» у безпеці через сторонній код" %}</li>
+                    <li class="pl-corp__dev-item"><img class="pl-corp__dev-icon pl-corp__dev-icon--cross" src="{% static 'images/corporate_website_v2/figma/icon-cross.svg' %}" alt="" width="16" height="16">{% trans "Залежність від оновлень, які ламають сайт" %}</li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="pl-corp__economy-card pl-corp__economy-card--accent" data-reveal>
-                <div class="pl-corp__economy-card-inner">
-                    <div class="pl-corp__economy-tag pl-corp__economy-tag--good">
-                        <span class="pl-corp__economy-tag-dot pl-corp__economy-tag-dot--good" aria-hidden="true"></span>
-                        {% trans "Наша архітектура · Чистий код" %}
+            <article class="pl-corp__dev-card" data-reveal>
+                <p class="pl-corp__tag pl-corp__tag--good"><span class="pl-corp__tag-dot" aria-hidden="true"></span>{% trans "Наша архітектура · чистий код" %}</p>
+                <h3 class="pl-corp__dev-card-title">{% trans "Google враховує швидкість сторінки в оцінці якості цільової сторінки" %}</h3>
+                <ul class="pl-corp__dev-list">
+                    <li class="pl-corp__dev-item"><img class="pl-corp__dev-icon pl-corp__dev-icon--check" src="{% static 'images/corporate_website_v2/figma/icon-check.svg' %}" alt="" width="9" height="14">{% trans "Дизайн, у якому впізнають ваш бренд, і верстка без вигляду конструктора" %}</li>
+                    <li class="pl-corp__dev-item"><img class="pl-corp__dev-icon pl-corp__dev-icon--check" src="{% static 'images/corporate_website_v2/figma/icon-check.svg' %}" alt="" width="9" height="14">{% trans "Форми збору заявок, календар, онлайн-запис чи будь-які інтеграції" %}</li>
+                    <li class="pl-corp__dev-item"><img class="pl-corp__dev-icon pl-corp__dev-icon--check" src="{% static 'images/corporate_website_v2/figma/icon-check.svg' %}" alt="" width="9" height="14">{% trans "Адмінка, де тексти, фото і кольори міняєте самі, без залучення програмістів" %}</li>
+                    <li class="pl-corp__dev-item"><img class="pl-corp__dev-icon pl-corp__dev-icon--check" src="{% static 'images/corporate_website_v2/figma/icon-check.svg' %}" alt="" width="9" height="14">{% trans "Запуск із доменом і захищеним з’єднанням, доступи передаємо вам" %}</li>
+                </ul>
+            </article>
+
+            <article class="pl-corp__dev-card pl-corp__dev-card--promo" data-reveal>
+                <picture class="pl-corp__dev-glow" aria-hidden="true">
+                    <source media="(max-width: 767px)" srcset="{% static 'images/corporate_website_v2/figma/glow-effect-mobile.svg' %}">
+                    <img src="{% static 'images/corporate_website_v2/figma/glow-effect.svg' %}" alt="" width="626" height="541" loading="lazy">
+                </picture>
+                <h3 class="pl-corp__dev-promo-title">{% trans "Швидке завантаження — частина досвіду після кліку, який оцінює Google" %}</h3>
+                <div class="pl-corp__dev-metrics">
+                    <div class="pl-corp__dev-metric">
+                        <strong class="pl-corp__dev-metric-val">0</strong>
+                        <span class="pl-corp__dev-metric-label">{% trans "сторонніх плагінів і конструкторів" %}</span>
                     </div>
-                    <p class="pl-corp__economy-card-title">{% trans "Google винагороджує вас дешевшим трафіком" %}</p>
-                    <ul class="pl-corp__economy-list pl-corp__economy-list--good">
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                            {% trans "Оптимізований код — оцінка швидкості 100/100" %}
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                            {% trans "Нижча ціна кліку — вища якість оголошень" %}
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                            {% trans "Вищі позиції без витрат на SEO-агенції" %}
-                        </li>
-                        <li>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                            {% trans "Жодних сторонніх залежностей і дірок у безпеці" %}
-                        </li>
-                    </ul>
+                    <div class="pl-corp__dev-metric">
+                        <strong class="pl-corp__dev-metric-val">100</strong>
+                        <span class="pl-corp__dev-metric-label">{% trans "Performance у Lighthouse (мобільний) — замір нашого проєкту, 09.10.2026" %}</span>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="pl-corp__economy-banner" data-reveal>
-            <p class="pl-corp__economy-banner-text">
-                {% blocktrans trimmed %}Кожна мілісекунда завантаження <span class="pl-corp__accent">конвертується у реальний прибуток.</span>{% endblocktrans %}
-            </p>
-            <div class="pl-corp__economy-stats">
-                <div class="pl-corp__economy-stat">
-                    <div class="pl-corp__economy-stat-val">−50<span>%</span></div>
-                    <div class="pl-corp__economy-stat-label">{% trans "вартість залучення (CAC)" %}</div>
-                </div>
-                <div class="pl-corp__economy-stat">
-                    <div class="pl-corp__economy-stat-val">100<span>/100</span></div>
-                    <div class="pl-corp__economy-stat-label">{% trans "оцінка Google PageSpeed" %}</div>
-                </div>
-            </div>
+            </article>
         </div>
     </div>
 </section>

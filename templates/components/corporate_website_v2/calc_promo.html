@@ -1,16 +1,7 @@
-{% load static %}
-{% load i18n %}
-<section id="calc-promo" class="pl-corp__calc-promo pl-corp__section pl-corp__calc-promo--solo" aria-labelledby="pl-corp-calc-promo-title">
-    <div class="pl-corp__inner">
-        <div class="pl-corp__calc-promo-row pl-corp__calc-promo-row--solo">
-            <div class="pl-corp__calc-promo-card" data-reveal>
-                <h2 id="pl-corp-calc-promo-title" class="pl-corp__calc-promo-title">
-                    {% trans "Отримайте безкоштовний розрахунок вартості вашого сайту" %}
-                </h2>
-                <a href="#calculator" class="pl-corp__btn pl-corp__btn--primary pl-corp__calc-promo-btn mobile-touch-target">
-                    {% trans "Калькулятор розрахунку" %}
-                </a>
-            </div>
-        </div>
+{% load static i18n %}
+<section id="calc-promo" class="pl-corp__section pl-corp__calc-promo" aria-labelledby="pl-corp-calc-promo-title">
+    <div class="pl-corp__inner pl-corp__calc-promo-row" data-reveal>
+        <h2 id="pl-corp-calc-promo-title" class="pl-corp__title pl-corp__calc-promo-title">{% trans "Отримайте безкоштовний розрахунок вартості вашого сайту" %}</h2>
+        <a href="#calculator" class="pl-corp__btn pl-corp__btn--accent pl-corp__calc-promo-btn mobile-touch-target">{% trans "Калькулятор розрахунку" %}</a>
     </div>
 </section>

@@ -1,0 +1,16 @@
+/* CZ layer over Renova corporate-website-v2.css: CZ-only form parts (EU phone, GDPR e-mail + consent). */
+.pl-corp__lead-cta-fields{display:flex;flex-direction:column;gap:14px}
+.pl-corp__lead-cta-form .pl-corp__field-input{padding-left:20px}
+.pl-corp__lead-cta-form .eu-phone .pl-corp__field-input{padding-left:16px}
+.pl-corp__lead-cta-gdpr{display:flex;flex-direction:column;gap:10px;margin:0}
+.pl-corp__lead-cta-gdpr .form-group{margin:0}
+.pl-corp__lead-cta-gdpr .form-label{display:block;margin:0 0 6px;font-size:13px;color:var(--pl-gray,#a2a2a2)}
+.pl-corp__lead-cta-gdpr .lead-form-checkbox{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.4;color:var(--pl-gray,#a2a2a2)}
+.pl-corp__lead-cta-gdpr .lead-form-expect{margin:0;font-size:12px;color:var(--pl-gray,#a2a2a2)}
+.pl-corp__lead-cta-gdpr .lead-form-policy-link{color:var(--pl-acc,#f60)}
+.pl-corp__quiz .lead-form-fields{display:flex;flex-direction:column;gap:12px}
+.pl-corp__quiz .form-group{margin:0}
+.pl-corp__quiz .form-label{display:block;margin:0 0 6px;font-size:13px;color:var(--pl-gray,#a2a2a2)}
+.pl-corp__quiz .lead-form-checkbox{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.4;color:var(--pl-gray,#a2a2a2)}
+.pl-corp__quiz .lead-form-policy-link{color:var(--pl-acc,#f60)}
+.pl-corp__quiz .lead-form-expect{font-size:12px;color:var(--pl-gray,#a2a2a2);margin:0}

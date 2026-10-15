@@ -1,80 +1,58 @@
 {% load i18n %}
-<section id="scale" class="pl-corp__scale pl-corp__section" aria-labelledby="pl-corp-scale-title">
-    <div class="pl-corp__inner pl-corp__inner--narrow">
-        <div class="pl-corp__scale-shell">
-            <div class="pl-corp__scale-row">
-                <div class="pl-corp__scale-copy" data-reveal>
-                    <h2 id="pl-corp-scale-title" class="pl-corp__title pl-corp__title--scale">
-                        {% trans "Технологія клонування: необмежене масштабування без бюджетів" %}
-                    </h2>
-                    <p class="pl-corp__scale-desc">
-                        {% blocktrans trimmed %}Наша архітектура дозволяє робити <span class="pl-corp__accent pl-corp__text-strong">«Snapshot»</span> вашого сайту. Копіюєте папку з готовим сайтом, наповнюєте її іншим контентом — і отримуєте новий, ідеально оптимізований ресурс абсолютно безоплатно.{% endblocktrans %}
-                    </p>
-                    <div class="pl-corp__scale-case">
-                        <div class="pl-corp__scale-case-label">{% trans "Кейс" %}</div>
-                        <p>{% blocktrans trimmed %}Потрібен лендінг під нову послугу або регіон? Копіюйте, змінюйте текст, публікуйте. Це займає <strong>5 хвилин</strong> і коштує вам <strong>0 грн</strong>.{% endblocktrans %}</p>
-                    </div>
-                </div>
-
-                <div class="pl-corp__scale-diagram" data-reveal>
-                    <div class="pl-corp__scale-cards" role="img" aria-label="{% trans 'Діаграма: один Snapshot перетворюється на серію лендінгів' %}">
-                        <article class="pl-corp__scale-card pl-corp__scale-card--sm">
-                            <div class="pl-corp__scale-card-path">site-original/</div>
-                            <div class="pl-corp__scale-card-bar pl-corp__scale-card-bar--sm"></div>
-                            <div class="pl-corp__scale-card-line pl-corp__scale-card-line--w80"></div>
-                            <div class="pl-corp__scale-card-line pl-corp__scale-card-line--w60"></div>
-                            <div class="pl-corp__scale-card-foot">
-                                <span class="pl-corp__scale-card-badge pl-corp__scale-card-badge--score">100/100</span>
-                            </div>
-                        </article>
-
-                        <article class="pl-corp__scale-card pl-corp__scale-card--md">
-                            <div class="pl-corp__scale-card-path">landing-{% trans "послуга" %}/</div>
-                            <div class="pl-corp__scale-card-bar pl-corp__scale-card-bar--md"></div>
-                            <div class="pl-corp__scale-card-line pl-corp__scale-card-line--w90"></div>
-                            <div class="pl-corp__scale-card-line pl-corp__scale-card-line--w74"></div>
-                            <div class="pl-corp__scale-card-line pl-corp__scale-card-line--w82"></div>
-                            <div class="pl-corp__scale-card-foot">
-                                <span class="pl-corp__scale-card-badge pl-corp__scale-card-badge--copy">{% trans "копія · 0 грн" %}</span>
-                            </div>
-                        </article>
-
-                        <article class="pl-corp__scale-card pl-corp__scale-card--lg">
-                            <span class="pl-corp__scale-card-sheen" aria-hidden="true"></span>
-                            <div class="pl-corp__scale-card-path">landing-{% trans "регіон" %}/</div>
-                            <div class="pl-corp__scale-card-bar pl-corp__scale-card-bar--lg"></div>
-                            <div class="pl-corp__scale-card-line pl-corp__scale-card-line--w92"></div>
-                            <div class="pl-corp__scale-card-line pl-corp__scale-card-line--w80"></div>
-                            <div class="pl-corp__scale-card-line pl-corp__scale-card-line--w86"></div>
-                            <div class="pl-corp__scale-card-foot pl-corp__scale-card-foot--dual">
-                                <span class="pl-corp__scale-card-badge pl-corp__scale-card-badge--primary">{% trans "копія · 0 грн" %}</span>
-                                <span class="pl-corp__scale-card-badge pl-corp__scale-card-badge--time">{% trans "5 хв" %}</span>
-                            </div>
-                        </article>
-                    </div>
-                    <p class="pl-corp__scale-caption">
-                        {% blocktrans trimmed %}1 Snapshot <span class="pl-corp__accent">→</span> безліміт лендінгів <span class="pl-corp__accent">×∞</span>{% endblocktrans %}
-                    </p>
-                </div>
+<section id="scale" class="pl-corp__section pl-corp__scale" aria-labelledby="pl-corp-scale-title">
+    <div class="pl-corp__inner">
+        <div class="pl-corp__scale-row">
+            <div class="pl-corp__scale-copy" data-reveal>
+                <h2 id="pl-corp-scale-title" class="pl-corp__title pl-corp__scale-title">{% trans "Технологія клонування: нові лендінги на готовій архітектурі" %}</h2>
+                <p class="pl-corp__text pl-corp__scale-desc">{% trans "Наша архітектура дозволяє робити «Snapshot» вашого сайту. Новий лендінг збираємо на готовій основі з іншим контентом — швидше й дешевше за розробку з нуля. Вартість погоджуємо до старту" %}</p>
             </div>
 
-            <div class="pl-corp__scale-guarantees">
-                <article class="pl-corp__scale-guarantee" data-reveal>
-                    <div class="pl-corp__scale-guarantee-val">{% trans "1 рік" %}</div>
-                    <h3>{% trans "Безкоштовна підтримка" %}</h3>
-                    <p>{% trans "Технічні питання, дрібні правки та консультації протягом першого року — без доплат." %}</p>
-                </article>
-                <article class="pl-corp__scale-guarantee" data-reveal>
-                    <div class="pl-corp__scale-guarantee-val pl-corp__scale-guarantee-val--inf" aria-hidden="true">∞</div>
-                    <h3>{% trans "Пожиттєва гарантія на код" %}</h3>
-                    <p>{% trans "Чистий код без плагінів — стабільна робота функціоналу протягом усього життя ресурсу." %}</p>
-                </article>
-                <article class="pl-corp__scale-guarantee" data-reveal>
-                    <div class="pl-corp__scale-guarantee-val">×∞</div>
-                    <h3>{% trans "Безлімітні копії" %}</h3>
-                    <p>{% trans "Створюйте нові лендінги з готового сайту без додаткових бюджетів на розробку." %}</p>
-                </article>
+            <div class="pl-corp__scale-diagram" role="img" aria-label="{% trans 'Діаграма: один Snapshot перетворюється на серію лендінгів' %}" data-reveal>
+                <div class="pl-corp__scale-card pl-corp__scale-card--sm">
+                    <span class="pl-corp__scale-card-path">site-original/</span>
+                    <span class="pl-corp__scale-card-bar"></span>
+                    <span class="pl-corp__scale-card-line"></span>
+                    <span class="pl-corp__scale-card-line"></span>
+                    <span class="pl-corp__scale-card-foot"><span class="pl-corp__scale-badge">{% trans "оригінал" %}</span></span>
+                </div>
+                <div class="pl-corp__scale-card pl-corp__scale-card--md">
+                    <span class="pl-corp__scale-card-path">{% trans "landing-послуга/" %}</span>
+                    <span class="pl-corp__scale-card-bar"></span>
+                    <span class="pl-corp__scale-card-line"></span>
+                    <span class="pl-corp__scale-card-line"></span>
+                    <span class="pl-corp__scale-card-foot"><span class="pl-corp__scale-badge">{% trans "копія" %}</span></span>
+                </div>
+                <div class="pl-corp__scale-card pl-corp__scale-card--lg">
+                    <span class="pl-corp__scale-card-path">{% trans "landing-регіон/" %}</span>
+                    <span class="pl-corp__scale-card-bar"></span>
+                    <span class="pl-corp__scale-card-line"></span>
+                    <span class="pl-corp__scale-card-line"></span>
+                    <span class="pl-corp__scale-card-line"></span>
+                    <span class="pl-corp__scale-card-foot"><span class="pl-corp__scale-badge pl-corp__scale-badge--primary">{% trans "копія" %}</span><span class="pl-corp__scale-badge">{% trans "5 хв" %}</span></span>
+                </div>
             </div>
         </div>
+
+        <ul class="pl-corp__scale-benefits">
+            <li class="pl-corp__scale-benefit pl-corp__scale-benefit--case" data-reveal>
+                <p class="pl-corp__scale-benefit-val">{% trans "Кейс" %}</p>
+                <p class="pl-corp__text">{% trans "Потрібен лендінг під нову послугу або місто? Збираємо його на тій самій основі і погоджуємо вартість до початку роботи." %}</p>
+            </li>
+            <li class="pl-corp__scale-benefit" data-reveal>
+                <p class="pl-corp__scale-benefit-val">{% trans "1 рік" %}</p>
+                <h3 class="pl-corp__scale-benefit-title">{% trans "Підтримка після запуску" %}</h3>
+                <p class="pl-corp__text">{% trans "Технічні питання, дрібні правки та консультації протягом першого року" %}</p>
+            </li>
+            <li class="pl-corp__scale-benefit" data-reveal>
+                <p class="pl-corp__scale-benefit-val" aria-hidden="true">{% trans "1 рік" %}</p>
+                <h3 class="pl-corp__scale-benefit-title">{% trans "1 рік гарантії на код" %}</h3>
+                <p class="pl-corp__text">{% trans "Сайт лишається таким, яким ми його здали: стабільним і спокійним. Якщо в нашому коді щось піде не так, ми поруч" %}</p>
+            </li>
+            <li class="pl-corp__scale-benefit" data-reveal>
+                <p class="pl-corp__scale-benefit-val">+1</p>
+                <h3 class="pl-corp__scale-benefit-title">{% trans "Нові лендінги з готового сайту" %}</h3>
+                <p class="pl-corp__text">{% trans "Збираємо на тій самій архітектурі — швидше й дешевше за розробку з нуля, вартість погоджуємо до старту" %}</p>
+            </li>
+        </ul>
     </div>
 </section>

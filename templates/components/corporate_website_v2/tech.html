@@ -1,140 +1,85 @@
-{% load i18n %}
-<section id="tech" class="pl-corp__tech pl-corp__section" aria-labelledby="pl-corp-tech-title">
+{% load static i18n %}
+<section id="tech" class="pl-corp__section pl-corp__tech" aria-labelledby="pl-corp-tech-title">
     <div class="pl-corp__inner">
-        <div class="pl-corp__tech-shell" data-reveal>
-            <div class="pl-corp__tech-head">
-                <h2 id="pl-corp-tech-title" class="pl-corp__title pl-corp__title--tech">{% trans "Технології, що працюють на ваш прибуток" %}</h2>
-                <p class="pl-corp__tech-desc">{% trans "Жодних зайвих скриптів — тільки код, потрібний для роботи вашого бізнесу. Кожна деталь архітектури налаштована на максимальну релевантність реклами та органіки." %}</p>
+        <div class="pl-corp__tech-head" data-reveal>
+            <h2 id="pl-corp-tech-title" class="pl-corp__title pl-corp__tech-title">{% trans "Технології, що працюють на ваш прибуток" %}</h2>
+            <p class="pl-corp__text pl-corp__tech-desc">{% trans "Жодних зайвих скриптів — тільки код, потрібний для роботи вашого бізнесу. Кожна деталь архітектури налаштована на максимальну релевантність реклами та органіки" %}</p>
+        </div>
+
+        <div class="pl-corp__tech-explorer" data-tech-explorer data-reveal>
+            <div class="pl-corp__tech-tabs" role="tablist" aria-label="{% trans 'Технології' %}">
+                <button type="button" class="pl-corp__tech-tab is-active mobile-touch-target" role="tab" id="pl-corp-tech-tab-0" data-tech-tab="0" aria-selected="true" aria-controls="pl-corp-tech-panel-0" tabindex="0">
+                    <span class="pl-corp__tech-tab-icon" aria-hidden="true"><img src="{% static 'images/corporate_website_v2/figma/icon-search.svg' %}" alt="" width="18" height="18"></span>
+                    <span class="pl-corp__tech-tab-title">{% trans "Технічне SEO «з коробки»" %}</span>
+                </button>
+                <button type="button" class="pl-corp__tech-tab mobile-touch-target" role="tab" id="pl-corp-tech-tab-1" data-tech-tab="1" aria-selected="false" aria-controls="pl-corp-tech-panel-1" tabindex="-1">
+                    <span class="pl-corp__tech-tab-icon" aria-hidden="true"><img src="{% static 'images/corporate_website_v2/figma/icon-mobile.svg' %}" alt="" width="11" height="15"></span>
+                    <span class="pl-corp__tech-tab-title">{% trans "Мобільний перфекціонізм" %}</span>
+                </button>
+                <button type="button" class="pl-corp__tech-tab mobile-touch-target" role="tab" id="pl-corp-tech-tab-2" data-tech-tab="2" aria-selected="false" aria-controls="pl-corp-tech-panel-2" tabindex="-1">
+                    <span class="pl-corp__tech-tab-icon" aria-hidden="true"><img src="{% static 'images/corporate_website_v2/figma/icon-shield.svg' %}" alt="" width="15" height="16"></span>
+                    <span class="pl-corp__tech-tab-title">{% trans "Стійкість до навантажень" %}</span>
+                </button>
+                <button type="button" class="pl-corp__tech-tab mobile-touch-target" role="tab" id="pl-corp-tech-tab-3" data-tech-tab="3" aria-selected="false" aria-controls="pl-corp-tech-panel-3" tabindex="-1">
+                    <span class="pl-corp__tech-tab-icon" aria-hidden="true"><img src="{% static 'images/corporate_website_v2/figma/icon-keyboard.svg' %}" alt="" width="18" height="13"></span>
+                    <span class="pl-corp__tech-tab-title">{% trans "Архітектурна чистота" %}</span>
+                </button>
             </div>
 
-            <div class="pl-corp__tech-explorer" data-tech-explorer>
-                <div class="pl-corp__tech-tabs" role="tablist" aria-label="{% trans 'Технології' %}">
-                    <button type="button" class="pl-corp__tech-tab is-active mobile-touch-target" role="tab" id="pl-corp-tech-tab-0" data-tech-tab="0" aria-selected="true" aria-controls="pl-corp-tech-panel-0" tabindex="0">
-                        <span class="pl-corp__tech-tab-icon" aria-hidden="true">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><polyline points="8 12 10.5 9.5 12.5 11.5 15 8"/></svg>
-                        </span>
-                        <span class="pl-corp__tech-tab-title">{% trans "Технічне SEO «з коробки»" %}</span>
-                    </button>
-                    <button type="button" class="pl-corp__tech-tab mobile-touch-target" role="tab" id="pl-corp-tech-tab-1" data-tech-tab="1" aria-selected="false" aria-controls="pl-corp-tech-panel-1" tabindex="-1">
-                        <span class="pl-corp__tech-tab-icon" aria-hidden="true">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>
-                        </span>
-                        <span class="pl-corp__tech-tab-title">{% trans "Мобільний перфекціонізм" %}</span>
-                    </button>
-                    <button type="button" class="pl-corp__tech-tab mobile-touch-target" role="tab" id="pl-corp-tech-tab-2" data-tech-tab="2" aria-selected="false" aria-controls="pl-corp-tech-panel-2" tabindex="-1">
-                        <span class="pl-corp__tech-tab-icon" aria-hidden="true">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg>
-                        </span>
-                        <span class="pl-corp__tech-tab-title">{% trans "Стійкість до навантажень" %}</span>
-                    </button>
-                    <button type="button" class="pl-corp__tech-tab mobile-touch-target" role="tab" id="pl-corp-tech-tab-3" data-tech-tab="3" aria-selected="false" aria-controls="pl-corp-tech-panel-3" tabindex="-1">
-                        <span class="pl-corp__tech-tab-icon" aria-hidden="true">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        </span>
-                        <span class="pl-corp__tech-tab-title">{% trans "Архітектурна чистота" %}</span>
-                    </button>
+            <div class="pl-corp__tech-stage">
+                <div class="pl-corp__tech-panel is-active" role="tabpanel" id="pl-corp-tech-panel-0" data-tech-panel="0" aria-labelledby="pl-corp-tech-tab-0">
+                    <p class="pl-corp__tech-panel-label">{% trans "Пошукова видимість" %}</p>
+                    <div class="pl-corp__tech-viz pl-corp__tech-viz--chart" data-tech-chart-wrap aria-hidden="true">
+                        <picture class="pl-corp__tech-chart" data-tech-chart-plot>
+                            <source media="(max-width: 767px)" srcset="{% static 'images/corporate_website_v2/figma/chart-seo-mobile.svg' %}">
+                            <img src="{% static 'images/corporate_website_v2/figma/chart-seo.svg' %}" alt="" width="752" height="222" loading="lazy">
+                        </picture>
+                    </div>
+                    <p class="pl-corp__tech-panel-text">{% trans "Ми будуємо сайт так, щоб пошукові роботи «закохувалися» у вашу структуру з першого сканування — мікророзмітка, sitemap і чисті URL." %}</p>
                 </div>
 
-                <div class="pl-corp__tech-stage">
-                    <div class="pl-corp__tech-stage-glow" aria-hidden="true"></div>
-
-                    <div class="pl-corp__tech-panel is-active" role="tabpanel" id="pl-corp-tech-panel-0" data-tech-panel="0" aria-labelledby="pl-corp-tech-tab-0">
-                        <div class="pl-corp__tech-panel-label">{% trans "пошукова видимість" %}</div>
-                        <div class="pl-corp__tech-viz pl-corp__tech-viz--chart" data-tech-chart-wrap>
-                            <div class="pl-corp__tech-chart-plot" data-tech-chart-plot>
-                                <svg class="pl-corp__tech-chart" viewBox="0 0 320 96" width="100%" height="130" preserveAspectRatio="none" aria-hidden="true">
-                                    <defs>
-                                        <linearGradient id="plCorpTechSeo" gradientUnits="userSpaceOnUse" x1="160" y1="8" x2="160" y2="96">
-                                            <stop offset="0%" stop-color="#FF6600" stop-opacity="0.38"/>
-                                            <stop offset="100%" stop-color="#FF6600" stop-opacity="0"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <line x1="0" y1="72" x2="320" y2="72" stroke="#232323" stroke-width="1" vector-effect="non-scaling-stroke"/>
-                                    <line x1="0" y1="44" x2="320" y2="44" stroke="#1a1a1a" stroke-width="1" vector-effect="non-scaling-stroke"/>
-                                    <line x1="0" y1="16" x2="320" y2="16" stroke="#1a1a1a" stroke-width="1" vector-effect="non-scaling-stroke"/>
-                                    <path class="pl-corp__tech-chart-area" d="M8,88 L44,75 L59,71 L107,70 L154,55 L201,58 L248,40 L312,10 L312,88 Z" fill="url(#plCorpTechSeo)"/>
-                                    <path class="pl-corp__tech-chart-line" d="M8,88 L44,75 L59,71 L107,70 L154,55 L201,58 L248,40 L312,10" fill="none" stroke="#FF6600" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="pl-corp__tech-panel-text">{% trans "Ми будуємо сайт так, щоб пошукові роботи «закохувалися» у вашу структуру з першого сканування — мікророзмітка, sitemap і чисті URL." %}</p>
+                <div class="pl-corp__tech-panel" role="tabpanel" id="pl-corp-tech-panel-1" data-tech-panel="1" aria-labelledby="pl-corp-tech-tab-1" aria-hidden="true">
+                    <p class="pl-corp__tech-panel-label">{% trans "Будь-який пристрій" %}</p>
+                    <div class="pl-corp__tech-viz pl-corp__tech-viz--devices" aria-hidden="true">
+                        <span class="pl-corp__tech-device pl-corp__tech-device--tv"><img src="{% static 'images/corporate_website_v2/figma/device-tv.svg' %}" alt="" width="144" height="110" loading="lazy"><span class="pl-corp__tech-device-screen"></span></span>
+                        <span class="pl-corp__tech-device pl-corp__tech-device--laptop"><img src="{% static 'images/corporate_website_v2/figma/device-macbook.svg' %}" alt="" width="147" height="89" loading="lazy"><span class="pl-corp__tech-device-screen"></span></span>
+                        <span class="pl-corp__tech-device pl-corp__tech-device--tablet"><img src="{% static 'images/corporate_website_v2/figma/device-ipad.svg' %}" alt="" width="60" height="75" loading="lazy"><span class="pl-corp__tech-device-screen"></span></span>
+                        <span class="pl-corp__tech-device pl-corp__tech-device--phone"><img src="{% static 'images/corporate_website_v2/figma/device-phone.svg' %}" alt="" width="31" height="49" loading="lazy"><span class="pl-corp__tech-device-screen"></span></span>
                     </div>
+                    <p class="pl-corp__tech-panel-text">{% trans "Код оптимізований під ідеальну роботу на будь-якому пристрої — незалежно від потужності процесора клієнта чи швидкості з'єднання." %}</p>
+                </div>
 
-                    <div class="pl-corp__tech-panel" role="tabpanel" id="pl-corp-tech-panel-1" data-tech-panel="1" aria-labelledby="pl-corp-tech-tab-1" aria-hidden="true">
-                        <div class="pl-corp__tech-panel-label">{% trans "будь-який пристрій" %}</div>
-                        <div class="pl-corp__tech-viz pl-corp__tech-viz--devices" aria-hidden="true">
-                            <div class="pl-corp__tech-device pl-corp__tech-device--sm">
-                                <span class="pl-corp__tech-device-line pl-corp__tech-device-line--acc"></span>
-                                <span class="pl-corp__tech-device-line"></span>
-                                <span class="pl-corp__tech-device-line pl-corp__tech-device-line--short"></span>
-                                <span class="pl-corp__tech-device-btn"></span>
-                            </div>
-                            <div class="pl-corp__tech-device pl-corp__tech-device--md">
-                                <span class="pl-corp__tech-device-line pl-corp__tech-device-line--acc"></span>
-                                <span class="pl-corp__tech-device-line"></span>
-                                <span class="pl-corp__tech-device-line pl-corp__tech-device-line--short"></span>
-                                <span class="pl-corp__tech-device-btn pl-corp__tech-device-btn--md"></span>
-                            </div>
-                            <div class="pl-corp__tech-device pl-corp__tech-device--lg">
-                                <span class="pl-corp__tech-device-line pl-corp__tech-device-line--acc pl-corp__tech-device-line--wide"></span>
-                                <span class="pl-corp__tech-device-line"></span>
-                                <span class="pl-corp__tech-device-line pl-corp__tech-device-line--short"></span>
-                                <div class="pl-corp__tech-device-row">
-                                    <span class="pl-corp__tech-device-btn pl-corp__tech-device-btn--lg"></span>
-                                    <span class="pl-corp__tech-device-btn pl-corp__tech-device-btn--ghost"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="pl-corp__tech-panel-text">{% trans "Код оптимізований під ідеальну роботу на будь-якому пристрої — незалежно від потужності процесора клієнта чи швидкості з'єднання." %}</p>
+                <div class="pl-corp__tech-panel" role="tabpanel" id="pl-corp-tech-panel-2" data-tech-panel="2" aria-labelledby="pl-corp-tech-tab-2" aria-hidden="true">
+                    <p class="pl-corp__tech-panel-label">{% trans "Пік трафіку · сервер стабільний" %}</p>
+                    <div class="pl-corp__tech-viz pl-corp__tech-viz--bars" aria-hidden="true">
+                        <span class="pl-corp__tech-bar pl-corp__tech-bar--1"></span>
+                        <span class="pl-corp__tech-bar pl-corp__tech-bar--2"></span>
+                        <span class="pl-corp__tech-bar pl-corp__tech-bar--3"></span>
+                        <span class="pl-corp__tech-bar pl-corp__tech-bar--4 pl-corp__tech-bar--peak"></span>
+                        <span class="pl-corp__tech-bar pl-corp__tech-bar--5"></span>
+                        <span class="pl-corp__tech-bar pl-corp__tech-bar--6"></span>
+                        <span class="pl-corp__tech-bar pl-corp__tech-bar--7"></span>
                     </div>
+                    <p class="pl-corp__tech-panel-text">{% trans "Наш код не «прокисає». Сайт розрахований на піки трафіку з реклами (CDN, кешування) — без падіння сервера в пік кампанії." %}</p>
+                </div>
 
-                    <div class="pl-corp__tech-panel" role="tabpanel" id="pl-corp-tech-panel-2" data-tech-panel="2" aria-labelledby="pl-corp-tech-tab-2" aria-hidden="true">
-                        <div class="pl-corp__tech-panel-label">{% trans "пік трафіку · сервер стабільний" %}</div>
-                        <div class="pl-corp__tech-viz pl-corp__tech-viz--bars" aria-hidden="true">
-                            <span class="pl-corp__tech-bar" style="--pl-corp-bar-h: 34%; --pl-corp-bar-d: 0s"></span>
-                            <span class="pl-corp__tech-bar" style="--pl-corp-bar-h: 46%; --pl-corp-bar-d: 0.08s"></span>
-                            <span class="pl-corp__tech-bar" style="--pl-corp-bar-h: 40%; --pl-corp-bar-d: 0.16s"></span>
-                            <span class="pl-corp__tech-bar" style="--pl-corp-bar-h: 70%; --pl-corp-bar-d: 0.24s"></span>
-                            <span class="pl-corp__tech-bar pl-corp__tech-bar--peak" style="--pl-corp-bar-h: 100%; --pl-corp-bar-d: 0.32s">
-                                <span class="pl-corp__tech-bar-label">{% trans "пік кампанії" %}</span>
-                            </span>
-                            <span class="pl-corp__tech-bar" style="--pl-corp-bar-h: 58%; --pl-corp-bar-d: 0.4s"></span>
-                            <span class="pl-corp__tech-bar" style="--pl-corp-bar-h: 44%; --pl-corp-bar-d: 0.48s"></span>
-                            <span class="pl-corp__tech-bar" style="--pl-corp-bar-h: 50%; --pl-corp-bar-d: 0.56s"></span>
-                        </div>
-                        <p class="pl-corp__tech-panel-text">{% trans "Наш код не «прокисає». Сайт витримує будь-який наплив трафіку з реклами без падіння сервера — навіть у пік кампанії." %}</p>
+                <div class="pl-corp__tech-panel" role="tabpanel" id="pl-corp-tech-panel-3" data-tech-panel="3" aria-labelledby="pl-corp-tech-tab-3" aria-hidden="true">
+                    <p class="pl-corp__tech-panel-label">{% trans "Тільки корисний код" %}</p>
+                    <div class="pl-corp__tech-viz pl-corp__tech-viz--ring" aria-hidden="true">
+                        <span class="pl-corp__tech-ring">
+                            <svg viewBox="0 0 112 112" width="112" height="112">
+                                <circle class="pl-corp__tech-ring-base" cx="56" cy="56" r="46"/>
+                                <circle class="pl-corp__tech-ring-arc" data-tech-ring-arc cx="56" cy="56" r="46" transform="rotate(-90 56 56)"/>
+                            </svg>
+                            <span class="pl-corp__tech-ring-val"><span data-tech-ring-num>0</span>%</span>
+                        </span>
+                        <ul class="pl-corp__tech-checklist">
+                            <li class="pl-corp__tech-check pl-corp__tech-check--yes"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>{% trans "Чистий код" %}</li>
+                            <li class="pl-corp__tech-check"><img src="{% static 'images/corporate_website_v2/figma/icon-cross.svg' %}" alt="" width="12" height="12">{% trans "Зайві плагіни" %}</li>
+                            <li class="pl-corp__tech-check"><img src="{% static 'images/corporate_website_v2/figma/icon-cross.svg' %}" alt="" width="12" height="12">{% trans "Баласт-скрипти" %}</li>
+                        </ul>
                     </div>
-
-                    <div class="pl-corp__tech-panel" role="tabpanel" id="pl-corp-tech-panel-3" data-tech-panel="3" aria-labelledby="pl-corp-tech-tab-3" aria-hidden="true">
-                        <div class="pl-corp__tech-panel-label">{% trans "тільки корисний код" %}</div>
-                        <div class="pl-corp__tech-viz pl-corp__tech-viz--ring" aria-hidden="true">
-                            <div class="pl-corp__tech-ring-wrap" data-tech-ring-wrap>
-                                <svg width="110" height="110" viewBox="0 0 110 110" aria-hidden="true">
-                                    <circle cx="55" cy="55" r="46" fill="none" stroke="#20140e" stroke-width="10"/>
-                                    <circle class="pl-corp__tech-ring-arc" data-tech-ring-arc cx="55" cy="55" r="46" fill="none" stroke="#FF6600" stroke-width="10" stroke-linecap="round" transform="rotate(-90 55 55)"/>
-                                </svg>
-                                <span class="pl-corp__tech-ring-val">
-                                    <span class="pl-corp__tech-ring-num-wrap"><span class="pl-corp__tech-ring-num" data-tech-ring-num>0</span>%</span>
-                                    <span class="pl-corp__tech-ring-sub">{% trans "корисно" %}</span>
-                                </span>
-                            </div>
-                            <ul class="pl-corp__tech-checklist">
-                                <li class="pl-corp__tech-check pl-corp__tech-check--yes">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                    {% trans "чистий код" %}
-                                </li>
-                                <li class="pl-corp__tech-check pl-corp__tech-check--no">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7a4a44" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-                                    {% trans "зайві плагіни" %}
-                                </li>
-                                <li class="pl-corp__tech-check pl-corp__tech-check--no">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7a4a44" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-                                    {% trans "баласт-скрипти" %}
-                                </li>
-                            </ul>
-                        </div>
-                        <p class="pl-corp__tech-panel-text">{% trans "Жодних зайвих скриптів. Тільки той код, який потрібен для роботи вашого бізнесу — без баласту, що сповільнює сайт." %}</p>
-                    </div>
+                    <p class="pl-corp__tech-panel-text">{% trans "Жодних зайвих скриптів. Тільки той код, який потрібен для роботи вашого бізнесу — без баласту, що сповільнює сайт." %}</p>
                 </div>
             </div>
         </div>

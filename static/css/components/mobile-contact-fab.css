@@ -1,14 +1,12 @@
 /* Mobile contact FAB — opens call-request-modal on small screens */
 
-.mobile-contact-fab,
-.mobile-contact-fab.mobile-touch-target {
-    display: none !important; /* beat .mobile-touch-target { display:flex } on desktop */
+.mobile-contact-fab {
+    display: none;
 }
 
 @media (max-width: 767px) {
-    .mobile-contact-fab,
-    .mobile-contact-fab.mobile-touch-target {
-        display: flex !important;
+    .mobile-contact-fab {
+        display: flex;
         align-items: center;
         justify-content: center;
         position: fixed;
@@ -63,15 +61,5 @@
     }
 }
 
-
-.mobile-contact-fab__label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
+/* CZ: visually hidden text label */
+.mobile-contact-fab__label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
