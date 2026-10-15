@@ -1,0 +1,93 @@
+/* CZ delta over Renova home-figma.css: CZ-only blocks (services strip, EXPERIENCE badge,
+   client names, hover hint) + longer Czech strings. Same hf tokens. */
+
+/* Hero: Czech lead is longer → allow wrap, keep Figma size */
+.hf-hero__lead { max-width: 994px; text-wrap: balance; }
+.hf-hero__actions { flex-wrap: wrap; padding: 0 16px; }
+
+/* Headings: CZ msgids are uppercase in source — Renova sets sentence-like 70px */
+.hf-h2, .hf-cta__title { text-wrap: balance; }
+
+/* ---------- Services strip (marquee) ---------- */
+.hf-marquee { position: relative; z-index: 1; overflow: hidden; margin: 0 0 110px; padding: 18px 0;
+  border-top: 1px solid rgba(255,255,255,.08); border-bottom: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03); }
+.hf-marquee__track { display: flex; width: max-content; animation: hf-marquee 45s linear infinite; }
+.hf-marquee__set { display: flex; align-items: center; flex: 0 0 auto; }
+.hf-marquee__item { padding: 0 22px; font-size: 18px; font-weight: 500; letter-spacing: -.54px; color: var(--hf-white); white-space: nowrap; }
+.hf-marquee__sep { color: var(--hf-orange); font-size: 14px; }
+@keyframes hf-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+@media (prefers-reduced-motion: reduce) { .hf-marquee__track { animation: none; } .hf-marquee { overflow-x: auto; } }
+
+/* ---------- Why: CZ card 3 rows w/o value, title with accent ---------- */
+.hf-row { min-width: 0; }
+.hf-row__key { overflow: hidden; text-overflow: ellipsis; }
+.hf-card__title .hf-accent { color: var(--hf-orange); }
+.hf-card--why .hf-card__title { max-width: 360px; }
+
+/* EXPERIENCE badge (HTML replacement for Renova's raster badge) */
+.hf-exp { pointer-events: auto; overflow: visible; }
+.hf-exp__card { position: absolute; inset: 40px 0 40px 0; display: flex; flex-direction: column; gap: 22px; padding: 28px 24px;
+  border-radius: 24px; border: 1px solid rgba(255,255,255,.14);
+  background: linear-gradient(160deg, #1b1b1b 0%, #0d0d0d 55%, #3a1600 100%);
+  box-shadow: 0 30px 80px rgba(255,102,0,.18), inset 0 1px 0 rgba(255,255,255,.08);
+  transform: rotate(-4deg); }
+.hf-exp__card::before { content: ''; position: absolute; top: -26px; left: 50%; width: 64px; height: 30px; transform: translateX(-50%);
+  border: 2px solid rgba(255,255,255,.25); border-bottom: 0; border-radius: 14px 14px 0 0; }
+.hf-exp__logo { font-size: 26px; font-weight: 600; letter-spacing: -1px; color: var(--hf-white); }
+.hf-exp__card .hf-tag { align-self: flex-start; }
+.hf-exp__text { font-size: 15px; font-weight: 400; line-height: 1.4; letter-spacing: -.3px; color: var(--hf-gray); }
+@media (max-width: 1099px) {
+  .hf-ai__badge.hf-exp { display: block; position: relative; top: auto; left: auto; right: auto; width: 100%; height: auto; margin-top: 20px; }
+  .hf-exp__card { position: relative; inset: auto; transform: none; }
+  .hf-exp__card::before { display: none; }
+}
+@media (max-width: 767px) { .hf-ai__badge.hf-exp { width: 100%; height: auto; margin: 20px 0 0; } }
+
+/* ---------- Process: CZ titles are longer ---------- */
+.hf-step { height: auto; min-height: 212px; }
+.hf-step__title { max-width: none; hyphens: auto; overflow-wrap: anywhere; }
+@media (max-width: 767px) { .hf-steps { grid-auto-rows: auto; } }
+
+/* ---------- Services ---------- */
+.hf-services__hint { margin-top: 20px; font-size: 14px; font-weight: 400; color: var(--hf-gray); }
+.hf-service__title { font-size: 34px; overflow-wrap: anywhere; hyphens: auto; }
+.hf-service:is(:hover,:focus-visible) { background: linear-gradient(180deg, rgba(255,255,255,.16) 0%, rgba(255,102,0,.28) 100%); }
+@media (max-width: 1399px) { .hf-service__title { font-size: 30px; } }
+@media (max-width: 767px) { .hf-service__title { font-size: 28px; } }
+
+/* ---------- Clients (CZ client_home_story: logo circle + visible name) ---------- */
+.hf-clients__list { align-items: flex-start; }
+.hf-clients .project-story { flex: 0 0 auto; width: 128px; height: auto; overflow: visible; border-radius: 0; background: none; text-align: center; }
+.hf-clients .v3-client-ring { width: 128px; height: 128px; overflow: hidden; border-radius: 50%; background: #fff; }
+.hf-clients .v3-client-halo { display: none; }
+.hf-clients .v3-client-name { display: block; margin-top: 12px; font-size: 13px; line-height: 1.25; letter-spacing: -.26px; color: var(--hf-gray); white-space: normal; }
+@media (max-width: 767px) {
+  .hf-clients .project-story { width: 84px; height: auto; }
+  .hf-clients .v3-client-ring { width: 84px; height: 84px; }
+  .hf-clients .v3-client-name { font-size: 11px; }
+}
+
+/* ---------- CTA ---------- */
+.hf-cta__title { white-space: normal !important; }
+.hf-cta__actions { flex-wrap: wrap; justify-content: center; }
+@media (min-width: 768px) { .hf-btn--lg { width: auto; min-width: 220px; } }
+
+/* Service modals keep CZ markup; Renova look */
+.service-modal-content { border-radius: 30px !important; }
+.service-modal-content .service-list li strong { color: var(--hf-orange); display: block; }
+.service-modal-content .service-subtitle { color: var(--hf-white); margin-top: 18px; }
+.service-modal-content .service-text, .service-modal-content .service-list li { color: var(--hf-gray); }
+.service-modal-content a { color: var(--hf-orange); text-decoration: underline; }
+
+@media (max-width: 767px) {
+  .hf-hero__title { font-size: clamp(48px, 17vw, 65px); letter-spacing: -.1em; }
+  .hf-marquee { margin-bottom: 70px; }
+  .hf-marquee__item { font-size: 15px; padding: 0 14px; }
+}
+
+/* fix: CZ step/service copy is taller than Figma UA copy */
+.hf-process { height: auto; min-height: 734px; padding-bottom: 90px; }
+.hf-service, .hf-service:first-child { height: auto; min-height: 274px; }
+.hf-services__list { align-items: stretch; }
+@media (min-width: 1100px) { .hf-service__title { font-size: 30px; letter-spacing: -1.4px; } }

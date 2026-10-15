@@ -7,165 +7,31 @@
 {% block og_title %}{{ og_title }}{% endblock %}
 
 {% block extra_head %}
-<link rel="preload" as="image" href="{% static 'images/hero/hero-mobile-poster.webp' %}?v=2" media="(max-width: 767px)" fetchpriority="high">
-<link rel="preload" as="image" href="{% static 'images/hero/hero-desktop-poster.webp' %}?v=2" media="(min-width: 768px)" fetchpriority="high">
-<link rel="preload" as="font" type="font/woff2" href="{% static 'fonts/space-grotesk/space-grotesk-400-adb775.woff2' %}" crossorigin>
+<link rel="preload" as="image" href="{% static 'images/home-figma/hero-bg.webp' %}" imagesrcset="{% static 'images/home-figma/hero-bg-800.webp' %} 800w, {% static 'images/home-figma/hero-bg.webp' %} 1586w" imagesizes="(max-width: 767px) 1276px, 1586px" fetchpriority="high">
 {% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{% static 'css/fonts.css' %}?v=1">
-{% if DEBUG %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}?v=12">
-<link rel="stylesheet" href="{% static 'css/components/marquee-why-choose.css' %}?v=2">
-<link rel="stylesheet" href="{% static 'css/home-redesign/home-redesign-v2.css' %}?v=4">
-<link rel="stylesheet" href="{% static 'css/home-redesign/home-redesign-v3.css' %}">
-<link rel="stylesheet" href="{% static 'css/home-redesign/home-redesign-final.css' %}?v=2">
-<link rel="stylesheet" href="{% static 'css/home-redesign/home-redesign-bridge.css' %}?v=10">
-<link rel="stylesheet" href="{% static 'css/home-redesign/home-why-cards.css' %}?v=10">
-<link rel="stylesheet" href="{% static 'css/process_block.css' %}?v=50">
-<link rel="stylesheet" href="{% static 'css/services_piano_block.css' %}?v=48">
-<link rel="stylesheet" href="{% static 'css/services_piano_block_mob.css' %}?v=13">
-<link rel="stylesheet" href="{% static 'css/services_piano_video.css' %}?v=34">
-<link rel="stylesheet" href="{% static 'css/home-motion.css' %}?v=8">
-{% else %}
-<link rel="stylesheet" href="{% static 'css/home-page-bundle.css' %}?v=1">
-{% endif %}
-<noscript><style>.home-reveal{opacity:1;transform:none}</style></noscript>
+{# Головна за Figma Renova 7uoVJKPxBEi4MiARfaDeZV (hf-). Тексти — CZ msgid без змін. #}
+{# home.css — лише заради стилів сервісних модалок (як у Renova) #}
+<link rel="stylesheet" href="{% static 'css/home.css' %}?v=13">
+<link rel="stylesheet" href="{% static 'css/home-figma/home-figma.css' %}?v=cz1">
+<link rel="stylesheet" href="{% static 'css/components/clients-marquee.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/home-figma/home-figma-cz.css' %}?v=1">
 {% endblock %}
 
 {% block content %}
-<!-- Hero Section з фоновим відео -->
-<section class="hero-section full-height">
-    <!-- Фонові відео для декстопу та мобільних (SHARED між hero та CTA) -->
-    <!-- Desktop відео (показується тільки на >=768px) -->
-    <video class="video-background desktop-video" width="1280" height="720" autoplay muted loop playsinline preload="metadata" data-shared-video="main" poster="{% static 'images/hero/hero-desktop-poster.webp' %}?v=2" data-src="{% static 'videos/desktop/main.mp4' %}?v=2" aria-hidden="true">
-        <source data-src="{% static 'videos/desktop/main.mp4' %}?v=2" type="video/mp4">
-    </video>
-
-    <video class="video-background mobile-video" width="480" height="854" autoplay muted loop playsinline preload="metadata" data-shared-video="main" poster="{% static 'images/hero/hero-mobile-poster.webp' %}?v=2" data-src="{% static 'videos/mobile/mainmobile.mp4' %}?v=2" aria-hidden="true">
-        <source data-src="{% static 'videos/mobile/mainmobile.mp4' %}?v=2" type="video/mp4">
-    </video>
-    <script nonce="{{ csp_nonce }}">
-    (function () {
-        var mobile = window.matchMedia('(max-width: 767px)').matches;
-        document.querySelectorAll('.hero-section video.video-background').forEach(function (video) {
-            var forView = mobile ? video.classList.contains('mobile-video') : video.classList.contains('desktop-video');
-            if (!forView) return;
-            var source = video.querySelector('source');
-            var url = (source && source.getAttribute('data-src')) || video.getAttribute('data-src');
-            if (!url) return;
-            if (source) {
-                source.src = url;
-                source.removeAttribute('data-src');
-            }
-            video.removeAttribute('data-src');
-        });
-    })();
-    </script>
-
-    <!-- Overlay для кращої читабельності -->
-    <div class="video-overlay"></div>
-
-    <div class="hero-content">
-        <div class="container">
-            <div class="hero-text text-center">
-                <h1 class="text-mega color-brand-orange mb-lg home-reveal" data-i="0">PrometeyLabs</h1>
-                <p class="text-large color-white mb-xl home-reveal" data-i="1">
-                    <span class="hero-services">{% trans "сайти" %}</span> ·
-                    <span class="hero-services">{% trans "мобільні застосунки" %}</span> ·
-                    <span class="hero-services">{% trans "telegram боти" %}</span> ·
-                    <span class="hero-services">{% trans "реклама" %}</span> ·
-                    <span class="hero-services">{% trans "ведення соціальних мереж" %}</span> ·
-                    <span class="hero-services">{% trans "навчання" %}</span>
-                </p>
-
-                <!-- CTA Buttons -->
-                <div class="hero-buttons home-reveal" data-i="2">
-                    <a href="https://t.me/prometeylabs" class="btn btn-primary mobile-touch-target" target="_blank"
-                        rel="noopener">
-                        {% trans "Написати в телеграм" %}
-                    </a>
-                    <a href="{% url 'calculator' %}" class="btn btn-secondary mobile-touch-target">
-                        {% trans "Розрахувати вартість онлайн" %}
-                    </a>
-                    <button type="button" class="btn btn-secondary mobile-touch-target" data-modal="call-request-modal">
-                        {% trans "Залишити заявку" %}
-                    </button>
-                </div>
-            </div>
-        </div>
+<div class="hf">
+    {% include 'components/home_figma/hero.html' %}
+    {% include 'components/home_figma/marquee.html' %}
+    {% include 'components/home_figma/why.html' %}
+    {% include 'components/home_figma/process.html' %}
+    {% include 'components/home_figma/services.html' %}
+    <div class="hf-finale">
+        <img class="hf-finale__bg" src="{% static 'images/home-figma/clients-bg.webp' %}" width="1671" height="941" alt="" loading="lazy" decoding="async">
+        {% include 'components/home_figma/clients.html' %}
+        {% include 'components/home_figma/cta.html' %}
     </div>
-</section>
-
-<section class="services-marquee home-reveal" aria-label="{% trans 'Наші послуги' %}">
-    <div class="marquee-track">
-        <div class="marquee-content">
-            <span class="marquee-item">{% trans "Сайти під ключ" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Корпоративні сайти" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Інтернет-магазини" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Мобільні застосунки" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Telegram-боти" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Веб-додатки" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">CRM</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Реклама та просування" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "UX/UI дизайн" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Навчання IT та AI" %}</span>
-            <span class="marquee-separator">•</span>
-        </div>
-        <div class="marquee-content" aria-hidden="true">
-            <span class="marquee-item">{% trans "Сайти під ключ" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Корпоративні сайти" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Інтернет-магазини" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Мобільні застосунки" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Telegram-боти" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Веб-додатки" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">CRM</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Реклама та просування" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "UX/UI дизайн" %}</span>
-            <span class="marquee-separator">•</span>
-            <span class="marquee-item">{% trans "Навчання IT та AI" %}</span>
-            <span class="marquee-separator">•</span>
-        </div>
-    </div>
-</section>
-
-<div class="home-redesign vf" id="home-redesign-why">
-    {% include 'components/home/redesign_why.html' %}
 </div>
-
-<div class="home-redesign vf" id="home-redesign">
-    <div class="v3-bg-glow v3-glow-a" aria-hidden="true"></div>
-    <div class="v3-bg-glow v3-glow-b" aria-hidden="true"></div>
-    <div class="v3-bg-grid" aria-hidden="true"></div>
-
-    {% include 'components/home/home_process_intro.html' %}
-    {% include 'components/process_block.html' %}
-</div>
-
-{% include 'components/home/redesign_services_piano.html' %}
-
-<div class="home-redesign vf home-redesign--tail">
-    {% include 'components/home/redesign_clients.html' %}
-</div>
-
-{% include 'components/home/redesign_cta.html' %}
 <!-- Модальні вікна послуг -->
 <div class="modal" id="service-web-modal" role="dialog" aria-labelledby="service-web-title" aria-hidden="true">
     <div class="modal-backdrop"></div>
@@ -261,35 +127,11 @@
 
 {% block base_js %}
 <!--
-    ВАЖЛИВО: home-bundle.js — це агрегат MobileCore + PrometeyApp + VideoSystem + Home.
-    Він замінює окремі core-скрипти з base.html. Будь-які правки у static/js/base.js
-    або static/js/mobile-core.js мають бути синхронізовані з static/js/home-bundle.js,
-    інакше фіча (напр. contact-widget) буде працювати всюди, крім головної.
-    gclid-capture.js підключається окремо, щоб заявки з головної отримували gclid/UTM
-    (див. home-bundle.js::submitForm).
+    ВАЖЛИВО: home-bundle.js — агрегат MobileCore + PrometeyApp + VideoSystem + Home
+    (модалки, форми, gclid, маркі клієнтів .projects-stories-container).
 -->
 <script src="{% static 'js/core/gclid-capture.js' %}" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/ec-phone.js' %}" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/phone-mask.js' %}" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/phone-mask-intl.js' %}" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/home-bundle.js' %}?v=11" nonce="{{ csp_nonce }}" defer></script>
-{% endblock %}
-
-{% block extra_js %}
-<script src="{% static 'js/home-reveal.js' %}?v=6" nonce="{{ csp_nonce }}" defer></script>
-{# Below-fold process + piano: load near section (order preserved). #}
-<script type="application/json" id="home-below-fold-urls" nonce="{{ csp_nonce }}">
-[
-  "{% static 'js/process_block_anim.js' %}?v=47",
-  "{% static 'js/process_block_popover.js' %}?v=44",
-  "{% static 'js/process_block.js' %}?v=51",
-  "{% static 'js/services_piano_mob_scroll.js' %}?v=2",
-  "{% static 'js/services_piano_block.js' %}?v=14"
-]
-</script>
-<script id="home-below-fold"
-        src="{% static 'js/home-below-fold.js' %}?v=1"
-        nonce="{{ csp_nonce }}"
-        defer
-        data-nonce="{{ csp_nonce }}"></script>
+<script src="{% static 'js/core/ec-phone.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/core/phone-mask-intl.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/home-bundle.js' %}?v=12" nonce="{{ csp_nonce }}" defer></script>
 {% endblock %}

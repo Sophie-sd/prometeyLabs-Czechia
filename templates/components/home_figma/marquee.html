@@ -1,0 +1,20 @@
+{% load i18n %}
+{# Стрічка послуг (CZ) у стилі Renova: тексти без змін. #}
+<section class="hf-marquee" aria-label="{% trans 'Наші послуги' %}">
+    <div class="hf-marquee__track">
+        {% for clone in "01" %}
+        <div class="hf-marquee__set"{% if clone == "1" %} aria-hidden="true"{% endif %}>
+            <span class="hf-marquee__item">{% trans "Сайти під ключ" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">{% trans "Корпоративні сайти" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">{% trans "Інтернет-магазини" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">{% trans "Мобільні застосунки" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">{% trans "Telegram-боти" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">{% trans "Веб-додатки" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">CRM</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">{% trans "Реклама та просування" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">{% trans "UX/UI дизайн" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+            <span class="hf-marquee__item">{% trans "Навчання IT та AI" %}</span><span class="hf-marquee__sep" aria-hidden="true">•</span>
+        </div>
+        {% endfor %}
+    </div>
+</section>
