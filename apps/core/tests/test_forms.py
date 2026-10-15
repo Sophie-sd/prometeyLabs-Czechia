@@ -120,11 +120,11 @@ class FormValidationTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTrue(json.loads(response.content)['success'])
 
-    def test_form_with_local_phone_seven_digits(self):
+    def test_form_rejects_seven_digit_local_phone(self):
+        # EU phone field: national number is assumed +420 and must have 9 digits.
         data = _lead(form_type='footer-consultation', phone='555-1234')
         response = self.client.post(self.submit_url, data)
-        self.assertEqual(response.status_code, 200)
-        self.assertTrue(json.loads(response.content)['success'])
+        self.assertFalse(json.loads(response.content)['success'])
 
     def test_form_missing_required_fields(self):
         data = {

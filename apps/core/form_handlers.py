@@ -16,12 +16,63 @@ logger = logging.getLogger(__name__)
 EMAIL_TIMEOUT = 10
 
 
-def validate_phone(phone):
-    """Валідація номера телефону — мінімум 7 цифр, будь-який формат."""
+# EU phone rules (mirror of static/js/core/phone-mask-intl.js):
+# dial code -> (min, max) digits of the national significant number, trunk "0" stripped.
+PHONE_RULES = {
+    '420': (9, 9), '421': (9, 9), '48': (9, 9), '49': (6, 13), '43': (7, 13), '36': (8, 9),
+    '32': (8, 9), '359': (8, 9), '385': (8, 9), '357': (8, 8), '45': (8, 8), '372': (7, 8),
+    '358': (6, 10), '33': (9, 9), '30': (10, 10), '353': (7, 9), '39': (6, 11), '371': (8, 8),
+    '370': (8, 8), '352': (6, 11), '356': (8, 8), '31': (9, 9), '351': (9, 9), '40': (9, 9),
+    '386': (8, 8), '34': (9, 9), '46': (7, 10), '44': (10, 10), '41': (9, 9), '47': (8, 8),
+    '354': (7, 7), '423': (7, 7), '380': (9, 9), '373': (8, 8), '381': (8, 9), '90': (10, 10),
+    '972': (8, 9), '971': (8, 9), '1': (10, 10),
+}
+_DIALS = sorted(PHONE_RULES, key=len, reverse=True)
+DEFAULT_DIAL = '420'
+
+
+def normalize_phone(phone):
+    """Return E.164 (``+420777123456``) for a valid number, else ``None``.
+
+    Accepts ``+CC …``, ``00CC …`` or a bare national number (assumed +420 CZ).
+    Validates the national digit count per country (PHONE_RULES).
+    """
     if not phone:
-        return False
-    digits = re.sub(r'\D', '', phone)
-    return len(digits) >= 7
+        return None
+    raw = str(phone).strip()
+    digits = re.sub(r'\D', '', raw)
+    if not digits:
+        return None
+    if raw.startswith('+') or raw.startswith('00'):
+        if raw.startswith('00'):
+            digits = digits[2:]
+        dial = next((d for d in _DIALS if digits.startswith(d)), None)
+        if not dial:
+            return None
+        nsn = digits[len(dial):]
+    else:
+        dial, nsn = DEFAULT_DIAL, digits
+    if dial != '39':
+        nsn = nsn.lstrip('0')  # national trunk prefix (DE 0151… → 151…)
+    lo, hi = PHONE_RULES[dial]
+    if not (lo <= len(nsn) <= hi):
+        return None
+    return f'+{dial}{nsn}'
+
+
+def strip_prefix_only(phone):
+    """``'+420'`` / ``'+420 '`` (dial code only, from the EU phone field) → ``''``."""
+    if not phone:
+        return ''
+    digits = re.sub(r'\D', '', str(phone))
+    if not digits or (str(phone).strip().startswith(('+', '00')) and digits.lstrip('0') in PHONE_RULES):
+        return ''
+    return str(phone).strip()
+
+
+def validate_phone(phone):
+    """Валідація номера телефону: міжнародний формат, кількість цифр за країною (E.164)."""
+    return normalize_phone(phone) is not None
 
 
 def validate_name(name):

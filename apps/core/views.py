@@ -8,6 +8,7 @@ from .mixins import (
 from .web_development import web_dev_prices
 from .form_handlers import (
     validate_phone, validate_name, validate_email, has_consent,
+    normalize_phone, strip_prefix_only,
     has_lead_contact, validate_telegram,
     create_form_response, get_form_type_from_path,
     create_form_data, send_form_email, save_form_submission,
@@ -233,7 +234,7 @@ def handle_form_submission(request):
                 redirect='/thank-you/'
             )
         name = request.POST.get('name', '').strip()
-        phone = request.POST.get('phone', '').strip()
+        phone = strip_prefix_only(request.POST.get('phone', '').strip())
         email = request.POST.get('email', '').strip()
 
         telegram = request.POST.get('telegram', '').strip()
@@ -309,6 +310,8 @@ def handle_form_submission(request):
         
         handler = handlers.get(form_type)
         if handler:
+            # E.164 to CRM / e-mail / DB (validated above)
+            phone = normalize_phone(phone) or phone
             return handler(request, name, phone)
         else:
             return create_form_response(
@@ -516,6 +519,7 @@ def handle_test_submission(request):
         
         if not validate_phone(phone):
             return create_form_response(False, _('Введіть коректний номер телефону (мінімум 10 цифр)'))
+        phone = normalize_phone(phone) or phone
         
         # Отримуємо відповіді на тест
         answers = {}
