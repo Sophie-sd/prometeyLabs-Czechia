@@ -476,7 +476,7 @@
 }
 
 /* ---------- Tablet ---------- */
-@media (max-width: 1199px) and (min-width: 768px) {
+@media (max-width: 1023px) and (min-width: 768px) {
     .pfg-filters__list {
         flex-wrap: wrap;
     }
@@ -485,7 +485,9 @@
         flex: 0 0 calc((100% - 16px) / 3);
         max-width: none;
     }
+}
 
+@media (max-width: 1199px) and (min-width: 768px) {
     .pf-snaps .pf-snap__asset.is-shrinking,
     .pf-snaps .pf-snap__asset.is-done {
         width: 56%;
@@ -936,4 +938,42 @@ html.pfg-fab-dodge .contact-widget:not(.is-open) .contact-widget__toggle,
 html.pfg-fab-dodge .mobile-contact-fab {
     opacity: 0 !important;
     pointer-events: none !important;
+}
+
+/*
+ * DESKTOP ONLY (>=1024, owner 2026-10-16): hero fits the first screen, so the chips are fully
+ * visible with a bottom margin inside 100svh at any desktop height, and the down arrow is hidden.
+ * Vertical rhythm scales with viewport height, capped at the Figma values. Tablet/mobile untouched.
+ */
+@media (min-width: 1024px) {
+    .pfg-filters__down {
+        display: none;
+    }
+
+    .pfg-hero {
+        padding-top: calc(var(--pfg-header-h, 84px) + clamp(16px, 11svh - 40px, 96px));
+        padding-bottom: clamp(24px, 4svh, 75px);
+    }
+
+    .pfg-hero__intro {
+        gap: clamp(18px, 6svh - 14px, 50px);
+    }
+
+    .pfg-hero__text {
+        gap: clamp(12px, 4svh - 10px, 30px);
+    }
+
+    .pfg-hero__title {
+        font-size: clamp(40px, 9svh - 10px, 70px);
+        letter-spacing: -0.05em;
+    }
+
+    .pfg-filters {
+        gap: clamp(12px, 2.5svh, 20px);
+        margin-top: clamp(20px, 25svh - 130px, 185px);
+    }
+
+    .pfg-filter {
+        height: clamp(50px, 11svh - 16px, 94px);
+    }
 }
