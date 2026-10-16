@@ -21,6 +21,7 @@
 /* ---------- Hero (0:142 / 0:259 / 0:264) ---------- */
 .pfg-hero {
     position: relative;
+    z-index: 11; /* above .content-section--first (z 10) so the stuck bar (fixed, inside) covers the cards; still below header (1000) / menu / modals */
     isolation: isolate;
     overflow: hidden;
     background: #000;
@@ -233,13 +234,6 @@
     transition: color 200ms ease;
 }
 
-.pfg-filter__count {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 12px;
-    letter-spacing: -0.32px;
-    color: var(--pfg-gray);
-}
 
 .pfg-filter.is-active {
     border-color: var(--pfg-orange);
@@ -716,4 +710,139 @@
         font-size: 16px;
         letter-spacing: -0.48px;
     }
+}
+
+/* ---------- Sticky filter bar ---------- */
+.pfg-filters__slot {
+    width: 100%;
+}
+
+.pfg-filters__slot.is-stuck {
+    height: var(--pfg-slot-h, auto);
+}
+
+.pfg-filters__bar.is-stuck {
+    position: fixed;
+    top: var(--pfg-header-h, 0px);
+    left: 0;
+    right: 0;
+    z-index: 990;
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.62);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    animation: pfg-bar-in 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes pfg-bar-in {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -8px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.pfg-filters__bar.is-stuck .pfg-filters__list {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
+    width: auto;
+    max-width: 1330px;
+    margin: 0 auto;
+    padding: 0 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.pfg-filters__bar.is-stuck .pfg-filters__list::-webkit-scrollbar {
+    display: none;
+}
+
+.pfg-filters__bar.is-stuck .pfg-filter {
+    flex: 0 0 auto;
+    max-width: none;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 100px;
+    grid-column: auto;
+}
+
+.pfg-filters__bar.is-stuck .pfg-filter__glow {
+    display: none;
+}
+
+.pfg-filters__bar.is-stuck .pfg-filter__body {
+    flex-direction: row;
+    gap: 8px;
+}
+
+.pfg-filters__bar.is-stuck .pfg-filter__label,
+.pfg-filters__bar.is-stuck .pfg-filter:last-child:nth-child(odd) .pfg-filter__label {
+    width: auto;
+    font-size: 16px;
+    letter-spacing: -0.48px;
+    white-space: nowrap;
+}
+
+
+@media (max-width: 767px) {
+    .pfg-filters__bar.is-stuck {
+        padding: 8px 0;
+    }
+
+    .pfg-filters__bar.is-stuck .pfg-filters__list {
+        justify-content: flex-start;
+        scroll-padding-inline: 16px;
+    }
+
+    .pfg-filters__bar.is-stuck .pfg-filter {
+        height: 40px;
+        padding: 0 16px;
+    }
+
+    .pfg-filters__bar.is-stuck .pfg-filter__label {
+        font-size: 15px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pfg-filters__bar.is-stuck {
+        animation: none;
+    }
+}
+
+/* Results land under header + stuck bar (anchor / keyboard navigation too). */
+.pf-snaps .pf-snap,
+.pf-snaps .pfg-empty,
+#pf-projects {
+    scroll-margin-top: calc(var(--pfg-header-h, 60px) + var(--pfg-bar-h, 0px) + 16px);
+}
+
+/* brand-snap proximity snap: keep cards clear of the stuck bar. */
+html.pf-snap-on {
+    scroll-padding-top: calc(var(--pfg-header-h, 60px) + var(--pfg-bar-h, 0px));
+}
+
+.pfg-filters__end {
+    height: 1px;
+}
+
+/*
+ * Filter replay reset (portfolio-brand-snap.js resetPanel): one reflow with
+ * transitions off so a visible card snaps back to its pre-play state instead of
+ * animating backwards. The play itself keeps the original timings.
+ */
+.pf-snaps .pf-snap--resetting .pf-snap__asset,
+.pf-snaps .pf-snap--resetting .pf-snap__content,
+.pf-snaps .pf-snap--resetting .pf-snap__img {
+    transition: none;
+    animation: none;
 }

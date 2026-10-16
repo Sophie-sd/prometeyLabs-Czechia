@@ -45,11 +45,22 @@
         var raw = getComputedStyle(html).getPropertyValue('--nav-height').trim();
         var nav = parseFloat(raw) || 60;
         var probe = getComputedStyle(html).getPropertyValue('--mobile-safe-top').trim();
-        cachedInset = nav + (parseFloat(probe) || 0);
+        var bar = parseFloat(getComputedStyle(html).getPropertyValue('--pfg-bar-h')) || 0;
+        cachedInset = nav + (parseFloat(probe) || 0) + bar;
     }
 
     function headerInset() {
         return cachedInset;
+    }
+
+    /* portfolio-filters.js marks programmatic scrolls; cards play once it settles. */
+    function autoScrolling() {
+        return html.hasAttribute('data-pf-autoscroll');
+    }
+
+    /* Generation token: timers/rAFs of a play cancelled by a filter reset never land. */
+    function genOf(panel) {
+        return panel.getAttribute('data-gen') || '0';
     }
 
     function finishPanel(panel) {
@@ -72,6 +83,7 @@
             return;
         }
         panel.setAttribute('data-playing', '1');
+        var gen = genOf(panel);
         var asset = panel.querySelector('[data-snap-asset]');
         var content = panel.querySelector('[data-snap-content]');
         if (!asset || !content) {
@@ -85,16 +97,25 @@
 
         requestAnimationFrame(function () {
             requestAnimationFrame(function () {
+                if (genOf(panel) !== gen) {
+                    return;
+                }
                 asset.classList.add('is-shrinking');
                 asset.style.width = '';
             });
         });
 
         window.setTimeout(function () {
+            if (genOf(panel) !== gen) {
+                return;
+            }
             content.classList.add('is-done');
         }, TEXT_AT_MS);
 
         window.setTimeout(function () {
+            if (genOf(panel) !== gen) {
+                return;
+            }
             asset.style.width = '';
             asset.style.transition = '';
             asset.classList.add('is-shrinking', 'is-done');
@@ -154,6 +175,9 @@
                     return;
                 }
                 var panel = entry.target;
+                if (autoScrolling()) {
+                    return;
+                }
                 if (panel.getAttribute('data-done') === '1') {
                     io.unobserve(panel);
                     return;
@@ -197,7 +221,7 @@
     }
 
     function tryPlayVisible() {
-        if (prm.matches) {
+        if (prm.matches || autoScrolling()) {
             return;
         }
         var vh = window.innerHeight || 1;
@@ -223,7 +247,7 @@
 
     function updateSnap() {
         tryPlayVisible();
-        if (!isDesktop() || prm.matches || modalOpen()) {
+        if (!isDesktop() || prm.matches || modalOpen() || autoScrolling()) {
             clearSnapClasses();
             return;
         }
@@ -349,6 +373,48 @@
         mq.addListener(boot);
         prm.addListener(boot);
     }
+
+    /*
+     * Replay after a filter change (portfolio-filters.js → 'pf:snap-reset').
+     * Back to the pre-play state with transitions off for one reflow (no reverse
+     * fade), then re-observed: in-viewport cards play on the next scroll tick
+     * (dispatched by the filter), the rest on scroll-in — same timings as first play.
+     */
+    function resetPanel(panel) {
+        var asset = panel.querySelector('[data-snap-asset]');
+        var content = panel.querySelector('[data-snap-content]');
+        panel.setAttribute('data-gen', String((parseInt(genOf(panel), 10) || 0) + 1));
+        panel.classList.add('pf-snap--resetting');
+        panel.removeAttribute('data-done');
+        panel.removeAttribute('data-playing');
+        if (asset) {
+            asset.classList.remove('is-shrinking', 'is-done');
+            asset.style.width = '';
+            asset.style.transition = '';
+            asset.style.willChange = '';
+        }
+        if (content) {
+            content.classList.remove('is-done');
+        }
+        void panel.offsetWidth;
+        panel.classList.remove('pf-snap--resetting');
+        if (io) {
+            io.unobserve(panel);
+            io.observe(panel);
+        }
+    }
+
+    document.addEventListener('pf:snap-reset', function (event) {
+        var list = (event.detail && event.detail.panels) || panels;
+        if (prm.matches) {
+            list.forEach(finishPanel);
+            return;
+        }
+        if (!io) {
+            bindIo();
+        }
+        list.forEach(resetPanel);
+    });
 
     var bodyObserver = new MutationObserver(function () {
         if (modalOpen()) {

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap2.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-screen.css' %}?v=screen3">
-<link rel="stylesheet" href="{% static 'css/portfolio-figma-page.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/portfolio-figma-page.css' %}?v=2">
 {% endblock %}
 
 {% block content %}
@@ -35,7 +35,9 @@
     {% if portfolio_projects %}
     <div class="pfg-filters" data-pf-filters>
         <p class="pfg-filters__title" id="pfg-filters-title">{{ portfolio_copy.filters_title }}</p>
-        <div class="pfg-filters__list" role="group" aria-labelledby="pfg-filters-title">
+        <div class="pfg-filters__slot" data-pf-bar-slot>
+        <div class="pfg-filters__bar" data-pf-bar>
+        <div class="pfg-filters__list" role="group" aria-labelledby="pfg-filters-title" data-pf-bar-list>
             {% for item in portfolio_filters %}
             <button type="button"
                     class="pfg-filter{% if forloop.first %} is-active{% endif %}"
@@ -45,10 +47,11 @@
                 <img class="pfg-filter__glow" src="{% static 'images/portfolio-figma/filter-glow.webp' %}" alt="" width="332" height="316" loading="lazy" decoding="async" aria-hidden="true">
                 <span class="pfg-filter__body">
                     <span class="pfg-filter__label">{{ item.label }}</span>
-                    <span class="pfg-filter__count" data-pf-count="{{ item.key }}">{{ item.count }}</span>
                 </span>
             </button>
             {% endfor %}
+        </div>
+        </div>
         </div>
         <a class="pfg-filters__down" href="#pf-projects" aria-label="{{ portfolio_copy.scroll_label }}" data-pf-scroll>
             <img src="{% static 'images/portfolio-figma/arrow-down.svg' %}" alt="" width="18" height="12" aria-hidden="true">
@@ -68,13 +71,14 @@
         <p class="pfg-empty__text">{{ portfolio_copy.empty }}</p>
         <button type="button" class="pfg-btn pfg-btn--outline mobile-touch-target" data-pf-filter-reset>{{ portfolio_copy.reset }}</button>
     </div>
+    <div class="pfg-filters__end" data-pf-bar-end aria-hidden="true"></div>
     {% endif %}
 </section>
 
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/portfolio-brand-snap.js' %}?v=snap16" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/portfolio-brand-snap.js' %}?v=snap17" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/portfolio-screen-scroll.js' %}?v=screen4" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/portfolio-filters.js' %}?v=1" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/portfolio-filters.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
 {% endblock %}
