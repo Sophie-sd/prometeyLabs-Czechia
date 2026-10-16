@@ -187,7 +187,7 @@ body.menu-open{overflow:hidden}
 /* Footer form pills: Figma rgba(20,20,20,.2) as rendered in Figma (on white) = #d0d0d0; icons white, placeholder #a2a2a2 */
 .plf .plf-form__pill{background:#d0d0d0;border-color:transparent}
 .plf .plf-form__pill:focus-within{border-color:var(--plf-orange)}
-.plf .plf-form__icon{color:#fff}
+.plf .plf-form__icon{color:#141414}
 .plf .plf-form__input{color:#141414;-webkit-text-fill-color:#141414}
 .plf .plf-form__input::placeholder{color:#a2a2a2;-webkit-text-fill-color:#a2a2a2}
 .plf .plf-form__input:-webkit-autofill{-webkit-box-shadow:0 0 0 40px #d0d0d0 inset;-webkit-text-fill-color:#141414}
