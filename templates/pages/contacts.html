@@ -13,89 +13,81 @@
 {% block og_description %}{% trans "Napište PrometeyLabs — rychlá odpověď k webu, e-shopu, Telegram botu nebo reklamě." %}{% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{% static 'css/contacts.css' %}?v=5">
+<link rel="stylesheet" href="{% static 'css/contacts-figma/contacts-figma.css' %}?v=cz2">
 {% endblock %}
 
 {% block content %}
-<div class="contacts-page">
-    <section class="contacts-main">
-        <div class="container">
-            <div class="contacts-grid">
-                <div class="contacts-info">
-                    <div class="contact-block">
-                        <h2 class="medium-title">{% trans "Spojte se s námi" %}</h2>
-                        <p class="contact-text">{% trans "Potřebujete konzultaci? Máte otázky k našim službám? Napište nám e-mailem nebo přes formulář:" %}</p>
-
-                        <div class="contact-primary">
-                            <div class="contact-primary-row">
-                                <div class="contact-item">
-                                    <h3>{% trans "Kontakt" %}</h3>
-                                    {% if site_contact.email %}
-                                    <a href="mailto:{{ site_contact.email }}" class="contact-link contact-link--email">{{ site_contact.email }}</a>
-                                    {% endif %}
-                                </div>
-                                <div class="contact-item">
-                                    <h3>{% trans "Adresy" %}</h3>
-                                    <p class="contact-address contact-address--ua">
-                                        <span class="contact-address__label">{% trans "Ukrajina" %}</span>
-                                        {{ site_contact.get_localized_address }}
-                                    </p>
-                                    {% if site_contact.get_localized_czechia_address %}
-                                    <p class="contact-address contact-address--cz">
-                                        <span class="contact-address__label">{% trans "Česko" %}</span>
-                                        {{ site_contact.get_localized_czechia_address }}
-                                    </p>
-                                    {% endif %}
-                                </div>
-                            </div>
-
-                            <div class="contact-item contact-item--channels">
-                                <h3>{% trans "Sociální sítě" %}</h3>
-                                <ul class="contact-channels" role="list">
-                                    {% include "components/contact_social_icons.html" %}
-                                </ul>
-                                {% if site_contact.get_maps_embed_src %}
-                                <div class="contact-map">
-                                    <h3 class="contact-map__label">{% trans "Jsme na mapě" %}</h3>
-                                    <div class="contact-map__frame-wrap">
-                                        <iframe
-                                            class="contact-map__iframe"
-                                            src="{{ site_contact.get_maps_embed_src }}"
-                                            title="{% trans 'Google Maps' %}"
-                                            loading="lazy"
-                                            referrerpolicy="no-referrer-when-downgrade"
-                                            allowfullscreen>
-                                        </iframe>
-                                    </div>
-                                </div>
-                                {% endif %}
-                            </div>
+<div class="ctf contacts-page">
+    <img class="ctf__glow ctf__glow--a" src="{% static 'images/ct-figma/g1.svg' %}" alt="" aria-hidden="true">
+    <img class="ctf__glow ctf__glow--b" src="{% static 'images/ct-figma/g2.svg' %}" alt="" aria-hidden="true">
+    <div class="ctf__inner contacts-main">
+        <div class="ctf__info">
+            <div class="ctf__intro">
+                <h1 class="ctf__title">{% trans "Spojte se s námi" %}</h1>
+                <p class="ctf__text">{% trans "Potřebujete konzultaci? Máte otázky k našim službám? Napište nám e-mailem nebo přes formulář:" %}</p>
+            </div>
+            <div class="ctf__cards">
+                <div class="ctf__pair">
+                    <div class="ctf-card">
+                        <div class="ctf-card__head">
+                            <h2 class="ctf-card__title">{% trans "Kontakt" %}</h2>
+                            <img class="ctf-card__icon" src="{% static 'images/ct-figma/call.svg' %}" alt="" width="24" height="24">
+                        </div>
+                        <div class="ctf-card__body">
+                            {% if site_contact.phone_display %}<a href="{{ site_contact.get_tel_href }}" class="ctf-card__link">{{ site_contact.phone_display }}</a>{% endif %}
+                            {% if site_contact.email %}<a href="mailto:{{ site_contact.email }}" class="ctf-card__link contact-link--email">{{ site_contact.email }}</a>{% endif %}
+                        </div>
+                    </div>
+                    <div class="ctf-card">
+                        <div class="ctf-card__head">
+                            <h2 class="ctf-card__title">{% trans "Adresy" %}</h2>
+                            <img class="ctf-card__icon" src="{% static 'images/ct-figma/location.svg' %}" alt="" width="24" height="24">
+                        </div>
+                        <div class="ctf-card__body">
+                            <p class="ctf-card__addr contact-address--ua"><span class="ctf-card__addr-label">{% trans "Ukrajina" %}</span>{{ site_contact.get_localized_address }}</p>
+                            {% if site_contact.get_localized_czechia_address %}
+                            <p class="ctf-card__addr contact-address--cz"><span class="ctf-card__addr-label">{% trans "Česko" %}</span>{{ site_contact.get_localized_czechia_address }}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
-
-                <div class="contact-form-container">
-                    <div class="contact-form-wrapper">
-                        <h2 class="medium-title">{% trans "Nezávazná poptávka" %}</h2>
-                        <p class="form-intro">{% trans "Vyplňte formulář — ozveme se vám co nejdříve." %}</p>
-
-                        <form id="contactForm" class="contact-form" data-form-type="contact" action="{% url 'form_submit' %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="form_type" value="contact">
-                            <input type="hidden" name="source_page" value="contacts">
-                            {% include 'components/lead_form_fields.html' with prefix='contact' %}
-
-                            <div class="form-group full-width">
-                                <button type="submit" class="submit-btn">{% trans "Nezávazná poptávka" %}</button>
-                            </div>
-
-                            <div class="form-response" id="formResponse"></div>
-                        </form>
+                <div class="ctf-card">
+                    <div class="ctf-card__head"><h2 class="ctf-card__title">{% trans "Sociální sítě" %}</h2></div>
+                    <ul class="ctf-card__social contact-channels" role="list">
+                        {% include "components/contact_social_icons.html" %}
+                    </ul>
+                </div>
+                {% if site_contact.get_maps_embed_src %}
+                <div class="ctf-card">
+                    <div class="ctf-card__head">
+                        <h2 class="ctf-card__title">{% trans "Jsme na mapě" %}</h2>
+                        <img class="ctf-card__icon" src="{% static 'images/ct-figma/location.svg' %}" alt="" width="24" height="24">
+                    </div>
+                    <div class="ctf-card__map">
+                        <iframe class="ctf-card__iframe" src="{{ site_contact.get_maps_embed_src }}" title="{% trans 'Google Maps' %}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
-    </section>
+
+        <div class="ctf-form contact-form-container">
+            <div class="ctf-form__intro">
+                <h2 class="ctf-form__title">{% trans "Nezávazná poptávka" %}</h2>
+                <p class="ctf-form__text">{% trans "Vyplňte formulář — ozveme se vám co nejdříve." %}</p>
+            </div>
+            <form id="contactForm" class="ctf-form__form contact-form" data-form-type="contact" action="{% url 'form_submit' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="contact">
+                <input type="hidden" name="source_page" value="contacts">
+                {% include 'components/lead_form_fields.html' with prefix='contact' %}
+                <div class="ctf-form__submit">
+                    <button type="submit" class="ctf-form__btn submit-btn">{% trans "Nezávazná poptávka" %}</button>
+                </div>
+                <div class="form-response" id="formResponse"></div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
 

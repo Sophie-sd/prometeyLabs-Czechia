@@ -1,0 +1,109 @@
+/* Contacts — Figma uBuxXbMYGtGZGRZmgo3UIR (Desktop 1:206, Mobile 1:310) */
+.ctf{position:relative;overflow:hidden;background:#000;color:#f5f5f5;font-family:'Inter',system-ui,sans-serif;min-height:1054px}
+.ctf :where(h1,h2,p,ul){margin:0;padding:0}
+.ctf__glow{position:absolute;pointer-events:none;max-width:none;z-index:0}
+.ctf__glow--a{left:calc(-449px - .4644*873.774px);top:calc(534.14px - .6079*822.558px);width:calc(873.774px*1.9856);height:calc(822.558px*2.0942)}
+.ctf__glow--b{left:calc(50% + 353px - .4644*873.774px);top:calc(-34px - .5658*775.697px);width:calc(873.774px*1.9856);height:calc(775.697px*2.1316)}
+.ctf__inner{position:relative;z-index:1;max-width:1330px;margin:0 auto;padding:120px 0 77px;display:flex;justify-content:space-between;align-items:flex-start;gap:40px}
+.ctf__info{width:520px;display:flex;flex-direction:column;gap:50px;flex-shrink:0}
+.ctf__intro{display:flex;flex-direction:column;gap:20px;width:459px}
+.ctf__title{font-weight:500;font-size:70px;line-height:1;letter-spacing:-.05em;color:#f5f5f5;padding-bottom:.12em;margin-bottom:-.12em}
+.ctf__text,.ctf-form__text{font-size:16px;line-height:normal;letter-spacing:-.02em;color:#a2a2a2;width:431px;max-width:100%;text-box:trim-both cap alphabetic}
+.ctf__cards{display:flex;flex-direction:column;gap:20px}
+.ctf__pair{display:flex;gap:20px}
+.ctf__pair>.ctf-card{width:250px}
+.ctf-card{background:#141414;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:20px}
+.ctf-card__head{display:flex;justify-content:space-between;align-items:center}
+.ctf-card__title{font-weight:500;font-size:22px;line-height:normal;letter-spacing:-.03em;color:#f5f5f5}
+.ctf-card__icon{width:24px;height:24px;display:block}
+.ctf-card__body{display:flex;flex-direction:column;font-size:16px;letter-spacing:-.02em;color:#f60;line-height:normal}
+.ctf-card__link{color:#f60;text-decoration:underline;text-underline-position:from-font}
+.ctf-card__link:hover{color:#ff8a3d}
+.ctf-card__addr{display:block}
+.ctf-card__social{list-style:none;display:flex;gap:20px;flex-wrap:wrap}
+.ctf-card__social .contact-channel-icon{display:flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:100px;background:rgba(20,20,20,.2);border:1px solid rgba(255,255,255,.14);color:#f60;transition:border-color .2s}
+.ctf-card__social .contact-channel-icon:hover{border-color:#f60}
+.ctf-card__social .contact-channel-icon__svg{width:24px;height:24px}
+.ctf-card__social .contact-channel-icon__label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.ctf-card__map{aspect-ratio:1988/1178;border-radius:14px;overflow:hidden;background:#222}
+.ctf-card__iframe{width:100%;height:100%;border:0;display:block}
+.ctf-form{width:690px;min-height:531px;margin-top:190px;border-radius:30px;padding:50px 54px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:50px;
+  background:linear-gradient(180deg,rgba(255,255,255,.1) 0%,rgba(255,252,249,.1) 41.4%,rgba(255,102,0,.1) 100%);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.ctf-form__intro{width:431px;max-width:100%;display:flex;flex-direction:column;gap:20px;text-align:center;align-items:center}
+.ctf-form__title{font-weight:500;font-size:38px;line-height:1;letter-spacing:-.05em;padding-bottom:.1em;margin-bottom:-.1em}
+.ctf-form__form{width:582px;max-width:100%;display:flex;flex-direction:column;gap:14px}
+.ctf-form__row{display:flex;gap:14px}
+.ctf-form__row>.ctf-field{flex:1 1 0;min-width:0}
+.ctf-field{position:relative;margin:0}
+.ctf-field__label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ctf-field__icon{position:absolute;left:20px;top:16px;width:18px;height:18px;pointer-events:none}
+.ctf-field__input{display:block;width:100%;box-sizing:border-box;height:50px;padding:0 20px 0 48px;border-radius:100px;border:1px solid rgba(255,255,255,.12);background:rgba(20,20,20,.2);color:#f5f5f5;font:400 14px/1.2 'Inter',system-ui,sans-serif;letter-spacing:-.01em;outline:none}
+.ctf-field__input::placeholder{color:#a2a2a2;opacity:1}
+.ctf-field__input:focus{border-color:#f60}
+.ctf-field__input.error{border-color:#ff3b30}
+.ctf-field--area .ctf-field__icon{top:20px}
+.ctf-field--area .ctf-field__input{height:120px;border-radius:10px;padding:19px 20px 20px 48px;resize:vertical}
+.ctf-form__submit{display:flex;flex-direction:column;align-items:center;gap:8px}
+.ctf-form__btn{width:100%;height:50px;border:0;border-radius:100px;background:#f5f5f5;color:#f60;font:500 16px/1 'Inter',system-ui,sans-serif;letter-spacing:-.04em;cursor:pointer;transition:background .2s}
+.ctf-form__btn:hover{background:#fff}
+.ctf-form__btn:disabled{opacity:.6}
+.ctf-form__note{font-size:14px;letter-spacing:-.03em;color:#a2a2a2;line-height:normal}
+.ctf .field-error,.ctf .error-message{color:#ff6b5e;font-size:12px;margin:6px 0 0 20px}
+@media (max-width:1300px){
+  .ctf__inner{padding-left:32px;padding-right:32px}
+  .ctf-form{width:auto;flex:1 1 0;padding:40px 32px}
+}
+@media (max-width:1100px){
+  .ctf__inner{flex-direction:column;align-items:center;gap:80px;padding-bottom:80px}
+  .ctf-form{width:690px;max-width:100%;margin-top:0;flex:none}
+  .ctf__glow--b{left:auto;right:calc(-1734.94px + 720px)}
+}
+@media (max-width:767px){
+  .ctf{min-height:0}
+  .ctf__inner{padding:124px 16px 38px;gap:50px;max-width:394px}
+  .ctf__info{width:100%;gap:40px}
+  .ctf__intro{width:100%}
+  .ctf__title{font-size:34px;letter-spacing:-.05em}
+  .ctf__text{font-size:14px;letter-spacing:-.05em;color:#a1a1aa;font-weight:500;width:100%}
+  .ctf__pair{flex-direction:column}
+  .ctf__pair>.ctf-card{width:auto}
+  .ctf-card{padding:16px}
+  .ctf-card__body{font-size:14px;letter-spacing:-.02em}
+  .ctf-card__social{justify-content:space-between;gap:0}
+  .ctf-card__social .contact-channel-icon{width:48px;height:48px}
+  .ctf-form{width:100%;min-height:0;padding:0;background:none;border:0;border-radius:0;backdrop-filter:none;-webkit-backdrop-filter:none;gap:50px}
+  .ctf-form__intro{width:322px}
+  .ctf-form__title{font-size:40px;line-height:.86;letter-spacing:-.04em;width:224px;color:#fff;padding-bottom:.16em;margin-bottom:-.16em}
+  .ctf-form__row{flex-direction:column}
+  .ctf-form__form{width:100%}
+  .ctf__glow--a{left:calc(-661px - .4644*873.774px);top:calc(841px - .5658*775.697px)}
+  .ctf__glow--b{left:calc(224px - .4644*630.8px);top:calc(183px - .5658*560px);width:calc(630.8px*1.9856);height:calc(560px*2.1316);right:auto}
+}
+.ctf__title{white-space:nowrap}
+/* Читабельність сірих текстів поверх помаранчевого світіння */
+.ctf-form__text,.ctf-form__note{color:rgba(255,255,255,.92);text-shadow:0 1px 3px rgba(0,0,0,.55),0 0 18px rgba(0,0,0,.35)}
+
+/* ---- Czech site adaptation: shared lead_form_fields inside the Figma form card ---- */
+.ctf-card__addr-label{display:block;color:#a2a2a2;font-size:13px;margin-bottom:2px}
+.ctf-card__addr + .ctf-card__addr{margin-top:12px}
+.ctf-card__body .ctf-card__addr{color:#f5f5f5}
+.ctf-form .lead-form-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ctf-form .lead-form-fields .form-group{margin:0;position:relative}
+.ctf-form .lead-form-fields .form-group:nth-child(n+5),.ctf-form .lead-form-contact-rule,.ctf-form .lead-form-expect{grid-column:1 / -1}
+.ctf-form .form-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ctf-form .lead-form-fields .form-input,.ctf-form .lead-form-telegram__wrap{height:50px;border-radius:100px;border:1px solid rgba(255,255,255,.12);background:rgba(20,20,20,.2);color:#f5f5f5;font:400 14px/1.2 'Inter',system-ui,sans-serif;padding:0 20px;width:100%;box-sizing:border-box}
+.ctf-form .lead-form-telegram__wrap{display:flex;align-items:center;gap:4px}
+.ctf-form .lead-form-telegram__wrap .form-input{border:0;height:48px;padding:0;background:transparent!important}
+.ctf-form .lead-form-telegram__prefix{color:#a2a2a2}
+.ctf-form .lead-form-fields textarea.form-input{height:120px;border-radius:10px;padding:16px 20px;resize:vertical}
+.ctf-form .lead-form-fields .form-input::placeholder{color:#a2a2a2;opacity:1}
+.ctf-form .lead-form-fields .form-input:focus{border-color:#f60;outline:none}
+.ctf-form .lead-form-checkbox{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#d9d9d9;line-height:1.4}
+.ctf-form .lead-form-checkbox input{margin-top:2px;accent-color:#f60}
+.ctf-form .lead-form-policy-link{color:#f60}
+.ctf-form .lead-form-expect{font-size:13px;color:#a2a2a2;margin:0}
+.ctf-form .lead-form-contact-rule{color:#ff6b5e;font-size:13px;margin:0}
+.ctf-form .form-response{margin-top:10px;text-align:center}
+.ctf__title{white-space:normal}
+@media (max-width:767px){.ctf-form .lead-form-fields{grid-template-columns:1fr}}
+@media (min-width:768px){.ctf__title{white-space:nowrap}}
