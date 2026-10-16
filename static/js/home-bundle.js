@@ -1547,6 +1547,8 @@ class PrometeyApp {
     }
 
     async handleFormSubmit(form) {
+        const plfRule = form.matches('.plf-form') && form.querySelector('[data-lead-contact-rule]');
+        if (plfRule) { plfRule.hidden = true; plfRule.textContent = ''; delete plfRule.dataset.plfShown; }
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn?.textContent;
 
@@ -1702,6 +1704,17 @@ class PrometeyApp {
     }
 
     showFieldError(field, message) {
+        const plf = field.closest('.plf-form');
+        if (plf) {
+            const rule = plf.querySelector('[data-lead-contact-rule]');
+            if (rule && rule.dataset.plfShown !== '1') {
+                rule.dataset.plfShown = '1';
+                rule.hidden = false;
+                rule.textContent = message;
+                rule.classList.add('lead-form-contact-rule--error');
+            }
+            return;
+        }
         const errorEl = field.parentElement?.querySelector('.calc-field__error');
         if (errorEl) {
             errorEl.textContent = message;

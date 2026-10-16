@@ -218,7 +218,7 @@ msgstr "Blog o vývoji webů a kurzech programování"
 msgid ""
 "Корисні статті про веб-розробку, курси програмування, створення сайтів під "
 "ключ та Telegram ботів. Читайте експертні поради та навчальні матеріали."
-msgstr ""
+msgstr "Užitečné články o vývoji webů, tvorbě webů na klíč a Telegram botech. Odborné rady a praktické návody od PrometeyLabs."
 
 #: apps/blog/views.py:41
 msgid ""
@@ -1792,7 +1792,7 @@ msgid ""
 "PrometeyLabs - професійна розробка сайтів під ключ, створення Telegram "
 "ботів, налаштування реклами Google Ads, навчання веб-розробки. Сучасні "
 "технології, конкурентні ціни."
-msgstr ""
+msgstr "PrometeyLabs – profesionální tvorba webů a e-shopů na klíč, vývoj Telegram botů a správa reklamy Google Ads. Moderní technologie, férové ceny a podmínky ve smlouvě."
 
 #: apps/core/views.py:69 templates/base.html:40
 msgid "PrometeyLabs - Розробка сайтів під ключ"
@@ -1810,13 +1810,13 @@ msgstr ""
 
 #: apps/core/views.py:90
 msgid "Розрахувати вартість сайту | Калькулятор ціни - PrometeyLabs"
-msgstr "Vypočítat cenu webu | Cenová kalkulačka - PrometeyLabs"
+msgstr "Kalkulačka ceny webu — spočítejte si cenu online | PrometeyLabs"
 
 #: apps/core/views.py:91
 msgid ""
 "Розрахуйте вартість створення сайту онлайн. Сучасні технології знижують ціну "
 "розробки. Тест для точного розрахунку вартості проекту."
-msgstr ""
+msgstr "Spočítejte si cenu tvorby webu online. Krátký test vám ukáže orientační cenu a termín vašeho projektu — zdarma a bez závazků."
 
 #: apps/core/views.py:101
 msgid "Контакти | PrometeyLabs - Зв'яжіться з нами"
@@ -1871,7 +1871,7 @@ msgstr "Veřejná smlouva (nabídka) o poskytování služeb | PrometeyLabs"
 msgid ""
 "Публічний договір (оферта) про надання ІТ-послуг від PrometeyLabs. Офіційні "
 "умови надання послуг веб-розробки, мобільних застосунків та маркетингу."
-msgstr ""
+msgstr "Veřejná smlouva (nabídka) PrometeyLabs o poskytování IT služeb: oficiální podmínky vývoje webů, aplikací a marketingu."
 
 #: apps/core/views.py:130 templates/pages/privacy-cs.html:5
 #: templates/pages/privacy-en.html:5 templates/pages/privacy.html:5
@@ -1908,7 +1908,7 @@ msgstr "Zásady vrácení peněz | PrometeyLabs"
 msgid ""
 "Політика повернення коштів від PrometeyLabs. Дізнайтеся про умови і порядок "
 "повернення коштів за наші послуги."
-msgstr ""
+msgstr "Zásady vrácení peněz PrometeyLabs: podmínky a postup vrácení plateb za naše služby."
 
 #: apps/core/views.py:145 templates/pages/intellectual-property-cs.html:5
 #: templates/pages/intellectual-property-en.html:5
@@ -1919,12 +1919,10 @@ msgstr "Zásady duševního vlastnictví | PrometeyLabs"
 #: apps/core/views.py:146 templates/pages/intellectual-property-cs.html:6
 #: templates/pages/intellectual-property-en.html:6
 #: templates/pages/intellectual-property.html:6
-#, fuzzy
-#| msgid "Політика щодо інтелектуальної власності | PrometeyLabs"
 msgid ""
 "Політика щодо інтелектуальної власності від PrometeyLabs. Дізнайтеся про "
 "права на контент та захист авторських прав."
-msgstr "Zásady duševního vlastnictví | PrometeyLabs"
+msgstr "Zásady duševního vlastnictví PrometeyLabs: práva k obsahu, převod práv na klienta a ochrana autorských práv."
 
 #: apps/core/views.py:157
 msgid "Розробка інтернет-магазинів під ключ | PrometeyLabs"
@@ -1947,17 +1945,10 @@ msgid "Інтернет-магазини під ключ — швидка роз
 msgstr "E-shopy na klíč — rychlý vývoj e-commerce | PrometeyLabs"
 
 #: apps/core/views.py:167
-#, fuzzy
-#| msgid ""
-#| "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
-#| "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-"
-#| "commerce під ключ."
 msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код."
-msgstr ""
-"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a "
-"Heureka, SEO, doživotní záruka na kód. PrometeyLabs — e-commerce na klíč."
+msgstr "Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a Heureka, SEO, roční záruka na kód."
 
 #: apps/core/views.py:170 templates/pages/internet-shop-v2.html:9
 msgid "Інтернет-магазини, що завантажуються швидше — PrometeyLabs"
@@ -1969,18 +1960,10 @@ msgid ""
 msgstr "Firemní weby a landing page na klíč — rychlý vývoj | PrometeyLabs"
 
 #: apps/core/views.py:183
-#, fuzzy
-#| msgid ""
-#| "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. "
-#| "100/100 Core Web Vitals, технічне SEO, пожиттєва гарантія на код. "
-#| "PrometeyLabs — сайти під ключ."
 msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код."
-msgstr ""
-"Vývoj firemních webů a landing page s nativní architekturou. 100/100 Core "
-"Web Vitals, technické SEO, doživotní záruka na kód. PrometeyLabs — weby na "
-"klíč."
+msgstr "Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s vysokým skóre Core Web Vitals, technické SEO, roční záruka na kód."
 
 #: apps/core/views.py:186 templates/pages/corporate-website-v2.html:9
 msgid "Корпоративні сайти, що домінують у пошуку — PrometeyLabs"
@@ -4113,7 +4096,7 @@ msgstr "Tvorba webů na klíč, Telegram boti, reklama"
 msgid ""
 "Створюємо сайти під ключ, Telegram боти, налаштовуємо рекламу. Сучасні "
 "технології, конкурентні ціни."
-msgstr ""
+msgstr "Tvoříme weby na klíč a Telegram boty a nastavujeme reklamu. Moderní technologie, férové ceny."
 
 #: templates/base.html:128
 msgid "Розробка сайтів під ключ, Telegram боти, реклама"
@@ -4755,7 +4738,7 @@ msgstr "Nejvyšší skóre Core Web Vitals"
 #: templates/components/corporate_website_v2/scale.html:69
 #: templates/components/internet_shop_v2/hero.html:71
 msgid "Пожиттєва гарантія на код"
-msgstr "Doživotní záruka na kód"
+msgstr "Roční záruka na kód"
 
 #: templates/components/corporate_website_v2/hero.html:193
 msgid "Безлімітне масштабування"
@@ -5954,9 +5937,7 @@ msgstr "Záruka na kód"
 msgid ""
 "Чистий код без плагінів і залежностей — стабільна робота функціоналу "
 "протягом усього життя проєкту."
-msgstr ""
-"Čistý kód bez pluginů a závislostí — stabilní fungování po celou dobu "
-"životnosti projektu."
+msgstr "Čistý kód bez pluginů a závislostí — opravy chyb v kódu po dobu 1 roku od předání."
 
 #: templates/components/internet_shop_v2/hero.html:25
 msgid ""
@@ -6639,7 +6620,7 @@ msgstr "Funkční model"
 
 #: templates/components/process_block.html:109
 msgid "Інтерактивний прототип"
-msgstr "Interaktivní prototyp"
+msgstr "Klikací prototyp se skutečnou logikou"
 
 #: templates/components/process_block.html:110
 msgid "Логіка форм і сценаріїв"
@@ -8187,7 +8168,7 @@ msgstr "Promyšlená architektura a logika produktu."
 
 #: templates/pages/calculator.html:35
 msgid "Пожиттєва гарантія на наші програмні продукти."
-msgstr "Doživotní záruka na naše softwarové produkty."
+msgstr "Roční záruka na kód našich softwarových produktů."
 
 #: templates/pages/calculator.html:39
 msgid "Жодних щомісячних або прихованих платежів (повна прозорість)."
@@ -8391,7 +8372,7 @@ msgstr ""
 msgid ""
 "Політика використання файлів cookie PrometeyLabs. Дізнайтеся, які файли "
 "cookie ми використовуємо та як керувати налаштуваннями."
-msgstr ""
+msgstr "Zásady používání souborů cookie PrometeyLabs: jaké soubory cookie používáme a jak můžete spravovat jejich nastavení."
 
 #: templates/pages/cookies-ru.html:5
 msgid "Политика использования файлов cookie | PrometeyLabs"
@@ -8408,10 +8389,7 @@ msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код. PrometeyLabs — "
 "сайти під ключ."
-msgstr ""
-"Vývoj firemních webů a landing page s nativní architekturou. 100/100 Core "
-"Web Vitals, technické SEO, doživotní záruka na kód. PrometeyLabs — weby na "
-"klíč."
+msgstr "Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s vysokým skóre Core Web Vitals, technické SEO, roční záruka na kód. PrometeyLabs — weby na klíč."
 
 #: templates/pages/corporate-website.html:9
 #, fuzzy
@@ -8770,9 +8748,7 @@ msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-"
 "commerce під ключ."
-msgstr ""
-"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a "
-"Heureka, SEO, doživotní záruka na kód. PrometeyLabs — e-commerce na klíč."
+msgstr "Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a Heureka, SEO, roční záruka na kód. PrometeyLabs — e-commerce na klíč."
 
 #: templates/pages/internet-shop.html:7
 #, fuzzy
@@ -9310,7 +9286,7 @@ msgstr "Vytvořit zadání pro web zdarma za 3 minuty | PrometeyLabs"
 msgid ""
 "Як правильно скласти ТЗ для сайту: інтерактивний конструктор. Отримайте "
 "базове технічне завдання в PDF одразу та розширене — на email протягом доби."
-msgstr ""
+msgstr "Jak správně sestavit zadání pro web: interaktivní průvodce. Základní technické zadání v PDF dostanete hned, rozšířené e-mailem do 24 hodin."
 
 #: templates/pages/tz-dlia-saitu.html:9
 msgid ""
@@ -9326,13 +9302,13 @@ msgstr "Vytvořit zadání pro web online — zdarma | PrometeyLabs"
 msgid ""
 "Інтерактивний генератор ТЗ: відповідаєте на питання — отримуєте "
 "структуроване технічне завдання в PDF."
-msgstr ""
+msgstr "Interaktivní generátor zadání: odpovíte na otázky a získáte strukturované technické zadání v PDF."
 
 #: templates/pages/tz-dlia-saitu.html:29
 msgid ""
 "Безкоштовний інтерактивний конструктор технічного завдання на розробку сайту "
 "з PDF."
-msgstr ""
+msgstr "Bezplatný interaktivní nástroj pro sestavení technického zadání webu v PDF."
 
 #: templates/pages/tz-dlia-saitu.html:49
 msgid ""
@@ -10743,3 +10719,15 @@ msgstr "Společnost"
 #: templates/components/footer.html
 msgid "Правова інформація"
 msgstr "Právní informace"
+
+msgid "Гарантія на код 1 рік"
+msgstr "Roční záruka na kód"
+
+msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
+msgstr "Od 1 400 €. Roční záruka na kód. 1 rok podpory zdarma."
+
+msgid "від 1 400 €"
+msgstr "od 1 400 €"
+
+msgid "на основі виконаного проєкту"
+msgstr "na základě realizovaného projektu"

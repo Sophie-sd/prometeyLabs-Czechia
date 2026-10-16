@@ -204,7 +204,7 @@ msgstr "Blog on web development and programming courses"
 msgid ""
 "Корисні статті про веб-розробку, курси програмування, створення сайтів під "
 "ключ та Telegram ботів. Читайте експертні поради та навчальні матеріали."
-msgstr ""
+msgstr "Useful articles on web development, turnkey websites and Telegram bots. Expert tips and practical guides from PrometeyLabs."
 
 #: apps/blog/views.py:41
 msgid ""
@@ -1750,15 +1750,13 @@ msgstr ""
 
 #: apps/core/views.py:90
 msgid "Розрахувати вартість сайту | Калькулятор ціни - PrometeyLabs"
-msgstr "Calculate Cost Online"
+msgstr "Website cost calculator — get an estimate online | PrometeyLabs"
 
 #: apps/core/views.py:91
 msgid ""
 "Розрахуйте вартість створення сайту онлайн. Сучасні технології знижують ціну "
 "розробки. Тест для точного розрахунку вартості проекту."
-msgstr ""
-"Estimate your website cost online. A modern stack keeps development pricing "
-"competitive. Take the quiz for a precise project quote."
+msgstr "Estimate the cost of your website online. A short quiz gives you an indicative price and timeline for your project — free, no obligation."
 
 #: apps/core/views.py:101
 msgid "Контакти | PrometeyLabs - Зв'яжіться з нами"
@@ -1810,9 +1808,7 @@ msgstr "Public Service Agreement | PrometeyLabs"
 msgid ""
 "Публічний договір (оферта) про надання ІТ-послуг від PrometeyLabs. Офіційні "
 "умови надання послуг веб-розробки, мобільних застосунків та маркетингу."
-msgstr ""
-"Public offer agreement for IT services from PrometeyLabs. Official terms for "
-"web development, mobile apps and marketing."
+msgstr "PrometeyLabs public service agreement (offer): official terms for web development, app development and marketing services."
 
 #: apps/core/views.py:130 templates/pages/privacy-cs.html:5
 #: templates/pages/privacy-en.html:5 templates/pages/privacy.html:5
@@ -1895,9 +1891,7 @@ msgstr "Custom online stores — fast e-commerce development | PrometeyLabs"
 msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код."
-msgstr ""
-"E-commerce built on native architecture — no website builders. Migration "
-"from Shoptet and Heureka, SEO, lifetime code warranty."
+msgstr "E-commerce on a native stack — no page builders. Marketplace migration, SEO, 1-year code warranty."
 
 #: apps/core/views.py:170 templates/pages/internet-shop-v2.html:9
 msgid "Інтернет-магазини, що завантажуються швидше — PrometeyLabs"
@@ -1912,9 +1906,7 @@ msgstr "Corporate sites & landing pages — fast custom builds | PrometeyLabs"
 msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код."
-msgstr ""
-"Corporate websites and landing pages on a native stack. 100/100 Core Web "
-"Vitals, technical SEO and a lifetime code warranty."
+msgstr "Corporate websites and landing pages on a native stack. A fast site with high Core Web Vitals scores, technical SEO and a 1-year code warranty."
 
 #: apps/core/views.py:186 templates/pages/corporate-website-v2.html:9
 msgid "Корпоративні сайти, що домінують у пошуку — PrometeyLabs"
@@ -4703,7 +4695,7 @@ msgstr "Top Core Web Vitals score"
 #: templates/components/corporate_website_v2/scale.html:69
 #: templates/components/internet_shop_v2/hero.html:71
 msgid "Пожиттєва гарантія на код"
-msgstr "Code functionality support"
+msgstr "1-year code warranty"
 
 #: templates/components/corporate_website_v2/hero.html:193
 msgid "Безлімітне масштабування"
@@ -5896,15 +5888,13 @@ msgstr ""
 
 #: templates/components/internet_shop_v2/garantiya.html:19
 msgid "Гарантія на код"
-msgstr "Warranty includes:"
+msgstr "Code warranty"
 
 #: templates/components/internet_shop_v2/garantiya.html:20
 msgid ""
 "Чистий код без плагінів і залежностей — стабільна робота функціоналу "
 "протягом усього життя проєкту."
-msgstr ""
-"Clean code without plugins or fragile dependencies — stable features for the "
-"life of the project."
+msgstr "Clean code without plugins or fragile dependencies — code defects fixed for 1 year after handover."
 
 #: templates/components/internet_shop_v2/hero.html:25
 msgid ""
@@ -6584,23 +6574,23 @@ msgstr "Visual concept"
 
 #: templates/components/process_block.html:108
 msgid "Функціональна модель"
-msgstr "Social Media"
+msgstr "Functional model"
 
 #: templates/components/process_block.html:109
 msgid "Інтерактивний прототип"
-msgstr "Integration into workflow"
+msgstr "Clickable prototype with real logic"
 
 #: templates/components/process_block.html:110
 msgid "Логіка форм і сценаріїв"
-msgstr "promo codes and promotion scenarios"
+msgstr "Form logic and user flows"
 
 #: templates/components/process_block.html:111
 msgid "Звʼязок між сторінками"
-msgstr "Contact Us"
+msgstr "Links between pages"
 
 #: templates/components/process_block.html:112
 msgid "Тестування UX"
-msgstr "promotion"
+msgstr "UX testing"
 
 #: templates/components/process_block.html:133
 msgid "Фінальне виконання правок"
@@ -8162,7 +8152,7 @@ msgstr "Thoughtful architecture and product logic"
 
 #: templates/pages/calculator.html:35
 msgid "Пожиттєва гарантія на наші програмні продукти."
-msgstr "Thoughtful architecture and product logic"
+msgstr "1-year code warranty on our software products."
 
 #: templates/pages/calculator.html:39
 msgid "Жодних щомісячних або прихованих платежів (повна прозорість)."
@@ -8393,9 +8383,7 @@ msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код. PrometeyLabs — "
 "сайти під ключ."
-msgstr ""
-"Corporate websites and landing pages on a native stack. 100/100 Core Web "
-"Vitals, technical SEO, lifetime code warranty. PrometeyLabs — custom sites."
+msgstr "Corporate websites and landing pages on a native stack. A fast site with high Core Web Vitals scores, technical SEO, 1-year code warranty. PrometeyLabs — custom sites."
 
 #: templates/pages/corporate-website.html:9
 msgid "Корпоративний сайт під ключ — створимо за 7 днів"
@@ -8770,9 +8758,7 @@ msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-"
 "commerce під ключ."
-msgstr ""
-"E-commerce on a native stack — no page builders. Marketplace migration, SEO, "
-"lifetime code warranty. PrometeyLabs — custom stores."
+msgstr "E-commerce on a native stack — no page builders. Marketplace migration, SEO, 1-year code warranty. PrometeyLabs — custom stores."
 
 #: templates/pages/internet-shop.html:7
 msgid ""
@@ -9314,10 +9300,7 @@ msgstr "Create a website brief for free in 3 minutes | PrometeyLabs"
 msgid ""
 "Як правильно скласти ТЗ для сайту: інтерактивний конструктор. Отримайте "
 "базове технічне завдання в PDF одразу та розширене — на email протягом доби."
-msgstr ""
-"How to properly write a website brief: an interactive builder. Get a basic "
-"technical specification in PDF instantly and an extended one by email within "
-"24 hours."
+msgstr "How to write a website brief: an interactive builder. Get a basic brief as a PDF instantly and an extended one by email within 24 hours."
 
 #: templates/pages/tz-dlia-saitu.html:9
 msgid ""
@@ -9335,17 +9318,13 @@ msgstr "Create a website brief online — for free | PrometeyLabs"
 msgid ""
 "Інтерактивний генератор ТЗ: відповідаєте на питання — отримуєте "
 "структуроване технічне завдання в PDF."
-msgstr ""
-"Interactive brief generator: answer questions — get a structured technical "
-"specification in PDF."
+msgstr "Interactive brief generator: answer a few questions and get a structured website brief as a PDF."
 
 #: templates/pages/tz-dlia-saitu.html:29
 msgid ""
 "Безкоштовний інтерактивний конструктор технічного завдання на розробку сайту "
 "з PDF."
-msgstr ""
-"Free interactive builder for a website technical specification with PDF "
-"export."
+msgstr "A free interactive builder for website development briefs, with PDF export."
 
 #: templates/pages/tz-dlia-saitu.html:49
 msgid ""
@@ -11368,3 +11347,15 @@ msgstr "Turnkey websites we have built"
 #: templates/components/footer.html
 msgid "Правова інформація"
 msgstr "Legal information"
+
+msgid "Гарантія на код 1 рік"
+msgstr "1-year code warranty"
+
+msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
+msgstr "From €1,400. 1-year code warranty. 1 year of free support."
+
+msgid "від 1 400 €"
+msgstr "from €1,400"
+
+msgid "на основі виконаного проєкту"
+msgstr "based on a completed project"

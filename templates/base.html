@@ -176,10 +176,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     {% include 'components/footer.html' %}
 
     <!-- Modals -->
-    {% include 'components/modals.html' %}
+    {% if request.resolver_match.url_name != 'thank_you' %}{% include 'components/modals.html' %}{% endif %}
 
     <!-- Mobile contact FAB (leads-pack) -->
-    {% include 'components/mobile_contact_fab.html' %}
+    {% if request.resolver_match.url_name != 'thank_you' %}{% include 'components/mobile_contact_fab.html' %}{% endif %}
 
     {# Lang-suggest toast — must live at <body> level (NOT inside <header>) #}
     {# because `.main-navigation` has `transform: translate3d(0,0,0)`, which #}
@@ -229,7 +229,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <script src="{% static 'js/mobile-core.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/core/phone-mask.js' %}" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/core/phone-mask-intl.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
-    <script src="{% static 'js/base.js' %}?v=35" nonce="{{ csp_nonce }}" defer></script>
+    <script src="{% static 'js/base.js' %}?v=36" nonce="{{ csp_nonce }}" defer></script>
     <!-- video-system.js: load only on pages that actually contain <video> (skips landings without media) -->
     <script nonce="{{ csp_nonce }}">
     (function(){

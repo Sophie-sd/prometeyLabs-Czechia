@@ -4,11 +4,11 @@
 <div class="plf-form__fields" data-lead-form-fields>
     <label class="plf-form__pill" for="{{ p }}-name">
         <span class="plf-form__icon plf-form__icon--profile"><svg viewBox="0 0 12 15" fill="none" aria-hidden="true"><g><path d="M6 9.88086C9.25397 9.88086 12 10.4092 12 12.4492C12 14.49 9.23596 15 6 15C2.747 15 0.000373167 14.4713 0 12.4316C0 10.3909 2.76404 9.88086 6 9.88086ZM6 0C8.20433 0 9.9707 1.76598 9.9707 3.96875C9.97046 6.17131 8.20417 7.9375 6 7.9375C3.79658 7.9375 2.02954 6.17131 2.0293 3.96875C2.0293 1.76598 3.79642 1.27348e-07 6 0Z" fill="currentColor"/></g></svg></span>
-        <input type="text" id="{{ p }}-name" name="name" class="plf-form__input" autocomplete="given-name" inputmode="text" placeholder="{% trans "Jméno" %}" aria-label="{% trans "Jméno" %}">
+        <input type="text" id="{{ p }}-name" name="name" class="plf-form__input" required autocomplete="given-name" inputmode="text" placeholder="{% trans "Jméno" %}" aria-label="{% trans "Jméno" %}">
     </label>
     <label class="plf-form__pill" for="{{ p }}-phone">
         <span class="plf-form__icon plf-form__icon--call"><svg viewBox="0 0 19 19" fill="none" aria-hidden="true"><g><path fill-rule="evenodd" clip-rule="evenodd" d="M9.03174 9.97239C13.0208 13.9604 13.9258 9.34672 16.4656 11.8848C18.9143 14.3328 20.3216 14.8232 17.2192 17.9247C16.8306 18.237 14.3616 21.9943 5.6846 13.3197C-2.99348 4.644 0.761585 2.17244 1.07397 1.78395C4.18387 -1.32615 4.66586 0.0893829 7.11449 2.53733C9.65436 5.0765 5.04266 5.98441 9.03174 9.97239Z" fill="currentColor"/></g></svg></span>
-        <input type="tel" id="{{ p }}-phone" name="phone" class="plf-form__input" autocomplete="tel" inputmode="tel" placeholder="{{ phone_placeholder }}" aria-label="{% trans "Telefon" %}">
+        <input type="tel" id="{{ p }}-phone" name="phone" class="plf-form__input" required autocomplete="tel" inputmode="tel" placeholder="{{ phone_placeholder }}" aria-label="{% trans "Telefon" %}">
     </label>
 </div>
 <p class="lead-form-contact-rule" data-lead-contact-rule hidden role="alert"></p>

@@ -37,14 +37,16 @@
             <a href="{% url 'blog:blog_list' %}" class="plm__link mobile-nav-link{% if 'blog' in request.resolver_match.namespaces %} is-active{% endif %}">{% trans "Блог" %}<span class="plm__dot" aria-hidden="true"></span></a>
         </div>
 
+        {% if request.resolver_match.url_name != 'thank_you' %}
         <div class="plm__form-wrap">
             <p class="plm__form-title">{% trans "Отримати консультацію" %}</p>
-            <form class="plf-form plf-form--menu" data-form-type="footer-consultation">
+            <form class="plf-form plf-form--menu" data-form-type="footer-consultation" novalidate>
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="footer-consultation">
                 {% trans "Відправити" as submit_label %}{% include 'components/figma_lead_fields.html' with p='menu' submit_label=submit_label %}
             </form>
         </div>
+        {% endif %}
     </div>
 </nav>
 {% endwith %}

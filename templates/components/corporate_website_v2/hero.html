@@ -66,7 +66,7 @@
                     <span class="pl-corp__win-dot" aria-hidden="true"></span>
                     <span class="pl-corp__win-url">
                         <img src="{% static 'images/corporate_website_v2/figma/icon-lock.svg' %}" alt="" width="11" height="12">
-                        your-brand.com
+                        {% get_current_language as PL_LANG %}{% if PL_LANG == "cs" %}prometeylabs.cz{% else %}prometeylabs.com{% endif %}
                     </span>
                 </div>
                 <div class="pl-corp__win-body" data-hero-mockup>
@@ -133,7 +133,7 @@
             </li>
             <li class="pl-corp__perf-benefit">
                 <img class="pl-corp__perf-benefit-icon" src="{% static 'images/corporate_website_v2/figma/icon-award.svg' %}" alt="" width="20" height="20">
-                <span>{% trans "Пожиттєва гарантія на код" %}</span>
+                <span>{% trans "Гарантія на код 1 рік" %}</span>
             </li>
             <li class="pl-corp__perf-benefit pl-corp__perf-benefit--wide">
                 <img class="pl-corp__perf-benefit-icon" src="{% static 'images/corporate_website_v2/figma/icon-setting.svg' %}" alt="" width="21" height="23">

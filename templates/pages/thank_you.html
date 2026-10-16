@@ -5,6 +5,8 @@
 {% block title %}{% trans "Дякуємо за вашу заявку" %}{% endblock %}
 {% block description %}{% trans "Ваша заявка успішно отримана. Ми з вами скоро зв'яжемось." %}{% endblock %}
 
+{% block extra_head %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+
 {% block page_css %}
 <link rel="stylesheet" href="{% static 'css/thank-you.css' %}">
 {% endblock %}

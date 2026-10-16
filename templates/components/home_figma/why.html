@@ -27,7 +27,7 @@
             <ul class="hf-rows">
                 <li class="hf-row"><span class="hf-row__key">{% trans "Лендінги:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "400–700 €" %}</span></li>
                 <li class="hf-row"><span class="hf-row__key">{% trans "Корпоративні сайти:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "700–1000 €" %}</span></li>
-                <li class="hf-row"><span class="hf-row__key">{% trans "E-commerce:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "1600–2800 €" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "E-commerce:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "від 1 400 €" %}</span></li>
                 <li class="hf-row"><span class="hf-row__key">{% trans "Веб-додатки:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "2800–8000 €" %}</span></li>
             </ul>
             {% trans "Пропонуємо розбиття оплати на етапи — без переплат та прихованих умов." as n2 %}{% include 'components/home_figma/_note.html' with text=n2 %}
@@ -35,7 +35,7 @@
 
         <article class="hf-card hf-card--why">
             {% trans "Гарантія включає:" as t3r %}{% with t3=t3r|cut:":" %}{% include 'components/home_figma/_tag.html' with label=t3 %}{% endwith %}
-            <h3 class="hf-card__title">{% trans "5-річна" %} {% trans "гарантія" %} {% trans "на наші продукти" %}</h3>
+            <h3 class="hf-card__title">{% trans "Гарантія на код 1 рік" %}</h3>
             <ul class="hf-rows">
                 <li class="hf-row"><span class="hf-row__key">{% trans "Виправлення технічних помилок" %}</span></li>
                 <li class="hf-row"><span class="hf-row__key">{% trans "Підтримку працездатності коду" %}</span></li>

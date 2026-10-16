@@ -57,14 +57,16 @@
                 </div>
             </div>
 
+            {% if request.resolver_match.url_name != 'thank_you' %}
             <div class="plf__col plf__col--form">
                 <p class="plf__title plf__title--form">{% trans "Отримати консультацію" %}</p>
-                <form class="plf-form footer-form" data-form-type="footer-consultation">
+                <form class="plf-form footer-form" data-form-type="footer-consultation" novalidate>
                     {% csrf_token %}
                     <input type="hidden" name="form_type" value="footer-consultation">
                     {% trans "Відправити" as submit_label %}{% include 'components/figma_lead_fields.html' with p='footer' submit_label=submit_label %}
                 </form>
             </div>
+            {% endif %}
         </div>
 
         <div class="plf__bottom">
