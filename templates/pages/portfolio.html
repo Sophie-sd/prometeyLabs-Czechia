@@ -10,30 +10,71 @@
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap2.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-screen.css' %}?v=screen3">
-<link rel="stylesheet" href="{% static 'css/portfolio-figma.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/portfolio-figma-page.css' %}?v=1">
 {% endblock %}
 
 {% block content %}
-<!-- Hero (Figma A5BXwq4L 1:14 / 1:38) -->
-<section class="pf-hero" aria-labelledby="pf-hero-title">
-    <picture class="pf-hero__bg" aria-hidden="true">
-        <source media="(max-width: 767px)" srcset="{% static 'images/portfolio/figma/hero-mob.webp' %}">
-        <img src="{% static 'images/portfolio/figma/hero-desk.webp' %}" alt="" width="1681" height="936" fetchpriority="high">
-    </picture>
-    <h1 id="pf-hero-title" class="pf-hero__title">{% trans "Створені нами сайти під ключ" %}</h1>
+{# Portfolio — Figma 8ujBKCbHGm159yeTf0aObm 0:29 (Desktop 0:141, Mobile 0:30). Cards keep the brand-snap motion (portfolio-brand-snap.js). #}
+<section class="pfg-hero" aria-labelledby="pfg-hero-title">
+    <div class="pfg-hero__bg" aria-hidden="true">
+        <picture>
+            <source media="(max-width: 767px)" srcset="{% static 'images/portfolio-figma/hero-mobile.webp' %}" width="906" height="1736">
+            <img class="pfg-hero__img" src="{% static 'images/portfolio-figma/hero-desktop.webp' %}" alt="" width="1681" height="936" fetchpriority="high" decoding="async">
+        </picture>
+    </div>
+    <div class="pfg-hero__intro">
+        <div class="pfg-hero__text">
+            <h1 class="pfg-hero__title" id="pfg-hero-title">{% trans "Створені нами сайти під ключ" %}</h1>
+            <p class="pfg-hero__lead">{{ portfolio_copy.lead }}</p>
+        </div>
+        <button type="button" class="pfg-btn pfg-btn--accent mobile-touch-target" data-modal="call-request-modal">
+            <span>{% trans "Отримати консультацію" %}</span>
+            <img class="pfg-btn__icon" src="{% static 'images/portfolio-figma/arrow-right.svg' %}" alt="" width="18" height="12" aria-hidden="true">
+        </button>
+    </div>
+    {% if portfolio_projects %}
+    <div class="pfg-filters" data-pf-filters>
+        <p class="pfg-filters__title" id="pfg-filters-title">{{ portfolio_copy.filters_title }}</p>
+        <div class="pfg-filters__list" role="group" aria-labelledby="pfg-filters-title">
+            {% for item in portfolio_filters %}
+            <button type="button"
+                    class="pfg-filter{% if forloop.first %} is-active{% endif %}"
+                    data-pf-filter="{{ item.key }}"
+                    aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                    aria-controls="pf-projects">
+                <img class="pfg-filter__glow" src="{% static 'images/portfolio-figma/filter-glow.webp' %}" alt="" width="332" height="316" loading="lazy" decoding="async" aria-hidden="true">
+                <span class="pfg-filter__body">
+                    <span class="pfg-filter__label">{{ item.label }}</span>
+                    <span class="pfg-filter__count" data-pf-count="{{ item.key }}">{{ item.count }}</span>
+                </span>
+            </button>
+            {% endfor %}
+        </div>
+        <a class="pfg-filters__down" href="#pf-projects" aria-label="{{ portfolio_copy.scroll_label }}" data-pf-scroll>
+            <img src="{% static 'images/portfolio-figma/arrow-down.svg' %}" alt="" width="18" height="12" aria-hidden="true">
+        </a>
+    </div>
+    {% endif %}
 </section>
 
-<section class="portfolio-projects content-section--first pf-snaps" data-portfolio-snap aria-label="{% trans 'Проєкти портфоліо' context 'portfolio' %}">
+<section class="portfolio-projects content-section--first pf-snaps" id="pf-projects" data-portfolio-snap aria-label="{% trans 'Проєкти портфоліо' context 'portfolio' %}">
     {% for project in portfolio_projects %}
     {% include 'components/portfolio_project_card.html' with project=project %}
     {% empty %}
     <p class="pf-snaps__empty text-medium color-white">{% trans "Проєкти портфоліо скоро з’являться." context "portfolio" %}</p>
     {% endfor %}
+    {% if portfolio_projects %}
+    <div class="pfg-empty" data-pf-empty hidden>
+        <p class="pfg-empty__text">{{ portfolio_copy.empty }}</p>
+        <button type="button" class="pfg-btn pfg-btn--outline mobile-touch-target" data-pf-filter-reset>{{ portfolio_copy.reset }}</button>
+    </div>
+    {% endif %}
 </section>
 
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/portfolio-brand-snap.js' %}?v=snap13" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/portfolio-screen-scroll.js' %}?v=screen2" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/portfolio-brand-snap.js' %}?v=snap16" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/portfolio-screen-scroll.js' %}?v=screen4" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/portfolio-filters.js' %}?v=1" nonce="{{ csp_nonce }}" defer></script>
 {% endblock %}

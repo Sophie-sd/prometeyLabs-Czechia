@@ -5,6 +5,7 @@ from .mixins import (
     BasePageView, LocalizedLegalTemplateMixin, homepage_clients, portfolio_page_projects,
     portfolio_strip,
 )
+from .portfolio_categories import portfolio_filter_context
 from .web_development import web_dev_prices
 from .form_handlers import (
     validate_phone, validate_name, validate_email, has_consent,
@@ -85,7 +86,9 @@ class PortfolioView(BasePageView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['portfolio_projects'] = portfolio_page_projects()
+        projects = portfolio_page_projects()
+        context['portfolio_projects'] = projects
+        context.update(portfolio_filter_context(projects))
         return context
 
 

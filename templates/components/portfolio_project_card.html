@@ -4,6 +4,7 @@
     data-project-snap
     data-slug="{{ project.slug }}"
     data-index="{{ project.snap_index }}"
+    data-category="{{ project.category }}"
 >
     <div class="pf-snap__asset" data-snap-asset data-slug="{{ project.slug }}"{% if project.get_card_image_src %} data-pf-screen{% endif %}>
         {% if project.get_card_image_src %}
@@ -32,12 +33,13 @@
                 <span class="pf-snap__subtitle">{{ project.get_localized_subtitle }}</span>
                 {% endif %}
             </h2>
+            <button type="button" class="pf-snap__category mobile-touch-target" data-pf-filter-jump="{{ project.category }}" aria-label="{{ portfolio_copy.card_filter_hint }}: {{ project.get_category_label }}">{{ project.get_category_label }}</button>
             <p class="pf-snap__desc">{{ project.get_localized_card_description }}</p>
 
             {% if project.get_integration_tags %}
             <ul class="pf-snap__tags">
                 {% for tag in project.get_integration_tags %}
-                <li class="pf-snap__tag"><span class="pf-snap__hash" aria-hidden="true">#</span>{{ tag }}</li>
+                <li class="pf-snap__tag"><span class="pf-snap__hash" aria-hidden="true">#</span>{{ tag|capfirst }}</li>
                 {% endfor %}
             </ul>
             {% endif %}

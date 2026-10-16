@@ -13,6 +13,7 @@ from django.core.files import File
 from django.core.management.base import BaseCommand
 
 from apps.core.models import PortfolioProject
+from apps.core.portfolio_categories import category_for_slug
 from apps.core.portfolio_i18n import PORTFOLIO_I18N_CS, PORTFOLIO_I18N_EN
 from apps.core.portfolio_seed_data import IMAGE_FIELD_MAP, PORTFOLIO_PROJECTS
 
@@ -85,6 +86,7 @@ class Command(BaseCommand):
                 'home_story_label_ru': '',
                 'modal_content': '',
                 'modal_content_ru': '',
+                'category': item.get('category') or category_for_slug(slug),
                 'order': item.get('order', 0),
                 'home_order': item.get('home_order', 0),
                 'show_on_portfolio': item.get('show_on_portfolio', False),

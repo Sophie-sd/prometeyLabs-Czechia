@@ -261,6 +261,9 @@
         var nearestDist = Infinity;
 
         panels.forEach(function (panel) {
+            if (panel.hidden) {
+                return; /* filtered out by portfolio-filters.js */
+            }
             var dist = Math.abs(panel.getBoundingClientRect().top - inset);
             if (dist < nearestDist) {
                 nearestDist = dist;

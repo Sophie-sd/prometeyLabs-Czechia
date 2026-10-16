@@ -7,6 +7,8 @@ from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from datetime import timedelta
 
+from .portfolio_categories import CATEGORY_CHOICES as PORTFOLIO_CATEGORY_CHOICES
+
 
 class FormSubmission(models.Model):
     """Модель для збереження всіх заявок з сайту"""
@@ -810,6 +812,13 @@ class PortfolioProject(models.Model):
         blank=True,
         verbose_name=_('Модалка: десктопна версія'),
     )
+    category = models.CharField(
+        max_length=20,
+        choices=PORTFOLIO_CATEGORY_CHOICES,
+        default='corporate',
+        db_index=True,
+        verbose_name=_('Категорія (фільтр /portfolio/)'),
+    )
     is_published = models.BooleanField(default=True, verbose_name=_('Опубліковано'))
     show_on_portfolio = models.BooleanField(
         default=False,
@@ -859,6 +868,11 @@ class PortfolioProject(models.Model):
         if index % 2 == 1:
             return 'pf-snap--flip'
         return ''
+
+    def get_category_label(self) -> str:
+        from .portfolio_categories import card_label
+
+        return card_label(self.category)
 
     @staticmethod
     def get_snap_tone(index):

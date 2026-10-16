@@ -539,6 +539,7 @@ class PortfolioProjectAdmin(UnfoldModelAdmin):
     list_filter_sheet = False
     list_display = (
         'title',
+        'category',
         'order',
         'is_published',
         'show_on_portfolio',
@@ -549,6 +550,7 @@ class PortfolioProjectAdmin(UnfoldModelAdmin):
         ('is_published', ChoicesDropdownFilter),
         ('show_on_portfolio', BooleanDropdownFilter),
         ('show_on_homepage', BooleanDropdownFilter),
+        ('category', ChoicesDropdownFilter),
     )
     search_fields = ('title', 'subtitle', 'card_description', 'slug')
     prepopulated_fields = {'slug': ('title',)}
@@ -565,7 +567,7 @@ class PortfolioProjectAdmin(UnfoldModelAdmin):
             'fields': (
                 'title', 'title_ru', 'title_en', 'title_cs',
                 'subtitle', 'subtitle_ru', 'subtitle_en', 'subtitle_cs',
-                'slug', 'order', 'home_order',
+                'slug', 'category', 'order', 'home_order',
             ),
         }),
         (_('Живий сайт → знімок'), {
