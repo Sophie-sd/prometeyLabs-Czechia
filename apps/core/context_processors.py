@@ -13,11 +13,9 @@ def global_settings(request):
     `csp_nonce` — per-request nonce, set by CSPMiddleware.
     """
     lang = (get_language() or 'uk').split('-')[0]
-    if lang == 'cs':
+    if lang in ('cs', 'en'):
+        # Czech site: +420 default for both public languages (mask stays editable)
         phone_placeholder = '+420'
-    elif lang == 'en':
-        # Вільний міжнародний формат — без жорсткого українського коду
-        phone_placeholder = '+'
     else:
         phone_placeholder = '+38(___)__-__-___'
     return {

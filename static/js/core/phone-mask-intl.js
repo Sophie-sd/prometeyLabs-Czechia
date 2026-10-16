@@ -1,6 +1,6 @@
 /**
  * Intl phone helper: used only for cs/en interface language.
- * cs → prefilled +420 (Czech default); en → no forced country code, fully
+ * cs and en → prefilled +420 (Czech site default), fully editable to any
  * free international format; other languages fall back to +38 defensively
  * (should not normally be reached — uk/ru use the strict PhoneMask instead).
  * Never hard-locks to a single country format.
@@ -11,7 +11,7 @@
     function defaultPrefix() {
         var lang = (document.documentElement.getAttribute('lang') || 'uk').toLowerCase();
         if (lang.indexOf('cs') === 0) return '+420';
-        if (lang.indexOf('en') === 0) return '';
+        if (lang.indexOf('en') === 0) return '+420'; // Czech site: +420 default for en too (fully editable)
         return '+38';
     }
 
