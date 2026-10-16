@@ -1,108 +1,91 @@
 {% load i18n %}
-<footer class="main-footer" role="contentinfo">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>PROMETEYLABS</h3>
-                <div class="footer-accordion-content">
-                    <a href="{% url 'portfolio' %}" class="footer-link">{% trans "Розробка сайтів під ключ" %}</a>
-                    <a href="{% url 'portfolio' %}" class="footer-link">{% trans "Мобільні застосунки" %}</a>
-                    <a href="{% url 'telegram_bot' %}" class="footer-link">{% trans "Telegram-боти" %}</a>
-                    <a href="{% url 'calculator' %}" class="footer-link">{% trans "Реклама та просування" %}</a>
-                    <a href="{% url 'calculator' %}" class="footer-link">{% trans "Ведення соціальних мереж" %}</a>
+{# Footer — Figma LkKY7rsmReqZnqShx3T34C nodes 1:199 (desktop) / 1:292 (mobile) #}
+<footer class="main-footer plf" role="contentinfo">
+    <div class="plf__inner">
+        <div class="plf__cols">
+            <div class="plf__col plf__col--services" data-plf-acc>
+                <button type="button" class="plf__acc-head" aria-expanded="true">
+                    <span class="plf__brand">Prometey<span>Labs</span></span>
+                    <span class="plf__acc-title">{% trans "Портфоліо" %}</span>
+                    <span class="plf__dot" aria-hidden="true"></span>
+                </button>
+                <div class="plf__list plf__acc-body">
+                    <a href="{% url 'portfolio' %}" class="plf__link">{% trans "Розробка сайтів під ключ" %}</a>
+                    <a href="{% url 'portfolio' %}" class="plf__link">{% trans "Мобільні застосунки" %}</a>
+                    <a href="{% url 'telegram_bot' %}" class="plf__link">{% trans "Telegram-боти" %}</a>
+                    <a href="{% url 'calculator' %}" class="plf__link">{% trans "Реклама та просування" %}</a>
+                    <a href="{% url 'calculator' %}" class="plf__link">{% trans "Ведення соціальних мереж" %}</a>
                 </div>
             </div>
 
-            <div class="footer-section">
-                <h3>{% trans "КОМПАНІЯ" %}</h3>
-                <div class="footer-accordion-content">
-                    <a href="{% url 'home' %}" class="footer-link">{% trans "Головна" %}</a>
-                    <a href="{% url 'portfolio' %}" class="footer-link">{% trans "Портфоліо" %}</a>
-                    <a href="{% url 'blog:blog_list' %}" class="footer-link">{% trans "Блог" %}</a>
-                    <a href="{% url 'contacts' %}" class="footer-link">{% trans "Контакти" %}</a>
+            <div class="plf__col plf__col--company" data-plf-acc>
+                <button type="button" class="plf__acc-head" aria-expanded="false">
+                    <span class="plf__title">{% trans "Компанія" %}</span>
+                    <span class="plf__dot" aria-hidden="true"></span>
+                </button>
+                <div class="plf__list plf__acc-body">
+                    <a href="{% url 'home' %}" class="plf__link">{% trans "Головна" %}</a>
+                    <a href="{% url 'portfolio' %}" class="plf__link">{% trans "Портфоліо" %}</a>
+                    <a href="{% url 'blog:blog_list' %}" class="plf__link">{% trans "Блог" %}</a>
+                    <a href="{% url 'contacts' %}" class="plf__link">{% trans "Контакти" %}</a>
                 </div>
             </div>
 
-            <div class="footer-section">
-                <h3>{% trans "ПРАВОВА ІНФОРМАЦІЯ" %}</h3>
-                <div class="footer-accordion-content">
-                    <a href="{% url 'offer' %}" class="footer-link">{% trans "Публічний договір (оферта)" %}</a>
-                    <a href="{% url 'privacy' %}" class="footer-link">{% trans "Політика конфіденційності" %}</a>
-                    <a href="{% url 'cookies' %}" class="footer-link">{% trans "Політика cookies" %}</a>
-                    <a href="{% url 'refund' %}" class="footer-link">{% trans "Політика повернення коштів" %}</a>
-                    <a href="{% url 'intellectual_property' %}" class="footer-link">{% trans "Інтелектуальна власність" %}</a>
+            <div class="plf__col plf__col--legal" data-plf-acc>
+                <button type="button" class="plf__acc-head" aria-expanded="false">
+                    <span class="plf__title">{% trans "Правова інформація" %}</span>
+                    <span class="plf__dot" aria-hidden="true"></span>
+                </button>
+                <div class="plf__list plf__acc-body">
+                    <a href="{% url 'offer' %}" class="plf__link">{% trans "Публічний договір (оферта)" %}</a>
+                    <a href="{% url 'privacy' %}" class="plf__link">{% trans "Політика конфіденційності" %}</a>
+                    <a href="{% url 'cookies' %}" class="plf__link">{% trans "Політика cookies" %}</a>
+                    <a href="{% url 'refund' %}" class="plf__link">{% trans "Політика повернення коштів" %}</a>
+                    <a href="{% url 'intellectual_property' %}" class="plf__link">{% trans "Інтелектуальна власність" %}</a>
                 </div>
             </div>
 
-            <div class="footer-section">
-                <h3>{% trans "КОНТАКТИ" %}</h3>
-                <div class="footer-accordion-content">
-                    {% if site_contact.phone_display and site_contact.get_tel_href %}
-                    <a href="{{ site_contact.get_tel_href }}" class="footer-contact-link">{{ site_contact.phone_display }}</a>
-                    {% endif %}
-                    {% if site_contact.email %}
-                    <a href="mailto:{{ site_contact.email }}" class="footer-contact-link">{{ site_contact.email }}</a>
-                    {% endif %}
-                    <span class="footer-contact-text">{% trans "Графік роботи: Цілодобово" %}</span>
-                    <div class="footer-social">
-                        <a href="{{ site_contact.telegram_url }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.25 11.24 9.52 13.08C9.12 13.35 8.76 13.49 8.44 13.48C8.08 13.47 7.4 13.28 6.89 13.11C6.26 12.91 5.77 12.8 5.81 12.45C5.83 12.27 6.08 12.09 6.55 11.9C9.47 10.63 11.41 9.79 12.38 9.39C15.16 8.23 15.73 8.03 16.11 8.03C16.19 8.03 16.38 8.05 16.5 8.15C16.6 8.23 16.63 8.34 16.64 8.42C16.63 8.48 16.65 8.66 16.64 8.8Z" fill="currentColor"/>
-                            </svg>
-                        </a>
-                        <a href="{{ site_contact.instagram_url }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C14.717 2 15.056 2.01 16.122 2.06C17.187 2.11 17.912 2.277 18.55 2.525C19.21 2.779 19.766 3.123 20.322 3.678C20.8305 4.1779 21.224 4.78259 21.475 5.45C21.722 6.087 21.89 6.813 21.94 7.878C21.987 8.944 22 9.283 22 12C22 14.717 21.99 15.056 21.94 16.122C21.89 17.187 21.722 17.912 21.475 18.55C21.2247 19.2178 20.8311 19.8226 20.322 20.322C19.822 20.8303 19.2173 21.2238 18.55 21.475C17.913 21.722 17.187 21.89 16.122 21.94C15.056 21.987 14.717 22 12 22C9.283 22 8.944 21.99 7.878 21.94C6.813 21.89 6.088 21.722 5.45 21.475C4.78233 21.2245 4.17753 20.8309 3.678 20.322C3.16941 19.8222 2.77593 19.2175 2.525 18.55C2.277 17.913 2.11 17.187 2.06 16.122C2.013 15.056 2 14.717 2 12C2 9.283 2.01 8.944 2.06 7.878C2.11 6.812 2.277 6.088 2.525 5.45C2.77524 4.78218 3.1688 4.17732 3.678 3.678C4.17767 3.16923 4.78243 2.77573 5.45 2.525C6.088 2.277 6.812 2.11 7.878 2.06C8.944 2.013 9.283 2 12 2ZM12 7C10.6739 7 9.40215 7.52678 8.46447 8.46447C7.52678 9.40215 7 10.6739 7 12C7 13.3261 7.52678 14.5979 8.46447 15.5355C9.40215 16.4732 10.6739 17 12 17C13.3261 17 14.5979 16.4732 15.5355 15.5355C16.4732 14.5979 17 13.3261 17 12C17 10.6739 16.4732 9.40215 15.5355 8.46447C14.5979 7.52678 13.3261 7 12 7ZM18.5 6.75C18.5 6.41848 18.3683 6.10054 18.1339 5.86612C17.8995 5.6317 17.5815 5.5 17.25 5.5C16.9185 5.5 16.6005 5.6317 16.3661 5.86612C16.1317 6.10054 16 6.41848 16 6.75C16 7.08152 16.1317 7.39946 16.3661 7.63388C16.6005 7.8683 16.9185 8 17.25 8C17.5815 8 17.8995 7.8683 18.1339 7.63388C18.3683 7.39946 18.5 7.08152 18.5 6.75ZM12 9C12.7956 9 13.5587 9.31607 14.1213 9.87868C14.6839 10.4413 15 11.2044 15 12C15 12.7956 14.6839 13.5587 14.1213 14.1213C13.5587 14.6839 12.7956 15 12 15C11.2044 15 10.4413 14.6839 9.87868 14.1213C9.31607 13.5587 9 12.7956 9 12C9 11.2044 9.31607 10.4413 9.87868 9.87868C10.4413 9.31607 11.2044 9 12 9Z" fill="currentColor"/>
-                            </svg>
-                        </a>
-                        {% if site_contact.tiktok_url %}
-                        <a href="{{ site_contact.tiktok_url }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19.59 6.69C18.38 5.53 17.64 3.96 17.64 2.21H13.59V15.47C13.59 17.38 12.03 18.94 10.12 18.94C8.21 18.94 6.65 17.38 6.65 15.47C6.65 13.62 8.13 12.1 9.94 12.01V7.93C5.94 8.05 2.65 11.4 2.65 15.47C2.65 19.6 6.01 22.96 10.12 22.96C14.29 22.96 17.65 19.6 17.65 15.47V8.81C19.21 9.99 21.13 10.7 23.24 10.72V6.69C21.75 6.68 20.39 6.27 19.59 6.69Z" fill="currentColor"/>
-                            </svg>
-                        </a>
-                        {% endif %}
-                        <a href="https://youtube.com/@prometeylabs" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M23.498 6.186C23.498 6.186 23.266 4.604 22.593 3.925C21.755 3.057 20.821 3.053 20.391 3.002C17.044 2.762 12.005 2.762 12.005 2.762H11.995C11.995 2.762 6.956 2.762 3.609 3.002C3.179 3.053 2.245 3.057 1.407 3.925C0.734 4.604 0.506 6.186 0.506 6.186C0.506 6.186 0.262 8.044 0.262 9.898V11.656C0.262 13.51 0.502 15.368 0.502 15.368C0.502 15.368 0.734 16.95 1.403 17.629C2.241 18.497 3.337 18.467 3.829 18.563C5.679 18.733 12 18.788 12 18.788C12 18.788 17.044 18.78 20.391 18.544C20.821 18.493 21.755 18.489 22.593 17.621C23.266 16.942 23.498 15.36 23.498 15.36C23.498 15.36 23.738 13.506 23.738 11.648V9.89C23.742 8.036 23.498 6.186 23.498 6.186ZM9.609 14.01V7.921L16.011 10.973L9.609 14.01Z" fill="currentColor"/>
-                            </svg>
-                        </a>
-                    </div>
+            <div class="plf__col plf__col--contacts" data-plf-acc>
+                <button type="button" class="plf__acc-head" aria-expanded="false">
+                    <span class="plf__title">{% trans "Контакти" %}</span>
+                    <span class="plf__dot" aria-hidden="true"></span>
+                </button>
+                <div class="plf__list plf__acc-body">
+                    {% if site_contact.phone_display and site_contact.get_tel_href %}<a href="{{ site_contact.get_tel_href }}" class="plf__accent">{{ site_contact.phone_display }}</a>{% endif %}
+                    {% if site_contact.email %}<a href="mailto:{{ site_contact.email }}" class="plf__accent">{{ site_contact.email }}</a>{% endif %}
+                    <span class="plf__small">{% trans "Графік роботи: Цілодобово" %}</span>
+                    {% include 'components/footer_social.html' %}
                 </div>
             </div>
 
-            <div class="footer-section footer-form-section">
-                <h3>{% trans "Nezávazná poptávka" %}</h3>
-                <form class="footer-form" data-form-type="footer-consultation">
+            <div class="plf__col plf__col--form">
+                <p class="plf__title plf__title--form">{% trans "Отримати консультацію" %}</p>
+                <form class="plf-form footer-form" data-form-type="footer-consultation">
                     {% csrf_token %}
                     <input type="hidden" name="form_type" value="footer-consultation">
-                    {% include 'components/lead_form_fields.html' with prefix='footer' compact=True %}
-                    <button type="submit" class="btn btn-primary footer-submit-btn">{% trans "Nezávazná poptávka" %}</button>
+                    {% trans "Відправити" as submit_label %}{% include 'components/figma_lead_fields.html' with p='footer' submit_label=submit_label %}
                 </form>
             </div>
         </div>
 
-        <div class="footer-impressum">
-            <p class="footer-impressum-legal">
-                {{ site_contact.get_localized_legal_name }}
-                <span class="footer-impressum-dot">·</span>
-                {% trans "Реєстр. №" %} {{ site_contact.registration_number }}
-                <span class="footer-impressum-dot">·</span>
-                {{ site_contact.get_localized_legal_address }}
-            </p>
-            <p class="footer-impressum-contact">
-                {% trans "Захист даних:" %}
-                <a href="mailto:{{ site_contact.data_protection_email }}" class="footer-impressum-link">{{ site_contact.data_protection_email }}</a>
-                <span class="footer-impressum-dot">·</span>
-                <button type="button" class="footer-impressum-link footer-cookie-settings-btn cky-banner-element" data-cookie-settings>
-                    {% trans "Налаштування cookie" %}
-                </button>
-            </p>
-        </div>
-
-        <div class="footer-bottom">
+        <div class="plf__bottom">
+            <div class="plf__impressum">
+                <p>
+                    {{ site_contact.get_localized_legal_name }}
+                    <span class="plf__sep">·</span>
+                    {% trans "Реєстр. №" %} {{ site_contact.registration_number }}
+                    <span class="plf__sep">·</span>
+                    {{ site_contact.get_localized_legal_address }}
+                </p>
+                <p>
+                    {% trans "Захист даних:" %}
+                    <a href="mailto:{{ site_contact.data_protection_email }}" class="plf__imp-link">{{ site_contact.data_protection_email }}</a>
+                    <span class="plf__sep">·</span>
+                    <button type="button" class="plf__imp-link footer-cookie-settings-btn cky-banner-element" data-cookie-settings>{% trans "Налаштування cookie" %}</button>
+                </p>
+            </div>
             <p>&copy; {% now "Y" %} PrometeyLabs. {% trans "Усі права захищені." %}</p>
-            <p>{% trans "Комплексні веб-рішення" %} • {% trans "Розробка" %} • Digital-{% trans "просування" %} • {% trans "Навчання" %}</p>
+            <p class="plf__tagline">{% trans "Комплексні веб-рішення" %} • {% trans "Розробка" %} • Digital-{% trans "просування" %} • {% trans "Навчання" %}</p>
         </div>
     </div>
 </footer>

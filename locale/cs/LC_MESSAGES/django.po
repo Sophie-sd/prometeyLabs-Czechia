@@ -9847,8 +9847,9 @@ msgstr "Vyberte soubor k odeslání"
 #~ msgid "ОТРИМАТИ КОНСУЛЬТАЦІЮ"
 #~ msgstr "ZÍSKAT KONZULTACI"
 
-#~ msgid "Відправити"
-#~ msgstr "Odeslat"
+#: templates/components/footer.html
+msgid "Відправити"
+msgstr "Odeslat"
 
 #~ msgid "PrometeyLabs - Головна сторінка"
 #~ msgstr "PrometeyLabs - Domovská stránka"
@@ -9908,8 +9909,9 @@ msgstr "Vyberte soubor k odeslání"
 #~ msgid "Готові до співпраці?"
 #~ msgstr "Prototyp — proces spolupráce"
 
-#~ msgid "Мова"
-#~ msgstr "Jazyk"
+#: templates/components/footer.html
+msgid "Мова"
+msgstr "Jazyk"
 
 #, fuzzy
 #~| msgid "Надіслати повідомлення"
@@ -10737,3 +10739,11 @@ msgstr "Admin / Objednávky"
 #: templates/pages/portfolio.html
 msgid "Створені нами сайти під ключ"
 msgstr "Weby na klíč, které jsme vytvořili"
+
+#: templates/components/footer.html
+msgid "Компанія"
+msgstr "Společnost"
+
+#: templates/components/footer.html
+msgid "Правова інформація"
+msgstr "Právní informace"

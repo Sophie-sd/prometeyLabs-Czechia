@@ -103,6 +103,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <link rel="preload" href="{% static 'css/components/footer.css' %}?v=2" as="style">
     <link rel="stylesheet" href="{% static 'css/components/footer.css' %}?v=2" media="print" data-async-css>
     <noscript><link rel="stylesheet" href="{% static 'css/components/footer.css' %}?v=2"></noscript>
+    <link rel="stylesheet" href="{% static 'css/components/footer-menu-figma.css' %}?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" crossorigin>
@@ -259,6 +260,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
     {% block analytics %}{% endblock %}
 
+    <script src="{% static 'js/components/footer-menu-figma.js' %}?v=1" nonce="{{ csp_nonce }}" defer></script>
 </body>
 
 </html>

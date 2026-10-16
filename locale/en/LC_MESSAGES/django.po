@@ -9885,8 +9885,9 @@ msgstr "Choose file to upload"
 #~ msgid "ОТРИМАТИ КОНСУЛЬТАЦІЮ"
 #~ msgstr "GET A CONSULTATION"
 
-#~ msgid "Відправити"
-#~ msgstr "Send"
+#: templates/components/footer.html
+msgid "Відправити"
+msgstr "Send"
 
 #~ msgid "PrometeyLabs - Головна сторінка"
 #~ msgstr "PrometeyLabs team"
@@ -9950,8 +9951,9 @@ msgstr "Choose file to upload"
 #~ msgid "Готові до співпраці?"
 #~ msgstr "Ready to start?"
 
-#~ msgid "Мова"
-#~ msgstr "Language"
+#: templates/components/footer.html
+msgid "Мова"
+msgstr "Language"
 
 #~| msgid "Надіслати повідомлення"
 #~ msgid "Надіслати заявку на купівлю"
@@ -10757,8 +10759,9 @@ msgstr "Choose file to upload"
 #~ msgid "Події"
 #~ msgstr "Events"
 
-#~ msgid "Компанія"
-#~ msgstr "Company"
+#: templates/components/footer.html
+msgid "Компанія"
+msgstr "Company"
 
 #~ msgid "Реєстрації на події"
 #~ msgstr "Event Registration"
@@ -11365,3 +11368,7 @@ msgstr "Admin / Orders"
 #: templates/pages/portfolio.html
 msgid "Створені нами сайти під ключ"
 msgstr "Turnkey websites we have built"
+
+#: templates/components/footer.html
+msgid "Правова інформація"
+msgstr "Legal information"

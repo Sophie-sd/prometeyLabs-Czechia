@@ -1,0 +1,20 @@
+{% load i18n %}
+{# Figma lead fields (footer 1:253 / menu 1:373): name + phone pills, consent circle. Vars: p (id prefix), submit_label #}
+{% url 'privacy' as privacy_url %}
+<div class="plf-form__fields" data-lead-form-fields>
+    <label class="plf-form__pill" for="{{ p }}-name">
+        <span class="plf-form__icon plf-form__icon--profile"><svg viewBox="0 0 12 15" fill="none" aria-hidden="true"><g><path d="M6 9.88086C9.25397 9.88086 12 10.4092 12 12.4492C12 14.49 9.23596 15 6 15C2.747 15 0.000373167 14.4713 0 12.4316C0 10.3909 2.76404 9.88086 6 9.88086ZM6 0C8.20433 0 9.9707 1.76598 9.9707 3.96875C9.97046 6.17131 8.20417 7.9375 6 7.9375C3.79658 7.9375 2.02954 6.17131 2.0293 3.96875C2.0293 1.76598 3.79642 1.27348e-07 6 0Z" fill="currentColor"/></g></svg></span>
+        <input type="text" id="{{ p }}-name" name="name" class="plf-form__input" autocomplete="given-name" inputmode="text" placeholder="{% trans "Jméno" %}" aria-label="{% trans "Jméno" %}">
+    </label>
+    <label class="plf-form__pill" for="{{ p }}-phone">
+        <span class="plf-form__icon plf-form__icon--call"><svg viewBox="0 0 19 19" fill="none" aria-hidden="true"><g><path fill-rule="evenodd" clip-rule="evenodd" d="M9.03174 9.97239C13.0208 13.9604 13.9258 9.34672 16.4656 11.8848C18.9143 14.3328 20.3216 14.8232 17.2192 17.9247C16.8306 18.237 14.3616 21.9943 5.6846 13.3197C-2.99348 4.644 0.761585 2.17244 1.07397 1.78395C4.18387 -1.32615 4.66586 0.0893829 7.11449 2.53733C9.65436 5.0765 5.04266 5.98441 9.03174 9.97239Z" fill="currentColor"/></g></svg></span>
+        <input type="tel" id="{{ p }}-phone" name="phone" class="plf-form__input" autocomplete="tel" inputmode="tel" placeholder="{{ phone_placeholder }}" aria-label="{% trans "Telefon" %}">
+    </label>
+</div>
+<p class="lead-form-contact-rule" data-lead-contact-rule hidden role="alert"></p>
+<button type="submit" class="plf-form__submit">{{ submit_label }}</button>
+<label class="plf-form__consent">
+    <input type="checkbox" name="consent" value="1" required class="plf-form__check">
+    <span class="plf-form__tick" aria-hidden="true"><svg viewBox="0 0 7.29168 4.92245" fill="none" aria-hidden="true"><g><path d="M7.21925 0.512565C7.32973 0.379979 7.31182 0.182927 7.17923 0.0724387C7.04665 -0.0380501 6.8496 -0.0201363 6.73911 0.11245L4.49299 2.80779C4.04181 3.34921 3.72442 3.7289 3.44913 3.97749C3.18026 4.22028 2.9947 4.29745 2.81251 4.29745C2.63032 4.29745 2.44476 4.22028 2.17589 3.97749C1.9006 3.7289 1.58321 3.34921 1.13203 2.80779L0.552579 2.11245C0.44209 1.97986 0.245039 1.96195 0.112452 2.07244C-0.0201344 2.18293 -0.0380482 2.37998 0.0724406 2.51257L0.667969 3.2272C1.09933 3.74485 1.44478 4.1594 1.75702 4.44135C2.07954 4.73259 2.40923 4.92245 2.81251 4.92245C3.21579 4.92245 3.54548 4.73259 3.868 4.44135C4.18023 4.15941 4.52568 3.74486 4.95704 3.22722L7.21925 0.512565Z" fill="currentColor"/></g></svg></span>
+    <span class="plf-form__consent-text">{% blocktrans trimmed with privacy_url=privacy_url %}Souhlasím se zpracováním osobních údajů dle <a href="{{ privacy_url }}" class="lead-form-policy-link" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>.{% endblocktrans %}</span>
+</label>
