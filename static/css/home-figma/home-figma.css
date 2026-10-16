@@ -328,7 +328,7 @@
 }
 .hf-step {
     position: relative;
-    height: 212px;
+    min-height: 212px; /* grow if longer items wrap (EN/RU), no clipped bullets */
     padding: 20px;
     border-radius: var(--hf-radius-card);
     background: var(--hf-card-bg);
