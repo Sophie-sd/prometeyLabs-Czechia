@@ -64,6 +64,34 @@
                 computeFor(asset);
             }, { once: true });
         }
+        // Desktop: картка показує легке прев'ю (srcset); повний знімок для hover-скролу
+        // вантажиться лише при першому наведенні, далі дистанцію перераховано.
+        if (img.hasAttribute('data-pf-full')) {
+            // Swap only after a real hover dwell (not when cards slide under a still cursor while scrolling).
+            var dwell = 0;
+            var swap = function () {
+                if (touchMq.matches || !img.hasAttribute('srcset') || !asset.matches(':hover')) {
+                    return;
+                }
+                img.addEventListener('load', function () {
+                    computeFor(asset);
+                }, { once: true });
+                img.loading = 'eager';
+                img.removeAttribute('sizes');
+                img.removeAttribute('srcset');
+                img.src = img.getAttribute('data-pf-full');
+            };
+            asset.addEventListener('mouseenter', function () {
+                if (!img.hasAttribute('srcset')) {
+                    return;
+                }
+                window.clearTimeout(dwell);
+                dwell = window.setTimeout(swap, 450);
+            });
+            asset.addEventListener('mouseleave', function () {
+                window.clearTimeout(dwell);
+            });
+        }
         // Desktop: перерахунок після завершення shrink-анімації ширини (brand-snap).
         asset.addEventListener('transitionend', function (event) {
             if (event.target === asset && event.propertyName === 'width') {

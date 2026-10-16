@@ -1,5 +1,6 @@
 /**
- * Portfolio brand-snap — proximity snap + one-way media shrink.
+ * Portfolio brand-snap — one-way media shrink on scroll-in (natural scroll, no scroll-snap).
+ * Snap toggling removed 2026-10-16 (owner: "scroll twice to change direction" + lag).
  * Constants from brand_snap_skill + luxury_motion --motion-reveal.
  */
 (function () {
@@ -9,8 +10,6 @@
     var SHRINK_MS = 1000;
     var TEXT_AT_MS = 580;
     var EASE = 'cubic-bezier(0.23, 1, 0.32, 1)';
-    var SNAP_BAND = 0.11;
-    var SNAP_BAND_PX_MIN = 56;
     var PLAY_RATIO = 0.4;
     var PLAY_RATIO_FIRST = 0.55;
     var SETTLE_MS = SHRINK_MS + 140;
@@ -29,11 +28,8 @@
     var mq = window.matchMedia(MQ);
     var prm = window.matchMedia('(prefers-reduced-motion: reduce)');
     var io = null;
-    var snapLockedOff = false;
-    var scrollingUp = false;
-    var touchStartY = 0;
-    var snapRaf = 0;
-    var zoneVisible = false;
+    /* Latest IO ratio per panel (kept even while a programmatic scroll defers play). */
+    var ratios = new Map();
 
     function isDesktop() {
         return mq.matches;
@@ -171,10 +167,12 @@
 
         io = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
+                var panel = entry.target;
                 if (!entry.isIntersecting) {
+                    ratios.delete(panel);
                     return;
                 }
-                var panel = entry.target;
+                ratios.set(panel, entry.intersectionRatio);
                 if (autoScrolling()) {
                     return;
                 }
@@ -201,40 +199,15 @@
         });
     }
 
-    function clearSnapClasses() {
-        html.classList.remove('pf-snap-on', 'pf-snap-off');
-        panels.forEach(function (panel) {
-            panel.classList.remove('is-snap-target');
-        });
-    }
-
-    function setSnapOff() {
-        html.classList.remove('pf-snap-on');
-        html.classList.add('pf-snap-off');
-        panels.forEach(function (panel) {
-            panel.classList.remove('is-snap-target');
-        });
-    }
-
-    function modalOpen() {
-        return document.body.classList.contains('modal-open');
-    }
-
+    /* Play cards the IO reported as visible (no layout reads; used after a programmatic scroll). */
     function tryPlayVisible() {
         if (prm.matches || autoScrolling()) {
             return;
         }
-        var vh = window.innerHeight || 1;
-        panels.forEach(function (panel) {
-            if (panel.getAttribute('data-done') === '1' || panel.getAttribute('data-playing') === '1') {
+        ratios.forEach(function (ratio, panel) {
+            if (panel.hidden || panel.getAttribute('data-done') === '1' || panel.getAttribute('data-playing') === '1') {
                 return;
             }
-            var rect = panel.getBoundingClientRect();
-            var vis = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
-            if (vis <= 0 || rect.height <= 0) {
-                return;
-            }
-            var ratio = vis / rect.height;
             if (isDesktop()) {
                 if (ratio >= playRatioFor(panel)) {
                     playDesktop(panel);
@@ -245,105 +218,8 @@
         });
     }
 
-    function updateSnap() {
-        tryPlayVisible();
-        if (!isDesktop() || prm.matches || modalOpen() || autoScrolling()) {
-            clearSnapClasses();
-            return;
-        }
-
-        var zone = root.getBoundingClientRect();
-        var vh = window.innerHeight || 1;
-        zoneVisible = zone.bottom > 0 && zone.top < vh;
-
-        if (!zoneVisible) {
-            clearSnapClasses();
-            return;
-        }
-
-        var nearTop = zone.top > -Math.min(120, vh * 0.18);
-        var nearBottom = zone.bottom < vh * 0.72;
-
-        if (scrollingUp || nearTop || nearBottom) {
-            snapLockedOff = true;
-            setSnapOff();
-            return;
-        }
-
-        if (!scrollingUp && zone.top < -80) {
-            snapLockedOff = false;
-        }
-
-        if (snapLockedOff) {
-            setSnapOff();
-            return;
-        }
-
-        var inset = headerInset();
-        var band = Math.max(SNAP_BAND_PX_MIN, vh * SNAP_BAND);
-        var nearest = null;
-        var nearestDist = Infinity;
-
-        panels.forEach(function (panel) {
-            if (panel.hidden) {
-                return; /* filtered out by portfolio-filters.js */
-            }
-            var dist = Math.abs(panel.getBoundingClientRect().top - inset);
-            if (dist < nearestDist) {
-                nearestDist = dist;
-                nearest = panel;
-            }
-        });
-
-        panels.forEach(function (panel) {
-            panel.classList.remove('is-snap-target');
-        });
-
-        if (nearest && nearestDist <= band) {
-            nearest.classList.add('is-snap-target');
-            html.classList.remove('pf-snap-off');
-            html.classList.add('pf-snap-on');
-        } else {
-            setSnapOff();
-        }
-    }
-
-    function onScroll() {
-        if (snapRaf) {
-            return;
-        }
-        snapRaf = window.requestAnimationFrame(function () {
-            snapRaf = 0;
-            updateSnap();
-            scrollingUp = false;
-        });
-    }
-
-    function onWheel(ev) {
-        if (ev.deltaY < 0) {
-            scrollingUp = true;
-        }
-    }
-
-    function onTouchStart(ev) {
-        if (ev.touches && ev.touches[0]) {
-            touchStartY = ev.touches[0].clientY;
-        }
-    }
-
-    function onTouchMove(ev) {
-        if (!ev.touches || !ev.touches[0]) {
-            return;
-        }
-        var dy = ev.touches[0].clientY - touchStartY;
-        if (dy > 8) {
-            scrollingUp = true;
-        }
-    }
-
     function applyPrm() {
         disconnectIo();
-        clearSnapClasses();
         panels.forEach(finishPanel);
     }
 
@@ -353,18 +229,11 @@
             return;
         }
         bindIo();
-        updateSnap();
-        tryPlayVisible();
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', function () {
-        refreshInset();
-        onScroll();
-    }, { passive: true });
-    window.addEventListener('wheel', onWheel, { passive: true });
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('resize', refreshInset, { passive: true });
+    /* portfolio-filters.js: programmatic glide finished -> play what is on screen now. */
+    document.addEventListener('pf:autoscroll-end', tryPlayVisible);
 
     if (typeof mq.addEventListener === 'function') {
         mq.addEventListener('change', boot);
@@ -396,12 +265,6 @@
         if (content) {
             content.classList.remove('is-done');
         }
-        void panel.offsetWidth;
-        panel.classList.remove('pf-snap--resetting');
-        if (io) {
-            io.unobserve(panel);
-            io.observe(panel);
-        }
     }
 
     document.addEventListener('pf:snap-reset', function (event) {
@@ -413,19 +276,18 @@
         if (!io) {
             bindIo();
         }
+        /* Batch: write all, ONE forced layout for the whole set, then re-arm the observer. */
         list.forEach(resetPanel);
+        void root.offsetWidth;
+        list.forEach(function (panel) {
+            panel.classList.remove('pf-snap--resetting');
+            ratios.delete(panel);
+            if (io) {
+                io.unobserve(panel);
+                io.observe(panel);
+            }
+        });
     });
-
-    var bodyObserver = new MutationObserver(function () {
-        if (modalOpen()) {
-            snapLockedOff = true;
-            clearSnapClasses();
-        } else {
-            snapLockedOff = false;
-            updateSnap();
-        }
-    });
-    bodyObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
     refreshInset();
     boot();

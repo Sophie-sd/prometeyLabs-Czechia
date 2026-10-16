@@ -74,8 +74,6 @@
         } else {
             html.style.setProperty('--pfg-bar-h', '0px');
         }
-        /* brand-snap caches its inset on resize; screen-scroll re-measures too. */
-        window.dispatchEvent(new Event('resize'));
     }
 
     /* Height the bar will have once stuck (measured off-screen-free: class toggled within one frame). */
@@ -100,9 +98,52 @@
         setStuck(slotTop < top && endTop > top + stuckBarH);
     }
 
+    /* Rare full re-evaluation (init, resize, header change, filter) — NOT on scroll. */
     function onScroll() {
         if (!raf) {
-            raf = window.requestAnimationFrame(updateSticky);
+            raf = window.requestAnimationFrame(function () {
+                updateSticky();
+                bindStickyIo();
+            });
+        }
+    }
+
+    /*
+     * Scroll-time sticky state comes from IntersectionObserver only (no per-frame layout reads):
+     * - slot crosses the header line  -> slotAbove
+     * - end sentinel crosses header+bar line -> endBelow
+     */
+    var slotAbove = false;
+    var endBelow = true;
+    var stickyIo = [];
+    var boundFor = '';
+
+    function bindStickyIo() {
+        if (!slot || !bar || typeof window.IntersectionObserver !== 'function') {
+            return;
+        }
+        var key = headerH + ':' + stuckBarH;
+        if (key === boundFor) {
+            return;
+        }
+        boundFor = key;
+        stickyIo.forEach(function (o) { o.disconnect(); });
+        stickyIo = [];
+        var a = new IntersectionObserver(function (entries) {
+            var e = entries[entries.length - 1];
+            slotAbove = e.boundingClientRect.top < e.rootBounds.top;
+            setStuck(slotAbove && endBelow);
+        }, { rootMargin: '-' + headerH + 'px 0px 0px 0px', threshold: [0, 1] });
+        a.observe(slot);
+        stickyIo.push(a);
+        if (endMark) {
+            var b = new IntersectionObserver(function (entries) {
+                var e = entries[entries.length - 1];
+                endBelow = e.boundingClientRect.top > e.rootBounds.top;
+                setStuck(slotAbove && endBelow);
+            }, { rootMargin: '-' + (headerH + stuckBarH) + 'px 0px 0px 0px', threshold: [0, 1] });
+            b.observe(endMark);
+            stickyIo.push(b);
         }
     }
 
@@ -135,8 +176,9 @@
 
     var cssHidden = cssHiddenMap();
 
+    /* Programmatic glide finished: let brand-snap play what is on screen (no fake scroll event). */
     function nudgeMotion() {
-        window.dispatchEvent(new Event('scroll'));
+        document.dispatchEvent(new CustomEvent('pf:autoscroll-end'));
     }
 
     function writeUrl(key) {
@@ -251,7 +293,6 @@
         if (opts.scroll) {
             scrollToResults();
         }
-        nudgeMotion();
         onScroll();
     }
 
@@ -293,7 +334,6 @@
         mobileMq.addListener(onBreakpoint);
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
     if (typeof window.ResizeObserver === 'function') {
         var ro = new ResizeObserver(function () {
@@ -321,6 +361,8 @@
         apply(initial, { url: keys.indexOf(initial) === -1 });
     }
     updateSticky();
+    measureStuckH();
+    bindStickyIo();
 }());
 
 /* Floating chat button must never sit on top of the filter chips: while any
@@ -349,8 +391,27 @@
         root.classList.toggle('pfg-fab-dodge', over);
     }
     function queue() { if (!ticking) { ticking = true; requestAnimationFrame(check); } }
-    window.addEventListener('scroll', queue, { passive: true });
+    /* Only measure while the in-hero chips are on screen (IO-gated; no work elsewhere on the page). */
+    var slot = document.querySelector('[data-pf-bar-slot]');
+    var listening = false;
+    function listen(on) {
+        if (on === listening) { return; }
+        listening = on;
+        if (on) {
+            window.addEventListener('scroll', queue, { passive: true });
+            queue();
+        } else {
+            window.removeEventListener('scroll', queue);
+            root.classList.remove('pfg-fab-dodge');
+        }
+    }
+    if (slot && typeof window.IntersectionObserver === 'function') {
+        new IntersectionObserver(function (entries) {
+            listen(entries[entries.length - 1].isIntersecting);
+        }).observe(slot);
+    } else {
+        listen(true);
+    }
     window.addEventListener('resize', queue);
-    document.addEventListener('scroll', queue, { passive: true, capture: true });
     queue();
 })();

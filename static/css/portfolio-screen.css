@@ -36,7 +36,7 @@
     object-fit: unset;
     object-position: top;
     display: block;
-    transform: translate3d(0, 0, 0);
+    transform: translateY(0); /* no forced compositor layer per card; hover/ping-pong promote via will-change */
     transition: transform 700ms var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1));
 }
 

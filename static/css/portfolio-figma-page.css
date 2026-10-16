@@ -730,9 +730,7 @@
     right: 0;
     z-index: 990;
     padding: 10px 0;
-    background: rgba(0, 0, 0, 0.62);
-    -webkit-backdrop-filter: blur(18px) saturate(140%);
-    backdrop-filter: blur(18px) saturate(140%);
+    background: rgba(8, 8, 8, 0.92); /* solid: no per-frame backdrop blur while scrolling */
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
     animation: pfg-bar-in 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
@@ -826,11 +824,6 @@
 .pf-snaps .pfg-empty,
 #pf-projects {
     scroll-margin-top: calc(var(--pfg-header-h, 60px) + var(--pfg-bar-h, 0px) + 16px);
-}
-
-/* brand-snap proximity snap: keep cards clear of the stuck bar. */
-html.pf-snap-on {
-    scroll-padding-top: calc(var(--pfg-header-h, 60px) + var(--pfg-bar-h, 0px));
 }
 
 .pfg-filters__end {
@@ -1036,4 +1029,12 @@ html.pfg-fab-dodge .mobile-contact-fab {
     color: rgba(255, 255, 255, 0.94);
     font-weight: 500;
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.45);
+}
+
+/* Off-screen screenshot frames skip rendering (desktop: the frame height is explicit, so no layout change). */
+@media (min-width: 768px) {
+    .pf-snaps .pf-snap__asset[data-pf-screen] {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 900px;
+    }
 }

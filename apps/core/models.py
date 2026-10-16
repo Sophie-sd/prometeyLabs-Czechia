@@ -990,6 +990,11 @@ class PortfolioProject(models.Model):
 
         return resolve_portfolio_image_url(self, 'card_image')
 
+    def get_card_preview_srcset(self) -> str:
+        from .portfolio_images import card_preview_srcset
+
+        return card_preview_srcset(self)
+
     def get_card_image_mobile_src(self) -> str:
         from .portfolio_images import resolve_portfolio_image_url
 

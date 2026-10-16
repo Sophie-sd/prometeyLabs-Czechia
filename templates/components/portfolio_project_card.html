@@ -8,17 +8,22 @@
 >
     <div class="pf-snap__asset" data-snap-asset data-slug="{{ project.slug }}"{% if project.get_card_image_src %} data-pf-screen{% endif %}>
         {% if project.get_card_image_src %}
+        {% with preview=project.get_card_preview_srcset %}
         <picture>
             {% if project.has_card_image_mobile %}
             <source media="(max-width: 767px)" srcset="{{ project.get_card_image_mobile_src }}">
+            {% elif preview %}
+            <source media="(max-width: 767px)" srcset="{{ project.get_card_image_src }}">
             {% endif %}
             <img src="{{ project.get_card_image_src }}"
+                 {% if preview %}srcset="{{ preview }}" sizes="(min-width: 1200px) 790px, 56vw" data-pf-full="{{ project.get_card_image_src }}"{% endif %}
                  alt="{{ project.get_card_alt }}"
                  class="pf-snap__img"
                  data-pf-shot
                  {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}
                  decoding="async">
         </picture>
+        {% endwith %}
         {% else %}
         <div class="pf-snap__placeholder" aria-hidden="true">
             <span class="pf-snap__placeholder-mark">{{ project.get_watermark_mark }}</span>

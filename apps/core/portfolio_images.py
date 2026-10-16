@@ -84,3 +84,21 @@ def resolve_client_logo_webp_url(client, width: int) -> str:
     if _static_file_exists(webp_rel):
         return static_url(webp_rel)
     return ''
+
+
+def card_preview_srcset(project) -> str:
+    """Light desktop previews (top 1440x2400 + 780w, webp q80) for the portfolio card.
+
+    The full-length card_image stays the hover-scroll source (swapped in on first hover).
+    Returns '' when no preview was generated, so the card falls back to the original.
+    """
+    static_rel = _static_paths_for_slug(project.slug).get('card_image', '')
+    if not static_rel or not static_rel.endswith('.webp') or '/screens/' not in static_rel:
+        return ''
+    parts = []
+    for width in (780, 1440):
+        rel = static_rel.replace('/screens/', '/screens/preview/')[:-5] + f'-{width}.webp'
+        if not _static_file_exists(rel):
+            return ''
+        parts.append(f'{static_url(rel)} {width}w')
+    return ', '.join(parts)

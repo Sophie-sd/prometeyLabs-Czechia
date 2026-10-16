@@ -32,16 +32,6 @@
     text-align: center;
 }
 
-html.pf-snap-on {
-    scroll-snap-type: y proximity;
-    scroll-behavior: auto;
-    scroll-padding-top: calc(var(--nav-height, 60px) + env(safe-area-inset-top, 0px));
-}
-
-html.pf-snap-off {
-    scroll-snap-type: none;
-}
-
 .pf-snap {
     position: relative;
     display: flex;
@@ -52,11 +42,6 @@ html.pf-snap-off {
     min-height: var(--pf-snap-h);
     overflow: hidden;
     background: var(--color-black, #000);
-}
-
-.pf-snap.is-snap-target {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
 }
 
 .pf-snap__asset {
