@@ -113,6 +113,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     {% block page_css %}{% endblock %}
     {% block extra_css %}{% endblock %}
     <link rel="stylesheet" href="{% static 'css/components/figma-pages.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/components/modal-mobile.css' %}?v=2">
 
     <!-- Activate non-blocking CSS as soon as it loads (eliminates FOUC, no defer wait) -->
     <script nonce="{{ csp_nonce }}">
@@ -229,7 +230,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <script src="{% static 'js/mobile-core.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/core/phone-mask.js' %}" nonce="{{ csp_nonce }}" defer></script>
     <script src="{% static 'js/core/phone-mask-intl.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
-    <script src="{% static 'js/base.js' %}?v=34" nonce="{{ csp_nonce }}" defer></script>
+    <script src="{% static 'js/base.js' %}?v=35" nonce="{{ csp_nonce }}" defer></script>
     <!-- video-system.js: load only on pages that actually contain <video> (skips landings without media) -->
     <script nonce="{{ csp_nonce }}">
     (function(){

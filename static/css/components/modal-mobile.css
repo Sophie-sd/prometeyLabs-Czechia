@@ -1,0 +1,166 @@
+/* =====================================================================
+   Unified modal / drawer layer (loaded last in base.html).
+   One place for: visible sticky close (44px), viewport fit (320–414px),
+   internal scroll, safe-area insets, consistent dark lead fields.
+   ===================================================================== */
+
+/* Close button: always visible, 44px tap target, sticks to top-right while content scrolls */
+.modal .modal-content > .modal-close {
+    position: sticky !important;
+    top: 0 !important;
+    right: auto !important;
+    left: auto !important;
+    z-index: 20 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    align-self: flex-end;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px;
+    min-height: 44px;
+    margin: 0 0 -44px auto !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 50% !important;
+    background: rgba(18, 18, 18, 0.88) !important;
+    color: #ff6600 !important;
+    font-size: 28px !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transform: none !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+}
+.modal .modal-content > .modal-close:hover,
+.modal .modal-content > .modal-close:focus-visible {
+    color: #fff !important;
+    border-color: #ff6600 !important;
+    outline: none;
+}
+
+/* Keep headings clear of the close button */
+.modal .modal-content > .modal-header h3,
+.modal .modal-content > h2,
+.modal .modal-content > h3 {
+    padding-right: 52px;
+}
+
+/* Content always scrolls internally, never wider than the viewport */
+.modal .modal-content {
+    box-sizing: border-box;
+    max-width: calc(100vw - 32px) !important;
+    max-height: calc(100dvh - 32px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+.modal .modal-content img,
+.modal .modal-content video,
+.modal .modal-content table {
+    max-width: 100%;
+}
+
+/* Lead modal: children must not shrink (they used to be squeezed + clipped by overflow:hidden) */
+#call-request-modal .modal-content > *,
+#call-request-modal .modal-form > * {
+    flex-shrink: 0 !important;
+    min-height: auto;
+}
+
+/* Consistent dark fields inside the dark lead modal (Telegram wrap used to stay white) */
+#call-request-modal .lead-form-telegram__wrap {
+    background: rgba(10, 10, 10, 0.55) !important;
+    border: 1px solid #2a2a2a !important;
+    border-radius: 11px !important;
+    color: #fff !important;
+    min-height: 48px;
+}
+#call-request-modal .lead-form-telegram__wrap:focus-within {
+    background: rgba(10, 10, 10, 0.72) !important;
+    border-color: var(--color-brand-orange, #e65100) !important;
+}
+#call-request-modal .lead-form-telegram__prefix {
+    color: rgba(255, 255, 255, 0.55) !important;
+}
+#call-request-modal .lead-form-telegram__input,
+#call-request-modal .lead-form-telegram__input:focus {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    min-height: 46px;
+}
+
+@media (max-width: 767px) {
+    .modal,
+    #call-request-modal {
+        box-sizing: border-box;
+        width: 100% !important;
+        height: 100% !important;
+        height: 100dvh !important;
+        min-height: 0 !important;
+        padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)) !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+    .modal .modal-content,
+    #call-request-modal .modal-content {
+        width: 100% !important;
+        max-width: calc(100vw - 32px) !important;
+        margin: 0 !important;
+        max-height: calc(100dvh - max(16px, env(safe-area-inset-top, 0px)) - max(16px, env(safe-area-inset-bottom, 0px))) !important;
+        padding-top: 8px !important;
+    }
+    #call-request-modal .modal-content {
+        padding: 8px 18px 22px !important;
+        gap: 16px;
+    }
+    #call-request-modal .modal-header {
+        padding-top: 4px;
+    }
+    #call-request-modal .modal-direct-contact {
+        margin: 0 !important;
+    }
+}
+
+/* Mobile menu drawer: full viewport, internal scroll, 44px close */
+.mobile-menu.plm {
+    max-width: 100vw;
+    height: 100dvh;
+    overflow-x: hidden;
+}
+.mobile-menu.plm .plm__header {
+    padding-top: env(safe-area-inset-top, 0px);
+}
+.mobile-menu.plm .plm__close {
+    width: 44px !important;
+    height: 44px !important;
+    margin-right: -7px;
+    touch-action: manipulation;
+}
+.mobile-menu.plm .plm__close span {
+    left: 7px !important;
+}
+.mobile-menu.plm .plm__close span:nth-child(1) { top: 18.5px !important; }
+.mobile-menu.plm .plm__close span:nth-child(2) { top: 25px !important; }
+
+/* Package compare tabs must fit 320px */
+@media (max-width: 400px) {
+    #pl-shop-pkg-compare-modal .pl-shop__pkg-matrix-tabs {
+        flex-wrap: wrap;
+        gap: 6px;
+        padding-right: 0;
+    }
+    #pl-shop-pkg-compare-modal .pl-shop__pkg-matrix-tab {
+        flex: 1 1 0;
+        min-width: 0;
+        padding-left: 6px;
+        padding-right: 6px;
+        font-size: 14px;
+    }
+}
