@@ -294,3 +294,35 @@
     }
     updateSticky();
 }());
+
+/* Floating chat button must never sit on top of the filter chips: while any
+   visible chip overlaps the FAB, fade the FAB out (portfolio page only). */
+(function () {
+    'use strict';
+    var chips = document.querySelectorAll('[data-pf-bar-list] .pfg-filter');
+    if (!chips.length) return;
+    var fabSel = '.contact-widget__toggle, .mobile-contact-fab';
+    var root = document.documentElement;
+    var ticking = false;
+    function hit(a, b) {
+        return a.width && b.width && a.left < b.right + 8 && a.right > b.left - 8 &&
+            a.top < b.bottom + 8 && a.bottom > b.top - 8;
+    }
+    function check() {
+        ticking = false;
+        var fabs = document.querySelectorAll(fabSel), over = false;
+        for (var i = 0; i < fabs.length && !over; i++) {
+            var f = fabs[i].getBoundingClientRect();
+            if (!f.width) continue;
+            for (var j = 0; j < chips.length; j++) {
+                if (hit(chips[j].getBoundingClientRect(), f)) { over = true; break; }
+            }
+        }
+        root.classList.toggle('pfg-fab-dodge', over);
+    }
+    function queue() { if (!ticking) { ticking = true; requestAnimationFrame(check); } }
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
+    document.addEventListener('scroll', queue, { passive: true, capture: true });
+    queue();
+})();

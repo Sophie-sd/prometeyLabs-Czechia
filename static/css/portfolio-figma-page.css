@@ -846,3 +846,94 @@ html.pf-snap-on {
     transition: none;
     animation: none;
 }
+
+/* Desktop/tablet: text block vertically centred on the screenshot (owner 2026-10-16).
+   Uses box height + flex centring only — the content's transform/opacity reveal is untouched. */
+@media (min-width: 768px) {
+    .pf-snaps .pf-snap .pf-snap__content {
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        align-items: center;
+    }
+
+    .pf-snaps .pf-snap__wrap {
+        justify-content: center;
+    }
+}
+
+/*
+ * Screenshot frame ≤ 90% of (viewport − fixed header − stuck filter bar) (owner 2026-10-16).
+ * --pfg-header-h is measured live by portfolio-filters.js; the stuck-bar height is a
+ * constant so the frame never resizes when the bar sticks (no layout jump).
+ * Height caps the row; the frame's final width follows the 790:787 Figma ratio, so the
+ * brand-snap width transition (100% → final) keeps its duration/easing and ends at the
+ * capped size. The screenshot is cropped from the top (portfolio-screen.css), never distorted.
+ */
+.pf-snaps {
+    --pfg-bar-stuck-h: 65px;
+    --pfg-frame-max: calc((100dvh - var(--pfg-header-h, 84px) - var(--pfg-bar-stuck-h)) * 0.9);
+}
+
+@media (min-width: 768px) {
+    .pf-snaps .pf-snap,
+    .pf-snaps .pf-snap--flip {
+        max-height: var(--pfg-frame-max);
+    }
+
+    .pf-snaps .pf-snap__asset.is-shrinking,
+    .pf-snaps .pf-snap__asset.is-done {
+        width: min(calc(790 / 1330 * 100%), calc(var(--pfg-frame-max) * 790 / 787));
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .pf-snaps .pf-snap__asset.is-shrinking,
+    .pf-snaps .pf-snap__asset.is-done {
+        width: min(56%, calc(var(--pfg-frame-max) * 790 / 787));
+    }
+}
+
+/* Short desktop viewports: tighter text so it stays within the capped frame. */
+@media (min-width: 768px) and (max-height: 820px) {
+    .pf-snaps .pf-snap__title {
+        font-size: 40px;
+        letter-spacing: -2px;
+    }
+
+    .pf-snaps .pf-snap__desc {
+        margin-bottom: 28px;
+    }
+
+    .pf-snaps .pf-snap__tags {
+        gap: 12px;
+    }
+
+    .pf-snaps .pf-snap__tag {
+        font-size: 18px;
+        letter-spacing: -0.54px;
+    }
+}
+
+@media (max-width: 767px) {
+    .pf-snaps {
+        --pfg-bar-stuck-h: 61px;
+    }
+
+    .pf-snaps .pf-snap .pf-snap__asset,
+    .pf-snaps .pf-snap__asset[data-pf-screen],
+    .pf-snaps .pf-snap__asset[data-pf-screen].is-done {
+        max-height: calc((100dvh - var(--pfg-header-h, 64px) - var(--pfg-bar-stuck-h)) * 0.9);
+    }
+}
+
+/* Chat FAB fades out while it would cover the filter chips (toggled by portfolio-filters.js) */
+.contact-widget__toggle,
+.mobile-contact-fab {
+    transition: opacity 0.2s ease;
+}
+html.pfg-fab-dodge .contact-widget:not(.is-open) .contact-widget__toggle,
+html.pfg-fab-dodge .mobile-contact-fab {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}

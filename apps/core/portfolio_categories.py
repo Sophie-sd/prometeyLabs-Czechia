@@ -17,7 +17,7 @@ CATEGORY_ORDER = (CATEGORY_SHOP, CATEGORY_LANDING, CATEGORY_CORPORATE, CATEGORY_
 # Admin choices (uk, the admin language).
 CATEGORY_CHOICES = (
     (CATEGORY_SHOP, 'Інтернет-магазин'),
-    (CATEGORY_LANDING, 'Лендинг'),
+    (CATEGORY_LANDING, 'Лендінг'),
     (CATEGORY_CORPORATE, 'Корпоративний сайт'),
     (CATEGORY_PLATFORM, 'Веб-платформа'),
 )
@@ -28,10 +28,10 @@ FILTER_ALL = 'all'
 _FILTER_LABELS = {
     'uk': {
         FILTER_ALL: 'Усі проєкти',
-        CATEGORY_SHOP: 'Інтернет магазини',
-        CATEGORY_LANDING: 'Лендинги',
+        CATEGORY_SHOP: 'Інтернет-магазини',
+        CATEGORY_LANDING: 'Лендінги',
         CATEGORY_CORPORATE: 'Корпоративні сайти',
-        CATEGORY_PLATFORM: 'Веб платформи',
+        CATEGORY_PLATFORM: 'Веб-платформи',
     },
     'ru': {
         FILTER_ALL: 'Все проекты',
@@ -59,10 +59,10 @@ _FILTER_LABELS = {
 # Singular labels (category pill on each project card).
 _CARD_LABELS = {
     'uk': {
-        CATEGORY_SHOP: 'Інтернет магазин',
-        CATEGORY_LANDING: 'Лендинг',
+        CATEGORY_SHOP: 'Інтернет-магазин',
+        CATEGORY_LANDING: 'Лендінг',
         CATEGORY_CORPORATE: 'Корпоративний сайт',
-        CATEGORY_PLATFORM: 'Веб платформа',
+        CATEGORY_PLATFORM: 'Веб-платформа',
     },
     'ru': {
         CATEGORY_SHOP: 'Интернет-магазин',
@@ -90,7 +90,7 @@ _PAGE_COPY = {
         'filters_title': 'Оберіть категорію та перегляньте реалізовані проєкти:',
         'filters_aria': 'Фільтр проєктів за категорією',
         'scroll_label': 'До проєктів',
-        'empty': 'У цій категорії поки немає проєктів.',
+        'empty': 'Поки що в цій категорії немає проєктів.',
         'reset': 'Показати всі проєкти',
         'card_filter_hint': 'Показати всі проєкти категорії',
     },
