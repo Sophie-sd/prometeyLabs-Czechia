@@ -18,7 +18,7 @@
 {% block page_css %}
 <style nonce="{{ csp_nonce }}">body.pl-shop-body{background:#0A0A0A;overflow-x:clip}</style>
 <link rel="stylesheet" href="{% static 'css/internet-shop-v2.css' %}?v=206">
-<link rel="stylesheet" href="{% static 'css/internet-shop-v2-cz.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/internet-shop-v2-cz.css' %}?v=2">
 <link rel="stylesheet" href="{% static 'css/components/clients-marquee.css' %}?v=1">
 {% endblock %}
 
@@ -40,8 +40,10 @@
 <script src="{% static 'js/core/gclid-capture.js' %}" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/core/ec-phone.js' %}" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/core/utils.js' %}" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/core/phone-mask.js' %}" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/core/phone-mask-intl.js' %}" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/mobile-core.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/base.js' %}?v=32" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/base.js' %}?v=33" nonce="{{ csp_nonce }}" defer></script>
 <script nonce="{{ csp_nonce }}">
 (function(){
     function load(){
@@ -66,8 +68,6 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/core/phone-mask.js' %}" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/phone-mask-intl.js' %}" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/internet-shop-v2-admin-mock.js' %}?v=4" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/internet-shop-v2-quiz.js' %}?v=9" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/components/clients-marquee.js' %}?v=1" nonce="{{ csp_nonce }}" defer></script>
