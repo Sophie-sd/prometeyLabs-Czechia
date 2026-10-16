@@ -111,6 +111,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <!-- Page specific CSS -->
     {% block page_css %}{% endblock %}
     {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/components/figma-pages.css' %}?v=2">
 
     <!-- Activate non-blocking CSS as soon as it loads (eliminates FOUC, no defer wait) -->
     <script nonce="{{ csp_nonce }}">
