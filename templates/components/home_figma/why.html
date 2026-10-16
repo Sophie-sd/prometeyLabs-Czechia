@@ -1,0 +1,64 @@
+{% load i18n static %}
+<section class="hf-why hf-wrap" id="why" aria-labelledby="hf-why-title">
+    <div class="hf-why__intro">
+        <div class="hf-why__text">
+            <h2 class="hf-h2 hf-why__title" id="hf-why-title">{% trans "ЧОМУ ВАРТО ОБРАТИ" as wt %}{{ wt|lower|capfirst }}<br><span class="hf-accent">PrometeyLabs</span></h2>
+            <p class="hf-why__lead">{% trans "Ми розробляємо сайти, якими справді легко керувати. Жодних обмежень шаблонних рішень — тільки чистий, оптимізований код та індивідуальна архітектура. Завдяки детальній розробці адміністративної частини, ви можете самостійно оновлювати весь контент сайту в кілька кліків, не залучаючи програмістів. Ми створюємо фундамент, який готовий до будь-яких інтеграцій та росту разом із вашим бізнесом." %}</p>
+        </div>
+        
+    </div>
+
+    <div class="hf-why__cards">
+        <article class="hf-card hf-card--why">
+            {% trans "Базові терміни виконання:" as t1r %}{% with t1=t1r|cut:":" %}{% include 'components/home_figma/_tag.html' with label=t1 %}{% endwith %}
+            <h3 class="hf-card__title">{% trans "Прозорі строки," %} {% trans "яких ми дотримуємося" %}</h3>
+            <ul class="hf-rows">
+                <li class="hf-row"><span class="hf-row__key">{% trans "Лендінги:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">3–7 {% trans "днів" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "Корпоративні сайти:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">7–14 {% trans "днів" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "Інтернет-магазини:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">14–21 {% trans "днів" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "Веб-додатки / SaaS:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">14–30 {% trans "днів" %}</span></li>
+            </ul>
+            {% trans "Точний час розробки залежить від складності дизайну, інтеграцій та функціоналу — визначаємо на консультації." as n1 %}{% include 'components/home_figma/_note.html' with text=n1 %}
+        </article>
+
+        <article class="hf-card hf-card--why">
+            {% trans "Середні діапазони цін:" as t2r %}{% with t2=t2r|cut:":" %}{% include 'components/home_figma/_tag.html' with label=t2 %}{% endwith %}
+            <h3 class="hf-card__title">{% trans "Справедлива вартість" %} {% trans "та гнучкі умови оплати" %}</h3>
+            <ul class="hf-rows">
+                <li class="hf-row"><span class="hf-row__key">{% trans "Лендінги:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "400–700 €" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "Корпоративні сайти:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "700–1000 €" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "E-commerce:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "1600–2800 €" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "Веб-додатки:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% trans "2800–8000 €" %}</span></li>
+            </ul>
+            {% trans "Пропонуємо розбиття оплати на етапи — без переплат та прихованих умов." as n2 %}{% include 'components/home_figma/_note.html' with text=n2 %}
+        </article>
+
+        <article class="hf-card hf-card--why">
+            {% trans "Гарантія включає:" as t3r %}{% with t3=t3r|cut:":" %}{% include 'components/home_figma/_tag.html' with label=t3 %}{% endwith %}
+            <h3 class="hf-card__title">{% trans "5-річна" %} {% trans "гарантія" %} {% trans "на наші продукти" %}</h3>
+            <ul class="hf-rows">
+                <li class="hf-row"><span class="hf-row__key">{% trans "Виправлення технічних помилок" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "Підтримку працездатності коду" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "Реакцію на критичні технічні збої" %}</span></li>
+                <li class="hf-row"><span class="hf-row__key">{% trans "Відповідність функціоналу ТЗ" %}</span></li>
+            </ul>
+            {% trans "Не включає: нові функції, оновлення дизайну, інтеграції з новими сервісами." as n3 %}{% include 'components/home_figma/_note.html' with text=n3 %}
+        </article>
+    </div>
+
+    <div class="hf-ai">
+        <article class="hf-card hf-card--ai">
+            {% trans "Автоматизація AI" as t4 %}{% include 'components/home_figma/_tag.html' with label=t4 %}
+            <h3 class="hf-card__title">{% trans "Впровадження ШІ" %} {% trans "у ваші бізнес-задачі" %}</h3>
+            <div class="hf-card__prose">
+                <p>{% trans "Інтегруємо штучний інтелект у структуру вашого сайту для автоматизації щоденної рутини. Ми створюємо рішення, де ШІ самостійно обробляє запити, консультує клієнтів та керує складними бізнес-процесами «під ключ»." %}</p>
+                <p class="hf-accent">{% trans "Ваш сайт стає розумним помічником, який самостійно виконує завдання, на які раніше витрачалися години робочого часу." %}</p>
+            </div>
+            {% trans "Результат: повна автоматизація взаємодії з клієнтами, оптимізація витрат та вихід на новий рівень цифрового сервісу." as n4 %}{% include 'components/home_figma/_note.html' with text=n4 %}
+        </article>
+        <div class="hf-ai__badge"><img src="{% static 'images/home-figma/badge-cz.webp' %}"
+             srcset="{% static 'images/home-figma/badge-cz-480.webp' %} 480w, {% static 'images/home-figma/badge-cz.webp' %} 860w"
+             sizes="(max-width: 767px) 330px, 430px" width="860" height="1290" alt="" loading="lazy" decoding="async">
+            <p class="hf-ai__badge-text">{% trans "Спеціалісти PrometeyLabs мають роки практики у веб-розробці, дизайні, інтеграціях, мобільних додатках та інтернет-маркетингу. Це гарантує, що ваш проект буде реалізований системно, технологічно та з розумінням бізнес-задач." %}</p></div>
+    </div>
+</section>

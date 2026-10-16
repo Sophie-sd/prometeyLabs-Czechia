@@ -1,0 +1,48 @@
+{% load i18n static %}
+<section class="hf-process" id="process" aria-labelledby="hf-process-title">
+    <picture class="hf-process__bg" aria-hidden="true">
+        <source media="(max-width: 767px)" srcset="{% static 'images/home-figma/process-bg-mob.webp' %}">
+        <img src="{% static 'images/home-figma/process-bg.webp' %}" width="1680" height="936" alt="" loading="lazy" decoding="async">
+    </picture>
+    <div class="hf-wrap hf-process__inner">
+        <h2 class="hf-h2 hf-process__title" id="hf-process-title">{% trans "ЯК МИ СТВОРЮЄМО" as a %}{% trans "САЙТ" as b %}{{ a|lower|capfirst }} {{ b|lower }}</h2>
+        <ol class="hf-steps">
+            <li class="hf-step">
+                <h3 class="hf-step__title">{% trans "Збір інформації" %}</h3>
+                <ul class="hf-step__list">
+                    <li>{% trans "Бриф" %}</li><li>{% trans "Цілі бізнесу" %}</li><li>{% trans "Аудиторія" %}</li><li>{% trans "Технічні вимоги" %}</li>
+                </ul>
+            </li>
+            <li class="hf-step">
+                <h3 class="hf-step__title">{% trans "Карта сайту" %}</h3>
+                <ul class="hf-step__list">
+                    <li>{% trans "Структура сторінок" %}</li><li>{% trans "Логіка навігації" %}</li><li>{% trans "Сценарії користувача" %}</li><li>{% trans "Ієрархія контенту" %}</li>
+                </ul>
+            </li>
+            <li class="hf-step">
+                <h3 class="hf-step__title">{% trans "Приклад дизайну" %}</h3>
+                <ul class="hf-step__list">
+                    <li>{% trans "UI/UX макети" %}</li><li>{% trans "Фірмовий стиль" %}</li><li>{% trans "Адаптивні прототипи" %}</li><li>{% trans "Візуальна концепція" %}</li>
+                </ul>
+            </li>
+            <li class="hf-step">
+                <h3 class="hf-step__title">{% trans "Деплой і передача прав" %}</h3>
+                <ul class="hf-step__list">
+                    <li>{% trans "Запуск на сервер" %}</li><li>{% trans "Домен і SSL" %}</li><li>{% trans "Передача доступів" %}</li><li>{% trans "Інструкції для клієнта" %}</li>
+                </ul>
+            </li>
+            <li class="hf-step">
+                <h3 class="hf-step__title">{% trans "Фінальне виконання правок" %}</h3>
+                <ul class="hf-step__list">
+                    <li>{% trans "Збір фідбеку" %}</li><li>{% trans "Тестування на пристроях" %}</li><li>{% trans "Доробка деталей" %}</li><li>{% trans "Фінальне погодження" %}</li>
+                </ul>
+            </li>
+            <li class="hf-step">
+                <h3 class="hf-step__title">{% trans "Функціональна модель" %}</h3>
+                <ul class="hf-step__list">
+                    <li>{% trans "Збір фідбеку" %}</li><li>{% trans "Тестування на пристроях" %}</li><li>{% trans "Доробка деталей" %}</li><li>{% trans "Фінальне погодження" %}</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</section>

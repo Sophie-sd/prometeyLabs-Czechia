@@ -1,0 +1,23 @@
+{% load i18n static %}
+<section class="hf-clients" id="clients" aria-labelledby="hf-clients-title">
+    <div class="hf-wrap hf-clients__inner">
+        <h2 class="hf-h2" id="hf-clients-title">{% trans "Наші" %} {% trans "клієнти" %}</h2>
+    </div>
+    {# Бігуча стрічка — той самий компонент, що на internet-shop-v2: client_home_story + clients-marquee.js/css #}
+    <div class="hf-clients__track">
+        <div class="hf-clients__list" role="list" data-clients-marquee>
+            {% for client in home_clients %}
+            {% include 'components/client_home_story.html' with client=client is_clone=False %}
+            {% endfor %}
+            {% for client in home_clients %}
+            {% include 'components/client_home_story.html' with client=client is_clone=True %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="hf-wrap">
+        <a href="{% url 'portfolio' %}" class="hf-btn hf-btn--brand">
+            <span>{% trans "Переглянути портфоліо" %}</span>
+            <img src="{% static 'images/home-figma/arrow.svg' %}" width="18" height="12" alt="" aria-hidden="true">
+        </a>
+    </div>
+</section>

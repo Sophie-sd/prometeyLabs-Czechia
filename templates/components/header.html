@@ -11,15 +11,15 @@
 
         <!-- Desktop Navigation -->
         <nav class="nav-menu" role="navigation" aria-label="{% trans 'Основне меню' %}">
-            <a href="{% url 'home' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "головна" %}</a>
-            <a href="{% url 'portfolio' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "портфоліо" %}</a>
+            <a href="{% url 'home' %}" class="nav-link{% if request.resolver_match.url_name == 'home' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'home' %} aria-current="page"{% endif %}>{% trans "головна" as nl %}{{ nl|capfirst }}</a>
+            <a href="{% url 'portfolio' %}" class="nav-link{% if request.resolver_match.url_name == 'portfolio' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'portfolio' %} aria-current="page"{% endif %}>{% trans "портфоліо" as nl %}{{ nl|capfirst }}</a>
             <div class="nav-dropdown{% if request.resolver_match.url_name == 'internet_shop_v2' or request.resolver_match.url_name == 'corporate_website_v2' or request.resolver_match.url_name == 'telegram_bot' %} is-active{% endif %}">
                 <button type="button"
                     class="nav-link nav-dropdown__toggle mobile-touch-target mobile-focus-visible"
                     aria-expanded="false"
                     aria-haspopup="true"
                     aria-controls="nav-services-menu">
-                    {% trans "послуги" %}
+                    {% trans "послуги" as nl %}{{ nl|capfirst }}
                     <svg class="nav-dropdown__icon" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true">
                         <path d="M2.5 4.5 6 8 9.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -36,9 +36,9 @@
                         role="menuitem">{% trans "Telegram-боти" %}</a>
                 </div>
             </div>
-            <a href="{% url 'calculator' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "розрахувати пропозицію" %}</a>
-            <a href="{% url 'blog:blog_list' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "блог" %}</a>
-            <a href="{% url 'contacts' %}" class="nav-link mobile-touch-target mobile-focus-visible">{% trans "контакти" %}</a>
+            <a href="{% url 'calculator' %}" class="nav-link{% if request.resolver_match.url_name == 'calculator' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'calculator' %} aria-current="page"{% endif %}>{% trans "розрахувати пропозицію" as nl %}{{ nl|capfirst }}</a>
+            <a href="{% url 'blog:blog_list' %}" class="nav-link{% if request.resolver_match.namespace == 'blog' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.namespace == 'blog' %} aria-current="page"{% endif %}>{% trans "блог" as nl %}{{ nl|capfirst }}</a>
+            <a href="{% url 'contacts' %}" class="nav-link{% if request.resolver_match.url_name == 'contacts' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'contacts' %} aria-current="page"{% endif %}>{% trans "контакти" as nl %}{{ nl|capfirst }}</a>
         </nav>
 
         <!-- Desktop Language Switcher (CS default / EN) -->

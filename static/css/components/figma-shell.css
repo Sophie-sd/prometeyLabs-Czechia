@@ -1,0 +1,43 @@
+/* Site-wide shell per Figma (Header 1:392 in 7uoVJKPxBEi4MiARfaDeZV): Inter, gray nav, active underline, globe lang. */
+.main-navigation { padding: 20px 0; background: transparent; }
+.main-navigation.scrolled { background: rgba(0, 0, 0, .92); box-shadow: none; }
+.main-navigation .nav-container { max-width: 1440px; padding-inline: 55px; }
+.main-navigation .nav-logo {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 20px; font-weight: 700; line-height: .9; letter-spacing: -0.6px; color: #fff !important;
+}
+.main-navigation .nav-logo-labs { color: #8624c6 !important; }
+.main-navigation .nav-menu { gap: 25px; flex-wrap: nowrap; }
+.main-navigation .nav-link,
+.main-navigation .nav-dropdown__toggle {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; font-weight: 500; letter-spacing: -0.48px; line-height: normal;
+    color: #a2a2a2 !important; text-transform: none; white-space: nowrap;
+}
+.main-navigation .nav-link:hover,
+.main-navigation .nav-link.is-current,
+.main-navigation .nav-dropdown.is-active > .nav-dropdown__toggle { color: #f4f4f4 !important; }
+.main-navigation .nav-link::after { display: none; }
+.main-navigation .nav-link.is-current { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.main-navigation .language-switcher {
+    align-items: center; gap: 6px; padding: 0; background: none; border: 0;
+}
+.main-navigation .language-switcher::before {
+    content: ''; width: 20px; height: 20px; flex: 0 0 20px;
+    background: url('../../images/shell/globe.svg') center / contain no-repeat;
+}
+.main-navigation .lang-btn {
+    min-width: 0; height: auto; padding: 0 2px; border: 0 !important; background: none !important; box-shadow: none !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px; font-weight: 500; letter-spacing: -0.42px; color: #6f6f6f !important;
+}
+.main-navigation .lang-btn.active { color: #f5f5f5 !important; }
+@media (max-width: 1100px) {
+    .main-navigation .nav-container { padding-inline: 24px; }
+    .main-navigation .nav-menu { gap: 16px; }
+    .main-navigation .nav-link, .main-navigation .nav-dropdown__toggle { font-size: 14px; }
+}
+@media (max-width: 767px) {
+    .main-navigation { padding: 20px 0 0; }
+    .main-navigation .nav-container { padding-inline: 16px; min-height: 44px; }
+}

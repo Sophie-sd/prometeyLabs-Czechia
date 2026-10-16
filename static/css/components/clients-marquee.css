@@ -1,0 +1,23 @@
+/* Clients marquee — спільна анімація (винесено з internet-shop-v2.css, 40s linear, без паузи на hover).
+   JS: static/js/components/clients-marquee.js виставляє --marquee-distance і .marquee-active. */
+[data-clients-marquee] {
+    display: flex;
+    width: max-content;
+    pointer-events: none;
+    user-select: none;
+    transform: translate3d(0, 0, 0);
+}
+
+[data-clients-marquee].marquee-active {
+    animation: clients-marquee 40s linear infinite;
+    will-change: transform;
+}
+
+@keyframes clients-marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(calc(-1 * var(--marquee-distance, 0px)), 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-clients-marquee].marquee-active { animation: none; }
+}

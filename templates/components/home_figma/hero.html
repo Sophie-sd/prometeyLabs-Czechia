@@ -1,0 +1,15 @@
+{% load i18n static %}
+<section class="hf-hero" aria-labelledby="hf-hero-title">
+    <img class="hf-hero__bg" src="{% static 'images/home-figma/hero-bg.webp' %}"
+         srcset="{% static 'images/home-figma/hero-bg-800.webp' %} 800w, {% static 'images/home-figma/hero-bg.webp' %} 1586w"
+         sizes="(max-width: 767px) 1276px, 1586px" width="1586" height="992" alt="" fetchpriority="high" decoding="async">
+    <div class="hf-hero__content">
+        <h1 class="hf-hero__title" id="hf-hero-title">PrometeyLabs</h1>
+        <p class="hf-hero__lead">{% trans "сайти" %} · {% trans "мобільні застосунки" %} · {% trans "telegram боти" %} · {% trans "реклама" %} · {% trans "ведення соціальних мереж" %} · {% trans "навчання" %}</p>
+    </div>
+    <div class="hf-hero__actions">
+        <a href="https://t.me/prometeylabs" class="hf-btn hf-btn--light" target="_blank" rel="noopener">{% trans "Написати в телеграм" %}</a>
+        <a href="{% url 'calculator' %}" class="hf-btn hf-btn--ghost">{% trans "Розрахувати вартість онлайн" %}</a>
+        <button type="button" class="hf-btn hf-btn--ghost" data-modal="call-request-modal">{% trans "Залишити заявку" %}</button>
+    </div>
+</section>
