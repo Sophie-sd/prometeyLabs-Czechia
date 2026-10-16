@@ -33,6 +33,7 @@
     var keys = buttons.map(function (btn) { return btn.getAttribute('data-pf-filter'); });
     var prm = window.matchMedia('(prefers-reduced-motion: reduce)');
     var mobileMq = window.matchMedia('(max-width: 767px)');
+    var desktopMq = window.matchMedia('(min-width: 1024px)');
     var current = ALL;
     var stuck = false;
     var stuckBarH = 64;
@@ -75,6 +76,17 @@
         }
         /* brand-snap caches its inset on resize; screen-scroll re-measures too. */
         window.dispatchEvent(new Event('resize'));
+    }
+
+    /* Height the bar will have once stuck (measured off-screen-free: class toggled within one frame). */
+    function measureStuckH() {
+        if (!bar || stuck) {
+            return stuckBarH;
+        }
+        bar.classList.add('is-stuck');
+        stuckBarH = bar.offsetHeight || stuckBarH;
+        bar.classList.remove('is-stuck');
+        return stuckBarH;
     }
 
     function updateSticky() {
@@ -151,6 +163,14 @@
 
     function endAutoScroll() {
         window.clearTimeout(autoTimer);
+        /* Settle: if layout shifted during the glide (header/bar resize), fix the last px once. */
+        if (scrollTarget && html.hasAttribute('data-pf-autoscroll')) {
+            var fix = targetY(scrollTarget);
+            if (Math.abs(fix - window.pageYOffset) > 3) {
+                window.scrollTo(0, fix);
+            }
+        }
+        scrollTarget = null;
         if (html.hasAttribute('data-pf-autoscroll')) {
             html.removeAttribute('data-pf-autoscroll');
             nudgeMotion();
@@ -158,13 +178,19 @@
     }
 
     /* Smoothly bring the first result just below header + stuck bar. */
+    var scrollTarget = null;
+
+    function targetY(target) {
+        var y = target.getBoundingClientRect().top + window.pageYOffset - measureHeader() - measureStuckH() - GAP;
+        return Math.max(0, Math.round(y));
+    }
+
     function scrollToResults() {
         var target = firstResult();
         if (!target) {
             return;
         }
-        var y = target.getBoundingClientRect().top + window.pageYOffset - measureHeader() - stuckBarH - GAP;
-        y = Math.max(0, Math.round(y));
+        var y = targetY(target);
         if (Math.abs(y - window.pageYOffset) < 2) {
             return;
         }
@@ -173,6 +199,7 @@
             return;
         }
         html.setAttribute('data-pf-autoscroll', '');
+        scrollTarget = target;
         window.clearTimeout(autoTimer);
         autoTimer = window.setTimeout(endAutoScroll, 1400);
         if ('onscrollend' in window) {
@@ -231,7 +258,8 @@
     buttons.forEach(function (btn) {
         btn.addEventListener('click', function () {
             var wasStuck = stuck;
-            apply(btn.getAttribute('data-pf-filter'), { scroll: wasStuck });
+            /* Desktop: hero chips and stuck-bar chips both glide to the first match. */
+            apply(btn.getAttribute('data-pf-filter'), { scroll: wasStuck || desktopMq.matches });
         });
     });
 
