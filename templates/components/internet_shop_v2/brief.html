@@ -1,18 +1,18 @@
-{% load i18n %}
+{% load static i18n %}
 <section id="calculator" class="pl-shop__section pl-shop__calc" aria-labelledby="pl-shop-calc-title">
-    <div class="pl-shop__calc-inner pl-shop__inner">
+    <picture class="pl-shop__calc-bg" aria-hidden="true">
+        <source media="(max-width: 767px)" srcset="{% static 'images/internet_shop_v2/figma/bg-calc-v3-mobile.webp' %}" width="393" height="826">
+        <img src="{% static 'images/internet_shop_v2/figma/bg-calc-v3-1440.webp' %}" srcset="{% static 'images/internet_shop_v2/figma/bg-calc-v3-960.webp' %} 960w, {% static 'images/internet_shop_v2/figma/bg-calc-v3-1440.webp' %} 1440w" sizes="100vw" alt="" width="1440" height="921" loading="lazy" decoding="async">
+    </picture>
+    <div class="pl-shop__inner pl-shop__calc-inner">
         <div class="pl-shop__calc-head" data-reveal>
-            <h2 id="pl-shop-calc-title" class="pl-shop__title pl-shop__title--section">
-                {% trans "Розрахуйте вартість" %}<br>{% trans "інтернет-магазину" %}
-            </h2>
-            <p class="pl-shop__calc-subtitle">
-                {% trans "4 коротких питання — отримаєте рекомендацію пакета та дзвінок менеджера з орієнтовною вартістю." %}
-            </p>
+            <h2 id="pl-shop-calc-title" class="pl-shop__title">{% trans "Розрахуйте вартість" %}<br>{% trans "інтернет-магазину" %}</h2>
+            <p class="pl-shop__subtitle pl-shop__calc-subtitle">{% trans "4 коротких питання — отримаєте рекомендацію пакета та дзвінок менеджера з орієнтовною вартістю." %}</p>
         </div>
 
         <form
             id="pl-shop-quiz-form"
-            class="pl-shop__quiz"
+            class="pl-shop__quiz pl-shop__card pl-shop__card--glass"
             method="post"
             action="{% url 'form_submit' %}"
             data-form-type="site_request"
@@ -30,7 +30,7 @@
                 <div class="pl-shop__quiz-progress" aria-hidden="true">
                     <div class="pl-shop__quiz-progress-bar" data-quiz-progress></div>
                 </div>
-                <p class="pl-shop__quiz-progress-label">{% blocktrans %}Крок <span data-quiz-step-num>1</span> з 4{% endblocktrans %}</p>
+                <p class="pl-shop__quiz-progress-label">{% trans "Крок" %} <span data-quiz-step-num>1</span>/4</p>
             </div>
 
             <div class="pl-shop__quiz-step" data-step="1">
@@ -159,21 +159,15 @@
                 <p class="pl-shop__quiz-hint">{% trans "Залишіть контакти — і ми покажемо орієнтовну вартість за вашими відповідями." %}</p>
 
                 <div class="pl-shop__quiz-fields pl-shop__quiz-fields--contact">
-                    {% include 'components/lead_form_fields.html' with prefix='pl-shop-quiz' input_class='pl-shop__quiz-input mobile-touch-target' %}
-                    <button
-                        type="submit"
-                        class="pl-shop__btn pl-shop__btn--primary pl-shop__quiz-reveal mobile-touch-target"
-                        data-quiz-reveal
-                    >
-                        {% trans "Nezávazná poptávka" %}
-                    </button>
+                    {% include 'components/lead_form_fields.html' with prefix='pl-shop-quiz' input_class='pl-shop__field-input pl-shop__quiz-input mobile-touch-target' %}
+                    <button type="submit" class="pl-shop__btn pl-shop__btn--light pl-shop__btn--block pl-shop__quiz-reveal" data-quiz-reveal>{% trans "Nezávazná poptávka" %}</button>
                 </div>
             </div>
 
             <div class="pl-shop__quiz-nav">
-                <button type="button" class="pl-shop__btn pl-shop__btn--ghost pl-shop__quiz-prev mobile-touch-target" hidden>{% trans "← Назад" %}</button>
-                <button type="button" class="pl-shop__btn pl-shop__btn--ghost pl-shop__quiz-skip mobile-touch-target" hidden>{% trans "Пропустити" %}</button>
-                <button type="button" class="pl-shop__btn pl-shop__btn--primary pl-shop__quiz-next mobile-touch-target" hidden disabled>{% trans "Далі →" %}</button>
+                <button type="button" class="pl-shop__btn pl-shop__btn--outline pl-shop__quiz-prev" hidden aria-label="{% trans "Назад" %}">←</button>
+                <button type="button" class="pl-shop__btn pl-shop__btn--accent-dark pl-shop__quiz-next" hidden disabled><span>{% trans "Далі" %}</span><img class="pl-shop__quiz-next-icon" src="{% static 'images/internet_shop_v2/figma/icon-arrow-right.svg' %}" alt="" width="24" height="24" aria-hidden="true"></button>
+                <button type="button" class="pl-shop__btn pl-shop__btn--outline pl-shop__quiz-skip" hidden>{% trans "Пропустити" %}</button>
             </div>
         </form>
     </div>

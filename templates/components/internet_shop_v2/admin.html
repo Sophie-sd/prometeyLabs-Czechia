@@ -1,112 +1,56 @@
-{% load i18n %}
-<section class="pl-shop__section" aria-labelledby="pl-shop-admin-title">
+{% load static i18n %}
+<section class="pl-shop__section pl-shop__admin" aria-labelledby="pl-shop-admin-title">
     <div class="pl-shop__inner">
+        <h2 id="pl-shop-admin-title" class="pl-shop__title" data-reveal>{% trans "Керуйте імперією," %}<br>{% trans "а не розбирайтесь у коді" %}</h2>
+
         <div class="pl-shop__admin-row">
-        <div class="pl-shop__admin-copy" data-reveal>
-            <h2 id="pl-shop-admin-title" class="pl-shop__admin-title">{% trans "Керуйте імперією," %}<br>{% trans "а не розбирайтесь у коді" %}</h2>
-            <ul class="pl-shop__feature-list">
-                <li class="pl-shop__feature-item">
-                    <div class="pl-shop__feature-icon" aria-hidden="true">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--pl-acc)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <ul class="pl-shop__features" data-reveal>
+                <li class="pl-shop__card pl-shop__card--glass pl-shop__feature">
+                    <div class="pl-shop__feature-head">
+                        <h3 class="pl-shop__feature-title">{% trans "Надзручна україномовна адмінка" %}</h3>
+                        <img class="pl-shop__feature-icon" src="{% static 'images/internet_shop_v2/figma/icon-shield.svg' %}" alt="" width="24" height="24" loading="lazy" aria-hidden="true">
                     </div>
-                    <div>
-                        <p class="pl-shop__feature-title">{% trans "Надзручна україномовна адмінка" %}</p>
-                        <p class="pl-shop__feature-desc">{% trans "Створена для людей. Ваш новий менеджер опанує її за 15 хвилин." %}</p>
-                    </div>
+                    <p class="pl-shop__feature-desc">{% trans "Створена для людей. Ваш новий менеджер опанує її за 15 хвилин." %}</p>
                 </li>
-                <li class="pl-shop__feature-item">
-                    <div class="pl-shop__feature-icon" aria-hidden="true">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--pl-acc)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <li class="pl-shop__card pl-shop__card--glass pl-shop__feature">
+                    <div class="pl-shop__feature-head">
+                        <h3 class="pl-shop__feature-title">{% trans "Все в 1–2 кліки" %}</h3>
+                        <img class="pl-shop__feature-icon" src="{% static 'images/internet_shop_v2/figma/icon-setting.svg' %}" alt="" width="24" height="24" loading="lazy" aria-hidden="true">
                     </div>
-                    <div>
-                        <p class="pl-shop__feature-title">{% trans "Все в 1–2 кліки" %}</p>
-                        <p class="pl-shop__feature-desc">{% trans "Оновлення залишків, зміна цін та обробка замовлень — без зайвих рухів." %}</p>
-                    </div>
+                    <p class="pl-shop__feature-desc">{% trans "Оновлення залишків, зміна цін та обробка замовлень — без зайвих рухів." %}</p>
                 </li>
-                <li class="pl-shop__feature-item">
-                    <div class="pl-shop__feature-icon" aria-hidden="true">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--pl-acc)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <li class="pl-shop__card pl-shop__card--glass pl-shop__feature">
+                    <div class="pl-shop__feature-head">
+                        <h3 class="pl-shop__feature-title">{% trans "Жодних зайвих кнопок" %}</h3>
+                        <img class="pl-shop__feature-icon" src="{% static 'images/internet_shop_v2/figma/icon-filter.svg' %}" alt="" width="24" height="24" loading="lazy" aria-hidden="true">
                     </div>
-                    <div>
-                        <p class="pl-shop__feature-title">{% trans "Жодних зайвих кнопок" %}</p>
-                        <p class="pl-shop__feature-desc">{% trans "Лише ті інструменти, які генерують вам прибуток — нічого зайвого." %}</p>
-                    </div>
+                    <p class="pl-shop__feature-desc">{% trans "Лише ті інструменти, які генерують вам прибуток — нічого зайвого." %}</p>
                 </li>
             </ul>
-        </div>
 
-        <div class="pl-shop__admin-mock" data-reveal>
-            <div class="pl-shop__admin-mock-glow" aria-hidden="true"></div>
-            <div class="pl-shop__admin-window" data-admin-mock role="region" aria-label="{% trans 'Інтерактивна демонстрація адмін-панелі' %}"
-                data-i18n-status-paid="{% trans 'Оплачено' %}"
-                data-i18n-status-pending="{% trans 'В обробці' %}"
-                data-i18n-status-shipped="{% trans 'Відправлено' %}"
-                data-i18n-title-orders="{% trans 'Замовлення' %}"
-                data-i18n-title-products="{% trans 'Товари' %}"
-                data-i18n-title-analytics="{% trans 'Аналітика' %}"
-                data-i18n-title-product="{% trans 'Товар' %}"
-                data-i18n-col-order="{% trans 'Замовлення' %}"
-                data-i18n-col-sum="{% trans 'Сума' %}"
-                data-i18n-col-status="{% trans 'Статус' %}"
-                data-i18n-col-product="{% trans 'Товар' %}"
-                data-i18n-col-price="{% trans 'Ціна' %}"
-                data-i18n-col-stock="{% trans 'Залишок' %}"
-                data-i18n-col-top="{% trans 'Топ товар' %}"
-                data-i18n-col-sales="{% trans 'Продажі' %}"
-                data-i18n-col-revenue="{% trans 'Виручка' %}"
-                data-i18n-metric-orders-today="{% trans 'Замовлень сьогодні' %}"
-                data-i18n-metric-revenue="{% trans 'Виручка' %}"
-                data-i18n-metric-conversion="{% trans 'Конверсія' %}"
-                data-i18n-metric-sales-week="{% trans 'Продажі за тиждень' %}"
-                data-i18n-metric-sku="{% trans 'SKU в каталозі' %}"
-                data-i18n-metric-instock="{% trans 'На складі' %}"
-                data-i18n-metric-new-week="{% trans 'Нових за тиждень' %}"
-                data-i18n-metric-visitors="{% trans 'Відвідувачі' %}"
-                data-i18n-metric-avg-check="{% trans 'Середній чек' %}"
-                data-i18n-visibility-active="{% trans 'Активний' %}"
-                data-i18n-visibility-low="{% trans 'Мало на складі' %}"
-                data-i18n-visibility-out="{% trans 'Немає в наявності' %}"
-                data-i18n-unit="{% trans 'од.' %}"
-                data-i18n-together="{% trans 'Разом' %}"
-                data-i18n-update-stock="{% trans 'Оновити залишок' %}"
-                data-i18n-sales-30="{% trans 'Продажі / 30 дн' %}"
-                data-i18n-open-product="{% trans 'Відкрити картку товару' %}"
-                data-i18n-change-status="{% trans 'Змінити статус замовлення' %}"
-                data-i18n-decrease-stock="{% trans 'Зменшити залишок' %}"
-                data-i18n-increase-stock="{% trans 'Збільшити залишок' %}"
-            >
+            <div class="pl-shop__card pl-shop__card--glass pl-shop__admin-window" data-admin-mock data-chart-src="{% static 'images/internet_shop_v2/figma/chart-conversion.svg' %}" data-chart-src-mobile="{% static 'images/internet_shop_v2/figma/chart-conversion-mobile.svg' %}" role="region" aria-label="{% trans "Інтерактивна демонстрація адмін-панелі" %}" data-reveal>
+                <picture class="pl-shop__glow pl-shop__glow--admin" aria-hidden="true">
+                    <source media="(max-width: 767px)" srcset="{% static 'images/internet_shop_v2/figma/glow-admin-mobile.svg' %}">
+                    <img src="{% static 'images/internet_shop_v2/figma/glow-admin.svg' %}" alt="" width="626" height="626" loading="lazy" decoding="async">
+                </picture>
                 <div class="pl-shop__admin-bar">
-                    <span class="pl-shop__admin-dot" aria-hidden="true"></span>
-                    <span class="pl-shop__admin-dot" aria-hidden="true"></span>
-                    <span class="pl-shop__admin-dot" aria-hidden="true"></span>
-                    <button type="button" class="pl-shop__admin-back" id="pl-admin-back" hidden aria-label="{% trans 'Назад до списку' %}">←</button>
-                    <span class="pl-shop__admin-bar-title" id="pl-admin-title">admin · {% trans "Замовлення" %}</span>
+                    <span class="pl-shop__admin-dots" aria-hidden="true"><span class="pl-shop__admin-dot"></span><span class="pl-shop__admin-dot"></span><span class="pl-shop__admin-dot"></span></span>
+                    <button type="button" class="pl-shop__admin-back" id="pl-admin-back" hidden aria-label="{% trans "Назад до списку" %}">←</button>
+                    <span class="pl-shop__admin-bar-title" id="pl-admin-title">{% trans "Адмін / Замовлення" %}</span>
                 </div>
-                <div class="pl-shop__admin-body">
-                    <nav class="pl-shop__admin-sidebar" role="tablist" aria-label="{% trans 'Розділи адмінки' %}">
-                        <span class="pl-shop__admin-sidebar-dot" aria-hidden="true"></span>
-                        <button type="button" class="pl-shop__admin-nav-btn pl-shop__admin-nav-btn--active" role="tab" id="pl-admin-tab-orders" aria-selected="true" aria-controls="pl-admin-panel" data-admin-tab="orders" title="{% trans 'Замовлення' %}">
-                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-                        </button>
-                        <button type="button" class="pl-shop__admin-nav-btn" role="tab" id="pl-admin-tab-products" aria-selected="false" aria-controls="pl-admin-panel" data-admin-tab="products" title="{% trans 'Товари' %}">
-                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                        </button>
-                        <button type="button" class="pl-shop__admin-nav-btn" role="tab" id="pl-admin-tab-analytics" aria-selected="false" aria-controls="pl-admin-panel" data-admin-tab="analytics" title="{% trans 'Аналітика' %}">
-                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                        </button>
-                    </nav>
-                    <div class="pl-shop__admin-main">
-                        <div id="pl-admin-panel" class="pl-shop__admin-panel" role="tabpanel" aria-labelledby="pl-admin-tab-orders" aria-live="polite"></div>
-                    </div>
-                </div>
+                <nav class="pl-shop__admin-sidebar" role="tablist" aria-label="{% trans "Розділи адмінки" %}">
+                    <button type="button" class="pl-shop__admin-nav-btn pl-shop__admin-nav-btn--active" role="tab" id="pl-admin-tab-orders" aria-selected="true" aria-controls="pl-admin-panel" data-admin-tab="orders" title="{% trans "Замовлення" %}">
+                        <svg width="18" height="18" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M4.44 8.6c1.06 0 1.9.86 1.9 1.92v2.56C6.35 14.14 5.5 15 4.44 15H1.9C.86 15 0 14.14 0 13.08v-2.56C0 9.46.86 8.6 1.9 8.6h2.54Zm8.65 0c1.05 0 1.91.86 1.91 1.92v2.56c0 1.06-.86 1.92-1.9 1.92h-2.54c-1.06 0-1.9-.86-1.9-1.92v-2.56c0-1.06.84-1.92 1.9-1.92h2.53ZM4.44 0c1.06 0 1.9.86 1.9 1.92v2.56c0 1.06-.84 1.92-1.9 1.92H1.9C.86 6.4 0 5.54 0 4.48V1.92C0 .86.86 0 1.9 0h2.54Zm8.65 0C14.14 0 15 .86 15 1.92v2.56c0 1.06-.86 1.92-1.9 1.92h-2.54c-1.06 0-1.9-.86-1.9-1.92V1.92C8.66.86 9.5 0 10.56 0h2.53Z" fill="currentColor"/></svg>
+                    </button>
+                    <button type="button" class="pl-shop__admin-nav-btn" role="tab" id="pl-admin-tab-analytics" aria-selected="false" aria-controls="pl-admin-panel" data-admin-tab="analytics" title="{% trans "Аналітика" %}">
+                        <svg width="18" height="18" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 0h7c2.55 0 3.99 1.45 4 4v7c0 2.55-1.45 4-4 4H4c-2.55 0-4-1.45-4-4V4c0-2.55 1.45-4 4-4Zm3.54 11.9c.32 0 .59-.24.62-.57V3.69a.63.63 0 0 0-.28-.6.63.63 0 0 0-.67 0 .63.63 0 0 0-.3.6v7.64c.04.33.3.57.63.57Zm3.45 0c.31 0 .58-.24.62-.57V8.87a.63.63 0 0 0-.3-.59.65.65 0 0 0-.66 0 .6.6 0 0 0-.29.6v2.45c.03.33.3.57.63.57Zm-6.32-.57a.63.63 0 0 1-.62.57.62.62 0 0 1-.62-.57V6.15a.62.62 0 0 1 .3-.59.63.63 0 0 1 .65 0c.2.13.32.36.3.59v5.18Z" fill="currentColor"/></svg>
+                    </button>
+                    <button type="button" class="pl-shop__admin-nav-btn" role="tab" id="pl-admin-tab-products" aria-selected="false" aria-controls="pl-admin-panel" data-admin-tab="products" title="{% trans "Товари" %}">
+                        <svg width="18" height="18" viewBox="0 0 13.5 15" fill="none" aria-hidden="true"><path d="M6.75 0a3.74 3.74 0 0 1 3.75 3.58h-.02a.4.4 0 0 1-.03.17h.12c.95 0 1.94.68 2.3 2.34l.57 4.65c.43 3.03-1.28 4.26-3.57 4.26H3.65c-2.3 0-4.05-.85-3.57-4.26l.58-4.65c.3-1.7 1.33-2.34 2.29-2.34h.06a.5.5 0 0 1 0-.17A3.74 3.74 0 0 1 6.75 0ZM4.57 6.25c-.36 0-.66.3-.66.68 0 .38.3.68.66.68.37 0 .67-.3.67-.68 0-.38-.3-.68-.67-.68Zm4.35 0c-.37 0-.67.3-.67.68 0 .38.3.68.67.68.36 0 .66-.3.66-.68 0-.38-.3-.68-.66-.68ZM6.72.98a2.6 2.6 0 0 0-2.6 2.6.5.5 0 0 1 0 .17h5.25a.5.5 0 0 1-.03-.17A2.61 2.61 0 0 0 6.72.98Z" fill="currentColor"/></svg>
+                    </button>
+                </nav>
+                <div id="pl-admin-panel" class="pl-shop__admin-panel" role="tabpanel" aria-labelledby="pl-admin-tab-orders" aria-live="polite"></div>
             </div>
-        </div>
-        </div>
-
-        <div class="pl-shop__section-cta pl-shop__section-cta--admin" data-reveal>
-            <button type="button" class="pl-shop__btn pl-shop__btn--primary pl-shop__btn--full mobile-touch-target" data-modal="call-request-modal">
-                {% trans "Отримати консультацію" %}
-            </button>
         </div>
     </div>
 </section>

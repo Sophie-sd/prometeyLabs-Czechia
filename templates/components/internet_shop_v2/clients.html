@@ -1,23 +1,16 @@
 {% load i18n %}
-<section class="pl-shop__clients-block" aria-labelledby="pl-shop-clients-title">
+<section id="portfolio" class="pl-shop__section pl-shop__clients" aria-labelledby="pl-shop-clients-title">
     <div class="pl-shop__inner">
-        <p class="pl-shop__clients-label" id="pl-shop-clients-title">{% trans "Магазини, які вже працюють на нашому коді" %}</p>
+        <h2 class="pl-shop__title pl-shop__clients-title" id="pl-shop-clients-title">{% trans "Магазини, які вже працюють на нашому коді" %}</h2>
     </div>
-
-    <div class="pl-shop__clients-wrap">
-        <div class="pl-shop__clients-stories-wrapper">
-            <div class="pl-shop__clients-stories-container projects-stories-container" role="list" data-marquee-label="{% trans 'Наші клієнти — автоматична демонстрація' %}">
-                <div class="pl-shop__clients-set">
-                    {% for client in home_clients %}
-                    {% include 'components/internet_shop_v2/client_story.html' with client=client is_clone=False %}
-                    {% endfor %}
-                </div>
-                <div class="pl-shop__clients-set" aria-hidden="true">
-                    {% for client in home_clients %}
-                    {% include 'components/internet_shop_v2/client_story.html' with client=client is_clone=True %}
-                    {% endfor %}
-                </div>
-            </div>
+    <div class="pl-shop__clients-track">
+        <div class="pl-shop__clients-stories-container" data-clients-marquee role="list">
+            {% for client in home_clients %}
+            {% include 'components/client_home_story.html' with client=client is_clone=False %}
+            {% endfor %}
+            {% for client in home_clients %}
+            {% include 'components/client_home_story.html' with client=client is_clone=True %}
+            {% endfor %}
         </div>
     </div>
 </section>

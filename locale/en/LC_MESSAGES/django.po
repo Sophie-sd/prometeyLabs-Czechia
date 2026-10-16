@@ -11352,3 +11352,12 @@ msgstr "Unnecessary plugins"
 
 msgid "Баласт-скрипти"
 msgstr "Ballast scripts"
+
+msgid "Від 1 400 €. Пожиттєва гарантія на код. 1 рік підтримки безкоштовно."
+msgstr "From €1,400. Lifetime code guarantee. 1 year of free support."
+
+msgid "Заявка на розрахунок вартості"
+msgstr "Price estimate request"
+
+msgid "Адмін / Замовлення"
+msgstr "Admin / Orders"

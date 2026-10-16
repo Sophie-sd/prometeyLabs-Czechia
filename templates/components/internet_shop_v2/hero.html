@@ -1,81 +1,53 @@
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
 <section id="top" class="pl-shop__hero" aria-labelledby="pl-shop-hero-title">
-    <div class="pl-shop__hero-glow-a" aria-hidden="true"></div>
-    <div class="pl-shop__hero-grid" aria-hidden="true"></div>
+    <picture class="pl-shop__hero-bg" aria-hidden="true">
+        <source media="(max-width: 767px)" srcset="{% static 'images/internet_shop_v2/figma/bg-hero-v3-mobile.webp' %}" width="393" height="1440">
+        <img src="{% static 'images/internet_shop_v2/figma/bg-hero-v3-1440.webp' %}" srcset="{% static 'images/internet_shop_v2/figma/bg-hero-v3-960.webp' %} 960w, {% static 'images/internet_shop_v2/figma/bg-hero-v3-1440.webp' %} 1440w" sizes="100vw" alt="" width="1440" height="1440" fetchpriority="high" decoding="async">
+    </picture>
+    <div class="pl-shop__inner pl-shop__hero-inner">
+        <div class="pl-shop__hero-head">
+            <h1 id="pl-shop-hero-title" class="pl-shop__title pl-shop__title--hero">{% blocktrans trimmed %}Інтернет-магазини, що завантажуються <span class="pl-shop__accent">швидше, ніж клієнт встигає клікнути.</span>{% endblocktrans %}</h1>
+            <p class="pl-shop__hero-line">{% trans "Від 1 400 €. Пожиттєва гарантія на код. 1 рік підтримки безкоштовно." %}</p>
+            <p class="pl-shop__hero-lead">{% trans "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-commerce під ключ." %}</p>
+        </div>
 
-    <div class="pl-shop__hero-chart-wrap" data-hero-chart-wrap aria-hidden="true">
-        <svg class="pl-shop__hero-chart" viewBox="0 -24 1440 284" data-hero-chart preserveAspectRatio="none">
-            <defs>
-                <linearGradient id="plArea" gradientUnits="userSpaceOnUse" x1="720" y1="0" x2="720" y2="260">
-                    <stop offset="0%" stop-color="#E65100" stop-opacity="0.42"/>
-                    <stop offset="100%" stop-color="#E65100" stop-opacity="0"/>
-                </linearGradient>
-            </defs>
-            <path class="pl-shop__hero-area" data-hero-area d="M0,260 L200,214 L267,198 L480,196 L692,138 L905,150 L1118,86 L1440,-24 L1440,260 Z" fill="url(#plArea)"/>
-            <path class="pl-shop__hero-line" data-hero-line d="M0,260 L200,214 L267,198 L480,196 L692,138 L905,150 L1118,86 L1440,-24" fill="none" stroke="#E65100" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
-            <circle class="pl-shop__hero-dot" cx="1440" cy="-24" r="5.5" fill="#E65100" aria-hidden="true"/>
-        </svg>
-    </div>
-
-    <div class="pl-shop__inner">
-        <div class="pl-shop__hero-row">
-            <div class="pl-shop__hero-copy">
-                <h1 id="pl-shop-hero-title" class="pl-shop__title pl-shop__title--hero">
-                    {% blocktrans trimmed %}Інтернет-магазини, що завантажуються <span class="pl-shop__accent">швидше, ніж клієнт встигає клікнути.</span>{% endblocktrans %}
-                </h1>
-                <div class="pl-shop__hero-actions">
-                    <a href="#calculator" class="pl-shop__btn pl-shop__btn--primary mobile-touch-target">{% trans "Розрахувати пропозицію" %}</a>
-                    <button type="button" class="pl-shop__btn pl-shop__btn--ghost mobile-touch-target" data-modal="call-request-modal">{% trans "Замовити консультацію" %}</button>
+        <div class="pl-shop__hero-card">
+            <form
+                id="pl-shop-hero-form"
+                class="pl-shop__hero-form"
+                action="{% url 'form_submit' %}"
+                method="post"
+                data-form-type="site_request"
+                data-source-label="Інтернет-магазин v2 · перший екран"
+                data-error-contact-rule="{% trans 'Zadejte telefon, e-mail nebo Telegram.' %}"
+                data-error-phone-invalid="{% trans 'Введіть коректний номер телефону' %}"
+                aria-label="{% trans "Заявка на розрахунок вартості" %}"
+            >
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="site_request">
+                <input type="hidden" name="source_page" value="internet-shop-v2">
+                <input type="hidden" name="details" value="Сторінка: Інтернет-магазин v2 · Форма на першому екрані">
+                <div class="pl-shop__field">
+                    <label class="pl-shop__sr-only" for="pl-shop-hero-name">{% trans "Vaše jméno" %}</label>
+                    <img class="pl-shop__field-icon" src="{% static 'images/internet_shop_v2/figma/icon-profile.svg' %}" alt="" width="18" height="18" aria-hidden="true">
+                    <input type="text" id="pl-shop-hero-name" name="name" class="pl-shop__field-input" autocomplete="given-name" inputmode="text" required placeholder="{% trans "Vaše jméno" %}">
                 </div>
-            </div>
-
-            <div class="pl-shop__hero-stage">
-                <picture>
-                    <source type="image/webp" media="(max-width: 767px)" srcset="{% static 'images/shop_hero_720.webp' %}">
-                    <source type="image/webp" media="(min-width: 768px)" srcset="{% static 'images/shop_hero_720.webp' %}">
-                    <img
-                        src="{% static 'images/shop_hero_720.webp' %}"
-                        alt="{% trans 'Інтернет-магазин на ноутбуці та смартфоні' %}"
-                        class="pl-shop__hero-img"
-                        width="540"
-                        height="540"
-                        loading="eager"
-                        decoding="async"
-                        fetchpriority="high"
-                        data-hero-img
-                    >
-                </picture>
-
-                <div class="pl-shop__hero-chip pl-shop__hero-chip--speed" data-hero-chip>
-                    <div class="pl-shop__chip-label">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--pl-acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px;margin-right:4px"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
-                        {% trans "Швидкість завантаження" %}
-                    </div>
-                    <div class="pl-shop__chip-value">0.8<small> {% trans "сек" %}</small></div>
-                    <div class="pl-shop__chip-bar"><div class="pl-shop__chip-bar-fill"></div></div>
+                <div class="pl-shop__field">
+                    <label class="pl-shop__sr-only" for="pl-shop-hero-phone">{% trans "Телефон" %}</label>
+                    <img class="pl-shop__field-icon" src="{% static 'images/internet_shop_v2/figma/icon-call.svg' %}" alt="" width="18" height="18" aria-hidden="true">
+                    <input type="tel" id="pl-shop-hero-phone" name="phone" class="pl-shop__field-input" autocomplete="tel" inputmode="tel" required placeholder="{{ phone_placeholder }}">
                 </div>
-
-                <div class="pl-shop__hero-chip pl-shop__hero-chip--sales" data-hero-chip>
-                    <div class="pl-shop__chip-label" style="margin-bottom:5px">{% trans "Продажі цього місяця" %}</div>
-                    <div class="pl-shop__chip-sales-row">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
-                        <span class="pl-shop__chip-sales-val">+38%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pl-shop__hero-trust">
-                <span class="pl-shop__trust-item">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--pl-acc)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg>
-                    {% trans "Пожиттєва гарантія на код" %}
-                </span>
-                <span class="pl-shop__trust-item">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    <span aria-hidden="true">{% if LANGUAGE_CODE == 'uk' or LANGUAGE_CODE == 'ru' %}🇺🇦{% else %}🇨🇿{% endif %}</span>
-                    {% trans "Українська локалізація з коробки" %}
-                </span>
-            </div>
+                {% url 'privacy' as privacy_url %}
+                <label class="pl-shop__hero-consent">
+                    <input type="checkbox" name="consent" value="1" required>
+                    <span>{% blocktrans trimmed with privacy_url=privacy_url %}Souhlasím se zpracováním osobních údajů dle <a href="{{ privacy_url }}" class="lead-form-policy-link" target="_blank" rel="noopener">zásad ochrany osobních údajů</a>.{% endblocktrans %}</span>
+                </label>
+                <button type="submit" class="pl-shop__btn pl-shop__btn--light pl-shop__hero-submit">{% trans "Дізнатися вартість" %}</button>
+            </form>
+            <p class="pl-shop__hero-contacts">
+                <a href="{{ site_contact.get_tel_href }}" class="pl-shop__hero-contact">{{ site_contact.phone_display }}</a>
+                <a href="{{ site_contact.telegram_url }}" class="pl-shop__hero-contact" target="_blank" rel="noopener noreferrer">Telegram</a>
+            </p>
         </div>
     </div>
 </section>
