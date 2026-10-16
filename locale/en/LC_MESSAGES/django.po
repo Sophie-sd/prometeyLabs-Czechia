@@ -4042,9 +4042,7 @@ msgstr ""
 msgid ""
 "розробка сайтів, сайт під ключ, telegram бот, реклама google ads, веб "
 "розробка, навчання програмування"
-msgstr ""
-"website development, custom websites, telegram bot, google ads, web "
-"development, programming courses"
+msgstr "website development, turnkey website, telegram bot, google ads, web development"
 
 #: templates/base.html:42
 msgid ""
@@ -6518,12 +6516,12 @@ msgstr "Brief"
 #: templates/components/process_block.html:35
 #: templates/components/process_flow_block.html:30
 msgid "Цілі бізнесу"
-msgstr "Business"
+msgstr "Business goals"
 
 #: templates/components/process_block.html:36
 #: templates/components/process_flow_block.html:31
 msgid "Аудиторія"
-msgstr "Category"
+msgstr "Audience"
 
 #: templates/components/process_block.html:37
 #: templates/components/process_flow_block.html:32
@@ -6542,7 +6540,7 @@ msgstr "Page structure"
 
 #: templates/components/process_block.html:60
 msgid "Логіка навігації"
-msgstr "automatic notifications"
+msgstr "Navigation logic"
 
 #: templates/components/process_block.html:61
 msgid "Сценарії користувача"
@@ -6554,7 +6552,7 @@ msgstr "Content hierarchy"
 
 #: templates/components/process_block.html:83
 msgid "Приклад дизайну"
-msgstr "Responsive design"
+msgstr "Design sample"
 
 #: templates/components/process_block.html:84
 msgid "UI/UX макети"
@@ -6566,7 +6564,7 @@ msgstr "Brand identity"
 
 #: templates/components/process_block.html:86
 msgid "Адаптивні прототипи"
-msgstr "Real projects"
+msgstr "Responsive prototypes"
 
 #: templates/components/process_block.html:87
 msgid "Візуальна концепція"
@@ -6606,7 +6604,7 @@ msgstr "Device testing"
 
 #: templates/components/process_block.html:136
 msgid "Доробка деталей"
-msgstr "Lead processing"
+msgstr "Polishing details"
 
 #: templates/components/process_block.html:137
 msgid "Фінальне погодження"
@@ -6630,7 +6628,7 @@ msgstr "Access handoff"
 
 #: templates/components/process_block.html:162
 msgid "Інструкції для клієнта"
-msgstr "client notifications"
+msgstr "Client instructions"
 
 #: templates/components/process_flow_block.html:5
 msgid "PROCESS"

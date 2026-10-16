@@ -4085,12 +4085,10 @@ msgid ""
 msgstr ""
 
 #: templates/base.html:26
-#, fuzzy
-#| msgid "Розробка сайтів під ключ, Telegram боти, реклама"
 msgid ""
 "розробка сайтів, сайт під ключ, telegram бот, реклама google ads, веб "
 "розробка, навчання програмування"
-msgstr "Tvorba webů na klíč, Telegram boti, reklama"
+msgstr "tvorba webových stránek, web na klíč, telegram bot, reklama google ads, vývoj webu"
 
 #: templates/base.html:42
 msgid ""
