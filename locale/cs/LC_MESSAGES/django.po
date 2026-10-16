@@ -10529,3 +10529,198 @@ msgstr "Poptávky a CRM přímo v chatu, vedle webu."
 msgctxt "singular"
 msgid "Landing page"
 msgstr "Landing page"
+
+msgid "Ваша власна адмінка: бізнес-інструмент, а не конструктор"
+msgstr "Vlastní administrace: obchodní nástroj, ne stavebnice"
+
+msgid "Спробуйте просто зараз — оберіть колір у демо-панелі й подивіться, як за один клік змінюється брендова схема сайту. Саме так це працює у вашій панелі"
+msgstr "Vyzkoušejte to hned — vyberte barvu v ukázkovém panelu a uvidíte, jak se jedním kliknutím změní barevné schéma webu. Přesně tak to funguje i ve vaší administraci"
+
+msgid "Змінюйте тексти, зображення та кольорову схему бренду в 2 кліки. Не потрібен програміст"
+msgstr "Texty, obrázky i barevné schéma značky změníte dvěma kliknutími. Programátor není potřeba"
+
+msgid "Інтуїтивно зрозуміле меню, де навіть контент-менеджер без досвіду зрозуміє, що робити"
+msgstr "Intuitivní menu, ve kterém se vyzná i správce obsahu bez zkušeností"
+
+msgid "Зміна контенту без ризику зламати верстку сайту — структура захищена"
+msgstr "Úpravy obsahu bez rizika rozbití layoutu — struktura je chráněná"
+
+msgid "Жовтий"
+msgstr "Žlutá"
+
+msgid "Превью сайту"
+msgstr "Náhled webu"
+
+msgid "Оновлюється миттєво"
+msgstr "Aktualizuje se okamžitě"
+
+msgid "1 сторінка (лендінг)"
+msgstr "1 stránka (landing page)"
+
+msgid "Що входить у розробку під ключ"
+msgstr "Co zahrnuje vývoj na klíč"
+
+msgid "Повільна сторінка після кліку"
+msgstr "Pomalá stránka po kliknutí"
+
+msgid "Гірший досвід після кліку з реклами"
+msgstr "Horší zážitek po kliknutí z reklamy"
+
+msgid "Наша архітектура · чистий код"
+msgstr "Naše architektura · čistý kód"
+
+msgid "Google враховує швидкість сторінки в оцінці якості цільової сторінки"
+msgstr "Google zohledňuje rychlost stránky při hodnocení kvality vstupní stránky"
+
+msgid "Дизайн, у якому впізнають ваш бренд, і верстка без вигляду конструктора"
+msgstr "Design, ve kterém poznají vaši značku, a kód, který nevypadá jako ze stavebnice"
+
+msgid "Форми збору заявок, календар, онлайн-запис чи будь-які інтеграції"
+msgstr "Formuláře poptávek, kalendář, online rezervace nebo jakékoli integrace"
+
+msgid "Адмінка, де тексти, фото і кольори міняєте самі, без залучення програмістів"
+msgstr "Administrace, kde texty, fotky i barvy měníte sami, bez programátorů"
+
+msgid "Запуск із доменом і захищеним з’єднанням, доступи передаємо вам"
+msgstr "Spuštění s doménou a zabezpečeným připojením, přístupy předáme vám"
+
+msgid "Швидке завантаження — частина досвіду після кліку, який оцінює Google"
+msgstr "Rychlé načítání je součástí zážitku po kliknutí, který Google hodnotí"
+
+msgid "сторонніх плагінів і конструкторів"
+msgstr "pluginů třetích stran a stavebnic"
+
+msgid "Performance у Lighthouse (мобільний) — замір нашого проєкту, 09.10.2026"
+msgstr "Performance v Lighthouse (mobil) — měření našeho projektu, 09.10.2026"
+
+msgid "Корпоративні сайти та лендінги під ключ, що домінують у пошуку"
+msgstr "Firemní weby a landing page na klíč, které dominují ve vyhledávání"
+
+msgid "Іміджеві корпоративні сайти під ключ для середнього та великого бізнесу. Лендінги, з яких трафік конвертується в заявки"
+msgstr "Reprezentativní firemní weby na klíč pro střední a velké firmy. Landing page, ze kterých se návštěvnost mění v poptávky"
+
+msgid "Складна внутрішня архітектура та інтеграції: CRM, ERP, оплати"
+msgstr "Komplexní vnitřní architektura a integrace: CRM, ERP, platby"
+
+msgid "Високий рівень захисту даних"
+msgstr "Vysoká úroveň ochrany dat"
+
+msgid "Готові до SEO з першого дня запуску"
+msgstr "Připravené na SEO od prvního dne"
+
+msgid "Аналітика і трекінг налаштовані разом із запуском"
+msgstr "Analytika a měření nastavené už při spuštění"
+
+msgid "Демо-сайт: швидкість, ціна і строки"
+msgstr "Ukázkový web: rychlost, cena a termíny"
+
+msgid "Усі 4 у зеленій зоні: замір Lighthouse (мобільний), приклад з нашого проєкту, 09.10.2026"
+msgstr "Všechny 4 v zelené zóně: měření Lighthouse (mobil), příklad z našeho projektu, 09.10.2026"
+
+msgid "Строк запуску — показати ціну і строки"
+msgstr "Termín spuštění — zobrazit cenu a termíny"
+
+msgid "Строк запуску"
+msgstr "Termín spuštění"
+
+msgid "Корп"
+msgstr "Firemní"
+
+msgid "Ціна і строк"
+msgstr "Cena a termín"
+
+msgid "Лендінг 400–700 €, 3–7 днів"
+msgstr "Landing page 400–700 €, 3–7 dní"
+
+msgid "Односторінковий сайт із формою заявок, технічним SEO, аналітикою і трекінгом, доменом і захищеним з’єднанням"
+msgstr "Jednostránkový web s poptávkovým formulářem, technickým SEO, analytikou a měřením, doménou a zabezpečeným připojením"
+
+msgid "Корпоративний сайт 700–1000 €, 7–14 днів"
+msgstr "Firemní web 700–1000 €, 7–14 dní"
+
+msgid "Багатосторінковий сайт з адмінкою, інтеграціями (CRM, ERP, оплати), технічним SEO і аналітикою"
+msgstr "Vícestránkový web s administrací, integracemi (CRM, ERP, platby), technickým SEO a analytikou"
+
+msgid "Core Web Vitals у зеленій зоні"
+msgstr "Core Web Vitals v zelené zóně"
+
+msgid "Приклад з нашого проєкту: замір Lighthouse (мобільний профіль), 09.10.2026. Цільовий показник для кожного сайту — зелена зона."
+msgstr "Příklad z našeho projektu: měření Lighthouse (mobilní profil), 09.10.2026. Cílem u každého webu je zelená zóna."
+
+msgid "1,5–1,7 с"
+msgstr "1,5–1,7 s"
+
+msgid "0 мс"
+msgstr "0 ms"
+
+msgid "Snapshot архітектури — новий лендінг збираємо на готовій основі, швидше й дешевше за розробку з нуля."
+msgstr "Snapshot architektury — novou landing page sestavíme na hotovém základu, rychleji a levněji než vývoj od nuly."
+
+msgid "Без доплат у процесі"
+msgstr "Bez doplatků v průběhu"
+
+msgid "Зручна адмінка чеською мовою: змінюйте заголовки, текстові блоки, зображення, ціни, послуги тощо на сайті без залучення програмістів."
+msgstr "Pohodlná administrace v češtině: měňte nadpisy, texty, obrázky, ceny, služby a další obsah webu bez programátorů."
+
+msgid "Технологія клонування: нові лендінги на готовій архітектурі"
+msgstr "Technologie klonování: nové landing page na hotové architektuře"
+
+msgid "Наша архітектура дозволяє робити «Snapshot» вашого сайту. Новий лендінг збираємо на готовій основі з іншим контентом — швидше й дешевше за розробку з нуля. Вартість погоджуємо до старту"
+msgstr "Naše architektura umožňuje vytvořit „snapshot“ vašeho webu. Novou landing page sestavíme na hotovém základu s jiným obsahem — rychleji a levněji než vývoj od nuly. Cenu dohodneme předem"
+
+msgid "оригінал"
+msgstr "originál"
+
+msgid "landing-послуга/"
+msgstr "landing-sluzba/"
+
+msgid "копія"
+msgstr "kopie"
+
+msgid "landing-регіон/"
+msgstr "landing-region/"
+
+msgid "Потрібен лендінг під нову послугу або місто? Збираємо його на тій самій основі і погоджуємо вартість до початку роботи."
+msgstr "Potřebujete landing page pro novou službu nebo město? Sestavíme ji na stejném základu a cenu dohodneme před zahájením prací."
+
+msgid "Підтримка після запуску"
+msgstr "Podpora po spuštění"
+
+msgid "Технічні питання, дрібні правки та консультації протягом першого року"
+msgstr "Technické dotazy, drobné úpravy a konzultace během prvního roku"
+
+msgid "Сайт лишається таким, яким ми його здали: стабільним і спокійним. Якщо в нашому коді щось піде не так, ми поруч"
+msgstr "Web zůstane takový, jaký jsme ho předali: stabilní a spolehlivý. Pokud se v našem kódu něco pokazí, jsme tu"
+
+msgid "Нові лендінги з готового сайту"
+msgstr "Nové landing page z hotového webu"
+
+msgid "Збираємо на тій самій архітектурі — швидше й дешевше за розробку з нуля, вартість погоджуємо до старту"
+msgstr "Stavíme na stejné architektuře — rychleji a levněji než od nuly, cenu dohodneme předem"
+
+msgid "Жодних зайвих скриптів — тільки код, потрібний для роботи вашого бізнесу. Кожна деталь архітектури налаштована на максимальну релевантність реклами та органіки"
+msgstr "Žádné zbytečné skripty — jen kód, který váš byznys potřebuje. Každý detail architektury je nastaven na maximální relevanci reklamy i organiky"
+
+msgid "Пошукова видимість"
+msgstr "Viditelnost ve vyhledávání"
+
+msgid "Будь-який пристрій"
+msgstr "Jakékoli zařízení"
+
+msgid "Пік трафіку · сервер стабільний"
+msgstr "Špička návštěvnosti · server stabilní"
+
+msgid "Наш код не «прокисає». Сайт розрахований на піки трафіку з реклами (CDN, кешування) — без падіння сервера в пік кампанії."
+msgstr "Náš kód „nezastarává“. Web je připravený na špičky návštěvnosti z reklamy (CDN, cache) — bez pádu serveru na vrcholu kampaně."
+
+msgid "Тільки корисний код"
+msgstr "Jen užitečný kód"
+
+msgid "Чистий код"
+msgstr "Čistý kód"
+
+msgid "Зайві плагіни"
+msgstr "Zbytečné pluginy"
+
+msgid "Баласт-скрипти"
+msgstr "Zátěžové skripty"

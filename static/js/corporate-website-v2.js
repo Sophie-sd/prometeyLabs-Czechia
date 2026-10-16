@@ -64,17 +64,20 @@
 
     function initHeroMockup() {
         var mockup = root.querySelector('[data-hero-mockup]');
-        if (!mockup) return;
+        if (!mockup) return null;
 
         var panels = mockup.querySelectorAll('[data-hero-panel]');
         var tabBtns = mockup.querySelectorAll('[data-hero-tab]');
-        var backBtns = mockup.querySelectorAll('[data-hero-back]');
-        var chipTriggers = root.querySelectorAll('[data-hero-tab-trigger]');
-        var speedBar = mockup.querySelector('[data-hero-speed-bar]');
-        var currentPanel = 'main';
+        var currentPanel = 'economy';
 
         function showPanel(id) {
+            var exists = false;
+            panels.forEach(function (panel) {
+                if (panel.getAttribute('data-hero-panel') === id) exists = true;
+            });
+            if (!exists) id = 'economy';
             currentPanel = id;
+
             panels.forEach(function (panel) {
                 var active = panel.getAttribute('data-hero-panel') === id;
                 panel.classList.toggle('is-active', active);
@@ -82,35 +85,69 @@
             });
 
             tabBtns.forEach(function (btn) {
-                var tab = btn.getAttribute('data-hero-tab');
-                var selected = tab === id;
+                var selected = btn.getAttribute('data-hero-tab') === id;
                 btn.classList.toggle('is-active', selected);
                 btn.setAttribute('aria-selected', selected ? 'true' : 'false');
             });
-
-            if (id === 'speed' && speedBar) {
-                speedBar.classList.remove('is-filled');
-                requestAnimationFrame(function () {
-                    speedBar.classList.add('is-filled');
-                });
-            }
         }
 
-        tabBtns.forEach(function (btn) {
+        return {
+            showPanel: showPanel,
+            getCurrentPanel: function () { return currentPanel; }
+        };
+    }
+
+    function initHeroSequence() {
+        var stage = root.querySelector('[data-hero-stage]');
+        if (!stage) return;
+
+        var mockupApi = initHeroMockup();
+        if (!mockupApi) return;
+
+        var mockup = root.querySelector('[data-hero-mockup]');
+        var rings = root.querySelectorAll('[data-hero-ring]');
+        var cardsWrap = root.querySelector('[data-hero-win-cards]');
+        var tabIds = ['economy', 'tech', 'scale'];
+        var CYCLE_MS = 3200;
+        var cycleTimer = null;
+        var paused = false;
+        var index = 0;
+
+        function show(id) {
+            var i = tabIds.indexOf(id);
+            index = i < 0 ? 0 : i;
+            mockupApi.showPanel(tabIds[index]);
+        }
+
+        function tick() {
+            if (paused || document.hidden) return;
+            show(tabIds[(index + 1) % tabIds.length]);
+        }
+
+        function restart() {
+            if (reduceMotion) return;
+            if (cycleTimer) clearInterval(cycleTimer);
+            cycleTimer = setInterval(tick, CYCLE_MS);
+        }
+
+        root.querySelectorAll('[data-hero-tab]').forEach(function (btn) {
             btn.addEventListener('click', function () {
-                showPanel(btn.getAttribute('data-hero-tab'));
+                show(btn.getAttribute('data-hero-tab'));
+                restart();
             });
         });
 
-        backBtns.forEach(function (btn) {
+        root.querySelectorAll('[data-hero-back]').forEach(function (btn) {
             btn.addEventListener('click', function () {
-                showPanel('main');
+                show('economy');
+                restart();
             });
         });
 
-        chipTriggers.forEach(function (chip) {
+        root.querySelectorAll('[data-hero-tab-trigger]').forEach(function (chip) {
             function activate() {
-                showPanel(chip.getAttribute('data-hero-tab-trigger'));
+                show(chip.getAttribute('data-hero-tab-trigger'));
+                restart();
             }
             chip.addEventListener('click', activate);
             chip.addEventListener('keydown', function (e) {
@@ -121,186 +158,106 @@
             });
         });
 
-        return {
-            showPanel: showPanel,
-            getCurrentPanel: function () { return currentPanel; },
-            isTabPanel: function (id) {
-                return id === 'economy' || id === 'tech' || id === 'scale';
-            }
-        };
+        if (cardsWrap) {
+            cardsWrap.addEventListener('keydown', function (e) {
+                if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+                e.preventDefault();
+                var step = e.key === 'ArrowRight' ? 1 : tabIds.length - 1;
+                show(tabIds[(index + step) % tabIds.length]);
+                var next = cardsWrap.querySelector('[data-hero-tab="' + tabIds[index] + '"]');
+                if (next) next.focus();
+                restart();
+            });
+        }
+
+        [mockup, cardsWrap].forEach(function (el) {
+            if (!el) return;
+            el.addEventListener('mouseenter', function () { paused = true; });
+            el.addEventListener('mouseleave', function () { paused = false; });
+            el.addEventListener('focusin', function () { paused = true; });
+            el.addEventListener('focusout', function () { paused = false; });
+        });
+
+        function lightRings() {
+            rings.forEach(function (ring, i) {
+                if (reduceMotion) {
+                    ring.classList.add('is-on');
+                    return;
+                }
+                setTimeout(function () { ring.classList.add('is-on'); }, 120 * i);
+            });
+        }
+
+        show('economy');
+
+        if ('IntersectionObserver' in window && !reduceMotion) {
+            var io = new IntersectionObserver(function (ents) {
+                ents.forEach(function (en) {
+                    if (!en.isIntersecting) return;
+                    lightRings();
+                    restart();
+                    io.disconnect();
+                });
+            }, { threshold: 0.2 });
+            io.observe(stage);
+        } else {
+            lightRings();
+        }
     }
 
-    function initHeroSequence() {
-        var stage = root.querySelector('[data-hero-stage]');
-        if (!stage) return;
+    /* Modal a11y on this page: focus trap + focus restore for the global .modal partials
+       (open/close/Esc are handled by base.js). */
+    function initModalA11y() {
+        var FOCUSABLE = 'a[href], button:not([disabled]), input:not([type="hidden"]):not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+        var lastTrigger = null;
 
-        var mockupApi = initHeroMockup();
-        var mockup = root.querySelector('[data-hero-mockup]');
-        var win = root.querySelector('[data-hero-win]');
-        var rings = root.querySelectorAll('[data-hero-ring]');
-        var chips = root.querySelectorAll('[data-hero-chip]');
-        var winLines = root.querySelectorAll('[data-hero-win-line]');
-        var cardsWrap = root.querySelector('[data-hero-win-cards]');
-        var cards = cardsWrap ? cardsWrap.querySelectorAll('[data-hero-tab]') : [];
-        var cardCycleTimer = null;
-        var cardCycleIndex = 0;
-        var cardCyclePaused = false;
-        var CARD_CYCLE_MS = 2500;
-        var tabIds = ['economy', 'tech', 'scale'];
+        document.addEventListener('click', function (e) {
+            var trigger = e.target.closest ? e.target.closest('[data-modal]') : null;
+            if (trigger) lastTrigger = trigger;
+        }, true);
 
-        function showWinLines() {
-            winLines.forEach(function (line) {
-                line.classList.add('is-visible');
+        function visibleFocusables(modal) {
+            return Array.prototype.filter.call(modal.querySelectorAll(FOCUSABLE), function (el) {
+                return el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0;
             });
         }
 
-        function staggerWinLines() {
-            if (!winLines.length) return;
-            winLines.forEach(function (line, i) {
-                setTimeout(function () {
-                    line.classList.add('is-visible');
-                }, 300 + i * 120);
-            });
-        }
+        document.querySelectorAll('.modal').forEach(function (modal) {
+            if (!modal.hasAttribute('aria-modal')) modal.setAttribute('aria-modal', 'true');
 
-        function setActiveCard(index) {
-            if (!cards.length || !mockupApi) return;
-            var tabId = tabIds[index];
-            if (!tabId) return;
-            cardCycleIndex = index;
-            mockupApi.showPanel(tabId);
-            cards.forEach(function (card, i) {
-                var active = i === index;
-                card.classList.toggle('is-active', active);
-                card.setAttribute('aria-selected', active ? 'true' : 'false');
-            });
-        }
+            var wasActive = modal.classList.contains('active');
+            new MutationObserver(function () {
+                var isActive = modal.classList.contains('active');
+                if (isActive === wasActive) return;
+                wasActive = isActive;
+                if (isActive) {
+                    var focusables = visibleFocusables(modal);
+                    var first = focusables[0];
+                    if (first && !modal.contains(document.activeElement)) {
+                        setTimeout(function () {
+                            if (!modal.contains(document.activeElement)) first.focus();
+                        }, 320);
+                    }
+                } else if (lastTrigger && document.contains(lastTrigger)) {
+                    lastTrigger.focus({ preventScroll: true });
+                    lastTrigger = null;
+                }
+            }).observe(modal, { attributes: true, attributeFilter: ['class'] });
 
-        function stopCardCycle() {
-            if (!cardCycleTimer) return;
-            clearInterval(cardCycleTimer);
-            cardCycleTimer = null;
-        }
-
-        function tickCardCycle() {
-            if (cardCyclePaused || !cards.length) return;
-            cardCycleIndex = (cardCycleIndex + 1) % cards.length;
-            setActiveCard(cardCycleIndex);
-        }
-
-        function startCardCycle() {
-            if (!cards.length || reduceMotion || !mockupApi) return;
-            stopCardCycle();
-            setActiveCard(0);
-            cardCycleTimer = setInterval(tickCardCycle, CARD_CYCLE_MS);
-        }
-
-        function restartCardCycle() {
-            if (!cards.length || reduceMotion || !mockupApi) return;
-            stopCardCycle();
-            cardCycleTimer = setInterval(tickCardCycle, CARD_CYCLE_MS);
-        }
-
-        if (cardsWrap) {
-            cardsWrap.addEventListener('mouseenter', function () {
-                cardCyclePaused = true;
-            });
-            cardsWrap.addEventListener('mouseleave', function () {
-                cardCyclePaused = false;
-            });
-            cardsWrap.addEventListener('focusin', function () {
-                cardCyclePaused = true;
-            });
-            cardsWrap.addEventListener('focusout', function () {
-                cardCyclePaused = false;
-            });
-        }
-
-        cards.forEach(function (card, index) {
-            card.addEventListener('click', function () {
-                cardCycleIndex = index;
-                setActiveCard(index);
-                restartCardCycle();
-            });
-        });
-
-        if (mockup) {
-            mockup.addEventListener('click', function (e) {
-                if (e.target.closest('[data-hero-back]')) {
-                    cardCyclePaused = false;
+            modal.addEventListener('keydown', function (e) {
+                if (e.key !== 'Tab' || !modal.classList.contains('active')) return;
+                var focusables = visibleFocusables(modal);
+                if (!focusables.length) return;
+                var first = focusables[0];
+                var last = focusables[focusables.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
                 }
             });
-        }
-
-        root.querySelectorAll('[data-hero-tab-trigger]').forEach(function (chip) {
-            chip.addEventListener('click', function () {
-                var target = chip.getAttribute('data-hero-tab-trigger');
-                cardCyclePaused = target === 'speed';
-            });
-        });
-
-        function finish() {
-            if (win) {
-                win.style.opacity = '1';
-                win.style.transform = 'none';
-            }
-            rings.forEach(function (r) {
-                r.style.strokeDashoffset = '0';
-            });
-            chips.forEach(function (c) {
-                c.style.opacity = '1';
-                c.style.removeProperty('transform');
-            });
-            showWinLines();
-            if (cards.length && mockupApi) {
-                mockupApi.showPanel('main');
-            }
-        }
-
-        if (reduceMotion) {
-            finish();
-            startCardCycle();
-            return;
-        }
-
-        if (win) {
-            win.style.opacity = '0';
-            win.style.transform = 'translateY(20px) scale(.98)';
-            win.style.transition = 'opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)';
-        }
-
-        chips.forEach(function (c) {
-            c.style.opacity = '0';
-            c.style.transform = 'translateY(12px) scale(.96)';
-            c.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1)';
-        });
-
-        requestAnimationFrame(function () {
-            setTimeout(function () {
-                if (win) {
-                    win.style.opacity = '1';
-                    win.style.transform = 'none';
-                }
-                staggerWinLines();
-            }, 140);
-            setTimeout(function () {
-                rings.forEach(function (r) {
-                    r.style.strokeDashoffset = '0';
-                });
-            }, 700);
-            setTimeout(function () {
-                if (chips[0]) {
-                    chips[0].style.opacity = '1';
-                    chips[0].style.removeProperty('transform');
-                }
-            }, 1300);
-            setTimeout(function () {
-                if (chips[1]) {
-                    chips[1].style.opacity = '1';
-                    chips[1].style.removeProperty('transform');
-                }
-                startCardCycle();
-            }, 1650);
         });
     }
 
@@ -344,14 +301,15 @@
             if (!stories.length) return;
 
             var containerStyles = window.getComputedStyle(container);
-            var gap = parseFloat(containerStyles.gap) || 24;
+            var gap = parseFloat(containerStyles.columnGap || containerStyles.gap) || 14;
             var firstStory = stories[0];
             var lastStory = stories[stories.length - 1];
             var setWidth = (lastStory.offsetLeft + lastStory.offsetWidth + gap) - firstStory.offsetLeft;
 
             container.style.setProperty('--marquee-distance', setWidth + 'px');
-            container.setAttribute('aria-label', container.dataset.marqueeLabel || container.getAttribute('aria-label') || '');
-            container.setAttribute('role', 'marquee');
+            container.setAttribute('aria-label', 'Наші клієнти — автоматична демонстрація');
+            // Не перезаписуємо role: контейнер уже має role="list" у шаблоні.
+            // role="marquee" — невалідна ARIA-роль і ламає list/listitem.
 
             if ('IntersectionObserver' in window) {
                 var observer = new IntersectionObserver(function (entries) {
@@ -416,11 +374,24 @@
         }
     }
 
+    function initFabGuard() {
+        var card = document.querySelector('.pl-corp__hero-card');
+        if (!card || !('IntersectionObserver' in window)) return;
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                document.body.classList.toggle('pl-corp-fab-off', entry.isIntersecting);
+            });
+        }, { threshold: 0 });
+        io.observe(card);
+    }
+
     function init() {
         initReveal();
         initHeroSequence();
         initClientsMarquee();
         initScaleDiagram();
+        initModalA11y();
+        initFabGuard();
     }
 
     if (document.readyState === 'loading') {

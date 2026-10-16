@@ -14,20 +14,10 @@
 {% endblock %}
 
 {% block page_css %}
-<link rel="preload" href="{% static 'css/pl-display-fonts.css' %}?v=2" as="style">
-<link rel="stylesheet" href="{% static 'css/pl-display-fonts.css' %}?v=2" media="print" data-async-css>
-<noscript><link rel="stylesheet" href="{% static 'css/pl-display-fonts.css' %}?v=2"></noscript>
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-anim.css' %}?v=13">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2.css' %}?v=25">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-2.css' %}?v=14">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-clients.css' %}?v=2">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-sections.css' %}?v=14">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-sections-2.css' %}?v=4">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-sections-3.css' %}?v=13">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-scale.css' %}?v=6">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-tech.css' %}?v=8">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-quiz.css' %}?v=18">
-<link rel="stylesheet" href="{% static 'css/corporate-website-v2-mobile.css' %}?v=2">
+{# Figma sj9WyZ0KaPLeVRcOQLlpP6 (Desktop 2:345 / Mobile 2:794). Inter (latin-ext) comes from base.html. #}
+<link rel="preload" as="image" href="{% static 'images/corporate_website_v2/figma/bg-hero-1440.webp' %}" imagesrcset="{% static 'images/corporate_website_v2/figma/bg-hero-960.webp' %} 960w, {% static 'images/corporate_website_v2/figma/bg-hero-1440.webp' %} 1440w" imagesizes="100vw" media="(min-width: 768px)">
+<link rel="stylesheet" href="{% static 'css/corporate-website-v2.css' %}?v=41">
+<link rel="stylesheet" href="{% static 'css/corporate-website-v2-cz.css' %}?v=1">
 {% endblock %}
 
 {% block content %}
@@ -45,8 +35,8 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/corporate-website-v2-admin-demo.js' %}?v=1" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/corporate-website-v2-admin-demo.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/corporate-website-v2-quiz.js' %}?v=10" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/corporate-website-v2-tech.js' %}?v=5" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/corporate-website-v2.js' %}?v=8" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/corporate-website-v2-tech.js' %}?v=6" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/corporate-website-v2.js' %}?v=11" nonce="{{ csp_nonce }}" defer></script>
 {% endblock %}

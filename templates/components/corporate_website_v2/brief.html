@@ -1,11 +1,15 @@
-{% load i18n %}
-<section id="calculator" class="pl-corp__calc pl-corp__section" aria-labelledby="pl-corp-calc-title">
-    <div class="pl-corp__calc-inner pl-corp__inner pl-corp__inner--narrow">
-        <div class="pl-corp__calc-head" data-reveal>
-            <h2 id="pl-corp-calc-title" class="pl-corp__title pl-corp__title--brief">
+{% load static i18n %}
+<section id="calculator" class="pl-corp__section pl-corp__quiz-section" aria-labelledby="pl-corp-calc-title">
+    <picture class="pl-corp__quiz-bg" aria-hidden="true">
+        <source media="(max-width: 767px)" srcset="{% static 'images/corporate_website_v2/figma/bg-calc-m.webp' %}" width="393" height="341">
+        <img src="{% static 'images/corporate_website_v2/figma/bg-calc-1440.webp' %}" srcset="{% static 'images/corporate_website_v2/figma/bg-calc-960.webp' %} 960w, {% static 'images/corporate_website_v2/figma/bg-calc-1440.webp' %} 1440w" sizes="100vw" alt="" width="1440" height="869" loading="lazy" decoding="async">
+    </picture>
+    <div class="pl-corp__inner pl-corp__quiz-inner">
+        <div class="pl-corp__quiz-head" data-reveal>
+            <h2 id="pl-corp-calc-title" class="pl-corp__title pl-corp__title--center">
                 {% trans "Отримайте прорахунок вартості" %}
             </h2>
-            <p class="pl-corp__calc-subtitle">
+            <p class="pl-corp__text pl-corp__quiz-sub">
                 {% trans "Висока швидкість, чистий код. Сайт, який працює на результат." %}
             </p>
         </div>
@@ -41,24 +45,28 @@
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_business" value="Послуги (B2C / B2B)">
                             <span class="pl-corp__quiz-option-text">{% trans "Послуги (B2C / B2B)" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_business" value="Виробництво / опт">
                             <span class="pl-corp__quiz-option-text">{% trans "Виробництво / опт" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_business" value="Торгівля">
                             <span class="pl-corp__quiz-option-text">{% trans "Торгівля" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_business" value="Інше / не визначився">
                             <span class="pl-corp__quiz-option-text">{% trans "Інше / не визначився" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                 </ul>
@@ -71,24 +79,28 @@
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_goal" value="Збір заявок та контактів">
                             <span class="pl-corp__quiz-option-text">{% trans "Збір заявок та контактів" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_goal" value="Прямі онлайн-продажі">
                             <span class="pl-corp__quiz-option-text">{% trans "Прямі онлайн-продажі" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_goal" value="Презентація бренду або послуг">
                             <span class="pl-corp__quiz-option-text">{% trans "Презентація бренду або послуг" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_goal" value="Масштабування">
                             <span class="pl-corp__quiz-option-text">{% trans "Масштабування" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                 </ul>
@@ -99,57 +111,64 @@
                 <ul class="pl-corp__quiz-options">
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
-                            <input type="radio" name="q_pages" value="1 сторінка (лендинг)">
-                            <span class="pl-corp__quiz-option-text">{% trans "1 сторінка (лендинг)" %}</span>
+                            <input type="radio" name="q_pages" value="1 сторінка (лендінг)">
+                            <span class="pl-corp__quiz-option-text">{% trans "1 сторінка (лендінг)" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_pages" value="до 10 сторінок">
                             <span class="pl-corp__quiz-option-text">{% trans "до 10 сторінок" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_pages" value="11–20 сторінок">
                             <span class="pl-corp__quiz-option-text">{% trans "11–20 сторінок" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_pages" value="21+ сторінок">
                             <span class="pl-corp__quiz-option-text">{% trans "21+ сторінок" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                 </ul>
             </div>
 
-            <div class="pl-corp__quiz-step" data-step="4" data-multi="true">
+            <div class="pl-corp__quiz-step" data-step="4">
                 <p class="pl-corp__quiz-question">{% trans "Що потрібно додатково?" %}</p>
-                <p class="pl-corp__quiz-hint">{% trans "Можна обрати декілька варіантів" %}</p>
-                <ul class="pl-corp__quiz-options pl-corp__quiz-options--multi">
+                <ul class="pl-corp__quiz-options">
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
-                            <input type="checkbox" name="q_options" value="Рекламні послуги">
+                            <input type="radio" name="q_options" value="Рекламні послуги">
                             <span class="pl-corp__quiz-option-text">{% trans "Рекламні послуги" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
-                            <input type="checkbox" name="q_options" value="SEO розвиток сайту">
+                            <input type="radio" name="q_options" value="SEO розвиток сайту">
                             <span class="pl-corp__quiz-option-text">{% trans "SEO розвиток сайту" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
-                            <input type="checkbox" name="q_options" value="CRM та автоматизація">
+                            <input type="radio" name="q_options" value="CRM та автоматизація">
                             <span class="pl-corp__quiz-option-text">{% trans "CRM та автоматизація" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
-                            <input type="checkbox" name="q_options" value="Мультимовність">
+                            <input type="radio" name="q_options" value="Мультимовність">
                             <span class="pl-corp__quiz-option-text">{% trans "Мультимовність" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                 </ul>
@@ -162,24 +181,28 @@
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_timeline" value="Якнайшвидше (до 7 днів)">
                             <span class="pl-corp__quiz-option-text">{% trans "Якнайшвидше (до 7 днів)" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_timeline" value="Протягом 2 тижнів">
                             <span class="pl-corp__quiz-option-text">{% trans "Протягом 2 тижнів" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_timeline" value="Протягом місяця">
                             <span class="pl-corp__quiz-option-text">{% trans "Протягом місяця" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                     <li>
                         <label class="pl-corp__quiz-option mobile-touch-target">
                             <input type="radio" name="q_timeline" value="Терміни гнучкі">
                             <span class="pl-corp__quiz-option-text">{% trans "Терміни гнучкі" %}</span>
+                            <span class="pl-corp__quiz-option-tick" aria-hidden="true"></span>
                         </label>
                     </li>
                 </ul>
@@ -193,7 +216,7 @@
                     {% include 'components/lead_form_fields.html' with prefix='pl-corp-quiz' input_class='pl-corp__quiz-input mobile-touch-target' %}
                     <button
                         type="submit"
-                        class="pl-corp__btn pl-corp__btn--primary pl-corp__quiz-reveal mobile-touch-target"
+                        class="pl-corp__btn pl-corp__btn--accent pl-corp__quiz-reveal mobile-touch-target"
                         data-quiz-reveal
                     >
                         {% trans "Nezávazná poptávka" %}
@@ -204,9 +227,9 @@
             </div>
 
             <div class="pl-corp__quiz-nav">
-                <button type="button" class="pl-corp__btn pl-corp__btn--ghost pl-corp__quiz-prev pl-corp__quiz-nav-slot--hidden mobile-touch-target" aria-hidden="true" tabindex="-1">{% trans "← Назад" %}</button>
-                <button type="button" class="pl-corp__btn pl-corp__btn--ghost pl-corp__quiz-skip mobile-touch-target">{% trans "Пропустити" %}</button>
-                <button type="button" class="pl-corp__btn pl-corp__btn--primary pl-corp__quiz-next mobile-touch-target" disabled>{% trans "Далі →" %}</button>
+                <button type="button" class="pl-corp__btn pl-corp__btn--outline pl-corp__quiz-prev pl-corp__quiz-nav-slot--hidden mobile-touch-target" aria-hidden="true" tabindex="-1">{% trans "← Назад" %}</button>
+                <button type="button" class="pl-corp__btn pl-corp__btn--outline pl-corp__quiz-skip mobile-touch-target">{% trans "Пропустити" %}</button>
+                <button type="button" class="pl-corp__btn pl-corp__btn--accent pl-corp__quiz-next mobile-touch-target" disabled><span>{% trans "Далі" %}</span><img class="pl-corp__quiz-next-icon" src="{% static 'images/corporate_website_v2/figma/icon-arrow-right.svg' %}" alt="" width="18" height="12"></button>
             </div>
         </form>
     </div>

@@ -41,3 +41,12 @@
     .main-navigation { padding: 20px 0 0; }
     .main-navigation .nav-container { padding-inline: 16px; min-height: 44px; }
 }
+/* Figma mobile header: orange phone circle next to the burger */
+.main-navigation .nav-phone-btn { display: none; }
+@media (max-width: 767px) {
+    .main-navigation .nav-phone-btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 44px; height: 44px; margin-left: auto; margin-right: 10px;
+        border: 1px solid rgba(255, 102, 0, .7); border-radius: 50%; background: rgba(255, 102, 0, .06);
+    }
+}

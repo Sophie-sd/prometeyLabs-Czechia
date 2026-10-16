@@ -1,0 +1,12 @@
+/* Czech overrides on top of the Figma corporate page (sj9WyZ0KaPLeVRcOQLlpP6) */
+.pl-corp__perf-ring-val { font-size: 22px; font-weight: 500; letter-spacing: -0.66px; color: #fff; line-height: 1; }
+
+/* Free analysis: Czech GDPR minimum (email + consent) under the Figma phone/CTA column */
+.pl-corp__free-analysis-gdpr { display: flex; flex-direction: column; gap: 10px; margin: 0; }
+.pl-corp__free-analysis-gdpr .form-group { margin: 0; }
+.pl-corp__free-analysis-gdpr .lead-gdpr-min__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.pl-corp__free-analysis-gdpr .pl-corp__field-input { padding-left: 20px; }
+.pl-corp__free-analysis-gdpr .lead-form-checkbox { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.35; color: var(--pl-gray, #a2a2a2); }
+.pl-corp__free-analysis-gdpr .lead-form-checkbox input { flex: 0 0 auto; width: 16px; height: 16px; margin-top: 1px; accent-color: #ff6600; }
+.pl-corp__free-analysis-gdpr .lead-form-policy-link { color: #ff6600; }
+.pl-corp__free-analysis-gdpr .lead-form-expect { margin: 0; font-size: 12px; color: var(--pl-gray, #a2a2a2); }

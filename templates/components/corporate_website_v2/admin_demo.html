@@ -1,88 +1,57 @@
-{% load i18n %}
-<section class="pl-corp__admin pl-corp__section" aria-labelledby="pl-corp-admin-title">
-    <div class="pl-corp__inner">
-        <div class="pl-corp__admin-row">
-            <div class="pl-corp__admin-mock-wrap" data-reveal>
-                <div class="pl-corp__admin-mock" data-demo-root>
-                    <div class="pl-corp__admin-mock-bar">
-                        <span class="pl-corp__admin-mock-dot" aria-hidden="true"></span>
-                        <span class="pl-corp__admin-mock-dot" aria-hidden="true"></span>
-                        <span class="pl-corp__admin-mock-dot" aria-hidden="true"></span>
-                        <span class="pl-corp__admin-mock-title">admin · {% trans "Дизайн та бренд" %}</span>
+{% load static i18n %}
+<section class="pl-corp__section pl-corp__admin" aria-labelledby="pl-corp-admin-title">
+    <div class="pl-corp__inner pl-corp__admin-row">
+        <div class="pl-corp__admin-copy" data-reveal>
+            <h2 id="pl-corp-admin-title" class="pl-corp__title pl-corp__admin-title">{% trans "Ваша власна адмінка: бізнес-інструмент, а не конструктор" %}</h2>
+            <p class="pl-corp__text pl-corp__admin-desc">{% trans "Спробуйте просто зараз — оберіть колір у демо-панелі й подивіться, як за один клік змінюється брендова схема сайту. Саме так це працює у вашій панелі" %}</p>
+            <ul class="pl-corp__admin-features">
+                <li class="pl-corp__admin-feature">
+                    <h3 class="pl-corp__admin-feature-title"><img class="pl-corp__dev-icon--check" src="{% static 'images/corporate_website_v2/figma/icon-check.svg' %}" alt="" width="9" height="14">{% trans "Надзручна адмінка" %}</h3>
+                    <p class="pl-corp__text">{% trans "Змінюйте тексти, зображення та кольорову схему бренду в 2 кліки. Не потрібен програміст" %}</p>
+                </li>
+                <li class="pl-corp__admin-feature">
+                    <h3 class="pl-corp__admin-feature-title"><img class="pl-corp__dev-icon--check" src="{% static 'images/corporate_website_v2/figma/icon-check.svg' %}" alt="" width="9" height="14">{% trans "Повний контроль" %}</h3>
+                    <p class="pl-corp__text">{% trans "Інтуїтивно зрозуміле меню, де навіть контент-менеджер без досвіду зрозуміє, що робити" %}</p>
+                </li>
+                <li class="pl-corp__admin-feature">
+                    <h3 class="pl-corp__admin-feature-title"><img class="pl-corp__dev-icon--check" src="{% static 'images/corporate_website_v2/figma/icon-check.svg' %}" alt="" width="9" height="14">{% trans "Гнучкість дизайну" %}</h3>
+                    <p class="pl-corp__text">{% trans "Зміна контенту без ризику зламати верстку сайту — структура захищена" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="pl-corp__admin-mock" data-demo-root data-reveal>
+            <div class="pl-corp__admin-bar">
+                <span class="pl-corp__win-dot" aria-hidden="true"></span>
+                <span class="pl-corp__win-dot" aria-hidden="true"></span>
+                <span class="pl-corp__win-dot" aria-hidden="true"></span>
+                <span class="pl-corp__admin-bar-title">admin <span aria-hidden="true">/</span> {% trans "Дизайн та бренд" %}</span>
+            </div>
+            <div class="pl-corp__admin-body">
+                <p class="pl-corp__admin-label">{% trans "Колір бренду" %}</p>
+                <div class="pl-corp__admin-colors" role="group" aria-label="{% trans "Колір бренду" %}">
+                    <button type="button" class="pl-corp__admin-color pl-corp__admin-color--orange is-active" data-c="#ff6600" aria-label="{% trans "Помаранчевий" %}"></button>
+                    <button type="button" class="pl-corp__admin-color pl-corp__admin-color--yellow" data-c="#ffe100" aria-label="{% trans "Жовтий" %}"></button>
+                    <button type="button" class="pl-corp__admin-color pl-corp__admin-color--green" data-c="#88ff00" aria-label="{% trans "Зелений" %}"></button>
+                    <button type="button" class="pl-corp__admin-color pl-corp__admin-color--blue" data-c="#0099ff" aria-label="{% trans "Синій" %}"></button>
+                    <button type="button" class="pl-corp__admin-color pl-corp__admin-color--violet" data-c="#983fb4" aria-label="{% trans "Фіолетовий" %}"></button>
+                </div>
+                <p class="pl-corp__admin-live"><span class="pl-corp__admin-live-dot" aria-hidden="true"></span>{% trans "Превью сайту" %} <span aria-hidden="true">/</span> {% trans "Оновлюється миттєво" %}</p>
+                <div class="pl-corp__admin-preview" aria-hidden="true">
+                    <div class="pl-corp__admin-preview-head">
+                        <span class="pl-corp__admin-preview-brand">BrandCo</span>
+                        <span class="pl-corp__admin-preview-menu"><span></span><span></span></span>
                     </div>
-                    <div class="pl-corp__admin-mock-body">
-                        <div class="pl-corp__admin-mock-label">{% trans "Колір бренду" %}</div>
-                        <div class="pl-corp__admin-colors" role="group" aria-label="{% trans 'Колір бренду' %}">
-                            <button type="button" class="pl-corp__admin-color is-active" data-c="#E65100" style="background-color:#E65100" aria-label="{% trans 'Помаранчевий' %}"></button>
-                            <button type="button" class="pl-corp__admin-color" data-c="#2A6FDB" style="background-color:#2A6FDB" aria-label="{% trans 'Синій' %}"></button>
-                            <button type="button" class="pl-corp__admin-color" data-c="#1F8A5B" style="background-color:#1F8A5B" aria-label="{% trans 'Зелений' %}"></button>
-                            <button type="button" class="pl-corp__admin-color" data-c="#C9A227" style="background-color:#C9A227" aria-label="{% trans 'Золотий' %}"></button>
-                            <button type="button" class="pl-corp__admin-color" data-c="#8E44AD" style="background-color:#8E44AD" aria-label="{% trans 'Фіолетовий' %}"></button>
-                        </div>
-                        <div class="pl-corp__admin-live">
-                            <span class="pl-corp__admin-live-dot" aria-hidden="true"></span>
-                            {% trans "Превью сайту · оновлюється миттєво" %}
-                        </div>
-                        <div class="pl-corp__admin-preview">
-                            <div class="pl-corp__admin-preview-header">
-                                <span class="pl-corp__admin-preview-logo-dot" aria-hidden="true"></span>
-                                <span class="pl-corp__admin-preview-brand">BrandCo</span>
-                                <span class="pl-corp__admin-preview-nav" aria-hidden="true">
-                                    <span></span><span></span>
-                                </span>
-                            </div>
-                            <div class="pl-corp__admin-preview-body">
-                                <div class="pl-corp__admin-preview-line pl-corp__admin-preview-line--w72" aria-hidden="true"></div>
-                                <div class="pl-corp__admin-preview-line pl-corp__admin-preview-line--w46" aria-hidden="true"></div>
-                                <div class="pl-corp__admin-preview-btns" aria-hidden="true">
-                                    <span class="pl-corp__admin-preview-btn pl-corp__admin-preview-btn--primary">{% trans "Замовити" %}</span>
-                                    <span class="pl-corp__admin-preview-btn pl-corp__admin-preview-btn--ghost"></span>
-                                </div>
-                                <div class="pl-corp__admin-preview-cards" aria-hidden="true">
-                                    <span class="pl-corp__admin-preview-card"></span>
-                                    <span class="pl-corp__admin-preview-card"></span>
-                                    <span class="pl-corp__admin-preview-card"></span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="pl-corp__admin-preview-body">
+                        <span class="pl-corp__admin-preview-line"></span>
+                        <span class="pl-corp__admin-preview-line pl-corp__admin-preview-line--brand"></span>
+                        <span class="pl-corp__admin-preview-btns">
+                            <span class="pl-corp__admin-preview-btn">{% trans "Замовити" %}</span>
+                            <span class="pl-corp__admin-preview-btn pl-corp__admin-preview-btn--ghost">{% trans "Детальніше" %}</span>
+                        </span>
+                        <span class="pl-corp__admin-preview-cards"><span></span><span></span><span></span></span>
                     </div>
                 </div>
-            </div>
-
-            <div class="pl-corp__admin-copy" data-reveal>
-                <h2 id="pl-corp-admin-title" class="pl-corp__title pl-corp__title--admin">
-                    {% trans "Ваша власна адмінка:" %}<br>{% trans "бізнес-інструмент, а не конструктор" %}
-                </h2>
-                <p class="pl-corp__admin-desc">{% trans "Спробуйте просто зараз — оберіть колір у демо-панелі й подивіться, як за один клік змінюється брендова схема сайту. Саме так це працює у вашій панелі." %}</p>
-                <ul class="pl-corp__admin-features">
-                    <li class="pl-corp__admin-feature">
-                        <div class="pl-corp__admin-feature-icon" aria-hidden="true">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <div>
-                            <h4>{% trans "Надзручна адмінка" %}</h4>
-                            <p>{% trans "Змінюйте тексти, зображення та кольорову схему бренду в 2 кліки. Не потрібен програміст." %}</p>
-                        </div>
-                    </li>
-                    <li class="pl-corp__admin-feature">
-                        <div class="pl-corp__admin-feature-icon" aria-hidden="true">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <div>
-                            <h4>{% trans "Повний контроль" %}</h4>
-                            <p>{% trans "Інтуїтивно зрозуміле меню, де навіть контент-менеджер без досвіду зрозуміє, що робити." %}</p>
-                        </div>
-                    </li>
-                    <li class="pl-corp__admin-feature">
-                        <div class="pl-corp__admin-feature-icon" aria-hidden="true">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--pl-corp-acc)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </div>
-                        <div>
-                            <h4>{% trans "Гнучкість дизайну" %}</h4>
-                            <p>{% trans "Зміна контенту без ризику зламати верстку сайту — структура захищена." %}</p>
-                        </div>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
