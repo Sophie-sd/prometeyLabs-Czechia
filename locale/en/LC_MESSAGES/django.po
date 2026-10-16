@@ -4966,7 +4966,7 @@ msgstr "Working Hours: 24/7"
 
 #: templates/components/footer.html:93
 msgid "Реєстр. №"
-msgstr "Reg. no."
+msgstr "Reg. No."
 
 #: templates/components/footer.html:98
 msgid "Захист даних:"

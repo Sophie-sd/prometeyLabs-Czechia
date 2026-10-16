@@ -5019,7 +5019,7 @@ msgstr "Provozní doba: Nepřetržitě"
 
 #: templates/components/footer.html:93
 msgid "Реєстр. №"
-msgstr "Reg. č."
+msgstr "IČ"
 
 #: templates/components/footer.html:98
 msgid "Захист даних:"

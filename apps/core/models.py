@@ -395,6 +395,13 @@ class Employee(models.Model):
         return str(self)
 
 
+# Transliterated FOP requisites for cs/en when the admin per-language field is empty
+LEGAL_NAME_EN_DEFAULT = 'FOP (sole proprietor) Dmytrenko Sofiia Dmytrivna'
+LEGAL_NAME_CS_DEFAULT = 'FOP Dmytrenko Sofiia Dmytrivna'
+LEGAL_ADDRESS_EN_DEFAULT = '2 Kvashi St, Myrhorod, Poltava region, Ukraine'
+LEGAL_ADDRESS_CS_DEFAULT = 'ul. Kvashi 2, Myrhorod, Poltavská oblast, Ukrajina'
+
+
 class SiteContactSettings(models.Model):
     """Singleton: контакти сайту та точка на Google Maps."""
 
@@ -605,14 +612,18 @@ class SiteContactSettings(models.Model):
         from .i18n_content import localized_text
 
         return localized_text(
-            self.legal_name, self.legal_name_ru, self.legal_name_en, self.legal_name_cs,
+            self.legal_name, self.legal_name_ru,
+            self.legal_name_en or LEGAL_NAME_EN_DEFAULT,
+            self.legal_name_cs or LEGAL_NAME_CS_DEFAULT,
         )
 
     def get_localized_legal_address(self):
         from .i18n_content import localized_text
 
         return localized_text(
-            self.legal_address, self.legal_address_ru, self.legal_address_en, self.legal_address_cs,
+            self.legal_address, self.legal_address_ru,
+            self.legal_address_en or LEGAL_ADDRESS_EN_DEFAULT,
+            self.legal_address_cs or LEGAL_ADDRESS_CS_DEFAULT,
         )
 
     def get_tel_href(self):
