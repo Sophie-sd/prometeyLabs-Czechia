@@ -141,7 +141,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         "contactPoint": {
             "@type": "ContactPoint",
             {% get_current_language as LANGUAGE_CODE %}
-            {% if site_contact.phone_e164 %}"telephone": "+{{ site_contact.phone_e164 }}",{% endif %}
             {% if site_contact.email %}"email": "{{ site_contact.email }}",{% endif %}
             {% if LANGUAGE_CODE == 'cs' or LANGUAGE_CODE == 'en' %}
             "areaServed": "CZ",

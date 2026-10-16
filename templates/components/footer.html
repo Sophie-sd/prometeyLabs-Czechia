@@ -51,7 +51,6 @@
                     <span class="plf__dot" aria-hidden="true"></span>
                 </button>
                 <div class="plf__list plf__acc-body">
-                    {% if site_contact.phone_display and site_contact.get_tel_href %}<a href="{{ site_contact.get_tel_href }}" class="plf__accent">{{ site_contact.phone_display }}</a>{% endif %}
                     {% if site_contact.email %}<a href="mailto:{{ site_contact.email }}" class="plf__accent">{{ site_contact.email }}</a>{% endif %}
                     <span class="plf__small">{% trans "Графік роботи: Цілодобово" %}</span>
                     {% include 'components/footer_social.html' %}

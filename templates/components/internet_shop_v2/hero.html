@@ -45,7 +45,7 @@
                 <button type="submit" class="pl-shop__btn pl-shop__btn--light pl-shop__hero-submit">{% trans "Дізнатися вартість" %}</button>
             </form>
             <p class="pl-shop__hero-contacts">
-                <a href="{{ site_contact.get_tel_href }}" class="pl-shop__hero-contact">{{ site_contact.phone_display }}</a>
+                {% if site_contact.email %}<a href="mailto:{{ site_contact.email }}" class="pl-shop__hero-contact">{{ site_contact.email }}</a>{% endif %}
                 <a href="{{ site_contact.telegram_url }}" class="pl-shop__hero-contact" target="_blank" rel="noopener noreferrer">Telegram</a>
             </p>
         </div>

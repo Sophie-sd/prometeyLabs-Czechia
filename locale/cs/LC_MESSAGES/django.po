@@ -211,10 +211,8 @@ msgid "Статті блогу"
 msgstr "Články blogu"
 
 #: apps/blog/views.py:38 apps/blog/views.py:40
-#, fuzzy
-#| msgid "Заявка на курси програмування"
 msgid "Блог про веб-розробку та курси програмування"
-msgstr "Poptávka na kurzy programování"
+msgstr "Blog o vývoji webů a kurzech programování"
 
 #: apps/blog/views.py:39
 msgid ""
@@ -5450,10 +5448,8 @@ msgstr "Automatizace, prodej, integrace s CRM a platebními systémy"
 
 #: templates/components/home/service_modals.html:14
 #: templates/pages/home.html:182
-#, fuzzy
-#| msgid "Замовити"
 msgid "замовити бота"
-msgstr "Objednat"
+msgstr "objednat bota"
 
 #: templates/components/home/service_modals.html:15
 #: templates/pages/home.html:183

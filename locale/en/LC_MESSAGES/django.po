@@ -197,10 +197,8 @@ msgid "Статті блогу"
 msgstr "Blog Posts"
 
 #: apps/blog/views.py:38 apps/blog/views.py:40
-#, fuzzy
-#| msgid "Заявка на курси програмування"
 msgid "Блог про веб-розробку та курси програмування"
-msgstr "Programming Courses"
+msgstr "Blog on web development and programming courses"
 
 #: apps/blog/views.py:39
 msgid ""
@@ -4104,7 +4102,7 @@ msgstr "Close"
 
 #: templates/base.html:199
 msgid "Це поле обов'язкове"
-msgstr "Company (optional)"
+msgstr "This field is required"
 
 #: templates/base.html:200
 msgid "Введіть коректне ім'я (мінімум 2 символи)"
@@ -5398,10 +5396,8 @@ msgstr "Automation, sales, integrations with CRM and payment systems"
 
 #: templates/components/home/service_modals.html:14
 #: templates/pages/home.html:182
-#, fuzzy
-#| msgid "Замовити"
 msgid "замовити бота"
-msgstr "Order"
+msgstr "order a bot"
 
 #: templates/components/home/service_modals.html:15
 #: templates/pages/home.html:183

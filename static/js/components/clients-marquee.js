@@ -52,7 +52,9 @@
             var setWidth = (lastStory.offsetLeft + lastStory.offsetWidth + gap) - firstStory.offsetLeft;
 
             container.style.setProperty('--marquee-distance', setWidth + 'px');
-            container.setAttribute('aria-label', /^ru/i.test(document.documentElement.lang || '') ? 'Наши клиенты — автоматическая демонстрация' : 'Наші клієнти — автоматична демонстрація');
+            var lang = (document.documentElement.lang || '').toLowerCase();
+            var marqueeLabels = { ru: 'Наши клиенты — автоматическая демонстрация', cs: 'Naši klienti — automatická ukázka', en: 'Our clients — automatic showcase' };
+            container.setAttribute('aria-label', marqueeLabels[lang.slice(0, 2)] || 'Наші клієнти — автоматична демонстрація');
             // Не перезаписуємо role: контейнер уже має role="list" у шаблоні.
             // role="marquee" — невалідна ARIA-роль і ламає list/listitem.
 

@@ -34,7 +34,6 @@
                             <img class="ctf-card__icon" src="{% static 'images/ct-figma/call.svg' %}" alt="" width="24" height="24">
                         </div>
                         <div class="ctf-card__body">
-                            {% if site_contact.phone_display %}<a href="{{ site_contact.get_tel_href }}" class="ctf-card__link">{{ site_contact.phone_display }}</a>{% endif %}
                             {% if site_contact.email %}<a href="mailto:{{ site_contact.email }}" class="ctf-card__link contact-link--email">{{ site_contact.email }}</a>{% endif %}
                         </div>
                     </div>

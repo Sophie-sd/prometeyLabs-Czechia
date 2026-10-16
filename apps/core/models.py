@@ -400,6 +400,8 @@ LEGAL_NAME_EN_DEFAULT = 'FOP (sole proprietor) Dmytrenko Sofiia Dmytrivna'
 LEGAL_NAME_CS_DEFAULT = 'FOP Dmytrenko Sofiia Dmytrivna'
 LEGAL_ADDRESS_EN_DEFAULT = '2 Kvashi St, Myrhorod, Poltava region, Ukraine'
 LEGAL_ADDRESS_CS_DEFAULT = 'ul. Kvashi 2, Myrhorod, Poltavská oblast, Ukrajina'
+ADDRESS_EN_DEFAULT = '46a Taras Shevchenko Blvd, Kyiv'
+ADDRESS_CS_DEFAULT = 'Kyjev, bulvár Tarase Ševčenka 46a'
 
 
 class SiteContactSettings(models.Model):
@@ -594,7 +596,9 @@ class SiteContactSettings(models.Model):
         from .i18n_content import localized_text
 
         return localized_text(
-            self.address, self.address_ru, self.address_en, self.address_cs,
+            self.address, self.address_ru,
+            self.address_en or ADDRESS_EN_DEFAULT,
+            self.address_cs or ADDRESS_CS_DEFAULT,
         )
 
     def get_localized_czechia_address(self):
