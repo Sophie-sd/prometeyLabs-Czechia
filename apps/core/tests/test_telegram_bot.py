@@ -23,8 +23,7 @@ class TelegramBotPageTests(TestCase):
                 self.assertEqual(response.status_code, 200)
                 html = response.content.decode()
                 self.assertIn('plBotRoot', html)
-                self.assertIn('telegram-bot.css', html)
-                self.assertIn('pl-product-tokens.css', html)
+                self.assertIn('telegram-bot-figma.css', html)
                 self.assertNotIn('internet-shop-v2.js', html)
                 self.assertNotIn('internet-shop-v2.css', html)
                 self.assertNotIn('internet-shop-v2-anim.css', html)
@@ -42,8 +41,8 @@ class TelegramBotPageTests(TestCase):
                 self.assertIn('name="honeypot"', html)
                 self.assertIn('class="pl-bot__honeypot"', html)
                 self.assertIn('id="pl-bot-form"', html)
-                self.assertIn('pl-bot__demo', html)
-                self.assertIn('pl-bot__tg-thread', html)
+                self.assertIn('tgf__demo', html)
+                self.assertIn('tgf__chat', html)
 
     def test_section_order_and_cta_copy(self):
         html = self.client.get('/telegram-bot/').content.decode()
@@ -68,7 +67,7 @@ class TelegramBotPageTests(TestCase):
         )
         self.assertRegex(
             html,
-            r'<button\b[^>]*type="submit"[^>]*>\s*Získat kalkulaci\s*</button>',
+            r'<button\b[^>]*type="submit"[^>]*>\s*Nezávazná poptávka\s*</button>',
         )
         self.assertIn('id="pl-bot-form-title"', html)
         self.assertGreaterEqual(html.count('Získat kalkulaci'), 2)
