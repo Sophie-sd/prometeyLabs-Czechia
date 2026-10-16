@@ -1,0 +1,41 @@
+/* Hero fit — desktop only (≥1024px): every hero's content fits the first screen
+   at 1024×600 … 1920×1080. Spacing/type scale with svh; mobile/tablet untouched.
+   Portfolio hero intentionally excluded (owned by another worker). */
+@media (min-width: 1024px) {
+    /* Home (hf-hero) */
+    .hf-hero__actions { margin-top: clamp(28px, calc(100svh - 520px), 340px); }
+
+    /* Corporate website */
+    .pl-corp__hero { padding-top: clamp(84px, 15svh, 120px); }
+    .pl-corp__hero-inner { gap: clamp(14px, 3.4svh, 40px); }
+    .pl-corp__hero-copy { gap: clamp(10px, 2.6svh, 30px); }
+    .pl-corp__hero-copy .pl-corp__hero-proof { margin-top: clamp(-10px, calc(-1svh + 2px), 0px); }
+    .pl-corp__hero-title { font-size: clamp(40px, 7.4svh, 70px); letter-spacing: -0.05em; }
+    .pl-corp__hero-card { max-width: 760px; gap: clamp(8px, 1.4svh, 14px); padding: clamp(10px, 1.8svh, 16px) 23px clamp(12px, 2svh, 20px); }
+    .pl-corp__hero-offers { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1.3svh, 14px); }
+    .pl-corp__hero-offer { min-height: clamp(36px, 5.4svh, 50px); }
+
+    /* Internet shop */
+    .pl-shop__hero { padding-top: clamp(88px, 17svh, 180px); }
+    .pl-shop__hero-inner { gap: clamp(12px, 2.6svh, 30px); }
+    .pl-shop__hero-head { gap: clamp(8px, 2.4svh, 30px); }
+    .pl-shop__title--hero { font-size: clamp(40px, 7.4svh, 70px); }
+    .pl-shop__hero-card { max-width: 640px; width: 100%; gap: clamp(10px, 2.2svh, 30px); padding-top: clamp(12px, 2svh, 20px); padding-bottom: clamp(12px, 2svh, 20px); }
+    .pl-shop__hero-form { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1.4svh, 14px); }
+    .pl-shop__hero-form > :not(.pl-shop__field) { grid-column: 1 / -1; }
+    .pl-shop__field, .pl-shop__hero-submit { min-height: clamp(42px, 6svh, 50px); height: auto; }
+
+    /* Contacts (info column; the form is page content, stacked below at 1024) */
+    .ctf__inner { padding-top: clamp(96px, 17svh, 120px); }
+    .ctf__info { gap: clamp(24px, 5svh, 50px); }
+}
+
+/* Web development: 1024–1099 shows the price cards inside the hero (floats take over ≥1100) */
+@media (min-width: 1024px) and (max-width: 1099px) {
+    .pl-web__hero { padding-top: clamp(84px, 14svh, 112px); }
+    .pl-web__h1 { font-size: clamp(38px, 7svh, 61.44px); }
+    .pl-web__lead { margin-top: clamp(8px, 1.6svh, 16px); }
+    .pl-web__cta { margin-top: clamp(10px, 2svh, 20px); }
+    .pl-web__hero-stage { gap: clamp(12px, 2svh, 20px); }
+    .pl-web__prices { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
