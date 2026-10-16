@@ -10,30 +10,17 @@
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-brand-snap2.css' %}?v=snap13">
 <link rel="stylesheet" href="{% static 'css/portfolio-screen.css' %}?v=screen3">
+<link rel="stylesheet" href="{% static 'css/portfolio-figma.css' %}?v=1">
 {% endblock %}
 
 {% block content %}
-<!-- Hero Section з фоновим відео -->
-<section class="hero-section full-height">
-    <!-- Фонові відео для декстопу та мобільних -->
-    <video class="video-background desktop-video" autoplay muted loop playsinline>
-        <source src="{% static 'videos/desktop/portfolio.mp4' %}" type="video/mp4">
-    </video>
-    <video class="video-background mobile-video" autoplay muted loop playsinline>
-        <source src="{% static 'videos/mobile/portfoliomobile.mp4' %}" type="video/mp4">
-    </video>
-
-    <!-- Overlay для кращої читабельності -->
-    <div class="video-overlay"></div>
-
-    <div class="hero-content">
-        <div class="container">
-            <div class="hero-text text-center">
-                <h1 class="text-mega color-brand-orange mb-lg">{% trans "СТВОРЕНІ НАМИ" %}</h1>
-                <p class="text-large color-white mb-xl">{% trans "САЙТИ ПІД КЛЮЧ" %}</p>
-            </div>
-        </div>
-    </div>
+<!-- Hero (Figma A5BXwq4L 1:14 / 1:38) -->
+<section class="pf-hero" aria-labelledby="pf-hero-title">
+    <picture class="pf-hero__bg" aria-hidden="true">
+        <source media="(max-width: 767px)" srcset="{% static 'images/portfolio/figma/hero-mob.webp' %}">
+        <img src="{% static 'images/portfolio/figma/hero-desk.webp' %}" alt="" width="1681" height="936" fetchpriority="high">
+    </picture>
+    <h1 id="pf-hero-title" class="pf-hero__title">{% trans "Створені нами сайти під ключ" %}</h1>
 </section>
 
 <section class="portfolio-projects content-section--first pf-snaps" data-portfolio-snap aria-label="{% trans 'Проєкти портфоліо' context 'portfolio' %}">

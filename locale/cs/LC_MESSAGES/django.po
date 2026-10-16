@@ -10733,3 +10733,7 @@ msgstr "Žádost o kalkulaci ceny"
 
 msgid "Адмін / Замовлення"
 msgstr "Admin / Objednávky"
+
+#: templates/pages/portfolio.html
+msgid "Створені нами сайти під ключ"
+msgstr "Weby na klíč, které jsme vytvořili"

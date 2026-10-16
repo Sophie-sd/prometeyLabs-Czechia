@@ -11361,3 +11361,7 @@ msgstr "Price estimate request"
 
 msgid "Адмін / Замовлення"
 msgstr "Admin / Orders"
+
+#: templates/pages/portfolio.html
+msgid "Створені нами сайти під ключ"
+msgstr "Turnkey websites we have built"
