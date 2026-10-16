@@ -199,6 +199,7 @@ class WebDevelopmentView(BasePageView):
         context = super().get_context_data(**kwargs)
         context['portfolio_strip'] = portfolio_strip()
         context['web_prices'] = web_dev_prices()
+        context['home_clients'] = homepage_clients()
         return context
 
 

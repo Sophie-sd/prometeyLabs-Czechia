@@ -1,0 +1,25 @@
+{% load i18n static %}
+{# Figma 1:198 — second "works" strip: client logos (same marquee as home / shop). #}
+{% if home_clients %}
+<section class="pl-web__section pl-web__clients" aria-labelledby="pl-web-clients-title">
+    <div class="pl-web__inner">
+        <h2 id="pl-web-clients-title" class="pl-web__h2 pl-web__h2--work">{% trans "Наші" %} {% trans "клієнти" %}</h2>
+    </div>
+    <div class="pl-web__clients-track">
+        <div class="pl-web__clients-list" role="list" data-clients-marquee>
+            {% for client in home_clients %}
+            {% include 'components/client_home_story.html' with client=client is_clone=False %}
+            {% endfor %}
+            {% for client in home_clients %}
+            {% include 'components/client_home_story.html' with client=client is_clone=True %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="pl-web__inner">
+        <a class="pl-web__work-more" href="{% url 'portfolio' %}">
+            <span>{% trans "Prohlédnout portfolio" %}</span>
+            <img src="{% static 'images/web-development/arrow-orange.svg' %}" alt="" width="24" height="24" decoding="async">
+        </a>
+    </div>
+</section>
+{% endif %}
