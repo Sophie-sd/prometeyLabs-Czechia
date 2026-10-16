@@ -65,5 +65,6 @@ class CheckoutConsentTests(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         html = response.content.decode()
-        self.assertIn('footer-impressum', html)
+        # redesigned footer (Figma) renders the impressum as .plf__impressum
+        self.assertTrue('plf__impressum' in html or 'footer-impressum' in html)
         self.assertNotIn('ec.europa.eu/consumers/odr', html)
