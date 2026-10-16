@@ -1031,10 +1031,8 @@ html.pfg-fab-dodge .mobile-contact-fab {
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.45);
 }
 
-/* Off-screen screenshot frames skip rendering (desktop: the frame height is explicit, so no layout change). */
-@media (min-width: 768px) {
-    .pf-snaps .pf-snap__asset[data-pf-screen] {
-        content-visibility: auto;
-        contain-intrinsic-size: auto 900px;
-    }
+/* No scroll anchoring on this page: card width animations / sticky bar / lazy images must never
+   move scrollY (owner 2026-10-16: "підтяжка"). content-visibility removed for the same reason. */
+html {
+    overflow-anchor: none;
 }

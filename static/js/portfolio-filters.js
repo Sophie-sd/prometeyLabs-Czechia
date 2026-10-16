@@ -203,10 +203,25 @@
         return empty && !empty.hidden ? empty : null;
     }
 
+    /* The user took over (wheel/touch/keys) during the glide: stop owning the scroll — never pull back. */
+    var userTookOver = false;
+
+    function onUserScrollInput() {
+        if (html.hasAttribute('data-pf-autoscroll')) {
+            userTookOver = true;
+            endAutoScroll();
+        }
+    }
+
+    window.addEventListener('wheel', onUserScrollInput, { passive: true });
+    window.addEventListener('touchstart', onUserScrollInput, { passive: true });
+    window.addEventListener('keydown', onUserScrollInput);
+
     function endAutoScroll() {
         window.clearTimeout(autoTimer);
+        window.removeEventListener('scrollend', endAutoScroll);
         /* Settle: if layout shifted during the glide (header/bar resize), fix the last px once. */
-        if (scrollTarget && html.hasAttribute('data-pf-autoscroll')) {
+        if (scrollTarget && !userTookOver && html.hasAttribute('data-pf-autoscroll')) {
             var fix = targetY(scrollTarget);
             if (Math.abs(fix - window.pageYOffset) > 3) {
                 window.scrollTo(0, fix);
@@ -241,6 +256,7 @@
             return;
         }
         html.setAttribute('data-pf-autoscroll', '');
+        userTookOver = false;
         scrollTarget = target;
         window.clearTimeout(autoTimer);
         autoTimer = window.setTimeout(endAutoScroll, 1400);
