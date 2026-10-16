@@ -191,3 +191,36 @@ body.menu-open{overflow:hidden}
 .plf .plf-form__input{color:#141414;-webkit-text-fill-color:#141414}
 .plf .plf-form__input::placeholder{color:#a2a2a2;-webkit-text-fill-color:#a2a2a2}
 .plf .plf-form__input:-webkit-autofill{-webkit-box-shadow:0 0 0 40px #d0d0d0 inset;-webkit-text-fill-color:#141414}
+
+/* ---- Footer alignment (owner review 2026-10-16) ---- */
+@media (min-width:768px){
+  /* one heading box for every column: same size/line-height, no wraps → first items on one line */
+  .plf .plf__brand,.plf .plf__title{display:block;font-size:22px;line-height:22px;min-height:22px;letter-spacing:-.66px;white-space:nowrap;max-width:none}
+  .plf .plf__brand{font-size:20px;letter-spacing:-.6px}
+  .plf .plf__col,.plf .plf__col--services{gap:43px}
+  .plf .plf__acc-head{min-height:22px}
+}
+/* all legal links identical (incl. monobank), no borders/underline except hover line */
+.plf .plf__list .plf__link,.plf .plf__list .plf__link:visited,.plf .plf__list .plf__link[aria-current]{font-size:16px;line-height:19px;font-weight:500;color:var(--plf-gray);border:0;text-decoration:none;background:none;padding:0}
+.plf .plf__list .plf__link:hover,.plf .plf__list .plf__link:focus-visible{color:var(--plf-white)}
+/* consent: visible light checkbox matching pill fields */
+.plf .plf-form__consent{align-items:flex-start;gap:10px;margin:2px 0 0;padding:0}
+.plf .plf-form__check{left:0;top:0;transform:none;width:20px;height:20px}
+.plf .plf-form__tick{flex:0 0 20px;width:20px;height:20px;border-radius:6px;background:#d0d0d0;border:1px solid #d0d0d0;color:transparent}
+.plf .plf-form__tick svg{width:10px;height:7px}
+.plf .plf-form__consent:hover .plf-form__tick{background:#e6e6e6}
+.plf .plf-form__check:checked+.plf-form__tick{background:var(--plf-orange);border-color:var(--plf-orange);color:#fff}
+.plf .plf-form__check.error+.plf-form__tick{border-color:#ff4d4f;box-shadow:none}
+.plf .plf-form__consent-text{width:auto;max-width:none;flex:1;font-size:12px;line-height:1.35;letter-spacing:-.24px;padding-top:1px}
+@media (max-width:767px){
+  .plf .plf-form__check{width:24px;height:24px}
+  .plf .plf-form__tick{flex-basis:24px;width:24px;height:24px}
+  .plf .plf-form__consent-text{font-size:12px;padding-top:3px}
+}
+/* chat FAB must not cover the form on tablet/small desktop */
+@media (min-width:768px) and (max-width:1279px){.plf__col--form{max-width:420px}}
+/* keep the fixed chat button (right ~24px, 66px wide) clear of the form column */
+@media (min-width:1280px) and (max-width:1599px){.plf__inner{padding-right:90px}}
+@media (min-width:1280px){.plf__cols{column-gap:24px}.plf__col{flex-shrink:0}}
+/* columns grow to fit their (nowrap) heading in every language; Figma widths stay the minimum */
+@media (min-width:1280px){.plf__cols{column-gap:20px}.plf__col--services{width:216px}.plf__col--company{width:120px}.plf__col--legal{width:240px}.plf__col--contacts{width:210px}.plf__col--form{width:262px}}

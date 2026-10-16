@@ -51,7 +51,6 @@
 /* Content always scrolls internally, never wider than the viewport */
 .modal .modal-content {
     box-sizing: border-box;
-    max-width: calc(100vw - 32px) !important;
     max-height: calc(100dvh - 32px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) !important;
     overflow-x: hidden !important;
     overflow-y: auto !important;
@@ -229,4 +228,9 @@
 /* Fallback only for very short screens */
 @media (max-width: 767px) and (max-height: 559px) {
     #call-request-modal .modal-content { overflow-y: auto !important; }
+}
+
+/* Desktop keeps each modal's own width (call modal 500px, centered); only phones force viewport width */
+@media (max-width: 767px) {
+    .modal .modal-content { max-width: calc(100vw - 32px) !important; }
 }
