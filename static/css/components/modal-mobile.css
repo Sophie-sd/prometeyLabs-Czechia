@@ -164,3 +164,69 @@
         font-size: 14px;
     }
 }
+
+/* ===== Lead modal: compact, fits the viewport without internal scroll (mobile) ===== */
+@media (max-width: 767px) {
+    #call-request-modal .modal-content {
+        padding: 6px 16px 14px !important;
+        gap: 10px !important;
+        overflow-y: hidden !important;
+    }
+    #call-request-modal .modal-header { padding-top: 6px; margin: 0 !important; }
+    #call-request-modal .modal-header h3 { font-size: 17px !important; line-height: 1.2; margin: 0 0 2px !important; }
+    #call-request-modal .modal-header p { font-size: 12px !important; line-height: 1.3; margin: 0 !important; padding-right: 44px; }
+    #call-request-modal .modal-direct-contact {
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+        gap: 4px 12px; padding: 8px 10px !important; margin: 0 !important; border-radius: 12px;
+    }
+    #call-request-modal .modal-separator-text { width: 100%; font-size: 11px !important; margin: 0 !important; line-height: 1.2; }
+    #call-request-modal .modal-phone-link { display: inline-block !important; font-size: 14px !important; margin: 0 !important; padding: 0 !important; }
+    #call-request-modal .modal-social-links { gap: 8px !important; }
+    #call-request-modal .modal-social-link { width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; }
+    #call-request-modal .modal-social-link svg,
+    #call-request-modal .modal-social-link img { width: 18px !important; height: 18px !important; }
+    #call-request-modal .modal-form { gap: 0 !important; }
+    #call-request-modal .lead-form-fields { gap: 0 !important; }
+    #call-request-modal .modal-form .form-group { margin: 0 0 8px !important; }
+    #call-request-modal .modal-form .form-label { font-size: 12px !important; line-height: 1.2; margin: 0 0 3px !important; }
+    #call-request-modal .modal-form .form-input,
+    #call-request-modal .lead-form-telegram__wrap {
+        height: 44px !important; min-height: 44px !important; padding-top: 0 !important; padding-bottom: 0 !important; font-size: 16px !important;
+    }
+    #call-request-modal .lead-form-telegram__input { height: 42px !important; min-height: 0 !important; }
+    #call-request-modal .modal-form textarea.form-input,
+    #call-request-modal .modal-form textarea {
+        height: 62px !important; min-height: 62px !important; padding-top: 8px !important; padding-bottom: 8px !important; resize: none;
+    }
+    #call-request-modal .lead-form-checkbox,
+    #call-request-modal .form-checkbox { font-size: 12px !important; line-height: 1.3 !important; }
+    #call-request-modal .lead-form-expect { font-size: 11px !important; margin: 0 !important; }
+    #call-request-modal .modal-form .form-submit { min-height: 44px !important; padding: 10px 16px !important; margin-top: 6px !important; font-size: 15px !important; }
+}
+@media (max-width: 767px) and (max-height: 600px) {
+    #call-request-modal .modal-content { gap: 6px !important; padding-bottom: 10px !important; }
+    #call-request-modal .modal-form .form-group { margin-bottom: 5px !important; }
+    #call-request-modal .modal-form .form-input,
+    #call-request-modal .lead-form-telegram__wrap { height: 40px !important; min-height: 40px !important; }
+    #call-request-modal .lead-form-telegram__input { height: 38px !important; }
+    #call-request-modal .modal-form textarea.form-input,
+    #call-request-modal .modal-form textarea { height: 52px !important; min-height: 52px !important; }
+}
+/* Lead modal compact layout: contact fields in two columns, one-row contact card */
+@media (max-width: 767px) {
+    #call-request-modal .lead-form-fields {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 8px;
+    }
+    #call-request-modal .lead-form-fields > * { grid-column: 1 / -1; min-width: 0; }
+    #call-request-modal .lead-form-fields > .form-group:nth-child(-n+4):not(:has(textarea)):not(:has(input[type="checkbox"])) { grid-column: auto; }
+    #call-request-modal .modal-direct-contact { gap: 2px 10px !important; padding: 6px 10px !important; }
+    #call-request-modal .modal-separator-text { width: auto !important; }
+    #call-request-modal .modal-social-link { width: 32px !important; height: 32px !important; min-width: 32px !important; min-height: 32px !important; }
+}
+
+/* Fallback only for very short screens */
+@media (max-width: 767px) and (max-height: 559px) {
+    #call-request-modal .modal-content { overflow-y: auto !important; }
+}
