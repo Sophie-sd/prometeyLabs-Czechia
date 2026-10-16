@@ -86,10 +86,11 @@
             return;
         }
 
-        asset.style.width = '100%';
-        asset.style.transition = 'none';
-        void asset.offsetWidth;
-        asset.style.transition = 'width ' + SHRINK_MS + 'ms ' + EASE;
+        /* Compositor-only shrink: the frame keeps its layout box; clip-path + picture scale animate
+           (no width transition -> no per-frame layout / layout shift while the user scrolls). */
+        asset.style.setProperty('--pf-ms', SHRINK_MS + 'ms');
+        asset.style.setProperty('--pf-ease', EASE);
+        asset.classList.add('pf-anim');
 
         requestAnimationFrame(function () {
             requestAnimationFrame(function () {
@@ -97,7 +98,6 @@
                     return;
                 }
                 asset.classList.add('is-shrinking');
-                asset.style.width = '';
             });
         });
 
@@ -112,9 +112,8 @@
             if (genOf(panel) !== gen) {
                 return;
             }
-            asset.style.width = '';
-            asset.style.transition = '';
             asset.classList.add('is-shrinking', 'is-done');
+            asset.classList.remove('pf-anim');
             panel.setAttribute('data-done', '1');
         }, SETTLE_MS);
     }
@@ -223,7 +222,32 @@
         panels.forEach(finishPanel);
     }
 
+    /* --pf-k = panel width / final frame width: the pre-play picture scale (desktop CSS). */
+    function measureK() {
+        if (!isDesktop()) {
+            return;
+        }
+        panels.forEach(function (panel) {
+            var pic = panel.querySelector('[data-snap-asset] picture');
+            var w = pic ? pic.offsetWidth : 0;
+            if (w > 0) {
+                panel.style.setProperty('--pf-k', String(panel.clientWidth / w));
+            }
+        });
+    }
+
+    var kRaf = 0;
+    window.addEventListener('resize', function () {
+        if (!kRaf) {
+            kRaf = requestAnimationFrame(function () {
+                kRaf = 0;
+                measureK();
+            });
+        }
+    }, { passive: true });
+
     function boot() {
+        measureK();
         if (prm.matches) {
             applyPrm();
             return;
@@ -257,7 +281,7 @@
         panel.removeAttribute('data-done');
         panel.removeAttribute('data-playing');
         if (asset) {
-            asset.classList.remove('is-shrinking', 'is-done');
+            asset.classList.remove('is-shrinking', 'is-done', 'pf-anim');
             asset.style.width = '';
             asset.style.transition = '';
             asset.style.willChange = '';

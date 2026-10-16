@@ -1036,3 +1036,74 @@ html.pfg-fab-dodge .mobile-contact-fab {
 html {
     overflow-anchor: none;
 }
+
+
+/*
+ * Compositor-only brand-snap shrink (desktop/tablet, owner 2026-10-16 "pull-back while scrolling").
+ * The frame's layout box no longer changes width (that relaid out the card every frame for 1 s).
+ * Visible frame = clip-path (full row -> final width); screenshot = picture at the final width,
+ * scaled by --pf-k (row / final) -> 1. Both share the same duration/easing, so the frame edge and
+ * the image width move together exactly as the old width transition did.
+ */
+@media (min-width: 768px) {
+    .pf-snaps .pf-snap {
+        --pf-w: min(calc(790 / 1330 * 100%), calc(var(--pfg-frame-max) * 790 / 787));
+    }
+
+    .pf-snaps .pf-snap .pf-snap__asset,
+    .pf-snaps .pf-snap--flip .pf-snap__asset,
+    .pf-snaps .pf-snap .pf-snap__asset.is-shrinking,
+    .pf-snaps .pf-snap .pf-snap__asset.is-done {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        background: transparent;
+        clip-path: inset(0 round 20px);
+    }
+
+    .pf-snaps .pf-snap .pf-snap__asset picture {
+        width: var(--pf-w);
+        height: 100%;
+        margin-left: auto;
+        transform-origin: right top;
+        transform: scale(var(--pf-k, 1));
+        background: #0d0d0d;
+    }
+
+    .pf-snaps .pf-snap--flip .pf-snap__asset picture {
+        margin-left: 0;
+        margin-right: auto;
+        transform-origin: left top;
+    }
+
+    .pf-snaps .pf-snap .pf-snap__asset.is-shrinking {
+        clip-path: inset(0 0 0 calc(100% - var(--pf-w)) round 20px);
+    }
+
+    .pf-snaps .pf-snap--flip .pf-snap__asset.is-shrinking {
+        clip-path: inset(0 calc(100% - var(--pf-w)) 0 0 round 20px);
+    }
+
+    .pf-snaps .pf-snap .pf-snap__asset.is-shrinking picture {
+        transform: none;
+    }
+
+    .pf-snaps .pf-snap .pf-snap__asset.pf-anim {
+        transition: clip-path var(--pf-ms, 1000ms) var(--pf-ease, cubic-bezier(0.23, 1, 0.32, 1));
+    }
+
+    .pf-snaps .pf-snap .pf-snap__asset.pf-anim picture {
+        transition: transform var(--pf-ms, 1000ms) var(--pf-ease, cubic-bezier(0.23, 1, 0.32, 1));
+        will-change: transform;
+    }
+
+    .pf-snaps .pf-snap--resetting .pf-snap__asset picture {
+        transition: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .pf-snaps .pf-snap {
+        --pf-w: min(56%, calc(var(--pfg-frame-max) * 790 / 787));
+    }
+}
