@@ -113,7 +113,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     {% block page_css %}{% endblock %}
     {% block extra_css %}{% endblock %}
     <link rel="stylesheet" href="{% static 'css/components/figma-pages.css' %}?v=3">
-    <link rel="stylesheet" href="{% static 'css/components/modal-mobile.css' %}?v=2">
+    <link rel="stylesheet" href="{% static 'css/components/modal-mobile.css' %}?v=3">
 
     <!-- Activate non-blocking CSS as soon as it loads (eliminates FOUC, no defer wait) -->
     <script nonce="{{ csp_nonce }}">
@@ -261,7 +261,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
     {% block analytics %}{% endblock %}
 
-    <script src="{% static 'js/components/footer-menu-figma.js' %}?v=1" nonce="{{ csp_nonce }}" defer></script>
+    <script src="{% static 'js/components/footer-menu-figma.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
 </body>
 
 </html>

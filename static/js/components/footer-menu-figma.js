@@ -6,7 +6,6 @@
         document.querySelectorAll('[data-plf-acc]').forEach(function (col, i) {
             var head = col.querySelector('.plf__acc-head');
             if (!head) return;
-            if (i === 0) col.classList.add('is-open');
             head.addEventListener('click', function () {
                 if (!mq.matches) return;
                 var open = col.classList.toggle('is-open');

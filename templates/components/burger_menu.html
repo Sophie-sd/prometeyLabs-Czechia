@@ -24,8 +24,8 @@
         <div class="plm__nav">
             <a href="{% url 'home' %}" class="plm__link mobile-nav-link{% if rn == 'home' %} is-active{% endif %}">{% trans "Головна" %}<span class="plm__dot" aria-hidden="true"></span></a>
             <a href="{% url 'portfolio' %}" class="plm__link mobile-nav-link{% if rn == 'portfolio' %} is-active{% endif %}">{% trans "Портфоліо" %}<span class="plm__dot" aria-hidden="true"></span></a>
-            <div class="plm__group{% if rn == 'internet_shop_v2' or rn == 'corporate_website_v2' or rn == 'telegram_bot' %} is-active is-open{% endif %}">
-                <button type="button" class="plm__link plm__toggle" aria-expanded="{% if rn == 'internet_shop_v2' or rn == 'corporate_website_v2' or rn == 'telegram_bot' %}true{% else %}false{% endif %}">{% trans "Послуги" %}<span class="plm__dot" aria-hidden="true"></span></button>
+            <div class="plm__group{% if rn == 'internet_shop_v2' or rn == 'corporate_website_v2' or rn == 'telegram_bot' %} is-active{% endif %}">
+                <button type="button" class="plm__link plm__toggle" aria-expanded="false">{% trans "Послуги" %}<span class="plm__dot" aria-hidden="true"></span></button>
                 <div class="plm__sub">
                     <a href="{% url 'internet_shop_v2' %}" class="plm__sublink mobile-nav-link{% if rn == 'internet_shop_v2' %} is-active{% endif %}">{% trans "Інтернет-магазини" %}</a>
                     <a href="{% url 'corporate_website_v2' %}" class="plm__sublink mobile-nav-link{% if rn == 'corporate_website_v2' %} is-active{% endif %}">{% trans "Корпоративні сайти та лендінги" %}</a>
