@@ -8,8 +8,8 @@
             <button type="button" class="hf-btn hf-btn--light hf-btn--lg" data-modal="call-request-modal">{% trans "Залишити заявку" %}</button>
             <a href="{% url 'calculator' %}" class="hf-btn hf-btn--ghost hf-btn--lg">{% trans "Розрахувати вартість" %}</a>
             <a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" class="hf-btn hf-btn--ghost hf-btn--lg" target="_blank" rel="noopener">{% trans "telegram-консультація" %}</a>
-            {% if site_contact.get_whatsapp_href %}
-            <a href="{{ site_contact.get_whatsapp_href }}" class="hf-btn hf-btn--ghost hf-btn--lg" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            {% if site_contact.whatsapp_url %}
+            <a href="{{ site_contact.whatsapp_url }}" class="hf-btn hf-btn--ghost hf-btn--lg" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             {% endif %}
         </div>
     </div>

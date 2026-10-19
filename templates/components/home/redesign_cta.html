@@ -31,8 +31,8 @@
                 <span>{% trans "telegram-консультація" %}</span>
                 <span class="v2-arrow" aria-hidden="true">→</span>
             </a>
-            {% if site_contact.get_whatsapp_href %}
-            <a href="{{ site_contact.get_whatsapp_href }}" class="v2-btn v2-btn-lg" target="_blank" rel="noopener noreferrer">
+            {% if site_contact.whatsapp_url %}
+            <a href="{{ site_contact.whatsapp_url }}" class="v2-btn v2-btn-lg" target="_blank" rel="noopener noreferrer">
                 <span>WhatsApp</span>
                 <span class="v2-arrow" aria-hidden="true">→</span>
             </a>
