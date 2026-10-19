@@ -58,7 +58,7 @@ PORTFOLIO_I18N_CS = {
     ),
     'ajeres': loc(
         'AJERES',
-        'Food distributor',
+        'Distributor potravin',
         'Anglický web dovozce a distributora potravin v Uzbekistánu: exkluzivní značky, logistika a vstup výrobců na trh.',
         ('katalog značek', 'vícejazyčnost (EN/RU/UZ)', 'formulář pro partnery', 'logistické trasy'),
     ),
@@ -291,7 +291,7 @@ PORTFOLIO_I18N_CS = {
         CORP_TAGS_CS,
     ),
     'deksor': loc(
-        'TOV Dexor',
+        'Dexor',
         'Digitální produkty',
         'Web společnosti digitálních produktů a LED řešení: katalog, poptávka, kontakty.',
         CORP_TAGS_CS,

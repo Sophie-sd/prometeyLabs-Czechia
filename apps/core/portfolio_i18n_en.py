@@ -291,7 +291,7 @@ PORTFOLIO_I18N_EN = {
         CORP_TAGS_EN,
     ),
     'deksor': loc(
-        'TOV Dexor',
+        'Dexor',
         'Digital products',
         'Digital products and LED solutions company site: catalogue, enquiry, contacts.',
         CORP_TAGS_EN,
