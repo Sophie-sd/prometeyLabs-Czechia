@@ -1,33 +1,33 @@
-# https://www.prometeylabs.com/robots.txt
-# Disallow лише блокує краулерів — на роботу сайту для користувачів не впливає.
+# https://prometeylabs.cz/robots.txt
+# Disallow only blocks crawlers; it does not affect the site for visitors.
 
 User-agent: *
 Allow: /
 
-# Адмінка та редактор
+# Admin and editor
 Disallow: /admin/
 Disallow: /tinymce/
 
-# Службові ендпоінти
+# Service endpoints
 Disallow: /i18n/
 Disallow: /forms/
 Disallow: /*/forms/
 Disallow: /webhook/
 Disallow: /*/webhook/
 
-# Оплата (усі локалі)
+# Payment (all locales)
 Disallow: /payment/
 Disallow: /*/payment/
 
-# Сторінка подяки після заявки
+# Thank-you page after a request
 Disallow: /thank-you/
 Disallow: /*/thank-you/
 
-# Пошук блогу (тонкий / дубльований контент)
+# Blog search (thin / duplicate content)
 Disallow: /blog/search/
 Disallow: /*/blog/search/
 
-# Demo-тенанти КП (приватні, теж <meta name="robots" content="noindex">)
+# Demo tenants for proposals (private, also <meta name="robots" content="noindex">)
 Disallow: /demo/
 Disallow: /*/demo/
 Disallow: /demo-landing/
@@ -35,4 +35,4 @@ Disallow: /*/demo-landing/
 Disallow: /demo-site/
 Disallow: /*/demo-site/
 
-Sitemap: https://www.prometeylabs.com/sitemap.xml
+Sitemap: https://prometeylabs.cz/sitemap.xml
