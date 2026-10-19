@@ -9,12 +9,14 @@
     var IS_EN = (document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0;
     var MSG = IS_EN ? {
         name: 'Enter a valid name',
+        consent: 'Please confirm consent to personal data processing.',
         phone: 'Enter a valid phone number',
         email: 'Enter a valid email',
         sending: 'Sending failed. Please try again.',
         network: 'Network error. Please try again.'
     } : {
         name: 'Zadejte platné jméno',
+        consent: 'Potvrďte prosím souhlas se zpracováním osobních údajů.',
         phone: 'Zadejte platné telefonní číslo',
         email: 'Zadejte platný e-mail',
         sending: 'Odeslání se nezdařilo. Zkuste to znovu.',
@@ -115,9 +117,11 @@
             var nameInput = form.querySelector('#pl-tz-quiz-name');
             var phoneInput = form.querySelector('#pl-tz-quiz-phone');
             var emailInput = form.querySelector('#pl-tz-quiz-email');
+            var consentInput = form.querySelector('#pl-tz-quiz-consent');
             return validName(nameInput && nameInput.value) &&
                 validPhone(phoneInput && phoneInput.value) &&
-                validEmail(emailInput && emailInput.value);
+                validEmail(emailInput && emailInput.value) &&
+                (!consentInput || consentInput.checked);
         }
 
         function syncSubmitEnabled() {
@@ -197,6 +201,11 @@
 
         form.addEventListener('change', function (e) {
             var input = e.target;
+            if (input.name === 'consent') {
+                setError('');
+                syncSubmitEnabled();
+                return;
+            }
             if (input.type !== 'radio' && input.type !== 'checkbox') return;
             applyOptionSelection(input);
         });
@@ -313,6 +322,12 @@
                 emailInput.focus();
                 return;
             }
+            var consentInput = form.querySelector('#pl-tz-quiz-consent');
+            if (consentInput && !consentInput.checked) {
+                setError(MSG.consent);
+                consentInput.focus();
+                return;
+            }
 
             var quiz = {
                 site_type: getRadioValue('site_type'),
@@ -331,6 +346,11 @@
             fd.append('phone', phoneInput.value.trim());
             fd.append('email', emailInput.value.trim());
             fd.append('quiz', JSON.stringify(quiz));
+            // GDPR consent + gclid/UTM/landing (same as other lead forms via gclid-capture.js)
+            if (consentInput && consentInput.checked) fd.append('consent', '1');
+            if (window.GCLIDCapture && typeof window.GCLIDCapture.appendToFormData === 'function') {
+                window.GCLIDCapture.appendToFormData(fd);
+            }
 
             var submitUrl = root.dataset.tzSubmit;
             if (!submitUrl) return;
