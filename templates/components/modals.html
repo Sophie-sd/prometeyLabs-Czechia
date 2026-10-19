@@ -2,32 +2,6 @@
 {% load static %}
 <!-- Modals per STYLE.MDC -->
 
-<!-- "Become a developer" modal -->
-<div class="modal" id="developer-modal" role="dialog" aria-labelledby="developer-modal-title" aria-hidden="true">
-    <div class="modal-backdrop"></div>
-    <div class="modal-content">
-        <button class="modal-close" type="button" aria-label="{% trans 'Zavřít' %}">&times;</button>
-
-        <div class="modal-header">
-            <h3 class="text-medium color-brand-orange mb-sm" id="developer-modal-title">
-                {% trans "Chci se stát vývojářem" %}
-            </h3>
-            <p class="text-base mb-md">
-                {% trans "Zanechte kontakt — ozveme se vám ohledně spolupráce." %}
-            </p>
-        </div>
-
-        <form class="modal-form" id="developer-form" method="post" data-form-type="developer">
-            {% csrf_token %}
-            <input type="hidden" name="form_type" value="developer">
-            {% include 'components/lead_form_fields.html' with prefix='dev' compact=True %}
-            <button type="submit" class="btn btn-primary form-submit mobile-touch-target">
-                {% trans "Nezávazná poptávka" %}
-            </button>
-        </form>
-    </div>
-</div>
-
 <!-- Lead modal (FAB / Nezávazná poptávka) -->
 <div class="modal" id="call-request-modal" role="dialog" aria-labelledby="call-modal-title" aria-hidden="true">
     <div class="modal-backdrop"></div>

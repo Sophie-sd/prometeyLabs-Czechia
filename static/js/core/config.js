@@ -74,14 +74,12 @@ export const CONFIG = {
     formTypes: {
         test: 'test',
         contact: 'contact',
-        developer: 'developer',
         siteRequest: 'site_request',
         callRequest: 'call_request',
     },
 
     // ===== MODAL IDS =====
     modals: {
-        developer: 'developer-modal',
         siteRequest: 'site-request-modal',
         callRequest: 'call-request-modal',
     },

@@ -99,7 +99,7 @@ class CalculatorView(BasePageView):
     meta_description = _('Розрахуйте вартість створення сайту онлайн. Сучасні технології знижують ціну розробки. Тест для точного розрахунку вартості проекту.')
 
 class DeveloperView(BasePageView):
-    """Landing курсів тимчасово прихований — заявки через developer-modal на інших сторінках."""
+    """Landing курсів тимчасово прихований; модалку «Chci se stát vývojářem» прибрано (CZ ads, 19.10.2026)."""
 
     def dispatch(self, request, *args, **kwargs):
         return redirect('home')
