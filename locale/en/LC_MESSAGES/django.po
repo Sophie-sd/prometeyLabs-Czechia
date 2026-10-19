@@ -6496,8 +6496,9 @@ msgid "Chci se stát vývojářem"
 msgstr "I want to become a developer"
 
 #: templates/components/modals.html:16
-msgid "Zanechte kontakt — ozveme se ohledně kurzů programování."
-msgstr "Leave your contact details — we will get back about programming courses."
+msgid "Zanechte kontakt — ozveme se vám ohledně spolupráce."
+msgstr ""
+"Leave your contact details — we will get back to you about working together."
 
 #: templates/components/modals.html:42
 msgid "Zanechte kontakt — ozveme se co nejdříve."

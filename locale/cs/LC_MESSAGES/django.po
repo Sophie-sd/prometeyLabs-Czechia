@@ -6540,7 +6540,7 @@ msgid "Chci se stát vývojářem"
 msgstr ""
 
 #: templates/components/modals.html:16
-msgid "Zanechte kontakt — ozveme se ohledně kurzů programování."
+msgid "Zanechte kontakt — ozveme se vám ohledně spolupráce."
 msgstr ""
 
 #: templates/components/modals.html:42
