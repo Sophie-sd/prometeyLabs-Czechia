@@ -6087,10 +6087,6 @@ msgstr "Full deployment on hosting"
 msgid "Контент-маркетинг: SEO-статті"
 msgstr "Content marketing: SEO articles"
 
-#: templates/components/internet_shop_v2/packages.html:80
-msgid "10 органічних відгуків у Google Maps"
-msgstr "Google Business Profile setup + review request flow for real customers"
-
 #: templates/components/internet_shop_v2/packages.html:81
 msgid "1 рекламний кабінет + перша кампанія"
 msgstr "1 ad account + first campaign"
@@ -6146,10 +6142,6 @@ msgstr "Full deployment on a hosting platform"
 #: templates/components/internet_shop_v2/packages.html:106
 msgid "6 місяців контент-маркетингу та SEO-статей"
 msgstr "6 months of content marketing and SEO articles"
-
-#: templates/components/internet_shop_v2/packages.html:107
-msgid "60 органічних відгуків у Google Maps"
-msgstr "Google Business Profile setup + review request flow for real customers"
 
 #: templates/components/internet_shop_v2/packages.html:108
 msgid "Медіакампанія: до 5 кампаній, 3 міс. (Meta, Google, TikTok)"
@@ -6295,18 +6287,6 @@ msgstr "Integration into workflow"
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:70
 msgid "6 місяців регулярного ведення"
 msgstr "6 months of ongoing management"
-
-#: templates/components/internet_shop_v2/pkg_matrix_table.html:73
-msgid "Органічні відгуки Google Maps"
-msgstr "Google Business Profile setup + review request flow for real customers"
-
-#: templates/components/internet_shop_v2/pkg_matrix_table.html:75
-msgid "10 відгуків"
-msgstr "Yes"
-
-#: templates/components/internet_shop_v2/pkg_matrix_table.html:76
-msgid "60 відгуків"
-msgstr "Yes"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:81
 msgid "1 кабінет / 1 кампанія (старт)"

@@ -123,18 +123,7 @@ PORTFOLIO_PROJECTS_3 = [
         site_url='https://choboty.store/',
         order=36,
     ),
-    card(
-        slug='maison-polina',
-        title='Maison Polina',
-        subtitle='КОМПАНЬЙОН',
-        title_ru='Maison Polina',
-        subtitle_ru='КОМПАНЬОН',
-        desc='Лендінг сервісу компаньйона: формат супроводу, заявка, контакти.',
-        desc_ru='Лендинг сервиса компаньона: формат сопровождения, заявка, контакты.',
-        tags=LANDING_TAGS,
-        site_url='https://maisonpolina.com.ua/',
-        order=22,
-    ),
+    # maison-polina — знято з портфоліо (№46, рішення 19.10.2026); міграція core.0037.
     card(
         slug='zelin',
         title='Zelin',

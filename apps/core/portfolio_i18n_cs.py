@@ -242,12 +242,6 @@ PORTFOLIO_I18N_CS = {
         'Landing obuvnické značky: kolekce, poptávka / objednávka, kontakty obchodu.',
         LANDING_TAGS_CS,
     ),
-    'maison-polina': loc(
-        'Maison Polina',
-        'Společnice',
-        'Landing služby společnice: formáty doprovodu, poptávka, kontakty.',
-        LANDING_TAGS_CS,
-    ),
     'zelin': loc(
         'Zelin',
         'Ochrana dlažby',

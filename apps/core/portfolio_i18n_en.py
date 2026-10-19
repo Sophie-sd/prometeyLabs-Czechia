@@ -242,12 +242,6 @@ PORTFOLIO_I18N_EN = {
         'Footwear-brand landing: collections, order enquiry, store contacts.',
         LANDING_TAGS_EN,
     ),
-    'maison-polina': loc(
-        'Maison Polina',
-        'Companion service',
-        'Companion-service landing: formats of accompaniment, enquiry, contacts.',
-        LANDING_TAGS_EN,
-    ),
     'zelin': loc(
         'Zelin',
         'Tile protection',

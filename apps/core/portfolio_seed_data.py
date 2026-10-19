@@ -49,7 +49,7 @@ HOME_CLIENTS = [
 # Seed виставляє прапорець лише при створенні рядка (fill-only), існуючі рядки
 # оновлює міграція core.0034 тільки якщо там ще значення за замовчуванням.
 # Не входять: ajeres (Узбекистан, EN-знімок), zatyshnyi-dvir (доставка
-# Zásilkovna — уточнити країну), maison-polina (№46 — не чіпаємо до рішення).
+# Zásilkovna — уточнити країну), maison-polina (№46 — знято з портфоліо, core.0037).
 UKRAINE_CLIENT_SLUGS = frozenset({
     'aniloks', 'auction-center', 'auto-lot', 'beauty-opt', 'beautycake', 'benzovoz',
     'boltiko', 'carpet-haus', 'caryvibe', 'choboty', 'deksor', 'diodi', 'distageavto',

@@ -156,7 +156,6 @@ CATEGORY_BY_SLUG = {
     'aniloks': CATEGORY_LANDING,
     'queendrive': CATEGORY_LANDING,
     'choboty': CATEGORY_LANDING,
-    'maison-polina': CATEGORY_LANDING,
     'zelin': CATEGORY_LANDING,
     # Everything else (catalogue + request, clinics, organisations) = corporate.
 }
