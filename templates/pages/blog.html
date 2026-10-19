@@ -122,9 +122,11 @@
                     class="category-filter {% if category == 'web-development' %}active{% endif %}">
                     {% trans "Веб-розробка" %}
                 </a>
+                {% comment %}№70 (аудит 19.10.2026): категорію «Kurzy programování» сховано на .cz.
                 <a href="?category=courses" class="category-filter {% if category == 'courses' %}active{% endif %}">
                     {% trans "Курси програмування" %}
                 </a>
+                {% endcomment %}
                 <a href="?category=telegram-bots"
                     class="category-filter {% if category == 'telegram-bots' %}active{% endif %}">
                     {% trans "Telegram боти" %}

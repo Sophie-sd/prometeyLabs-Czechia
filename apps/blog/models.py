@@ -4,6 +4,17 @@ from django.utils.html import strip_tags
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
+# Категорії, сховані на публічному сайті prometeylabs.cz (аудит 19.10.2026, №70).
+# Статті НЕ видаляються і лишаються в адмінці; прибираються лише з публічних
+# списків, пошуку, «схожих», sitemap, а detail віддає 404.
+HIDDEN_PUBLIC_CATEGORIES = ('courses',)
+
+
+class BlogPostQuerySet(models.QuerySet):
+    def public(self):
+        """Опубліковані статті без схованих на .cz категорій."""
+        return self.filter(is_published=True).exclude(category__in=HIDDEN_PUBLIC_CATEGORIES)
+
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=200, verbose_name=_("Заголовок"))
@@ -49,6 +60,8 @@ class BlogPost(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Створено"))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Оновлено"))
     is_published = models.BooleanField(default=True, verbose_name=_("Опубліковано"))
+
+    objects = BlogPostQuerySet.as_manager()
     
     class Meta:
         ordering = ['-created_at']

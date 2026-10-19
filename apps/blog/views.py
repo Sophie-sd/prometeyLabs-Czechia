@@ -9,7 +9,7 @@ from .models import BlogPost
 def blog_list(request):
     """Список статей блогу з фільтрацією"""
     try:
-        posts = BlogPost.objects.filter(is_published=True)
+        posts = BlogPost.objects.public()
         category = request.GET.get('category')
         if category:
             posts = posts.filter(category=category)
@@ -20,9 +20,7 @@ def blog_list(request):
         page_obj = paginator.get_page(page_number)
         
         # Популярні статті
-        popular_posts = BlogPost.objects.filter(
-            is_published=True
-        ).order_by('-created_at')[:3]
+        popular_posts = BlogPost.objects.public().order_by('-created_at')[:3]
         
     except Exception:
         # Fallback якщо таблиці не існують
@@ -50,7 +48,7 @@ class BlogDetailView(DetailView):
     
     def get_queryset(self):
         try:
-            return BlogPost.objects.filter(is_published=True)
+            return BlogPost.objects.public()
         except Exception:
             return BlogPost.objects.none()
     
@@ -66,9 +64,8 @@ class BlogDetailView(DetailView):
         context['keywords'] = post.get_localized_keywords()
         
         # Пов'язані статті
-        related_posts = BlogPost.objects.filter(
+        related_posts = BlogPost.objects.public().filter(
             category=post.category,
-            is_published=True
         ).exclude(id=post.id)[:3]
         context['related_posts'] = related_posts
         
@@ -79,7 +76,7 @@ def blog_search(request):
     """Пошук по блогу"""
     query = request.GET.get('q', '')
     try:
-        posts = BlogPost.objects.filter(is_published=True)
+        posts = BlogPost.objects.public()
         
         if query:
             posts = posts.filter(
