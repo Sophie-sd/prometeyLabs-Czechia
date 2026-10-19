@@ -353,6 +353,10 @@ SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
 if DEBUG:
     SITE_URL = os.environ.get('SITE_URL', 'http://localhost:8000')
 
+# SEO: absolute base for canonical / hreflang / og:url / sitemap / JSON-LD.
+# Always the public .cz domain (never request host, never prometeylabs.com).
+CANONICAL_BASE = os.environ.get('CANONICAL_BASE', 'https://prometeylabs.cz').rstrip('/')
+
 # FACEBOOK PIXEL
 FACEBOOK_PIXEL_ID = os.environ.get('FACEBOOK_PIXEL_ID', '1991082531458369')
 

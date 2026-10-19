@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load seo_tags %}
 {% load i18n %}
 
 {% block body_attrs %} class="pl-bot-body" data-modal-source-page="telegram-bot-modal"{% endblock %}
@@ -12,10 +13,6 @@
 
 {% block extra_head %}
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.prometeylabs.com{% url 'telegram_bot' %}">
-<link rel="alternate" hreflang="cs" href="https://www.prometeylabs.com/telegram-bot/">
-<link rel="alternate" hreflang="en" href="https://www.prometeylabs.com/en/telegram-bot/">
-<link rel="alternate" hreflang="x-default" href="https://www.prometeylabs.com/telegram-bot/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script type="application/ld+json">
@@ -26,10 +23,10 @@
   "provider": {
     "@type": "Organization",
     "name": "PrometeyLabs",
-    "url": "https://www.prometeylabs.com"
+    "url": "{% site_url '/' %}"
   },
   "description": "{% trans "Telegram-бот для заявок, запису, CRM та оплати в чаті. Індивідуальний кошторис після брифу." %}",
-  "url": "https://www.prometeylabs.com{% url 'telegram_bot' %}",
+  "url": "{% canonical_url %}",
   "areaServed": "CZ"
 }
 </script>

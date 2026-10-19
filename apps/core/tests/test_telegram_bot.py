@@ -95,7 +95,11 @@ class TelegramBotPageTests(TestCase):
 
     def test_hreflang_and_canonical_use_url_tag_pattern(self):
         html = self.client.get('/telegram-bot/').content.decode()
-        self.assertIn('https://www.prometeylabs.com/telegram-bot/', html)
+        self.assertEqual(
+            html.count('<link rel="canonical" href="https://prometeylabs.cz/telegram-bot/">'), 1
+        )
+        self.assertNotIn('prometeylabs.com/telegram-bot', html)
+        self.assertEqual(html.count('hreflang="'), 3)
         self.assertIn('hreflang="cs"', html)
         self.assertIn('hreflang="en"', html)
         self.assertIn('hreflang="x-default"', html)
