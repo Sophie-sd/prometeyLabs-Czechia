@@ -10680,7 +10680,7 @@ msgid "Ціна і строк"
 msgstr "Cena a termín"
 
 msgid "Лендінг 400–700 €, 3–7 днів"
-msgstr "Landing page 400–700 €, 3–7 dní"
+msgstr "Landing page 400–700 €, 3–7 dní"
 
 msgid "Односторінковий сайт із формою заявок, технічним SEO, аналітикою і трекінгом, доменом і захищеним з’єднанням"
 msgstr "Jednostránkový web s poptávkovým formulářem, technickým SEO, analytikou a měřením, doménou a zabezpečeným připojením"
@@ -10804,7 +10804,7 @@ msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
 #: templates/components/internet_shop_v2/packages.html:36
 msgid "від 1 400 €"
-msgstr "od 1 400 €"
+msgstr "od 1 400 €"
 
 msgid "на основі виконаного проєкту"
 msgstr "na základě realizovaného projektu"
