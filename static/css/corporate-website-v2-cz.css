@@ -10,3 +10,9 @@
 .pl-corp__free-analysis-gdpr .lead-form-checkbox input { flex: 0 0 auto; width: 16px; height: 16px; margin-top: 1px; accent-color: #ff6600; }
 .pl-corp__free-analysis-gdpr .lead-form-policy-link { color: #ff6600; }
 .pl-corp__free-analysis-gdpr .lead-form-expect { margin: 0; font-size: 12px; color: var(--pl-gray, #a2a2a2); }
+
+/* Free analysis: phone / e-mail / Telegram (any one required) */
+.pl-corp__lead-cta-fields { display: flex; flex-direction: column; gap: 10px; }
+.pl-corp__field-input--plain { padding-left: 20px; }
+.pl-corp__lead-cta-rule { margin: 0; font-size: 12px; color: var(--pl-danger, #ff6b6b); }
+.pl-corp__lead-cta-rule[hidden] { display: none; }

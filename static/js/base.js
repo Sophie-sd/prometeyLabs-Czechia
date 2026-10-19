@@ -588,6 +588,10 @@ class PrometeyApp {
                 const cleanedValue = mask.getCleanedValue();
                 formData.set('phone', cleanedValue);
             }
+            // Prefix-only phone (e.g. "+420") counts as empty, so e-mail/Telegram-only leads pass server validation
+            if (phoneField && String(formData.get('phone') || '').replace(/\D/g, '').length <= 3) {
+                formData.set('phone', '');
+            }
 
             // Зберігаємо дані користувача
             this.saveUserData(formData);
