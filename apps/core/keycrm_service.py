@@ -2,6 +2,7 @@
 KeyCRM API інтеграція.
 Створення карток воронки та отримання даних через OpenAPI.
 """
+import re
 import requests
 import logging
 from django.conf import settings
@@ -11,6 +12,32 @@ logger = logging.getLogger(__name__)
 
 KEYCRM_BASE_URL = 'https://openapi.keycrm.app/v1'
 REQUEST_TIMEOUT = 15
+
+
+# #8: зайвий національний 0 після коду країни ('+420 0777…' → '+420777…').
+# Без роздільника — лише для кодів, де національний номер ніколи не починається з 0.
+_TRUNK_ZERO_SAFE_CC = ('420', '421', '380')
+# Італія / Сан-Марино / Ватикан: 0 — частина номера, не чіпаємо.
+_TRUNK_ZERO_KEEP_CC = {'39', '378', '379'}
+_PHONE_TRUNK_SEP_RE = re.compile(
+    r'^\+(\d{1,3})(?:[\s.\-/]+\(?0\)?|\(0\))[\s.\-/]*(\d[\d\s.\-/()]*)$'
+)
+_PHONE_TRUNK_NOSEP_RE = re.compile(
+    r'^\+(' + '|'.join(_TRUNK_ZERO_SAFE_CC) + r')0(\d[\d\s.\-/()]*)$'
+)
+
+
+def normalize_phone_for_crm(phone):
+    """Мінімальна нормалізація для KeyCRM: прибирає національний 0 після +код.
+    Якщо шаблон не збігся — номер повертається без змін."""
+    raw = (phone or '').strip()
+    match = _PHONE_TRUNK_SEP_RE.match(raw) or _PHONE_TRUNK_NOSEP_RE.match(raw)
+    if not match or match.group(1) in _TRUNK_ZERO_KEEP_CC:
+        return raw
+    rest = re.sub(r'\D', '', match.group(2))
+    if len(match.group(1) + rest) < 7:
+        return raw
+    return f'+{match.group(1)}{rest}'
 
 
 def _to_int(value):
@@ -158,7 +185,7 @@ class KeyCRMService:
             'title': f'{submission.get_form_type_display()} - {submission.name}',
             'contact': {
                 'full_name': submission.name,
-                'phone': submission.phone,
+                'phone': normalize_phone_for_crm(submission.phone),
             },
         }
 
