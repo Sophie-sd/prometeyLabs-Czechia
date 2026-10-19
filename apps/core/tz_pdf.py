@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import io
+from datetime import timezone as dt_timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -9,6 +10,20 @@ from django.conf import settings
 from django.contrib.staticfiles.finders import find
 from django.template.loader import render_to_string
 from django.utils import translation
+from django.utils import timezone
+from zoneinfo import ZoneInfo
+
+# Дата в PDF — місцевий час CZ (created_at зберігається в UTC). #57
+TZ_PDF_TIMEZONE = ZoneInfo('Europe/Prague')
+
+
+def format_tz_created(created_at) -> str:
+    if created_at is None:
+        return ''
+    if timezone.is_naive(created_at):
+        created_at = timezone.make_aware(created_at, dt_timezone.utc)
+    return timezone.localtime(created_at, TZ_PDF_TIMEZONE).strftime('%d.%m.%Y %H:%M')
+
 
 # Мапінг ключів квіза → людські формулювання (uk / en / ru)
 LABELS = {
@@ -330,7 +345,7 @@ def build_tz_context(submission) -> dict:
         'client_name': submission.name,
         'client_email': submission.email,
         'client_phone': submission.phone,
-        'created': submission.created_at.strftime('%d.%m.%Y %H:%M'),
+        'created': format_tz_created(submission.created_at),
         'font_regular': fonts['regular'],
         'font_bold': fonts['bold'],
         'lang': lang,
