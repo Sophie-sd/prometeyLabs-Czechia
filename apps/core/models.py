@@ -398,10 +398,10 @@ class Employee(models.Model):
 
 
 # Transliterated FOP requisites for cs/en when the admin per-language field is empty
-LEGAL_NAME_EN_DEFAULT = 'FOP (sole proprietor) Dmytrenko Sofiia Dmytrivna'
-LEGAL_NAME_CS_DEFAULT = 'FOP Dmytrenko Sofiia Dmytrivna'
-LEGAL_ADDRESS_EN_DEFAULT = '2 Kvashi St, Myrhorod, Poltava region, Ukraine'
-LEGAL_ADDRESS_CS_DEFAULT = 'ul. Kvashi 2, Myrhorod, Poltavská oblast, Ukrajina'
+LEGAL_NAME_EN_DEFAULT = 'Sofiia Dmytrenko, sole trader (FOP, Ukraine)'
+LEGAL_NAME_CS_DEFAULT = 'Sofiia Dmytrenko, fyzická osoba podnikající podle ukrajinského práva (FOP)'
+LEGAL_ADDRESS_EN_DEFAULT = 'Myrhorod, Ukraine'
+LEGAL_ADDRESS_CS_DEFAULT = 'Myrhorod, Ukrajina'
 ADDRESS_EN_DEFAULT = '46a Taras Shevchenko Blvd, Kyiv'
 ADDRESS_CS_DEFAULT = 'Kyjev, bulvár Tarase Ševčenka 46a'
 
