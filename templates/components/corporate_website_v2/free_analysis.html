@@ -4,7 +4,7 @@
         <div class="pl-corp__lead-cta-row" data-reveal>
             <div class="pl-corp__lead-cta-copy">
                 <h2 id="pl-corp-free-analysis-title" class="pl-corp__lead-cta-title">{% trans "Безкоштовний аналіз вашого бізнесу" %}</h2>
-                <p class="pl-corp__lead-cta-text">{% trans "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními." %}</p>
+                <p class="pl-corp__lead-cta-text">{% if LANGUAGE_CODE == 'en' %}{% trans "Leave your contact — we will prepare a short analysis and get back to you with recommendations." %}{% else %}{% trans "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními." %}{% endif %}</p>
             </div>
             <form class="pl-corp__lead-cta-form" method="post" action="{% url 'form_submit' %}" data-form-type="call_request">
                 {% csrf_token %}
