@@ -8196,11 +8196,11 @@ msgstr "5 jednoduchých otázek"
 
 #: templates/pages/calculator.html:64
 msgid "ПРОЙТИ ТЕСТ"
-msgstr "PROJÍT TEST"
+msgstr "SPUSTIT KALKULAČKU"
 
 #: templates/pages/calculator.html:68
 msgid "Отримайте точну оцінку вартості за 2 хвилини"
-msgstr "Získejte přesný odhad ceny za 2 minuty"
+msgstr "Získejte orientační odhad ceny za 2 minuty"
 
 #: templates/pages/calculator.html:77
 msgid "Розрахунок вартості"
@@ -8208,7 +8208,7 @@ msgstr "Kalkulace ceny"
 
 #: templates/pages/calculator.html:78
 msgid "Розробки веб-сайту"
-msgstr "Tvorby webu"
+msgstr "tvorby webu"
 
 #: templates/pages/calculator.html:89
 msgid "Який сайт необхідно розробити?"
@@ -8240,7 +8240,7 @@ msgstr "Na e-mail"
 
 #: templates/pages/calculator.html:127
 msgid "У месенджер (Telegram / WhatsApp / Viber)"
-msgstr "Do messengeru (Telegram / WhatsApp / Viber)"
+msgstr "Do messengeru (WhatsApp / Telegram)"
 
 #: templates/pages/calculator.html:131
 msgid "В адмін-панель сайту (простий кабінет / CRM)"
@@ -8981,7 +8981,7 @@ msgid ""
 "сайт або реклама. Кошторис після брифу, без вигаданих «від N євро»."
 msgstr ""
 "Bot jako součást systému PrometeyLabs: scénář → integrace → dle přání web "
-"nebo reklama. Kalkulace po briefu, bez vymyšlených „od N eur“."
+"nebo reklama. Kalkulace po briefu, bez vymyšlených cen „od N €“."
 
 #: templates/pages/telegram-bot.html:130 templates/pages/telegram-bot.html:315
 msgid "Отримати прорахунок"
@@ -8992,8 +8992,8 @@ msgid ""
 "Що далі: після брифу надішлемо орієнтир по сценарію та інтеграціях — без "
 "публічного прайса."
 msgstr ""
-"Co dál: po briefu pošleme orientaci ke scénáři a integracím — bez veřejného "
-"ceníku."
+"Co dál: po briefu pošleme orientační odhad scénáře a integrací — bez "
+"veřejného ceníku."
 
 #: templates/pages/telegram-bot.html:137 templates/pages/telegram-bot.html:308
 msgid "Оферта"
@@ -9095,7 +9095,7 @@ msgstr "Jak pracujeme"
 
 #: templates/pages/telegram-bot.html:203
 msgid "Бриф: ніша, задача, інтеграції"
-msgstr "Brief: niche, úkol, integrace"
+msgstr "Brief: obor, úkol, integrace"
 
 #: templates/pages/telegram-bot.html:204
 msgid "Сценарій діалогу й узгодження"
@@ -9238,7 +9238,7 @@ msgstr "Doživotní záruka na chyby v našem kódu + 1 rok bezplatné podpory."
 
 #: templates/pages/telegram-bot.html:316
 msgid "Ніша й задача — відповімо орієнтиром по боту. Це не калькулятор сайтів."
-msgstr "Obor a úkol — odpovíme orientací k botovi. Toto není kalkulačka webů."
+msgstr "Obor a úkol — pošleme orientační odhad. Toto není kalkulačka webů."
 
 #: templates/pages/telegram-bot.html:331
 msgid "Що має робити бот?"

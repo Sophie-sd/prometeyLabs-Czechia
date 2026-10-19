@@ -8218,7 +8218,7 @@ msgstr "To email"
 
 #: templates/pages/calculator.html:127
 msgid "У месенджер (Telegram / WhatsApp / Viber)"
-msgstr "To messenger (Telegram / WhatsApp / Viber)"
+msgstr "To messenger (WhatsApp / Telegram)"
 
 #: templates/pages/calculator.html:131
 msgid "В адмін-панель сайту (простий кабінет / CRM)"
