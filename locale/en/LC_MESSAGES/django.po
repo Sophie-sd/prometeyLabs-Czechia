@@ -1767,8 +1767,8 @@ msgid ""
 "Зв'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, "
 "реклами чи навчання. Київ, Україна."
 msgstr ""
-"Contact the PrometeyLabs team for website development, Telegram bots, "
-"advertising or training. Kyiv, Ukraine."
+"Contact the PrometeyLabs team about website development, Telegram bots and "
+"advertising. Kyiv, Ukraine."
 
 # Telegram-bot page (CS/EN Czechia)
 #: apps/core/views.py:110 templates/pages/telegram-bot.html:7
@@ -1834,8 +1834,8 @@ msgid ""
 "Політика використання файлів cookie від PrometeyLabs. Дізнайтеся, які файли "
 "cookie ми використовуємо та як керувати налаштуваннями."
 msgstr ""
-"Refund policy from PrometeyLabs. Learn about the terms and procedure for "
-"refunding our services."
+"PrometeyLabs cookie policy. Find out which cookies we use and how to manage "
+"your settings."
 
 #: apps/core/views.py:140 templates/pages/refund-cs.html:5
 #: templates/pages/refund-en.html:5 templates/pages/refund.html:5
@@ -1920,9 +1920,7 @@ msgstr "Corporate sites that dominate search — PrometeyLabs"
 msgid ""
 "Корпоративний сайт під ключ за 7 днів | Розробка сайту компанії — "
 "PrometeyLabs"
-msgstr ""
-"Turnkey corporate website in 7 days | Company website development — "
-"PrometeyLabs"
+msgstr "Turnkey corporate website in 7 days | PrometeyLabs"
 
 #: apps/core/views.py:198 templates/pages/corporate-website.html:8
 msgid ""
@@ -1930,9 +1928,9 @@ msgid ""
 "CRM, SEO + реклама Google/Facebook/TikTok у пакеті. Запуск за 7 днів. "
 "Команда досвідчених розробників. Розрахуємо вартість у брифі."
 msgstr ""
-"Turnkey corporate website. Custom design, CRM integration, SEO plus Google/"
-"Facebook/TikTok ads in the package. Live in 7 days. Experienced team. Get a "
-"cost estimate in the brief."
+"Turnkey corporate website: custom design, CRM integration, SEO and "
+"Google/Facebook/TikTok ads in the package. Live in 7 days. Cost estimate in "
+"the brief."
 
 #: apps/core/views.py:199
 msgid "Корпоративний сайт під ключ — створимо за 7 днів | PrometeyLabs"
@@ -2011,8 +2009,7 @@ msgstr "Programming Courses"
 msgid ""
 "Дякуємо! Ваша заявка на курси отримана. Ми надішлемо детальну інформацію."
 msgstr ""
-"Thank you! Your course enquiry has been received. We will send the details "
-"shortly."
+"Thank you! We have received your request and will send you the details."
 
 #: apps/core/views.py:443
 msgid "Дякуємо! Наш спеціаліст зв'яжеться з вами протягом 15 хвилин."

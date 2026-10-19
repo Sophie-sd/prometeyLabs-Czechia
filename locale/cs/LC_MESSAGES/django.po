@@ -1805,6 +1805,8 @@ msgid ""
 "Портфоліо PrometeyLabs - приклади створених сайтів під ключ, Telegram ботів, "
 "налаштованої реклами. Подивіться на наші роботи та оцініть якість."
 msgstr ""
+"Portfolio PrometeyLabs — ukázky webů na klíč, Telegram botů a reklamních "
+"kampaní. Podívejte se na naši práci a posuďte kvalitu sami."
 
 #: apps/core/views.py:90
 msgid "Розрахувати вартість сайту | Калькулятор ціни - PrometeyLabs"
@@ -1821,16 +1823,12 @@ msgid "Контакти | PrometeyLabs - Зв'яжіться з нами"
 msgstr "Kontakty | PrometeyLabs - Spojte se s námi"
 
 #: apps/core/views.py:102
-#, fuzzy
-#| msgid ""
-#| "Зв'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, "
-#| "реклами чи навчання. Швидка відповідь."
 msgid ""
 "Зв'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, "
 "реклами чи навчання. Київ, Україна."
 msgstr ""
-"Kontaktujte tým PrometeyLabs kvůli vývoji webů, Telegram botů, reklamě nebo "
-"školení. Praha, Česká republika."
+"Kontaktujte tým PrometeyLabs ohledně tvorby webů, Telegram botů a reklamy. "
+"Kyjev, Ukrajina."
 
 # Telegram-bot page (CS/EN Czechia)
 #: apps/core/views.py:110 templates/pages/telegram-bot.html:7
@@ -1895,6 +1893,8 @@ msgid ""
 "Політика використання файлів cookie від PrometeyLabs. Дізнайтеся, які файли "
 "cookie ми використовуємо та як керувати налаштуваннями."
 msgstr ""
+"Zásady používání cookies PrometeyLabs. Zjistěte, jaké soubory cookie "
+"používáme a jak spravovat jejich nastavení."
 
 #: apps/core/views.py:140 templates/pages/refund-cs.html:5
 #: templates/pages/refund-en.html:5 templates/pages/refund.html:5
@@ -1972,12 +1972,10 @@ msgid "Корпоративні сайти, що домінують у пошу�
 msgstr "Firemní weby, které dominují ve vyhledávání — PrometeyLabs"
 
 #: apps/core/views.py:197 templates/pages/corporate-website.html:7
-#, fuzzy
-#| msgid "Корпоративний сайт під ключ — створимо за 7 днів | PrometeyLabs"
 msgid ""
 "Корпоративний сайт під ключ за 7 днів | Розробка сайту компанії — "
 "PrometeyLabs"
-msgstr "Firemní web na klíč — vytvoříme za 7 dní | PrometeyLabs"
+msgstr "Firemní web na klíč za 7 dní | PrometeyLabs"
 
 #: apps/core/views.py:198 templates/pages/corporate-website.html:8
 msgid ""
@@ -1985,6 +1983,9 @@ msgid ""
 "CRM, SEO + реклама Google/Facebook/TikTok у пакеті. Запуск за 7 днів. "
 "Команда досвідчених розробників. Розрахуємо вартість у брифі."
 msgstr ""
+"Firemní web na klíč: unikátní design, napojení na CRM, SEO a reklama "
+"Google/Facebook/TikTok v balíčku. Spuštění za 7 dní. Cenu spočítáme v "
+"briefu."
 
 #: apps/core/views.py:199
 msgid "Корпоративний сайт під ключ — створимо за 7 днів | PrometeyLabs"
@@ -2058,12 +2059,9 @@ msgid "Заявка на курси програмування"
 msgstr "Poptávka na kurzy programování"
 
 #: apps/core/views.py:416
-#, fuzzy
-#| msgid ""
-#| "Дякуємо! Ваша заявка отримана. Ми зв'яжемося з вами найближчим часом."
 msgid ""
 "Дякуємо! Ваша заявка на курси отримана. Ми надішлемо детальну інформацію."
-msgstr "Děkujeme! Vaše poptávka byla přijata. Brzy se s vámi spojíme."
+msgstr "Děkujeme! Vaši poptávku jsme přijali. Pošleme vám podrobné informace."
 
 #: apps/core/views.py:443
 msgid "Дякуємо! Наш спеціаліст зв'яжеться з вами протягом 15 хвилин."
@@ -9329,6 +9327,8 @@ msgid ""
 "створити ТЗ для сайту, технічне завдання для сайту, як скласти ТЗ, бриф на "
 "розробку сайту"
 msgstr ""
+"vytvořit zadání webu, technické zadání pro web, jak napsat zadání, brief na "
+"tvorbu webu"
 
 #: templates/pages/tz-dlia-saitu.html:10
 msgid "Створити ТЗ для сайту онлайн — безкоштовно | PrometeyLabs"
