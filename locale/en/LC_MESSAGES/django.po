@@ -7317,8 +7317,7 @@ msgstr "Short project description"
 #: templates/components/tz_generator/quiz.html:113
 msgid ""
 "Наприклад: потрібен інтернет-магазин косметики з доставкою..."
-msgstr ""
-"For example: need an online cosmetics store with delivery..."
+msgstr "E.g. an online cosmetics store with delivery across Czechia…"
 
 #: templates/components/tz_generator/quiz.html:116
 msgid "Додаткові побажання (необов'язково)"

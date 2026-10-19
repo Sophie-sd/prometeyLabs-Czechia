@@ -6804,6 +6804,8 @@ msgid ""
 "Клієнти, які починають з чіткого ТЗ, отримують передбачуваний результат і "
 "рідше повертаються з правками «щось не так»."
 msgstr ""
+"Klienti, kteří začínají s jasným zadáním, dostanou předvídatelný výsledek a "
+"méně často se vracejí s připomínkami typu „něco tam nesedí“."
 
 #: templates/components/tz_generator/compare.html:78
 msgid "менше переробок під час розробки"
@@ -6885,6 +6887,8 @@ msgid ""
 "Технічне завдання фіксує цілі, структуру, функції та обмеження проєкту. Без "
 "нього розробка дорожчає і зриває терміни через постійні уточнення."
 msgstr ""
+"Zadání shrnuje cíle, strukturu, funkce a omezení projektu. Bez něj se vývoj "
+"prodražuje a termíny se posouvají kvůli neustálému upřesňování."
 
 #: templates/components/tz_generator/faq.html:24
 #: templates/pages/tz-dlia-saitu.html:54
@@ -6897,6 +6901,9 @@ msgid ""
 "деталізацією сценаріїв, структурою сторінок і технічними вимогами — "
 "приходить на email протягом доби."
 msgstr ""
+"Základní zadání dostanete okamžitě v PDF podle odpovědí v kvízu. Rozšířené "
+"— s podrobnými scénáři, strukturou stránek a technickými požadavky — přijde "
+"e-mailem do 24 hodin."
 
 #: templates/components/tz_generator/faq.html:34
 msgid "Чи можна одразу отримати прорахунок вартості?"
@@ -6907,18 +6914,20 @@ msgid ""
 "Так. Після завантаження PDF можна одразу замовити прорахунок або "
 "консультацію від PrometeyLabs — це займе один клік."
 msgstr ""
+"Ano. Po stažení PDF si můžete jedním klikem objednat kalkulaci nebo "
+"konzultaci u PrometeyLabs."
 
 #: templates/components/tz_generator/faq.html:44
 msgid "Скільки часу займає проходження квіза?"
 msgstr "Jak dlouho trvá vyplnění kvízu?"
 
 #: templates/components/tz_generator/faq.html:48
-#, fuzzy
-#| msgid "Зазвичай 3–5 хвилин: кілька виборів і два короткі текстові поля."
 msgid ""
 "Зазвичай 3–5 хвилин: кілька виборів у зручних кроках і два короткі текстові "
 "поля для опису проєкту."
-msgstr "Obvykle 3–5 minut: několik voleb a dvě krátká textová pole."
+msgstr ""
+"Obvykle 3–5 minut: několik voleb v přehledných krocích a dvě krátká textová "
+"pole pro popis projektu."
 
 #: templates/components/tz_generator/faq.html:54
 msgid "Чи можна використати це ТЗ з іншим підрядником?"
@@ -6929,6 +6938,8 @@ msgid ""
 "Так, документ повністю ваш. Ви можете передати його будь-якій команді "
 "розробки або звернутись до нас за реалізацією."
 msgstr ""
+"Ano, dokument je plně váš. Můžete ho předat jakémukoli vývojovému týmu, "
+"nebo se obrátit na nás."
 
 #: templates/components/tz_generator/final_cta.html:6
 msgid "Ваше ТЗ"
@@ -6943,6 +6954,8 @@ msgid ""
 "Пройдіть квіз, отримайте базове ТЗ у PDF і замовте прорахунок вартості або "
 "консультацію в один клік."
 msgstr ""
+"Projděte kvíz, získejte základní zadání v PDF a jedním klikem si objednejte "
+"kalkulaci nebo konzultaci."
 
 #: templates/components/tz_generator/final_cta.html:12
 #: templates/components/tz_generator/hero.html:17
@@ -6968,6 +6981,8 @@ msgid ""
 "миттєво. Розширене ТЗ зі структурою сторінок і сценаріями надійде на email "
 "протягом доби."
 msgstr ""
+"Odpovíte na pár otázek a základní zadání v PDF máte okamžitě. Rozšířené "
+"zadání se strukturou stránek a scénáři vám pošleme e-mailem do 24 hodin."
 
 #: templates/components/tz_generator/hero.html:23
 msgid "PDF одразу, без очікування"
@@ -7121,6 +7136,8 @@ msgid ""
 "Чотири кроки — і у вас на руках структуроване технічне завдання, з яким "
 "можна йти до будь-якого підрядника."
 msgstr ""
+"Čtyři kroky — a máte strukturované zadání, se kterým můžete jít za "
+"jakýmkoli dodavatelem."
 
 #: templates/components/tz_generator/process.html:19
 msgid "Квіз 3 хвилини"
@@ -7129,7 +7146,7 @@ msgstr "Kvíz 3 minuty"
 #: templates/components/tz_generator/process.html:20
 msgid ""
 "Обираєте тип сайту, цілі, розділи та функціонал у зручному конструкторі."
-msgstr ""
+msgstr "Vyberete typ webu, cíle, sekce a funkce v přehledném konfigurátoru."
 
 #: templates/components/tz_generator/process.html:24
 msgid "Аналіз відповідей"
@@ -7155,7 +7172,7 @@ msgstr "Rozšířené zadání e-mailem"
 msgid ""
 "Протягом доби надсилаємо деталізовану версію зі сценаріями і структурою "
 "сторінок."
-msgstr ""
+msgstr "Do 24 hodin pošleme podrobnou verzi se scénáři a strukturou stránek."
 
 #: templates/components/tz_generator/quiz.html:5
 msgid "Конструктор ТЗ"
@@ -7336,12 +7353,9 @@ msgid "Короткий опис проєкту"
 msgstr "Krátký popis projektu"
 
 #: templates/components/tz_generator/quiz.html:113
-#, fuzzy
-#| msgid ""
-#| "Сайти під ключ, лендінги, інтернет-магазини, веб-додатки, телеграм-боти"
 msgid ""
 "Наприклад: потрібен інтернет-магазин косметики з доставкою..."
-msgstr "Například: potřebuji e-shop s kosmetikou s dopravou..."
+msgstr "Např.: potřebuji e-shop s kosmetikou a doručením po ČR…"
 
 #: templates/components/tz_generator/quiz.html:116
 msgid "Додаткові побажання (необов'язково)"
@@ -7369,6 +7383,8 @@ msgid ""
 "Завантажте PDF зараз. Розширене ТЗ зі структурою сторінок надішлемо на email "
 "протягом доби."
 msgstr ""
+"Stáhněte si PDF hned. Rozšířené zadání se strukturou stránek pošleme "
+"e-mailem do 24 hodin."
 
 #: templates/components/tz_generator/quiz.html:156
 msgid "Що робимо далі?"
@@ -9332,12 +9348,17 @@ msgid ""
 "Технічне завдання фіксує цілі, структуру, функції та обмеження проєкту. Без "
 "нього розробка дорожчає і зриває терміни."
 msgstr ""
+"Zadání shrnuje cíle, strukturu, funkce a omezení projektu. Bez něj se vývoj "
+"prodražuje a termíny se posouvají kvůli neustálému upřesňování."
 
 #: templates/pages/tz-dlia-saitu.html:57
 msgid ""
 "Базове ТЗ ви отримуєте одразу в PDF за відповідями квіза. Розширене з "
 "деталізацією сценаріїв і структури сторінок приходить на email протягом доби."
 msgstr ""
+"Základní zadání dostanete okamžitě v PDF podle odpovědí v kvízu. Rozšířené "
+"— s podrobnými scénáři, strukturou stránek a technickými požadavky — přijde "
+"e-mailem do 24 hodin."
 
 #: templates/pages/tz-dlia-saitu.html:62
 msgid "Чи можна одразу отримати прорахунок?"
@@ -9348,6 +9369,8 @@ msgid ""
 "Так. Після завантаження PDF можна замовити прорахунок або консультацію від "
 "PrometeyLabs."
 msgstr ""
+"Ano. Po stažení PDF si můžete jedním klikem objednat kalkulaci nebo "
+"konzultaci u PrometeyLabs."
 
 #: templates/pages/tz-dlia-saitu.html:70
 msgid "Скільки часу займає проходження?"
@@ -9355,7 +9378,9 @@ msgstr "Jak dlouho trvá vyplnění?"
 
 #: templates/pages/tz-dlia-saitu.html:73
 msgid "Зазвичай 3–5 хвилин: кілька виборів і два короткі текстові поля."
-msgstr "Obvykle 3–5 minut: několik voleb a dvě krátká textová pole."
+msgstr ""
+"Obvykle 3–5 minut: několik voleb v přehledných krocích a dvě krátká textová "
+"pole pro popis projektu."
 
 #: templates/payment/base_payment.html:9 templates/payment/payment_page.html:5
 msgid "Оплата"
