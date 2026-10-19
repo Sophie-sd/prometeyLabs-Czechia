@@ -256,30 +256,31 @@
         var data = PKG_MAP[pkgKey];
         var pkgHint = getPkgHint();
         var fields = [
-            { name: 'q_start', label: 'Старт проєкту' },
-            { name: 'q_products', label: 'Кількість товарів' },
-            { name: 'q_features', label: 'Додаткові опції', multi: true },
-            { name: 'q_timeline', label: 'Терміни' }
+            // CRM keys only; human labels are mapped on the server (apps/core/quiz_options.py)
+            { name: 'q_start' },
+            { name: 'q_products' },
+            { name: 'q_features', multi: true },
+            { name: 'q_timeline' }
         ];
 
-        var parts = ['Сторінка: ' + (form.dataset.sourceLabel || 'Інтернет-магазин v2')];
+        var parts = ['page: ' + (form.dataset.sourceLabel || 'internet_shop_v2')];
 
         if (data) {
-            parts.push('Рекомендований пакет: ' + data.label + ' · ' + data.price + ' · ' + data.term);
+            parts.push('package: ' + data.label + ' · ' + data.price + ' · ' + data.term);
         }
 
         fields.forEach(function (field) {
             if (field.multi) {
                 var vals = getCheckedFeatures();
-                if (vals.length) parts.push(field.label + ': ' + vals.join(', '));
+                if (vals.length) parts.push(field.name + ': ' + vals.join(', '));
             } else {
                 var val = getCheckedValue(field.name);
-                if (val) parts.push(field.label + ': ' + val);
+                if (val) parts.push(field.name + ': ' + val);
             }
         });
 
         if (pkgHint && PKG_MAP[pkgHint]) {
-            parts.push('Підказка з картки пакета: ' + PKG_MAP[pkgHint].label);
+            parts.push('pkg_hint: ' + PKG_MAP[pkgHint].label);
         }
 
         detailsInput.value = parts.join('\n');

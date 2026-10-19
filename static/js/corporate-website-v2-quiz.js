@@ -354,27 +354,28 @@
         var pkgKey = recommendPackage();
         var data = PKG_MAP[pkgKey];
         var fields = [
-            { name: 'q_business', label: 'Тип бізнесу' },
-            { name: 'q_goal', label: 'Бізнес-ціль' },
-            { name: 'q_pages', label: 'Кількість сторінок' },
-            { name: 'q_options', label: 'Додаткові опції', multi: true },
-            { name: 'q_timeline', label: 'Терміни' }
+            // CRM keys only; human labels are mapped on the server (apps/core/quiz_options.py)
+            { name: 'q_business' },
+            { name: 'q_goal' },
+            { name: 'q_pages' },
+            { name: 'q_options', multi: true },
+            { name: 'q_timeline' }
         ];
 
-        var parts = ['Сторінка: ' + (form.dataset.sourceLabel || 'Корпоративний сайт v2')];
+        var parts = ['page: ' + (form.dataset.sourceLabel || 'corporate_website_v2')];
 
         if (data) {
-            parts.push('Рекомендований пакет: ' + data.label + ' · ' + data.term);
+            parts.push('package: ' + data.label + ' · ' + data.term);
         }
 
         fields.forEach(function (field) {
             if (field.multi) {
                 var vals = getCheckedValues(field.name);
-                if (vals.length) parts.push(field.label + ': ' + vals.join(', '));
+                if (vals.length) parts.push(field.name + ': ' + vals.join(', '));
                 return;
             }
             var val = getCheckedValue(field.name);
-            if (val) parts.push(field.label + ': ' + val);
+            if (val) parts.push(field.name + ': ' + val);
         });
 
         detailsInput.value = parts.join('\n');

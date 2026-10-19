@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from django.utils.translation import get_language
 
-from .calculator_estimate import EUR_CZK
+from .calculator_estimate import eur_to_czk_rounded
 
 NBSP = '\u00a0'
 
@@ -28,7 +28,7 @@ def _group(value: int, lang: str) -> str:
 
 
 def _czk(eur: int) -> int:
-    return int(round(eur * EUR_CZK))
+    return eur_to_czk_rounded(eur)
 
 
 def format_eur_range(low: int, high: int, lang: str) -> str:

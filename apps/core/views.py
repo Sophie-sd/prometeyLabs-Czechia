@@ -15,6 +15,7 @@ from .form_handlers import (
     send_test_result_email, LEAD_FORM_TYPES, thank_you_url,
 )
 from .keycrm_service import sync_submission_to_keycrm
+from .quiz_options import humanize_details, resolve_lead_name
 import logging
 import threading
 from django.utils.translation import gettext_lazy as _
@@ -237,6 +238,8 @@ def handle_form_submission(request):
                 redirect=thank_you_url()
             )
         name = request.POST.get('name', '').strip()
+        # Приховані ключі-заглушки імені (free_analysis, стара кирилиця) → назва для CRM
+        name = resolve_lead_name(name)
         phone = request.POST.get('phone', '').strip()
         email = request.POST.get('email', '').strip()
 
@@ -332,7 +335,8 @@ def handle_form_submission(request):
 def handle_site_request(request, name, phone):
     """Обробка заявки на сайт"""
     email = request.POST.get('email', '').strip()
-    details = request.POST.get('details', '').strip()
+    # Квізи v2 шлють details як «ключ: значення» латиницею → людські назви
+    details = humanize_details(request.POST.get('details', '').strip())
     source_page = request.POST.get('source_page', '').strip()
 
     form_data = create_form_data(
