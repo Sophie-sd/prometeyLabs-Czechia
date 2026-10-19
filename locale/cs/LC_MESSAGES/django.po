@@ -10776,7 +10776,7 @@ msgid "Баласт-скрипти"
 msgstr "Zátěžové skripty"
 
 msgid "Від 1 400 €. Пожиттєва гарантія на код. 1 рік підтримки безкоштовно."
-msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
+msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
 msgid "Заявка на розрахунок вартості"
 msgstr "Žádost o kalkulaci ceny"
@@ -10800,7 +10800,7 @@ msgid "Гарантія на код 1 рік"
 msgstr "Doživotní záruka na kód + 1 rok bezplatné podpory"
 
 msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
-msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
+msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
 #: templates/components/internet_shop_v2/packages.html:36
 msgid "від 1 400 €"
