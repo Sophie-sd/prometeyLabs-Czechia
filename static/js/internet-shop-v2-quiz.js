@@ -164,31 +164,31 @@
         var features = getCheckedFeatures();
         var timeline = getCheckedValue('q_timeline');
 
-        if (start === 'Старт з нуля') score.base += 2;
-        if (start === 'migration' || start === 'Міграція з Prom / OLX') score.premium += 2;
-        if (start === 'Масштабування + маркетинг під ключ') score.platinum += 3;
-        if (start === 'Ще не визначився') score.premium += 1;
+        if (start === 'scratch') score.base += 2;
+        if (start === 'migration') score.premium += 2;
+        if (start === 'scale_marketing') score.platinum += 3;
+        if (start === 'undecided') score.premium += 1;
 
-        if (products === 'До 100 товарів') score.base += 2;
-        if (products === '100–1000 товарів') score.premium += 2;
-        if (products === '1000–10 000 товарів') score.platinum += 2;
-        if (products === 'Більше 10 000 товарів') score.platinum += 3;
+        if (products === 'up_to_100') score.base += 2;
+        if (products === '100_1000') score.premium += 2;
+        if (products === '1000_10000') score.platinum += 2;
+        if (products === 'over_10000') score.platinum += 3;
 
         features.forEach(function (val) {
-            if (val === 'CRM + Telegram') { score.premium += 2; }
-            if (val === 'SEO + статті') { score.premium += 2; score.platinum += 1; }
-            if (val === 'AI-адмінка + бот') { score.platinum += 3; }
-            if (val === 'Реклама та просування') { score.platinum += 2; }
+            if (val === 'crm_telegram') { score.premium += 2; }
+            if (val === 'seo_articles') { score.premium += 2; score.platinum += 1; }
+            if (val === 'ai_admin_bot') { score.platinum += 3; }
+            if (val === 'ads_promotion') { score.platinum += 2; }
         });
 
         if (features.length <= 1) score.base += 1;
         if (features.length >= 2 && features.length <= 3) score.premium += 1;
         if (features.length >= 4) score.platinum += 2;
 
-        if (timeline === 'Якнайшвидше (до 2 тижнів)') score.base += 2;
-        if (timeline === 'Протягом місяця') score.premium += 2;
-        if (timeline === '1–3 місяці') score.platinum += 1;
-        if (timeline === 'Терміни гнучкі') score.platinum += 1;
+        if (timeline === 'asap_2w') score.base += 2;
+        if (timeline === 'within_month') score.premium += 2;
+        if (timeline === '1_3_months') score.platinum += 1;
+        if (timeline === 'flexible') score.platinum += 1;
 
         var pkgHint = getPkgHint();
         if (pkgHint && PKG_MAP[pkgHint]) {

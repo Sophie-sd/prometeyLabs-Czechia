@@ -205,6 +205,11 @@ def create_form_data(form_type, name, phone, request, **extra_fields):
         'site': get_lead_site_code(),
         'lang': resolve_lead_lang(request),
     }
+    # Квізи v2: латинські ключі (старі кириличні value мапляться на ті ж ключі)
+    from apps.core.quiz_options import extract_quiz_answers
+    quiz_answers = extract_quiz_answers(request.POST)
+    if quiz_answers:
+        form_data['quiz_answers'] = quiz_answers
     if has_consent(request):
         form_data['consent_at'] = timezone.now()
         form_data['consent_ip'] = client_ip(request)
@@ -243,6 +248,10 @@ Email: {form_data.get('email', 'Не вказано')}
         
         # Додаємо специфічні поля
         for field, value in form_data.items():
+            if field == 'quiz_answers' and value:
+                from apps.core.quiz_options import format_quiz_answers
+                message_body += '\n'.join(format_quiz_answers(value)) + '\n'
+                continue
             if field not in ['type', 'name', 'phone', 'email', 'timestamp', 'ip', 'user_agent'] and value:
                 field_name = {
                     'details': 'Деталі заявки',
@@ -336,7 +345,7 @@ def save_form_submission(form_type, form_data, email_success=False):
                        'alt_services_checked', 'event_title', 'source_page',
                        'landing_page', 'landing_referrer', 'quiz', 'upsell',
                        'pdf_token', 'telegram', 'bot_task', 'integrations',
-                       'site', 'lang']
+                       'site', 'lang', 'quiz_answers']
         for field in extra_fields:
             if form_data.get(field):
                 extra_data[field] = form_data[field]

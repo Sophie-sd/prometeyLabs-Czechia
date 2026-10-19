@@ -227,6 +227,11 @@ class KeyCRMService:
             comment_parts.append(f'Реферер: {extra["landing_referrer"]}')
         if submission.gclid:
             comment_parts.append(f'GCLID: {submission.gclid}')
+        if extra.get('quiz_answers'):
+            from apps.core.quiz_options import format_quiz_answers
+            quiz_lines = format_quiz_answers(extra['quiz_answers'])
+            if quiz_lines:
+                comment_parts.append('=== КВІЗ ===\n' + '\n'.join(quiz_lines))
 
         if submission.form_type == 'test_result' and submission.extra_data:
             extra = submission.extra_data
