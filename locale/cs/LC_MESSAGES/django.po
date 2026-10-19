@@ -10729,3 +10729,22 @@ msgstr "od 1 400 €"
 
 msgid "на основі виконаного проєкту"
 msgstr "na základě realizovaného projektu"
+
+# Audit 19.10.2026 (№19, №45)
+#: templates/components/portfolio_project_card.html templates/components/web_development/portfolio.html
+msgid "Projekt pro klienta na Ukrajině"
+msgstr "Projekt pro klienta na Ukrajině"
+
+#: templates/components/corporate_website_v2/clients.html templates/components/internet_shop_v2/clients.html templates/components/web_development/clients.html templates/components/home_figma/clients.html
+msgid "Vybraní klienti"
+msgstr "Vybraní klienti"
+
+#: templates/components/home/redesign_clients.html
+msgctxt "clients heading"
+msgid "Vybraní"
+msgstr "Vybraní"
+
+#: templates/components/home/redesign_clients.html
+msgctxt "clients heading"
+msgid "klienti"
+msgstr "klienti"

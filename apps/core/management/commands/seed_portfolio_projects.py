@@ -15,7 +15,11 @@ from django.core.management.base import BaseCommand
 from apps.core.models import PortfolioProject
 from apps.core.portfolio_categories import category_for_slug
 from apps.core.portfolio_i18n import PORTFOLIO_I18N_CS, PORTFOLIO_I18N_EN
-from apps.core.portfolio_seed_data import IMAGE_FIELD_MAP, PORTFOLIO_PROJECTS
+from apps.core.portfolio_seed_data import (
+    IMAGE_FIELD_MAP,
+    PORTFOLIO_PROJECTS,
+    UKRAINE_CLIENT_SLUGS,
+)
 
 
 class Command(BaseCommand):
@@ -93,9 +97,11 @@ class Command(BaseCommand):
                 'show_on_homepage': item.get('show_on_homepage', False),
                 'is_published': True,
             }
+            # Fill-only поля: ставимо лише при створенні, адмін-правки не перетираємо.
+            create_only = {'is_ukraine_client': slug in UKRAINE_CLIENT_SLUGS}
             project, was_created = PortfolioProject.objects.get_or_create(
                 slug=slug,
-                defaults=defaults,
+                defaults={**defaults, **create_only},
             )
             if was_created:
                 created += 1

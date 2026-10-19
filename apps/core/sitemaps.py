@@ -74,7 +74,7 @@ class BlogPostSitemap(AbsoluteSitemap):
     priority = 0.6
 
     def items(self):
-        return BlogPost.objects.filter(is_published=True).only('slug', 'updated_at')
+        return BlogPost.objects.public().only('slug', 'updated_at')
 
     def lastmod(self, obj):
         return obj.updated_at

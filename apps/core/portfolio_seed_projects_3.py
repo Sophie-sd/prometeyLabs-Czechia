@@ -24,7 +24,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Лендинг строительной компании: фасадные и девелоперские услуги, заявка на расчёт.',
         tags=LANDING_TAGS,
         site_url='https://elit-fasad-development.com.ua/',
-        order=6,
+        order=7,
     ),
     card(
         slug='distageavto',
@@ -72,7 +72,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Лендинг поставщика фанеры и плит: ассортимент, заявка на расчёт, доставка.',
         tags=LANDING_TAGS,
         site_url='https://faneradvp.com/',
-        order=41,
+        order=34,
     ),
     card(
         slug='molodii',
@@ -97,7 +97,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Лендинг поставщика анилоксов и оборудования для печати: каталог, заявка, контакты.',
         tags=LANDING_TAGS,
         site_url='https://www.aniloks.com.ua/',
-        order=42,
+        order=35,
     ),
     card(
         slug='queendrive',
@@ -109,7 +109,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Лендинг автошколы: курсы вождения, заявка на обучение, контакты.',
         tags=LANDING_TAGS,
         site_url='https://queendrive.com.ua/',
-        order=18,
+        order=17,
     ),
     card(
         slug='choboty',
@@ -121,7 +121,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Лендинг бренда обуви: коллекции, заявка / заказ, контакты магазина.',
         tags=LANDING_TAGS,
         site_url='https://choboty.store/',
-        order=43,
+        order=36,
     ),
     card(
         slug='maison-polina',
@@ -145,7 +145,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Лендинг средств защиты плитки: продукт, заявка, контакты производителя.',
         tags=LANDING_TAGS,
         site_url='https://zelin.com.ua/',
-        order=44,
+        order=37,
     ),
     card(
         slug='speak-up',
@@ -196,7 +196,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Корпоративный сайт издательства Ксении Крыловой: проекты, сотрудничество, контакты.',
         tags=CORP_TAGS,
         site_url='https://krylovakseniia.com/',
-        order=21,
+        order=19,
     ),
     card(
         slug='school147',
@@ -208,7 +208,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Корпоративный сайт школы №147 в Киеве: новости, расписание, контакты для родителей и учеников.',
         tags=CORP_TAGS,
         site_url='https://school147.kyiv.ua/',
-        order=19,
+        order=41,
     ),
     card(
         slug='ruh-leo',
@@ -220,7 +220,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Корпоративный сайт футбольного проекта: о команде, набор, контакты.',
         tags=CORP_TAGS,
         site_url='https://footballgeneration.com.ua/',
-        order=5,
+        order=6,
     ),
     card(
         slug='deksor',
@@ -244,7 +244,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Корпоративный сайт строительной компании: услуги, объекты, заявка на консультацию.',
         tags=CORP_TAGS,
         site_url='https://krashiyvubir.com/',
-        order=4,
+        order=11,
     ),
     card(
         slug='metrium',
@@ -256,7 +256,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Корпоративный сайт БТИ-услуг: техническая инвентаризация, заявка, контакты.',
         tags=CORP_TAGS,
         site_url='https://metrium.com.ua/',
-        order=17,
+        order=44,
     ),
     card(
         slug='pokrivlya',
@@ -268,7 +268,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Корпоративный сайт кровельных работ: услуги монтажа, заявка, контакты.',
         tags=CORP_TAGS,
         site_url='https://pokrivlya.com.ua/',
-        order=2,
+        order=10,
     ),
     card(
         slug='tenclinic',
@@ -280,7 +280,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Корпоративный сайт медицинской клиники: услуги, запись на приём, контакты.',
         tags=CORP_TAGS,
         site_url='https://tenclinic.com.ua/',
-        order=46,
+        order=38,
     ),
     card(
         slug='phoenixvet',
@@ -292,7 +292,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Корпоративный сайт ветеринарной клиники: услуги, запись, контакты.',
         tags=CORP_TAGS,
         site_url='https://www.phoenixvet.com.ua/',
-        order=20,
+        order=18,
     ),
     card(
         slug='playvision',
@@ -304,7 +304,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='PWA-приложение футбольного образования: программы, кабинет, запись на обучение.',
         tags=('PWA-застосунок', 'особистий кабінет', 'програми навчання', 'заявка'),
         site_url='https://www.playvision.com.ua/',
-        order=10,
+        order=2,
     ),
     card(
         slug='auto-lot',
@@ -316,6 +316,6 @@ PORTFOLIO_PROJECTS_3 = [
         desc_ru='Веб-приложение CRM для авто-бизнеса: учёт, лиды, кабинет менеджера.',
         tags=('веб-застосунок', 'CRM', 'кабінет', 'облік лідів'),
         site_url='https://auto-lot.online/',
-        order=7,
+        order=3,
     ),
 ]

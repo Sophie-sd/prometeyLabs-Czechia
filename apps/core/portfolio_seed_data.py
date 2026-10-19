@@ -43,3 +43,21 @@ HOME_CLIENTS = [
     {'name': 'Pulvas Store', 'order': 7, 'static_home': HOME_LOGO_STATIC['Pulvas Store']},
     {'name': 'Airinua', 'order': 8, 'static_home': HOME_LOGO_STATIC['Airinua']},
 ]
+
+# №45 (аудит 19.10.2026): проєкти для клієнтів в Україні — під карткою підпис
+# «Projekt pro klienta na Ukrajině» / «Project for a client in Ukraine».
+# Seed виставляє прапорець лише при створенні рядка (fill-only), існуючі рядки
+# оновлює міграція core.0034 тільки якщо там ще значення за замовчуванням.
+# Не входять: ajeres (Узбекистан, EN-знімок), zatyshnyi-dvir (доставка
+# Zásilkovna — уточнити країну), maison-polina (№46 — не чіпаємо до рішення).
+UKRAINE_CLIENT_SLUGS = frozenset({
+    'aniloks', 'auction-center', 'auto-lot', 'beauty-opt', 'beautycake', 'benzovoz',
+    'boltiko', 'carpet-haus', 'caryvibe', 'choboty', 'deksor', 'diodi', 'distageavto',
+    'domoteh', 'droproom', 'elit-fasad', 'evropobuts', 'fanera', 'favorit-metal',
+    'fortprint', 'fpsu', 'geer', 'gordimarket', 'grand-oblik', 'kanalizacia',
+    'krashiyvubir', 'krylova', 'kvest-marafon', 'magnum', 'metrium', 'molodii',
+    'notenhaus', 'ofion', 'ogemed', 'oyra', 'phoenixvet', 'playvision', 'pokrivlya',
+    'polygraph', 'queendrive', 'recharge', 'ruh-leo', 'school147', 'soliron',
+    'speak-up', 'svitpc', 'tenclinic', 'ucvn', 'vezhi-rozhnovskogo', 'zelin',
+    'znomax', 'zubroom',
+})
