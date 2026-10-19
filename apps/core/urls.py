@@ -1,9 +1,22 @@
 from django.urls import path
+from django.utils.functional import lazy
+from django.utils.translation import get_language
 from django.views.generic import RedirectView
 from . import proposal_views
 from . import tz_views
 from . import views
 from . import webhooks
+
+
+def _route_per_language(cs: str, en: str):
+    """Lazy route: Czech slug for cs (default, unprefixed), English slug for /en/.
+
+    Same mechanism as gettext_lazy routes (Django caches the compiled pattern per
+    active language), but without depending on .mo files.
+    """
+    def _pick() -> str:
+        return en if (get_language() or '').startswith('en') else cs
+    return lazy(_pick, str)()
 
 urlpatterns = [
     # Основні сторінки
@@ -28,6 +41,14 @@ urlpatterns = [
     path('internet-shop-v2/', RedirectView.as_view(pattern_name='internet_shop_v2', permanent=True, query_string=True)),
     path('corporate-website-v2/', RedirectView.as_view(pattern_name='corporate_website_v2', permanent=True, query_string=True)),
     path('web-development/', views.WebDevelopmentView.as_view(), name='web_development'),
+    # Webové aplikace: /webove-aplikace/ (cs) · /en/web-applications/ (en).
+    # Same name on all three: Django's reverse() prefers the LAST pattern with a given
+    # name, so the language-dependent route must stay last. The literal aliases let
+    # resolve() / translate_path() accept the other language's slug; the view 301s
+    # such requests to the canonical URL.
+    path('webove-aplikace/', views.WebApplicationsView.as_view(), name='web_applications'),
+    path('web-applications/', views.WebApplicationsView.as_view(), name='web_applications'),
+    path(_route_per_language('webove-aplikace/', 'web-applications/'), views.WebApplicationsView.as_view(), name='web_applications'),
     path('tz-dlia-saitu/', tz_views.TzGeneratorView.as_view(), name='tz_generator'),
     path('thank-you/', views.ThankYouView.as_view(), name='thank_you'),
     path(

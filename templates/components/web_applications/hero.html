@@ -1,0 +1,67 @@
+{% load i18n static %}
+{# Cloned from components/web_development/hero.html (same pl-web__* classes / CSS); single service: web apps. #}
+<section class="pl-web__hero" aria-labelledby="pl-web-h1">
+    <div class="pl-web__hero-bg" aria-hidden="true">
+        <img class="pl-web__hero-bg-img" src="{% static 'images/web-development/hero-bg.webp' %}" alt="" width="1983" height="793" decoding="async" fetchpriority="high">
+    </div>
+    <div class="pl-web__inner pl-web__hero-stage">
+        <div class="pl-web__hero-copy">
+            <div class="pl-web__kicker">
+                <p class="pl-web__eyebrow">{% trans "Pevně ve smlouvě" %}</p>
+                <div class="pl-web__cur" role="group" aria-label="{% trans "Měna orientačních cen" %}" data-pl-web-cur-switch>
+                    <button type="button" class="pl-web__cur-btn is-on" aria-pressed="true" data-pl-web-cur-btn="eur" aria-label="{% trans "Ceny v eurech" %}">€</button>
+                    <button type="button" class="pl-web__cur-btn" aria-pressed="false" data-pl-web-cur-btn="czk" aria-label="{% trans "Ceny v korunách (orientačně)" %}">Kč</button>
+                </div>
+            </div>
+            <h1 id="pl-web-h1" class="pl-web__h1">{% trans "Webové aplikace na míru" %}</h1>
+            <p class="pl-web__lead">{% trans "Klientské zóny, interní systémy, rezervace a integrace – když běžný web nestačí. Rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok bezplatné podpory." %}</p>
+            <button type="button" class="pl-web__cta mobile-touch-target" data-modal="call-request-modal">
+                <span>{% trans "Získat konzultaci" %}</span>
+                <img src="{% static 'images/web-development/arrow-hero.svg' %}" alt="" width="24" height="24" decoding="async">
+            </button>
+            <a class="pl-web__cta-alt mobile-touch-target" href="{% url 'calculator' %}">{% trans "Vypočítat cenu" %}</a>
+        </div>
+
+        <div class="pl-web__floats" aria-hidden="true">
+            <article class="pl-web__float pl-web__float--tl">
+                <img class="pl-web__float-rings" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
+                <p class="pl-web__float-title">{% trans "Webové aplikace" %}</p>
+                <p class="pl-web__float-num">{% include 'components/web_development/amount.html' with eur=web_prices.app.eur czk=web_prices.app.czk %}</p>
+                <p class="pl-web__float-chip">
+                    <img src="{% static 'images/web-development/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
+                    <span>{% trans "14–30 dní" %}</span>
+                </p>
+                <p class="pl-web__scope-in">{% trans "V ceně: MVP podle zadání v daném rozpětí" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: nové moduly po předání, licence třetích stran" %}</p>
+            </article>
+            <article class="pl-web__float pl-web__float--tr">
+                <img class="pl-web__float-rings" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
+                <p class="pl-web__float-title">{% trans "Klientské zóny" %}</p>
+                <p class="pl-web__float-num pl-web__float-num--soft">{% trans "Role a přístupy" %}</p>
+                <p class="pl-web__scope-in">{% trans "Přihlášení, profily, dokumenty a stav objednávek" %}</p>
+            </article>
+            <article class="pl-web__float pl-web__float--bl">
+                <img class="pl-web__float-rings" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
+                <p class="pl-web__float-title">{% trans "Integrace" %}</p>
+                <p class="pl-web__float-num pl-web__float-num--soft">{% trans "CRM · platby · API" %}</p>
+                <p class="pl-web__scope-in">{% trans "Propojení se systémy, které už používáte" %}</p>
+            </article>
+            <article class="pl-web__float pl-web__float--br">
+                <img class="pl-web__float-rings" src="{% static 'images/web-development/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
+                <p class="pl-web__float-title">{% trans "Administrace" %}</p>
+                <p class="pl-web__float-num pl-web__float-num--soft">{% trans "Vlastní admin" %}</p>
+                <p class="pl-web__scope-in">{% trans "Přehledy, exporty a správa obsahu bez programátora" %}</p>
+            </article>
+        </div>
+
+        <div class="pl-web__prices" role="list" aria-label="{% trans "Orientační ceny" %}">
+            <div class="pl-web__price" role="listitem">
+                <p class="pl-web__price-num">{% include 'components/web_development/amount.html' with eur=web_prices.app.eur czk=web_prices.app.czk %}</p>
+                <p class="pl-web__price-name">{% trans "Webové aplikace" %}</p>
+                <p class="pl-web__price-time">{% trans "14–30 dní" %}</p>
+                <p class="pl-web__scope-in">{% trans "V ceně: MVP podle zadání v daném rozpětí" %}</p>
+                <p class="pl-web__scope-out">{% trans "Mimo cenu: nové moduly po předání, licence třetích stran" %}</p>
+            </div>
+        </div>
+    </div>
+</section>

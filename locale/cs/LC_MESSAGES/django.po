@@ -10801,3 +10801,11 @@ msgstr "Vybraní"
 msgctxt "clients heading"
 msgid "klienti"
 msgstr "klienti"
+
+#: templates/components/header.html
+msgid "веб-застосунки"
+msgstr "webové aplikace"
+
+#: templates/components/burger_menu.html
+msgid "Веб-застосунки"
+msgstr "Webové aplikace"

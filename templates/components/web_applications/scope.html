@@ -1,0 +1,23 @@
+{% load i18n static %}
+{# Same tile layout as components/web_development/products.html; tiles are informational (no links). #}
+<section class="pl-web__section pl-web__section--services" id="scope" aria-labelledby="pl-web-app-scope-title">
+    <div class="pl-web__inner">
+        <h2 id="pl-web-app-scope-title" class="pl-web__h2 pl-web__h2--center">{% trans "Jaké webové aplikace stavíme" %}</h2>
+        <div class="pl-web__products">
+            {% for tile in app_tiles %}
+            <div class="pl-web__product{% if tile.wide %} pl-web__product--wide{% endif %}">
+                <img class="pl-web__product-glow" src="{% static 'images/web-development/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-web__product-top">
+                    <div class="pl-web__product-head">
+                        <span class="pl-web__product-name">{{ tile.name }}</span>
+                    </div>
+                    <span class="pl-web__idx" aria-hidden="true">{{ tile.idx }}</span>
+                </div>
+                <div class="pl-web__product-bottom">
+                    <span class="pl-web__product-text">{{ tile.text }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -11410,3 +11410,120 @@ msgstr "Selected"
 msgctxt "clients heading"
 msgid "klienti"
 msgstr "clients"
+
+#: templates/components/header.html
+msgid "веб-застосунки"
+msgstr "web applications"
+
+#: templates/components/burger_menu.html
+msgid "Веб-застосунки"
+msgstr "Web applications"
+
+#: templates/components/web_applications/hero.html
+msgid "Webové aplikace na míru"
+msgstr "Custom web applications"
+
+#: templates/components/web_applications/hero.html
+msgid "Klientské zóny, interní systémy, rezervace a integrace – když běžný web nestačí. Rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok bezplatné podpory."
+msgstr "Client portals, internal systems, booking and integrations – when a regular website is not enough. Budget and deadlines are fixed in the contract. Lifetime code warranty and 1 year of free support."
+
+#: templates/components/web_applications/hero.html
+msgid "Klientské zóny"
+msgstr "Client portals"
+
+#: templates/components/web_applications/hero.html
+msgid "Role a přístupy"
+msgstr "Roles and access"
+
+#: templates/components/web_applications/hero.html
+msgid "Přihlášení, profily, dokumenty a stav objednávek"
+msgstr "Logins, profiles, documents and order status"
+
+#: templates/components/web_applications/hero.html
+msgid "Integrace"
+msgstr "Integrations"
+
+#: templates/components/web_applications/hero.html
+msgid "CRM · platby · API"
+msgstr "CRM · payments · API"
+
+#: templates/components/web_applications/hero.html
+msgid "Propojení se systémy, které už používáte"
+msgstr "Connected to the systems you already use"
+
+#: templates/components/web_applications/hero.html
+msgid "Administrace"
+msgstr "Admin panel"
+
+#: templates/components/web_applications/hero.html
+msgid "Vlastní admin"
+msgstr "Custom admin"
+
+#: templates/components/web_applications/hero.html
+msgid "Přehledy, exporty a správa obsahu bez programátora"
+msgstr "Reports, exports and content management without a developer"
+
+#: templates/components/web_applications/scope.html
+msgid "Jaké webové aplikace stavíme"
+msgstr "What web applications we build"
+
+#: templates/components/web_applications/calc.html
+#, python-format
+msgid "Rozpětí %(app_range)s je orientační. Přesnou částku a termín zakotvíme po briefu ve smlouvě."
+msgstr "The %(app_range)s range is indicative. The exact amount and deadline are fixed in the contract after the brief."
+
+#: templates/pages/web-applications.html
+msgid "Webové aplikace na míru | PrometeyLabs"
+msgstr "Custom web applications | PrometeyLabs"
+
+#: templates/pages/web-applications.html
+msgid "Vývoj webových aplikací na míru: klientské zóny, interní systémy, rezervace a integrace. Orientačně 2 800–8 000 €, cena a termín ve smlouvě, doživotní záruka na kód a 1 rok bezplatné podpory."
+msgstr "Custom web application development: client portals, internal systems, booking and integrations. Indicatively €2,800–8,000, price and deadline fixed in the contract, lifetime code warranty and 1 year of free support."
+
+#: templates/pages/web-applications.html
+msgid "webová aplikace na míru, vývoj webových aplikací, klientská zóna, interní systém, MVP, PrometeyLabs"
+msgstr "custom web application, web application development, client portal, internal system, MVP, PrometeyLabs"
+
+#: templates/pages/web-applications.html
+msgid "Vývoj webových aplikací"
+msgstr "Web application development"
+
+#: apps/core/views.py
+msgid "Klientské zóny a portály"
+msgstr "Client zones and portals"
+
+#: apps/core/views.py
+msgid "Přihlášení, profily, dokumenty a stav objednávek pro vaše zákazníky."
+msgstr "Logins, profiles, documents and order status for your customers."
+
+#: apps/core/views.py
+msgid "Interní systémy a CRM"
+msgstr "Internal systems and CRM"
+
+#: apps/core/views.py
+msgid "Evidence zakázek, role zaměstnanců, přehledy a exporty."
+msgstr "Job tracking, staff roles, reports and exports."
+
+#: apps/core/views.py
+msgid "Rezervace a objednávky"
+msgstr "Booking and orders"
+
+#: apps/core/views.py
+msgid "Kalendáře, volné termíny, online platby a automatická potvrzení."
+msgstr "Calendars, available slots, online payments and automatic confirmations."
+
+#: apps/core/views.py
+msgid "Integrace a API"
+msgstr "Integrations and API"
+
+#: apps/core/views.py
+msgid "Propojení s CRM, platební bránou, účetnictvím nebo Telegramem."
+msgstr "Connections to your CRM, payment gateway, accounting or Telegram."
+
+#: apps/core/views.py
+msgid "MVP pro nové projekty"
+msgstr "MVP for new projects"
+
+#: apps/core/views.py
+msgid "První verze za pár týdnů, další moduly podle reálných dat."
+msgstr "A first version in a few weeks, further modules based on real data."

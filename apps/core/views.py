@@ -207,6 +207,45 @@ class WebDevelopmentView(BasePageView):
         return context
 
 
+class WebApplicationsView(BasePageView):
+    """Service page Webové aplikace / Web applications (cs: /webove-aplikace/, en: /en/web-applications/).
+
+    Cloned from WebDevelopmentView (same pl-web components). The URL pattern is
+    language-dependent (see apps.core.urls); a request on the other language's slug
+    (e.g. /web-applications/ or /en/webove-aplikace/) gets a 301 to the canonical one.
+    """
+
+    template_name = 'pages/web-applications.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        from django.urls import reverse
+
+        canonical = reverse('web_applications')
+        if request.path != canonical:
+            query = request.META.get('QUERY_STRING', '')
+            return redirect(f'{canonical}?{query}' if query else canonical, permanent=True)
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['portfolio_strip'] = portfolio_strip()
+        context['web_prices'] = web_dev_prices()
+        context['home_clients'] = homepage_clients()
+        context['app_tiles'] = [
+            {'idx': '01', 'name': _('Klientské zóny a portály'),
+             'text': _('Přihlášení, profily, dokumenty a stav objednávek pro vaše zákazníky.')},
+            {'idx': '02', 'name': _('Interní systémy a CRM'),
+             'text': _('Evidence zakázek, role zaměstnanců, přehledy a exporty.')},
+            {'idx': '03', 'name': _('Rezervace a objednávky'),
+             'text': _('Kalendáře, volné termíny, online platby a automatická potvrzení.')},
+            {'idx': '04', 'name': _('Integrace a API'), 'wide': True,
+             'text': _('Propojení s CRM, platební bránou, účetnictvím nebo Telegramem.')},
+            {'idx': '05', 'name': _('MVP pro nové projekty'), 'wide': True,
+             'text': _('První verze za pár týdnů, další moduly podle reálných dat.')},
+        ]
+        return context
+
+
 class CorporateWebsiteView(BasePageView):
     """Corporate-website landing (cs default / en prefixed). No RU/UK language paths."""
     template_name = 'pages/corporate-website.html'
