@@ -1,17 +1,19 @@
 /**
- * Google Ads GCLID & UTM Capture + first-touch landing + outbound-click tracking.
+ * Google Ads GCLID & UTM capture + first-touch landing + outbound-click tracking.
  *
- * Все, що тут зберігається у cookies (`_prm_*`) — додається у POST-дані будь-якої форми
- * (через `appendToFormData`). На сервері це потрапляє в `FormSubmission.gclid/utm_*`
- * та `extra_data.source_page / landing_page / landing_referrer`. KeyCRM-резолвер
- * використовує ці підказки, щоб атрибутувати заявку до правильної рекламної кампанії
- * (Shops / Corporate / All), навіть якщо форма заповнена в footer/контактах,
- * а перший візит був на /internet-shop/ чи /corporate-website/.
+ * Values (`_prm_*`) are appended to the POST data of every lead form
+ * (via `appendToFormData`) and end up in `FormSubmission.gclid/utm_*` and
+ * `extra_data.source_page / landing_page / landing_referrer` (KeyCRM attribution).
  *
- * Кліки по tel: / t.me / wa.me / m.me відправляються у dataLayer (Google Tag Manager)
- * як події `phone_click` / `messenger_click` з gclid/utm/landing — для GA4/Google Ads.
- * Для WhatsApp та Telegram-ботів автоматично дописується `?text=` з тегом кампанії,
- * щоб менеджер у CRM одразу бачив джерело.
+ * Consent (CookieYes, see /cookies/): `_prm_*` cookies are written ONLY after the
+ * visitor accepts the "advertisement" or "analytics" category. Before that, values
+ * live in sessionStorage / memory for the current session only (forms still get
+ * them). When consent arrives (`cookieyes_consent_update` / `cookieyes_banner_load`
+ * or an existing consent via `getCkyConsent()`), session values are persisted to
+ * cookies; when consent is withdrawn, the cookies are expired again.
+ *
+ * Clicks on tel: / t.me / wa.me / m.me are pushed to dataLayer (GTM) as
+ * `phone_click` / `messenger_click`. WhatsApp / m.me links get a `?text=` campaign tag.
  */
 (function () {
     'use strict';
@@ -30,6 +32,98 @@
         { needle: 'corp', label: TAG_CORPORATE },
         { needle: 'company', label: TAG_CORPORATE },
     ];
+
+    const SESSION_PREFIX = 'prm_';
+    const memoryStore = {};
+    let consentGranted = false;
+
+    function sessionGet(name) {
+        try {
+            const v = window.sessionStorage.getItem(SESSION_PREFIX + name);
+            if (v !== null) return v;
+        } catch (e) { /* storage blocked */ }
+        return memoryStore[name] || '';
+    }
+
+    function sessionSet(name, value) {
+        memoryStore[name] = value;
+        try { window.sessionStorage.setItem(SESSION_PREFIX + name, value); } catch (e) { /* storage blocked */ }
+    }
+
+    function sessionRemove(name) {
+        delete memoryStore[name];
+        try { window.sessionStorage.removeItem(SESSION_PREFIX + name); } catch (e) { /* storage blocked */ }
+    }
+
+    function deleteCookie(name) {
+        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax`;
+    }
+
+    function allKeys() {
+        return TRACKING_PARAMS.concat(LANDING_KEYS).map((k) => '_prm_' + k);
+    }
+
+    /** Read: cookie (consented, earlier visit) → session/memory. */
+    function read(name) {
+        return getCookie(name) || sessionGet(name);
+    }
+
+    /** Write: cookie only with consent, otherwise session/memory. */
+    function store(name, value) {
+        if (consentGranted) {
+            setCookie(name, value, COOKIE_DAYS);
+            sessionRemove(name);
+        } else {
+            sessionSet(name, value);
+        }
+    }
+
+    function consentFromCategories(categories) {
+        if (!categories) return false;
+        return !!(categories.advertisement || categories.analytics);
+    }
+
+    function consentFromList(list) {
+        return Array.isArray(list) && (list.indexOf('advertisement') !== -1 || list.indexOf('analytics') !== -1);
+    }
+
+    function applyConsent(granted) {
+        consentGranted = !!granted;
+        allKeys().forEach((name) => {
+            if (consentGranted) {
+                const v = sessionGet(name);
+                if (v && !getCookie(name)) setCookie(name, v, COOKIE_DAYS);
+                if (v) sessionRemove(name);
+            } else {
+                const c = getCookie(name);
+                if (c) {
+                    sessionSet(name, c); // keep for this session's forms only
+                    deleteCookie(name);
+                }
+            }
+        });
+    }
+
+    function checkExistingConsent() {
+        try {
+            if (typeof window.getCkyConsent === 'function') {
+                const c = window.getCkyConsent();
+                if (c && c.categories) applyConsent(consentFromCategories(c.categories));
+            }
+        } catch (e) { /* CookieYes not ready */ }
+    }
+
+    function listenConsent() {
+        document.addEventListener('cookieyes_consent_update', (e) => {
+            const d = (e && e.detail) || {};
+            applyConsent(consentFromList(d.accepted));
+        });
+        document.addEventListener('cookieyes_banner_load', (e) => {
+            const d = (e && e.detail) || {};
+            if (d.categories) applyConsent(consentFromCategories(d.categories));
+            else checkExistingConsent();
+        });
+    }
 
     function setCookie(name, value, days) {
         const date = new Date();
@@ -55,22 +149,22 @@
         const params = new URLSearchParams(window.location.search);
         TRACKING_PARAMS.forEach((p) => {
             const v = params.get(p);
-            if (v) setCookie('_prm_' + p, v, COOKIE_DAYS);
+            if (v) store('_prm_' + p, v);
         });
     }
 
     function captureFirstTouch() {
-        if (!getCookie('_prm_landing_path')) {
-            setCookie('_prm_landing_path', window.location.pathname, COOKIE_DAYS);
+        if (!read('_prm_landing_path')) {
+            store('_prm_landing_path', window.location.pathname);
         }
-        if (!getCookie('_prm_landing_referrer') && document.referrer) {
+        if (!read('_prm_landing_referrer') && document.referrer) {
             try {
                 const ref = new URL(document.referrer);
                 if (ref.host !== window.location.host) {
-                    setCookie('_prm_landing_referrer', document.referrer, COOKIE_DAYS);
+                    store('_prm_landing_referrer', document.referrer);
                 }
             } catch (e) {
-                // ігноруємо невалідний referrer
+                // ignore invalid referrer
             }
         }
     }
@@ -78,11 +172,11 @@
     function getTrackingData() {
         const data = {};
         TRACKING_PARAMS.forEach((p) => {
-            const v = getCookie('_prm_' + p);
+            const v = read('_prm_' + p);
             if (v) data[p] = v;
         });
         LANDING_KEYS.forEach((k) => {
-            const v = getCookie('_prm_' + k);
+            const v = read('_prm_' + k);
             if (v) data[k === 'landing_path' ? 'landing_page' : k] = v;
         });
         return data;
@@ -114,8 +208,8 @@
     }
 
     function campaignTag() {
-        const campaign = (getCookie('_prm_utm_campaign') || '').toLowerCase();
-        const landing = (getCookie('_prm_landing_path') || window.location.pathname || '').toLowerCase();
+        const campaign = (read('_prm_utm_campaign') || '').toLowerCase();
+        const landing = (read('_prm_landing_path') || window.location.pathname || '').toLowerCase();
         const hay = campaign + ' ' + landing;
         for (let i = 0; i < CAMPAIGN_TAGS.length; i++) {
             if (hay.indexOf(CAMPAIGN_TAGS[i].needle) !== -1) {
@@ -152,15 +246,15 @@
                     link.setAttribute('href', url.toString());
                 }
             } else if (host === 't.me') {
-                // Telegram передає `?text=` лише у власних `share/url` посиланнях.
-                // Для звичайних посилань на профіль/бот — додаємо tag лише як подію.
+                // Telegram honours `?text=` only on its own `share/url` links.
+                // For plain profile/bot links the tag is sent as an event only.
                 if (url.pathname.endsWith('/share/url') && !url.searchParams.has('text')) {
                     url.searchParams.set('text', text);
                     link.setAttribute('href', url.toString());
                 }
             }
         } catch (e) {
-            // ігноруємо
+            // ignore
         }
     }
 
@@ -187,6 +281,8 @@
         }, { capture: true, passive: true });
     }
 
+    listenConsent();
+    checkExistingConsent();
     captureFromURL();
     captureFirstTouch();
 
