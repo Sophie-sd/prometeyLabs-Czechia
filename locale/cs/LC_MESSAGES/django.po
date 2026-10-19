@@ -1422,7 +1422,7 @@ msgstr "Text CTA (RU)"
 #: apps/demolanding/content_models.py:16 apps/demolanding/lead_models.py:10
 #: templates/demolanding/admin/my_landing_content.html:14
 msgid "Лендінг"
-msgstr "Landing"
+msgstr "Landing page"
 
 #: apps/core/proposal_models.py:131
 #: templates/components/tz_generator/quiz.html:27
@@ -4380,7 +4380,7 @@ msgstr "Reklamní služby"
 
 #: templates/components/corporate_website_v2/brief.html:140
 msgid "SEO розвиток сайту"
-msgstr "Rozvoj SEO webu"
+msgstr "SEO rozvoj webu"
 
 #: templates/components/corporate_website_v2/brief.html:146
 msgid "CRM та автоматизація"
@@ -4500,7 +4500,7 @@ msgstr "Přetížené pluginy — nízké skóre rychlosti"
 
 #: templates/components/corporate_website_v2/economy.html:24
 msgid "Висока вартість кліку в Google Ads"
-msgstr "Vysoká cena za kliknutí v Google Ads"
+msgstr "Pomalejší web = horší skóre kvality v reklamě"
 
 #: templates/components/corporate_website_v2/economy.html:28
 msgid "Постійні «дірки» у безпеці через сторонній код"
@@ -4544,7 +4544,7 @@ msgstr ""
 
 #: templates/components/corporate_website_v2/economy.html:73
 msgid "вартість залучення (CAC)"
-msgstr "cena za akvizici (CAC)"
+msgstr "nižší cena za získání zákazníka"
 
 #: templates/components/corporate_website_v2/economy.html:77
 msgid "оцінка Google PageSpeed"
@@ -4748,7 +4748,7 @@ msgstr "Neomezené škálování"
 
 #: templates/components/corporate_website_v2/scale.html:8
 msgid "Технологія клонування: необмежене масштабування без бюджетів"
-msgstr "Technologie klonování: neomezené škálování bez rozpočtů"
+msgstr "Šablonové řešení: rychlé nasazení dalších poboček/webů"
 
 #: templates/components/corporate_website_v2/scale.html:11
 msgid ""
@@ -4833,13 +4833,12 @@ msgstr ""
 
 #: templates/components/corporate_website_v2/scale.html:74
 msgid "Безлімітні копії"
-msgstr "Neomezené kopie"
+msgstr "Další kopie webu"
 
 #: templates/components/corporate_website_v2/scale.html:75
 msgid ""
 "Створюйте нові лендінги з готового сайту без додаткових бюджетів на розробку."
-msgstr ""
-"Vytvářejte nové landing page z hotového webu bez dalších nákladů na vývoj."
+msgstr "Další kopie webu za zvýhodněnou cenu — dohodneme předem."
 
 #: templates/components/corporate_website_v2/tech.html:6
 msgid "Технології, що працюють на ваш прибуток"

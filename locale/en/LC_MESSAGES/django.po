@@ -4336,7 +4336,7 @@ msgstr "Our Services"
 
 #: templates/components/corporate_website_v2/brief.html:140
 msgid "SEO розвиток сайту"
-msgstr "Website Development"
+msgstr "SEO website growth"
 
 #: templates/components/corporate_website_v2/brief.html:146
 msgid "CRM та автоматизація"
@@ -4456,7 +4456,7 @@ msgstr "Plugin-heavy — poor speed scores"
 
 #: templates/components/corporate_website_v2/economy.html:24
 msgid "Висока вартість кліку в Google Ads"
-msgstr "High cost per click in Google Ads"
+msgstr "Slower site = lower Quality Score in ads"
 
 #: templates/components/corporate_website_v2/economy.html:28
 msgid "Постійні «дірки» у безпеці через сторонній код"
@@ -4500,7 +4500,7 @@ msgstr ""
 
 #: templates/components/corporate_website_v2/economy.html:73
 msgid "вартість залучення (CAC)"
-msgstr "customer acquisition cost (CAC)"
+msgstr "lower customer acquisition cost"
 
 #: templates/components/corporate_website_v2/economy.html:77
 msgid "оцінка Google PageSpeed"
@@ -4705,7 +4705,7 @@ msgstr "Technical specification"
 
 #: templates/components/corporate_website_v2/scale.html:8
 msgid "Технологія клонування: необмежене масштабування без бюджетів"
-msgstr "Cloning technology: scale without extra budgets"
+msgstr "Template-based solution: fast rollout of new branches/sites"
 
 #: templates/components/corporate_website_v2/scale.html:11
 msgid ""
@@ -4788,14 +4788,13 @@ msgstr "Clean code without plugins — stable features for the life of the site.
 
 #: templates/components/corporate_website_v2/scale.html:74
 msgid "Безлімітні копії"
-msgstr "Unlimited copies"
+msgstr "Additional site copies"
 
 #: templates/components/corporate_website_v2/scale.html:75
 msgid ""
 "Створюйте нові лендінги з готового сайту без додаткових бюджетів на розробку."
 msgstr ""
-"Spin up new landing pages from your finished site without extra development "
-"budgets."
+"Additional copies of your site at a discounted price — agreed in advance."
 
 #: templates/components/corporate_website_v2/tech.html:6
 msgid "Технології, що працюють на ваш прибуток"
