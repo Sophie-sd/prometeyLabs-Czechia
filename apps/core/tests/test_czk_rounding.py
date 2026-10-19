@@ -10,12 +10,32 @@ from apps.core.calculator_estimate import eur_to_czk_rounded, format_price_displ
 from apps.core.web_development import WEB_DEV_TIERS, web_dev_prices
 
 NB = '\u00a0'
-EXPECTED_CZK = {
-    'landing': (10000, 17000),
-    'corporate': (17000, 24500),
-    'shop': (39000, 68500),
-    'app': (68500, 196000),
+
+# Незалежна (порахована вручну) таблиця EUR → Kč при EUR_CZK = 24.5, до 500 Kč, половина вгору.
+# EUR-межі тарифів беремо з того ж джерела, що й сайт (web_development.WEB_DEV_TIERS),
+# тож зміна цін (напр. e-shop 1 600 → 1 400 €, №28/42) не ламає тести, поки сума є в таблиці.
+EUR_TO_CZK = {
+    400: 10000,     # 9 800
+    700: 17000,     # 17 150
+    1000: 24500,    # 24 500
+    1400: 34500,    # 34 300
+    1600: 39000,    # 39 200
+    2800: 68500,    # 68 600
+    8000: 196000,   # 196 000
 }
+
+
+def _expected_czk(eur):
+    if eur not in EUR_TO_CZK:
+        raise AssertionError(f'{eur} € is not in EUR_TO_CZK; add its hand-checked Kč value to the test table')
+    return EUR_TO_CZK[eur]
+
+
+EXPECTED_CZK = {key: (_expected_czk(low), _expected_czk(high)) for key, low, high in WEB_DEV_TIERS}
+
+
+def _cs_amount(czk):
+    return f'{czk:,}'.replace(',', NB)
 
 
 class EurToCzkRoundedTests(SimpleTestCase):
@@ -50,8 +70,10 @@ class EurToCzkRoundedTests(SimpleTestCase):
         cs = web_dev_prices('cs')
         self.assertEqual(cs['landing']['czk'], f'≈{NB}10{NB}000–17{NB}000{NB}Kč')
         self.assertEqual(cs['app']['czk_from'], f'≈{NB}68{NB}500{NB}Kč')
+        shop_lo, shop_hi = EXPECTED_CZK['shop']
+        self.assertEqual(cs['shop']['czk'], f'≈{NB}{_cs_amount(shop_lo)}–{_cs_amount(shop_hi)}{NB}Kč')
         en = web_dev_prices('en')
-        self.assertEqual(en['shop']['czk'], f'≈{NB}CZK{NB}39,000–68,500')
+        self.assertEqual(en['shop']['czk'], f'≈{NB}CZK{NB}{shop_lo:,}–{shop_hi:,}')
 
 
 class WebDevelopmentCzkRenderTests(TestCase):
@@ -70,8 +92,8 @@ class WebDevelopmentCzkRenderTests(TestCase):
         for key, (lo, hi) in EXPECTED_CZK.items():
             rng = f'≈{NB}{lo:,}–{hi:,}{NB}Kč'.replace(',', NB)
             self.assertIn(rng, spans, key)
-        for amount in ('10{NB}000', '17{NB}000', '39{NB}000'):  # admin.html «od …»
-            self.assertIn(f'≈{NB}' + amount.format(NB=NB) + f'{NB}Kč', spans)
+        for key in ('landing', 'corporate', 'shop'):  # admin.html «od …»
+            self.assertIn(f'≈{NB}{_cs_amount(EXPECTED_CZK[key][0])}{NB}Kč', spans, key)
         self.assertFalse(any('9' + NB + '800' in s for s in spans))
 
     def test_en_page_czk_values(self):
