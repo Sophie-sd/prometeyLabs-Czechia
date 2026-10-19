@@ -4,8 +4,13 @@
         <h2 class="hf-cta__title" id="hf-cta-title">{% trans "ГОТОВІ" as a %}{% trans "ПОЧАТИ?" as b %}{{ a|lower|capfirst }} {{ b|lower }}</h2>
         <p class="hf-cta__text">{% trans "Зв'яжіться з нами для безкоштовної консультації та розрахунку вартості проєкту" %}</p>
         <div class="hf-cta__actions">
-            <a href="{% url 'calculator' %}" class="hf-btn hf-btn--light hf-btn--lg">{% trans "Розрахувати вартість" %}</a>
-            <a href="https://t.me/prometeylabs" class="hf-btn hf-btn--ghost hf-btn--lg" target="_blank" rel="noopener">{% trans "telegram-консультація" %}</a>
+            {# п.6: головний CTA — форма заявки #}
+            <button type="button" class="hf-btn hf-btn--light hf-btn--lg" data-modal="call-request-modal">{% trans "Залишити заявку" %}</button>
+            <a href="{% url 'calculator' %}" class="hf-btn hf-btn--ghost hf-btn--lg">{% trans "Розрахувати вартість" %}</a>
+            <a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" class="hf-btn hf-btn--ghost hf-btn--lg" target="_blank" rel="noopener">{% trans "telegram-консультація" %}</a>
+            {% if site_contact.get_whatsapp_href %}
+            <a href="{{ site_contact.get_whatsapp_href }}" class="hf-btn hf-btn--ghost hf-btn--lg" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            {% endif %}
         </div>
     </div>
 </section>

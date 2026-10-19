@@ -150,6 +150,7 @@
 .hf-hero__actions {
     position: relative;
     display: flex;
+    flex-wrap: wrap; /* п.6: опційна 4-та кнопка (WhatsApp) */
     justify-content: center;
     gap: 20px;
     margin-top: 340px; /* 691 − (140 + 211) */
@@ -494,7 +495,7 @@
     line-height: normal;
     color: var(--hf-gray);
 }
-.hf-cta__actions { display: flex; gap: 20px; margin-top: 60px; }
+.hf-cta__actions { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 60px; }
 .hf-cta__hint { margin-top: 8px; font-size: 14px; font-weight: 400; color: var(--hf-gray); }
 
 /* ---------- Tablet ---------- */

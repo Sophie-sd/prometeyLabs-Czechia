@@ -18,14 +18,25 @@
             {% trans "Зв'яжіться з нами для безкоштовної консультації та розрахунку вартості проєкту" %}
         </p>
         <div class="v2-cta-btns home-reveal home-reveal--soft" data-reveal-hold data-i="2">
-            <a href="{% url 'calculator' %}" class="v2-btn v2-btn-primary v2-btn-lg">
+            {# п.6: головний CTA — форма заявки; калькулятор, Telegram і WhatsApp — другорядні #}
+            <button type="button" class="v2-btn v2-btn-primary v2-btn-lg" data-modal="call-request-modal">
+                <span>{% trans "Залишити заявку" %}</span>
+                <span class="v2-arrow" aria-hidden="true">→</span>
+            </button>
+            <a href="{% url 'calculator' %}" class="v2-btn v2-btn-lg">
                 <span>{% trans "Розрахувати вартість" %}</span>
                 <span class="v2-arrow" aria-hidden="true">→</span>
             </a>
-            <a href="https://t.me/prometeylabs" class="v2-btn v2-btn-lg" target="_blank" rel="noopener">
+            <a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" class="v2-btn v2-btn-lg" target="_blank" rel="noopener">
                 <span>{% trans "telegram-консультація" %}</span>
                 <span class="v2-arrow" aria-hidden="true">→</span>
             </a>
+            {% if site_contact.get_whatsapp_href %}
+            <a href="{{ site_contact.get_whatsapp_href }}" class="v2-btn v2-btn-lg" target="_blank" rel="noopener noreferrer">
+                <span>WhatsApp</span>
+                <span class="v2-arrow" aria-hidden="true">→</span>
+            </a>
+            {% endif %}
         </div>
         </div>
     </div>
