@@ -255,6 +255,11 @@ class CalculatorTestSubmissionTests(TestCase):
 class ThankYouRedirectLocaleTests(TestCase):
     """redirect у JSON-відповіді веде на /thank-you/ мовою ліда (cs без префікса, en → /en/)."""
 
+    def tearDown(self):
+        from django.conf import settings as dj_settings
+        from django.utils import translation
+        translation.activate(dj_settings.LANGUAGE_CODE)
+
     def _post(self, url, **kw):
         response = self.client.post(url, _lead(form_type='contact', message='TEST'), **kw)
         self.assertEqual(response.status_code, 200, response.content)

@@ -35,6 +35,11 @@ def _lead(**extra):
 class LeadSiteLangCaptureTests(TestCase):
     """site/lang записуються в FormSubmission.extra_data для всіх ендпоінтів."""
 
+    def tearDown(self):
+        from django.conf import settings as dj_settings
+        from django.utils import translation
+        translation.activate(dj_settings.LANGUAGE_CODE)
+
     def _last(self):
         return FormSubmission.objects.latest('id')
 

@@ -1,7 +1,9 @@
 """П.6: головний CTA — форма; WhatsApp лише якщо заповнено в адмінці."""
 import re
 
+from django.conf import settings
 from django.core.cache import cache
+from django.utils import translation
 from django.test import TestCase
 
 from apps.core.models import SiteContactSettings
@@ -17,6 +19,8 @@ class HomeCtaChannelsTests(TestCase):
 
     def tearDown(self):
         cache.clear()
+        # GET /en/ лишає активну мову en у потоці тестів → reverse() в інших тестах дасть /en/…
+        translation.activate(settings.LANGUAGE_CODE)
 
     def _hero(self, html):
         m = re.search(r'<div class="hf-hero__actions">(.*?)</div>', html, re.S)
@@ -70,6 +74,8 @@ class HomeWhatsAppOnlyFromUrlTests(TestCase):
 
     def tearDown(self):
         cache.clear()
+        # GET /en/ лишає активну мову en у потоці тестів → reverse() в інших тестах дасть /en/…
+        translation.activate(settings.LANGUAGE_CODE)
 
     def _save(self, **fields):
         for k, v in fields.items():
