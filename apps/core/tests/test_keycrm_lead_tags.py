@@ -107,6 +107,7 @@ class LeadSiteLangCaptureTests(TestCase):
         r = self.client.post('/forms/tz/', {
             'name': 'TEST Jan', 'phone': '+420777123456', 'email': 'test@example.com',
             'quiz': json.dumps({'description': 'TEST'}),
+            'consent': '1',
         })
         self.assertEqual(r.status_code, 200, r.content)
         sub = self._last()

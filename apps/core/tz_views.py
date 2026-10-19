@@ -7,7 +7,7 @@ import re
 import secrets
 
 from django.http import HttpResponse, JsonResponse
-from django.utils import timezone
+from django.utils import timezone, translation
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as _lazy
 from django.views.decorators.http import require_POST, require_GET
@@ -15,6 +15,7 @@ from django.views.decorators.http import require_POST, require_GET
 from apps.core.form_handlers import (
     create_form_data,
     create_form_response,
+    has_consent,
     save_form_submission,
     validate_name,
     validate_phone,
@@ -67,6 +68,13 @@ def handle_tz_submission(request):
     email = request.POST.get('email', '').strip()
     quiz = _parse_quiz(request.POST.get('quiz', ''))
 
+    # GDPR: серверна перевірка згоди (фронт шле consent=1, як інші lead-форми)
+    if not has_consent(request):
+        return create_form_response(
+            False,
+            _('Підтвердіть згоду на обробку персональних даних.'),
+            status=400,
+        )
     if not name or not phone or not email:
         return create_form_response(
             False,
@@ -122,6 +130,19 @@ def handle_tz_submission(request):
     )
 
 
+TZ_PDF_FILENAMES = {
+    'cs': 'Zadani-webu.pdf',
+    'en': 'Website-brief.pdf',
+}
+
+
+def tz_pdf_filename(submission=None) -> str:
+    """Ім'я PDF за мовою: мова ліда (extra_data.lang) → активна мова → cs."""
+    lang = ((submission.extra_data or {}).get('lang') if submission is not None else '') or ''
+    lang = (lang or translation.get_language() or 'cs').split('-')[0].lower()
+    return TZ_PDF_FILENAMES.get(lang, TZ_PDF_FILENAMES['cs'])
+
+
 @require_GET
 def download_tz_pdf(request, token: str):
     """GET /forms/tz/<token>/pdf/ — миттєвий PDF з базовим ТЗ."""
@@ -146,8 +167,7 @@ def download_tz_pdf(request, token: str):
             status=500,
         )
 
-    safe_name = re.sub(r'[^\w\-]+', '_', (submission.name or 'tz')[:40], flags=re.UNICODE)
-    filename = f'TZ_{safe_name}_{submission.created_at.strftime("%Y%m%d")}.pdf'
+    filename = tz_pdf_filename(submission)
     response = HttpResponse(pdf_bytes, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
     response['Cache-Control'] = 'private, no-store'
