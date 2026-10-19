@@ -8,10 +8,9 @@
         <div class="plm__header-right">
             <div class="plm__lang">
                 <span class="plm__globe"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><g><path d="M11 19C15.4107 18.7405 18.7405 15.4107 19 11C19.2761 6.30558 15.6944 2.27614 11 2C6.03801 1.70812 1.70812 6.03802 2 11C2.27614 15.6944 6.30558 19.2761 11 19Z" stroke="#FF6600" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 11C6.82535 7.15775 9 4.00949 11 2.00949C13 4.00949 14.5108 6.91824 14.5094 10.5095C14.508 14.0973 13 17 11 19C9 17 7.15861 14.4894 7 11Z" stroke="#FF6600" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/><path d="M2.00952 10.0095H19.0095" stroke="#FF6600" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></g></svg></span>
-                <button type="button" class="plm__lang-btn" aria-expanded="false" aria-haspopup="true" aria-label="{% trans 'Мова' %}"><span>{{ LANGUAGE_CODE|upper }}</span><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><g><path d="M10 4L6 8L2 4" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/></g></svg></button>
+                <button type="button" class="plm__lang-btn" aria-expanded="false" aria-haspopup="true" aria-label="{% trans 'Мова' %}"><span>{% if LANGUAGE_CODE == 'cs' %}CZ{% else %}{{ LANGUAGE_CODE|upper }}{% endif %}</span><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><g><path d="M10 4L6 8L2 4" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/></g></svg></button>
                 <div class="plm__lang-list">
-                    {% if LANGUAGE_CODE != 'cs' %}<a href="#" class="lang-switcher-link" data-language-code="cs">CS</a>{% endif %}
-                    {% if LANGUAGE_CODE != 'en' %}<a href="#" class="lang-switcher-link" data-language-code="en">EN</a>{% endif %}
+                    {% include 'components/lang_switcher_links.html' with variant='mobile' %}
                 </div>
             </div>
             <button type="button" class="plm__close mobile-menu-close" aria-label="{% trans 'Закрити меню' %}">

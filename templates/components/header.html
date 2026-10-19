@@ -41,11 +41,10 @@
             <a href="{% url 'contacts' %}" class="nav-link{% if request.resolver_match.url_name == 'contacts' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'contacts' %} aria-current="page"{% endif %}>{% trans "контакти" as nl %}{{ nl|capfirst }}</a>
         </nav>
 
-        <!-- Desktop Language Switcher (CS default / EN) -->
+        <!-- Desktop Language Switcher (CZ default / EN), plain links -->
         <div class="language-switcher">
             {% get_current_language as LANGUAGE_CODE %}
-            <a href="#" class="lang-btn {% if LANGUAGE_CODE == 'cs' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="cs">CS</a>
-            <a href="#" class="lang-btn {% if LANGUAGE_CODE == 'en' %}active{% endif %} mobile-touch-target mobile-focus-visible lang-switcher-link" data-language-code="en">EN</a>
+            {% include 'components/lang_switcher_links.html' with variant='desktop' %}
         </div>
 
         <!-- Mobile Burger Button -->

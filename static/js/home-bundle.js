@@ -1780,6 +1780,9 @@ class PrometeyApp {
 
         langSwitchers.forEach(switcher => {
             switcher.addEventListener('click', (e) => {
+                // Plain links (real href to /<path>/ or /en/<path>/) navigate natively.
+                const href = switcher.getAttribute('href');
+                if (href && href !== '#') return;
                 e.preventDefault();
                 const langCode = switcher.getAttribute('data-language-code');
                 if (langCode) this.setLanguage(langCode);
@@ -1806,9 +1809,9 @@ class PrometeyApp {
 
         let nextUrl = window.location.pathname + window.location.search;
         const originalUrl = nextUrl;
-        // Видаляємо мовний префікс (/en/, /ru/, /cs/) — uk не має префікса
+        // Remove language prefix (/en/, /cs/); cs (default) has no prefix
         // (синхронізовано з static/js/base.js::setLanguage)
-        nextUrl = nextUrl.replace(/^\/(en|ru|cs)\//, '/');
+        nextUrl = nextUrl.replace(/^\/(en|cs)\//, '/');
 
         const nextInput = document.createElement('input');
         nextInput.type = 'hidden';
