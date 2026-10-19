@@ -873,7 +873,10 @@
 @media (min-width: 768px) {
     .pf-snaps .pf-snap,
     .pf-snaps .pf-snap--flip {
-        max-height: var(--pfg-frame-max);
+        width: var(--pfg-row);
+        /* one deterministic height, no aspect-ratio vs max-height fight */
+        aspect-ratio: auto;
+        height: min(calc(min(1330px, 100cqw - 110px) * 787 / 1330), var(--pfg-frame-max));
     }
 
     .pf-snaps .pf-snap__asset.is-shrinking,
@@ -1031,10 +1034,11 @@ html.pfg-fab-dodge .mobile-contact-fab {
     text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.45);
 }
 
-/* No scroll anchoring on this page: card width animations / sticky bar / lazy images must never
-   move scrollY (owner 2026-10-16: "підтяжка"). content-visibility removed for the same reason. */
+/* Scroll anchoring back to the browser default (as on prometeylabs.com, 2026-10-16 owner bisect):
+   the real "підтяжка" source was the aspect-ratio vs max-height fight + the unclipped glow, fixed below.
+   content-visibility stays removed. */
 html {
-    overflow-anchor: none;
+    overflow-anchor: auto;
 }
 
 
@@ -1107,3 +1111,14 @@ html {
         --pf-w: min(56%, calc(var(--pfg-frame-max) * 790 / 787));
     }
 }
+
+/* 2026-10-16: hard-disable any legacy scroll-snap (cached/old CSS) */
+html, html.pf-snap-on, body { scroll-snap-type: none !important; }
+.pf-snap, .pf-snap.is-snap-target { scroll-snap-align: none !important; }
+/* 2026-10-16: no hidden-overflow scroll boxes under the cursor (trackpad latch) */
+.pfg-hero, .pfg-hero__bg, .pfg-filter { overflow: clip !important; }
+
+/* 2026-10-16 trackpad pull-back fix (owner bisect): no max-height fight with aspect-ratio
+   (width capped instead, above), and the giant glow is clipped by the list both ways. */
+.pf-snaps { overflow: clip; container-type: inline-size; }
+.pf-snaps .pf-snap::before { contain: strict; }
