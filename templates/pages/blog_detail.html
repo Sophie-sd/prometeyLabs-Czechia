@@ -6,6 +6,13 @@
 {% block description %}{{ meta_description }}{% endblock %}
 {% block og_title %}{{ og_title }}{% endblock %}
 {% block keywords %}{{ keywords }}{% endblock %}
+{% block og_description %}{{ og_description }}{% endblock %}
+{% block extra_head %}
+{% if seo_noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+<script type="application/ld+json">
+{{ article_jsonld|safe }}
+</script>
+{% endblock %}
 
 {% block page_css %}
 <link rel="stylesheet" href="{% static 'css/blog.css' %}">

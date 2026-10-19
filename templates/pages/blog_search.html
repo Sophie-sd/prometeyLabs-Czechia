@@ -5,7 +5,9 @@
 {% block title %}{{ page_title }}{% endblock %}
 {% block description %}{{ meta_description }}{% endblock %}
 {% block og_title %}{{ og_title }}{% endblock %}
-{% block keywords %}{{ keywords }}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+{% block og_description %}{{ og_description }}{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex, follow">{% endblock %}
 
 {% block page_css %}
 <link rel="stylesheet" href="{% static 'css/blog.css' %}">

@@ -22,11 +22,13 @@
     <title>{% block title %}{% trans "PrometeyLabs - Розробка сайтів під ключ | Telegram боти | Реклама" %}{% endblock %}</title>
     <meta name="description"
         content="{% block description %}{% trans "PrometeyLabs - розробка сайтів під ключ, Telegram боти, налаштування реклами Google Ads, ведення соцмереж, навчання веб-розробки. Конкурентні ціни, сучасні технології." %}{% endblock %}">
-    <meta name="keywords"
-        content="{% block keywords %}{% trans "розробка сайтів, сайт під ключ, telegram бот, реклама google ads, веб розробка, навчання програмування" %}{% endblock %}">
+    {% block meta_keywords %}<meta name="keywords"
+        content="{% block keywords %}{% trans "розробка сайтів, сайт під ключ, telegram бот, реклама google ads, веб розробка, навчання програмування" %}{% endblock %}">{% endblock %}
 
-    <!-- hreflang — self-referencing alternativy jazykových verzí (cs/en + x-default) -->
-    {% hreflang_links %}
+    <!-- Self-canonical (https://prometeylabs.cz + path, bez query) -->
+    {% block canonical %}{% canonical_link %}{% endblock %}
+    <!-- hreflang — self-referencing alternativy jazykových verzí (cs/en + x-default), jen .cz -->
+    {% block hreflang %}{% hreflang_links %}{% endblock %}
 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="any">
@@ -41,7 +43,7 @@
     <meta property="og:description"
         content="{% block og_description %}{% trans "Створюємо сайти під ключ, Telegram боти, налаштовуємо рекламу. Сучасні технології, конкурентні ціни." %}{% endblock %}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:url" content="{% block og_url %}{% canonical_url %}{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -137,7 +139,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         "@type": "Organization",
         "name": "PrometeyLabs",
         "description": "{% filter escapejs %}{% trans "Розробка сайтів під ключ, Telegram боти, реклама" %}{% endfilter %}",
-        "url": "{{ request.build_absolute_uri }}",
+        "url": "{% site_url '/' %}",
         "contactPoint": {
             "@type": "ContactPoint",
             {% get_current_language as LANGUAGE_CODE %}
@@ -153,6 +155,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
             "https://t.me/prometeylabs",
             "https://instagram.com/prometeylabs"
         ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "PrometeyLabs",
+        "url": "{% url 'home' as home_path %}{% site_url home_path %}",
+        "inLanguage": "{{ LANGUAGE_CODE }}"
     }
     </script>
 

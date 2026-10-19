@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load seo_tags %}
 {% load i18n %}
 
 {% block body_attrs %} class="pl-tz-body" data-modal-source-page="tz-dlia-saitu-modal"{% endblock %}
 
 {% block title %}{% trans "Створити ТЗ для сайту безкоштовно за 3 хвилини | PrometeyLabs" %}{% endblock %}
 {% block description %}{% trans "Як правильно скласти ТЗ для сайту: інтерактивний конструктор. Отримайте базове технічне завдання в PDF одразу та розширене — на email протягом доби." %}{% endblock %}
-{% block keywords %}{% trans "створити ТЗ для сайту, технічне завдання для сайту, як скласти ТЗ, бриф на розробку сайту" %}{% endblock %}
+{% block keywords %}{% if LANGUAGE_CODE == 'en' %}website brief, website specification{% else %}zadání webu, technické zadání, brief pro tvorbu webu{% endif %}{% endblock %}
 {% block og_title %}{% trans "Створити ТЗ для сайту онлайн — безкоштовно | PrometeyLabs" %}{% endblock %}
 {% block og_description %}{% trans "Інтерактивний генератор ТЗ: відповідаєте на питання — отримуєте структуроване технічне завдання в PDF." %}{% endblock %}
 
 {% block extra_head %}
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.prometeylabs.com{% url 'tz_generator' %}">
-<link rel="alternate" hreflang="cs" href="https://www.prometeylabs.com/tz-dlia-saitu/">
-<link rel="alternate" hreflang="en" href="https://www.prometeylabs.com/en/tz-dlia-saitu/">
-<link rel="alternate" hreflang="x-default" href="https://www.prometeylabs.com/tz-dlia-saitu/">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -24,15 +21,15 @@
   "provider": {
     "@type": "Organization",
     "name": "PrometeyLabs",
-    "url": "https://www.prometeylabs.com"
+    "url": "{% site_url '/' %}"
   },
   "description": "{% trans "Безкоштовний інтерактивний конструктор технічного завдання на розробку сайту з PDF." %}",
-  "url": "https://www.prometeylabs.com{% url 'tz_generator' %}",
-  "areaServed": "UA",
+  "url": "{% canonical_url %}",
+  "areaServed": "CZ",
   "offers": {
     "@type": "Offer",
     "price": "0",
-    "priceCurrency": "UAH"
+    "priceCurrency": "EUR"
   }
 }
 </script>

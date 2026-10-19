@@ -3,13 +3,20 @@ from django.core.paginator import Paginator
 from django.views.generic import DetailView
 from django.db.models import Q
 from django.utils.translation import gettext as _
+from django.utils import translation
 from .models import BlogPost
+from .seo import BLOG_LIST_META, blog_search_meta, post_meta, article_jsonld
+from .visibility import is_hidden_category, visible_posts
+
+
+def _lang():
+    return (translation.get_language() or 'cs').split('-')[0]
 
 
 def blog_list(request):
     """Список статей блогу з фільтрацією"""
     try:
-        posts = BlogPost.objects.filter(is_published=True)
+        posts = visible_posts(BlogPost.objects.all())
         category = request.GET.get('category')
         if category:
             posts = posts.filter(category=category)
@@ -20,9 +27,7 @@ def blog_list(request):
         page_obj = paginator.get_page(page_number)
         
         # Популярні статті
-        popular_posts = BlogPost.objects.filter(
-            is_published=True
-        ).order_by('-created_at')[:3]
+        popular_posts = visible_posts(BlogPost.objects.all()).order_by('-created_at')[:3]
         
     except Exception:
         # Fallback якщо таблиці не існують
@@ -31,14 +36,18 @@ def blog_list(request):
         popular_posts = []
         category = None
     
+    # №69, №70: мета /blog/ без «курсів програмування»; тексти CZ/EN у seo.py
+    # (без нових gettext-рядків, .po не змінюється).
+    meta = BLOG_LIST_META.get(_lang(), BLOG_LIST_META['cs'])
     context = {
         'page_obj': page_obj,
         'popular_posts': popular_posts,
         'category': category,
-        'page_title': _('Блог про веб-розробку та курси програмування'),
-        'meta_description': _('Корисні статті про веб-розробку, курси програмування, створення сайтів під ключ та Telegram ботів. Читайте експертні поради та навчальні матеріали.'),
-        'og_title': _('Блог про веб-розробку та курси програмування'),
-        'keywords': _('блог веб-розробка, курси програмування, створення сайтів, розробка сайтів під ключ, telegram боти, python django'),
+        'page_title': meta['title'],
+        'meta_description': meta['description'],
+        'og_title': meta['title'],
+        'og_description': meta['description'],
+        'keywords': meta['keywords'],
     }
     return render(request, 'pages/blog.html', context)
 
@@ -58,18 +67,18 @@ class BlogDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         post = self.get_object()
         
-        # SEO мета-дані
-        context['page_title'] = post.meta_title or post.get_localized_title()
-        context['meta_description'] = post.meta_description or post.get_localized_excerpt()
-        context['og_title'] = post.og_title or post.get_localized_title()
-        context['og_description'] = post.og_description or post.get_localized_excerpt()
+        # SEO мета-дані. meta_title/meta_description/og_* у БД — чеські (seed),
+        # тому для EN беремо H1 і лід статті (№72), див. seo.post_meta.
+        context.update(post_meta(post, _lang()))
         context['keywords'] = post.get_localized_keywords()
-        
+        context['article_jsonld'] = article_jsonld(post, self.request.path, _lang())
+        # Категорія «courses» на .cz прихована (№70): сторінка лишається, але noindex.
+        context['seo_noindex'] = is_hidden_category(post.category)
+
         # Пов'язані статті
-        related_posts = BlogPost.objects.filter(
+        related_posts = visible_posts(BlogPost.objects.filter(
             category=post.category,
-            is_published=True
-        ).exclude(id=post.id)[:3]
+        )).exclude(id=post.id)[:3]
         context['related_posts'] = related_posts
         
         return context
@@ -79,7 +88,7 @@ def blog_search(request):
     """Пошук по блогу"""
     query = request.GET.get('q', '')
     try:
-        posts = BlogPost.objects.filter(is_published=True)
+        posts = visible_posts(BlogPost.objects.all())
         
         if query:
             posts = posts.filter(
@@ -100,13 +109,16 @@ def blog_search(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
+    # №74: CZ/EN мета, keywords прибрано, сторінка noindex,follow (шаблон).
+    meta = blog_search_meta(_lang(), query)
     context = {
         'page_obj': page_obj,
         'query': query,
-        'page_title': f'Пошук: {query}' if query else 'Пошук по блогу',
-        'meta_description': f'Результати пошуку "{query}" в блозі про веб-розробку та курси програмування',
-        'og_title': f'Пошук: {query}' if query else 'Пошук по блогу',
-        'keywords': 'пошук, блог, веб-розробка, курси програмування'
+        'page_title': meta['title'],
+        'meta_description': meta['description'],
+        'og_title': meta['title'],
+        'og_description': meta['description'],
+        'keywords': '',
     }
     
     return render(request, 'pages/blog_search.html', context)

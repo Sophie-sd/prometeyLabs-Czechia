@@ -102,6 +102,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Payment settings
 MONOBANK_TOKEN = os.getenv('MONOBANK_TOKEN', '')
 SITE_URL = os.getenv('SITE_URL', 'http://localhost:8000')
+CANONICAL_BASE = os.getenv('CANONICAL_BASE', 'https://prometeylabs.cz').rstrip('/')
 
 # ===== STATIC FILES OPTIMIZATION =====
 # WhiteNoise забезпечує compression та caching (див. settings.py)

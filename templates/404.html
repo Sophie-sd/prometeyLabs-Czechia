@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load seo_tags %}
+{% comment %}
+Branded 404 (№17). Django handler404 renders this template with status 404.
+Language comes from the URL prefix (/en/… → en, otherwise cs).
+Texts are inline per language (no new gettext msgids, .po untouched).
+No canonical / hreflang on an error page; noindex.
+{% endcomment %}
+
+{% block title %}{% if LANGUAGE_CODE == 'en' %}Page not found | PrometeyLabs{% else %}Stránka nenalezena | PrometeyLabs{% endif %}{% endblock %}
+{% block description %}{% if LANGUAGE_CODE == 'en' %}Sorry, this page does not exist.{% else %}Omlouváme se, tato stránka neexistuje.{% endif %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
+{% block canonical %}{% endblock %}
+{% block hreflang %}{% endblock %}
+{% block og_url %}{% url 'home' as home_path %}{% site_url home_path %}{% endblock %}
+{% block og_title %}{% if LANGUAGE_CODE == 'en' %}Page not found | PrometeyLabs{% else %}Stránka nenalezena | PrometeyLabs{% endif %}{% endblock %}
+{% block og_description %}{% if LANGUAGE_CODE == 'en' %}Sorry, this page does not exist.{% else %}Omlouváme se, tato stránka neexistuje.{% endif %}{% endblock %}
+
+{% block extra_head %}<meta name="robots" content="noindex, follow">{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/thank-you.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="thank-you-page page-404" role="main">
+    <div class="thank-you-container">
+        <div class="thank-you-content">
+            <p class="thank-you-subtitle color-white" aria-hidden="true">404</p>
+            <h1 class="thank-you-title color-brand-orange">
+                {% if LANGUAGE_CODE == 'en' %}Page not found{% else %}Stránka nenalezena{% endif %}
+            </h1>
+            <p class="thank-you-subtitle color-white">
+                {% if LANGUAGE_CODE == 'en' %}Sorry, this page does not exist.{% else %}Omlouváme se, tato stránka neexistuje.{% endif %}
+            </p>
+            <div class="thank-you-buttons">
+                <a href="{% url 'home' %}" class="btn btn-primary thank-you-btn mobile-touch-target">
+                    {% if LANGUAGE_CODE == 'en' %}Back to homepage{% else %}Zpět na úvod{% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
