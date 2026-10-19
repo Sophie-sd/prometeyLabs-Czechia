@@ -8760,7 +8760,7 @@ msgstr "social media management"
 
 #: templates/pages/home.html:79
 msgid "навчання"
-msgstr "AI automation"
+msgstr "e-shops"
 
 #: templates/pages/home.html:86
 msgid "Написати в телеграм"

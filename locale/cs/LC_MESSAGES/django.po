@@ -8768,7 +8768,7 @@ msgstr "správa sociálních sítí"
 
 #: templates/pages/home.html:79
 msgid "навчання"
-msgstr "AI automatizace"
+msgstr "e-shopy"
 
 #: templates/pages/home.html:86
 msgid "Написати в телеграм"
