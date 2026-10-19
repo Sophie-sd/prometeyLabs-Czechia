@@ -45,7 +45,7 @@
                         <p class="pl-shop__stat-label">{% trans "SKU за один прохід" %}</p>
                     </div>
                     <div class="pl-shop__stat">
-                        <p class="pl-shop__stat-num" data-count-to="24" data-count-unit="&nbsp;{% trans "год" %}">24<span> {% trans "год" %}</span></p>
+                        <p class="pl-shop__stat-num" data-count-to="24" data-count-unit="&nbsp;{% if LANGUAGE_CODE == 'en' %}h{% else %}hod{% endif %}">24<span> {% if LANGUAGE_CODE == 'en' %}h{% else %}hod{% endif %}</span></p>
                         <p class="pl-shop__stat-label">{% trans "на повну міграцію" %}</p>
                     </div>
                 </div>

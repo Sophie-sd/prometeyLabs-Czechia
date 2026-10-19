@@ -78,11 +78,11 @@
                     <div class="pl-tz__stat-label">{% trans "менше переробок під час розробки" %}</div>
                 </div>
                 <div class="pl-tz__stat">
-                    <div class="pl-tz__stat-num" data-count-to="3" data-count-unit=" хв">0<span> хв</span></div>
+                    {# Units: cs min / hod, en min / h #}<div class="pl-tz__stat-num" data-count-to="3" data-count-unit=" min">0<span> min</span></div>
                     <div class="pl-tz__stat-label">{% trans "щоб пройти квіз і отримати PDF" %}</div>
                 </div>
                 <div class="pl-tz__stat">
-                    <div class="pl-tz__stat-num" data-count-to="24" data-count-unit=" год">0<span> год</span></div>
+                    {% if LANGUAGE_CODE == 'en' %}<div class="pl-tz__stat-num" data-count-to="24" data-count-unit=" h">0<span> h</span></div>{% else %}<div class="pl-tz__stat-num" data-count-to="24" data-count-unit=" hod">0<span> hod</span></div>{% endif %}
                     <div class="pl-tz__stat-label">{% trans "до розширеного ТЗ на email" %}</div>
                 </div>
             </div>
