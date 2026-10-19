@@ -35,7 +35,7 @@
                 price: 'od 8\u00a0000\u00a0€',
                 term: '2–4 měsíce',
                 features: [
-                    'Premium UI/UX + kinematografická animace',
+                    'Premium UI/UX + filmové animace',
                     'AI ekosystém administrace a Telegram bot',
                     '6 měsíců content marketingu a mediakampaní'
                 ]
@@ -44,7 +44,7 @@
         en: {
             base: {
                 label: 'BASE',
-                price: 'from €1\u00a0400',
+                price: 'from €1,400',
                 term: '3–4 weeks',
                 features: [
                     'Conversion-focused design for your niche',
@@ -54,7 +54,7 @@
             },
             premium: {
                 label: 'PREMIUM',
-                price: 'from €2\u00a0800',
+                price: 'from €2,800',
                 term: '5–8 weeks',
                 features: [
                     'Custom UI/UX design from scratch',
@@ -64,7 +64,7 @@
             },
             platinum: {
                 label: 'PLATINUM',
-                price: 'from €8\u00a0000',
+                price: 'from €8,000',
                 term: '2–4 months',
                 features: [
                     'Premium UI/UX + cinematic animation',

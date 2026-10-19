@@ -135,7 +135,7 @@ msgstr "Programming Courses"
 
 #: apps/blog/models.py:41 templates/pages/blog.html:130
 msgid "Telegram боти"
-msgstr "telegram bots"
+msgstr "Telegram bots"
 
 #: apps/blog/models.py:42
 msgid "Бізнес"
@@ -198,7 +198,7 @@ msgstr "Blog Posts"
 
 #: apps/blog/views.py:38 apps/blog/views.py:40
 msgid "Блог про веб-розробку та курси програмування"
-msgstr "Blog on web development and programming courses"
+msgstr "Blog on web development, e-commerce and automation"
 
 #: apps/blog/views.py:39
 msgid ""
@@ -210,7 +210,7 @@ msgstr "Useful articles on web development, turnkey websites and Telegram bots. 
 msgid ""
 "блог веб-розробка, курси програмування, створення сайтів, розробка сайтів "
 "під ключ, telegram боти, python django"
-msgstr ""
+msgstr "web development, e-commerce, Telegram bots, AI, SEO"
 
 #: apps/core/admin.py:110
 msgid "Контактна інформація"
@@ -464,10 +464,8 @@ msgid "Генератор ТЗ для сайту"
 msgstr "Website brief generator"
 
 #: apps/core/models.py:25 apps/core/views.py:368
-#, fuzzy
-#| msgid "Персональний Telegram-бот"
 msgid "Заявка на Telegram-бота"
-msgstr "personal AI assistant"
+msgstr "Telegram bot request"
 
 #: apps/core/models.py:30 apps/payment/models.py:68
 msgid "Новий"
@@ -1717,7 +1715,9 @@ msgstr "Thanks! A manager will contact you for a consultation."
 
 #: apps/core/tz_views.py:200
 msgid "Добре. Базове ТЗ у PDF, розширене — на email протягом доби."
-msgstr "All set. Basic PDF brief now; extended by email within 24 hours."
+msgstr ""
+"All set. Your basic brief is in the PDF; the extended one will arrive by "
+"email within 24 hours."
 
 #: apps/core/views.py:67 templates/base.html:22
 msgid "PrometeyLabs - Розробка сайтів під ключ | Telegram боти | Реклама"
@@ -1767,8 +1767,8 @@ msgid ""
 "Зв'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, "
 "реклами чи навчання. Київ, Україна."
 msgstr ""
-"Contact the PrometeyLabs team for website development, Telegram bots, "
-"advertising or training. Kyiv, Ukraine."
+"Contact the PrometeyLabs team about website development, Telegram bots and "
+"advertising. Kyiv, Ukraine."
 
 # Telegram-bot page (CS/EN Czechia)
 #: apps/core/views.py:110 templates/pages/telegram-bot.html:7
@@ -1834,8 +1834,8 @@ msgid ""
 "Політика використання файлів cookie від PrometeyLabs. Дізнайтеся, які файли "
 "cookie ми використовуємо та як керувати налаштуваннями."
 msgstr ""
-"Refund policy from PrometeyLabs. Learn about the terms and procedure for "
-"refunding our services."
+"PrometeyLabs cookie policy. Find out which cookies we use and how to manage "
+"your settings."
 
 #: apps/core/views.py:140 templates/pages/refund-cs.html:5
 #: templates/pages/refund-en.html:5 templates/pages/refund.html:5
@@ -1891,7 +1891,9 @@ msgstr "Custom online stores — fast e-commerce development | PrometeyLabs"
 msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код."
-msgstr "E-commerce on a native stack — no page builders. Marketplace migration, SEO, 1-year code warranty."
+msgstr ""
+"E-commerce on a native stack — no page builders. Marketplace migration, "
+"SEO, lifetime code warranty."
 
 #: apps/core/views.py:170 templates/pages/internet-shop-v2.html:9
 msgid "Інтернет-магазини, що завантажуються швидше — PrometeyLabs"
@@ -1906,7 +1908,9 @@ msgstr "Corporate sites & landing pages — fast custom builds | PrometeyLabs"
 msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код."
-msgstr "Corporate websites and landing pages on a native stack. A fast site with high Core Web Vitals scores, technical SEO and a 1-year code warranty."
+msgstr ""
+"Corporate websites and landing pages on a native stack. A fast site with "
+"high Core Web Vitals scores, technical SEO and a lifetime code warranty."
 
 #: apps/core/views.py:186 templates/pages/corporate-website-v2.html:9
 msgid "Корпоративні сайти, що домінують у пошуку — PrometeyLabs"
@@ -1916,9 +1920,7 @@ msgstr "Corporate sites that dominate search — PrometeyLabs"
 msgid ""
 "Корпоративний сайт під ключ за 7 днів | Розробка сайту компанії — "
 "PrometeyLabs"
-msgstr ""
-"Turnkey corporate website in 7 days | Company website development — "
-"PrometeyLabs"
+msgstr "Turnkey corporate website in 7 days | PrometeyLabs"
 
 #: apps/core/views.py:198 templates/pages/corporate-website.html:8
 msgid ""
@@ -1926,9 +1928,9 @@ msgid ""
 "CRM, SEO + реклама Google/Facebook/TikTok у пакеті. Запуск за 7 днів. "
 "Команда досвідчених розробників. Розрахуємо вартість у брифі."
 msgstr ""
-"Turnkey corporate website. Custom design, CRM integration, SEO plus Google/"
-"Facebook/TikTok ads in the package. Live in 7 days. Experienced team. Get a "
-"cost estimate in the brief."
+"Turnkey corporate website: custom design, CRM integration, SEO and "
+"Google/Facebook/TikTok ads in the package. Live in 7 days. Cost estimate in "
+"the brief."
 
 #: apps/core/views.py:199
 msgid "Корпоративний сайт під ключ — створимо за 7 днів | PrometeyLabs"
@@ -1947,17 +1949,16 @@ msgid "Метод не дозволений"
 msgstr "Method not allowed"
 
 #: apps/core/views.py:221 apps/core/views.py:386
-#, fuzzy
-#| msgid ""
-#| "Дякуємо! Ваша заявка отримана. Ми зв'яжемося з вами найближчим часом."
 msgid ""
 "Дякуємо! Заявку на Telegram-бота отримано. Ми зв'яжемося з вами найближчим "
 "часом."
-msgstr "Our manager will contact you soon"
+msgstr ""
+"Thank you! We have received your Telegram bot request and will contact you "
+"shortly."
 
 #: apps/core/views.py:235 apps/core/views.py:491
 msgid "Підтвердіть згоду на обробку персональних даних."
-msgstr "I agree to the processing of personal data according to"
+msgstr "Please confirm your consent to the processing of personal data."
 
 #: apps/core/views.py:242 apps/core/views.py:278 apps/core/views.py:504
 msgid "Введіть коректне ім'я (мінімум 2 символи, хоча б одна літера)"
@@ -2008,12 +2009,11 @@ msgstr "Programming Courses"
 msgid ""
 "Дякуємо! Ваша заявка на курси отримана. Ми надішлемо детальну інформацію."
 msgstr ""
-"Thank you! Your course enquiry has been received. We will send the details "
-"shortly."
+"Thank you! We have received your request and will send you the details."
 
 #: apps/core/views.py:443
 msgid "Дякуємо! Наш спеціаліст зв'яжеться з вами протягом 15 хвилин."
-msgstr "Fill out the form and we will contact you within 15 minutes"
+msgstr "Thank you! Our specialist will contact you within 15 minutes."
 
 #: apps/core/views.py:470
 msgid "Дякуємо за ваше повідомлення! Ми зв'яжемося з вами найближчим часом."
@@ -2033,7 +2033,7 @@ msgstr "Thank you! We will contact you soon."
 
 #: apps/core/views.py:593
 msgid "Дякуємо! Наш менеджер зателефонує вам протягом 15 хвилин."
-msgstr "Leave your contacts and our manager will call you within 15 minutes"
+msgstr "Thank you! Our manager will call you within 15 minutes."
 
 #: apps/core/views.py:601
 msgid "Заявка з footer - Консультація"
@@ -3375,7 +3375,7 @@ msgstr "Yes"
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:74
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:80
 msgid "Ні"
-msgstr "All"
+msgstr "No"
 
 #: apps/payment/admin.py:115 apps/payment/admin.py:205
 #: apps/payment/admin.py:252 apps/payment/models.py:299
@@ -3957,7 +3957,7 @@ msgstr "Recipients"
 
 #: config/settings.py:116
 msgid "Налаштування"
-msgstr "Configuration per spec"
+msgstr "Settings"
 
 #: config/settings.py:120
 #, fuzzy
@@ -4332,7 +4332,7 @@ msgstr "Our Services"
 
 #: templates/components/corporate_website_v2/brief.html:140
 msgid "SEO розвиток сайту"
-msgstr "Website Development"
+msgstr "SEO website growth"
 
 #: templates/components/corporate_website_v2/brief.html:146
 msgid "CRM та автоматизація"
@@ -4418,6 +4418,14 @@ msgstr "Get an accurate cost estimate in 2 minutes"
 msgid "Калькулятор розрахунку"
 msgstr "I Want to Become a Developer"
 
+#: templates/components/corporate_website_v2/free_analysis.html
+msgid "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními."
+msgstr "Leave your contact details — we will prepare a short analysis and get back to you with recommendations."
+
+#: templates/components/corporate_website_v2/free_analysis.html
+msgid "Leave your contact — we will prepare a short analysis and get back to you with recommendations."
+msgstr "Leave your contact details — we will prepare a short analysis and get back to you with recommendations."
+
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Buy now, pay later (Twisto)"
 
@@ -4452,7 +4460,7 @@ msgstr "Plugin-heavy — poor speed scores"
 
 #: templates/components/corporate_website_v2/economy.html:24
 msgid "Висока вартість кліку в Google Ads"
-msgstr "High cost per click in Google Ads"
+msgstr "Slower site = lower Quality Score in ads"
 
 #: templates/components/corporate_website_v2/economy.html:28
 msgid "Постійні «дірки» у безпеці через сторонній код"
@@ -4496,7 +4504,7 @@ msgstr ""
 
 #: templates/components/corporate_website_v2/economy.html:73
 msgid "вартість залучення (CAC)"
-msgstr "customer acquisition cost (CAC)"
+msgstr "lower customer acquisition cost"
 
 #: templates/components/corporate_website_v2/economy.html:77
 msgid "оцінка Google PageSpeed"
@@ -4504,7 +4512,7 @@ msgstr "Google PageSpeed score"
 
 #: templates/components/corporate_website_v2/free_analysis.html:6
 msgid "Безкоштовний аналіз вашого бізнесу"
-msgstr "Free. No spam. PDF instantly."
+msgstr "Free analysis of your business"
 
 #: templates/components/corporate_website_v2/free_analysis.html:9
 msgid ""
@@ -4693,7 +4701,7 @@ msgstr "Top Core Web Vitals score"
 #: templates/components/corporate_website_v2/scale.html:69
 #: templates/components/internet_shop_v2/hero.html:71
 msgid "Пожиттєва гарантія на код"
-msgstr "1-year code warranty"
+msgstr "Lifetime code warranty + 1 year of free support"
 
 #: templates/components/corporate_website_v2/hero.html:193
 msgid "Безлімітне масштабування"
@@ -4701,7 +4709,7 @@ msgstr "Technical specification"
 
 #: templates/components/corporate_website_v2/scale.html:8
 msgid "Технологія клонування: необмежене масштабування без бюджетів"
-msgstr "Cloning technology: scale without extra budgets"
+msgstr "Template-based solution: fast rollout of new branches/sites"
 
 #: templates/components/corporate_website_v2/scale.html:11
 msgid ""
@@ -4739,7 +4747,7 @@ msgstr "Services"
 #: templates/components/corporate_website_v2/scale.html:38
 #: templates/components/corporate_website_v2/scale.html:50
 msgid "копія · 0 грн"
-msgstr "Up to $1,200"
+msgstr "copy · €0"
 
 #: templates/components/corporate_website_v2/scale.html:44
 msgid "регіон"
@@ -4765,7 +4773,7 @@ msgstr "1 year"
 #: templates/components/corporate_website_v2/scale.html:64
 #: templates/components/internet_shop_v2/garantiya.html:14
 msgid "Безкоштовна підтримка"
-msgstr "Format and support"
+msgstr "Free support"
 
 #: templates/components/corporate_website_v2/scale.html:65
 #: templates/components/internet_shop_v2/garantiya.html:15
@@ -4784,14 +4792,13 @@ msgstr "Clean code without plugins — stable features for the life of the site.
 
 #: templates/components/corporate_website_v2/scale.html:74
 msgid "Безлімітні копії"
-msgstr "Unlimited copies"
+msgstr "Additional site copies"
 
 #: templates/components/corporate_website_v2/scale.html:75
 msgid ""
 "Створюйте нові лендінги з готового сайту без додаткових бюджетів на розробку."
 msgstr ""
-"Spin up new landing pages from your finished site without extra development "
-"budgets."
+"Additional copies of your site at a discounted price — agreed in advance."
 
 #: templates/components/corporate_website_v2/tech.html:6
 msgid "Технології, що працюють на ваш прибуток"
@@ -4950,11 +4957,11 @@ msgstr "CONTACTS"
 
 #: templates/components/footer.html:50
 msgid "Графік роботи: Цілодобово"
-msgstr "Working Hours: 24/7"
+msgstr "We reply Mon–Fri 9:00–18:00 (CET)"
 
 #: templates/components/footer.html:93
 msgid "Реєстр. №"
-msgstr "Reg. No."
+msgstr "Tax ID (Ukraine):"
 
 #: templates/components/footer.html:98
 msgid "Захист даних:"
@@ -4962,7 +4969,7 @@ msgstr "Databases"
 
 #: templates/components/footer.html:102
 msgid "Налаштування cookie"
-msgstr "Configuration per spec"
+msgstr "Cookie settings"
 
 #: templates/components/footer.html:108
 msgid "Усі права захищені."
@@ -4984,6 +4991,10 @@ msgstr "promotion"
 #: templates/components/footer.html:109
 msgid "Навчання"
 msgstr "Training"
+
+#: templates/components/footer.html:89
+msgid "Цифровий маркетинг"
+msgstr "Digital Marketing"
 
 #: templates/components/header.html:7
 msgid "PrometeyLabs Czechia - Domovská stránka"
@@ -5197,7 +5208,7 @@ msgstr "which we adhere to"
 #: templates/components/home/redesign_why.html:25
 #: templates/components/home/redesign_why.html:49
 msgid "Лендінги:"
-msgstr "Landings:"
+msgstr "Landing pages:"
 
 #: templates/components/home/redesign_why.html:25
 #: templates/components/home/redesign_why.html:26
@@ -5209,7 +5220,7 @@ msgstr "days"
 #: templates/components/home/redesign_why.html:26
 #: templates/components/home/redesign_why.html:50
 msgid "Корпоративні сайти:"
-msgstr "Corporate sites:"
+msgstr "Corporate websites:"
 
 #: templates/components/home/redesign_why.html:27
 msgid "Інтернет-магазини:"
@@ -5241,11 +5252,11 @@ msgstr "and flexible payment terms"
 
 #: templates/components/home/redesign_why.html:49
 msgid "400–700 €"
-msgstr "500–700 €"
+msgstr "€400–700"
 
 #: templates/components/home/redesign_why.html:50
 msgid "700–1000 €"
-msgstr "800–1400 €"
+msgstr "€700–1,000"
 
 #: templates/components/home/redesign_why.html:51
 msgid "E-commerce:"
@@ -5257,11 +5268,11 @@ msgstr "1500–5000 €"
 
 #: templates/components/home/redesign_why.html:52
 msgid "Веб-додатки:"
-msgstr "Web application / SaaS:"
+msgstr "Web apps / SaaS:"
 
 #: templates/components/home/redesign_why.html:52
 msgid "2800–8000 €"
-msgstr "800–1400 €"
+msgstr "€2,800–8,000"
 
 #: templates/components/home/redesign_why.html:55
 msgid "Пропонуємо розбиття оплати на етапи — без переплат та прихованих умов."
@@ -5680,7 +5691,7 @@ msgstr "Stock"
 
 #: templates/components/internet_shop_v2/admin.html:54
 msgid "Топ товар"
-msgstr "Services / products"
+msgstr "Top product"
 
 #: templates/components/internet_shop_v2/admin.html:55
 msgid "Продажі"
@@ -5831,7 +5842,7 @@ msgstr "100–1,000 products"
 
 #: templates/components/internet_shop_v2/brief.html:84
 msgid "1000–10 000 товарів"
-msgstr "$1,200–3,500"
+msgstr "1,000–10,000 products"
 
 #: templates/components/internet_shop_v2/brief.html:90
 msgid "Більше 10 000 товарів"
@@ -5892,7 +5903,9 @@ msgstr "Code warranty"
 msgid ""
 "Чистий код без плагінів і залежностей — стабільна робота функціоналу "
 "протягом усього життя проєкту."
-msgstr "Clean code without plugins or fragile dependencies — code defects fixed for 1 year after handover."
+msgstr ""
+"Clean code without plugins or fragile dependencies — defects in our code "
+"fixed for the lifetime of the project."
 
 #: templates/components/internet_shop_v2/hero.html:25
 msgid ""
@@ -6000,7 +6013,7 @@ msgstr "Enquiries handled in the built-in admin"
 
 #: templates/components/internet_shop_v2/packages.html:56
 msgid "Локалізована адмінка (UA або інша мова)"
-msgstr "Localised admin (UA or another language)"
+msgstr "Localised admin (Czech or another language)"
 
 #: templates/components/internet_shop_v2/packages.html:57
 msgid "Розгортання під ключ на домені клієнта"
@@ -6050,7 +6063,7 @@ msgstr "Content marketing: SEO articles"
 
 #: templates/components/internet_shop_v2/packages.html:80
 msgid "10 органічних відгуків у Google Maps"
-msgstr "10 organic Google Maps reviews"
+msgstr "Google Business Profile setup + review request flow for real customers"
 
 #: templates/components/internet_shop_v2/packages.html:81
 msgid "1 рекламний кабінет + перша кампанія"
@@ -6082,7 +6095,7 @@ msgstr "Extra-high AI, up to 10 language versions"
 
 #: templates/components/internet_shop_v2/packages.html:97
 msgid "Максимальне SEO (UA + міжнародні ринки)"
-msgstr "Max participants"
+msgstr "Maximum SEO (Czechia + international markets)"
 
 #: templates/components/internet_shop_v2/packages.html:98
 msgid "Персональна CRM + AI-помічник продажів"
@@ -6110,7 +6123,7 @@ msgstr "6 months of content marketing and SEO articles"
 
 #: templates/components/internet_shop_v2/packages.html:107
 msgid "60 органічних відгуків у Google Maps"
-msgstr "60 organic Google Maps reviews"
+msgstr "Google Business Profile setup + review request flow for real customers"
 
 #: templates/components/internet_shop_v2/packages.html:108
 msgid "Медіакампанія: до 5 кампаній, 3 міс. (Meta, Google, TikTok)"
@@ -6259,15 +6272,15 @@ msgstr "6 months of ongoing management"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:73
 msgid "Органічні відгуки Google Maps"
-msgstr "Organic Google Maps reviews"
+msgstr "Google Business Profile setup + review request flow for real customers"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:75
 msgid "10 відгуків"
-msgstr "10 reviews"
+msgstr "Yes"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:76
 msgid "60 відгуків"
-msgstr "60 reviews"
+msgstr "Yes"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:81
 msgid "1 кабінет / 1 кампанія (старт)"
@@ -6283,7 +6296,7 @@ msgstr "Deployment (domain / hosting)"
 
 #: templates/components/internet_shop_v2/svoboda.html:6
 msgid "Переросли Prom та OLX?"
-msgstr "Outgrown Shoptet and Heureka?"
+msgstr "Outgrown Shoptet or WooCommerce?"
 
 #: templates/components/internet_shop_v2/svoboda.html:7
 msgid "Час грати за власними правилами."
@@ -6355,7 +6368,7 @@ msgstr "SKUs in one pass"
 
 #: templates/components/internet_shop_v2/svoboda.html:80
 msgid "год"
-msgstr "Events"
+msgstr "h"
 
 #: templates/components/internet_shop_v2/svoboda.html:81
 msgid "на повну міграцію"
@@ -6477,7 +6490,7 @@ msgstr ""
 
 #: templates/components/lead_gdpr_min.html:23
 msgid "Відповімо по email протягом 24 годин…"
-msgstr "Extended brief within 24 hours"
+msgstr "We will reply by email within 24 hours…"
 
 #: templates/components/modals.html:9 templates/components/modals.html:35
 msgid "Zavřít"
@@ -6488,8 +6501,9 @@ msgid "Chci se stát vývojářem"
 msgstr "I want to become a developer"
 
 #: templates/components/modals.html:16
-msgid "Zanechte kontakt — ozveme se ohledně kurzů programování."
-msgstr "Leave your contact details — we will get back about programming courses."
+msgid "Zanechte kontakt — ozveme se vám ohledně spolupráce."
+msgstr ""
+"Leave your contact details — we will get back to you about working together."
 
 #: templates/components/modals.html:42
 msgid "Zanechte kontakt — ozveme se co nejdříve."
@@ -7279,19 +7293,19 @@ msgstr "Estimated project budget?"
 
 #: templates/components/tz_generator/quiz.html:100
 msgid "До 50 000 грн"
-msgstr "Up to $1,200"
+msgstr "Up to €1,200"
 
 #: templates/components/tz_generator/quiz.html:101
 msgid "50–150 000 грн"
-msgstr "$1,200–3,500"
+msgstr "€1,200–3,500"
 
 #: templates/components/tz_generator/quiz.html:102
 msgid "150–400 000 грн"
-msgstr "$3,500–10,000"
+msgstr "€3,500–10,000"
 
 #: templates/components/tz_generator/quiz.html:103
 msgid "Від 400 000 грн"
-msgstr "$10,000+"
+msgstr "€10,000+"
 
 #: templates/components/tz_generator/quiz.html:104
 msgid "Потрібна консультація"
@@ -7308,8 +7322,7 @@ msgstr "Short project description"
 #: templates/components/tz_generator/quiz.html:113
 msgid ""
 "Наприклад: потрібен інтернет-магазин косметики з доставкою..."
-msgstr ""
-"For example: need an online cosmetics store with delivery..."
+msgstr "E.g. an online cosmetics store with delivery across Czechia…"
 
 #: templates/components/tz_generator/quiz.html:116
 msgid "Додаткові побажання (необов'язково)"
@@ -8025,8 +8038,8 @@ msgid ""
 "Читайте експертні поради, практичні керівництва та актуальну інформацію про "
 "створення сайтів, навчання програмуванню та автоматизацію бізнесу"
 msgstr ""
-"Read expert advice, practical guides and up-to-date information about "
-"website creation, programming training and business automation"
+"Read expert advice, practical guides and up-to-date insights on websites, "
+"e-commerce, marketing and business automation"
 
 #: templates/pages/blog.html:42 templates/pages/home.html:100
 msgid "Наші послуги"
@@ -8118,11 +8131,11 @@ msgstr "custom websites"
 
 #: templates/pages/blog_search.html:115
 msgid "курси програмування"
-msgstr "Programming Courses"
+msgstr "e-commerce"
 
 #: templates/pages/blog_search.html:117 templates/pages/home.html:76
 msgid "telegram боти"
-msgstr "telegram bots"
+msgstr "Telegram bots"
 
 #: templates/pages/blog_search.html:118
 msgid "веб-розробка"
@@ -8150,7 +8163,7 @@ msgstr "Thoughtful architecture and product logic"
 
 #: templates/pages/calculator.html:35
 msgid "Пожиттєва гарантія на наші програмні продукти."
-msgstr "1-year code warranty on our software products."
+msgstr "Lifetime code warranty + 1 year of free support."
 
 #: templates/pages/calculator.html:39
 msgid "Жодних щомісячних або прихованих платежів (повна прозорість)."
@@ -8209,7 +8222,7 @@ msgstr "To email"
 
 #: templates/pages/calculator.html:127
 msgid "У месенджер (Telegram / WhatsApp / Viber)"
-msgstr "To messenger (Telegram / WhatsApp / Viber)"
+msgstr "To messenger (WhatsApp / Telegram)"
 
 #: templates/pages/calculator.html:131
 msgid "В адмін-панель сайту (простий кабінет / CRM)"
@@ -8361,8 +8374,8 @@ msgid ""
 "Політика використання файлів cookie PrometeyLabs. Дізнайтеся, які файли "
 "cookie ми використовуємо та як керувати налаштуваннями."
 msgstr ""
-"Refund policy from PrometeyLabs. Learn about the terms and procedure for "
-"refunding our services."
+"PrometeyLabs cookie policy: which cookies we use and how you can manage "
+"your settings."
 
 #: templates/pages/cookies-ru.html:5
 msgid "Политика использования файлов cookie | PrometeyLabs"
@@ -8381,7 +8394,10 @@ msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код. PrometeyLabs — "
 "сайти під ключ."
-msgstr "Corporate websites and landing pages on a native stack. A fast site with high Core Web Vitals scores, technical SEO, 1-year code warranty. PrometeyLabs — custom sites."
+msgstr ""
+"Corporate websites and landing pages on a native stack. A fast site with "
+"high Core Web Vitals scores, technical SEO, lifetime code warranty. "
+"PrometeyLabs — custom sites."
 
 #: templates/pages/corporate-website.html:9
 msgid "Корпоративний сайт під ключ — створимо за 7 днів"
@@ -8756,7 +8772,9 @@ msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-"
 "commerce під ключ."
-msgstr "E-commerce on a native stack — no page builders. Marketplace migration, SEO, 1-year code warranty. PrometeyLabs — custom stores."
+msgstr ""
+"E-commerce on a native stack — no page builders. Marketplace migration, "
+"SEO, lifetime code warranty. PrometeyLabs — custom stores."
 
 #: templates/pages/internet-shop.html:7
 msgid ""
@@ -8954,8 +8972,8 @@ msgid ""
 "1 рік на техбаги з нашої вини — як в оферті. Нові функції й сторонні API в "
 "гарантію не входять."
 msgstr ""
-"1 year on technical bugs caused by us — as in the offer. New features and "
-"third-party APIs are not covered by the warranty."
+"We fix defects in our code for life, and support is free for the first "
+"year. New features and third-party APIs are not covered by the warranty."
 
 #: templates/pages/telegram-bot.html:122
 msgid "Telegram-бот під ключ"
@@ -8995,7 +9013,7 @@ msgstr "after payment, code and token belong to the client"
 
 #: templates/pages/telegram-bot.html:139
 msgid "гарантія 1 рік на багфікс"
-msgstr "1-year bugfix warranty"
+msgstr "lifetime code warranty"
 
 #: templates/pages/telegram-bot.html:148
 msgid "Бот студії"
@@ -9225,9 +9243,7 @@ msgstr "FAQ"
 msgid ""
 "Як у публічній оферті: 1 рік на багфікс з нашої вини. Не «пожиттєво» і не «5 "
 "років»."
-msgstr ""
-"As in the public offer: 1 year of bug fixes for our faults. Not “lifetime” "
-"and not “5 years”."
+msgstr "Lifetime warranty on defects in our code + 1 year of free support."
 
 #: templates/pages/telegram-bot.html:316
 msgid "Ніша й задача — відповімо орієнтиром по боту. Це не калькулятор сайтів."
@@ -10838,8 +10854,14 @@ msgid "Tvorba webových stránek na klíč | PrometeyLabs"
 msgstr "Turnkey Website Development | PrometeyLabs"
 
 #: templates/pages/web-development.html
-msgid "Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 600–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, bezplatná podpora a roční záruka na kód."
-msgstr "Turnkey websites: landing pages €400–700, company websites €700–1,000, online stores €1,600–2,800, web apps €2,800–8,000. Price and deadline fixed in the contract, free support and a 1-year code warranty."
+msgid ""
+"Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 "
+"400–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, "
+"doživotní záruka na kód a 1 rok bezplatné podpory."
+msgstr ""
+"Turnkey websites: landing pages €400–700, company websites €700–1,000, "
+"online stores €1,400–2,800, web apps €2,800–8,000. Price and deadline fixed "
+"in the contract, lifetime code warranty and 1 year of free support."
 
 #: templates/pages/web-development.html
 msgid "tvorba webových stránek, web na klíč, landing page, firemní web, e-shop, webová aplikace, PrometeyLabs"
@@ -10858,8 +10880,14 @@ msgid "Tvorba webových stránek"
 msgstr "Website development"
 
 #: templates/pages/web-development.html templates/components/web_development/hero.html
-msgid "Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: rozpočet a termíny zakotvíme ve smlouvě. Bezplatná podpora a roční záruka na kód."
-msgstr "Landing pages, company websites, online stores and web apps. Straightforward terms: budget and deadlines are fixed in the contract. Free support and a 1-year code warranty."
+msgid ""
+"Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: "
+"rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok "
+"bezplatné podpory."
+msgstr ""
+"Landing pages, company websites, online stores and web apps. "
+"Straightforward terms: budget and deadlines are fixed in the contract. "
+"Lifetime code warranty and 1 year of free support."
 
 #: templates/pages/web-development.html templates/components/web_development/admin.html templates/components/web_development/hero.html templates/components/web_development/products.html
 msgid "Landing page"
@@ -11330,7 +11358,7 @@ msgid "Баласт-скрипти"
 msgstr "Ballast scripts"
 
 msgid "Від 1 400 €. Пожиттєва гарантія на код. 1 рік підтримки безкоштовно."
-msgstr "From €1,400. Lifetime code guarantee. 1 year of free support."
+msgstr "From €1,400. Lifetime code warranty. 1 year of free support."
 
 msgid "Заявка на розрахунок вартості"
 msgstr "Price estimate request"
@@ -11347,10 +11375,10 @@ msgid "Правова інформація"
 msgstr "Legal information"
 
 msgid "Гарантія на код 1 рік"
-msgstr "1-year code warranty"
+msgstr "Lifetime code warranty + 1 year of free support"
 
 msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
-msgstr "From €1,400. 1-year code warranty. 1 year of free support."
+msgstr "From €1,400. Lifetime code warranty. 1 year of free support."
 
 msgid "від 1 400 €"
 msgstr "from €1,400"

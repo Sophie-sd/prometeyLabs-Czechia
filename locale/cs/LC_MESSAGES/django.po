@@ -212,7 +212,7 @@ msgstr "Články blogu"
 
 #: apps/blog/views.py:38 apps/blog/views.py:40
 msgid "Блог про веб-розробку та курси програмування"
-msgstr "Blog o vývoji webů a kurzech programování"
+msgstr "Blog o tvorbě webů, e-shopech a automatizaci"
 
 #: apps/blog/views.py:39
 msgid ""
@@ -224,7 +224,7 @@ msgstr "Užitečné články o vývoji webů, tvorbě webů na klíč a Telegram
 msgid ""
 "блог веб-розробка, курси програмування, створення сайтів, розробка сайтів "
 "під ключ, telegram боти, python django"
-msgstr ""
+msgstr "tvorba webů, e-shopy, Telegram boti, AI, SEO"
 
 #: apps/core/admin.py:110
 msgid "Контактна інформація"
@@ -476,10 +476,8 @@ msgid "Генератор ТЗ для сайту"
 msgstr "Generátor zadání pro web"
 
 #: apps/core/models.py:25 apps/core/views.py:368
-#, fuzzy
-#| msgid "Персональний Telegram-бот"
 msgid "Заявка на Telegram-бота"
-msgstr "Osobní Telegram bot"
+msgstr "Poptávka na Telegram bota"
 
 #: apps/core/models.py:30 apps/payment/models.py:68
 msgid "Новий"
@@ -1422,7 +1420,7 @@ msgstr "Text CTA (RU)"
 #: apps/demolanding/content_models.py:16 apps/demolanding/lead_models.py:10
 #: templates/demolanding/admin/my_landing_content.html:14
 msgid "Лендінг"
-msgstr "Landing"
+msgstr "Landing page"
 
 #: apps/core/proposal_models.py:131
 #: templates/components/tz_generator/quiz.html:27
@@ -1737,11 +1735,11 @@ msgid "Помилка при збереженні. Спробуйте ще ра�
 msgstr "Chyba při ukládání. Zkuste to znovu."
 
 #: apps/core/tz_views.py:118
-#, fuzzy
-#| msgid "Добре. Базове ТЗ у PDF, розширене — на email протягом доби."
 msgid ""
 "Базове ТЗ готове. Завантажте PDF — розширене надійде на пошту протягом доби."
-msgstr "Dobře. Základní zadání v PDF, rozšířené e-mailem do 24 hodin."
+msgstr ""
+"Základní zadání je hotové. Stáhněte si PDF — rozšířené přijde e-mailem do "
+"24 hodin."
 
 #: apps/core/tz_views.py:138
 msgid "ТЗ не знайдено"
@@ -1807,6 +1805,8 @@ msgid ""
 "Портфоліо PrometeyLabs - приклади створених сайтів під ключ, Telegram ботів, "
 "налаштованої реклами. Подивіться на наші роботи та оцініть якість."
 msgstr ""
+"Portfolio PrometeyLabs — ukázky webů na klíč, Telegram botů a reklamních "
+"kampaní. Podívejte se na naši práci a posuďte kvalitu sami."
 
 #: apps/core/views.py:90
 msgid "Розрахувати вартість сайту | Калькулятор ціни - PrometeyLabs"
@@ -1823,16 +1823,12 @@ msgid "Контакти | PrometeyLabs - Зв'яжіться з нами"
 msgstr "Kontakty | PrometeyLabs - Spojte se s námi"
 
 #: apps/core/views.py:102
-#, fuzzy
-#| msgid ""
-#| "Зв'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, "
-#| "реклами чи навчання. Швидка відповідь."
 msgid ""
 "Зв'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, "
 "реклами чи навчання. Київ, Україна."
 msgstr ""
-"Kontaktujte tým PrometeyLabs kvůli vývoji webů, Telegram botů, reklamě nebo "
-"školení. Praha, Česká republika."
+"Kontaktujte tým PrometeyLabs ohledně tvorby webů, Telegram botů a reklamy. "
+"Kyjev, Ukrajina."
 
 # Telegram-bot page (CS/EN Czechia)
 #: apps/core/views.py:110 templates/pages/telegram-bot.html:7
@@ -1897,6 +1893,8 @@ msgid ""
 "Політика використання файлів cookie від PrometeyLabs. Дізнайтеся, які файли "
 "cookie ми використовуємо та як керувати налаштуваннями."
 msgstr ""
+"Zásady používání cookies PrometeyLabs. Zjistěte, jaké soubory cookie "
+"používáme a jak spravovat jejich nastavení."
 
 #: apps/core/views.py:140 templates/pages/refund-cs.html:5
 #: templates/pages/refund-en.html:5 templates/pages/refund.html:5
@@ -1948,7 +1946,9 @@ msgstr "E-shopy na klíč — rychlý vývoj e-commerce | PrometeyLabs"
 msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код."
-msgstr "Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a Heureka, SEO, roční záruka na kód."
+msgstr ""
+"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptetu, "
+"Upgates či WooCommerce, SEO, doživotní záruka na kód."
 
 #: apps/core/views.py:170 templates/pages/internet-shop-v2.html:9
 msgid "Інтернет-магазини, що завантажуються швидше — PrometeyLabs"
@@ -1963,19 +1963,19 @@ msgstr "Firemní weby a landing page na klíč — rychlý vývoj | PrometeyLabs
 msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код."
-msgstr "Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s vysokým skóre Core Web Vitals, technické SEO, roční záruka na kód."
+msgstr ""
+"Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s "
+"vysokým skóre Core Web Vitals, technické SEO, doživotní záruka na kód."
 
 #: apps/core/views.py:186 templates/pages/corporate-website-v2.html:9
 msgid "Корпоративні сайти, що домінують у пошуку — PrometeyLabs"
 msgstr "Firemní weby, které dominují ve vyhledávání — PrometeyLabs"
 
 #: apps/core/views.py:197 templates/pages/corporate-website.html:7
-#, fuzzy
-#| msgid "Корпоративний сайт під ключ — створимо за 7 днів | PrometeyLabs"
 msgid ""
 "Корпоративний сайт під ключ за 7 днів | Розробка сайту компанії — "
 "PrometeyLabs"
-msgstr "Firemní web na klíč — vytvoříme za 7 dní | PrometeyLabs"
+msgstr "Firemní web na klíč za 7 dní | PrometeyLabs"
 
 #: apps/core/views.py:198 templates/pages/corporate-website.html:8
 msgid ""
@@ -1983,6 +1983,9 @@ msgid ""
 "CRM, SEO + реклама Google/Facebook/TikTok у пакеті. Запуск за 7 днів. "
 "Команда досвідчених розробників. Розрахуємо вартість у брифі."
 msgstr ""
+"Firemní web na klíč: unikátní design, napojení na CRM, SEO a reklama "
+"Google/Facebook/TikTok v balíčku. Spuštění za 7 dní. Cenu spočítáme v "
+"briefu."
 
 #: apps/core/views.py:199
 msgid "Корпоративний сайт під ключ — створимо за 7 днів | PrometeyLabs"
@@ -2001,13 +2004,10 @@ msgid "Метод не дозволений"
 msgstr "Metoda není povolena"
 
 #: apps/core/views.py:221 apps/core/views.py:386
-#, fuzzy
-#| msgid ""
-#| "Дякуємо! Ваша заявка отримана. Ми зв'яжемося з вами найближчим часом."
 msgid ""
 "Дякуємо! Заявку на Telegram-бота отримано. Ми зв'яжемося з вами найближчим "
 "часом."
-msgstr "Děkujeme! Vaše poptávka byla přijata. Brzy se s vámi spojíme."
+msgstr "Děkujeme! Poptávku na Telegram bota jsme přijali. Brzy se vám ozveme."
 
 #: apps/core/views.py:235 apps/core/views.py:491
 msgid "Підтвердіть згоду на обробку персональних даних."
@@ -2059,12 +2059,9 @@ msgid "Заявка на курси програмування"
 msgstr "Poptávka na kurzy programování"
 
 #: apps/core/views.py:416
-#, fuzzy
-#| msgid ""
-#| "Дякуємо! Ваша заявка отримана. Ми зв'яжемося з вами найближчим часом."
 msgid ""
 "Дякуємо! Ваша заявка на курси отримана. Ми надішлемо детальну інформацію."
-msgstr "Děkujeme! Vaše poptávka byla přijata. Brzy se s vámi spojíme."
+msgstr "Děkujeme! Vaši poptávku jsme přijali. Pošleme vám podrobné informace."
 
 #: apps/core/views.py:443
 msgid "Дякуємо! Наш спеціаліст зв'яжеться з вами протягом 15 хвилин."
@@ -4376,7 +4373,7 @@ msgstr "Reklamní služby"
 
 #: templates/components/corporate_website_v2/brief.html:140
 msgid "SEO розвиток сайту"
-msgstr "Rozvoj SEO webu"
+msgstr "SEO rozvoj webu"
 
 #: templates/components/corporate_website_v2/brief.html:146
 msgid "CRM та автоматизація"
@@ -4462,6 +4459,14 @@ msgstr "Získejte bezplatnou kalkulaci ceny vašeho webu"
 msgid "Калькулятор розрахунку"
 msgstr "Kalkulačka ceny"
 
+#: templates/components/corporate_website_v2/free_analysis.html
+msgid "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními."
+msgstr "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními."
+
+#: templates/components/corporate_website_v2/free_analysis.html
+msgid "Leave your contact — we will prepare a short analysis and get back to you with recommendations."
+msgstr "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními."
+
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Nákup na splátky Twisto"
 
@@ -4496,7 +4501,7 @@ msgstr "Přetížené pluginy — nízké skóre rychlosti"
 
 #: templates/components/corporate_website_v2/economy.html:24
 msgid "Висока вартість кліку в Google Ads"
-msgstr "Vysoká cena za kliknutí v Google Ads"
+msgstr "Pomalejší web = horší skóre kvality v reklamě"
 
 #: templates/components/corporate_website_v2/economy.html:28
 msgid "Постійні «дірки» у безпеці через сторонній код"
@@ -4540,7 +4545,7 @@ msgstr ""
 
 #: templates/components/corporate_website_v2/economy.html:73
 msgid "вартість залучення (CAC)"
-msgstr "cena za akvizici (CAC)"
+msgstr "nižší cena za získání zákazníka"
 
 #: templates/components/corporate_website_v2/economy.html:77
 msgid "оцінка Google PageSpeed"
@@ -4736,7 +4741,7 @@ msgstr "Nejvyšší skóre Core Web Vitals"
 #: templates/components/corporate_website_v2/scale.html:69
 #: templates/components/internet_shop_v2/hero.html:71
 msgid "Пожиттєва гарантія на код"
-msgstr "Roční záruka na kód"
+msgstr "Doživotní záruka na kód + 1 rok bezplatné podpory"
 
 #: templates/components/corporate_website_v2/hero.html:193
 msgid "Безлімітне масштабування"
@@ -4744,7 +4749,7 @@ msgstr "Neomezené škálování"
 
 #: templates/components/corporate_website_v2/scale.html:8
 msgid "Технологія клонування: необмежене масштабування без бюджетів"
-msgstr "Technologie klonování: neomezené škálování bez rozpočtů"
+msgstr "Šablonové řešení: rychlé nasazení dalších poboček/webů"
 
 #: templates/components/corporate_website_v2/scale.html:11
 msgid ""
@@ -4829,13 +4834,12 @@ msgstr ""
 
 #: templates/components/corporate_website_v2/scale.html:74
 msgid "Безлімітні копії"
-msgstr "Neomezené kopie"
+msgstr "Další kopie webu"
 
 #: templates/components/corporate_website_v2/scale.html:75
 msgid ""
 "Створюйте нові лендінги з готового сайту без додаткових бюджетів на розробку."
-msgstr ""
-"Vytvářejte nové landing page z hotového webu bez dalších nákladů na vývoj."
+msgstr "Další kopie webu za zvýhodněnou cenu — dohodneme předem."
 
 #: templates/components/corporate_website_v2/tech.html:6
 msgid "Технології, що працюють на ваш прибуток"
@@ -4994,11 +4998,11 @@ msgstr "KONTAKTY"
 
 #: templates/components/footer.html:50
 msgid "Графік роботи: Цілодобово"
-msgstr "Provozní doba: Nepřetržitě"
+msgstr "Odpovídáme v pracovní dny 9:00–18:00 (SEČ)"
 
 #: templates/components/footer.html:93
 msgid "Реєстр. №"
-msgstr "IČ"
+msgstr "DIČ (Ukrajina):"
 
 #: templates/components/footer.html:98
 msgid "Захист даних:"
@@ -5028,6 +5032,10 @@ msgstr "propagace"
 #: templates/components/footer.html:109
 msgid "Навчання"
 msgstr "Školení"
+
+#: templates/components/footer.html:89
+msgid "Цифровий маркетинг"
+msgstr "Digitální marketing"
 
 #: templates/components/header.html:7
 msgid "PrometeyLabs Czechia - Domovská stránka"
@@ -5223,8 +5231,8 @@ msgid ""
 msgstr ""
 "Vyvíjíme weby, které se opravdu snadno spravují. Žádná omezení šablonových "
 "řešení — pouze čistý, optimalizovaný kód a individuální architektura. Díky "
-"podrobnému vývoji administrace můžete veškerý obsah webu aktualizovat sami "
-"na pár kliknutí, bez programátorů. Vytváříme základ, který je připravený na "
+"propracované administraci můžete veškerý obsah webu aktualizovat sami na "
+"pár kliknutí, bez programátorů. Vytváříme základ, který je připravený na "
 "jakékoli integrace a růst spolu s vaším byznysem."
 
 #: templates/components/home/redesign_why.html:20
@@ -5278,11 +5286,11 @@ msgstr "Průměrné cenové rozpětí:"
 
 #: templates/components/home/redesign_why.html:46
 msgid "Справедлива вартість"
-msgstr "Spravedlivá cena"
+msgstr "Férové ceny"
 
 #: templates/components/home/redesign_why.html:46
 msgid "та гнучкі умови оплати"
-msgstr "a flexibilní podmínky platby"
+msgstr "a flexibilní platební podmínky"
 
 #: templates/components/home/redesign_why.html:49
 msgid "400–700 €"
@@ -5374,8 +5382,8 @@ msgid ""
 "Ваш сайт стає розумним помічником, який самостійно виконує завдання, на які "
 "раніше витрачалися години робочого часу."
 msgstr ""
-"Váš web se stává chytrým asistentem, který samostatně plní úkoly, na které "
-"dříve padaly hodiny pracovní doby."
+"Váš web se stává chytrým asistentem, který samostatně plní úkoly, které "
+"dříve zabíraly hodiny práce."
 
 #: templates/components/home/redesign_why.html:103
 msgid ""
@@ -5392,9 +5400,9 @@ msgid ""
 "проект буде реалізований системно, технологічно та з розумінням бізнес-задач."
 msgstr ""
 "Specialisté PrometeyLabs mají letitou praxi ve vývoji webů, designu, "
-"integracích, mobilních aplikacích a internetovém marketingu. To zaručuje, že "
-"váš projekt bude realizován systémově, technologicky a s porozuměním "
-"obchodním cílům."
+"integracích, mobilních aplikacích a internetovém marketingu. To zaručuje, "
+"že váš projekt bude navržen systematicky a technologicky správně, s "
+"porozuměním obchodním cílům."
 
 #: templates/components/home/service_modals.html:11
 #: templates/pages/home.html:103 templates/pages/home.html:125
@@ -5595,7 +5603,7 @@ msgid ""
 "запитів, інтелектуальні асистенти та інтеграції з CRM і месенджерами — під "
 "ключ."
 msgstr ""
-"Zasazujeme umělou inteligenci do webu a obchodních procesů: automatizace "
+"Zavádíme umělou inteligenci do webu a obchodních procesů: automatizace "
 "poptávek, chytří asistenti a integrace s CRM a messengery — na klíč."
 
 #: templates/components/home/service_modals.html:79
@@ -5669,11 +5677,11 @@ msgstr ""
 
 #: templates/components/internet_shop_v2/admin.html:6
 msgid "Керуйте імперією,"
-msgstr "Řiďte své impérium,"
+msgstr "Řiďte svůj byznys,"
 
 #: templates/components/internet_shop_v2/admin.html:6
 msgid "а не розбирайтесь у коді"
-msgstr "místo řešení kódu"
+msgstr "ne kód"
 
 #: templates/components/internet_shop_v2/admin.html:13
 msgid "Надзручна україномовна адмінка"
@@ -5850,7 +5858,7 @@ msgstr "Start od nuly"
 
 #: templates/components/internet_shop_v2/brief.html:48
 msgid "Міграція з Prom / OLX"
-msgstr "Migrace ze Shoptet / Heureka"
+msgstr "Migrace ze Shoptetu, Upgates či WooCommerce"
 
 #: templates/components/internet_shop_v2/brief.html:54
 msgid "Масштабування + маркетинг під ключ"
@@ -5935,7 +5943,9 @@ msgstr "Záruka na kód"
 msgid ""
 "Чистий код без плагінів і залежностей — стабільна робота функціоналу "
 "протягом усього життя проєкту."
-msgstr "Čistý kód bez pluginů a závislostí — opravy chyb v kódu po dobu 1 roku od předání."
+msgstr ""
+"Čistý kód bez pluginů a závislostí — opravy chyb v našem kódu po celou dobu "
+"životnosti projektu."
 
 #: templates/components/internet_shop_v2/hero.html:25
 msgid ""
@@ -6093,7 +6103,9 @@ msgstr "Content marketing: SEO články"
 
 #: templates/components/internet_shop_v2/packages.html:80
 msgid "10 органічних відгуків у Google Maps"
-msgstr "10 organických recenzí na Google Maps"
+msgstr ""
+"Nastavení profilu Firmy na Googlu a systému pro sběr recenzí od skutečných "
+"zákazníků"
 
 #: templates/components/internet_shop_v2/packages.html:81
 msgid "1 рекламний кабінет + перша кампанія"
@@ -6117,7 +6129,7 @@ msgstr "Rozsáhlá platforma s AI ekosystémem a kompletní marketingovou podpor
 
 #: templates/components/internet_shop_v2/packages.html:95
 msgid "Premium UI/UX + кінематографічна анімація"
-msgstr "Prémiové UI/UX + kinematografická animace"
+msgstr "Prémiové UI/UX + filmové animace"
 
 #: templates/components/internet_shop_v2/packages.html:96
 msgid "Extra-High ШІ, до 10 мовних версій"
@@ -6153,7 +6165,9 @@ msgstr "6 měsíců content marketingu a SEO článků"
 
 #: templates/components/internet_shop_v2/packages.html:107
 msgid "60 органічних відгуків у Google Maps"
-msgstr "60 organických recenzí na Google Maps"
+msgstr ""
+"Nastavení profilu Firmy na Googlu a systému pro sběr recenzí od skutečných "
+"zákazníků"
 
 #: templates/components/internet_shop_v2/packages.html:108
 msgid "Медіакампанія: до 5 кампаній, 3 міс. (Meta, Google, TikTok)"
@@ -6234,7 +6248,7 @@ msgstr "Rozšířená optimalizace"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:34
 msgid "Максимальна (UA + світ)"
-msgstr "Maximální (UA + svět)"
+msgstr "Maximální (CZ + svět)"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:37
 msgid "Мовність та переклад"
@@ -6302,15 +6316,17 @@ msgstr "6 měsíců pravidelné správy"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:73
 msgid "Органічні відгуки Google Maps"
-msgstr "Organické recenze Google Maps"
+msgstr ""
+"Nastavení profilu Firmy na Googlu a systému pro sběr recenzí od skutečných "
+"zákazníků"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:75
 msgid "10 відгуків"
-msgstr "10 recenzí"
+msgstr "Ano"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:76
 msgid "60 відгуків"
-msgstr "60 recenzí"
+msgstr "Ano"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:81
 msgid "1 кабінет / 1 кампанія (старт)"
@@ -6326,7 +6342,7 @@ msgstr "Nasazení (doména / hosting)"
 
 #: templates/components/internet_shop_v2/svoboda.html:6
 msgid "Переросли Prom та OLX?"
-msgstr "Vyrostli jste ze Shoptetu a Heureky?"
+msgstr "Vyrostli jste ze Shoptetu či WooCommerce?"
 
 #: templates/components/internet_shop_v2/svoboda.html:7
 msgid "Час грати за власними правилами."
@@ -6389,9 +6405,9 @@ msgid ""
 "Перенесемо вашу базу за вас — швидко й без втрати позицій у Google. Парсинг "
 "з будь-якого сайту, міграція з Prom, Rozetka, Хорошоп, WooCommerce."
 msgstr ""
-"Převedeme vaši databázi za vás — rychle a bez ztráty pozic ve Google. "
-"Parsování z libovolného webu, migrace ze Shoptet, Alza Marketplace, Upgates, "
-"WooCommerce."
+"Převedeme vaši databázi za vás — rychle a bez ztráty pozic v Googlu. "
+"Parsování z libovolného webu, migrace ze Shoptet, Alza Marketplace, "
+"Upgates, WooCommerce."
 
 #: templates/components/internet_shop_v2/svoboda.html:77
 msgid "SKU за один прохід"
@@ -6530,7 +6546,7 @@ msgid "Chci se stát vývojářem"
 msgstr ""
 
 #: templates/components/modals.html:16
-msgid "Zanechte kontakt — ozveme se ohledně kurzů programování."
+msgid "Zanechte kontakt — ozveme se vám ohledně spolupráce."
 msgstr ""
 
 #: templates/components/modals.html:42
@@ -6634,7 +6650,7 @@ msgstr "Testování UX"
 
 #: templates/components/process_block.html:133
 msgid "Фінальне виконання правок"
-msgstr "Finální realizace úprav"
+msgstr "Zapracování připomínek"
 
 #: templates/components/process_block.html:134
 msgid "Збір фідбеку"
@@ -6789,6 +6805,8 @@ msgid ""
 "Клієнти, які починають з чіткого ТЗ, отримують передбачуваний результат і "
 "рідше повертаються з правками «щось не так»."
 msgstr ""
+"Klienti, kteří začínají s jasným zadáním, dostanou předvídatelný výsledek a "
+"méně často se vracejí s připomínkami typu „něco tam nesedí“."
 
 #: templates/components/tz_generator/compare.html:78
 msgid "менше переробок під час розробки"
@@ -6870,6 +6888,8 @@ msgid ""
 "Технічне завдання фіксує цілі, структуру, функції та обмеження проєкту. Без "
 "нього розробка дорожчає і зриває терміни через постійні уточнення."
 msgstr ""
+"Zadání shrnuje cíle, strukturu, funkce a omezení projektu. Bez něj se vývoj "
+"prodražuje a termíny se posouvají kvůli neustálému upřesňování."
 
 #: templates/components/tz_generator/faq.html:24
 #: templates/pages/tz-dlia-saitu.html:54
@@ -6882,6 +6902,9 @@ msgid ""
 "деталізацією сценаріїв, структурою сторінок і технічними вимогами — "
 "приходить на email протягом доби."
 msgstr ""
+"Základní zadání dostanete okamžitě v PDF podle odpovědí v kvízu. Rozšířené "
+"— s podrobnými scénáři, strukturou stránek a technickými požadavky — přijde "
+"e-mailem do 24 hodin."
 
 #: templates/components/tz_generator/faq.html:34
 msgid "Чи можна одразу отримати прорахунок вартості?"
@@ -6892,18 +6915,20 @@ msgid ""
 "Так. Після завантаження PDF можна одразу замовити прорахунок або "
 "консультацію від PrometeyLabs — це займе один клік."
 msgstr ""
+"Ano. Po stažení PDF si můžete jedním klikem objednat kalkulaci nebo "
+"konzultaci u PrometeyLabs."
 
 #: templates/components/tz_generator/faq.html:44
 msgid "Скільки часу займає проходження квіза?"
 msgstr "Jak dlouho trvá vyplnění kvízu?"
 
 #: templates/components/tz_generator/faq.html:48
-#, fuzzy
-#| msgid "Зазвичай 3–5 хвилин: кілька виборів і два короткі текстові поля."
 msgid ""
 "Зазвичай 3–5 хвилин: кілька виборів у зручних кроках і два короткі текстові "
 "поля для опису проєкту."
-msgstr "Obvykle 3–5 minut: několik voleb a dvě krátká textová pole."
+msgstr ""
+"Obvykle 3–5 minut: několik voleb v přehledných krocích a dvě krátká textová "
+"pole pro popis projektu."
 
 #: templates/components/tz_generator/faq.html:54
 msgid "Чи можна використати це ТЗ з іншим підрядником?"
@@ -6914,6 +6939,8 @@ msgid ""
 "Так, документ повністю ваш. Ви можете передати його будь-якій команді "
 "розробки або звернутись до нас за реалізацією."
 msgstr ""
+"Ano, dokument je plně váš. Můžete ho předat jakémukoli vývojovému týmu, "
+"nebo se obrátit na nás."
 
 #: templates/components/tz_generator/final_cta.html:6
 msgid "Ваше ТЗ"
@@ -6928,6 +6955,8 @@ msgid ""
 "Пройдіть квіз, отримайте базове ТЗ у PDF і замовте прорахунок вартості або "
 "консультацію в один клік."
 msgstr ""
+"Projděte kvíz, získejte základní zadání v PDF a jedním klikem si objednejte "
+"kalkulaci nebo konzultaci."
 
 #: templates/components/tz_generator/final_cta.html:12
 #: templates/components/tz_generator/hero.html:17
@@ -6953,6 +6982,8 @@ msgid ""
 "миттєво. Розширене ТЗ зі структурою сторінок і сценаріями надійде на email "
 "протягом доби."
 msgstr ""
+"Odpovíte na pár otázek a základní zadání v PDF máte okamžitě. Rozšířené "
+"zadání se strukturou stránek a scénáři vám pošleme e-mailem do 24 hodin."
 
 #: templates/components/tz_generator/hero.html:23
 msgid "PDF одразу, без очікування"
@@ -7106,6 +7137,8 @@ msgid ""
 "Чотири кроки — і у вас на руках структуроване технічне завдання, з яким "
 "можна йти до будь-якого підрядника."
 msgstr ""
+"Čtyři kroky — a máte strukturované zadání, se kterým můžete jít za "
+"jakýmkoli dodavatelem."
 
 #: templates/components/tz_generator/process.html:19
 msgid "Квіз 3 хвилини"
@@ -7114,7 +7147,7 @@ msgstr "Kvíz 3 minuty"
 #: templates/components/tz_generator/process.html:20
 msgid ""
 "Обираєте тип сайту, цілі, розділи та функціонал у зручному конструкторі."
-msgstr ""
+msgstr "Vyberete typ webu, cíle, sekce a funkce v přehledném konfigurátoru."
 
 #: templates/components/tz_generator/process.html:24
 msgid "Аналіз відповідей"
@@ -7140,7 +7173,7 @@ msgstr "Rozšířené zadání e-mailem"
 msgid ""
 "Протягом доби надсилаємо деталізовану версію зі сценаріями і структурою "
 "сторінок."
-msgstr ""
+msgstr "Do 24 hodin pošleme podrobnou verzi se scénáři a strukturou stránek."
 
 #: templates/components/tz_generator/quiz.html:5
 msgid "Конструктор ТЗ"
@@ -7321,12 +7354,9 @@ msgid "Короткий опис проєкту"
 msgstr "Krátký popis projektu"
 
 #: templates/components/tz_generator/quiz.html:113
-#, fuzzy
-#| msgid ""
-#| "Сайти під ключ, лендінги, інтернет-магазини, веб-додатки, телеграм-боти"
 msgid ""
 "Наприклад: потрібен інтернет-магазин косметики з доставкою..."
-msgstr "Například: potřebuji e-shop s kosmetikou s dopravou..."
+msgstr "Např.: potřebuji e-shop s kosmetikou a doručením po ČR…"
 
 #: templates/components/tz_generator/quiz.html:116
 msgid "Додаткові побажання (необов'язково)"
@@ -7354,6 +7384,8 @@ msgid ""
 "Завантажте PDF зараз. Розширене ТЗ зі структурою сторінок надішлемо на email "
 "протягом доби."
 msgstr ""
+"Stáhněte si PDF hned. Rozšířené zadání se strukturou stránek pošleme "
+"e-mailem do 24 hodin."
 
 #: templates/components/tz_generator/quiz.html:156
 msgid "Що робимо далі?"
@@ -8041,7 +8073,7 @@ msgid ""
 "створення сайтів, навчання програмуванню та автоматизацію бізнесу"
 msgstr ""
 "Přečtěte si odborné rady, praktické průvodce a aktuální informace o tvorbě "
-"webových stránek, výuce programování a automatizaci podnikání"
+"webů, e-shopech, marketingu a automatizaci podnikání"
 
 #: templates/pages/blog.html:42 templates/pages/home.html:100
 msgid "Наші послуги"
@@ -8134,11 +8166,11 @@ msgstr "weby na klíč"
 
 #: templates/pages/blog_search.html:115
 msgid "курси програмування"
-msgstr "kurzy programování"
+msgstr "e-shopy"
 
 #: templates/pages/blog_search.html:117 templates/pages/home.html:76
 msgid "telegram боти"
-msgstr "telegram boti"
+msgstr "Telegram boti"
 
 #: templates/pages/blog_search.html:118
 msgid "веб-розробка"
@@ -8166,7 +8198,7 @@ msgstr "Promyšlená architektura a logika produktu."
 
 #: templates/pages/calculator.html:35
 msgid "Пожиттєва гарантія на наші програмні продукти."
-msgstr "Roční záruka na kód našich softwarových produktů."
+msgstr "Doživotní záruka na kód + 1 rok bezplatné podpory."
 
 #: templates/pages/calculator.html:39
 msgid "Жодних щомісячних або прихованих платежів (повна прозорість)."
@@ -8181,11 +8213,11 @@ msgstr "5 jednoduchých otázek"
 
 #: templates/pages/calculator.html:64
 msgid "ПРОЙТИ ТЕСТ"
-msgstr "PROJÍT TEST"
+msgstr "SPUSTIT KALKULAČKU"
 
 #: templates/pages/calculator.html:68
 msgid "Отримайте точну оцінку вартості за 2 хвилини"
-msgstr "Získejte přesný odhad ceny za 2 minuty"
+msgstr "Získejte orientační odhad ceny za 2 minuty"
 
 #: templates/pages/calculator.html:77
 msgid "Розрахунок вартості"
@@ -8193,7 +8225,7 @@ msgstr "Kalkulace ceny"
 
 #: templates/pages/calculator.html:78
 msgid "Розробки веб-сайту"
-msgstr "Tvorby webu"
+msgstr "tvorby webu"
 
 #: templates/pages/calculator.html:89
 msgid "Який сайт необхідно розробити?"
@@ -8225,7 +8257,7 @@ msgstr "Na e-mail"
 
 #: templates/pages/calculator.html:127
 msgid "У месенджер (Telegram / WhatsApp / Viber)"
-msgstr "Do messengeru (Telegram / WhatsApp / Viber)"
+msgstr "Do messengeru (WhatsApp / Telegram)"
 
 #: templates/pages/calculator.html:131
 msgid "В адмін-панель сайту (простий кабінет / CRM)"
@@ -8387,7 +8419,10 @@ msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код. PrometeyLabs — "
 "сайти під ключ."
-msgstr "Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s vysokým skóre Core Web Vitals, technické SEO, roční záruka na kód. PrometeyLabs — weby na klíč."
+msgstr ""
+"Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s "
+"vysokým skóre Core Web Vitals, technické SEO, doživotní záruka na kód. "
+"PrometeyLabs — weby na klíč."
 
 #: templates/pages/corporate-website.html:9
 #, fuzzy
@@ -8746,7 +8781,10 @@ msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-"
 "commerce під ключ."
-msgstr "Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a Heureka, SEO, roční záruka na kód. PrometeyLabs — e-commerce na klíč."
+msgstr ""
+"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptetu, "
+"Upgates či WooCommerce, SEO, doživotní záruka na kód. PrometeyLabs — "
+"e-commerce na klíč."
 
 #: templates/pages/internet-shop.html:7
 #, fuzzy
@@ -8943,8 +8981,8 @@ msgid ""
 "1 рік на техбаги з нашої вини — як в оферті. Нові функції й сторонні API в "
 "гарантію не входять."
 msgstr ""
-"1 rok na technické chyby z naší strany — dle smlouvy. Nové funkce a cizí API "
-"do záruky nespadají."
+"Chyby v našem kódu opravujeme doživotně, první rok podporu poskytujeme "
+"zdarma. Nové funkce a cizí API do záruky nespadají."
 
 #: templates/pages/telegram-bot.html:122
 msgid "Telegram-бот під ключ"
@@ -8960,7 +8998,7 @@ msgid ""
 "сайт або реклама. Кошторис після брифу, без вигаданих «від N євро»."
 msgstr ""
 "Bot jako součást systému PrometeyLabs: scénář → integrace → dle přání web "
-"nebo reklama. Kalkulace po briefu, bez vymyšlených „od N eur“."
+"nebo reklama. Kalkulace po briefu, bez vymyšlených cen „od N €“."
 
 #: templates/pages/telegram-bot.html:130 templates/pages/telegram-bot.html:315
 msgid "Отримати прорахунок"
@@ -8971,8 +9009,8 @@ msgid ""
 "Що далі: після брифу надішлемо орієнтир по сценарію та інтеграціях — без "
 "публічного прайса."
 msgstr ""
-"Co dál: po briefu pošleme orientaci ke scénáři a integracím — bez veřejného "
-"ceníku."
+"Co dál: po briefu pošleme orientační odhad scénáře a integrací — bez "
+"veřejného ceníku."
 
 #: templates/pages/telegram-bot.html:137 templates/pages/telegram-bot.html:308
 msgid "Оферта"
@@ -8984,7 +9022,7 @@ msgstr "po zaplacení kód i token patří klientovi"
 
 #: templates/pages/telegram-bot.html:139
 msgid "гарантія 1 рік на багфікс"
-msgstr "záruka 1 rok na opravu chyb"
+msgstr "doživotní záruka na kód"
 
 #: templates/pages/telegram-bot.html:148
 msgid "Бот студії"
@@ -9074,7 +9112,7 @@ msgstr "Jak pracujeme"
 
 #: templates/pages/telegram-bot.html:203
 msgid "Бриф: ніша, задача, інтеграції"
-msgstr "Brief: niche, úkol, integrace"
+msgstr "Brief: obor, úkol, integrace"
 
 #: templates/pages/telegram-bot.html:204
 msgid "Сценарій діалогу й узгодження"
@@ -9213,13 +9251,11 @@ msgstr "Časté otázky"
 msgid ""
 "Як у публічній оферті: 1 рік на багфікс з нашої вини. Не «пожиттєво» і не «5 "
 "років»."
-msgstr ""
-"Jak ve veřejné smlouvě: 1 rok na opravu chyb z naší strany. Ne „doživotně“ a "
-"ne „5 let“."
+msgstr "Doživotní záruka na chyby v našem kódu + 1 rok bezplatné podpory."
 
 #: templates/pages/telegram-bot.html:316
 msgid "Ніша й задача — відповімо орієнтиром по боту. Це не калькулятор сайтів."
-msgstr "Obor a úkol — odpovíme orientací k botovi. Toto není kalkulačka webů."
+msgstr "Obor a úkol — pošleme orientační odhad. Toto není kalkulačka webů."
 
 #: templates/pages/telegram-bot.html:331
 msgid "Що має робити бот?"
@@ -9291,6 +9327,8 @@ msgid ""
 "створити ТЗ для сайту, технічне завдання для сайту, як скласти ТЗ, бриф на "
 "розробку сайту"
 msgstr ""
+"vytvořit zadání webu, technické zadání pro web, jak napsat zadání, brief na "
+"tvorbu webu"
 
 #: templates/pages/tz-dlia-saitu.html:10
 msgid "Створити ТЗ для сайту онлайн — безкоштовно | PrometeyLabs"
@@ -9313,12 +9351,17 @@ msgid ""
 "Технічне завдання фіксує цілі, структуру, функції та обмеження проєкту. Без "
 "нього розробка дорожчає і зриває терміни."
 msgstr ""
+"Zadání shrnuje cíle, strukturu, funkce a omezení projektu. Bez něj se vývoj "
+"prodražuje a termíny se posouvají kvůli neustálému upřesňování."
 
 #: templates/pages/tz-dlia-saitu.html:57
 msgid ""
 "Базове ТЗ ви отримуєте одразу в PDF за відповідями квіза. Розширене з "
 "деталізацією сценаріїв і структури сторінок приходить на email протягом доби."
 msgstr ""
+"Základní zadání dostanete okamžitě v PDF podle odpovědí v kvízu. Rozšířené "
+"— s podrobnými scénáři, strukturou stránek a technickými požadavky — přijde "
+"e-mailem do 24 hodin."
 
 #: templates/pages/tz-dlia-saitu.html:62
 msgid "Чи можна одразу отримати прорахунок?"
@@ -9329,6 +9372,8 @@ msgid ""
 "Так. Після завантаження PDF можна замовити прорахунок або консультацію від "
 "PrometeyLabs."
 msgstr ""
+"Ano. Po stažení PDF si můžete jedním klikem objednat kalkulaci nebo "
+"konzultaci u PrometeyLabs."
 
 #: templates/pages/tz-dlia-saitu.html:70
 msgid "Скільки часу займає проходження?"
@@ -9336,7 +9381,9 @@ msgstr "Jak dlouho trvá vyplnění?"
 
 #: templates/pages/tz-dlia-saitu.html:73
 msgid "Зазвичай 3–5 хвилин: кілька виборів і два короткі текстові поля."
-msgstr "Obvykle 3–5 minut: několik voleb a dvě krátká textová pole."
+msgstr ""
+"Obvykle 3–5 minut: několik voleb v přehledných krocích a dvě krátká textová "
+"pole pro popis projektu."
 
 #: templates/payment/base_payment.html:9 templates/payment/payment_page.html:5
 msgid "Оплата"
@@ -10206,8 +10253,14 @@ msgid "Tvorba webových stránek na klíč | PrometeyLabs"
 msgstr "Tvorba webových stránek na klíč | PrometeyLabs"
 
 #: templates/pages/web-development.html
-msgid "Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 600–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, bezplatná podpora a roční záruka na kód."
-msgstr "Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 600–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, bezplatná podpora a roční záruka na kód."
+msgid ""
+"Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 "
+"400–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, "
+"doživotní záruka na kód a 1 rok bezplatné podpory."
+msgstr ""
+"Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 "
+"400–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, "
+"doživotní záruka na kód a 1 rok bezplatné podpory."
 
 #: templates/pages/web-development.html
 msgid "tvorba webových stránek, web na klíč, landing page, firemní web, e-shop, webová aplikace, PrometeyLabs"
@@ -10226,8 +10279,14 @@ msgid "Tvorba webových stránek"
 msgstr "Tvorba webových stránek"
 
 #: templates/pages/web-development.html templates/components/web_development/hero.html
-msgid "Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: rozpočet a termíny zakotvíme ve smlouvě. Bezplatná podpora a roční záruka na kód."
-msgstr "Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: rozpočet a termíny zakotvíme ve smlouvě. Bezplatná podpora a roční záruka na kód."
+msgid ""
+"Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: "
+"rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok "
+"bezplatné podpory."
+msgstr ""
+"Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: "
+"rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok "
+"bezplatné podpory."
 
 #: templates/pages/web-development.html templates/components/web_development/admin.html templates/components/web_development/hero.html templates/components/web_development/products.html
 msgid "Landing page"
@@ -10698,7 +10757,7 @@ msgid "Баласт-скрипти"
 msgstr "Zátěžové skripty"
 
 msgid "Від 1 400 €. Пожиттєва гарантія на код. 1 рік підтримки безкоштовно."
-msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok podpory zdarma."
+msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
 msgid "Заявка на розрахунок вартості"
 msgstr "Žádost o kalkulaci ceny"
@@ -10719,10 +10778,10 @@ msgid "Правова інформація"
 msgstr "Právní informace"
 
 msgid "Гарантія на код 1 рік"
-msgstr "Roční záruka na kód"
+msgstr "Doživotní záruka na kód + 1 rok bezplatné podpory"
 
 msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
-msgstr "Od 1 400 €. Roční záruka na kód. 1 rok podpory zdarma."
+msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
 msgid "від 1 400 €"
 msgstr "od 1 400 €"

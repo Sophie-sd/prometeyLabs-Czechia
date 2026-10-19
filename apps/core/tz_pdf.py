@@ -10,7 +10,7 @@ from django.contrib.staticfiles.finders import find
 from django.template.loader import render_to_string
 from django.utils import translation
 
-# Мапінг ключів квіза → людські формулювання (uk / en / ru)
+# Мапінг ключів квіза → людські формулювання (uk / en / cs / ru)
 LABELS = {
     'uk': {
         'site_type': 'Тип сайту',
@@ -93,18 +93,18 @@ LABELS = {
         'budget': 'Estimated budget',
         'description': 'Client description',
         'extra': 'Extra notes',
-        'title': 'Basic website technical specification',
+        'title': 'Basic website brief',
         'intro': (
-            'This document was generated from the client quiz answers. '
-            'An extended brief with page structure and technical requirements '
-            'will be emailed within 24 hours.'
+            'This document was generated automatically from the client\'s quiz answers. '
+            'An extended brief with detailed scenarios, page structure and technical '
+            'requirements will be sent by email within 24 hours.'
         ),
         'site_types': {
-            'landing': 'Landing / promo site',
+            'landing': 'Landing page / promo site',
             'corporate': 'Corporate website',
             'shop': 'E-commerce store',
             'portal': 'Portal / web service',
-            'other': 'Other',
+            'other': 'Other type',
         },
         'goal_map': {
             'leads': 'Lead generation',
@@ -121,7 +121,7 @@ LABELS = {
             'blog': 'Blog / news',
             'contacts': 'Contacts',
             'faq': 'FAQ',
-            'cabinet': 'Client cabinet',
+            'cabinet': 'Client area',
         },
         'feature_map': {
             'crm': 'CRM integration',
@@ -141,17 +141,88 @@ LABELS = {
             'creative': 'Creative',
         },
         'timeline_map': {
-            'asap': 'ASAP (under 2 weeks)',
+            'asap': 'ASAP (within 2 weeks)',
             'month': 'Within 1 month',
             'quarter': '1–3 months',
-            'flex': 'Flexible',
+            'flex': 'Flexible schedule',
         },
         'budget_map': {
-            'starter': 'Up to $1,200',
-            'growth': '$1,200–3,500',
-            'pro': '$3,500–10,000',
-            'enterprise': '$10,000+',
-            'unknown': 'Need consultation',
+            'starter': 'Up to €1,200',
+            'growth': '€1,200–3,500',
+            'pro': '€3,500–10,000',
+            'enterprise': '€10,000+',
+            'unknown': 'Need a consultation',
+        },
+    },
+    'cs': {
+        'site_type': 'Typ webu',
+        'goals': 'Cíle projektu',
+        'sections': 'Potřebné sekce',
+        'features': 'Funkce',
+        'style': 'Styl a vizuál',
+        'timeline': 'Termín',
+        'budget': 'Orientační rozpočet',
+        'description': 'Popis od klienta',
+        'extra': 'Další přání',
+        'title': 'Základní zadání pro tvorbu webu',
+        'intro': (
+            'Dokument byl vytvořen automaticky podle odpovědí klienta. '
+            'Rozšířené zadání s podrobnými scénáři, strukturou stránek '
+            'a technickými požadavky vám pošleme e-mailem do 24 hodin.'
+        ),
+        'site_types': {
+            'landing': 'Landing page / promo web',
+            'corporate': 'Firemní web',
+            'shop': 'E-shop',
+            'portal': 'Portál / webová služba',
+            'other': 'Jiný typ',
+        },
+        'goal_map': {
+            'leads': 'Sběr poptávek a leadů',
+            'sales': 'Online prodej',
+            'brand': 'Prezentace značky',
+            'info': 'Informační zdroj',
+            'support': 'Podpora klientů',
+        },
+        'section_map': {
+            'home': 'Domů',
+            'about': 'O firmě',
+            'services': 'Služby / produkty',
+            'portfolio': 'Portfolio / případové studie',
+            'blog': 'Blog / novinky',
+            'contacts': 'Kontakty',
+            'faq': 'FAQ',
+            'cabinet': 'Osobní účet',
+        },
+        'feature_map': {
+            'crm': 'Integrace s CRM',
+            'payment': 'Online platba',
+            'multilang': 'Vícejazyčnost',
+            'seo': 'SEO optimalizace',
+            'ads': 'Příprava na reklamu',
+            'chat': 'Chat / messengery',
+            'analytics': 'Analytika a cíle',
+            'admin': 'Přehledná administrace',
+        },
+        'style_map': {
+            'minimal': 'Minimalismus',
+            'premium': 'Prémiový / luxusní',
+            'bold': 'Výrazný / odvážný',
+            'corporate': 'Striktně firemní',
+            'creative': 'Kreativní',
+        },
+        'timeline_map': {
+            'asap': 'Co nejdříve (do 2 týdnů)',
+            'month': 'Do 1 měsíce',
+            'quarter': '1–3 měsíce',
+            'flex': 'Flexibilní termín',
+        },
+        'budget_map': {
+            'starter': 'Do 30 000 Kč',
+            'growth': '30 000–80 000 Kč',
+            'pro': '80 000–200 000 Kč',
+            'enterprise': 'Od 200 000 Kč',
+            'unknown': 'Potřebuji konzultaci',
         },
     },
     'ru': {
@@ -263,9 +334,9 @@ def _map_list(keys: Any, mapping: Dict[str, str]) -> List[str]:
 
 
 def build_tz_context(submission) -> dict:
-    lang = translation.get_language() or 'uk'
+    lang = (translation.get_language() or 'cs').split('-')[0].lower()
     if lang not in LABELS:
-        lang = 'uk'
+        lang = 'cs'
     L = LABELS[lang]
     quiz = (submission.extra_data or {}).get('quiz') or {}
 

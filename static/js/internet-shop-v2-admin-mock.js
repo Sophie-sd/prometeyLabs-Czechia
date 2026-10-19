@@ -15,6 +15,11 @@
     }
 
     var I18N_CURRENCY = '€';
+    // Currency after the number with a non-breaking space (CZ «1 290 €»); EN «€1,290».
+    function money(amount) {
+        if (I18N_LOCALE === 'en') return I18N_CURRENCY + amount.replace(/ /g, ',');
+        return amount.replace(/ /g, '\u00a0') + '\u00a0' + I18N_CURRENCY;
+    }
     var demoPhones = ['+420 777 123 456', '+420 602 987 654', '+420 777 456 789', '+420 603 234 567', '+420 777 345 678'];
 
     var names = {
@@ -45,58 +50,58 @@
             {
                 id: '10428',
                 customer: t('Olena K.'),
-                sum: I18N_CURRENCY + ' 1 290',
+                sum: money('1 290'),
                 status: 'paid',
                 phone: demoPhones[0],
                 email: 'olena.k@email.com',
                 items: [
-                    { name: t('Nike Air Max'), qty: 1, price: I18N_CURRENCY + ' 990' },
-                    { name: t('Cotton Socks'), qty: 2, price: I18N_CURRENCY + ' 150' }
+                    { name: t('Nike Air Max'), qty: 1, price: money('990') },
+                    { name: t('Cotton Socks'), qty: 2, price: money('150') }
                 ]
             },
             {
                 id: '10427',
                 customer: t('Andriy M.'),
-                sum: I18N_CURRENCY + ' 3 480',
+                sum: money('3 480'),
                 status: 'pending',
                 phone: demoPhones[1],
                 email: 'andriy.m@email.com',
                 items: [
-                    { name: t('Winter Jacket'), qty: 1, price: I18N_CURRENCY + ' 2 890' },
-                    { name: t('Scarf'), qty: 1, price: I18N_CURRENCY + ' 590' }
+                    { name: t('Winter Jacket'), qty: 1, price: money('2 890') },
+                    { name: t('Scarf'), qty: 1, price: money('590') }
                 ]
             },
             {
                 id: '10426',
                 customer: t('Iryna V.'),
-                sum: I18N_CURRENCY + ' 890',
+                sum: money('890'),
                 status: 'paid',
                 phone: demoPhones[2],
                 email: 'iryna.v@email.com',
                 items: [
-                    { name: t('Leather Bag'), qty: 1, price: I18N_CURRENCY + ' 890' }
+                    { name: t('Leather Bag'), qty: 1, price: money('890') }
                 ]
             },
             {
                 id: '10425',
                 customer: t('Maksym T.'),
-                sum: I18N_CURRENCY + ' 2 150',
+                sum: money('2 150'),
                 status: 'shipped',
                 phone: demoPhones[3],
                 email: 'max.t@email.com',
                 items: [
-                    { name: t('Casio Watch'), qty: 1, price: I18N_CURRENCY + ' 2 150' }
+                    { name: t('Casio Watch'), qty: 1, price: money('2 150') }
                 ]
             },
             {
                 id: '10424',
                 customer: t('Sofiia L.'),
-                sum: I18N_CURRENCY + ' 560',
+                sum: money('560'),
                 status: 'pending',
                 phone: demoPhones[4],
                 email: 'sofia.l@email.com',
                 items: [
-                    { name: t('Oversize T-shirt'), qty: 2, price: I18N_CURRENCY + ' 280' }
+                    { name: t('Oversize T-shirt'), qty: 2, price: money('280') }
                 ]
             }
         ],
@@ -104,7 +109,7 @@
             {
                 sku: 'NK-001',
                 name: t('Nike Air Max'),
-                price: I18N_CURRENCY + ' 990',
+                price: money('990'),
                 stock: 42,
                 category: t('Shoes'),
                 visibility: 'active',
@@ -116,7 +121,7 @@
             {
                 sku: 'JK-204',
                 name: t('Winter Jacket'),
-                price: I18N_CURRENCY + ' 2 890',
+                price: money('2 890'),
                 stock: 8,
                 category: t('Clothing'),
                 visibility: 'active',
@@ -128,7 +133,7 @@
             {
                 sku: 'BG-118',
                 name: t('Leather Bag'),
-                price: I18N_CURRENCY + ' 890',
+                price: money('890'),
                 stock: 15,
                 category: t('Accessories'),
                 visibility: 'active',
@@ -140,7 +145,7 @@
             {
                 sku: 'CS-440',
                 name: t('Casio Watch'),
-                price: I18N_CURRENCY + ' 2 150',
+                price: money('2 150'),
                 stock: 3,
                 category: t('Accessories'),
                 visibility: 'low',
@@ -152,7 +157,7 @@
             {
                 sku: 'TS-772',
                 name: t('Oversize T-shirt'),
-                price: I18N_CURRENCY + ' 280',
+                price: money('280'),
                 stock: 120,
                 category: t('Clothing'),
                 visibility: 'active',
@@ -164,7 +169,7 @@
             {
                 sku: 'SK-009',
                 name: t('Cotton Socks'),
-                price: I18N_CURRENCY + ' 75',
+                price: money('75'),
                 stock: 340,
                 category: t('Accessories'),
                 visibility: 'active',
@@ -175,11 +180,11 @@
             }
         ],
         analyticsTop: [
-            { name: t('Nike Air Max'), sales: 128, revenue: I18N_CURRENCY + ' 126k' },
-            { name: t('Winter Jacket'), sales: 54, revenue: I18N_CURRENCY + ' 156k' },
-            { name: t('Oversize T-shirt'), sales: 312, revenue: I18N_CURRENCY + ' 87k' },
-            { name: t('Leather Bag'), sales: 41, revenue: I18N_CURRENCY + ' 36k' },
-            { name: t('Casio Watch'), sales: 22, revenue: I18N_CURRENCY + ' 47k' }
+            { name: t('Nike Air Max'), sales: 128, revenue: money('126k') },
+            { name: t('Winter Jacket'), sales: 54, revenue: money('156k') },
+            { name: t('Oversize T-shirt'), sales: 312, revenue: money('87k') },
+            { name: t('Leather Bag'), sales: 41, revenue: money('36k') },
+            { name: t('Casio Watch'), sales: 22, revenue: money('47k') }
         ]
     };
 
@@ -368,7 +373,7 @@
         function renderOrdersView() {
             var metrics = renderMetrics(
                 renderMetric(I18N.metricOrdersToday, '47') +
-                renderMetric(I18N.metricRevenue, I18N_CURRENCY + '84k', 'pl-shop__admin-metric-val--acc') +
+                renderMetric(I18N.metricRevenue, money('84k'), 'pl-shop__admin-metric-val--acc') +
                 renderBars()
             );
 
@@ -424,7 +429,7 @@
             var metrics = renderMetrics(
                 renderMetric(I18N.metricVisitors, '2 840') +
                 renderMetric(I18N.metricConversion, '3.2%', 'pl-shop__admin-metric-val--acc') +
-                renderMetric(I18N.metricAvgCheck, I18N_CURRENCY + ' 1 840')
+                renderMetric(I18N.metricAvgCheck, money('1 840'))
             );
 
             var rows = '';
