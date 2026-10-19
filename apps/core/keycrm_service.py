@@ -5,7 +5,7 @@ KeyCRM API інтеграція.
 import requests
 import logging
 from django.conf import settings
-from apps.core.form_handlers import get_answer_text
+from apps.core.form_handlers import get_answer_text, get_lead_site_code
 
 logger = logging.getLogger(__name__)
 
@@ -112,11 +112,25 @@ def resolve_keycrm_source_id(submission):
     return fallback
 
 
+def lead_site_and_lang(submission):
+    """
+    (site, lang) для заявки: з extra_data (пишеться в create_form_data),
+    інакше site — з налаштування, lang — preferred_language або ''.
+    """
+    extra = submission.extra_data or {}
+    site = (extra.get('site') or get_lead_site_code() or '').strip().lower()
+    lang = (extra.get('lang') or submission.preferred_language or '').strip().lower()
+    return site, lang
+
+
 class KeyCRMService:
     def __init__(self):
         self.api_key = getattr(settings, 'KEYCRM_API_KEY', '')
         self.pipeline_id = getattr(settings, 'KEYCRM_PIPELINE_ID', 1)
         self.gclid_field_uuid = getattr(settings, 'KEYCRM_GCLID_FIELD_UUID', '')
+        # Опційні кастомні поля картки (UUID з KeyCRM). Порожньо → лише manager_comment.
+        self.site_field_uuid = getattr(settings, 'KEYCRM_SITE_FIELD_UUID', '')
+        self.lang_field_uuid = getattr(settings, 'KEYCRM_LANG_FIELD_UUID', '')
 
     @property
     def _headers(self):
@@ -166,16 +180,29 @@ class KeyCRMService:
         if submission.utm_content:
             payload['utm_content'] = submission.utm_content
 
+        site, lang = lead_site_and_lang(submission)
+
+        custom_fields = []
         if submission.gclid and self.gclid_field_uuid:
-            payload['custom_fields'] = [{
+            custom_fields.append({
                 'uuid': self.gclid_field_uuid,
                 'value': submission.gclid,
-            }]
+            })
+        if site and self.site_field_uuid:
+            custom_fields.append({'uuid': self.site_field_uuid, 'value': site})
+        if lang and self.lang_field_uuid:
+            custom_fields.append({'uuid': self.lang_field_uuid, 'value': lang})
+        if custom_fields:
+            payload['custom_fields'] = custom_fields
 
         comment_parts = []
         if submission.details:
             comment_parts.append(submission.details)
         comment_parts.append(f'Form: {submission.form_type}')
+        if site:
+            comment_parts.append(f'Site: {site}')
+        if lang:
+            comment_parts.append(f'Lang: {lang}')
         comment_parts.append(f'Site ID: {submission.id}')
         if submission.messenger_type:
             comment_parts.append(

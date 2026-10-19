@@ -3,11 +3,14 @@
 """
 import re
 import socket
+from urllib.parse import urlparse
 from smtplib import SMTPException, SMTPAuthenticationError, SMTPConnectError
 from django.http import JsonResponse
 from django.utils import timezone
 from django.core.mail import send_mail, get_connection
 from django.conf import settings
+from django.utils import translation
+from django.utils.translation import get_language_from_path
 import logging
 
 logger = logging.getLogger(__name__)
@@ -119,6 +122,51 @@ def get_form_type_from_path(request):
     return 'consultation'  # default
 
 
+def get_lead_site_code() -> str:
+    """Код сайту для CRM (site=cz). Налаштовується через LEAD_SITE_CODE."""
+    return (getattr(settings, 'LEAD_SITE_CODE', '') or 'cz').strip().lower()
+
+
+def _supported_lang(code):
+    if not code:
+        return None
+    code = str(code).strip().lower().replace('_', '-').split('-')[0]
+    supported = {c for c, _name in getattr(settings, 'LANGUAGES', [])}
+    return code if code in supported else None
+
+
+def resolve_lead_lang(request) -> str:
+    """
+    Мова сторінки, з якої прийшла заявка (cs|en), для CRM.
+
+    Пріоритет:
+    1. POST `lang` (якщо фронт передає явно і мова підтримується);
+    2. мовний префікс у шляху запиту (/en/forms/submit/);
+    3. мовний префікс у Referer (home-bundle.js шле на /forms/submit/ без префікса
+       навіть з /en/ — тому дивимось на сторінку-джерело);
+    4. активна мова запиту (LocaleMiddleware);
+    5. settings.LANGUAGE_CODE (cs).
+    Referer без префікса = мова за замовчуванням (cs), бо prefix_default_language=False.
+    """
+    posted = _supported_lang(request.POST.get('lang', ''))
+    if posted:
+        return posted
+    from_path = _supported_lang(get_language_from_path(request.path_info))
+    if from_path:
+        return from_path
+    referer = request.META.get('HTTP_REFERER', '')
+    if referer:
+        try:
+            ref_path = urlparse(referer).path or '/'
+        except ValueError:
+            ref_path = ''
+        if ref_path:
+            from_ref = _supported_lang(get_language_from_path(ref_path))
+            return from_ref or _supported_lang(settings.LANGUAGE_CODE) or 'cs'
+    active = _supported_lang(getattr(request, 'LANGUAGE_CODE', '') or translation.get_language())
+    return active or _supported_lang(settings.LANGUAGE_CODE) or 'cs'
+
+
 def create_form_data(form_type, name, phone, request, **extra_fields):
     """Створює стандартний словник даних для форми"""
     form_data = {
@@ -139,6 +187,9 @@ def create_form_data(form_type, name, phone, request, **extra_fields):
         'budget': request.POST.get('budget', '').strip(),
         'preferred_language': request.POST.get('preferred_language', '').strip(),
         'telegram': normalize_telegram(request.POST.get('telegram', '')),
+        # Маркування ліда для KeyCRM: CZ-ліди окремо від .com/UA (п.12).
+        'site': get_lead_site_code(),
+        'lang': resolve_lead_lang(request),
     }
     if has_consent(request):
         form_data['consent_at'] = timezone.now()
@@ -186,6 +237,8 @@ Email: {form_data.get('email', 'Не вказано')}
                     'experience': 'Досвід',
                     'topic': 'Тема консультації',
                     'source_page': 'Сторінка',
+                    'site': 'Site',
+                    'lang': 'Lang',
                 }.get(field, field.replace('_', ' ').title())
                 message_body += f"{field_name}: {value}\n"
         
@@ -268,7 +321,8 @@ def save_form_submission(form_type, form_data, email_success=False):
         extra_fields = ['course_type', 'experience', 'company', 'answers',
                        'alt_services_checked', 'event_title', 'source_page',
                        'landing_page', 'landing_referrer', 'quiz', 'upsell',
-                       'pdf_token', 'telegram', 'bot_task', 'integrations']
+                       'pdf_token', 'telegram', 'bot_task', 'integrations',
+                       'site', 'lang']
         for field in extra_fields:
             if form_data.get(field):
                 extra_data[field] = form_data[field]
