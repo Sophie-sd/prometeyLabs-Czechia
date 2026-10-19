@@ -103,10 +103,10 @@ def blog_search(request):
     context = {
         'page_obj': page_obj,
         'query': query,
-        'page_title': f'Пошук: {query}' if query else 'Пошук по блогу',
-        'meta_description': f'Результати пошуку "{query}" в блозі про веб-розробку та курси програмування',
-        'og_title': f'Пошук: {query}' if query else 'Пошук по блогу',
-        'keywords': 'пошук, блог, веб-розробка, курси програмування'
+        'page_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу'),
+        'meta_description': _('Результати пошуку «%(q)s» у блозі про створення сайтів, інтернет-магазини, розробку та маркетинг') % {'q': query},
+        'og_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу'),
+        'keywords': _('пошук, блог, створення сайтів, інтернет-магазини, розробка, маркетинг')
     }
     
     return render(request, 'pages/blog_search.html', context)
