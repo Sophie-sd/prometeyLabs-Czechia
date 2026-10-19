@@ -1742,8 +1742,17 @@ class PrometeyApp {
         }
     }
 
+    localizedFormUrl(path) {
+        const lang = (document.documentElement.lang || 'cs').split('-')[0].toLowerCase();
+        // cs = LANGUAGE_CODE with prefix_default_language=False -> no prefix
+        // (synced with static/js/base.js::localizedFormUrl)
+        if (!lang || lang === 'cs') return path;
+        return `/${lang}${path}`;
+    }
+
     async submitForm(formData, formType) {
-        const url = formType === 'test' ? '/forms/test/' : '/forms/submit/';
+        const raw = formType === 'test' ? '/forms/test/' : '/forms/submit/';
+        const url = this.localizedFormUrl(raw);
 
         if (formType !== 'test') {
             formData.append('form_type', formType);
