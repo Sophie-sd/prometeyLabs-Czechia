@@ -4421,6 +4421,10 @@ msgstr "Get an accurate cost estimate in 2 minutes"
 msgid "Калькулятор розрахунку"
 msgstr "I Want to Become a Developer"
 
+#: templates/components/tz_generator/compare.html:81
+msgid "хв"
+msgstr "min"
+
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Buy now, pay later (Twisto)"
 
@@ -6363,7 +6367,7 @@ msgstr "SKUs in one pass"
 
 #: templates/components/internet_shop_v2/svoboda.html:80
 msgid "год"
-msgstr "Events"
+msgstr "h"
 
 #: templates/components/internet_shop_v2/svoboda.html:81
 msgid "на повну міграцію"

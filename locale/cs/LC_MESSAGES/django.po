@@ -4461,6 +4461,10 @@ msgstr "Získejte bezplatnou kalkulaci ceny vašeho webu"
 msgid "Калькулятор розрахунку"
 msgstr "Kalkulačka ceny"
 
+#: templates/components/tz_generator/compare.html:81
+msgid "хв"
+msgstr "min"
+
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Nákup na splátky Twisto"
 
