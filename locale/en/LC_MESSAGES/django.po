@@ -4950,11 +4950,11 @@ msgstr "CONTACTS"
 
 #: templates/components/footer.html:50
 msgid "Графік роботи: Цілодобово"
-msgstr "Working Hours: 24/7"
+msgstr "We reply Mon–Fri 9:00–18:00 (CET)"
 
 #: templates/components/footer.html:93
 msgid "Реєстр. №"
-msgstr "Reg. No."
+msgstr "Tax ID (Ukraine):"
 
 #: templates/components/footer.html:98
 msgid "Захист даних:"
@@ -4984,6 +4984,10 @@ msgstr "promotion"
 #: templates/components/footer.html:109
 msgid "Навчання"
 msgstr "Training"
+
+#: templates/components/footer.html:89
+msgid "Цифровий маркетинг"
+msgstr "Digital Marketing"
 
 #: templates/components/header.html:7
 msgid "PrometeyLabs Czechia - Domovská stránka"

@@ -4994,11 +4994,11 @@ msgstr "KONTAKTY"
 
 #: templates/components/footer.html:50
 msgid "Графік роботи: Цілодобово"
-msgstr "Provozní doba: Nepřetržitě"
+msgstr "Odpovídáme v pracovní dny 9:00–18:00 (SEČ)"
 
 #: templates/components/footer.html:93
 msgid "Реєстр. №"
-msgstr "IČ"
+msgstr "DIČ (Ukrajina):"
 
 #: templates/components/footer.html:98
 msgid "Захист даних:"
@@ -5028,6 +5028,10 @@ msgstr "propagace"
 #: templates/components/footer.html:109
 msgid "Навчання"
 msgstr "Školení"
+
+#: templates/components/footer.html:89
+msgid "Цифровий маркетинг"
+msgstr "Digitální marketing"
 
 #: templates/components/header.html:7
 msgid "PrometeyLabs Czechia - Domovská stránka"
@@ -5119,7 +5123,7 @@ msgstr ""
 
 #: templates/components/home/redesign_cta.html:26
 msgid "telegram-консультація"
-msgstr "telegram konzultace"
+msgstr "Konzultace přes Telegram"
 
 #: templates/components/home/redesign_services.html:16
 #: templates/components/home/redesign_services_piano.html:41
@@ -8711,7 +8715,7 @@ msgstr "školení"
 
 #: templates/pages/home.html:86
 msgid "Написати в телеграм"
-msgstr "Napsat na telegram"
+msgstr "Napsat na Telegram"
 
 #: templates/pages/home.html:89
 msgid "Розрахувати вартість онлайн"
