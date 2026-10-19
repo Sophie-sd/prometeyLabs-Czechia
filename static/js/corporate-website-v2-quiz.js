@@ -204,32 +204,32 @@
         var options = getCheckedOptions();
         var timeline = getCheckedValue('q_timeline');
 
-        if (pages === '1 сторінка (лендинг)') score.starter += 4;
-        if (pages === 'до 10 сторінок') score.corporate += 4;
-        if (pages === '11–20 сторінок') score.premium += 3;
-        if (pages === '21+ сторінок') score.premium += 5;
+        if (pages === 'landing') score.starter += 4;
+        if (pages === 'up_to_10') score.corporate += 4;
+        if (pages === '11_20') score.premium += 3;
+        if (pages === '21_plus') score.premium += 5;
 
-        if (business === 'Виробництво / опт') score.corporate += 1;
-        if (business === 'Торгівля') score.corporate += 1;
-        if (business === 'Інше / не визначився') score.corporate += 1;
+        if (business === 'manufacturing') score.corporate += 1;
+        if (business === 'trade') score.corporate += 1;
+        if (business === 'other') score.corporate += 1;
 
-        if (goal === 'Збір заявок та контактів') score.starter += 2;
-        if (goal === 'Презентація бренду або послуг') score.corporate += 2;
-        if (goal === 'Прямі онлайн-продажі') score.corporate += 2;
-        if (goal === 'Масштабування') score.premium += 3;
+        if (goal === 'leads') score.starter += 2;
+        if (goal === 'brand') score.corporate += 2;
+        if (goal === 'online_sales') score.corporate += 2;
+        if (goal === 'scaling') score.premium += 3;
 
         options.forEach(function (option) {
-            if (option === 'Рекламні послуги' || option === 'SEO розвиток сайту') {
+            if (option === 'ads' || option === 'seo') {
                 score.corporate += 2;
             }
-            if (option === 'CRM та автоматизація') score.corporate += 2;
-            if (option === 'Мультимовність') score.premium += 3;
+            if (option === 'crm_automation') score.corporate += 2;
+            if (option === 'multilang') score.premium += 3;
         });
 
-        if (timeline === 'Якнайшвидше (до 7 днів)') score.starter += 3;
-        if (timeline === 'Протягом 2 тижнів') score.corporate += 2;
-        if (timeline === 'Протягом місяця') score.corporate += 1;
-        if (timeline === 'Терміни гнучкі') score.premium += 2;
+        if (timeline === 'asap_7d') score.starter += 3;
+        if (timeline === 'within_2w') score.corporate += 2;
+        if (timeline === 'within_month') score.corporate += 1;
+        if (timeline === 'flexible') score.premium += 2;
 
         var best = 'corporate';
         var bestScore = -1;

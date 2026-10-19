@@ -5,7 +5,7 @@ KeyCRM API інтеграція.
 import requests
 import logging
 from django.conf import settings
-from apps.core.form_handlers import get_answer_text
+from apps.core.form_handlers import get_answer_text, get_lead_site_code
 
 logger = logging.getLogger(__name__)
 
@@ -112,11 +112,25 @@ def resolve_keycrm_source_id(submission):
     return fallback
 
 
+def lead_site_and_lang(submission):
+    """
+    (site, lang) для заявки: з extra_data (пишеться в create_form_data),
+    інакше site — з налаштування, lang — preferred_language або ''.
+    """
+    extra = submission.extra_data or {}
+    site = (extra.get('site') or get_lead_site_code() or '').strip().lower()
+    lang = (extra.get('lang') or submission.preferred_language or '').strip().lower()
+    return site, lang
+
+
 class KeyCRMService:
     def __init__(self):
         self.api_key = getattr(settings, 'KEYCRM_API_KEY', '')
         self.pipeline_id = getattr(settings, 'KEYCRM_PIPELINE_ID', 1)
         self.gclid_field_uuid = getattr(settings, 'KEYCRM_GCLID_FIELD_UUID', '')
+        # Опційні кастомні поля картки (UUID з KeyCRM). Порожньо → лише manager_comment.
+        self.site_field_uuid = getattr(settings, 'KEYCRM_SITE_FIELD_UUID', '')
+        self.lang_field_uuid = getattr(settings, 'KEYCRM_LANG_FIELD_UUID', '')
 
     @property
     def _headers(self):
@@ -166,16 +180,29 @@ class KeyCRMService:
         if submission.utm_content:
             payload['utm_content'] = submission.utm_content
 
+        site, lang = lead_site_and_lang(submission)
+
+        custom_fields = []
         if submission.gclid and self.gclid_field_uuid:
-            payload['custom_fields'] = [{
+            custom_fields.append({
                 'uuid': self.gclid_field_uuid,
                 'value': submission.gclid,
-            }]
+            })
+        if site and self.site_field_uuid:
+            custom_fields.append({'uuid': self.site_field_uuid, 'value': site})
+        if lang and self.lang_field_uuid:
+            custom_fields.append({'uuid': self.lang_field_uuid, 'value': lang})
+        if custom_fields:
+            payload['custom_fields'] = custom_fields
 
         comment_parts = []
         if submission.details:
             comment_parts.append(submission.details)
         comment_parts.append(f'Form: {submission.form_type}')
+        if site:
+            comment_parts.append(f'Site: {site}')
+        if lang:
+            comment_parts.append(f'Lang: {lang}')
         comment_parts.append(f'Site ID: {submission.id}')
         if submission.messenger_type:
             comment_parts.append(
@@ -200,6 +227,11 @@ class KeyCRMService:
             comment_parts.append(f'Реферер: {extra["landing_referrer"]}')
         if submission.gclid:
             comment_parts.append(f'GCLID: {submission.gclid}')
+        if extra.get('quiz_answers'):
+            from apps.core.quiz_options import format_quiz_answers
+            quiz_lines = format_quiz_answers(extra['quiz_answers'])
+            if quiz_lines:
+                comment_parts.append('=== КВІЗ ===\n' + '\n'.join(quiz_lines))
 
         if submission.form_type == 'test_result' and submission.extra_data:
             extra = submission.extra_data
@@ -250,6 +282,39 @@ class KeyCRMService:
             logger.error(error)
             return (False, None, error)
 
+    def update_pipeline_card(self, card_id, payload):
+        """
+        Оновлює існуючу картку: PUT /pipelines/cards/{cardId}
+        (поля title, note, status_id, source_id, custom_fields — див. open-api.yml).
+        Повертає (success: bool, error: str|None).
+        """
+        if not self.is_configured:
+            return (False, "API key not configured")
+        if not card_id:
+            return (False, "No card id")
+
+        try:
+            response = requests.put(
+                f'{KEYCRM_BASE_URL}/pipelines/cards/{card_id}',
+                json=payload,
+                headers=self._headers,
+                timeout=REQUEST_TIMEOUT,
+            )
+            if response.status_code in (200, 201):
+                logger.info(f"KeyCRM card updated: {card_id}")
+                return (True, None)
+            error = f"KeyCRM PUT card error {response.status_code}: {response.text[:300]}"
+            logger.error(error)
+            return (False, error)
+        except requests.Timeout:
+            error = "KeyCRM API timeout (update)"
+            logger.error(error)
+            return (False, error)
+        except requests.RequestException as e:
+            error = f"KeyCRM API update failed: {str(e)}"
+            logger.error(error)
+            return (False, error)
+
     def get_card_with_custom_fields(self, card_id):
         """
         Отримує картку воронки з кастомними полями.
@@ -296,15 +361,43 @@ class KeyCRMService:
         return None
 
 
+UPSELL_NOTE_LABELS = {
+    'estimate': 'Хоче прорахунок',
+    'consultation': 'Хоче консультацію',
+    'none': 'Без додаткових послуг',
+}
+
+# Скільки секунд після створення заявки вважаємо, що фонова відправка
+# (_dispatch_async: e-mail до 10 с + KeyCRM до 15 с) ще може створити картку.
+KEYCRM_PENDING_CREATE_SECONDS = 60
+
+
+def _upsell_note(upsell):
+    label = UPSELL_NOTE_LABELS.get(upsell, upsell)
+    return f'[Upsell] {label}'
+
+
 def sync_submission_to_keycrm(submission):
     """
-    Хелпер: синхронізує FormSubmission з KeyCRM.
+    Хелпер: синхронізує FormSubmission з KeyCRM (створює картку).
     Оновлює keycrm_card_id та keycrm_synced на submission.
+
+    Ідемпотентний: якщо в заявки вже є keycrm_card_id — нову картку не створює.
+    Якщо поки картка створювалась, у заявку додали upsell (tz-generator),
+    після створення доливаємо його в картку через update.
     """
     service = KeyCRMService()
     if not service.is_configured:
         return
 
+    if submission.keycrm_card_id:
+        logger.info(
+            f"Submission {submission.id} already has KeyCRM card "
+            f"{submission.keycrm_card_id}; skip create"
+        )
+        return
+
+    upsell_at_create = (submission.extra_data or {}).get('upsell')
     success, card_id, error = service.create_pipeline_card(submission)
 
     if success and card_id:
@@ -312,5 +405,48 @@ def sync_submission_to_keycrm(submission):
         submission.keycrm_synced = True
         submission.save(update_fields=['keycrm_card_id', 'keycrm_synced'])
         logger.info(f"Submission {submission.id} synced to KeyCRM card {card_id}")
+
+        try:
+            fresh_upsell = (
+                type(submission).objects.filter(pk=submission.pk)
+                .values_list('extra_data', flat=True).first() or {}
+            ).get('upsell')
+        except Exception:  # pragma: no cover — захисно, не валимо фонову відправку
+            fresh_upsell = None
+        if fresh_upsell and fresh_upsell != upsell_at_create:
+            service.update_pipeline_card(card_id, {'note': _upsell_note(fresh_upsell)})
     elif error:
         logger.error(f"Failed to sync submission {submission.id} to KeyCRM: {error}")
+
+
+def sync_tz_upsell_to_keycrm(submission):
+    """
+    Upsell після генератора ТЗ: оновлює існуючу картку, а не створює другу.
+
+    - є keycrm_card_id → PUT note з upsell;
+    - картки ще немає, а заявка свіжа → нічого не робимо: фонова відправка
+      створить картку з уже збереженим upsell (або доллє його після створення);
+    - картки немає і заявка стара (первинна відправка не вдалась) → створюємо.
+    """
+    from django.utils import timezone
+
+    service = KeyCRMService()
+    if not service.is_configured:
+        return
+
+    submission.refresh_from_db(fields=['keycrm_card_id', 'keycrm_synced', 'extra_data', 'created_at'])
+    upsell = (submission.extra_data or {}).get('upsell')
+
+    if submission.keycrm_card_id:
+        if upsell:
+            service.update_pipeline_card(submission.keycrm_card_id, {'note': _upsell_note(upsell)})
+        return
+
+    age = (timezone.now() - submission.created_at).total_seconds() if submission.created_at else None
+    if age is not None and age < KEYCRM_PENDING_CREATE_SECONDS:
+        logger.info(
+            f"Submission {submission.id}: KeyCRM card creation pending; upsell will be included"
+        )
+        return
+
+    sync_submission_to_keycrm(submission)

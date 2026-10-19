@@ -5119,7 +5119,7 @@ msgstr ""
 
 #: templates/components/home/redesign_cta.html:26
 msgid "telegram-консультація"
-msgstr "telegram konzultace"
+msgstr "Konzultace přes Telegram"
 
 #: templates/components/home/redesign_services.html:16
 #: templates/components/home/redesign_services_piano.html:41
@@ -8711,7 +8711,7 @@ msgstr "školení"
 
 #: templates/pages/home.html:86
 msgid "Написати в телеграм"
-msgstr "Napsat na telegram"
+msgstr "Napsat na Telegram"
 
 #: templates/pages/home.html:89
 msgid "Розрахувати вартість онлайн"

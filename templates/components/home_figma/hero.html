@@ -8,8 +8,13 @@
         <p class="hf-hero__lead">{% trans "сайти" %} · {% trans "мобільні застосунки" %} · {% trans "telegram боти" %} · {% trans "реклама" %} · {% trans "ведення соціальних мереж" %} · {% trans "навчання" %}</p>
     </div>
     <div class="hf-hero__actions">
-        <a href="https://t.me/prometeylabs" class="hf-btn hf-btn--light" target="_blank" rel="noopener">{% trans "Написати в телеграм" %}</a>
+        {# п.6: головний CTA — форма заявки; калькулятор, Telegram, WhatsApp — другорядні #}
+        <button type="button" class="hf-btn hf-btn--light" data-modal="call-request-modal">{% trans "Залишити заявку" %}</button>
         <a href="{% url 'calculator' %}" class="hf-btn hf-btn--ghost">{% trans "Розрахувати вартість онлайн" %}</a>
-        <button type="button" class="hf-btn hf-btn--ghost" data-modal="call-request-modal">{% trans "Залишити заявку" %}</button>
+        <a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" class="hf-btn hf-btn--ghost" target="_blank" rel="noopener">{% trans "Написати в телеграм" %}</a>
+        {# WhatsApp — лише якщо в адмінці «Контакти та карта» заповнено WhatsApp URL (не з телефону); номер тільки в href #}
+        {% if site_contact.whatsapp_url %}
+        <a href="{{ site_contact.whatsapp_url }}" class="hf-btn hf-btn--ghost" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        {% endif %}
     </div>
 </section>
