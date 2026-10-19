@@ -114,11 +114,13 @@ def blog_search(request):
     context = {
         'page_obj': page_obj,
         'query': query,
-        'page_title': meta['title'],
-        'meta_description': meta['description'],
-        'og_title': meta['title'],
-        'og_description': meta['description'],
-        'keywords': '',
+        # cz/copy (1d20763): перекладні рядки через gettext; cz/seo (№74): og_description,
+        # meta keywords не виводяться (blog_search.html), порожній запит — мета з seo.py.
+        'page_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу'),
+        'meta_description': (_('Результати пошуку «%(q)s» у блозі про створення сайтів, інтернет-магазини, розробку та маркетинг') % {'q': query}) if query else meta['description'],
+        'og_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу'),
+        'keywords': _('пошук, блог, створення сайтів, інтернет-магазини, розробка, маркетинг'),
     }
+    context['og_description'] = context['meta_description']
     
     return render(request, 'pages/blog_search.html', context)

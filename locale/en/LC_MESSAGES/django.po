@@ -4426,6 +4426,20 @@ msgstr "Leave your contact details — we will prepare a short analysis and get 
 msgid "Leave your contact — we will prepare a short analysis and get back to you with recommendations."
 msgstr "Leave your contact details — we will prepare a short analysis and get back to you with recommendations."
 
+#: apps/blog/views.py:106 apps/blog/views.py:108
+#, python-format
+msgid "Пошук: %(q)s"
+msgstr "Search: %(q)s"
+
+#: apps/blog/views.py:107
+#, python-format
+msgid "Результати пошуку «%(q)s» у блозі про створення сайтів, інтернет-магазини, розробку та маркетинг"
+msgstr "Search results for “%(q)s” in the blog on websites, e-commerce, development and marketing"
+
+#: apps/blog/views.py:109
+msgid "пошук, блог, створення сайтів, інтернет-магазини, розробка, маркетинг"
+msgstr "search, blog, websites, e-commerce, development, marketing"
+
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Buy now, pay later (Twisto)"
 
@@ -8085,6 +8099,7 @@ msgstr "Back to blog"
 msgid "Результати пошуку:"
 msgstr "Search results:"
 
+#: apps/blog/views.py:106 apps/blog/views.py:108
 #: templates/pages/blog_search.html:23
 msgid "Пошук по блогу"
 msgstr "Blog search"
