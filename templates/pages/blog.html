@@ -13,9 +13,9 @@
 {% endblock %}
 
 {% block content %}
-<!-- Blog Hero з фоновим відео -->
+<!-- Blog Hero with background video -->
 <section class="blog-hero full-height">
-    <!-- Фонові відео для декстопу та мобільних -->
+    <!-- Background videos for desktop and mobile -->
     <video class="video-background desktop-video" autoplay muted loop playsinline>
         <source src="{% static 'videos/desktop/blog.mp4' %}" type="video/mp4">
     </video>
@@ -23,7 +23,7 @@
         <source src="{% static 'videos/mobile/blogmobile.mp4' %}" type="video/mp4">
     </video>
 
-    <!-- Overlay для кращої читабельності -->
+    <!-- Overlay for better readability -->
     <div class="video-overlay"></div>
 
     <div class="hero-content">
@@ -38,7 +38,7 @@
     </div>
 </section>
 
-<!-- Біжуча строчка послуг -->
+<!-- Services marquee -->
 <section class="services-marquee" aria-label="{% trans 'Наші послуги' %}">
     <div class="marquee-track">
         <div class="marquee-content">
@@ -96,11 +96,11 @@
     </div>
 </section>
 
-<!-- Blog Header з пошуком -->
+<!-- Blog header with search -->
 <section class="blog-header">
     <div class="container">
 
-        <!-- Пошук по блогу -->
+        <!-- Blog search -->
         <div class="blog-search">
             <form method="get" action="{% url 'blog:blog_search' %}" class="search-form">
                 <div class="search-input-wrapper">
@@ -112,7 +112,7 @@
             </form>
         </div>
 
-        <!-- Фільтри по категоріях -->
+        <!-- Category filters -->
         <div class="blog-categories">
             <div class="categories-list">
                 <a href="{% url 'blog:blog_list' %}" class="category-filter {% if not category %}active{% endif %}">
@@ -202,7 +202,7 @@
     </div>
 </section>
 
-<!-- Популярні статті -->
+<!-- Popular articles -->
 <section class="popular-articles">
     <div class="container">
         <div class="popular-header text-center">

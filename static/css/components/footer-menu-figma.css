@@ -200,7 +200,7 @@ body.menu-open{overflow:hidden}
   .plf .plf__col,.plf .plf__col--services{gap:43px}
   .plf .plf__acc-head{min-height:22px}
 }
-/* all legal links identical (incl. monobank), no borders/underline except hover line */
+/* all legal links identical, no borders/underline except hover line */
 .plf .plf__list .plf__link,.plf .plf__list .plf__link:visited,.plf .plf__list .plf__link[aria-current]{font-size:16px;line-height:19px;font-weight:500;color:var(--plf-gray);border:0;text-decoration:none;background:none;padding:0}
 .plf .plf__list .plf__link:hover,.plf .plf__list .plf__link:focus-visible{color:var(--plf-white)}
 /* consent: visible light checkbox matching pill fields */
