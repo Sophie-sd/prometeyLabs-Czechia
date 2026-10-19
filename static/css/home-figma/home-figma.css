@@ -174,7 +174,7 @@
     color: var(--hf-gray);
     margin-bottom: -6px; /* Figma text-box-trim: intro block = 258px */
 }
-/* Currency switcher (Figma «Theme Toggle» з €): 100×55, фон #f5f5f5, внутр. пігулка #cfcfcf */
+/* Legacy toggle styles (Figma «Theme Toggle», not rendered on .cz): 100×55, bg #f5f5f5, inner pill #cfcfcf */
 .hf-why__fx .fx-switch { margin: 0; gap: 0; }
 .hf-why__fx .fx-switch__label {
     position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;

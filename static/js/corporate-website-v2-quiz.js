@@ -6,41 +6,9 @@
     var form = document.getElementById('pl-corp-quiz-form');
     if (!form) return;
 
-    var lang = (document.documentElement.lang || 'uk').split('-')[0].toLowerCase();
+    var lang = (document.documentElement.lang || 'cs').split('-')[0].toLowerCase();
 
     var PKG_MAP_BY_LANG = {
-        uk: {
-            starter: {
-                label: 'СТАРТОВИЙ',
-                term: '5–7 днів',
-                features: [
-                    '1-сторінковий лендинг під бренд',
-                    'Базове SEO та форма заявки',
-                    'Інтеграція Telegram або CRM',
-                    'Адаптивна мобільна версія'
-                ]
-            },
-            corporate: {
-                label: 'КОРПОРАТИВНИЙ',
-                term: '2–3 тижні',
-                features: [
-                    '5–9 сторінок, блог для SEO',
-                    'Розширене SEO та Core Web Vitals',
-                    'CRM + Google Ads у пакеті',
-                    'Каталог послуг або продукції'
-                ]
-            },
-            premium: {
-                label: 'БІЗНЕС-ПРЕМІУМ',
-                term: '3–6 тижнів',
-                features: [
-                    '10+ сторінок, мультимовність',
-                    'Інтеграція 1С / Bitrix24',
-                    'Маркетинг під ключ: Google, Meta, TikTok',
-                    'SEO-просування та складний функціонал'
-                ]
-            }
-        },
         cs: {
             starter: {
                 label: 'START',
@@ -106,8 +74,7 @@
             }
         }
     };
-    PKG_MAP_BY_LANG.ru = PKG_MAP_BY_LANG.uk;
-    var PKG_MAP = PKG_MAP_BY_LANG[lang] || PKG_MAP_BY_LANG.uk;
+    var PKG_MAP = PKG_MAP_BY_LANG[lang] || PKG_MAP_BY_LANG.cs;
 
     var steps = Array.from(form.querySelectorAll('.pl-corp__quiz-step'));
     var stage = form.querySelector('.pl-corp__quiz-stage');

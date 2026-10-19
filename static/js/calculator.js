@@ -76,8 +76,8 @@ class ProjectCalculator {
     }
 
     addProgressIndicator() {
-        const questionLabel = this.testForm?.dataset.questionLabel || 'Питання';
-        const ofLabel = this.testForm?.dataset.ofLabel || 'з';
+        const questionLabel = this.testForm?.dataset.questionLabel || (((document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0) ? 'Question' : 'Otázka');
+        const ofLabel = this.testForm?.dataset.ofLabel || (((document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0) ? 'of' : 'z');
 
         const progressHtml = `
             <div class="calculator-progress mb-md">
@@ -371,14 +371,8 @@ class ProjectCalculator {
                 const mask = app.phoneMasks.get(phoneField);
                 mask.ensurePrefix();
             } else {
-                const lang = (document.documentElement.lang || 'uk').split('-')[0].toLowerCase();
-                if (lang === 'cs') {
-                    phoneField.value = '+420';
-                } else if (lang === 'en') {
-                    phoneField.value = '';
-                } else {
-                    phoneField.value = '+38';
-                }
+                const lang = (document.documentElement.lang || 'cs').split('-')[0].toLowerCase();
+                phoneField.value = (lang === 'en') ? '' : '+420';
             }
             phoneField.classList.remove('error');
         }

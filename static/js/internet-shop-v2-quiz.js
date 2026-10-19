@@ -6,41 +6,9 @@
     var form = document.getElementById('pl-shop-quiz-form');
     if (!form) return;
 
-    var lang = (document.documentElement.lang || 'uk').split('-')[0].toLowerCase();
+    var lang = (document.documentElement.lang || 'cs').split('-')[0].toLowerCase();
 
     var PKG_MAP_BY_LANG = {
-        uk: {
-            base: {
-                label: 'BASE',
-                price: 'від 1\u00a0400\u00a0€',
-                term: '3–4 тижні',
-                features: [
-                    'Базовий конверсійний дизайн під нішу',
-                    'ШІ-контент та базова SEO-підготовка',
-                    'Розгортання під ключ на вашому домені'
-                ]
-            },
-            premium: {
-                label: 'PREMIUM',
-                price: 'від 2\u00a0800\u00a0€',
-                term: '5–8 тижнів',
-                features: [
-                    'Індивідуальний UI/UX дизайн з нуля',
-                    'Інтеграції: платежі, логістика, CRM',
-                    'Контент-маркетинг та SEO-статті'
-                ]
-            },
-            platinum: {
-                label: 'PLATINUM',
-                price: 'від 8\u00a0000\u00a0€',
-                term: '2–4 місяці',
-                features: [
-                    'Premium UI/UX + кінематографічна анімація',
-                    'AI-екосистема адмінки та Telegram-бот',
-                    '6 місяців контент-маркетингу та медіакампанії'
-                ]
-            }
-        },
         cs: {
             base: {
                 label: 'BASE',
@@ -106,8 +74,7 @@
             }
         }
     };
-    PKG_MAP_BY_LANG.ru = PKG_MAP_BY_LANG.uk;
-    var PKG_MAP = PKG_MAP_BY_LANG[lang] || PKG_MAP_BY_LANG.uk;
+    var PKG_MAP = PKG_MAP_BY_LANG[lang] || PKG_MAP_BY_LANG.cs;
 
     var steps = Array.from(form.querySelectorAll('.pl-shop__quiz-step'));
     var progressBar = form.querySelector('[data-quiz-progress]');

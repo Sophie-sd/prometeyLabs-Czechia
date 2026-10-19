@@ -701,7 +701,7 @@ body.pl-shop-body .main-footer .container,
     max-width: 250px;
 }
 
-/* Currency switcher → Figma toggle (1:294): 100×55 #f5f5f5, Ø45.8 knob */
+/* Legacy toggle styles (Figma 1:294, not rendered on .cz): 100×55 #f5f5f5, Ø45.8 knob */
 .pl-shop__currency .fx-switch {
     margin: 0;
     gap: 0;

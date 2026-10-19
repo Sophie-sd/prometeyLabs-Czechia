@@ -379,6 +379,7 @@
 }
 
 .pl-tz__quiz-fields--contact .pl-tz__quiz-field:nth-child(3),
+.pl-tz__quiz-fields--contact .pl-tz__quiz-consent,
 .pl-tz__quiz-fields--contact .pl-tz__quiz-error {
     grid-column: 1 / -1;
 }
@@ -403,6 +404,29 @@
 .pl-tz__quiz-input:focus {
     outline: none;
     border-color: var(--pl-tz-acc);
+}
+
+/* GDPR consent (contact step) */
+.pl-tz__quiz-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #b0b0b0;
+    cursor: pointer;
+}
+
+.pl-tz__quiz-consent-input {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+    accent-color: var(--pl-tz-acc);
+}
+
+.pl-tz__quiz-consent .lead-form-policy-link {
+    color: var(--pl-tz-acc);
 }
 
 .pl-tz__quiz-error {

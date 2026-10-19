@@ -4,20 +4,43 @@
         <div class="pl-corp__lead-cta-row" data-reveal>
             <div class="pl-corp__lead-cta-copy">
                 <h2 id="pl-corp-free-analysis-title" class="pl-corp__lead-cta-title">{% trans "Безкоштовний аналіз вашого бізнесу" %}</h2>
-                <p class="pl-corp__lead-cta-text">{% trans "Залиште номер телефону — підготуємо короткий аналіз і зателефонуємо з рекомендаціями." %}</p>
+                <p class="pl-corp__lead-cta-text">{% if LANGUAGE_CODE == 'en' %}{% trans "Leave your contact — we will prepare a short analysis and get back to you with recommendations." %}{% else %}{% trans "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními." %}{% endif %}</p>
             </div>
             <form class="pl-corp__lead-cta-form" method="post" action="{% url 'form_submit' %}" data-form-type="call_request">
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="call_request">
                 <input type="hidden" name="source_page" value="corporate-website-v2-free-analysis">
                 <input type="hidden" name="name" value="Безкоштовний аналіз">
-                <label class="pl-corp__field">
-                    <img class="pl-corp__field-icon" src="{% static 'images/corporate_website_v2/figma/icon-call.svg' %}" alt="" width="14" height="14">
-                    <span class="pl-corp__sr-only">{% trans "Номер телефону" %}</span>
-                    <input type="tel" name="phone" class="pl-corp__field-input mobile-touch-target" autocomplete="tel" inputmode="tel" placeholder="{{ phone_placeholder }}" required>
-                </label>
+                {# Any one of phone / e-mail / Telegram is enough (base.js data-lead-form-fields rule + server has_lead_contact). #}
+                <div class="pl-corp__lead-cta-fields" data-lead-form-fields>
+                    <label class="pl-corp__field">
+                        <img class="pl-corp__field-icon" src="{% static 'images/corporate_website_v2/figma/icon-call.svg' %}" alt="" width="14" height="14">
+                        <span class="pl-corp__sr-only">{% trans "Номер телефону" %}</span>
+                        <input type="tel" name="phone" class="pl-corp__field-input mobile-touch-target" autocomplete="tel" inputmode="tel" placeholder="{{ phone_placeholder }}">
+                    </label>
+                    <label class="pl-corp__field">
+                        <span class="pl-corp__sr-only">{% trans "Email" %}</span>
+                        <input type="email" name="email" class="pl-corp__field-input pl-corp__field-input--plain mobile-touch-target" autocomplete="email" inputmode="email" placeholder="{% trans "you@email.com" %}">
+                    </label>
+                    <label class="pl-corp__field">
+                        <span class="pl-corp__sr-only">{% trans "Telegram" %}</span>
+                        <input type="text" name="telegram" class="pl-corp__field-input pl-corp__field-input--plain mobile-touch-target" autocomplete="username" inputmode="text" spellcheck="false" placeholder="Telegram @username" data-telegram-input>
+                    </label>
+                    <p class="lead-form-contact-rule pl-corp__lead-cta-rule" data-lead-contact-rule hidden role="alert"></p>
+                </div>
                 <button type="submit" class="pl-corp__btn pl-corp__btn--accent mobile-touch-target">{% trans "Отримати консультацію" %}</button>
-                {% include 'components/lead_gdpr_min.html' with prefix='pl-corp-free' input_class='pl-corp__field-input mobile-touch-target' wrap_class='pl-corp__free-analysis-gdpr' %}
+                {% url 'privacy' as privacy_url %}
+                <div class="lead-gdpr-min pl-corp__free-analysis-gdpr">
+                    <div class="form-group lead-gdpr-min__consent">
+                        <label class="form-checkbox lead-form-checkbox lead-gdpr-min__checkbox">
+                            <input type="checkbox" name="consent" value="1" required>
+                            <span>
+                                {% blocktrans trimmed with privacy_url=privacy_url %}Даю згоду на обробку персональних даних згідно з <a href="{{ privacy_url }}" class="lead-form-policy-link" target="_blank" rel="noopener">політики конфіденційності</a>.{% endblocktrans %}
+                            </span>
+                        </label>
+                    </div>
+                    <p class="lead-form-expect lead-gdpr-min__expect">{% trans "Ozveme se do 24 hodin…" %}</p>
+                </div>
             </form>
         </div>
     </div>

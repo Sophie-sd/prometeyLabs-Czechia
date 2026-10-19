@@ -130,12 +130,17 @@
                     </div>
                     <div class="pl-tz__quiz-field">
                         <label class="pl-tz__quiz-field-label" for="pl-tz-quiz-phone">{% trans "Телефон" %}</label>
-                        <input type="tel" id="pl-tz-quiz-phone" name="phone" class="pl-tz__quiz-input mobile-touch-target" autocomplete="tel" inputmode="tel" required placeholder="+38(___)__-__-___">
+                        <input type="tel" id="pl-tz-quiz-phone" name="phone" class="pl-tz__quiz-input mobile-touch-target" autocomplete="tel" inputmode="tel" required placeholder="+420 777 123 456">
                     </div>
                     <div class="pl-tz__quiz-field">
                         <label class="pl-tz__quiz-field-label" for="pl-tz-quiz-email">Email</label>
                         <input type="email" id="pl-tz-quiz-email" name="email" class="pl-tz__quiz-input mobile-touch-target" autocomplete="email" inputmode="email" required placeholder="you@email.com">
                     </div>
+                    {% url 'privacy' as privacy_url %}
+                    <label class="pl-tz__quiz-consent">
+                        <input type="checkbox" id="pl-tz-quiz-consent" name="consent" value="1" class="pl-tz__quiz-consent-input" required>
+                        <span class="pl-tz__quiz-consent-text">{% blocktrans trimmed with privacy_url=privacy_url %}Даю згоду на обробку персональних даних згідно з <a href="{{ privacy_url }}" class="lead-form-policy-link" target="_blank" rel="noopener">політики конфіденційності</a>.{% endblocktrans %}</span>
+                    </label>
                     <p class="pl-tz__quiz-error" data-quiz-submit-error></p>
                 </div>
             </div>
