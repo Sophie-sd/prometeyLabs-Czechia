@@ -1,6 +1,7 @@
 {
   "ai-u-veb-rozrobtsi-yak-shtuchnyj-intelekt-zminyuye-stvorennya-sajtiv": {
     "title": "AI ve webovém vývoji: Jak umělá inteligence mění tvorbu webů",
+    "meta_title": "AI ve webovém vývoji: Jak umělá inteligence mění tvorbu webů",
     "excerpt": "Vývojáři začali používat ChatGPT a GitHub Copilot — a najednou to, co dřív trvalo týden, zvládnou za den. Není to sci-fi, je to současný webový vývoj.",
     "seo_title": "AI ve webovém vývoji | Jak AI mění tvorbu webů",
     "seo_description": "Jak ChatGPT, Copilot a další AI nástroje zkracují vývoj webů. Reálné příklady úspor času a rozpočtu z praxe PrometeyLabs.",
@@ -9,6 +10,7 @@
   },
   "api-intehratsii-yak-obyednaty-systemy-biznesu": {
     "title": "API integrace: Příběh o 15 otevřených záložkách a ztracených nervech",
+    "meta_title": "API integrace: Jak propojit systémy firmy bez ztráty nervů",
     "excerpt": "CRM, sklad, e-shop a účetnictví žijí odděleně — dokud je nepropojíte. Jak API integrace šetří hodiny ruční práce a proč „levný skript“ bývá dražší.",
     "seo_title": "API integrace pro byznys | Propojení systémů",
     "seo_description": "Jak propojit CRM, e-shop a sklad přes API. Praktický návod bez marketingového balastu — z reálných projektů.",
@@ -17,6 +19,7 @@
   },
   "skilky-koshtuye-zrobyty-sajt-v-ukrayini-realni-tsiny": {
     "title": "Kolik stojí udělat web v Česku: reálné ceny bez překvapení",
+    "meta_title": "Kolik stojí udělat web v Česku: reálné ceny bez překvapení",
     "excerpt": "Od landing page po e-shop — orientační rozpočty, co cenu zvedá a jak se nespálit na „levné nabídce“. Transparentní čísla z praxe.",
     "seo_title": "Kolik stojí web v Česku 2025 | Reálné ceny",
     "seo_description": "Orientační ceny webu, e-shopu a korporátního webu v Česku. Co ovlivňuje rozpočet a jak porovnat nabídky.",
@@ -25,6 +28,7 @@
   },
   "telegram-boty-dlya-biznesu-chomu-vlasnyk-kaviярні-zvilnyv": {
     "title": "Telegram boty pro byznys: Proč majitel kavárny propustil administrátora",
+    "meta_title": "Telegram bot pro byznys: Kavárna bez administrátora",
     "excerpt": "Objednávky, rezervace a FAQ řeší bot — člověk řeší hosty. Kdy má Telegram bot smysl, kolik ušetří a jak ho nasadit bez chaosu.",
     "seo_title": "Telegram bot pro firmu | Automatizace objednávek",
     "seo_description": "Jak Telegram bot zjednodušuje objednávky, rezervace a CRM. Reálný příběh a checklist před vývojem.",
@@ -33,6 +37,7 @@
   },
   "ai-chat-boty-koly-kliyent-ne-rozumiye-shcho-spilkuyetsya": {
     "title": "AI chatboti: Když klient nepozná, že píše s botem",
+    "meta_title": "AI chatboti: Když klient nepozná, že píše s botem",
     "excerpt": "Dobře nastavený AI bot odpovídá 24/7, eskaluje na člověka a neslibuje nesmysly. Kde AI chatbot pomáhá — a kde škodí.",
     "seo_title": "AI chatbot pro web a podporu | PrometeyLabs",
     "seo_description": "Jak nasadit AI chatbota, který vypadá přirozeně, drží kontext a předá složité případy člověku.",
@@ -41,6 +46,7 @@
   },
   "seo-z-ai-yak-vyjty-v-top-google-za-2-misyatsi": {
     "title": "SEO s AI: Jak klient vylezl do TOP-3 Google za 2 měsíce",
+    "meta_title": "SEO s AI: Jak klient vylezl do TOP-3 Google za 2 měsíce",
     "excerpt": "AI zrychlí research a drafty — strategii a E-E-A-T pořád drží člověk. Co fungovalo v praxi a co je jen hype.",
     "seo_title": "SEO s AI | Jak se dostat výš v Google",
     "seo_description": "Jak kombinovat AI nástroje se solidní SEO strategií. Případ z praxe: TOP-3 během dvou měsíců.",
@@ -49,6 +55,7 @@
   },
   "ai-spivrobitnyk-koly-shtuchnyj-intelekt-najnyaly-na-robotu": {
     "title": "AI zaměstnanci: Když umělá inteligence dostane pracovní židli",
+    "meta_title": "AI zaměstnanci: Umělá inteligence dostává pracovní židli",
     "excerpt": "AI zvládne rutinu v podpoře, obsahu i back-office — ale ne strategická rozhodnutí. Jak „najímat“ AI bezpečně a měřitelně.",
     "seo_title": "AI zaměstnanec ve firmě | Automatizace rolí",
     "seo_description": "Kde AI nahrazuje rutinní práci, jak měřit přínos a jak nenahradit člověka tam, kde je nutný úsudek.",
@@ -57,6 +64,7 @@
   },
   "mvp-za-4-tyzhni-istoriya-startapu-shcho-zaluchyv-investytsiyi": {
     "title": "MVP za 4 týdny: Příběh startupu, který získal investici $300K",
+    "meta_title": "MVP za 4 týdny: Příběh startupu, který získal investici",
     "excerpt": "Neperfektní produkt včas > dokonalý produkt pozdě. Jak jsme postavili MVP, co škrtnout a jak přesvědčit investory výsledkem.",
     "seo_title": "MVP za 4 týdny | Startup a investice",
     "seo_description": "Jak postavit MVP rychle: scope, stack, AI ve vývoji a lekce ze startupu, který zvedl $300K.",
@@ -65,6 +73,7 @@
   },
   "mobilna-versiya-chому-67-kliyentiv-vidvalyvalys": {
     "title": "Mobilní verze webu: Proč 67 % klientů odpadávalo na telefonu",
+    "meta_title": "Mobilní verze webu: Proč 67 % klientů odpadávalo na telefonu",
     "excerpt": "Většina návštěv je z mobilu — a pomalý, nepřehledný web je tichý zabiják konverzí. Co opravit jako první.",
     "seo_title": "Mobilní verze webu | Konverze na telefonu",
     "seo_description": "Proč mobilní UX zabíjí konverze a jak opravit rychlost, formuláře a CTA na malém displeji.",
@@ -73,6 +82,7 @@
   },
   "bezpeka-saytu-istoriya-zlomu-400000-zbytkiv": {
     "title": "Bezpečnost webu: Příběh průniku a škod za stovky tisíc",
+    "meta_title": "Bezpečnost webu: Příběh průniku a škod za stovky tisíc",
     "excerpt": "Jeden slabý plugin, žádné zálohy, žádný monitoring — a účet je bolestivý. Checklist, který měl být hotový včera.",
     "seo_title": "Bezpečnost webu | Jak se nenechat nabourat",
     "seo_description": "Reálný incident, typické díry a praktický checklist: aktualizace, zálohy, WAF, přístupy, monitoring.",
@@ -81,6 +91,7 @@
   },
   "ai-v-internet-magazyni-yak-pidnyaly-serednij-chek": {
     "title": "AI v e-shopu: Jak algoritmy zvedly průměrnou objednávku o 67 %",
+    "meta_title": "AI v e-shopu: Jak algoritmy zvyšují průměrnou objednávku",
     "excerpt": "Doporučení, personalizace a chytré vyhledávání — AI, které vidíte na účtence. Co nasadit dřív než „všechno najednou“.",
     "seo_title": "AI v e-shopu | Vyšší průměrná objednávka",
     "seo_description": "Jak AI doporučení a personalizace zvedají AOV. Praktické kroky pro e-shopy v Česku.",
@@ -89,6 +100,7 @@
   },
   "kursy-prohramuvannya-z-ai-student-stav-junior": {
     "title": "Kurzy programování s AI: Student se stal juniorem za 3 měsíce",
+    "meta_title": "Kurzy programování s AI: Ze studenta juniorem za 3 měsíce",
     "excerpt": "AI urychlí učení — ale bez projektů a code review zjuniora neudělá. Jak se učit s Copilotem chytře.",
     "seo_title": "Kurzy programování s AI | Cesta k juniorovi",
     "seo_description": "Jak kombinovat kurzy, AI asistenty a reálné projekty, abyste se dostali na junior úroveň rychleji.",
@@ -97,6 +109,7 @@
   },
   "avtomatyzatsiya-marketyngu-yak-ai-zaminyv-3-marketolohiv": {
     "title": "Automatizace marketingu: Jak AI nahradilo 3 marketéry",
+    "meta_title": "Automatizace marketingu: Jak AI nahradilo 3 marketéry",
     "excerpt": "Ne propouštěním — přesměrováním lidí na strategii. AI píše drafty, segmentuje a reportuje; člověk rozhoduje.",
     "seo_title": "AI automatizace marketingu | Méně rutiny",
     "seo_description": "Kde AI v marketingu šetří hodiny: obsah, e-mail, reporting. Co nechat lidem.",
@@ -105,6 +118,7 @@
   },
   "pwa-sajt-chy-dodatok-chomu-krashche-mobilnoho": {
     "title": "PWA — web nebo aplikace? Proč je to často lepší a levnější než native",
+    "meta_title": "PWA, nebo aplikace? Proč je PWA často lepší a levnější",
     "excerpt": "Instalace na plochu, offline, push — bez App Store dramatu. Kdy stačí PWA a kdy potřebujete native.",
     "seo_title": "PWA vs mobilní aplikace | Co zvolit",
     "seo_description": "Porovnání PWA a native aplikace: cena, rychlost vývoje, offline a push notifikace.",
@@ -113,6 +127,7 @@
   },
   "majbutne-veb-rozrobky-prohnoz-cherez-2-3-roky": {
     "title": "Budoucnost webového vývoje: Co čekat za 2–3 roky (prognóza z praxe)",
+    "meta_title": "Budoucnost webového vývoje: Co čekat v příštích 2–3 letech",
     "excerpt": "AI páry, edge, menší týmy, vyšší očekávání na UX. Co se učit teď, abyste za tři roky nebyli mimo.",
     "seo_title": "Budoucnost webového vývoje 2025–2027",
     "seo_description": "Prognóza trendů: AI ve vývoji, Web3 realita vs hype, hlasová rozhraní a mzdy. Pohled z praxe.",

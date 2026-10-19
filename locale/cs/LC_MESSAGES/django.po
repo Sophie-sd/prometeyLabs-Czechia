@@ -212,7 +212,7 @@ msgstr "Články blogu"
 
 #: apps/blog/views.py:38 apps/blog/views.py:40
 msgid "Блог про веб-розробку та курси програмування"
-msgstr "Blog o vývoji webů a kurzech programování"
+msgstr "Blog o tvorbě webů, e-shopech a automatizaci"
 
 #: apps/blog/views.py:39
 msgid ""
@@ -224,7 +224,7 @@ msgstr "Užitečné články o vývoji webů, tvorbě webů na klíč a Telegram
 msgid ""
 "блог веб-розробка, курси програмування, створення сайтів, розробка сайтів "
 "під ключ, telegram боти, python django"
-msgstr ""
+msgstr "tvorba webů, e-shopy, Telegram boti, AI, SEO"
 
 #: apps/core/admin.py:110
 msgid "Контактна інформація"
@@ -8067,7 +8067,7 @@ msgid ""
 "створення сайтів, навчання програмуванню та автоматизацію бізнесу"
 msgstr ""
 "Přečtěte si odborné rady, praktické průvodce a aktuální informace o tvorbě "
-"webových stránek, výuce programování a automatizaci podnikání"
+"webů, e-shopech, marketingu a automatizaci podnikání"
 
 #: templates/pages/blog.html:42 templates/pages/home.html:100
 msgid "Наші послуги"
@@ -8160,11 +8160,11 @@ msgstr "weby na klíč"
 
 #: templates/pages/blog_search.html:115
 msgid "курси програмування"
-msgstr "kurzy programování"
+msgstr "e-shopy"
 
 #: templates/pages/blog_search.html:117 templates/pages/home.html:76
 msgid "telegram боти"
-msgstr "telegram boti"
+msgstr "Telegram boti"
 
 #: templates/pages/blog_search.html:118
 msgid "веб-розробка"

@@ -63,6 +63,8 @@ class Command(BaseCommand):
             keywords_cs = (cs.get('keywords') or '').strip()
             keywords_en = (en.get('keywords') or keywords_cs).strip()
             seo_title = (cs.get('seo_title') or title_cs)[:70]
+            # Complete ≤60-char phrase from the seed (no mid-word cut of the H1).
+            meta_title = (cs.get('meta_title') or title_cs)[:60]
             seo_description = (cs.get('seo_description') or excerpt_cs)[:160]
 
             y, m, d, hh, mm, ss = item['created']
@@ -88,9 +90,9 @@ class Command(BaseCommand):
                 'keywords_cs': keywords_cs,
                 'seo_title': seo_title,
                 'seo_description': seo_description,
-                'meta_title': title_cs[:60],
+                'meta_title': meta_title,
                 'meta_description': excerpt_cs[:160],
-                'og_title': title_cs[:60],
+                'og_title': meta_title,
                 'og_description': excerpt_cs[:160],
                 'category': item['category'],
                 'reading_time': item['reading_time'],

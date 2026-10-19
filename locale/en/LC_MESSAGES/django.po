@@ -135,7 +135,7 @@ msgstr "Programming Courses"
 
 #: apps/blog/models.py:41 templates/pages/blog.html:130
 msgid "Telegram боти"
-msgstr "telegram bots"
+msgstr "Telegram bots"
 
 #: apps/blog/models.py:42
 msgid "Бізнес"
@@ -198,7 +198,7 @@ msgstr "Blog Posts"
 
 #: apps/blog/views.py:38 apps/blog/views.py:40
 msgid "Блог про веб-розробку та курси програмування"
-msgstr "Blog on web development and programming courses"
+msgstr "Blog on web development, e-commerce and automation"
 
 #: apps/blog/views.py:39
 msgid ""
@@ -210,7 +210,7 @@ msgstr "Useful articles on web development, turnkey websites and Telegram bots. 
 msgid ""
 "блог веб-розробка, курси програмування, створення сайтів, розробка сайтів "
 "під ключ, telegram боти, python django"
-msgstr ""
+msgstr "web development, e-commerce, Telegram bots, AI, SEO"
 
 #: apps/core/admin.py:110
 msgid "Контактна інформація"
@@ -8032,8 +8032,8 @@ msgid ""
 "Читайте експертні поради, практичні керівництва та актуальну інформацію про "
 "створення сайтів, навчання програмуванню та автоматизацію бізнесу"
 msgstr ""
-"Read expert advice, practical guides and up-to-date information about "
-"website creation, programming training and business automation"
+"Read expert advice, practical guides and up-to-date insights on websites, "
+"e-commerce, marketing and business automation"
 
 #: templates/pages/blog.html:42 templates/pages/home.html:100
 msgid "Наші послуги"
@@ -8125,11 +8125,11 @@ msgstr "custom websites"
 
 #: templates/pages/blog_search.html:115
 msgid "курси програмування"
-msgstr "Programming Courses"
+msgstr "e-commerce"
 
 #: templates/pages/blog_search.html:117 templates/pages/home.html:76
 msgid "telegram боти"
-msgstr "telegram bots"
+msgstr "Telegram bots"
 
 #: templates/pages/blog_search.html:118
 msgid "веб-розробка"
