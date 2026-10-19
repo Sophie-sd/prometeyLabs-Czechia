@@ -5205,7 +5205,7 @@ msgstr "which we adhere to"
 #: templates/components/home/redesign_why.html:25
 #: templates/components/home/redesign_why.html:49
 msgid "Лендінги:"
-msgstr "Landings:"
+msgstr "Landing pages:"
 
 #: templates/components/home/redesign_why.html:25
 #: templates/components/home/redesign_why.html:26
@@ -5217,7 +5217,7 @@ msgstr "days"
 #: templates/components/home/redesign_why.html:26
 #: templates/components/home/redesign_why.html:50
 msgid "Корпоративні сайти:"
-msgstr "Corporate sites:"
+msgstr "Corporate websites:"
 
 #: templates/components/home/redesign_why.html:27
 msgid "Інтернет-магазини:"
@@ -5249,11 +5249,11 @@ msgstr "and flexible payment terms"
 
 #: templates/components/home/redesign_why.html:49
 msgid "400–700 €"
-msgstr "500–700 €"
+msgstr "€400–700"
 
 #: templates/components/home/redesign_why.html:50
 msgid "700–1000 €"
-msgstr "800–1400 €"
+msgstr "€700–1,000"
 
 #: templates/components/home/redesign_why.html:51
 msgid "E-commerce:"
@@ -5265,11 +5265,11 @@ msgstr "1500–5000 €"
 
 #: templates/components/home/redesign_why.html:52
 msgid "Веб-додатки:"
-msgstr "Web application / SaaS:"
+msgstr "Web apps / SaaS:"
 
 #: templates/components/home/redesign_why.html:52
 msgid "2800–8000 €"
-msgstr "800–1400 €"
+msgstr "€2,800–8,000"
 
 #: templates/components/home/redesign_why.html:55
 msgid "Пропонуємо розбиття оплати на етапи — без переплат та прихованих умов."

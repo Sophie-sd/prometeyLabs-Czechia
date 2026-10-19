@@ -5231,8 +5231,8 @@ msgid ""
 msgstr ""
 "Vyvíjíme weby, které se opravdu snadno spravují. Žádná omezení šablonových "
 "řešení — pouze čistý, optimalizovaný kód a individuální architektura. Díky "
-"podrobnému vývoji administrace můžete veškerý obsah webu aktualizovat sami "
-"na pár kliknutí, bez programátorů. Vytváříme základ, který je připravený na "
+"propracované administraci můžete veškerý obsah webu aktualizovat sami na "
+"pár kliknutí, bez programátorů. Vytváříme základ, který je připravený na "
 "jakékoli integrace a růst spolu s vaším byznysem."
 
 #: templates/components/home/redesign_why.html:20
@@ -5286,11 +5286,11 @@ msgstr "Průměrné cenové rozpětí:"
 
 #: templates/components/home/redesign_why.html:46
 msgid "Справедлива вартість"
-msgstr "Spravedlivá cena"
+msgstr "Férové ceny"
 
 #: templates/components/home/redesign_why.html:46
 msgid "та гнучкі умови оплати"
-msgstr "a flexibilní podmínky platby"
+msgstr "a flexibilní platební podmínky"
 
 #: templates/components/home/redesign_why.html:49
 msgid "400–700 €"
@@ -5382,8 +5382,8 @@ msgid ""
 "Ваш сайт стає розумним помічником, який самостійно виконує завдання, на які "
 "раніше витрачалися години робочого часу."
 msgstr ""
-"Váš web se stává chytrým asistentem, který samostatně plní úkoly, na které "
-"dříve padaly hodiny pracovní doby."
+"Váš web se stává chytrým asistentem, který samostatně plní úkoly, které "
+"dříve zabíraly hodiny práce."
 
 #: templates/components/home/redesign_why.html:103
 msgid ""
@@ -5400,9 +5400,9 @@ msgid ""
 "проект буде реалізований системно, технологічно та з розумінням бізнес-задач."
 msgstr ""
 "Specialisté PrometeyLabs mají letitou praxi ve vývoji webů, designu, "
-"integracích, mobilních aplikacích a internetovém marketingu. To zaručuje, že "
-"váš projekt bude realizován systémově, technologicky a s porozuměním "
-"obchodním cílům."
+"integracích, mobilních aplikacích a internetovém marketingu. To zaručuje, "
+"že váš projekt bude navržen systematicky a technologicky správně, s "
+"porozuměním obchodním cílům."
 
 #: templates/components/home/service_modals.html:11
 #: templates/pages/home.html:103 templates/pages/home.html:125
@@ -5603,7 +5603,7 @@ msgid ""
 "запитів, інтелектуальні асистенти та інтеграції з CRM і месенджерами — під "
 "ключ."
 msgstr ""
-"Zasazujeme umělou inteligenci do webu a obchodních procesů: automatizace "
+"Zavádíme umělou inteligenci do webu a obchodních procesů: automatizace "
 "poptávek, chytří asistenti a integrace s CRM a messengery — na klíč."
 
 #: templates/components/home/service_modals.html:79
@@ -6644,7 +6644,7 @@ msgstr "Testování UX"
 
 #: templates/components/process_block.html:133
 msgid "Фінальне виконання правок"
-msgstr "Finální realizace úprav"
+msgstr "Zapracování připomínek"
 
 #: templates/components/process_block.html:134
 msgid "Збір фідбеку"
