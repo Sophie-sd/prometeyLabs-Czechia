@@ -8374,8 +8374,8 @@ msgid ""
 "Політика використання файлів cookie PrometeyLabs. Дізнайтеся, які файли "
 "cookie ми використовуємо та як керувати налаштуваннями."
 msgstr ""
-"Refund policy from PrometeyLabs. Learn about the terms and procedure for "
-"refunding our services."
+"PrometeyLabs cookie policy: which cookies we use and how you can manage "
+"your settings."
 
 #: templates/pages/cookies-ru.html:5
 msgid "Политика использования файлов cookie | PrometeyLabs"
