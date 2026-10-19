@@ -103,7 +103,7 @@ def blog_search(request):
     context = {
         'page_obj': page_obj,
         'query': query,
-        'page_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу'),
+        'page_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу | PrometeyLabs'),
         'meta_description': _('Результати пошуку «%(q)s» у блозі про створення сайтів, інтернет-магазини, розробку та маркетинг') % {'q': query},
         'og_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу'),
         'keywords': _('пошук, блог, створення сайтів, інтернет-магазини, розробка, маркетинг')
