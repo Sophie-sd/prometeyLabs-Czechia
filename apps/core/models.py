@@ -397,11 +397,14 @@ class Employee(models.Model):
         return str(self)
 
 
-# Transliterated FOP requisites for cs/en when the admin per-language field is empty
-LEGAL_NAME_EN_DEFAULT = 'FOP (sole proprietor) Dmytrenko Sofiia Dmytrivna'
-LEGAL_NAME_CS_DEFAULT = 'FOP Dmytrenko Sofiia Dmytrivna'
-LEGAL_ADDRESS_EN_DEFAULT = '2 Kvashi St, Myrhorod, Poltava region, Ukraine'
-LEGAL_ADDRESS_CS_DEFAULT = 'ul. Kvashi 2, Myrhorod, Poltavská oblast, Ukrajina'
+# --- FOOTER LEGAL LINE (аудит №1, тексти підтверджено Copy 19.10.2026) -------------
+# Fallback для cs/en, коли поле в адмінці порожнє. Мають збігатися з
+# SITE_CONTACT_DEFAULTS у apps/core/utils.py (seed_site_contact_settings).
+LEGAL_NAME_EN_DEFAULT = 'Sofiia Dmytrenko, sole trader (FOP, Ukraine)'
+LEGAL_NAME_CS_DEFAULT = 'Sofiia Dmytrenko, fyzická osoba podnikající podle ukrajinského práva (FOP)'
+LEGAL_ADDRESS_EN_DEFAULT = 'Myrhorod, Ukraine'
+LEGAL_ADDRESS_CS_DEFAULT = 'Myrhorod, Ukrajina'
+# ------------------------------------------------------------------------------------
 ADDRESS_EN_DEFAULT = '46a Taras Shevchenko Blvd, Kyiv'
 ADDRESS_CS_DEFAULT = 'Kyjev, bulvár Tarase Ševčenka 46a'
 
