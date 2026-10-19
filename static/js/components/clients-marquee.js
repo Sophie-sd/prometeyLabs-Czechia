@@ -53,8 +53,8 @@
 
             container.style.setProperty('--marquee-distance', setWidth + 'px');
             var lang = (document.documentElement.lang || '').toLowerCase();
-            var marqueeLabels = { ru: 'Наши клиенты — автоматическая демонстрация', cs: 'Naši klienti — automatická ukázka', en: 'Our clients — automatic showcase' };
-            container.setAttribute('aria-label', marqueeLabels[lang.slice(0, 2)] || 'Наші клієнти — автоматична демонстрація');
+            var marqueeLabels = { cs: 'Naši klienti — automatická ukázka', en: 'Our clients — automatic showcase' };
+            container.setAttribute('aria-label', marqueeLabels[lang.slice(0, 2)] || marqueeLabels.cs);
             // Не перезаписуємо role: контейнер уже має role="list" у шаблоні.
             // role="marquee" — невалідна ARIA-роль і ламає list/listitem.
 

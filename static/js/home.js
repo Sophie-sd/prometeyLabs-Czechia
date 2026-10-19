@@ -184,7 +184,7 @@ function initMarqueeAnimation(container) {
     const setWidth = (lastStory.offsetLeft + lastStory.offsetWidth + gap) - firstStory.offsetLeft;
     
     container.style.setProperty('--marquee-distance', `${setWidth}px`);
-    container.setAttribute('aria-label', 'Наші проєкти - автоматична демонстрація');
+    container.setAttribute('aria-label', (((document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0) ? 'Our projects — automatic showcase' : 'Naše projekty — automatická ukázka'));
     container.setAttribute('role', 'marquee');
     
     if ('IntersectionObserver' in window) {

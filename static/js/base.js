@@ -6,6 +6,14 @@
  */
 
 class PrometeyApp {
+    /**
+     * Fallback text when window.I18N is missing: cs (default) / en.
+     */
+    fallbackText(cs, en) {
+        const lang = (document.documentElement.getAttribute('lang') || 'cs').toLowerCase();
+        return lang.indexOf('en') === 0 ? en : cs;
+    }
+
     constructor() {
         this.config = {
             scrollThreshold: 50,
@@ -496,7 +504,7 @@ class PrometeyApp {
     _useIntlPhoneMask(input) {
         // Маска обирається лише за мовою інтерфейсу, не за контейнером поля:
         // cs/en → вільний міжнародний формат, uk/ru → жорсткий український +38.
-        const lang = (document.documentElement.getAttribute('lang') || 'uk').toLowerCase();
+        const lang = (document.documentElement.getAttribute('lang') || 'cs').toLowerCase();
         const isIntlLang = lang.indexOf('cs') === 0 || lang.indexOf('en') === 0;
         return isIntlLang && typeof IntlPhoneMask !== 'undefined';
     }
@@ -614,16 +622,16 @@ class PrometeyApp {
             } else {
                 // При помилці від сервера - форма НЕ очищається, відповіді залишаються
                 // Обробляємо помилку від сервера
-                const errorMessage = data.message || (window.I18N?.errorSending || 'Помилка при відправці. Спробуйте ще раз.');
+                const errorMessage = data.message || (window.I18N?.errorSending || this.fallbackText('Odeslání se nezdařilo. Zkuste to prosím znovu.', 'Sending failed. Please try again.'));
                 
                 // Перевіримо чи це помилка валідації конкретного поля
-                if (errorMessage.includes('ім\'я') || errorMessage.includes('name') || errorMessage.includes('коректне ім')) {
+                if (errorMessage.includes('jméno') || errorMessage.includes('name')) {
                     const nameField = form.querySelector('[name="name"]');
                     if (nameField) {
                         nameField.classList.add('error');
                         this.showFieldError(nameField, errorMessage);
                     }
-                } else if (errorMessage.includes('телефон') || errorMessage.includes('phone') || errorMessage.includes('номер')) {
+                } else if (errorMessage.includes('telefon') || errorMessage.includes('phone') || errorMessage.includes('číslo') || errorMessage.includes('number')) {
                     const phoneField = form.querySelector('[name="phone"]');
                     if (phoneField) {
                         phoneField.classList.add('error');
@@ -637,7 +645,7 @@ class PrometeyApp {
         } catch (error) {
             // При помилці мережі/винятку - форма НЕ очищається, відповіді залишаються
             console.error('Form error:', error);
-            this.showNotification(window.I18N?.errorSubmittingForm || 'Помилка при відправці форми. Спробуйте ще раз.', 'error');
+            this.showNotification(window.I18N?.errorSubmittingForm || this.fallbackText('Odeslání se nezdařilo. Zkuste to prosím znovu.', 'Sending failed. Please try again.'), 'error');
         } finally {
             if (submitBtn) {
                 submitBtn.classList.remove('btn-loading');
@@ -655,7 +663,7 @@ class PrometeyApp {
             if (field.type === 'checkbox') {
                 if (!field.checked) {
                     field.classList.add('error');
-                    this.showFieldError(field, window.I18N?.fieldRequired || 'Це поле обов\'язкове');
+                    this.showFieldError(field, window.I18N?.fieldRequired || this.fallbackText('Toto pole je povinné.', 'This field is required.'));
                     isValid = false;
                 } else {
                     field.classList.remove('error');
@@ -665,7 +673,7 @@ class PrometeyApp {
             }
             if (!field.value.trim()) {
                 field.classList.add('error');
-                this.showFieldError(field, window.I18N?.fieldRequired || 'Це поле обов\'язкове');
+                this.showFieldError(field, window.I18N?.fieldRequired || this.fallbackText('Toto pole je povinné.', 'This field is required.'));
                 isValid = false;
             } else {
                 field.classList.remove('error');
@@ -683,11 +691,11 @@ class PrometeyApp {
             let nameError = null;
 
             if (name.length < 2) {
-                nameError = window.I18N?.nameMinLength || 'Введіть коректне ім\'я (мінімум 2 символи)';
+                nameError = window.I18N?.nameMinLength || this.fallbackText('Zadejte platné jméno (alespoň 2 znaky).', 'Enter a valid name (at least 2 characters).');
             } else if (/^\d+$/.test(name)) {
-                nameError = window.I18N?.nameDigitsOnly || 'Ім\'я не може складатися тільки з цифр';
+                nameError = window.I18N?.nameDigitsOnly || this.fallbackText('Jméno nemůže obsahovat pouze číslice.', 'Name cannot contain digits only.');
             } else if (!/\p{L}/u.test(name)) {
-                nameError = window.I18N?.nameNeedsLetter || 'Введіть коректне ім\'я (хоча б одна літера)';
+                nameError = window.I18N?.nameNeedsLetter || this.fallbackText('Zadejte platné jméno (alespoň jedno písmeno).', 'Enter a valid name (at least one letter).');
             }
 
             if (nameError) {
@@ -707,7 +715,7 @@ class PrometeyApp {
                 const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
                 if (!emailOk) {
                     emailField.classList.add('error');
-                    this.showFieldError(emailField, window.I18N?.emailInvalid || 'Введіть коректний email');
+                    this.showFieldError(emailField, window.I18N?.emailInvalid || this.fallbackText('Zadejte platný e-mail.', 'Enter a valid email.'));
                     isValid = false;
                 } else {
                     emailField.classList.remove('error');
@@ -731,7 +739,7 @@ class PrometeyApp {
                         phoneError = validation.message;
                     }
                 } else if (digitsOnly.length < 7) {
-                    phoneError = window.I18N?.phoneInvalid || 'Введіть коректний номер телефону';
+                    phoneError = window.I18N?.phoneInvalid || this.fallbackText('Zadejte platné telefonní číslo.', 'Enter a valid phone number.');
                 }
 
                 if (phoneError) {
@@ -815,9 +823,9 @@ class PrometeyApp {
     }
 
     localizedFormUrl(path) {
-        const lang = (document.documentElement.lang || 'uk').split('-')[0].toLowerCase();
+        const lang = (document.documentElement.lang || 'cs').split('-')[0].toLowerCase();
         // cs = LANGUAGE_CODE with prefix_default_language=False -> no prefix (was 404 on /cs/forms/submit/)
-        if (!lang || lang === 'uk' || lang === 'cs') return path;
+        if (!lang || lang === 'cs') return path;
         return `/${lang}${path}`;
     }
 

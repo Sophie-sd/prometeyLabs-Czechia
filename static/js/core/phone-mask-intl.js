@@ -1,18 +1,15 @@
 /**
  * Intl phone helper: used only for cs/en interface language.
  * cs and en → prefilled +420 (Czech site default), fully editable to any
- * free international format; other languages fall back to +38 defensively
- * (should not normally be reached — uk/ru use the strict PhoneMask instead).
+ * free international format.
  * Never hard-locks to a single country format.
  */
 (function (global) {
     'use strict';
 
     function defaultPrefix() {
-        var lang = (document.documentElement.getAttribute('lang') || 'uk').toLowerCase();
-        if (lang.indexOf('cs') === 0) return '+420';
-        if (lang.indexOf('en') === 0) return '+420'; // Czech site: +420 default for en too (fully editable)
-        return '+38';
+        // Czech site: +420 default for cs and en (fully editable).
+        return '+420';
     }
 
     function IntlPhoneMask(input) {
@@ -75,7 +72,7 @@
         if (digits.length < 7) {
             return {
                 valid: false,
-                message: (window.I18N && window.I18N.phoneInvalid) || 'Введіть коректний номер телефону',
+                message: (window.I18N && window.I18N.phoneInvalid) || (((document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0) ? 'Enter a valid phone number.' : 'Zadejte platné telefonní číslo.'),
             };
         }
         return { valid: true, message: '' };

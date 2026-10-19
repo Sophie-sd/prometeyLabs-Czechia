@@ -428,7 +428,7 @@ class PhoneMask {
         if (!value || value.trim() === '' || value === this.prefix) {
             return {
                 valid: false,
-                message: window.I18N?.phoneRequired || 'Введіть номер телефону'
+                message: window.I18N?.phoneRequired || (((document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0) ? 'Enter a valid phone number.' : 'Zadejte platné telefonní číslo.')
             };
         }
 
@@ -436,7 +436,7 @@ class PhoneMask {
         if (digits.length < 7) {
             return {
                 valid: false,
-                message: window.I18N?.phoneInvalid || 'Введіть коректний номер телефону'
+                message: window.I18N?.phoneInvalid || (((document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0) ? 'Enter a valid phone number.' : 'Zadejte platné telefonní číslo.')
             };
         }
 

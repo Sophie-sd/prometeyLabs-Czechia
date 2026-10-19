@@ -4,34 +4,35 @@
     var STATUS_CYCLE = ['paid', 'pending', 'shipped'];
 
     var I18N_LOCALE = (function() {
-        var lang = (document.documentElement.getAttribute('lang') || 'uk').toLowerCase();
+        var lang = (document.documentElement.getAttribute('lang') || 'cs').toLowerCase();
         if (lang.indexOf('en') === 0) return 'en';
-        if (lang.indexOf('cs') === 0) return 'cs';
-        if (lang.indexOf('ru') === 0) return 'ru';
-        return 'uk';
+        return 'cs';
     })();
 
-    var I18N_CURRENCY = (I18N_LOCALE === 'en' || I18N_LOCALE === 'cs') ? '€' : '₴';
-    var demoPhones = (I18N_LOCALE === 'en' || I18N_LOCALE === 'cs')
-        ? ['+420 777 123 456', '+420 602 987 654', '+420 777 456 789', '+420 603 234 567', '+420 777 345 678']
-        : ['+380 67 123 45 67', '+380 50 987 65 43', '+380 93 456 78 90', '+380 66 234 56 78', '+380 97 345 67 89'];
+    // Fallback text (if data-i18n-* is missing): cs default, en on /en/.
+    function L(cs, en) {
+        return I18N_LOCALE === 'en' ? en : cs;
+    }
+
+    var I18N_CURRENCY = '€';
+    var demoPhones = ['+420 777 123 456', '+420 602 987 654', '+420 777 456 789', '+420 603 234 567', '+420 777 345 678'];
 
     var names = {
-        'Olena K.': { uk: 'Олена К.', ru: 'Елена К.', en: 'Elena K.', cs: 'Alena K.' },
-        'Andriy M.': { uk: 'Андрій М.', ru: 'Андрей М.', en: 'Andrew M.', cs: 'Andrej M.' },
-        'Iryna V.': { uk: 'Ірина В.', ru: 'Ирина В.', en: 'Irene V.', cs: 'Irena V.' },
-        'Maksym T.': { uk: 'Максим Т.', ru: 'Максим Т.', en: 'Max T.', cs: 'Maxim T.' },
-        'Sofiia L.': { uk: 'Софія Л.', ru: 'София Л.', en: 'Sofiia L.', cs: 'Sofie L.' },
-        'Nike Air Max': { uk: 'Кросівки Nike Air Max', ru: 'Кроссовки Nike Air Max', en: 'Nike Air Max Shoes', cs: 'Tenisky Nike Air Max' },
-        'Cotton Socks': { uk: 'Шкарпетки бавовняні', ru: 'Носки хлопковые', en: 'Cotton Socks', cs: 'Bavlněné ponožky' },
-        'Winter Jacket': { uk: 'Куртка зимова', ru: 'Куртка зимняя', en: 'Winter Jacket', cs: 'Zimní bunda' },
-        'Scarf': { uk: 'Шарф вовняний', ru: 'Шарф шерстяной', en: 'Wool Scarf', cs: 'Vlněná šála' },
-        'Leather Bag': { uk: 'Сумка шкіряна', ru: 'Сумка кожаная', en: 'Leather Bag', cs: 'Kožená taška' },
-        'Casio Watch': { uk: 'Годинник Casio', ru: 'Часы Casio', en: 'Casio Watch', cs: 'Hodinky Casio' },
-        'Oversize T-shirt': { uk: 'Футболка oversize', ru: 'Футболка oversize', en: 'Oversize T-shirt', cs: 'Oversize tričko' },
-        'Shoes': { uk: 'Взуття', ru: 'Обувь', en: 'Shoes', cs: 'Obuv' },
-        'Clothing': { uk: 'Одяг', ru: 'Одежда', en: 'Clothing', cs: 'Oblečení' },
-        'Accessories': { uk: 'Аксесуари', ru: 'Аксессуары', en: 'Accessories', cs: 'Doplňky' }
+        'Olena K.': { en: 'Elena K.', cs: 'Alena K.' },
+        'Andriy M.': { en: 'Andrew M.', cs: 'Andrej M.' },
+        'Iryna V.': { en: 'Irene V.', cs: 'Irena V.' },
+        'Maksym T.': { en: 'Max T.', cs: 'Maxim T.' },
+        'Sofiia L.': { en: 'Sofiia L.', cs: 'Sofie L.' },
+        'Nike Air Max': { en: 'Nike Air Max Shoes', cs: 'Tenisky Nike Air Max' },
+        'Cotton Socks': { en: 'Cotton Socks', cs: 'Bavlněné ponožky' },
+        'Winter Jacket': { en: 'Winter Jacket', cs: 'Zimní bunda' },
+        'Scarf': { en: 'Wool Scarf', cs: 'Vlněná šála' },
+        'Leather Bag': { en: 'Leather Bag', cs: 'Kožená taška' },
+        'Casio Watch': { en: 'Casio Watch', cs: 'Hodinky Casio' },
+        'Oversize T-shirt': { en: 'Oversize T-shirt', cs: 'Oversize tričko' },
+        'Shoes': { en: 'Shoes', cs: 'Obuv' },
+        'Clothing': { en: 'Clothing', cs: 'Oblečení' },
+        'Accessories': { en: 'Accessories', cs: 'Doplňky' }
     };
 
     function t(key) {
@@ -109,9 +110,7 @@
                 visibility: 'active',
                 visibilityLabel: 'Active',
                 sales30: 128,
-                desc: (I18N_LOCALE === 'uk' ? 'Бестселер категорії. Синхронізація з Prom і Rozetka без ручного оновлення.' :
-                       I18N_LOCALE === 'ru' ? 'Бестселлер категории. Синхронизация с Prom и Rozetka без ручного обновления.' :
-                       I18N_LOCALE === 'cs' ? 'Bestseller kategorie. Synchronizace s prodejními kanály bez ruční aktualizace.' :
+                desc: (I18N_LOCALE === 'cs' ? 'Bestseller kategorie. Synchronizace s prodejními kanály bez ruční aktualizace.' :
                        'Category bestseller. Sync with marketplaces without manual updates.')
             },
             {
@@ -123,9 +122,7 @@
                 visibility: 'active',
                 visibilityLabel: 'Active',
                 sales30: 54,
-                desc: (I18N_LOCALE === 'uk' ? 'Преміум-позиція з високим середнім чеком. Залишки оновлюються після кожного замовлення.' :
-                       I18N_LOCALE === 'ru' ? 'Премиум-позиция с высоким средним чеком. Остатки обновляются после каждого заказа.' :
-                       I18N_LOCALE === 'cs' ? 'Prémiová položka s vysokou průměrnou hodnotou. Zásoby se aktualizují po každé objednávce.' :
+                desc: (I18N_LOCALE === 'cs' ? 'Prémiová položka s vysokou průměrnou hodnotou. Zásoby se aktualizují po každé objednávce.' :
                        'Premium item with high average check. Stock updates automatically.')
             },
             {
@@ -137,9 +134,7 @@
                 visibility: 'active',
                 visibilityLabel: 'Active',
                 sales30: 41,
-                desc: (I18N_LOCALE === 'uk' ? 'Стабільні продажі з органічного трафіку. SEO-картка оптимізована під Google Shopping.' :
-                       I18N_LOCALE === 'ru' ? 'Стабильные продажи из органического трафика. SEO-карточка оптимизирована под Google Shopping.' :
-                       I18N_LOCALE === 'cs' ? 'Stabilní organické prodeje. SEO karta optimalizována pro Google Shopping.' :
+                desc: (I18N_LOCALE === 'cs' ? 'Stabilní organické prodeje. SEO karta optimalizována pro Google Shopping.' :
                        'Stable organic sales. SEO-optimized for Google Shopping.')
             },
             {
@@ -151,9 +146,7 @@
                 visibility: 'low',
                 visibilityLabel: 'Low Stock',
                 sales30: 22,
-                desc: (I18N_LOCALE === 'uk' ? 'Залишок критично низький — система вже надіслала push-сповіщення менеджеру.' :
-                       I18N_LOCALE === 'ru' ? 'Остаток критически низкий — система уже отправила push-уведомление менеджеру.' :
-                       I18N_LOCALE === 'cs' ? 'Kriticky nízké zásoby — systém již odeslal push notifikaci manažerovi.' :
+                desc: (I18N_LOCALE === 'cs' ? 'Kriticky nízké zásoby — systém již odeslal push notifikaci manažerovi.' :
                        'Critically low stock — push notification sent to manager.')
             },
             {
@@ -165,9 +158,7 @@
                 visibility: 'active',
                 visibilityLabel: 'Active',
                 sales30: 312,
-                desc: (I18N_LOCALE === 'uk' ? 'Топ-1 за кількістю замовлень за останні 30 днів. Автопідняття в каталозі увімкнено.' :
-                       I18N_LOCALE === 'ru' ? 'Топ-1 по количеству заказов за последние 30 дней. Автоподнятие в каталоге включено.' :
-                       I18N_LOCALE === 'cs' ? 'Top 1 v počtu objednávek za posledních 30 dní. Automatické zvýraznění v katalogu zapnuto.' :
+                desc: (I18N_LOCALE === 'cs' ? 'Top 1 v počtu objednávek za posledních 30 dní. Automatické zvýraznění v katalogu zapnuto.' :
                        'Top-1 by orders in last 30 days. Catalog auto-boost enabled.')
             },
             {
@@ -179,9 +170,7 @@
                 visibility: 'active',
                 visibilityLabel: 'Active',
                 sales30: 89,
-                desc: (I18N_LOCALE === 'uk' ? 'Допродаж у кошику. Пакетна ціна та знижка від 3 пар працюють автоматично.' :
-                       I18N_LOCALE === 'ru' ? 'Допродажа в корзине. Пакетная цена и скидка от 3 пар работают автоматически.' :
-                       I18N_LOCALE === 'cs' ? 'Doplňkový prodej v košíku. Balíčková cena a sleva od 3 párů fungují automaticky.' :
+                desc: (I18N_LOCALE === 'cs' ? 'Doplňkový prodej v košíku. Balíčková cena a sleva od 3 párů fungují automaticky.' :
                        'Cart upsell. Bundle price and bulk discount work automatically.')
             }
         ],
@@ -207,42 +196,42 @@
 
         var d = mock.dataset;
         var I18N = {
-            statusPaid: d.i18nStatusPaid || 'Оплачено',
-            statusPending: d.i18nStatusPending || 'В обробці',
-            statusShipped: d.i18nStatusShipped || 'Відправлено',
-            titleOrders: d.i18nTitleOrders || 'Замовлення',
-            titleProducts: d.i18nTitleProducts || 'Товари',
-            titleAnalytics: d.i18nTitleAnalytics || 'Аналітика',
-            titleProduct: d.i18nTitleProduct || 'Товар',
-            colOrder: d.i18nColOrder || 'Замовлення',
-            colSum: d.i18nColSum || 'Сума',
-            colStatus: d.i18nColStatus || 'Статус',
-            colProduct: d.i18nColProduct || 'Товар',
-            colPrice: d.i18nColPrice || 'Ціна',
-            colStock: d.i18nColStock || 'Залишок',
-            colTop: d.i18nColTop || 'Топ товар',
-            colSales: d.i18nColSales || 'Продажі',
-            colRevenue: d.i18nColRevenue || 'Виручка',
-            metricOrdersToday: d.i18nMetricOrdersToday || 'Замовлень сьогодні',
-            metricRevenue: d.i18nMetricRevenue || 'Виручка',
-            metricConversion: d.i18nMetricConversion || 'Конверсія',
-            metricSalesWeek: d.i18nMetricSalesWeek || 'Продажі за тиждень',
-            metricSku: d.i18nMetricSku || 'SKU в каталозі',
-            metricInstock: d.i18nMetricInstock || 'На складі',
-            metricNewWeek: d.i18nMetricNewWeek || 'Нових за тиждень',
-            metricVisitors: d.i18nMetricVisitors || 'Відвідувачі',
-            metricAvgCheck: d.i18nMetricAvgCheck || 'Середній чек',
-            visibilityActive: d.i18nVisibilityActive || 'Активний',
-            visibilityLow: d.i18nVisibilityLow || 'Мало на складі',
-            visibilityOut: d.i18nVisibilityOut || 'Немає в наявності',
-            unit: d.i18nUnit || 'од.',
-            together: d.i18nTogether || 'Разом',
-            updateStock: d.i18nUpdateStock || 'Оновити залишок',
-            sales30Label: d.i18nSales30 || 'Продажі / 30 дн',
-            openProduct: d.i18nOpenProduct || 'Відкрити картку товару',
-            changeStatus: d.i18nChangeStatus || 'Змінити статус замовлення',
-            decreaseStock: d.i18nDecreaseStock || 'Зменшити залишок',
-            increaseStock: d.i18nIncreaseStock || 'Збільшити залишок'
+            statusPaid: d.i18nStatusPaid || L('Zaplaceno', 'Payments'),
+            statusPending: d.i18nStatusPending || L('Zpracovává se', 'AI in development'),
+            statusShipped: d.i18nStatusShipped || L('Odesláno', 'Sent'),
+            titleOrders: d.i18nTitleOrders || L('Objednávky', 'Orders'),
+            titleProducts: d.i18nTitleProducts || L('Produkty', 'Products'),
+            titleAnalytics: d.i18nTitleAnalytics || L('Analytika', 'CRM analytics'),
+            titleProduct: d.i18nTitleProduct || L('Produkt', 'Product'),
+            colOrder: d.i18nColOrder || L('Objednávky', 'Orders'),
+            colSum: d.i18nColSum || L('Částka', 'Total'),
+            colStatus: d.i18nColStatus || L('Stav', 'Status'),
+            colProduct: d.i18nColProduct || L('Produkt', 'Product'),
+            colPrice: d.i18nColPrice || L('Cena', 'Price'),
+            colStock: d.i18nColStock || L('Sklad', 'Stock'),
+            colTop: d.i18nColTop || L('Nejprodávanější', 'Top product'),
+            colSales: d.i18nColSales || L('Prodeje', 'Sales'),
+            colRevenue: d.i18nColRevenue || L('Tržby', 'Revenue'),
+            metricOrdersToday: d.i18nMetricOrdersToday || L('Objednávek dnes', 'Orders today'),
+            metricRevenue: d.i18nMetricRevenue || L('Tržby', 'Revenue'),
+            metricConversion: d.i18nMetricConversion || L('Konverze', 'CoreSync - Mobile Version'),
+            metricSalesWeek: d.i18nMetricSalesWeek || L('Prodeje za týden', 'Sales this week'),
+            metricSku: d.i18nMetricSku || L('SKU v katalogu', 'SKUs in catalog'),
+            metricInstock: d.i18nMetricInstock || L('Na skladě', 'In stock'),
+            metricNewWeek: d.i18nMetricNewWeek || L('Nových za týden', 'New this week'),
+            metricVisitors: d.i18nMetricVisitors || L('Návštěvníci', 'Visitors'),
+            metricAvgCheck: d.i18nMetricAvgCheck || L('Průměrná objednávka', 'Average order value'),
+            visibilityActive: d.i18nVisibilityActive || L('Aktivní', 'Active'),
+            visibilityLow: d.i18nVisibilityLow || L('Málo skladem', 'Find us on the map'),
+            visibilityOut: d.i18nVisibilityOut || L('Není skladem', 'Result:'),
+            unit: d.i18nUnit || L('ks', 'pcs'),
+            together: d.i18nTogether || L('Celkem', 'Total'),
+            updateStock: d.i18nUpdateStock || L('Aktualizovat sklad', 'Update balance'),
+            sales30Label: d.i18nSales30 || L('Prodeje / 30 dní', 'Sales / 30 days'),
+            openProduct: d.i18nOpenProduct || L('Otevřít detail produktu', 'Open product card'),
+            changeStatus: d.i18nChangeStatus || L('Změnit stav objednávky', 'Change order status'),
+            decreaseStock: d.i18nDecreaseStock || L('Snížit sklad', 'Decrease stock'),
+            increaseStock: d.i18nIncreaseStock || L('Zvýšit sklad', 'Increase stock')
         };
 
         var STATUS_META = {
