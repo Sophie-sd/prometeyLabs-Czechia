@@ -1,7 +1,9 @@
 """Аудит prometeylabs.cz 19.10.2026 — правки після перевірки cz/release.
 
 - №47: «TOV Dexor» → «Dexor» (title/title_cs/title_en + alt).
-- №45: AJERES — чеський підзаголовок «Distributor potravin» (+ alt).
+- №45: AJERES — чеський підзаголовок «Distributor potravin» (+ alt);
+  UCVN — CS «Vzdělávání ve veterinární výživě», опис CS/EN без «vysoká škola/college»;
+  DISTAGEavto — CS «Chiptuning» (тексти погоджено Copy).
 - №1: правовий рядок footer (SiteContactSettings legal_name_*/legal_address_* cs/en),
   тексти підтверджено Copy.
 
@@ -21,7 +23,39 @@ PORTFOLIO_CHANGES = [('ajeres', 'subtitle', 'Food distributor', 'Distributor pot
  ('deksor', 'title_en', 'TOV Dexor', 'Dexor'),
  ('deksor', 'card_image_alt', 'TOV Dexor — digitální produkty', 'Dexor — digitální produkty'),
  ('deksor', 'card_image_alt_cs', 'TOV Dexor — digitální produkty', 'Dexor — digitální produkty'),
- ('deksor', 'card_image_alt_en', 'TOV Dexor — digital products', 'Dexor — digital products')]
+ ('deksor', 'card_image_alt_en', 'TOV Dexor — digital products', 'Dexor — digital products'),
+ ('distageavto', 'subtitle', 'Chip tuning', 'Chiptuning'),
+ ('distageavto', 'subtitle_cs', 'Chip tuning', 'Chiptuning'),
+ ('distageavto', 'card_image_alt', 'DISTAGEavto — chip tuning', 'DISTAGEavto — chiptuning'),
+ ('distageavto', 'card_image_alt_cs', 'DISTAGEavto — chip tuning', 'DISTAGEavto — chiptuning'),
+ ('ucvn', 'subtitle', 'Veterinary Nutrition College', 'Vzdělávání ve veterinární výživě'),
+ ('ucvn', 'subtitle_cs', 'Veterinary Nutrition College', 'Vzdělávání ve veterinární výživě'),
+ ('ucvn',
+  'card_description',
+  'Soukromá vysoká škola veterinární výživy založené na důkazech: programy, certifikace a '
+  'materiály pro veterináře.',
+  'Soukromá nezávislá profesní organizace veterinárních nutričních specialistů: online kurzy, '
+  'certifikace a členství.'),
+ ('ucvn',
+  'card_description_cs',
+  'Soukromá vysoká škola veterinární výživy založené na důkazech: programy, certifikace a '
+  'materiály pro veterináře.',
+  'Soukromá nezávislá profesní organizace veterinárních nutričních specialistů: online kurzy, '
+  'certifikace a členství.'),
+ ('ucvn',
+  'card_description_en',
+  'Private college of evidence-based veterinary nutrition: programmes, specialist certification, '
+  'and materials for vets.',
+  'A private, independent professional organisation for veterinary nutrition specialists: online '
+  'courses, certification and membership.'),
+ ('ucvn',
+  'card_image_alt',
+  'UCVN — veterinary nutrition college',
+  'UCVN — vzdělávání ve veterinární výživě'),
+ ('ucvn',
+  'card_image_alt_cs',
+  'UCVN — veterinary nutrition college',
+  'UCVN — vzdělávání ve veterinární výživě')]
 
 # (field, old_value, new_value) для SiteContactSettings (singleton)
 SITE_CONTACT_CHANGES = [('legal_name_cs',

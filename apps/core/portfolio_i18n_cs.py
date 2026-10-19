@@ -16,8 +16,8 @@ PORTFOLIO_I18N_CS = {
     ),
     'ucvn': loc(
         'UCVN',
-        'Veterinary Nutrition College',
-        'Soukromá vysoká škola veterinární výživy založené na důkazech: programy, certifikace a materiály pro veterináře.',
+        'Vzdělávání ve veterinární výživě',
+        'Soukromá nezávislá profesní organizace veterinárních nutričních specialistů: online kurzy, certifikace a členství.',
         ('katalog kurzů', 'poptávka studia', 'certifikace', 'vícejazyčný obsah'),
     ),
     'fpsu': loc(
@@ -196,7 +196,7 @@ PORTFOLIO_I18N_CS = {
     ),
     'distageavto': loc(
         'DISTAGEavto',
-        'Chip tuning',
+        'Chiptuning',
         'Landing studia chiptuningu: úpravy řídicích jednotek, poptávka a kontakty servisu.',
         LANDING_TAGS_CS,
     ),

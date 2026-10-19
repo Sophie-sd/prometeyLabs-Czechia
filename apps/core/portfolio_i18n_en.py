@@ -17,7 +17,7 @@ PORTFOLIO_I18N_EN = {
     'ucvn': loc(
         'UCVN',
         'Veterinary Nutrition College',
-        'Private college of evidence-based veterinary nutrition: programmes, specialist certification, and materials for vets.',
+        'A private, independent professional organisation for veterinary nutrition specialists: online courses, certification and membership.',
         ('course catalogue', 'enrolment enquiry', 'certification', 'multilingual content'),
     ),
     'fpsu': loc(
