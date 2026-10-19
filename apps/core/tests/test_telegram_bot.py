@@ -99,7 +99,8 @@ class TelegramBotPageTests(TestCase):
             html.count('<link rel="canonical" href="https://prometeylabs.cz/telegram-bot/">'), 1
         )
         self.assertNotIn('prometeylabs.com/telegram-bot', html)
-        self.assertEqual(html.count('hreflang="'), 3)
+        # Лише <link rel="alternate"> у <head>; перемикач мов (cz/frontend #13) теж має hreflang на <a>.
+        self.assertEqual(html.count('<link rel="alternate" hreflang="'), 3)
         self.assertIn('hreflang="cs"', html)
         self.assertIn('hreflang="en"', html)
         self.assertIn('hreflang="x-default"', html)
