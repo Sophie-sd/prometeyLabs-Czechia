@@ -16,7 +16,7 @@ NBSP = '\u00a0'
 WEB_DEV_TIERS = (
     ('landing', 400, 700),
     ('corporate', 700, 1000),
-    ('shop', 1600, 2800),
+    ('shop', 1400, 2800),
     ('app', 2800, 8000),
 )
 
