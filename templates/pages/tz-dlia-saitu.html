@@ -7,7 +7,7 @@
 
 {% block title %}{% trans "Створити ТЗ для сайту безкоштовно за 3 хвилини | PrometeyLabs" %}{% endblock %}
 {% block description %}{% trans "Як правильно скласти ТЗ для сайту: інтерактивний конструктор. Отримайте базове технічне завдання в PDF одразу та розширене — на email протягом доби." %}{% endblock %}
-{% block keywords %}{% trans "створити ТЗ для сайту, технічне завдання для сайту, як скласти ТЗ, бриф на розробку сайту" %}{% endblock %}
+{% block keywords %}{% if LANGUAGE_CODE == 'en' %}website brief, website specification{% else %}zadání webu, technické zadání, brief pro tvorbu webu{% endif %}{% endblock %}
 {% block og_title %}{% trans "Створити ТЗ для сайту онлайн — безкоштовно | PrometeyLabs" %}{% endblock %}
 {% block og_description %}{% trans "Інтерактивний генератор ТЗ: відповідаєте на питання — отримуєте структуроване технічне завдання в PDF." %}{% endblock %}
 
