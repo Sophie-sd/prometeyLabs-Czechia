@@ -5,6 +5,22 @@
     var root = document.getElementById('tzRoot');
     if (!root) return;
 
+    // UI language: cs (default) / en
+    var IS_EN = (document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0;
+    var MSG = IS_EN ? {
+        name: 'Enter a valid name',
+        phone: 'Enter a valid phone number',
+        email: 'Enter a valid email',
+        sending: 'Sending failed. Please try again.',
+        network: 'Network error. Please try again.'
+    } : {
+        name: 'Zadejte platné jméno',
+        phone: 'Zadejte platné telefonní číslo',
+        email: 'Zadejte platný e-mail',
+        sending: 'Odeslání se nezdařilo. Zkuste to znovu.',
+        network: 'Chyba sítě. Zkuste to znovu.'
+    };
+
     var reduceMotion = window.matchMedia &&
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -230,7 +246,8 @@
             v = (v || '').trim();
             if (v.length < 2) return false;
             if (/^\d+$/.test(v)) return false;
-            return /[a-zA-Zа-яА-ЯіІїЇєЄёЁґҐ]/.test(v);
+            // Any letters incl. Czech diacritics (e.g. "Jiří Novák"), spaces, apostrophes, hyphens
+            return /^[\p{L} '\u2019\-]{2,}$/u.test(v);
         }
         function validPhone(v) {
             return (v || '').replace(/\D/g, '').length >= 7;
@@ -282,17 +299,17 @@
             setError('');
 
             if (!validName(nameInput.value)) {
-                setError('Введіть коректне ім\u2019я');
+                setError(MSG.name);
                 nameInput.focus();
                 return;
             }
             if (!validPhone(phoneInput.value)) {
-                setError('Введіть коректний номер телефону');
+                setError(MSG.phone);
                 phoneInput.focus();
                 return;
             }
             if (!validEmail(emailInput.value)) {
-                setError('Введіть коректний email');
+                setError(MSG.email);
                 emailInput.focus();
                 return;
             }
@@ -333,11 +350,11 @@
                     if (data.success) {
                         showSuccess(data);
                     } else {
-                        setError(data.message || 'Помилка при відправці. Спробуйте ще раз.');
+                        setError(data.message || MSG.sending);
                     }
                 })
                 .catch(function () {
-                    setError('Помилка мережі. Спробуйте ще раз.');
+                    setError(MSG.network);
                 })
                 .finally(function () {
                     if (submitBtn) {
