@@ -189,8 +189,9 @@ def handle_tz_upsell(request, token: str):
     submission.save(update_fields=['extra_data', 'details', 'priority'])
 
     try:
-        from apps.core.keycrm_service import sync_submission_to_keycrm
-        sync_submission_to_keycrm(submission)
+        # Оновлюємо існуючу картку, а не створюємо другу (idempotent upsell).
+        from apps.core.keycrm_service import sync_tz_upsell_to_keycrm
+        sync_tz_upsell_to_keycrm(submission)
     except Exception as exc:
         logger.warning('TZ upsell KeyCRM: %s', exc)
 

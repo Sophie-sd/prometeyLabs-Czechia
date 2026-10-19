@@ -277,6 +277,39 @@ class KeyCRMService:
             logger.error(error)
             return (False, None, error)
 
+    def update_pipeline_card(self, card_id, payload):
+        """
+        Оновлює існуючу картку: PUT /pipelines/cards/{cardId}
+        (поля title, note, status_id, source_id, custom_fields — див. open-api.yml).
+        Повертає (success: bool, error: str|None).
+        """
+        if not self.is_configured:
+            return (False, "API key not configured")
+        if not card_id:
+            return (False, "No card id")
+
+        try:
+            response = requests.put(
+                f'{KEYCRM_BASE_URL}/pipelines/cards/{card_id}',
+                json=payload,
+                headers=self._headers,
+                timeout=REQUEST_TIMEOUT,
+            )
+            if response.status_code in (200, 201):
+                logger.info(f"KeyCRM card updated: {card_id}")
+                return (True, None)
+            error = f"KeyCRM PUT card error {response.status_code}: {response.text[:300]}"
+            logger.error(error)
+            return (False, error)
+        except requests.Timeout:
+            error = "KeyCRM API timeout (update)"
+            logger.error(error)
+            return (False, error)
+        except requests.RequestException as e:
+            error = f"KeyCRM API update failed: {str(e)}"
+            logger.error(error)
+            return (False, error)
+
     def get_card_with_custom_fields(self, card_id):
         """
         Отримує картку воронки з кастомними полями.
@@ -323,15 +356,43 @@ class KeyCRMService:
         return None
 
 
+UPSELL_NOTE_LABELS = {
+    'estimate': 'Хоче прорахунок',
+    'consultation': 'Хоче консультацію',
+    'none': 'Без додаткових послуг',
+}
+
+# Скільки секунд після створення заявки вважаємо, що фонова відправка
+# (_dispatch_async: e-mail до 10 с + KeyCRM до 15 с) ще може створити картку.
+KEYCRM_PENDING_CREATE_SECONDS = 60
+
+
+def _upsell_note(upsell):
+    label = UPSELL_NOTE_LABELS.get(upsell, upsell)
+    return f'[Upsell] {label}'
+
+
 def sync_submission_to_keycrm(submission):
     """
-    Хелпер: синхронізує FormSubmission з KeyCRM.
+    Хелпер: синхронізує FormSubmission з KeyCRM (створює картку).
     Оновлює keycrm_card_id та keycrm_synced на submission.
+
+    Ідемпотентний: якщо в заявки вже є keycrm_card_id — нову картку не створює.
+    Якщо поки картка створювалась, у заявку додали upsell (tz-generator),
+    після створення доливаємо його в картку через update.
     """
     service = KeyCRMService()
     if not service.is_configured:
         return
 
+    if submission.keycrm_card_id:
+        logger.info(
+            f"Submission {submission.id} already has KeyCRM card "
+            f"{submission.keycrm_card_id}; skip create"
+        )
+        return
+
+    upsell_at_create = (submission.extra_data or {}).get('upsell')
     success, card_id, error = service.create_pipeline_card(submission)
 
     if success and card_id:
@@ -339,5 +400,48 @@ def sync_submission_to_keycrm(submission):
         submission.keycrm_synced = True
         submission.save(update_fields=['keycrm_card_id', 'keycrm_synced'])
         logger.info(f"Submission {submission.id} synced to KeyCRM card {card_id}")
+
+        try:
+            fresh_upsell = (
+                type(submission).objects.filter(pk=submission.pk)
+                .values_list('extra_data', flat=True).first() or {}
+            ).get('upsell')
+        except Exception:  # pragma: no cover — захисно, не валимо фонову відправку
+            fresh_upsell = None
+        if fresh_upsell and fresh_upsell != upsell_at_create:
+            service.update_pipeline_card(card_id, {'note': _upsell_note(fresh_upsell)})
     elif error:
         logger.error(f"Failed to sync submission {submission.id} to KeyCRM: {error}")
+
+
+def sync_tz_upsell_to_keycrm(submission):
+    """
+    Upsell після генератора ТЗ: оновлює існуючу картку, а не створює другу.
+
+    - є keycrm_card_id → PUT note з upsell;
+    - картки ще немає, а заявка свіжа → нічого не робимо: фонова відправка
+      створить картку з уже збереженим upsell (або доллє його після створення);
+    - картки немає і заявка стара (первинна відправка не вдалась) → створюємо.
+    """
+    from django.utils import timezone
+
+    service = KeyCRMService()
+    if not service.is_configured:
+        return
+
+    submission.refresh_from_db(fields=['keycrm_card_id', 'keycrm_synced', 'extra_data', 'created_at'])
+    upsell = (submission.extra_data or {}).get('upsell')
+
+    if submission.keycrm_card_id:
+        if upsell:
+            service.update_pipeline_card(submission.keycrm_card_id, {'note': _upsell_note(upsell)})
+        return
+
+    age = (timezone.now() - submission.created_at).total_seconds() if submission.created_at else None
+    if age is not None and age < KEYCRM_PENDING_CREATE_SECONDS:
+        logger.info(
+            f"Submission {submission.id}: KeyCRM card creation pending; upsell will be included"
+        )
+        return
+
+    sync_submission_to_keycrm(submission)
