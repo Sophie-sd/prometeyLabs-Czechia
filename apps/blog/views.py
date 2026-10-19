@@ -114,11 +114,12 @@ def blog_search(request):
     context = {
         'page_obj': page_obj,
         'query': query,
-        # cz/copy (1d20763): перекладні рядки через gettext; cz/seo (№74): og_description,
-        # meta keywords не виводяться (blog_search.html), порожній запит — мета з seo.py.
-        'page_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу'),
-        'meta_description': (_('Результати пошуку «%(q)s» у блозі про створення сайтів, інтернет-магазини, розробку та маркетинг') % {'q': query}) if query else meta['description'],
-        'og_title': _('Пошук: %(q)s') % {'q': query} if query else _('Пошук по блогу'),
+        # №74 (release merge): title/og/description з cz/seo blog_search_meta — точні тексти брифу
+        # («Hledání v blogu | PrometeyLabs» / «Blog search | PrometeyLabs», «Výsledky hledání „{q}“ v blogu»);
+        # keywords у шаблоні не виводяться.
+        'page_title': meta['title'],
+        'meta_description': meta['description'],
+        'og_title': meta['title'],
         'keywords': _('пошук, блог, створення сайтів, інтернет-магазини, розробка, маркетинг'),
     }
     context['og_description'] = context['meta_description']

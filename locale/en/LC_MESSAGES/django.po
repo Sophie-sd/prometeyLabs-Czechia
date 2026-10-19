@@ -1729,8 +1729,8 @@ msgid ""
 "ботів, налаштування реклами Google Ads, навчання веб-розробки. Сучасні "
 "технології, конкурентні ціни."
 msgstr ""
-"PrometeyLabs Czechia — custom websites, Telegram bots, Google Ads and web "
-"training. Modern stack, clear pricing."
+"PrometeyLabs — custom websites and e-shops, Telegram bots and Google Ads "
+"management. Modern stack, clear pricing and terms in the contract."
 
 #: apps/core/views.py:69 templates/base.html:40
 msgid "PrometeyLabs - Розробка сайтів під ключ"
@@ -2033,7 +2033,7 @@ msgstr "Thank you! We will contact you soon."
 
 #: apps/core/views.py:593
 msgid "Дякуємо! Наш менеджер зателефонує вам протягом 15 хвилин."
-msgstr "Thank you! Our manager will call you within 15 minutes."
+msgstr "Thank you! We will get back to you within 15 minutes."
 
 #: apps/core/views.py:601
 msgid "Заявка з footer - Консультація"
@@ -4035,8 +4035,8 @@ msgid ""
 "Google Ads, ведення соцмереж, навчання веб-розробки. Конкурентні ціни, "
 "сучасні технології."
 msgstr ""
-"PrometeyLabs — custom websites, Telegram bots, Google Ads, social media and "
-"web training. Clear pricing, modern stack."
+"PrometeyLabs — custom websites, Telegram bots, Google Ads and social media "
+"management. Clear pricing, modern stack."
 
 #: templates/base.html:26
 msgid ""
@@ -4439,6 +4439,18 @@ msgstr "Search results for “%(q)s” in the blog on websites, e-commerce, deve
 #: apps/blog/views.py:109
 msgid "пошук, блог, створення сайтів, інтернет-магазини, розробка, маркетинг"
 msgstr "search, blog, websites, e-commerce, development, marketing"
+
+#: templates/components/internet_shop_v2/packages.html:60
+msgid "від 2 800 €"
+msgstr "from €2,800"
+
+#: templates/components/internet_shop_v2/packages.html:89
+msgid "від 8 000 €"
+msgstr "from €8,000"
+
+#: apps/blog/views.py:106
+msgid "Пошук по блогу | PrometeyLabs"
+msgstr "Blog search | PrometeyLabs"
 
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Buy now, pay later (Twisto)"
@@ -4979,7 +4991,7 @@ msgstr "Tax ID (Ukraine):"
 
 #: templates/components/footer.html:98
 msgid "Захист даних:"
-msgstr "Databases"
+msgstr "Data protection:"
 
 #: templates/components/footer.html:102
 msgid "Налаштування cookie"
@@ -6113,11 +6125,11 @@ msgstr "Maximum SEO (Czechia + international markets)"
 
 #: templates/components/internet_shop_v2/packages.html:98
 msgid "Персональна CRM + AI-помічник продажів"
-msgstr "personal AI assistant"
+msgstr "Personal CRM + AI sales assistant"
 
 #: templates/components/internet_shop_v2/packages.html:99
 msgid "Автономний ШІ-адміністратор сайту"
-msgstr "Sign up for course"
+msgstr "Autonomous AI site administrator"
 
 #: templates/components/internet_shop_v2/packages.html:103
 msgid "AI-екосистема адмінки з чатом AI-менеджера"
@@ -6262,15 +6274,15 @@ msgstr "telegram bots"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:52
 msgid "Персональна CRM + ШІ-помічник"
-msgstr "personal AI assistant"
+msgstr "Personal CRM + AI assistant"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:55
 msgid "ШІ-адміністратор"
-msgstr "Sign up for course"
+msgstr "AI administrator"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:61
 msgid "Персональний Telegram-бот"
-msgstr "personal AI assistant"
+msgstr "Personal Telegram bot"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:67
 msgid "SEO-статті та супровід"
@@ -8126,7 +8138,7 @@ msgstr "Nothing found"
 #, python-format
 msgid ""
 "За запитом \"%(query)s\" нічого не знайдено. Спробуйте інші ключові слова."
-msgstr "Nothing found for query \"%(query)s\". Try other keywords."
+msgstr "No results for “%(query)s”. Try different keywords."
 
 #: templates/pages/blog_search.html:105
 msgid "Переглянути всі статті"
@@ -8436,7 +8448,7 @@ msgstr ""
 
 #: templates/pages/developer.html:42
 msgid "Написати адміністратору"
-msgstr "Sign up for course"
+msgstr "Message the administrator"
 
 #: templates/pages/developer.html:45
 msgid "Переглянути програми навчання"
@@ -8748,7 +8760,7 @@ msgstr "social media management"
 
 #: templates/pages/home.html:79
 msgid "навчання"
-msgstr "training"
+msgstr "e-shops"
 
 #: templates/pages/home.html:86
 msgid "Написати в телеграм"
@@ -8809,7 +8821,7 @@ msgstr ""
 
 #: templates/pages/internet-shop.html:9
 msgid "Інтернет-магазин під ключ — створимо за 3 тижні з річною підтримкою"
-msgstr "Turnkey online store — live in 3 weeks with a year of support"
+msgstr "Turnkey online store in 3 weeks with 1 year of free support"
 
 #: templates/pages/offer-ru.html:5
 msgid "Публичный договор (оферта) об оказании услуг | PrometeyLabs"
@@ -9608,10 +9620,8 @@ msgid "Оплата пройшла успішно. Ми вже отримали 
 msgstr "Payment completed successfully."
 
 #: templates/proposal/base_proposal.html:52
-#, fuzzy
-#| msgid "Акції"
 msgid "Секції"
-msgstr "Promotions"
+msgstr "Sections"
 
 #: templates/proposal/base_proposal.html:65
 msgid "Документ конфіденційний. Не для публічного поширення."
@@ -11283,7 +11293,7 @@ msgid "Односторінковий сайт із формою заявок, �
 msgstr "One-page site with a lead form, technical SEO, analytics and tracking, domain and secure connection"
 
 msgid "Корпоративний сайт 700–1000 €, 7–14 днів"
-msgstr "Corporate website €700–1000, 7–14 days"
+msgstr "Corporate website €700–1,000, 7–14 days"
 
 msgid "Багатосторінковий сайт з адмінкою, інтеграціями (CRM, ERP, оплати), технічним SEO і аналітикою"
 msgstr "Multi-page site with an admin panel, integrations (CRM, ERP, payments), technical SEO and analytics"
@@ -11395,6 +11405,7 @@ msgstr "Lifetime code warranty + 1 year of free support"
 msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
 msgstr "From €1,400. Lifetime code warranty. 1 year of free support."
 
+#: templates/components/internet_shop_v2/packages.html:36
 msgid "від 1 400 €"
 msgstr "from €1,400"
 

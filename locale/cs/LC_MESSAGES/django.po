@@ -2085,7 +2085,7 @@ msgstr "Děkujeme! Brzy se s vámi spojíme."
 
 #: apps/core/views.py:593
 msgid "Дякуємо! Наш менеджер зателефонує вам протягом 15 хвилин."
-msgstr "Děkujeme! Náš manažer vám zavolá do 15 minut."
+msgstr "Děkujeme! Ozveme se vám do 15 minut."
 
 #: apps/core/views.py:601
 msgid "Заявка з footer - Консультація"
@@ -4080,6 +4080,8 @@ msgid ""
 "Google Ads, ведення соцмереж, навчання веб-розробки. Конкурентні ціни, "
 "сучасні технології."
 msgstr ""
+"PrometeyLabs – tvorba webů na klíč, Telegram boti, reklama Google Ads a "
+"správa sociálních sítí. Férové ceny, moderní technologie."
 
 #: templates/base.html:26
 msgid ""
@@ -4480,6 +4482,18 @@ msgstr "Výsledky hledání „%(q)s“ v blogu o tvorbě webů, e-shopech, výv
 #: apps/blog/views.py:109
 msgid "пошук, блог, створення сайтів, інтернет-магазини, розробка, маркетинг"
 msgstr "hledání, blog, tvorba webů, e-shopy, vývoj, marketing"
+
+#: templates/components/internet_shop_v2/packages.html:60
+msgid "від 2 800 €"
+msgstr "od 2 800 €"
+
+#: templates/components/internet_shop_v2/packages.html:89
+msgid "від 8 000 €"
+msgstr "od 8 000 €"
+
+#: apps/blog/views.py:106
+msgid "Пошук по блогу | PrometeyLabs"
+msgstr "Hledání v blogu | PrometeyLabs"
 
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Nákup na splátky Twisto"
@@ -5308,11 +5322,11 @@ msgstr "a flexibilní platební podmínky"
 
 #: templates/components/home/redesign_why.html:49
 msgid "400–700 €"
-msgstr "400–700 €"
+msgstr "400–700 €"
 
 #: templates/components/home/redesign_why.html:50
 msgid "700–1000 €"
-msgstr "700–1000 €"
+msgstr "700–1 000 €"
 
 #: templates/components/home/redesign_why.html:51
 msgid "E-commerce:"
@@ -5328,7 +5342,7 @@ msgstr "Webové aplikace:"
 
 #: templates/components/home/redesign_why.html:52
 msgid "2800–8000 €"
-msgstr "2800–8000 €"
+msgstr "2 800–8 000 €"
 
 #: templates/components/home/redesign_why.html:55
 msgid "Пропонуємо розбиття оплати на етапи — без переплат та прихованих умов."
@@ -8157,11 +8171,10 @@ msgid "Нічого не знайдено"
 msgstr "Nic nenalezeno"
 
 #: templates/pages/blog_search.html:102
-#, fuzzy, python-format
-#| msgid "Товарів не знайдено. Спробуйте змінити фільтр або пошук."
+#, python-format
 msgid ""
 "За запитом \"%(query)s\" нічого не знайдено. Спробуйте інші ключові слова."
-msgstr "Nebyly nalezeny žádné produkty. Zkuste změnit filtr nebo vyhledávání."
+msgstr "Pro dotaz „%(query)s“ jsme nic nenašli. Zkuste jiná klíčová slova."
 
 #: templates/pages/blog_search.html:105
 msgid "Переглянути всі статті"
@@ -8440,10 +8453,8 @@ msgstr ""
 "PrometeyLabs — weby na klíč."
 
 #: templates/pages/corporate-website.html:9
-#, fuzzy
-#| msgid "Корпоративний сайт під ключ — створимо за 7 днів | PrometeyLabs"
 msgid "Корпоративний сайт під ключ — створимо за 7 днів"
-msgstr "Firemní web na klíč — vytvoříme za 7 dní | PrometeyLabs"
+msgstr "Firemní web na klíč za 7 dní"
 
 #: templates/pages/developer.html:29
 msgid "Мрієте стати веб-розробником?"
@@ -8757,7 +8768,7 @@ msgstr "správa sociálních sítí"
 
 #: templates/pages/home.html:79
 msgid "навчання"
-msgstr "školení"
+msgstr "e-shopy"
 
 #: templates/pages/home.html:86
 msgid "Написати в телеграм"
@@ -8802,12 +8813,10 @@ msgstr ""
 "e-commerce na klíč."
 
 #: templates/pages/internet-shop.html:7
-#, fuzzy
-#| msgid "Розробка інтернет-магазинів під ключ | PrometeyLabs"
 msgid ""
 "Створення та розробка інтернет-магазину під ключ — ціна та пакети | "
 "PrometeyLabs"
-msgstr "Tvorba e-shopů na klíč | PrometeyLabs"
+msgstr "Tvorba e-shopu na klíč — cena a balíčky | PrometeyLabs"
 
 #: templates/pages/internet-shop.html:8
 msgid ""
@@ -8820,11 +8829,8 @@ msgstr ""
 "platby. Cenu spočítáme v briefu."
 
 #: templates/pages/internet-shop.html:9
-#, fuzzy
-#| msgid ""
-#| "Інтернет-магазини під ключ — швидка розробка e-commerce | PrometeyLabs"
 msgid "Інтернет-магазин під ключ — створимо за 3 тижні з річною підтримкою"
-msgstr "E-shopy na klíč — rychlý vývoj e-commerce | PrometeyLabs"
+msgstr "E-shop na klíč za 3 týdny s 1 rokem bezplatné podpory"
 
 #: templates/pages/offer-ru.html:5
 msgid "Публичный договор (оферта) об оказании услуг | PrometeyLabs"
@@ -9608,10 +9614,8 @@ msgid "Оплата пройшла успішно. Ми вже отримали 
 msgstr "Platba byla úspěšná. Potvrzení jsme již obdrželi."
 
 #: templates/proposal/base_proposal.html:52
-#, fuzzy
-#| msgid "Акції"
 msgid "Секції"
-msgstr "Akce"
+msgstr "Sekce"
 
 #: templates/proposal/base_proposal.html:65
 msgid "Документ конфіденційний. Не для публічного поширення."
@@ -10676,13 +10680,13 @@ msgid "Ціна і строк"
 msgstr "Cena a termín"
 
 msgid "Лендінг 400–700 €, 3–7 днів"
-msgstr "Landing page 400–700 €, 3–7 dní"
+msgstr "Landing page 400–700 €, 3–7 dní"
 
 msgid "Односторінковий сайт із формою заявок, технічним SEO, аналітикою і трекінгом, доменом і захищеним з’єднанням"
 msgstr "Jednostránkový web s poptávkovým formulářem, technickým SEO, analytikou a měřením, doménou a zabezpečeným připojením"
 
 msgid "Корпоративний сайт 700–1000 €, 7–14 днів"
-msgstr "Firemní web 700–1000 €, 7–14 dní"
+msgstr "Firemní web 700–1 000 €, 7–14 dní"
 
 msgid "Багатосторінковий сайт з адмінкою, інтеграціями (CRM, ERP, оплати), технічним SEO і аналітикою"
 msgstr "Vícestránkový web s administrací, integracemi (CRM, ERP, platby), technickým SEO a analytikou"
@@ -10772,7 +10776,7 @@ msgid "Баласт-скрипти"
 msgstr "Zátěžové skripty"
 
 msgid "Від 1 400 €. Пожиттєва гарантія на код. 1 рік підтримки безкоштовно."
-msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
+msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
 msgid "Заявка на розрахунок вартості"
 msgstr "Žádost o kalkulaci ceny"
@@ -10796,10 +10800,11 @@ msgid "Гарантія на код 1 рік"
 msgstr "Doživotní záruka na kód + 1 rok bezplatné podpory"
 
 msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
-msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
+msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
+#: templates/components/internet_shop_v2/packages.html:36
 msgid "від 1 400 €"
-msgstr "od 1 400 €"
+msgstr "od 1 400 €"
 
 msgid "на основі виконаного проєкту"
 msgstr "na základě realizovaného projektu"
