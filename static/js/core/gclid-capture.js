@@ -19,12 +19,16 @@
     const COOKIE_DAYS = 90;
     const TRACKING_PARAMS = ['gclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
     const LANDING_KEYS = ['landing_path', 'landing_referrer'];
+    // Messenger prefill tag (cs default, en on /en/ pages).
+    const IS_EN = (document.documentElement.getAttribute('lang') || 'cs').toLowerCase().indexOf('en') === 0;
+    const TAG_ESHOPS = IS_EN ? 'E-shops' : 'E-shopy';
+    const TAG_CORPORATE = IS_EN ? 'Corporate websites' : 'Firemní weby';
+    const MESSAGE_PREFIX = IS_EN ? 'Google Ads enquiry: ' : 'Poptávka z Google Ads: ';
     const CAMPAIGN_TAGS = [
-        { needle: 'shop', label: 'Інтернет-магазини' },
-        { needle: 'ecom', label: 'Інтернет-магазини' },
-        { needle: 'corp', label: 'Корпоративні сайти' },
-        { needle: 'company', label: 'Корпоративні сайти' },
-        { needle: 'dropship', label: 'Дропшиппінг' },
+        { needle: 'shop', label: TAG_ESHOPS },
+        { needle: 'ecom', label: TAG_ESHOPS },
+        { needle: 'corp', label: TAG_CORPORATE },
+        { needle: 'company', label: TAG_CORPORATE },
     ];
 
     function setCookie(name, value, days) {
@@ -138,7 +142,7 @@
         const href = link.getAttribute('href') || '';
         const tag = campaignTag();
         if (!tag) return;
-        const text = `Заявка з Google Ads: ${tag}`;
+        const text = MESSAGE_PREFIX + tag;
         try {
             const url = new URL(href, window.location.origin);
             const host = url.host.toLowerCase();
