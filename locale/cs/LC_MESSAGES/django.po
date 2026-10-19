@@ -1949,8 +1949,8 @@ msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код."
 msgstr ""
-"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a "
-"Heureka, SEO, doživotní záruka na kód."
+"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptetu, "
+"Upgates či WooCommerce, SEO, doživotní záruka na kód."
 
 #: apps/core/views.py:170 templates/pages/internet-shop-v2.html:9
 msgid "Інтернет-магазини, що завантажуються швидше — PrometeyLabs"
@@ -5677,11 +5677,11 @@ msgstr ""
 
 #: templates/components/internet_shop_v2/admin.html:6
 msgid "Керуйте імперією,"
-msgstr "Řiďte své impérium,"
+msgstr "Řiďte svůj byznys,"
 
 #: templates/components/internet_shop_v2/admin.html:6
 msgid "а не розбирайтесь у коді"
-msgstr "místo řešení kódu"
+msgstr "ne kód"
 
 #: templates/components/internet_shop_v2/admin.html:13
 msgid "Надзручна україномовна адмінка"
@@ -5858,7 +5858,7 @@ msgstr "Start od nuly"
 
 #: templates/components/internet_shop_v2/brief.html:48
 msgid "Міграція з Prom / OLX"
-msgstr "Migrace ze Shoptet / Heureka"
+msgstr "Migrace ze Shoptetu, Upgates či WooCommerce"
 
 #: templates/components/internet_shop_v2/brief.html:54
 msgid "Масштабування + маркетинг під ключ"
@@ -6103,7 +6103,9 @@ msgstr "Content marketing: SEO články"
 
 #: templates/components/internet_shop_v2/packages.html:80
 msgid "10 органічних відгуків у Google Maps"
-msgstr "10 organických recenzí na Google Maps"
+msgstr ""
+"Nastavení profilu Firmy na Googlu a systému pro sběr recenzí od skutečných "
+"zákazníků"
 
 #: templates/components/internet_shop_v2/packages.html:81
 msgid "1 рекламний кабінет + перша кампанія"
@@ -6127,7 +6129,7 @@ msgstr "Rozsáhlá platforma s AI ekosystémem a kompletní marketingovou podpor
 
 #: templates/components/internet_shop_v2/packages.html:95
 msgid "Premium UI/UX + кінематографічна анімація"
-msgstr "Prémiové UI/UX + kinematografická animace"
+msgstr "Prémiové UI/UX + filmové animace"
 
 #: templates/components/internet_shop_v2/packages.html:96
 msgid "Extra-High ШІ, до 10 мовних версій"
@@ -6163,7 +6165,9 @@ msgstr "6 měsíců content marketingu a SEO článků"
 
 #: templates/components/internet_shop_v2/packages.html:107
 msgid "60 органічних відгуків у Google Maps"
-msgstr "60 organických recenzí na Google Maps"
+msgstr ""
+"Nastavení profilu Firmy na Googlu a systému pro sběr recenzí od skutečných "
+"zákazníků"
 
 #: templates/components/internet_shop_v2/packages.html:108
 msgid "Медіакампанія: до 5 кампаній, 3 міс. (Meta, Google, TikTok)"
@@ -6244,7 +6248,7 @@ msgstr "Rozšířená optimalizace"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:34
 msgid "Максимальна (UA + світ)"
-msgstr "Maximální (UA + svět)"
+msgstr "Maximální (CZ + svět)"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:37
 msgid "Мовність та переклад"
@@ -6312,15 +6316,17 @@ msgstr "6 měsíců pravidelné správy"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:73
 msgid "Органічні відгуки Google Maps"
-msgstr "Organické recenze Google Maps"
+msgstr ""
+"Nastavení profilu Firmy na Googlu a systému pro sběr recenzí od skutečných "
+"zákazníků"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:75
 msgid "10 відгуків"
-msgstr "10 recenzí"
+msgstr "Ano"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:76
 msgid "60 відгуків"
-msgstr "60 recenzí"
+msgstr "Ano"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:81
 msgid "1 кабінет / 1 кампанія (старт)"
@@ -6336,7 +6342,7 @@ msgstr "Nasazení (doména / hosting)"
 
 #: templates/components/internet_shop_v2/svoboda.html:6
 msgid "Переросли Prom та OLX?"
-msgstr "Vyrostli jste ze Shoptetu a Heureky?"
+msgstr "Vyrostli jste ze Shoptetu či WooCommerce?"
 
 #: templates/components/internet_shop_v2/svoboda.html:7
 msgid "Час грати за власними правилами."
@@ -6399,9 +6405,9 @@ msgid ""
 "Перенесемо вашу базу за вас — швидко й без втрати позицій у Google. Парсинг "
 "з будь-якого сайту, міграція з Prom, Rozetka, Хорошоп, WooCommerce."
 msgstr ""
-"Převedeme vaši databázi za vás — rychle a bez ztráty pozic ve Google. "
-"Parsování z libovolného webu, migrace ze Shoptet, Alza Marketplace, Upgates, "
-"WooCommerce."
+"Převedeme vaši databázi za vás — rychle a bez ztráty pozic v Googlu. "
+"Parsování z libovolného webu, migrace ze Shoptet, Alza Marketplace, "
+"Upgates, WooCommerce."
 
 #: templates/components/internet_shop_v2/svoboda.html:77
 msgid "SKU за один прохід"
@@ -8760,8 +8766,9 @@ msgid ""
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-"
 "commerce під ключ."
 msgstr ""
-"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a "
-"Heureka, SEO, doživotní záruka na kód. PrometeyLabs — e-commerce na klíč."
+"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptetu, "
+"Upgates či WooCommerce, SEO, doživotní záruka na kód. PrometeyLabs — "
+"e-commerce na klíč."
 
 #: templates/pages/internet-shop.html:7
 #, fuzzy

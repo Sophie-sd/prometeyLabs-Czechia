@@ -67,7 +67,7 @@
                 price: 'od 8\u00a0000\u00a0€',
                 term: '2–4 měsíce',
                 features: [
-                    'Premium UI/UX + kinematografická animace',
+                    'Premium UI/UX + filmové animace',
                     'AI ekosystém administrace a Telegram bot',
                     '6 měsíců content marketingu a mediakampaní'
                 ]

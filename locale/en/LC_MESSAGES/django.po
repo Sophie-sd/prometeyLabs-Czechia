@@ -4769,7 +4769,7 @@ msgstr "1 year"
 #: templates/components/corporate_website_v2/scale.html:64
 #: templates/components/internet_shop_v2/garantiya.html:14
 msgid "Безкоштовна підтримка"
-msgstr "Format and support"
+msgstr "Free support"
 
 #: templates/components/corporate_website_v2/scale.html:65
 #: templates/components/internet_shop_v2/garantiya.html:15
@@ -6010,7 +6010,7 @@ msgstr "Enquiries handled in the built-in admin"
 
 #: templates/components/internet_shop_v2/packages.html:56
 msgid "Локалізована адмінка (UA або інша мова)"
-msgstr "Localised admin (UA or another language)"
+msgstr "Localised admin (Czech or another language)"
 
 #: templates/components/internet_shop_v2/packages.html:57
 msgid "Розгортання під ключ на домені клієнта"
@@ -6060,7 +6060,7 @@ msgstr "Content marketing: SEO articles"
 
 #: templates/components/internet_shop_v2/packages.html:80
 msgid "10 органічних відгуків у Google Maps"
-msgstr "10 organic Google Maps reviews"
+msgstr "Google Business Profile setup + review request flow for real customers"
 
 #: templates/components/internet_shop_v2/packages.html:81
 msgid "1 рекламний кабінет + перша кампанія"
@@ -6092,7 +6092,7 @@ msgstr "Extra-high AI, up to 10 language versions"
 
 #: templates/components/internet_shop_v2/packages.html:97
 msgid "Максимальне SEO (UA + міжнародні ринки)"
-msgstr "Max participants"
+msgstr "Maximum SEO (Czechia + international markets)"
 
 #: templates/components/internet_shop_v2/packages.html:98
 msgid "Персональна CRM + AI-помічник продажів"
@@ -6120,7 +6120,7 @@ msgstr "6 months of content marketing and SEO articles"
 
 #: templates/components/internet_shop_v2/packages.html:107
 msgid "60 органічних відгуків у Google Maps"
-msgstr "60 organic Google Maps reviews"
+msgstr "Google Business Profile setup + review request flow for real customers"
 
 #: templates/components/internet_shop_v2/packages.html:108
 msgid "Медіакампанія: до 5 кампаній, 3 міс. (Meta, Google, TikTok)"
@@ -6269,15 +6269,15 @@ msgstr "6 months of ongoing management"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:73
 msgid "Органічні відгуки Google Maps"
-msgstr "Organic Google Maps reviews"
+msgstr "Google Business Profile setup + review request flow for real customers"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:75
 msgid "10 відгуків"
-msgstr "10 reviews"
+msgstr "Yes"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:76
 msgid "60 відгуків"
-msgstr "60 reviews"
+msgstr "Yes"
 
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:81
 msgid "1 кабінет / 1 кампанія (старт)"
@@ -6293,7 +6293,7 @@ msgstr "Deployment (domain / hosting)"
 
 #: templates/components/internet_shop_v2/svoboda.html:6
 msgid "Переросли Prom та OLX?"
-msgstr "Outgrown Shoptet and Heureka?"
+msgstr "Outgrown Shoptet or WooCommerce?"
 
 #: templates/components/internet_shop_v2/svoboda.html:7
 msgid "Час грати за власними правилами."
