@@ -1,10 +1,23 @@
-"""Sitemap для Google Search Console / краулерів."""
+"""Sitemap для Google Search Console / краулерів (домен prometeylabs.cz)."""
+from urllib.parse import urlparse
+
+from django.conf import settings
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
 from apps.blog.models import BlogPost
+from apps.blog.visibility import visible_posts
 
-SITE_DOMAIN = 'www.prometeylabs.com'
+# Домен береться з CANONICAL_BASE (https://prometeylabs.cz) — той самий, що й
+# у canonical / hreflang. Ніколи не prometeylabs.com.
+SITE_DOMAIN = urlparse(
+    getattr(settings, 'CANONICAL_BASE', '') or 'https://prometeylabs.cz'
+).netloc or 'prometeylabs.cz'
+
+# Сторінки, які лишаються маршрутизованими, але НЕ потрапляють у sitemap:
+#   developer    — /developer/ та /en/developer/ роблять 302 на головну (№16, №76);
+#   tz_generator — /tz-dlia-saitu/ ще не перекладена (№16, B-7).
+SITEMAP_EXCLUDED_PAGES = frozenset({'developer', 'tz_generator'})
 
 
 class AbsoluteSitemap(Sitemap):
@@ -57,7 +70,7 @@ class StaticViewSitemap(AbsoluteSitemap):
     }
 
     def items(self):
-        return list(self.PAGES.keys())
+        return [name for name in self.PAGES if name not in SITEMAP_EXCLUDED_PAGES]
 
     def location(self, item):
         return reverse(item)
@@ -73,8 +86,13 @@ class BlogPostSitemap(AbsoluteSitemap):
     changefreq = 'weekly'
     priority = 0.6
 
+    # Статті мають CS + EN версію за тим самим slug → hreflang alternates.
+    i18n = True
+    alternates = True
+    x_default = True
+
     def items(self):
-        return BlogPost.objects.filter(is_published=True).only('slug', 'updated_at')
+        return visible_posts(BlogPost.objects.all()).only('slug', 'updated_at', 'category')
 
     def lastmod(self, obj):
         return obj.updated_at
