@@ -3960,7 +3960,7 @@ msgstr "Recipients"
 
 #: config/settings.py:116
 msgid "Налаштування"
-msgstr "Configuration per spec"
+msgstr "Settings"
 
 #: config/settings.py:120
 #, fuzzy
@@ -4421,9 +4421,13 @@ msgstr "Get an accurate cost estimate in 2 minutes"
 msgid "Калькулятор розрахунку"
 msgstr "I Want to Become a Developer"
 
-#: templates/components/tz_generator/compare.html:81
-msgid "хв"
-msgstr "min"
+#: templates/components/corporate_website_v2/free_analysis.html
+msgid "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními."
+msgstr "Leave your contact details — we will prepare a short analysis and get back to you with recommendations."
+
+#: templates/components/corporate_website_v2/free_analysis.html
+msgid "Leave your contact — we will prepare a short analysis and get back to you with recommendations."
+msgstr "Leave your contact details — we will prepare a short analysis and get back to you with recommendations."
 
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Buy now, pay later (Twisto)"
@@ -4511,7 +4515,7 @@ msgstr "Google PageSpeed score"
 
 #: templates/components/corporate_website_v2/free_analysis.html:6
 msgid "Безкоштовний аналіз вашого бізнесу"
-msgstr "Free. No spam. PDF instantly."
+msgstr "Free analysis of your business"
 
 #: templates/components/corporate_website_v2/free_analysis.html:9
 msgid ""
@@ -4968,7 +4972,7 @@ msgstr "Databases"
 
 #: templates/components/footer.html:102
 msgid "Налаштування cookie"
-msgstr "Configuration per spec"
+msgstr "Cookie settings"
 
 #: templates/components/footer.html:108
 msgid "Усі права захищені."
@@ -5690,7 +5694,7 @@ msgstr "Stock"
 
 #: templates/components/internet_shop_v2/admin.html:54
 msgid "Топ товар"
-msgstr "Services / products"
+msgstr "Top product"
 
 #: templates/components/internet_shop_v2/admin.html:55
 msgid "Продажі"
@@ -6489,7 +6493,7 @@ msgstr ""
 
 #: templates/components/lead_gdpr_min.html:23
 msgid "Відповімо по email протягом 24 годин…"
-msgstr "Extended brief within 24 hours"
+msgstr "We will reply by email within 24 hours…"
 
 #: templates/components/modals.html:9 templates/components/modals.html:35
 msgid "Zavřít"

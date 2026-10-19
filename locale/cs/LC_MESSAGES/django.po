@@ -4461,9 +4461,13 @@ msgstr "Získejte bezplatnou kalkulaci ceny vašeho webu"
 msgid "Калькулятор розрахунку"
 msgstr "Kalkulačka ceny"
 
-#: templates/components/tz_generator/compare.html:81
-msgid "хв"
-msgstr "min"
+#: templates/components/corporate_website_v2/free_analysis.html
+msgid "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními."
+msgstr "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními."
+
+#: templates/components/corporate_website_v2/free_analysis.html
+msgid "Leave your contact — we will prepare a short analysis and get back to you with recommendations."
+msgstr "Zanechte kontakt — připravíme krátkou analýzu a ozveme se s doporučeními."
 
 #~ msgid "Покупка частинами monobank"
 #~ msgstr "Nákup na splátky Twisto"
