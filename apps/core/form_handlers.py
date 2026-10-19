@@ -167,6 +167,20 @@ def resolve_lead_lang(request) -> str:
     return active or _supported_lang(settings.LANGUAGE_CODE) or 'cs'
 
 
+def thank_you_url(lang=None) -> str:
+    """
+    URL сторінки «Дякуємо» мовою ліда: cs → /thank-you/, en → /en/thank-you/.
+    lang — мова з create_form_data (POST lang / префікс / Referer); якщо не задана —
+    активна мова запиту.
+    """
+    from django.urls import reverse
+
+    code = _supported_lang(lang) or _supported_lang(translation.get_language())
+    code = code or _supported_lang(settings.LANGUAGE_CODE) or 'cs'
+    with translation.override(code):
+        return reverse('thank_you')
+
+
 def create_form_data(form_type, name, phone, request, **extra_fields):
     """Створює стандартний словник даних для форми"""
     form_data = {

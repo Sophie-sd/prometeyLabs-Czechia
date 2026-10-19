@@ -251,6 +251,44 @@ class CalculatorTestSubmissionTests(TestCase):
         self.assertNotIn('result', body)
 
 
+
+class ThankYouRedirectLocaleTests(TestCase):
+    """redirect у JSON-відповіді веде на /thank-you/ мовою ліда (cs без префікса, en → /en/)."""
+
+    def _post(self, url, **kw):
+        response = self.client.post(url, _lead(form_type='contact', message='TEST'), **kw)
+        self.assertEqual(response.status_code, 200, response.content)
+        return json.loads(response.content)['redirect']
+
+    def test_cs_lead_redirects_to_unprefixed_thank_you(self):
+        self.assertEqual(self._post('/forms/submit/'), '/thank-you/')
+
+    def test_en_lead_redirects_to_en_thank_you(self):
+        self.assertEqual(self._post('/en/forms/submit/'), '/en/thank-you/')
+
+    def test_unprefixed_endpoint_from_en_page_redirects_to_en(self):
+        self.assertEqual(
+            self._post('/forms/submit/', HTTP_REFERER='http://testserver/en/contacts/'),
+            '/en/thank-you/',
+        )
+
+    def test_calculator_cs_and_en(self):
+        data = {'name': 'TEST Calc', 'phone': '+420777123456', 'consent': '1', 'question_1': 'A'}
+        cs = json.loads(self.client.post('/forms/test/', data).content)['redirect']
+        en = json.loads(self.client.post('/en/forms/test/', data).content)['redirect']
+        self.assertEqual((cs, en), ('/thank-you/', '/en/thank-you/'))
+
+    def test_honeypot_en_uses_active_language(self):
+        response = self.client.post(
+            '/en/forms/submit/', _lead(form_type='telegram-bot', honeypot='bot'),
+        )
+        self.assertEqual(json.loads(response.content)['redirect'], '/en/thank-you/')
+
+    def test_thank_you_pages_exist(self):
+        self.assertEqual(self.client.get('/thank-you/').status_code, 200)
+        self.assertEqual(self.client.get('/en/thank-you/').status_code, 200)
+
+
 ROOT = Path(__file__).resolve().parents[3]
 
 
