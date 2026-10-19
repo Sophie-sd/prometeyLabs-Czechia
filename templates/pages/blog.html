@@ -6,6 +6,7 @@
 {% block description %}{{ meta_description }}{% endblock %}
 {% block og_title %}{{ og_title }}{% endblock %}
 {% block keywords %}{{ keywords }}{% endblock %}
+{% block og_description %}{{ og_description }}{% endblock %}
 
 {% block page_css %}
 <link rel="stylesheet" href="{% static 'css/blog.css' %}">
@@ -122,9 +123,7 @@
                     class="category-filter {% if category == 'web-development' %}active{% endif %}">
                     {% trans "Веб-розробка" %}
                 </a>
-                <a href="?category=courses" class="category-filter {% if category == 'courses' %}active{% endif %}">
-                    {% trans "Курси програмування" %}
-                </a>
+                {% comment %}Kategorie «courses» je na .cz skrytá (№70), viz apps/blog/visibility.py{% endcomment %}
                 <a href="?category=telegram-bots"
                     class="category-filter {% if category == 'telegram-bots' %}active{% endif %}">
                     {% trans "Telegram боти" %}

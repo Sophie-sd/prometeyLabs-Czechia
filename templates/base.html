@@ -22,8 +22,8 @@
     <title>{% block title %}{% trans "PrometeyLabs - Розробка сайтів під ключ | Telegram боти | Реклама" %}{% endblock %}</title>
     <meta name="description"
         content="{% block description %}{% trans "PrometeyLabs - розробка сайтів під ключ, Telegram боти, налаштування реклами Google Ads, ведення соцмереж, навчання веб-розробки. Конкурентні ціни, сучасні технології." %}{% endblock %}">
-    <meta name="keywords"
-        content="{% block keywords %}{% trans "розробка сайтів, сайт під ключ, telegram бот, реклама google ads, веб розробка, навчання програмування" %}{% endblock %}">
+    {% block meta_keywords %}<meta name="keywords"
+        content="{% block keywords %}{% trans "розробка сайтів, сайт під ключ, telegram бот, реклама google ads, веб розробка, навчання програмування" %}{% endblock %}">{% endblock %}
 
     <!-- Self-canonical (https://prometeylabs.cz + path, bez query) -->
     {% block canonical %}{% canonical_link %}{% endblock %}

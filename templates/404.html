@@ -10,7 +10,7 @@ No canonical / hreflang on an error page; noindex.
 
 {% block title %}{% if LANGUAGE_CODE == 'en' %}Page not found | PrometeyLabs{% else %}Stránka nenalezena | PrometeyLabs{% endif %}{% endblock %}
 {% block description %}{% if LANGUAGE_CODE == 'en' %}Sorry, this page does not exist.{% else %}Omlouváme se, tato stránka neexistuje.{% endif %}{% endblock %}
-{% block keywords %}{% endblock %}
+{% block meta_keywords %}{% endblock %}
 {% block canonical %}{% endblock %}
 {% block hreflang %}{% endblock %}
 {% block og_url %}{% url 'home' as home_path %}{% site_url home_path %}{% endblock %}
