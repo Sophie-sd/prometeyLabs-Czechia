@@ -4,7 +4,18 @@
 Живий сайт і живий KeyCRM у цьому плані **не використовуються**. Усі тестові ліди
 мають ім'я/повідомлення з префіксом `TEST` і e-mail `test@example.com`.
 
-Гілка: `cz/integrations` (п.12 додає `site`/`lang` у кожен лід).
+Гілка: `cz/integrations`, rebased на `origin/main` f623f01 (figma-редизайн).
+п.12 додає `site`/`lang` у кожен лід; також: локалізований redirect на thank-you,
+ідемпотентний upsell генератора ТЗ.
+
+### Зміни після редизайну (f623f01)
+- Головна: `components/home_figma/hero.html` і `home_figma/cta.html` — головний CTA
+  «Nechat poptávku / Get in touch» (модалка `call_request`), калькулятор і Telegram другорядні,
+  WhatsApp лише якщо заповнено в адмінці.
+- Футер і мобільне меню: нова форма `footer-consultation` (`components/figma_lead_fields.html`:
+  `name`, `phone`, `consent`; e-mail поля немає).
+- `/internet-shop-v2/`: додано форму в hero (`internet_shop_v2/hero.html`, `site_request`).
+- `base.js` більше не додає `/cs/` → 404 на `/cs/forms/submit/` у реальному JS не виникає.
 
 ---
 
@@ -89,7 +100,7 @@ env -u DATABASE_URL ~/Sites/prometeyLabs-Czechia/.venv/bin/python manage.py runs
 
 ### 2.2 Контакти (`/contacts/`, `/en/contacts/`)
 - `data-form-type="contact"`, `base.js` → `localizedFormUrl()`.
-- ⚠ **На `main` CZ-сторінки з base.js шлють на `/cs/forms/submit/` → 404** (prefix_default_language=False). Виправлено в `feature/figma-redesign` і `cz/frontend` (`lang === 'cs'` → без префікса), у `main` ще ні.
+- ✅ 404 на `/cs/forms/submit/` виправлено в origin/main (`base.js:819`: для `cs` без префікса). Сам URL `/cs/forms/submit/` і далі 404 — так і має бути.
 - Успіх CZ: «Děkujeme za vaši zprávu! Brzy se s vámi spojíme.» EN: «Thank you for your message! We will contact you soon.»
 - Payload: `Form: contact`, `Site: cz`, `Lang`.
 
@@ -97,6 +108,12 @@ env -u DATABASE_URL ~/Sites/prometeyLabs-Czechia/.venv/bin/python manage.py runs
 - `components/internet_shop_v2/brief.html`, `form_type=site_request`, поля квізу `q_need/q_products/q_features/q_start/q_timeline` → JS збирає в `details` (укр. мітки, див. п.12), + lead-поля.
 - Успіх CZ: «Děkujeme! Vaše poptávka byla přijata. Brzy se s vámi spojíme.» EN: «Our manager will contact you soon».
 - Payload: `Form: site-request`, `Сторінка заявки: /internet-shop-v2/`, `Site: cz`, `Lang`.
+
+### 2.3a Internet-shop hero-форма (`/internet-shop-v2/`, `/en/internet-shop-v2/`)
+- `internet_shop_v2/hero.html`, `form_type=site_request`; повідомлення і payload як 2.3.
+
+### 2.3b Футер / мобільне меню (усі сторінки)
+- `footer-consultation`, поля `name`, `phone`, `consent` (figma_lead_fields), payload `Form: footer-consultation`.
 
 ### 2.4 Corporate квіз (`/corporate-website-v2/`, `/en/corporate-website-v2/`)
 - `components/corporate_website_v2/brief.html` (`site_request`) + «free analysis» (`call_request`).
@@ -113,7 +130,7 @@ env -u DATABASE_URL ~/Sites/prometeyLabs-Czechia/.venv/bin/python manage.py runs
 - ⚠ Немає `consent` і `gclid/utm` у запиті.
 - ⚠ Успіх CZ віддається **українською** («Базове ТЗ готове…»); EN: «Basic brief is ready. Download the PDF — …».
 - ⚠ PDF: `build_tz_context()` має лише мітки uk/en/ru → для `cs` PDF **українською** (видно клієнту).
-- ⚠ upsell повторно викликає `sync_submission_to_keycrm` → можлива друга картка в KeyCRM.
+- ✅ upsell більше не створює другу картку: якщо `keycrm_card_id` є — `PUT /pipelines/cards/{id}` з `note: [Upsell] …`; свіжа заявка без картки — чекає фонову відправку; стара несинхронізована — створює одну. Тести: `test_keycrm_tz_upsell.py` (mock).
 - Payload: `Form: tz_generator`, `Site: cz`, `Lang`.
 
 ### 2.7 Telegram-бот (`/telegram-bot/`, `/en/telegram-bot/`)
@@ -134,7 +151,7 @@ env -u DATABASE_URL ~/Sites/prometeyLabs-Czechia/.venv/bin/python manage.py runs
 | невалідний Telegram | 400 | Zadejte platný Telegram (@username). | Enter a valid Telegram (@username). |
 
 ### Спільне
-- Усі успіхи редіректять на `/thank-you/` **без мовного префікса** → EN-користувач потрапляє на CZ thank-you.
+- ✅ Редірект після успіху — мовою ліда: CZ `/thank-you/`, EN `/en/thank-you/` (`thank_you_url()`; для home-bundle з `/en/` мова береться з Referer).
 
 ---
 
@@ -145,7 +162,7 @@ env -u DATABASE_URL ~/Sites/prometeyLabs-Czechia/.venv/bin/python manage.py runs
 3. Негативні кейси: без consent, невалідний e-mail → 400 + текст мовою сторінки.
 4. Admin → Form submissions: запис є, `extra_data.site == "cz"`, `extra_data.lang` відповідає сторінці.
 5. KeyCRM-payload: у shell із замоканим `requests.post` — `manager_comment` містить `Site: cz` / `Lang: …`.
-6. Редірект на thank-you правильною мовою (зараз — ні, див. вище).
+6. Редірект на thank-you правильною мовою (`/thank-you/` або `/en/thank-you/`).
 
 ## 4. Результат локального smoke (Django test client, 2026-10-19)
 22 запити (8 форм + 3 негативні × CZ/EN): усі ендпоінти 200/400 як очікувано, у payload
