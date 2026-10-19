@@ -24,8 +24,6 @@ Disallow: /thank-you/
 Disallow: /*/thank-you/
 
 # Blog search (thin / duplicate content)
-Disallow: /blog/search/
-Disallow: /*/blog/search/
 
 # Demo tenants for proposals (private, also <meta name="robots" content="noindex">)
 Disallow: /demo/
