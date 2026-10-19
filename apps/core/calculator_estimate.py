@@ -1,6 +1,8 @@
 """Орієнтовна оцінка вартості з відповідей калькулятора (EUR-база)."""
 from __future__ import annotations
 
+from decimal import Decimal
+
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language
 
@@ -31,6 +33,16 @@ TIMELINE_BY_Q3 = {
 # Орієнтовні курси для підпису (не комерційний FX).
 EUR_UAH = 43
 EUR_CZK = 24.5
+
+# Орієнтовна ціна в Kč округлюється до 500 Kč, половина — вгору (не round(): банківське). #40
+CZK_ROUND_STEP = 500
+
+
+def eur_to_czk_rounded(eur) -> int:
+    """EUR → Kč за EUR_CZK, до найближчих 500 Kč (x.5 кроку — вгору). Точно через Decimal."""
+    czk = Decimal(str(eur)) * Decimal(str(EUR_CZK))
+    half = Decimal(CZK_ROUND_STEP) / 2
+    return int((czk + half) // CZK_ROUND_STEP * CZK_ROUND_STEP)
 
 # Надбавки в EUR (фіксовані).
 ADDONS_EUR = {
@@ -74,7 +86,7 @@ def format_price_display(min_eur: int, lang: str | None = None) -> dict:
     """Повертає primary + optional secondary рядок ціни."""
     lang = (lang or get_language() or 'uk').split('-')[0].lower()
     uah = int(round(min_eur * EUR_UAH))
-    czk = int(round(min_eur * EUR_CZK))
+    czk = eur_to_czk_rounded(min_eur)
 
     if lang in ('cs', 'en'):
         if lang == 'cs':
