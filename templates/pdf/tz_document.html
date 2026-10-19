@@ -86,7 +86,7 @@ h1 {
     </div>
     {% endfor %}
     <div class="footer">
-        <span class="brand">PrometeyLabs</span> · prometeylabs.com · Базове ТЗ / Basic brief
+        <span class="brand">PrometeyLabs</span> · prometeylabs.com · {% if lang == 'cs' %}Základní zadání webu{% elif lang == 'en' %}Basic website brief{% else %}Базове ТЗ / Basic brief{% endif %}
     </div>
 </body>
 </html>

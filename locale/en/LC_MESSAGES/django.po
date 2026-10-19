@@ -464,10 +464,8 @@ msgid "Генератор ТЗ для сайту"
 msgstr "Website brief generator"
 
 #: apps/core/models.py:25 apps/core/views.py:368
-#, fuzzy
-#| msgid "Персональний Telegram-бот"
 msgid "Заявка на Telegram-бота"
-msgstr "personal AI assistant"
+msgstr "Telegram bot request"
 
 #: apps/core/models.py:30 apps/payment/models.py:68
 msgid "Новий"
@@ -1717,7 +1715,9 @@ msgstr "Thanks! A manager will contact you for a consultation."
 
 #: apps/core/tz_views.py:200
 msgid "Добре. Базове ТЗ у PDF, розширене — на email протягом доби."
-msgstr "All set. Basic PDF brief now; extended by email within 24 hours."
+msgstr ""
+"All set. Your basic brief is in the PDF; the extended one will arrive by "
+"email within 24 hours."
 
 #: apps/core/views.py:67 templates/base.html:22
 msgid "PrometeyLabs - Розробка сайтів під ключ | Telegram боти | Реклама"
@@ -1951,17 +1951,16 @@ msgid "Метод не дозволений"
 msgstr "Method not allowed"
 
 #: apps/core/views.py:221 apps/core/views.py:386
-#, fuzzy
-#| msgid ""
-#| "Дякуємо! Ваша заявка отримана. Ми зв'яжемося з вами найближчим часом."
 msgid ""
 "Дякуємо! Заявку на Telegram-бота отримано. Ми зв'яжемося з вами найближчим "
 "часом."
-msgstr "Our manager will contact you soon"
+msgstr ""
+"Thank you! We have received your Telegram bot request and will contact you "
+"shortly."
 
 #: apps/core/views.py:235 apps/core/views.py:491
 msgid "Підтвердіть згоду на обробку персональних даних."
-msgstr "I agree to the processing of personal data according to"
+msgstr "Please confirm your consent to the processing of personal data."
 
 #: apps/core/views.py:242 apps/core/views.py:278 apps/core/views.py:504
 msgid "Введіть коректне ім'я (мінімум 2 символи, хоча б одна літера)"
@@ -2017,7 +2016,7 @@ msgstr ""
 
 #: apps/core/views.py:443
 msgid "Дякуємо! Наш спеціаліст зв'яжеться з вами протягом 15 хвилин."
-msgstr "Fill out the form and we will contact you within 15 minutes"
+msgstr "Thank you! Our specialist will contact you within 15 minutes."
 
 #: apps/core/views.py:470
 msgid "Дякуємо за ваше повідомлення! Ми зв'яжемося з вами найближчим часом."
@@ -2037,7 +2036,7 @@ msgstr "Thank you! We will contact you soon."
 
 #: apps/core/views.py:593
 msgid "Дякуємо! Наш менеджер зателефонує вам протягом 15 хвилин."
-msgstr "Leave your contacts and our manager will call you within 15 minutes"
+msgstr "Thank you! Our manager will call you within 15 minutes."
 
 #: apps/core/views.py:601
 msgid "Заявка з footer - Консультація"

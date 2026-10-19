@@ -476,10 +476,8 @@ msgid "Генератор ТЗ для сайту"
 msgstr "Generátor zadání pro web"
 
 #: apps/core/models.py:25 apps/core/views.py:368
-#, fuzzy
-#| msgid "Персональний Telegram-бот"
 msgid "Заявка на Telegram-бота"
-msgstr "Osobní Telegram bot"
+msgstr "Poptávka na Telegram bota"
 
 #: apps/core/models.py:30 apps/payment/models.py:68
 msgid "Новий"
@@ -1737,11 +1735,11 @@ msgid "Помилка при збереженні. Спробуйте ще ра�
 msgstr "Chyba při ukládání. Zkuste to znovu."
 
 #: apps/core/tz_views.py:118
-#, fuzzy
-#| msgid "Добре. Базове ТЗ у PDF, розширене — на email протягом доби."
 msgid ""
 "Базове ТЗ готове. Завантажте PDF — розширене надійде на пошту протягом доби."
-msgstr "Dobře. Základní zadání v PDF, rozšířené e-mailem do 24 hodin."
+msgstr ""
+"Základní zadání je hotové. Stáhněte si PDF — rozšířené přijde e-mailem do "
+"24 hodin."
 
 #: apps/core/tz_views.py:138
 msgid "ТЗ не знайдено"
@@ -2005,13 +2003,10 @@ msgid "Метод не дозволений"
 msgstr "Metoda není povolena"
 
 #: apps/core/views.py:221 apps/core/views.py:386
-#, fuzzy
-#| msgid ""
-#| "Дякуємо! Ваша заявка отримана. Ми зв'яжемося з вами найближчим часом."
 msgid ""
 "Дякуємо! Заявку на Telegram-бота отримано. Ми зв'яжемося з вами найближчим "
 "часом."
-msgstr "Děkujeme! Vaše poptávka byla přijata. Brzy se s vámi spojíme."
+msgstr "Děkujeme! Poptávku na Telegram bota jsme přijali. Brzy se vám ozveme."
 
 #: apps/core/views.py:235 apps/core/views.py:491
 msgid "Підтвердіть згоду на обробку персональних даних."
