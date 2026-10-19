@@ -1891,7 +1891,9 @@ msgstr "Custom online stores — fast e-commerce development | PrometeyLabs"
 msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код."
-msgstr "E-commerce on a native stack — no page builders. Marketplace migration, SEO, 1-year code warranty."
+msgstr ""
+"E-commerce on a native stack — no page builders. Marketplace migration, "
+"SEO, lifetime code warranty."
 
 #: apps/core/views.py:170 templates/pages/internet-shop-v2.html:9
 msgid "Інтернет-магазини, що завантажуються швидше — PrometeyLabs"
@@ -1906,7 +1908,9 @@ msgstr "Corporate sites & landing pages — fast custom builds | PrometeyLabs"
 msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код."
-msgstr "Corporate websites and landing pages on a native stack. A fast site with high Core Web Vitals scores, technical SEO and a 1-year code warranty."
+msgstr ""
+"Corporate websites and landing pages on a native stack. A fast site with "
+"high Core Web Vitals scores, technical SEO and a lifetime code warranty."
 
 #: apps/core/views.py:186 templates/pages/corporate-website-v2.html:9
 msgid "Корпоративні сайти, що домінують у пошуку — PrometeyLabs"
@@ -4693,7 +4697,7 @@ msgstr "Top Core Web Vitals score"
 #: templates/components/corporate_website_v2/scale.html:69
 #: templates/components/internet_shop_v2/hero.html:71
 msgid "Пожиттєва гарантія на код"
-msgstr "1-year code warranty"
+msgstr "Lifetime code warranty + 1 year of free support"
 
 #: templates/components/corporate_website_v2/hero.html:193
 msgid "Безлімітне масштабування"
@@ -5896,7 +5900,9 @@ msgstr "Code warranty"
 msgid ""
 "Чистий код без плагінів і залежностей — стабільна робота функціоналу "
 "протягом усього життя проєкту."
-msgstr "Clean code without plugins or fragile dependencies — code defects fixed for 1 year after handover."
+msgstr ""
+"Clean code without plugins or fragile dependencies — defects in our code "
+"fixed for the lifetime of the project."
 
 #: templates/components/internet_shop_v2/hero.html:25
 msgid ""
@@ -8154,7 +8160,7 @@ msgstr "Thoughtful architecture and product logic"
 
 #: templates/pages/calculator.html:35
 msgid "Пожиттєва гарантія на наші програмні продукти."
-msgstr "1-year code warranty on our software products."
+msgstr "Lifetime code warranty + 1 year of free support."
 
 #: templates/pages/calculator.html:39
 msgid "Жодних щомісячних або прихованих платежів (повна прозорість)."
@@ -8385,7 +8391,10 @@ msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код. PrometeyLabs — "
 "сайти під ключ."
-msgstr "Corporate websites and landing pages on a native stack. A fast site with high Core Web Vitals scores, technical SEO, 1-year code warranty. PrometeyLabs — custom sites."
+msgstr ""
+"Corporate websites and landing pages on a native stack. A fast site with "
+"high Core Web Vitals scores, technical SEO, lifetime code warranty. "
+"PrometeyLabs — custom sites."
 
 #: templates/pages/corporate-website.html:9
 msgid "Корпоративний сайт під ключ — створимо за 7 днів"
@@ -8760,7 +8769,9 @@ msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-"
 "commerce під ключ."
-msgstr "E-commerce on a native stack — no page builders. Marketplace migration, SEO, 1-year code warranty. PrometeyLabs — custom stores."
+msgstr ""
+"E-commerce on a native stack — no page builders. Marketplace migration, "
+"SEO, lifetime code warranty. PrometeyLabs — custom stores."
 
 #: templates/pages/internet-shop.html:7
 msgid ""
@@ -8958,8 +8969,8 @@ msgid ""
 "1 рік на техбаги з нашої вини — як в оферті. Нові функції й сторонні API в "
 "гарантію не входять."
 msgstr ""
-"1 year on technical bugs caused by us — as in the offer. New features and "
-"third-party APIs are not covered by the warranty."
+"We fix defects in our code for life, and support is free for the first "
+"year. New features and third-party APIs are not covered by the warranty."
 
 #: templates/pages/telegram-bot.html:122
 msgid "Telegram-бот під ключ"
@@ -8999,7 +9010,7 @@ msgstr "after payment, code and token belong to the client"
 
 #: templates/pages/telegram-bot.html:139
 msgid "гарантія 1 рік на багфікс"
-msgstr "1-year bugfix warranty"
+msgstr "lifetime code warranty"
 
 #: templates/pages/telegram-bot.html:148
 msgid "Бот студії"
@@ -9229,9 +9240,7 @@ msgstr "FAQ"
 msgid ""
 "Як у публічній оферті: 1 рік на багфікс з нашої вини. Не «пожиттєво» і не «5 "
 "років»."
-msgstr ""
-"As in the public offer: 1 year of bug fixes for our faults. Not “lifetime” "
-"and not “5 years”."
+msgstr "Lifetime warranty on defects in our code + 1 year of free support."
 
 #: templates/pages/telegram-bot.html:316
 msgid "Ніша й задача — відповімо орієнтиром по боту. Це не калькулятор сайтів."
@@ -10842,8 +10851,14 @@ msgid "Tvorba webových stránek na klíč | PrometeyLabs"
 msgstr "Turnkey Website Development | PrometeyLabs"
 
 #: templates/pages/web-development.html
-msgid "Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 600–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, bezplatná podpora a roční záruka na kód."
-msgstr "Turnkey websites: landing pages €400–700, company websites €700–1,000, online stores €1,600–2,800, web apps €2,800–8,000. Price and deadline fixed in the contract, free support and a 1-year code warranty."
+msgid ""
+"Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 "
+"400–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, "
+"doživotní záruka na kód a 1 rok bezplatné podpory."
+msgstr ""
+"Turnkey websites: landing pages €400–700, company websites €700–1,000, "
+"online stores €1,400–2,800, web apps €2,800–8,000. Price and deadline fixed "
+"in the contract, lifetime code warranty and 1 year of free support."
 
 #: templates/pages/web-development.html
 msgid "tvorba webových stránek, web na klíč, landing page, firemní web, e-shop, webová aplikace, PrometeyLabs"
@@ -10862,8 +10877,14 @@ msgid "Tvorba webových stránek"
 msgstr "Website development"
 
 #: templates/pages/web-development.html templates/components/web_development/hero.html
-msgid "Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: rozpočet a termíny zakotvíme ve smlouvě. Bezplatná podpora a roční záruka na kód."
-msgstr "Landing pages, company websites, online stores and web apps. Straightforward terms: budget and deadlines are fixed in the contract. Free support and a 1-year code warranty."
+msgid ""
+"Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: "
+"rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok "
+"bezplatné podpory."
+msgstr ""
+"Landing pages, company websites, online stores and web apps. "
+"Straightforward terms: budget and deadlines are fixed in the contract. "
+"Lifetime code warranty and 1 year of free support."
 
 #: templates/pages/web-development.html templates/components/web_development/admin.html templates/components/web_development/hero.html templates/components/web_development/products.html
 msgid "Landing page"
@@ -11334,7 +11355,7 @@ msgid "Баласт-скрипти"
 msgstr "Ballast scripts"
 
 msgid "Від 1 400 €. Пожиттєва гарантія на код. 1 рік підтримки безкоштовно."
-msgstr "From €1,400. Lifetime code guarantee. 1 year of free support."
+msgstr "From €1,400. Lifetime code warranty. 1 year of free support."
 
 msgid "Заявка на розрахунок вартості"
 msgstr "Price estimate request"
@@ -11351,10 +11372,10 @@ msgid "Правова інформація"
 msgstr "Legal information"
 
 msgid "Гарантія на код 1 рік"
-msgstr "1-year code warranty"
+msgstr "Lifetime code warranty + 1 year of free support"
 
 msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
-msgstr "From €1,400. 1-year code warranty. 1 year of free support."
+msgstr "From €1,400. Lifetime code warranty. 1 year of free support."
 
 msgid "від 1 400 €"
 msgstr "from €1,400"

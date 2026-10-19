@@ -1948,7 +1948,9 @@ msgstr "E-shopy na klíč — rychlý vývoj e-commerce | PrometeyLabs"
 msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код."
-msgstr "Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a Heureka, SEO, roční záruka na kód."
+msgstr ""
+"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a "
+"Heureka, SEO, doživotní záruka na kód."
 
 #: apps/core/views.py:170 templates/pages/internet-shop-v2.html:9
 msgid "Інтернет-магазини, що завантажуються швидше — PrometeyLabs"
@@ -1963,7 +1965,9 @@ msgstr "Firemní weby a landing page na klíč — rychlý vývoj | PrometeyLabs
 msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код."
-msgstr "Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s vysokým skóre Core Web Vitals, technické SEO, roční záruka na kód."
+msgstr ""
+"Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s "
+"vysokým skóre Core Web Vitals, technické SEO, doživotní záruka na kód."
 
 #: apps/core/views.py:186 templates/pages/corporate-website-v2.html:9
 msgid "Корпоративні сайти, що домінують у пошуку — PrometeyLabs"
@@ -4736,7 +4740,7 @@ msgstr "Nejvyšší skóre Core Web Vitals"
 #: templates/components/corporate_website_v2/scale.html:69
 #: templates/components/internet_shop_v2/hero.html:71
 msgid "Пожиттєва гарантія на код"
-msgstr "Roční záruka na kód"
+msgstr "Doživotní záruka na kód + 1 rok bezplatné podpory"
 
 #: templates/components/corporate_website_v2/hero.html:193
 msgid "Безлімітне масштабування"
@@ -5939,7 +5943,9 @@ msgstr "Záruka na kód"
 msgid ""
 "Чистий код без плагінів і залежностей — стабільна робота функціоналу "
 "протягом усього життя проєкту."
-msgstr "Čistý kód bez pluginů a závislostí — opravy chyb v kódu po dobu 1 roku od předání."
+msgstr ""
+"Čistý kód bez pluginů a závislostí — opravy chyb v našem kódu po celou dobu "
+"životnosti projektu."
 
 #: templates/components/internet_shop_v2/hero.html:25
 msgid ""
@@ -8170,7 +8176,7 @@ msgstr "Promyšlená architektura a logika produktu."
 
 #: templates/pages/calculator.html:35
 msgid "Пожиттєва гарантія на наші програмні продукти."
-msgstr "Roční záruka na kód našich softwarových produktů."
+msgstr "Doživotní záruka na kód + 1 rok bezplatné podpory."
 
 #: templates/pages/calculator.html:39
 msgid "Жодних щомісячних або прихованих платежів (повна прозорість)."
@@ -8391,7 +8397,10 @@ msgid ""
 "Розробка корпоративних сайтів та лендінгів з нативною архітектурою. 100/100 "
 "Core Web Vitals, технічне SEO, пожиттєва гарантія на код. PrometeyLabs — "
 "сайти під ключ."
-msgstr "Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s vysokým skóre Core Web Vitals, technické SEO, roční záruka na kód. PrometeyLabs — weby na klíč."
+msgstr ""
+"Vývoj firemních webů a landing page s nativní architekturou. Rychlý web s "
+"vysokým skóre Core Web Vitals, technické SEO, doživotní záruka na kód. "
+"PrometeyLabs — weby na klíč."
 
 #: templates/pages/corporate-website.html:9
 #, fuzzy
@@ -8750,7 +8759,9 @@ msgid ""
 "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. "
 "Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-"
 "commerce під ключ."
-msgstr "Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a Heureka, SEO, roční záruka na kód. PrometeyLabs — e-commerce na klíč."
+msgstr ""
+"Vývoj e-shopů s nativní architekturou bez šablon. Migrace ze Shoptet a "
+"Heureka, SEO, doživotní záruka na kód. PrometeyLabs — e-commerce na klíč."
 
 #: templates/pages/internet-shop.html:7
 #, fuzzy
@@ -8947,8 +8958,8 @@ msgid ""
 "1 рік на техбаги з нашої вини — як в оферті. Нові функції й сторонні API в "
 "гарантію не входять."
 msgstr ""
-"1 rok na technické chyby z naší strany — dle smlouvy. Nové funkce a cizí API "
-"do záruky nespadají."
+"Chyby v našem kódu opravujeme doživotně, první rok podporu poskytujeme "
+"zdarma. Nové funkce a cizí API do záruky nespadají."
 
 #: templates/pages/telegram-bot.html:122
 msgid "Telegram-бот під ключ"
@@ -8988,7 +8999,7 @@ msgstr "po zaplacení kód i token patří klientovi"
 
 #: templates/pages/telegram-bot.html:139
 msgid "гарантія 1 рік на багфікс"
-msgstr "záruka 1 rok na opravu chyb"
+msgstr "doživotní záruka na kód"
 
 #: templates/pages/telegram-bot.html:148
 msgid "Бот студії"
@@ -9217,9 +9228,7 @@ msgstr "Časté otázky"
 msgid ""
 "Як у публічній оферті: 1 рік на багфікс з нашої вини. Не «пожиттєво» і не «5 "
 "років»."
-msgstr ""
-"Jak ve veřejné smlouvě: 1 rok na opravu chyb z naší strany. Ne „doživotně“ a "
-"ne „5 let“."
+msgstr "Doživotní záruka na chyby v našem kódu + 1 rok bezplatné podpory."
 
 #: templates/pages/telegram-bot.html:316
 msgid "Ніша й задача — відповімо орієнтиром по боту. Це не калькулятор сайтів."
@@ -10210,8 +10219,14 @@ msgid "Tvorba webových stránek na klíč | PrometeyLabs"
 msgstr "Tvorba webových stránek na klíč | PrometeyLabs"
 
 #: templates/pages/web-development.html
-msgid "Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 600–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, bezplatná podpora a roční záruka na kód."
-msgstr "Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 600–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, bezplatná podpora a roční záruka na kód."
+msgid ""
+"Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 "
+"400–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, "
+"doživotní záruka na kód a 1 rok bezplatné podpory."
+msgstr ""
+"Weby na klíč: landing page 400–700 €, firemní weby 700–1 000 €, e-shopy 1 "
+"400–2 800 €, webové aplikace 2 800–8 000 €. Cena a termín ve smlouvě, "
+"doživotní záruka na kód a 1 rok bezplatné podpory."
 
 #: templates/pages/web-development.html
 msgid "tvorba webových stránek, web na klíč, landing page, firemní web, e-shop, webová aplikace, PrometeyLabs"
@@ -10230,8 +10245,14 @@ msgid "Tvorba webových stránek"
 msgstr "Tvorba webových stránek"
 
 #: templates/pages/web-development.html templates/components/web_development/hero.html
-msgid "Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: rozpočet a termíny zakotvíme ve smlouvě. Bezplatná podpora a roční záruka na kód."
-msgstr "Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: rozpočet a termíny zakotvíme ve smlouvě. Bezplatná podpora a roční záruka na kód."
+msgid ""
+"Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: "
+"rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok "
+"bezplatné podpory."
+msgstr ""
+"Landing page, firemní weby, e-shopy i webové aplikace. Férová spolupráce: "
+"rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok "
+"bezplatné podpory."
 
 #: templates/pages/web-development.html templates/components/web_development/admin.html templates/components/web_development/hero.html templates/components/web_development/products.html
 msgid "Landing page"
@@ -10702,7 +10723,7 @@ msgid "Баласт-скрипти"
 msgstr "Zátěžové skripty"
 
 msgid "Від 1 400 €. Пожиттєва гарантія на код. 1 рік підтримки безкоштовно."
-msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok podpory zdarma."
+msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
 msgid "Заявка на розрахунок вартості"
 msgstr "Žádost o kalkulaci ceny"
@@ -10723,10 +10744,10 @@ msgid "Правова інформація"
 msgstr "Právní informace"
 
 msgid "Гарантія на код 1 рік"
-msgstr "Roční záruka na kód"
+msgstr "Doživotní záruka na kód + 1 rok bezplatné podpory"
 
 msgid "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно."
-msgstr "Od 1 400 €. Roční záruka na kód. 1 rok podpory zdarma."
+msgstr "Od 1 400 €. Doživotní záruka na kód. 1 rok bezplatné podpory."
 
 msgid "від 1 400 €"
 msgstr "od 1 400 €"
