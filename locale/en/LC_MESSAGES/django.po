@@ -3378,7 +3378,7 @@ msgstr "Yes"
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:74
 #: templates/components/internet_shop_v2/pkg_matrix_table.html:80
 msgid "Ні"
-msgstr "All"
+msgstr "No"
 
 #: apps/payment/admin.py:115 apps/payment/admin.py:205
 #: apps/payment/admin.py:252 apps/payment/models.py:299
@@ -4750,7 +4750,7 @@ msgstr "Services"
 #: templates/components/corporate_website_v2/scale.html:38
 #: templates/components/corporate_website_v2/scale.html:50
 msgid "копія · 0 грн"
-msgstr "Up to $1,200"
+msgstr "copy · €0"
 
 #: templates/components/corporate_website_v2/scale.html:44
 msgid "регіон"
@@ -5845,7 +5845,7 @@ msgstr "100–1,000 products"
 
 #: templates/components/internet_shop_v2/brief.html:84
 msgid "1000–10 000 товарів"
-msgstr "$1,200–3,500"
+msgstr "1,000–10,000 products"
 
 #: templates/components/internet_shop_v2/brief.html:90
 msgid "Більше 10 000 товарів"
@@ -7296,19 +7296,19 @@ msgstr "Estimated project budget?"
 
 #: templates/components/tz_generator/quiz.html:100
 msgid "До 50 000 грн"
-msgstr "Up to $1,200"
+msgstr "Up to €1,200"
 
 #: templates/components/tz_generator/quiz.html:101
 msgid "50–150 000 грн"
-msgstr "$1,200–3,500"
+msgstr "€1,200–3,500"
 
 #: templates/components/tz_generator/quiz.html:102
 msgid "150–400 000 грн"
-msgstr "$3,500–10,000"
+msgstr "€3,500–10,000"
 
 #: templates/components/tz_generator/quiz.html:103
 msgid "Від 400 000 грн"
-msgstr "$10,000+"
+msgstr "€10,000+"
 
 #: templates/components/tz_generator/quiz.html:104
 msgid "Потрібна консультація"
