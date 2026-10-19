@@ -10,13 +10,13 @@ SHOP_TAGS_EN = (
     'product catalogue',
     'cart and checkout',
     'online payment',
-    'delivery across Czechia',
+    'E-commerce',
 )
 SHOP_TAGS_CS = (
     'katalog produktů',
     'košík a objednávka',
     'online platba',
-    'doprava po Česku',
+    'E-commerce',
 )
 
 CATALOG_TAGS_RU = (

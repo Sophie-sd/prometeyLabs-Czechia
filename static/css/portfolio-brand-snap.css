@@ -215,6 +215,14 @@
     color: rgba(255, 255, 255, 0.88);
 }
 
+/* №45: підпис для кейсів клієнтів з України */
+.pf-snap__note {
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.6);
+}
+
 .pf-snap__desc {
     margin: 0 0 32px;
     font-size: var(--font-sub);

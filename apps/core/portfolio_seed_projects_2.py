@@ -12,7 +12,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Оптовый интернет-магазин косметики: каталог брендов, быстрое оформление заказа и доставка по Украине.',
         tags=SHOP_TAGS,
         site_url='https://www.beauty-opt.com.ua/',
-        order=29,
+        order=23,
     ),
     card(
         slug='gordimarket',
@@ -36,7 +36,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Интернет-магазин товаров для дома и техники: каталог продукции с онлайн-оплатой и доставкой.',
         tags=SHOP_TAGS,
         site_url='https://domoteh.shop/',
-        order=30,
+        order=24,
     ),
     card(
         slug='carpet-haus',
@@ -48,7 +48,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Интернет-магазин ковров: широкий каталог, фильтры по размеру и стилю, доставка по Украине.',
         tags=SHOP_TAGS,
         site_url='https://carpet-haus.com.ua/',
-        order=31,
+        order=25,
     ),
     card(
         slug='svitpc',
@@ -60,7 +60,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Интернет-магазин компьютерной техники и комплектующих: каталог, корзина и онлайн-оплата.',
         tags=SHOP_TAGS,
         site_url='https://svitpc.com.ua/',
-        order=11,
+        order=9,
     ),
     card(
         slug='geer',
@@ -72,7 +72,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Интернет-магазин военного и туристического снаряжения: каталог экипировки с доставкой по Украине.',
         tags=SHOP_TAGS,
         site_url='https://450geer.com.ua/',
-        order=32,
+        order=46,
     ),
     card(
         slug='oyra',
@@ -84,7 +84,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Интернет-магазин товаров для дома: каталог декора и бытовых вещей с онлайн-заказом.',
         tags=SHOP_TAGS,
         site_url='https://oyra.com.ua/',
-        order=33,
+        order=26,
     ),
     card(
         slug='boltiko',
@@ -96,7 +96,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Интернет-магазин шайб, саморезов и крепежа: каталог метизов для строительства и производства.',
         tags=SHOP_TAGS,
         site_url='https://boltiko.com.ua/',
-        order=34,
+        order=27,
     ),
     card(
         slug='beautycake',
@@ -108,7 +108,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Интернет-магазин кондитерских товаров и декора для тортов: каталог ингредиентов и инструментов.',
         tags=SHOP_TAGS,
         site_url='https://beautycake.com.ua/',
-        order=35,
+        order=28,
     ),
     card(
         slug='soliron',
@@ -120,7 +120,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Интернет-магазин солнечных панелей и оборудования для зелёной энергетики с доставкой по Украине.',
         tags=SHOP_TAGS,
         site_url='https://soliron.com.ua/',
-        order=36,
+        order=29,
     ),
     card(
         slug='ogemed',
@@ -145,7 +145,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Корпоративный каталог производителя коробок и упаковки: продукция, расчёт заказа, контакты.',
         tags=CATALOG_TAGS,
         site_url='https://magnum-tpc.com/uk/',
-        order=37,
+        order=30,
     ),
     card(
         slug='caryvibe',
@@ -157,7 +157,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Каталог сумок и аксессуаров: витрина коллекций, заявка и контакты бренда.',
         tags=CATALOG_TAGS,
         site_url='https://caryvibe.in.ua/',
-        order=38,
+        order=31,
     ),
     card(
         slug='recharge',
@@ -169,7 +169,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Каталог силового оборудования для залов: тренажёры, расчёт поставки, контакты производителя.',
         tags=CATALOG_TAGS,
         site_url='https://recharge4gym.com.ua/uk/',
-        order=39,
+        order=32,
     ),
     card(
         slug='fortprint',
@@ -181,7 +181,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc_ru='Каталог решений для маркировки и печати: оборудование, заявка на расчёт, контакты.',
         tags=CATALOG_TAGS,
         site_url='https://www.fortprint.com.ua/',
-        order=40,
+        order=33,
     ),
     card(
         slug='benzovoz',

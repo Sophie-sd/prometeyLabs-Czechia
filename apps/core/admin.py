@@ -551,6 +551,7 @@ class PortfolioProjectAdmin(UnfoldModelAdmin):
         ('show_on_portfolio', BooleanDropdownFilter),
         ('show_on_homepage', BooleanDropdownFilter),
         ('category', ChoicesDropdownFilter),
+        ('is_ukraine_client', BooleanDropdownFilter),
     )
     search_fields = ('title', 'subtitle', 'card_description', 'slug')
     prepopulated_fields = {'slug': ('title',)}
@@ -620,6 +621,7 @@ class PortfolioProjectAdmin(UnfoldModelAdmin):
                 'is_published',
                 'show_on_portfolio',
                 'show_on_homepage',
+                'is_ukraine_client',
             ),
         }),
         (_('Службове'), {

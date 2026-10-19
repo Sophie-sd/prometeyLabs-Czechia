@@ -6,7 +6,7 @@ from django.utils.translation import gettext as _
 from django.utils import translation
 from .models import BlogPost
 from .seo import BLOG_LIST_META, blog_search_meta, post_meta, article_jsonld
-from .visibility import is_hidden_category, visible_posts
+from .visibility import is_hidden_category
 
 
 def _lang():
@@ -16,7 +16,7 @@ def _lang():
 def blog_list(request):
     """Список статей блогу з фільтрацією"""
     try:
-        posts = visible_posts(BlogPost.objects.all())
+        posts = BlogPost.objects.public()
         category = request.GET.get('category')
         if category:
             posts = posts.filter(category=category)
@@ -27,7 +27,7 @@ def blog_list(request):
         page_obj = paginator.get_page(page_number)
         
         # Популярні статті
-        popular_posts = visible_posts(BlogPost.objects.all()).order_by('-created_at')[:3]
+        popular_posts = BlogPost.objects.public().order_by('-created_at')[:3]
         
     except Exception:
         # Fallback якщо таблиці не існують
@@ -59,7 +59,7 @@ class BlogDetailView(DetailView):
     
     def get_queryset(self):
         try:
-            return BlogPost.objects.filter(is_published=True)
+            return BlogPost.objects.public()
         except Exception:
             return BlogPost.objects.none()
     
@@ -76,9 +76,9 @@ class BlogDetailView(DetailView):
         context['seo_noindex'] = is_hidden_category(post.category)
 
         # Пов'язані статті
-        related_posts = visible_posts(BlogPost.objects.filter(
+        related_posts = BlogPost.objects.public().filter(
             category=post.category,
-        )).exclude(id=post.id)[:3]
+        ).exclude(id=post.id)[:3]
         context['related_posts'] = related_posts
         
         return context
@@ -88,7 +88,7 @@ def blog_search(request):
     """Пошук по блогу"""
     query = request.GET.get('q', '')
     try:
-        posts = visible_posts(BlogPost.objects.all())
+        posts = BlogPost.objects.public()
         
         if query:
             posts = posts.filter(

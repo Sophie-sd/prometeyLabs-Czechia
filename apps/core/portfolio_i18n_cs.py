@@ -48,7 +48,7 @@ PORTFOLIO_I18N_CS = {
         'DropRoom',
         'Outletové značky',
         'Originální evropské a americké outletové značky pod maloobchodní cenou ze zbytkových kolekcí.',
-        ('katalog s filtry', 'košík a objednávka', 'online platba', 'doprava po Česku'),
+        ('katalog s filtry', 'košík a objednávka', 'online platba', 'E-commerce'),
     ),
     'vezhi-rozhnovskogo': loc(
         'Ukrkotlobud',
@@ -83,7 +83,7 @@ PORTFOLIO_I18N_CS = {
     'beauty-opt': loc(
         'Beauty Shop',
         'Obchod s kosmetikou',
-        'Velkoobchodní e-shop s kosmetikou: katalog značek, rychlá objednávka a doprava po Česku.',
+        'Velkoobchodní e-shop s kosmetikou: katalog značek a rychlá objednávka.',
         SHOP_TAGS_CS,
     ),
     'gordimarket': loc(
@@ -101,7 +101,7 @@ PORTFOLIO_I18N_CS = {
     'carpet-haus': loc(
         'Kylymy',
         'Koberce',
-        'Obchod s koberci: široký katalog s filtry velikosti a stylu, doprava po Česku.',
+        'Obchod s koberci: široký katalog s filtry velikosti a stylu.',
         SHOP_TAGS_CS,
     ),
     'svitpc': loc(
@@ -113,7 +113,7 @@ PORTFOLIO_I18N_CS = {
     'geer': loc(
         'Geer',
         'Vojenské a outdoorové vybavení',
-        'Obchod s vojenským a turistickým vybavením: katalog s dopravou po Česku.',
+        'Obchod s vojenským a turistickým vybavením: katalog s online objednávkou.',
         SHOP_TAGS_CS,
     ),
     'oyra': loc(
@@ -137,7 +137,7 @@ PORTFOLIO_I18N_CS = {
     'soliron': loc(
         'Soliron',
         'Solární panely',
-        'Obchod se solárními panely a vybavením pro zelenou energii s dopravou po Česku.',
+        'Obchod se solárními panely a vybavením pro zelenou energii.',
         SHOP_TAGS_CS,
     ),
     'ogemed': loc(
@@ -173,7 +173,7 @@ PORTFOLIO_I18N_CS = {
     'benzovoz': loc(
         'Benzovoz',
         'Náhradní díly',
-        'Katalog dílů pro cisterny a speciální techniku: položky, poptávka, doprava po Česku.',
+        'Katalog dílů pro cisterny a speciální techniku: položky, poptávka, kontakty.',
         CATALOG_TAGS_CS,
     ),
     'notenhaus': loc(
@@ -297,7 +297,7 @@ PORTFOLIO_I18N_CS = {
         CORP_TAGS_CS,
     ),
     'krashiyvubir': loc(
-        'Kraščíj Vybir',
+        'Kraschyi Vybir (UA)',
         'Stavebnictví',
         'Firemní web stavební společnosti: služby, zakázky, poptávka konzultace.',
         CORP_TAGS_CS,
@@ -309,7 +309,7 @@ PORTFOLIO_I18N_CS = {
         CORP_TAGS_CS,
     ),
     'pokrivlya': loc(
-        'Pokrivlya',
+        'Pokrivlya (UA)',
         'Střechy',
         'Firemní web střešních prací: montáž, poptávka, kontakty.',
         CORP_TAGS_CS,

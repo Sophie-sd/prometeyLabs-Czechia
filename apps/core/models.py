@@ -820,6 +820,14 @@ class PortfolioProject(models.Model):
         verbose_name=_('Категорія (фільтр /portfolio/)'),
     )
     is_published = models.BooleanField(default=True, verbose_name=_('Опубліковано'))
+    is_ukraine_client = models.BooleanField(
+        default=False,
+        verbose_name=_('Клієнт в Україні'),
+        help_text=_(
+            'Показує під карткою підпис «Projekt pro klienta na Ukrajině» / '
+            '«Project for a client in Ukraine» (знімки сайту українською, ціни в ₴).'
+        ),
+    )
     show_on_portfolio = models.BooleanField(
         default=False,
         verbose_name=_('Показувати на /portfolio/'),

@@ -38,6 +38,9 @@
                 <span class="pf-snap__subtitle">{{ project.get_localized_subtitle }}</span>
                 {% endif %}
             </h2>
+            {% if project.is_ukraine_client %}
+            <p class="pf-snap__note">{% trans "Projekt pro klienta na Ukrajině" %}</p>
+            {% endif %}
             <button type="button" class="pf-snap__category mobile-touch-target" data-pf-filter-jump="{{ project.category }}" aria-label="{{ portfolio_copy.card_filter_hint }}: {{ project.get_category_label }}">{{ project.get_category_label }}</button>
             <p class="pf-snap__desc">{{ project.get_localized_card_description }}</p>
 

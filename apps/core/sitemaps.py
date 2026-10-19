@@ -6,7 +6,7 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
 from apps.blog.models import BlogPost
-from apps.blog.visibility import visible_posts
+
 
 # Домен береться з CANONICAL_BASE (https://prometeylabs.cz) — той самий, що й
 # у canonical / hreflang. Ніколи не prometeylabs.com.
@@ -92,7 +92,7 @@ class BlogPostSitemap(AbsoluteSitemap):
     x_default = True
 
     def items(self):
-        return visible_posts(BlogPost.objects.all()).only('slug', 'updated_at', 'category')
+        return BlogPost.objects.public().only('slug', 'updated_at', 'category')
 
     def lastmod(self, obj):
         return obj.updated_at

@@ -30,7 +30,12 @@
                     {% endif %}
                     {% endwith %}
                     <div class="pl-web__work-foot">
-                        <p class="pl-web__work-name">{{ project.get_localized_title }}</p>
+                        <div class="pl-web__work-meta">
+                            <p class="pl-web__work-name">{{ project.get_localized_title }}</p>
+                            {% if project.is_ukraine_client %}
+                            <p class="pl-web__work-note">{% trans "Projekt pro klienta na Ukrajině" %}</p>
+                            {% endif %}
+                        </div>
                         <a class="pl-web__pill pl-web__pill--work" href="{% url 'portfolio' %}">{% trans "Podrobnosti" %}</a>
                     </div>
                 </article>

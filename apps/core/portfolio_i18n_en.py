@@ -48,7 +48,7 @@ PORTFOLIO_I18N_EN = {
         'DropRoom',
         'Outlet brands',
         'Original European and US outlet brands at below-retail prices from leftover and outlet collections.',
-        ('filtered catalogue', 'cart and checkout', 'online payment', 'delivery across Czechia'),
+        ('filtered catalogue', 'cart and checkout', 'online payment', 'E-commerce'),
     ),
     'vezhi-rozhnovskogo': loc(
         'Ukrkotlobud',
@@ -83,7 +83,7 @@ PORTFOLIO_I18N_EN = {
     'beauty-opt': loc(
         'Beauty Shop',
         'Cosmetics store',
-        'Wholesale cosmetics shop: brand catalogue, fast checkout, and delivery across Czechia.',
+        'Wholesale cosmetics shop: brand catalogue and fast checkout.',
         SHOP_TAGS_EN,
     ),
     'gordimarket': loc(
@@ -101,7 +101,7 @@ PORTFOLIO_I18N_EN = {
     'carpet-haus': loc(
         'Kylymy',
         'Rugs',
-        'Rug shop: a wide catalogue with size and style filters, plus delivery across Czechia.',
+        'Rug shop: a wide catalogue with size and style filters.',
         SHOP_TAGS_EN,
     ),
     'svitpc': loc(
@@ -113,7 +113,7 @@ PORTFOLIO_I18N_EN = {
     'geer': loc(
         'Geer',
         'Military and outdoor gear',
-        'Military and outdoor gear shop: equipment catalogue with delivery across Czechia.',
+        'Military and outdoor gear shop: equipment catalogue with online ordering.',
         SHOP_TAGS_EN,
     ),
     'oyra': loc(
@@ -137,7 +137,7 @@ PORTFOLIO_I18N_EN = {
     'soliron': loc(
         'Soliron',
         'Solar panels',
-        'Solar panels and green-energy equipment shop with delivery across Czechia.',
+        'Solar panels and green-energy equipment shop.',
         SHOP_TAGS_EN,
     ),
     'ogemed': loc(
@@ -173,7 +173,7 @@ PORTFOLIO_I18N_EN = {
     'benzovoz': loc(
         'Benzovoz',
         'Spare parts',
-        'Spare-parts catalogue for tank trucks and special vehicles: items, enquiry, delivery across Czechia.',
+        'Spare-parts catalogue for tank trucks and special vehicles: items, enquiry, contacts.',
         CATALOG_TAGS_EN,
     ),
     'notenhaus': loc(
@@ -297,7 +297,7 @@ PORTFOLIO_I18N_EN = {
         CORP_TAGS_EN,
     ),
     'krashiyvubir': loc(
-        'Krashchyi Vybir',
+        'Kraschyi Vybir (UA)',
         'Construction',
         'Construction-company corporate site: services, projects, consultation request.',
         CORP_TAGS_EN,
@@ -309,7 +309,7 @@ PORTFOLIO_I18N_EN = {
         CORP_TAGS_EN,
     ),
     'pokrivlya': loc(
-        'Pokrivlya',
+        'Pokrivlya (UA)',
         'Roofing',
         'Roofing-works corporate site: installation services, enquiry, contacts.',
         CORP_TAGS_EN,
