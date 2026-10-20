@@ -1,8 +1,8 @@
 {% load i18n %}
-{% comment %}Unified lead: name optional; phone|email|telegram min 1; consent; no project_type. Vars: prefix, compact, input_class.{% endcomment %}
+{% comment %}Unified lead: name optional; phone|email|telegram min 1; consent; no project_type. Vars: prefix, compact, input_class, dark (fields sit on a dark card: white labels, @Telegram input = same field as siblings).{% endcomment %}
 {% url 'privacy' as privacy_url %}
 {% with p=prefix|default:"lead" ic=input_class|default:"form-input lead-form-input mobile-touch-target" %}
-<div class="lead-form-fields{% if compact %} lead-form-fields--compact{% endif %}" data-lead-form-fields>
+<div class="lead-form-fields{% if compact %} lead-form-fields--compact{% endif %}{% if dark %} lead-form-fields--dark{% endif %}" data-lead-form-fields>
     <div class="form-group">
         <label for="{{ p }}-name" class="form-label">{% trans "Jméno" %}</label>
         <input type="text" id="{{ p }}-name" name="name" class="{{ ic }}"

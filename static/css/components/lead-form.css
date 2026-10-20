@@ -175,9 +175,9 @@
 }
 
 /* Keep @ + username one surface: never let .form-input paint its own fill */
-.lead-form-telegram__input,
-.lead-form-telegram__input.form-input,
-.lead-form-telegram__input.lead-form-input {
+:where(.lead-form-fields:not(.lead-form-fields--dark)) .lead-form-telegram__input,
+:where(.lead-form-fields:not(.lead-form-fields--dark)) .lead-form-telegram__input.form-input,
+:where(.lead-form-fields:not(.lead-form-fields--dark)) .lead-form-telegram__input.lead-form-input {
     flex: 1 1 auto;
     min-width: 0;
     width: auto;
@@ -190,11 +190,11 @@
     padding-left: 6px;
 }
 
-.lead-form-telegram__input:focus,
-.lead-form-telegram__input.form-input:focus,
-.lead-form-telegram__input.lead-form-input:focus,
-.lead-form-telegram__input:focus-visible,
-.lead-form-telegram__input.form-input:focus-visible {
+:where(.lead-form-fields:not(.lead-form-fields--dark)) .lead-form-telegram__input:focus,
+:where(.lead-form-fields:not(.lead-form-fields--dark)) .lead-form-telegram__input.form-input:focus,
+:where(.lead-form-fields:not(.lead-form-fields--dark)) .lead-form-telegram__input.lead-form-input:focus,
+:where(.lead-form-fields:not(.lead-form-fields--dark)) .lead-form-telegram__input:focus-visible,
+:where(.lead-form-fields:not(.lead-form-fields--dark)) .lead-form-telegram__input.form-input:focus-visible {
     outline: none;
     box-shadow: none !important;
     background: transparent !important;
@@ -203,6 +203,54 @@
 
 .lead-form-telegram__wrap:focus-within {
     border-color: var(--color-brand-orange, #E65100);
+}
+
+/* Dark cards (quiz contact steps): white labels; the @Telegram input keeps the page's own
+   field class (bg, border, radius, height, placeholder, focus) and "@" sits inside it.
+   Per-context knobs: --lead-dark-prefix-left, --lead-dark-autofill-bg. */
+.lead-form-fields.lead-form-fields--dark .form-label {
+    color: #fff;
+}
+
+.lead-form-fields.lead-form-fields--dark .lead-form-telegram__wrap {
+    position: relative;
+    display: block;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    color: inherit;
+    overflow: visible;
+    box-shadow: none;
+}
+
+.lead-form-fields.lead-form-fields--dark .lead-form-telegram__prefix {
+    position: absolute;
+    top: 50%;
+    left: var(--lead-dark-prefix-left, 16px);
+    z-index: 1;
+    padding: 0;
+    transform: translateY(-50%);
+    font-size: inherit;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    pointer-events: none;
+}
+
+.lead-form-fields.lead-form-fields--dark .lead-form-telegram__input {
+    width: 100%;
+    padding-left: calc(var(--lead-dark-prefix-left, 16px) + 16px);
+}
+
+.lead-form-fields.lead-form-fields--dark input:-webkit-autofill,
+.lead-form-fields.lead-form-fields--dark input:-webkit-autofill:hover,
+.lead-form-fields.lead-form-fields--dark input:-webkit-autofill:focus,
+.lead-form-fields.lead-form-fields--dark textarea:-webkit-autofill {
+    -webkit-text-fill-color: #fff;
+    caret-color: #fff;
+    -webkit-box-shadow: 0 0 0 1000px var(--lead-dark-autofill-bg, #141416) inset;
+    box-shadow: 0 0 0 1000px var(--lead-dark-autofill-bg, #141416) inset;
+    transition: background-color 9999s ease-out 0s;
 }
 
 .lead-form-contact-rule {

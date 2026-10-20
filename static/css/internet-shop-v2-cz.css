@@ -4,15 +4,13 @@
 .pl-shop__hero-consent a{color:#d9d9d9;text-decoration:underline}
 .pl-shop__note span .pl-shop__accent,.pl-shop__note .pl-shop__accent{color:inherit}
 .pl-shop__quiz-fields--contact{display:flex;flex-direction:column;gap:10px;text-align:left}
+.pl-shop__quiz-fields--contact{--lead-dark-prefix-left:14px;--lead-dark-autofill-bg:#18181a}
 .pl-shop__quiz-fields--contact .form-group{margin:0}
 .pl-shop__quiz-fields--contact .form-label{display:block;margin:0 0 4px;font-size:12px;color:#a2a2a2}
 .pl-shop__quiz-fields--contact .pl-shop__field-input{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:14px}
 .pl-shop__quiz-fields--contact textarea.pl-shop__field-input{min-height:80px;resize:vertical}
 .pl-shop__quiz-fields--contact .lead-form-checkbox{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#a2a2a2}
 .pl-shop__quiz-fields--contact .lead-form-checkbox a{color:#d9d9d9}
-.pl-shop__quiz-fields--contact .lead-form-telegram__wrap{min-height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff}
-.pl-shop__quiz-fields--contact .lead-form-telegram__prefix{padding-left:14px;color:#777}
-.pl-shop__quiz-fields--contact .lead-form-telegram__input{padding:12px 14px 12px 6px;color:#fff;font:inherit;font-size:14px}
 .pl-shop__quiz-fields--contact .lead-form-expect{margin:0;font-size:12px;color:#777}
 .pl-shop__quiz-fields--contact .lead-form-contact-rule{margin:0;font-size:12px;color:#ff6b6b}
 @media (min-width:1024px){

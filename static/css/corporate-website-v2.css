@@ -2137,6 +2137,12 @@ body.pl-corp-body .main-footer .container,
     transition: border-color 0.25s var(--pl-ease);
 }
 
+/* lead_form_fields dark=True: @ prefix aligned with the 20px field padding; autofill keeps the field fill */
+.pl-corp__quiz {
+    --lead-dark-prefix-left: 20px;
+    --lead-dark-autofill-bg: var(--pl-panel-deep);
+}
+
 .pl-corp__quiz-input::placeholder {
     color: var(--pl-gray);
     opacity: 1;
