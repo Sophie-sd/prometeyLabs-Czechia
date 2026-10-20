@@ -22,11 +22,10 @@
     <link rel="dns-prefetch" href="https://cdn-cookieyes.com">
     {% endif %}
     <!-- CookieYes after idle/gesture (not window.load) so CMP does not inflate mobile TBT/SI.
-         GTM on gesture or 15s (ads-safe fallback). Preview loads both now. /thank-you/ calls
-         _loadGTM() (also pulls CMP). Do not cache HTML at Cloudflare while
+         GTM container = GTM-MQBJTH87 (snippet above). _loadGTM() is kept as a compat alias
+         (/thank-you/ calls it) and now only pulls the CMP. Do not cache HTML at Cloudflare while
          GET still sets csrftoken. -->
     <script nonce="{{ csp_nonce }}">
-    {# gtm.js start event is already pushed once by the GTM-MQBJTH87 snippet above (no duplicate pageview) #}
     function _loadCookieYes(){
       if(window._cyL)return;window._cyL=1;
       {% if COOKIEYES_ID %}
@@ -40,17 +39,7 @@
       {% endif %}
     }
     window._loadCookieYes=_loadCookieYes;
-    function _loadGTM(){
-      if(window._gtmL)return;window._gtmL=1;
-      _loadCookieYes();
-      var j=document.createElement('script');
-      j.async=true;
-      j.setAttribute('nonce','{{ csp_nonce }}');
-      j.nonce='{{ csp_nonce }}';
-      j.src='https://www.googletagmanager.com/gtm.js?id=GTM-K2FVPPTK';
-      document.head.appendChild(j);
-    }
-    window._loadGTM=_loadGTM;
+    window._loadGTM=_loadCookieYes;
     (function(){
       var q=location.search||'';
       var c=document.cookie||'';
@@ -60,15 +49,13 @@
         || /(?:^|[?&#])gtm_auth=/.test(q)
         || /(^|;\s*)gtm_auth=/.test(c)
         || /(^|;\s*)gtm_preview=/.test(c);
-      if(preview){_loadCookieYes();_loadGTM();return;}
-      {# scroll/mousemove fire during Lighthouse SI scroll and inflate TBT via GTM→Clixtell #}
-      ['click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,_loadGTM,{once:true,passive:true});});
+      if(preview){_loadCookieYes();return;}
+      {# scroll/mousemove fire during Lighthouse SI scroll and inflate TBT #}
+      ['click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,_loadCookieYes,{once:true,passive:true});});
       if(typeof requestIdleCallback==='function'){
         requestIdleCallback(function(){_loadCookieYes();},{timeout:12000});
       }else{
         setTimeout(_loadCookieYes,12000);
       }
-      setTimeout(_loadGTM,15000);
     })();
     </script>
-    <!-- End Google Tag Manager -->
