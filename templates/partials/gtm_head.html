@@ -10,6 +10,13 @@
       wait_for_update:500
     });
     </script>
+    <!-- Google Tag Manager GTM-MQBJTH87 (standard snippet, right after Consent Mode default) -->
+    <script nonce="{{ csp_nonce }}">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;j.setAttribute('nonce','{{ csp_nonce }}');f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MQBJTH87');</script>
+    <!-- End Google Tag Manager GTM-MQBJTH87 -->
     {% if COOKIEYES_ID %}
     {# Direct CMP only — do not add CookieYes in GTM. No preconnect: it raced LCP. #}
     <link rel="dns-prefetch" href="https://cdn-cookieyes.com">
@@ -19,7 +26,7 @@
          _loadGTM() (also pulls CMP). Do not cache HTML at Cloudflare while
          GET still sets csrftoken. -->
     <script nonce="{{ csp_nonce }}">
-    window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+    {# gtm.js start event is already pushed once by the GTM-MQBJTH87 snippet above (no duplicate pageview) #}
     function _loadCookieYes(){
       if(window._cyL)return;window._cyL=1;
       {% if COOKIEYES_ID %}
