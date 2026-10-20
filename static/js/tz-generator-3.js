@@ -237,6 +237,16 @@
         });
 
         if (nextBtn) nextBtn.addEventListener('click', goNext);
+        /* Enter on a question step = "Next" (never Skip, never the contact submit) */
+        form.addEventListener('keydown', function (e) {
+            if (e.key !== 'Enter' || e.isComposing) return;
+            if (!isQuestionStep(steps[currentIdx])) return;
+            var tag = e.target && e.target.tagName;
+            if (tag === 'BUTTON' || tag === 'TEXTAREA' || tag === 'A') return;
+            e.preventDefault();
+            goNext();
+        });
+
         if (skipBtn) skipBtn.addEventListener('click', goSkip);
         if (prevBtn) prevBtn.addEventListener('click', goPrev);
 

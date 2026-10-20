@@ -70,6 +70,17 @@ class ProjectCalculator {
         this.skipBtn?.addEventListener('click', () => this.goSkip());
         this.nextBtn?.addEventListener('click', () => this.goNext());
 
+        /* Enter on a question step = "Next" (never Skip, never the contact submit) */
+        this.testForm?.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' || e.isComposing) return;
+            const step = this.steps[this.currentStepIndex];
+            if (!step || this.isContactStep(step)) return;
+            const tag = e.target?.tagName;
+            if (tag === 'BUTTON' || tag === 'TEXTAREA' || tag === 'A') return;
+            e.preventDefault();
+            if (this.nextBtn && !this.nextBtn.disabled) this.goNext();
+        });
+
         if (this.steps.length) {
             this.showStep(0);
         }

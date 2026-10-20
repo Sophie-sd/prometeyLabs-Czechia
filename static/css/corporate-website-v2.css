@@ -2172,7 +2172,7 @@ body.pl-corp-body .main-footer .container,
 }
 
 .pl-corp__quiz-next {
-    order: 1;
+    order: 2;
     flex: 1 1 0;
     justify-content: space-between;
     padding: 0 20px;
@@ -2184,7 +2184,7 @@ body.pl-corp-body .main-footer .container,
 }
 
 .pl-corp__quiz-skip {
-    order: 2;
+    order: 1;
     flex: 1 1 0;
 }
 
