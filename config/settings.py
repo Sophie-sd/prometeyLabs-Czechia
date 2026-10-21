@@ -373,6 +373,8 @@ KEYCRM_GCLID_FIELD_UUID = os.environ.get('KEYCRM_GCLID_FIELD_UUID', '')
 # Маркування CZ-лідів (п.12): site=cz / lang=cs|en завжди йдуть у manager_comment;
 # якщо в KeyCRM створено кастомні поля — вкажіть їх UUID, і значення підуть ще й у custom_fields.
 LEAD_SITE_CODE = os.environ.get('LEAD_SITE_CODE', 'cz')
+# Людська назва джерела ліда для KeyCRM / листа менеджеру ("Source: prometeylabs.cz").
+LEAD_SOURCE_DOMAIN = os.environ.get('LEAD_SOURCE_DOMAIN', 'prometeylabs.cz')
 KEYCRM_SITE_FIELD_UUID = os.environ.get('KEYCRM_SITE_FIELD_UUID', '')
 KEYCRM_LANG_FIELD_UUID = os.environ.get('KEYCRM_LANG_FIELD_UUID', '')
 KEYCRM_WEBHOOK_SECRET = os.environ.get('KEYCRM_WEBHOOK_SECRET', '')

@@ -6,7 +6,9 @@ import re
 import requests
 import logging
 from django.conf import settings
-from apps.core.form_handlers import get_answer_text, get_lead_site_code
+from apps.core.form_handlers import (
+    get_answer_text, get_lead_site_code, get_lead_source_domain, page_language_label,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -225,6 +227,9 @@ class KeyCRMService:
         comment_parts = []
         if submission.details:
             comment_parts.append(submission.details)
+        comment_parts.append(f'Source: {get_lead_source_domain()}')
+        if lang:
+            comment_parts.append(f'Page language: {page_language_label(lang)}')
         comment_parts.append(f'Form: {submission.form_type}')
         if site:
             comment_parts.append(f'Site: {site}')

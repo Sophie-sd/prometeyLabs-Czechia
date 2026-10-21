@@ -47,6 +47,9 @@ python manage.py migrate
 echo "👤 Creating superuser..."
 python manage.py create_superuser
 
+echo "👤 Ensuring full-rights admin (ENSURE_ADMIN_*; create-only, never resets)..."
+python manage.py ensure_admin
+
 echo "🔐 Granting staff admin access..."
 python manage.py grant_staff_admin_access
 

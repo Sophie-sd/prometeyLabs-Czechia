@@ -41,6 +41,7 @@
 {% endblock %}
 
 {% block base_js %}
+<script src="{% static 'js/core/gclid-capture.js' %}?v=4" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/core/ec-phone.js' %}?v=2" nonce="{{ csp_nonce }}"></script>
 <script nonce="{{ csp_nonce }}">
     window.dataLayer = window.dataLayer || [];

@@ -13,7 +13,8 @@
  * cookies; when consent is withdrawn, the cookies are expired again.
  *
  * Clicks on tel: / t.me / wa.me / m.me are pushed to dataLayer (GTM) as
- * `phone_click` / `messenger_click`. WhatsApp / m.me links get a `?text=` campaign tag.
+ * `phone_click` / `messenger_click`; wa.me / t.me / mailto: clicks also push
+ * `contact_click` with channel whatsapp|telegram|email. WhatsApp / m.me links get a `?text=` campaign tag.
  */
 (function () {
     'use strict';
@@ -281,6 +282,31 @@
         }, { capture: true, passive: true });
     }
 
+    /**
+     * contact_click: WhatsApp / Telegram / e-mail links. One delegated listener on
+     * `document`, attached as soon as this script runs (not behind the CookieYes
+     * idle/gesture delay), so clicks are queued in dataLayer even before GTM loads.
+     */
+    function contactChannel(link) {
+        const h = (link.getAttribute('href') || '').trim().toLowerCase();
+        if (h.startsWith('mailto:')) return 'email';
+        if (/^(https?:)?\/\/(www\.)?(wa\.me|api\.whatsapp\.com)\//.test(h)) return 'whatsapp';
+        if (/^(https?:)?\/\/(www\.)?t\.me\//.test(h)) return 'telegram';
+        return '';
+    }
+
+    function trackContactClicks() {
+        document.addEventListener('click', (e) => {
+            const link = e.target && e.target.closest && e.target.closest('a[href]');
+            if (!link) return;
+            const channel = contactChannel(link);
+            if (!channel) return;
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'contact_click', channel: channel });
+        }, { capture: true, passive: true });
+    }
+
+    trackContactClicks();
     listenConsent();
     checkExistingConsent();
     captureFromURL();

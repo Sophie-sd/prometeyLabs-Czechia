@@ -127,6 +127,19 @@ def get_lead_site_code() -> str:
     return (getattr(settings, 'LEAD_SITE_CODE', '') or 'cz').strip().lower()
 
 
+def get_lead_source_domain() -> str:
+    """Домен-джерело ліда для CRM/листа (prometeylabs.cz). LEAD_SOURCE_DOMAIN."""
+    return (getattr(settings, 'LEAD_SOURCE_DOMAIN', '') or 'prometeylabs.cz').strip()
+
+
+def page_language_label(lang) -> str:
+    """cs → CZ, en → EN (мітка мови сторінки для менеджера/KeyCRM)."""
+    code = (lang or '').strip().lower()
+    if code.startswith('cs') or code == 'cz':
+        return 'CZ'
+    return code.upper()[:2] if code else ''
+
+
 def _supported_lang(code):
     if not code:
         return None
@@ -204,7 +217,9 @@ def create_form_data(form_type, name, phone, request, **extra_fields):
         # Маркування ліда для KeyCRM: CZ-ліди окремо від .com/UA (п.12).
         'site': get_lead_site_code(),
         'lang': resolve_lead_lang(request),
+        'lead_source': get_lead_source_domain(),
     }
+    form_data['page_language'] = page_language_label(form_data['lang'])
     # Квізи v2: латинські ключі (старі кириличні value мапляться на ті ж ключі)
     from apps.core.quiz_options import extract_quiz_answers
     quiz_answers = extract_quiz_answers(request.POST)
@@ -229,7 +244,9 @@ def create_form_data(form_type, name, phone, request, **extra_fields):
 def send_form_email(form_data):
     """Відправка email з даними форми. Повертає (success: bool, error_message: str)"""
     try:
-        subject = f"[PrometeyLabs] {form_data['type']}"
+        source = form_data.get('lead_source') or get_lead_source_domain()
+        lang_label = form_data.get('page_language') or ''
+        subject = f"[{source}{' ' + lang_label if lang_label else ''}] {form_data['type']}"
         
         # Формуємо тіло email
         message_body = f"""
@@ -262,6 +279,8 @@ Email: {form_data.get('email', 'Не вказано')}
                     'source_page': 'Сторінка',
                     'site': 'Site',
                     'lang': 'Lang',
+                    'lead_source': 'Source',
+                    'page_language': 'Page language',
                 }.get(field, field.replace('_', ' ').title())
                 message_body += f"{field_name}: {value}\n"
         

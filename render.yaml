@@ -49,6 +49,12 @@ services:
         sync: false
       - key: CONTACT_EMAIL
         sync: false
+      - key: ENSURE_ADMIN_USERNAME
+        sync: false
+      - key: ENSURE_ADMIN_EMAIL
+        sync: false
+      - key: ENSURE_ADMIN_PASSWORD_HASH
+        sync: false
       - key: KEYCRM_API_KEY
         sync: false
       - key: KEYCRM_PIPELINE_ID
