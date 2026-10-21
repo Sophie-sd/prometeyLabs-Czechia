@@ -41,6 +41,9 @@ for f in js_globs:
 print(f'CSS saved: {css_saved/1024:.1f} KiB, JS saved: {js_saved/1024:.1f} KiB')
 "
 
+echo "🔎 Config report (no secret values)..."
+python manage.py env_report || true
+
 echo "🗄️  Running migrations..."
 python manage.py migrate
 

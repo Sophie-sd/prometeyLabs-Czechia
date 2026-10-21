@@ -365,11 +365,23 @@ COOKIEYES_ID = os.environ.get('COOKIEYES_ID', '')
 
 # KEYCRM
 KEYCRM_API_KEY = os.environ.get('KEYCRM_API_KEY', '')
-KEYCRM_PIPELINE_ID = int(os.environ.get('KEYCRM_PIPELINE_ID', '1'))
+# Воронка «CZ Leads» (pipeline_id=6). Не секрет — дефолт у коді, env може перевизначити.
+KEYCRM_PIPELINE_ID = int(os.environ.get('KEYCRM_PIPELINE_ID', '6') or '6')
+# Статус «Новий» у воронці CZ Leads. KeyCRM POST /pipelines/cards не приймає status_id:
+# нова картка завжди падає в ПЕРШИЙ статус воронки. Якщо задати ID — після створення
+# робимо PUT status_id. ID можна подивитися: manage.py keycrm_pipeline_statuses.
+KEYCRM_NEW_STATUS_ID = os.environ.get('KEYCRM_NEW_STATUS_ID', '')
+# source_id для CZ-лідів (п.2 ТЗ): gclid+cz_eshopy → 13; gclid+інша/порожня кампанія → 12;
+# без gclid → 14. 15 сайт ніколи не ставить.
+KEYCRM_SOURCE_CZ_ESHOPY = int(os.environ.get('KEYCRM_SOURCE_CZ_ESHOPY', '13') or '13')
+KEYCRM_SOURCE_CZ_GENERAL = int(os.environ.get('KEYCRM_SOURCE_CZ_GENERAL', '12') or '12')
+KEYCRM_SOURCE_CZ_ORGANIC = int(os.environ.get('KEYCRM_SOURCE_CZ_ORGANIC', '14') or '14')
+KEYCRM_CAMPAIGN_CZ_ESHOPY = os.environ.get('KEYCRM_CAMPAIGN_CZ_ESHOPY', 'cz_eshopy')
 # Загальний fallback source_id для заявок без платних UTM і без лендінгових ознак
 # (форми з головної, footer, контактів тощо).
 KEYCRM_SOURCE_ID = os.environ.get('KEYCRM_SOURCE_ID', '')
-KEYCRM_GCLID_FIELD_UUID = os.environ.get('KEYCRM_GCLID_FIELD_UUID', '')
+# Кастомне поле картки для GCLID (UUID у KeyCRM = LD_1001).
+KEYCRM_GCLID_FIELD_UUID = os.environ.get('KEYCRM_GCLID_FIELD_UUID', 'LD_1001') or 'LD_1001'
 # Маркування CZ-лідів (п.12): site=cz / lang=cs|en завжди йдуть у manager_comment;
 # якщо в KeyCRM створено кастомні поля — вкажіть їх UUID, і значення підуть ще й у custom_fields.
 LEAD_SITE_CODE = os.environ.get('LEAD_SITE_CODE', 'cz')
@@ -380,6 +392,7 @@ KEYCRM_LANG_FIELD_UUID = os.environ.get('KEYCRM_LANG_FIELD_UUID', '')
 KEYCRM_WEBHOOK_SECRET = os.environ.get('KEYCRM_WEBHOOK_SECRET', '')
 KEYCRM_SUCCESS_STATUS_ID = os.environ.get('KEYCRM_SUCCESS_STATUS_ID', '')
 
+# LEGACY (.com-логіка). На .cz НЕ використовується — source_id див. KEYCRM_SOURCE_CZ_* вище.
 # KEYCRM — розподіл джерел: платний Google Ads vs органіка з лендінгів.
 # Числові ID джерел з KeyCRM (Налаштування → Джерела). Якщо ID не задано —
 # resolver використає наступний у пріоритеті або загальний KEYCRM_SOURCE_ID.

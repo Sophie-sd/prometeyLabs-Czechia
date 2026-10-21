@@ -72,6 +72,31 @@
     transform: translateY(0);
 }
 
+/* ===== TZ GENERATOR: PDF + UPSELL ===== */
+.thank-you-tz {
+    margin: 0 auto var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.thank-you-tz__title,
+.thank-you-tz__upsell-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.thank-you-tz__upsell .thank-you-buttons {
+    margin: var(--space-sm) 0 0;
+}
+
+.thank-you-tz__note {
+    font-size: 16px;
+    margin: 0;
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInThankYou {
     from {

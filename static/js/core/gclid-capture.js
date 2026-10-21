@@ -27,6 +27,8 @@
     const TAG_ESHOPS = IS_EN ? 'E-shops' : 'E-shopy';
     const TAG_CORPORATE = IS_EN ? 'Corporate websites' : 'Firemní weby';
     const MESSAGE_PREFIX = IS_EN ? 'Google Ads enquiry: ' : 'Poptávka z Google Ads: ';
+    // gclid є, але тег кампанії не розпізнано → загальний текст без тегу.
+    const MESSAGE_GENERIC = IS_EN ? 'Google Ads enquiry' : 'Poptávka z Google Ads';
     const CAMPAIGN_TAGS = [
         { needle: 'shop', label: TAG_ESHOPS },
         { needle: 'ecom', label: TAG_ESHOPS },
@@ -205,6 +207,10 @@
         if (!hasNonEmpty(formData, 'source_page')) {
             setField(formData, 'source_page', window.location.pathname);
         }
+        // Мова сторінки (cs|en) явно — сервер віддає їй пріоритет (CZ/EN у KeyCRM, /thank-you/ vs /en/thank-you/).
+        if (!hasNonEmpty(formData, 'lang')) {
+            setField(formData, 'lang', IS_EN ? 'en' : 'cs');
+        }
         return formData;
     }
 
@@ -217,6 +223,14 @@
                 return CAMPAIGN_TAGS[i].label;
             }
         }
+        return '';
+    }
+
+    /** Prefill text: tagged campaign → 'Poptávka z Google Ads: <tag>'; gclid without tag → generic; else none. */
+    function messengerText() {
+        const tag = campaignTag();
+        if (tag) return MESSAGE_PREFIX + tag;
+        if (read('_prm_gclid')) return MESSAGE_GENERIC;
         return '';
     }
 
@@ -235,9 +249,8 @@
         if (link.dataset.prmDecorated === '1') return;
         link.dataset.prmDecorated = '1';
         const href = link.getAttribute('href') || '';
-        const tag = campaignTag();
-        if (!tag) return;
-        const text = MESSAGE_PREFIX + tag;
+        const text = messengerText();
+        if (!text) return;
         try {
             const url = new URL(href, window.location.origin);
             const host = url.host.toLowerCase();
@@ -321,5 +334,6 @@
     window.GCLIDCapture = {
         getTrackingData: getTrackingData,
         appendToFormData: appendToFormData,
+        messengerText: messengerText,
     };
 })();

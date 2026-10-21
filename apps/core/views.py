@@ -259,6 +259,21 @@ class ThankYouView(BasePageView):
     page_title = _('Дякуємо за вашу заявку | PrometeyLabs')
     meta_description = _('Ваша заявка успішно отримана. Ми з вами скоро зв\'яжемось.')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Генератор ТЗ редиректить сюди з ?tz=<token>: показуємо кнопку PDF + upsell.
+        token = (self.request.GET.get('tz') or '').strip()
+        if token and len(token) <= 64:
+            from django.urls import reverse
+            from .models import FormSubmission
+            exists = FormSubmission.objects.filter(
+                form_type='tz_generator', extra_data__pdf_token=token,
+            ).exists()
+            if exists:
+                context['tz_pdf_url'] = reverse('tz_pdf', kwargs={'token': token})
+                context['tz_upsell_url'] = reverse('tz_upsell', kwargs={'token': token})
+        return context
+
 
 # ===== AJAX ОБРОБКА ФОРМ =====
 

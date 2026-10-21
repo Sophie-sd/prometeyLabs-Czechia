@@ -377,7 +377,13 @@
             })
                 .then(function (r) { return r.json(); })
                 .then(function (data) {
-                    if (data.success) {
+                    if (data.success && data.redirect) {
+                        // Enhanced Conversions phone for GTM on /thank-you/ (як base.js)
+                        if (window.ECPhone && typeof window.ECPhone.saveFromRaw === 'function') {
+                            window.ECPhone.saveFromRaw(phoneInput.value);
+                        }
+                        window.location.href = data.redirect;
+                    } else if (data.success) {
                         showSuccess(data);
                     } else {
                         setError(data.message || MSG.sending);

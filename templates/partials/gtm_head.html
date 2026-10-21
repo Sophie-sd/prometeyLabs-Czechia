@@ -21,9 +21,10 @@
     {# Direct CMP only — do not add CookieYes in GTM. No preconnect: it raced LCP. #}
     <link rel="dns-prefetch" href="https://cdn-cookieyes.com">
     {% endif %}
-    <!-- CookieYes after idle/gesture (not window.load) so CMP does not inflate mobile TBT/SI.
-         GTM container = GTM-MQBJTH87 (snippet above). _loadGTM() is kept as a compat alias
-         (/thank-you/ calls it) and now only pulls the CMP. Do not cache HTML at Cloudflare while
+    <!-- CookieYes loads immediately on page open for every visitor (async, non-blocking).
+         Consent Mode default (denied) above always runs first. GTM container = GTM-MQBJTH87
+         (snippet above). _loadGTM() is kept as a compat alias (/thank-you/ calls it); the
+         window._cyL guard makes repeated calls no-ops. Do not cache HTML at Cloudflare while
          GET still sets csrftoken. -->
     <script nonce="{{ csp_nonce }}">
     function _loadCookieYes(){
@@ -40,22 +41,5 @@
     }
     window._loadCookieYes=_loadCookieYes;
     window._loadGTM=_loadCookieYes;
-    (function(){
-      var q=location.search||'';
-      var c=document.cookie||'';
-      var preview=!!window.opener
-        || /(?:^|[?&#])gtm_debug(?:=|&|#|$)/.test(q+location.hash)
-        || /(?:^|[?&#])gtm_preview=/.test(q)
-        || /(?:^|[?&#])gtm_auth=/.test(q)
-        || /(^|;\s*)gtm_auth=/.test(c)
-        || /(^|;\s*)gtm_preview=/.test(c);
-      if(preview){_loadCookieYes();return;}
-      {# scroll/mousemove fire during Lighthouse SI scroll and inflate TBT #}
-      ['click','touchstart','keydown'].forEach(function(e){window.addEventListener(e,_loadCookieYes,{once:true,passive:true});});
-      if(typeof requestIdleCallback==='function'){
-        requestIdleCallback(function(){_loadCookieYes();},{timeout:12000});
-      }else{
-        setTimeout(_loadCookieYes,12000);
-      }
-    })();
+    _loadCookieYes();
     </script>

@@ -103,7 +103,8 @@ def handle_tz_submission(request):
         details='\n\n'.join(details_parts),
         quiz=quiz,
         pdf_token=token,
-        source_page='tz-dlia-saitu',
+        # Реальний шлях сторінки з gclid-capture.js (/tz-dlia-saitu/ | /en/…); fallback — slug.
+        source_page=request.POST.get('source_page', '').strip() or 'tz-dlia-saitu',
     )
 
     saved, submission_id, save_error = save_form_submission(
@@ -120,13 +121,18 @@ def handle_tz_submission(request):
 
     from django.urls import reverse
 
+    from apps.core.form_handlers import thank_you_url
+
     pdf_url = reverse('tz_pdf', kwargs={'token': token})
+    # Як і всі форми — редирект на /thank-you/ (/en/thank-you/); PDF і upsell
+    # доступні там за токеном (?tz=…), тож конверсія рахується на thank-you.
     return create_form_response(
         True,
         _('Базове ТЗ готове. Завантажте PDF — розширене надійде на пошту протягом доби.'),
         pdf_url=pdf_url,
         token=token,
         submission_id=submission_id,
+        redirect=f"{thank_you_url(form_data.get('lang'))}?tz={token}",
     )
 
 

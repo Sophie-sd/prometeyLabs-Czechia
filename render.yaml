@@ -58,7 +58,9 @@ services:
       - key: KEYCRM_API_KEY
         sync: false
       - key: KEYCRM_PIPELINE_ID
-        value: "1"
+        value: "6"
+      - key: KEYCRM_NEW_STATUS_ID
+        sync: false
       - key: KEYCRM_SOURCE_ID
         sync: false
       - key: KEYCRM_GCLID_FIELD_UUID

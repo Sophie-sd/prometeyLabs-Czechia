@@ -11,27 +11,24 @@ GTM_NOSCRIPT = ROOT / 'templates' / 'partials' / 'gtm_noscript.html'
 
 
 class CookieYesDeferTests(SimpleTestCase):
-    def test_cmp_is_deferred_not_on_window_load(self):
+    """CookieYes тепер вантажиться одразу (без idle/gesture/12 s), Consent default — перед ним."""
+
+    def test_cmp_loads_immediately_after_consent_default(self):
         text = GTM_HEAD.read_text(encoding='utf-8')
         self.assertIn('function _loadCookieYes', text)
-        self.assertNotIn("window.addEventListener('load',_loadCookieYes,{once:true})", text)
-        self.assertIn('requestIdleCallback', text)
-        self.assertIn('timeout:12000', text)
-        self.assertIn('setTimeout(_loadCookieYes,12000)', text)
-        self.assertIn('_loadCookieYes();', text)
+        boot = text.split('window._loadGTM=_loadCookieYes;')[1]
+        self.assertTrue(boot.lstrip().startswith('_loadCookieYes();'))
+        for delayed in ('requestIdleCallback', 'setTimeout(_loadCookieYes', 'timeout:12000',
+                        "['click','touchstart','keydown']"):
+            self.assertNotIn(delayed, text)
+        self.assertIn('s.async=true;', text)
         self.assertNotIn('rel="preconnect" href="https://cdn-cookieyes.com"', text)
-        self.assertNotIn(
-            'id="cookieyes" type="text/javascript" async',
-            text,
-        )
         self.assertLess(text.find("gtag('consent','default'"), text.find('function _loadCookieYes'))
 
-    def test_cmp_does_not_bind_scroll_or_mousemove(self):
-        text = GTM_HEAD.read_text(encoding='utf-8')
-        self.assertIn("['click','touchstart','keydown']", text)
-        boot = text.split('window._loadGTM=_loadCookieYes;')[1]
-        self.assertNotIn("'scroll'", boot)
-        self.assertNotIn("'mousemove'", boot)
+    def test_rendered_head_has_cmp_src_with_id(self):
+        html = render_to_string('partials/gtm_head.html', {'COOKIEYES_ID': 'testcy', 'csp_nonce': 'n'})
+        self.assertIn('cdn-cookieyes.com/client_data/testcy/script.js', html)
+        self.assertLess(html.find("gtag('consent','default'"), html.find('cdn-cookieyes.com/client_data'))
 
     def test_single_gtm_container_mqbjth87(self):
         text = GTM_HEAD.read_text(encoding='utf-8')

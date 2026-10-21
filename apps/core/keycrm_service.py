@@ -52,93 +52,26 @@ def _to_int(value):
         return None
 
 
-def _split_tokens(raw):
-    """'a,b , c' → ['a', 'b', 'c'] у нижньому регістрі без порожніх."""
-    if not raw:
-        return []
-    return [t.strip().lower() for t in str(raw).split(',') if t.strip()]
-
-
-def _campaign_matches(campaign, tokens):
-    if not campaign or not tokens:
-        return False
-    campaign_lc = campaign.lower()
-    return any(token in campaign_lc for token in tokens)
-
-
-def _source_page(submission):
-    extra = submission.extra_data or {}
-    return (extra.get('source_page') or '').lower()
-
-
-def _landing_page(submission):
-    extra = submission.extra_data or {}
-    return (extra.get('landing_page') or '').lower()
-
-
-def _page_signals(submission):
-    """Об'єднана підказка про сторінку: де залишена форма + куди вперше зайшов."""
-    return f"{_source_page(submission)}|{_landing_page(submission)}"
-
-
-def _has_any_utm(submission):
-    """Чи є хоч один трекінг-параметр. gclid включено — Google Ads auto-tagging."""
-    return any([
-        submission.gclid,
-        submission.utm_source,
-        submission.utm_medium,
-        submission.utm_campaign,
-        submission.utm_term,
-        submission.utm_content,
-    ])
-
-
 def resolve_keycrm_source_id(submission):
     """
-    Обирає `source_id` для KeyCRM за пріоритетом:
-    1. utm_source збігається з KEYCRM_UTM_MATCH_INSTAGRAM → KEYCRM_SOURCE_INSTAGRAM
-    2. utm_campaign містить токени Shops               → KEYCRM_SOURCE_PAID_SHOPS
-    3. utm_campaign містить токени Corporate            → KEYCRM_SOURCE_PAID_CORPORATE
-    4. utm_campaign містить токени All                  → KEYCRM_SOURCE_PAID_ALL
-    5. Немає жодного трекінг-параметра + корпоративна сторінка → KEYCRM_SOURCE_ORGANIC_CORPORATE
-    6. Немає жодного трекінг-параметра + магазин               → KEYCRM_SOURCE_ORGANIC_SHOPS
-    7. Fallback → KEYCRM_SOURCE_ID
-
-    Повертає int або None, якщо нічого не сконфігуровано.
+    source_id для CZ-ліда (перше правило, що спрацювало):
+    1. є gclid і utm_campaign == 'cz_eshopy'                   → KEYCRM_SOURCE_CZ_ESHOPY (13)
+    2. є gclid (кампанія 'cz_general', порожня або невідома)   → KEYCRM_SOURCE_CZ_GENERAL (12)
+    3. gclid немає                                             → KEYCRM_SOURCE_CZ_ORGANIC (14)
+    Значення 15 сайт не ставить ніколи. Порівняння кампанії — без регістру та пробілів.
     """
-    instagram = _to_int(getattr(settings, 'KEYCRM_SOURCE_INSTAGRAM', ''))
-    paid_shops = _to_int(getattr(settings, 'KEYCRM_SOURCE_PAID_SHOPS', ''))
-    paid_corporate = _to_int(getattr(settings, 'KEYCRM_SOURCE_PAID_CORPORATE', ''))
-    paid_all = _to_int(getattr(settings, 'KEYCRM_SOURCE_PAID_ALL', ''))
-    organic_shops = _to_int(getattr(settings, 'KEYCRM_SOURCE_ORGANIC_SHOPS', ''))
-    organic_corporate = _to_int(getattr(settings, 'KEYCRM_SOURCE_ORGANIC_CORPORATE', ''))
-    fallback = _to_int(getattr(settings, 'KEYCRM_SOURCE_ID', ''))
-
-    utm_source = (submission.utm_source or '').strip().lower()
-    campaign = (submission.utm_campaign or '').strip()
-
-    # 1. Instagram
-    ig_tokens = _split_tokens(getattr(settings, 'KEYCRM_UTM_MATCH_INSTAGRAM', ''))
-    if utm_source and ig_tokens and utm_source in ig_tokens:
-        return instagram or fallback
-
-    # 2–4. utm_campaign токени
-    if _campaign_matches(campaign, _split_tokens(getattr(settings, 'KEYCRM_UTM_MATCH_PAID_SHOPS', ''))) and paid_shops:
-        return paid_shops
-    if _campaign_matches(campaign, _split_tokens(getattr(settings, 'KEYCRM_UTM_MATCH_PAID_CORPORATE', ''))) and paid_corporate:
-        return paid_corporate
-    if _campaign_matches(campaign, _split_tokens(getattr(settings, 'KEYCRM_UTM_MATCH_PAID_ALL', ''))) and paid_all:
-        return paid_all
-
-    # 5–6. Немає жодного трекінг-параметра → органіка за сторінкою
-    if not _has_any_utm(submission):
-        page = _page_signals(submission)
-        if 'corporate-website' in page and organic_corporate:
-            return organic_corporate
-        if 'internet-shop' in page and organic_shops:
-            return organic_shops
-
-    return fallback
+    gclid = (submission.gclid or '').strip()
+    campaign = (submission.utm_campaign or '').strip().lower()
+    eshopy = (getattr(settings, 'KEYCRM_CAMPAIGN_CZ_ESHOPY', 'cz_eshopy') or 'cz_eshopy').strip().lower()
+    if gclid and campaign == eshopy:
+        source = _to_int(getattr(settings, 'KEYCRM_SOURCE_CZ_ESHOPY', 13))
+    elif gclid:
+        source = _to_int(getattr(settings, 'KEYCRM_SOURCE_CZ_GENERAL', 12))
+    else:
+        source = _to_int(getattr(settings, 'KEYCRM_SOURCE_CZ_ORGANIC', 14))
+    if source == 15:  # захист: 15 виставляється лише вручну в CRM
+        return None
+    return source
 
 
 def lead_site_and_lang(submission):
@@ -227,10 +160,27 @@ class KeyCRMService:
         comment_parts = []
         if submission.details:
             comment_parts.append(submission.details)
+        extra = submission.extra_data or {}
         comment_parts.append(f'Source: {get_lead_source_domain()}')
-        if lang:
-            comment_parts.append(f'Page language: {page_language_label(lang)}')
+        comment_parts.append(f'Page language: {page_language_label(lang) or "-"}')
         comment_parts.append(f'Form: {submission.form_type}')
+        # Сирі значення атрибуції (п.3 ТЗ) — завжди всі ключі, порожні як '-'.
+        tracking = [
+            ('form_type', submission.form_type),
+            ('page_language', page_language_label(lang)),
+            ('gclid', submission.gclid),
+            ('utm_source', submission.utm_source),
+            ('utm_medium', submission.utm_medium),
+            ('utm_campaign', submission.utm_campaign),
+            ('utm_term', submission.utm_term),
+            ('utm_content', submission.utm_content),
+            ('landing_referrer', extra.get('landing_referrer')),
+            ('landing_page', extra.get('landing_page')),
+            ('source_page', extra.get('source_page')),
+        ]
+        comment_parts.append(
+            '=== TRACKING ===\n' + '\n'.join(f'{k}: {v or "-"}' for k, v in tracking)
+        )
         if site:
             comment_parts.append(f'Site: {site}')
         if lang:
@@ -250,13 +200,6 @@ class KeyCRMService:
             comment_parts.append(
                 f'Preferred language: {submission.get_preferred_language_display()}'
             )
-        extra = submission.extra_data or {}
-        if extra.get('source_page'):
-            comment_parts.append(f'Сторінка заявки: {extra["source_page"]}')
-        if extra.get('landing_page'):
-            comment_parts.append(f'Перша сторінка: {extra["landing_page"]}')
-        if extra.get('landing_referrer'):
-            comment_parts.append(f'Реферер: {extra["landing_referrer"]}')
         if submission.gclid:
             comment_parts.append(f'GCLID: {submission.gclid}')
         if extra.get('quiz_answers'):
@@ -313,6 +256,24 @@ class KeyCRMService:
             error = f"KeyCRM API request failed: {str(e)}"
             logger.error(error)
             return (False, None, error)
+
+    def get_pipeline_statuses(self, pipeline_id=None):
+        """GET /pipelines/{id}/statuses → (success, [ {id, title/name, ...} ], error). Read-only."""
+        if not self.is_configured:
+            return (False, [], "API key not configured")
+        pid = pipeline_id or self.pipeline_id
+        try:
+            response = requests.get(
+                f'{KEYCRM_BASE_URL}/pipelines/{pid}/statuses',
+                params={'limit': 50},
+                headers=self._headers,
+                timeout=REQUEST_TIMEOUT,
+            )
+            if response.status_code == 200:
+                return (True, response.json().get('data') or [], None)
+            return (False, [], f"KeyCRM statuses error {response.status_code}: {response.text[:300]}")
+        except requests.RequestException as e:
+            return (False, [], f"KeyCRM statuses request failed: {e}")
 
     def update_pipeline_card(self, card_id, payload):
         """
@@ -437,6 +398,12 @@ def sync_submission_to_keycrm(submission):
         submission.keycrm_synced = True
         submission.save(update_fields=['keycrm_card_id', 'keycrm_synced'])
         logger.info(f"Submission {submission.id} synced to KeyCRM card {card_id}")
+
+        # POST не приймає status_id → картка в першому статусі воронки («Новий»).
+        # Якщо статус «Новий» не перший — KEYCRM_NEW_STATUS_ID + PUT.
+        new_status = _to_int(getattr(settings, 'KEYCRM_NEW_STATUS_ID', ''))
+        if new_status:
+            service.update_pipeline_card(card_id, {'status_id': new_status})
 
         try:
             fresh_upsell = (
