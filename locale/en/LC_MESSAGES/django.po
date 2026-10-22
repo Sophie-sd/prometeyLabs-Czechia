@@ -3802,7 +3802,7 @@ msgstr "Enable card payments (card / Apple Pay / Google Pay)"
 
 #: apps/payment/models.py:114
 msgid "Курс до UAH"
-msgstr "Courses"
+msgstr "Exchange rate"
 
 #: apps/payment/models.py:115
 msgid "Ігнорується при валюті UAH"
@@ -9488,7 +9488,7 @@ msgstr "Amount due"
 
 #: templates/payment/payment_page.html:34
 msgid "Курс:"
-msgstr "Courses"
+msgstr "Rate:"
 
 #: templates/payment/payment_page.html:42
 msgid "Час на оплату"
@@ -9535,7 +9535,7 @@ msgstr "Published"
 
 #: templates/payment/payment_page.html:220
 msgid "Скопіювати реквізити"
-msgstr "Calculate Proposal"
+msgstr "Copy payment details"
 
 #: templates/payment/payment_page.html:228
 msgid "Або оплатіть онлайн"

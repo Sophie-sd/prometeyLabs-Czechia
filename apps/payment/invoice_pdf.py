@@ -1,8 +1,13 @@
-"""Генерація PDF «Рахунок на оплату» через xhtml2pdf."""
+"""PDF «Faktura / Akt o poskytnutých službách» / «Invoice / Act of services rendered» (xhtml2pdf).
+
+Language (CS/EN) and currency (EUR/USD) come from the invoice. All labels
+come from ``texts.get_texts`` (editable in admin → «Тексти оплати / PDF»).
+"""
 from __future__ import annotations
 
 import io
 import re
+import unicodedata
 from pathlib import Path
 from typing import Dict, Optional, Tuple
 
@@ -10,8 +15,15 @@ from django.conf import settings
 from django.contrib.staticfiles.finders import find
 from django.core.files.base import ContentFile
 from django.template.loader import render_to_string
+from django.utils import translation
 
-from .amount_ua import amount_in_words_ua, format_money_ua
+from .amount_words import amount_in_words, format_money
+from .models import method_public_block
+from .texts import get_texts, normalize_lang
+
+
+class LegacyInvoiceError(RuntimeError):
+    """Архівний рахунок (до переходу на EUR/USD) — новий PDF не генерується."""
 
 
 def _static_path(relative: str) -> Optional[Path]:
@@ -38,78 +50,81 @@ def _font_paths() -> Dict[str, str]:
     }
 
 
-def _short_recipient_name(full_name: str) -> str:
-    """ФОП Дмитренко Сергій Дмитрович → ФОП Дмитренко С.Д."""
-    name = (full_name or '').strip()
-    if not name:
-        return ''
-    parts = name.split()
-    prefix = ''
-    if parts and parts[0].upper() in {'ФОП', 'ТОВ', 'ПП', 'АТ', 'ПРАТ', 'ТДВ'}:
-        prefix = parts[0]
-        parts = parts[1:]
-    if len(parts) >= 3:
-        short = f'{parts[0]} {parts[1][0]}.{parts[2][0]}.'
-    elif len(parts) == 2:
-        short = f'{parts[0]} {parts[1][0]}.'
-    elif parts:
-        short = parts[0]
-    else:
-        short = name
-    return f'{prefix} {short}'.strip() if prefix else short
-
-
-def _client_slug_for_filename(client_name: str) -> str:
-    name = (client_name or '').strip()
-    tokens = re.findall(r"[A-Za-zА-Яа-яЁёІіЇїЄєҐґ'’-]+", name)
-    skip = {'ФОП', 'ТОВ', 'ПП', 'АТ', 'ПРАТ', 'ТДВ', 'ФІЗИЧНА', 'ОСОБА'}
+def _ascii_slug(value: str, fallback: str = 'client') -> str:
+    text = unicodedata.normalize('NFKD', value or '').encode('ascii', 'ignore').decode('ascii')
+    tokens = re.findall(r'[A-Za-z0-9]+', text)
+    skip = {'S', 'R', 'O', 'SRO', 'A', 'AS', 'LTD', 'LLC', 'GMBH', 'INC', 'FOP'}
     meaningful = [t for t in tokens if t.upper() not in skip]
-    if not meaningful:
-        return 'клієнт'
-    return meaningful[0]
+    return (meaningful[0] if meaningful else fallback)[:40]
 
 
 def build_pdf_filename(invoice) -> str:
-    date_s = invoice.invoice_date.strftime('%d.%m.%Y')
-    slug = _client_slug_for_filename(invoice.client_name)
-    return f'Рахунок_{invoice.number}_{slug}_{date_s}.pdf'
+    lang = normalize_lang(invoice.language)
+    prefix = 'Invoice' if lang == 'en' else 'Faktura'
+    date_s = invoice.invoice_date.strftime('%Y-%m-%d')
+    return f'{prefix}_{invoice.number}_{_ascii_slug(invoice.client_name)}_{date_s}.pdf'
+
+
+def _nbsp(value: str) -> str:
+    return value.replace(' ', '\u00a0')
 
 
 def invoice_context(invoice) -> dict:
+    lang = normalize_lang(invoice.language)
+    texts = get_texts(lang)
+    currency = invoice.currency
     items = []
     for item in invoice.items.all():
         items.append({
             'position': item.position,
             'title': item.title,
-            'unit': item.unit,
-            'quantity': item.quantity,
-            'price_formatted': format_money_ua(item.price).replace(' ', '\u00a0'),
-            'amount_formatted': format_money_ua(item.amount).replace(' ', '\u00a0'),
+            'unit': (item.unit or '').strip() or texts['pdf_unit_default'],
+            'quantity': format_money(item.quantity, lang).rstrip('0').rstrip(',.') if item.quantity is not None else '',
+            'price_formatted': _nbsp(format_money(item.price, lang)),
+            'amount_formatted': _nbsp(format_money(item.amount, lang)),
         })
+
+    executor = invoice.executor_snapshot or {}
+    if not executor:
+        from .models import PaymentSettings
+        executor = PaymentSettings.get_solo().executor_snapshot()
+
+    methods_data = invoice.payment_methods_snapshot or [m.snapshot() for m in invoice.payment_methods.all()]
+    methods = [method_public_block(d, texts, lang) for d in methods_data]
+    methods.sort(key=lambda m: m['is_paypal'])  # bank transfers first, PayPal last
+    method_rows = [methods[i:i + 2] for i in range(0, len(methods), 2)]
+
     fonts = _font_paths()
+    page_footer = texts['pdf_page_footer'].format(
+        email=executor.get('email', ''), website=executor.get('website', ''),
+    ).strip(' ·')
     return {
+        'lang': lang,
+        't': texts,
         'invoice': invoice,
         'items': items,
+        'currency': currency,
         'logo_uri': _logo_file_uri(),
         'font_regular': fonts['regular'],
         'font_bold': fonts['bold'],
         'invoice_date': invoice.invoice_date.strftime('%d.%m.%Y'),
-        'valid_until': invoice.valid_until.strftime('%d.%m.%Y'),
-        'contract_date': invoice.contract_date.strftime('%d.%m.%Y'),
-        'total_formatted': format_money_ua(invoice.total_amount).replace(' ', '\u00a0'),
-        'total_words': amount_in_words_ua(invoice.total_amount),
-        'recipient_name': invoice.recipient_name_snapshot,
-        'recipient_ipn': invoice.recipient_ipn_snapshot,
-        'recipient_iban': invoice.recipient_iban_snapshot,
-        'recipient_bank': invoice.recipient_bank_snapshot,
-        'recipient_mfo': invoice.recipient_mfo_snapshot,
-        'recipient_bank_edrpou': invoice.recipient_bank_edrpou_snapshot,
-        'sign_name': _short_recipient_name(invoice.recipient_name_snapshot).replace(' ', '\u00a0'),
+        'due_date': invoice.valid_until.strftime('%d.%m.%Y') if invoice.valid_until else '',
+        'contract_line': invoice.contract_line(texts),
+        'total_formatted': _nbsp(format_money(invoice.total_amount, lang)),
+        'total_words': amount_in_words(invoice.total_amount, currency, lang),
+        'executor': executor,
+        'methods': methods,
+        'method_rows': method_rows,
+        'purpose': invoice.payment_purpose(texts),
+        'footer_note_lines': [ln for ln in texts['pdf_footer_note'].splitlines() if ln.strip()],
+        'page_footer': page_footer,
     }
 
 
 def render_invoice_html(invoice) -> str:
-    return render_to_string('payment/invoice_pdf.html', invoice_context(invoice))
+    ctx = invoice_context(invoice)
+    with translation.override(ctx['lang']):
+        return render_to_string('payment/invoice_pdf.html', ctx)
 
 
 def _link_callback(uri, rel):
@@ -130,6 +145,8 @@ def _link_callback(uri, rel):
 def generate_invoice_pdf_bytes(invoice) -> bytes:
     from xhtml2pdf import pisa
 
+    if invoice.is_legacy:
+        raise LegacyInvoiceError('Legacy invoice (before EUR/USD) — PDF is not regenerated')
     html = render_invoice_html(invoice)
     result = io.BytesIO()
     pdf = pisa.CreatePDF(
@@ -143,14 +160,27 @@ def generate_invoice_pdf_bytes(invoice) -> bytes:
     return result.getvalue()
 
 
+def _stored_pdf(invoice) -> bytes:
+    if not invoice.pdf_file:
+        return b''
+    invoice.pdf_file.open('rb')
+    try:
+        return invoice.pdf_file.read()
+    finally:
+        invoice.pdf_file.close()
+
+
 def get_or_create_invoice_pdf(invoice, force: bool = False) -> Tuple[bytes, str]:
+    if invoice.is_legacy:
+        # Архівний рахунок: віддаємо збережений файл без змін, нічого не перезаписуємо.
+        data = _stored_pdf(invoice)
+        if not data:
+            raise LegacyInvoiceError('Legacy invoice has no stored PDF')
+        return data, Path(invoice.pdf_file.name).name
+
     filename = build_pdf_filename(invoice)
-    if invoice.pdf_file and not force:
-        invoice.pdf_file.open('rb')
-        try:
-            data = invoice.pdf_file.read()
-        finally:
-            invoice.pdf_file.close()
+    if not force:
+        data = _stored_pdf(invoice)
         if data:
             return data, filename
 

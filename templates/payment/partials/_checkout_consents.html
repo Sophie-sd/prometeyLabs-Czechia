@@ -1,16 +1,11 @@
-{% load i18n %}
-{% url 'privacy' as privacy_url %}
+{# Consent checkboxes (Art. 16 CRD / §1837 NOZ). Texts: admin -> PaymentText. #}
 <div class="pay-consent">
     <label class="pay-consent-item">
         <input type="checkbox" name="withdrawal_waiver" value="1" required>
-        <span class="pay-consent-text">
-            {% blocktrans trimmed %}Я підтверджую, що замовляю послугу індивідуальної розробки / погоджуюсь на початок виконання до закінчення строку на відступлення, і втрачаю право на 14-денне відступлення від договору (ст. 16(a)/(c) Directive 2011/83/EU, §1837(a)/(l) NOZ).{% endblocktrans %}
-        </span>
+        <span class="pay-consent-text">{{ t.consent_withdrawal }}</span>
     </label>
     <label class="pay-consent-item">
         <input type="checkbox" name="data_consent" value="1" required>
-        <span class="pay-consent-text">
-            {% blocktrans trimmed %}Я даю згоду на обробку персональних даних для виконання цього платежу відповідно до <a href="{{ privacy_url }}" target="_blank" rel="noopener">Політики конфіденційності</a>.{% endblocktrans %}
-        </span>
+        <span class="pay-consent-text">{{ consent_data_html }}</span>
     </label>
 </div>

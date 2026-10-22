@@ -110,10 +110,10 @@ UNFOLD = {
                 "separator": True,
                 "items": [
                     {"title": _("Посилання"),     "icon": "link",            "link": reverse_lazy("admin:payment_paymentlink_changelist"), "permission": "apps.demoshop.admin_permissions.is_prometey_staff"},
-                    {"title": _("Підписки"),      "icon": "autorenew",       "link": "/admin/payment/paymentlink/?is_subscription=1", "permission": "apps.demoshop.admin_permissions.is_prometey_staff"},
                     {"title": _("Рахунки"),       "icon": "receipt_long",    "link": reverse_lazy("admin:payment_invoice_changelist"), "permission": "apps.demoshop.admin_permissions.is_prometey_staff"},
-                    {"title": _("Отримувачі"),   "icon": "account_balance", "link": reverse_lazy("admin:payment_recipientprofile_changelist"), "permission": "apps.demoshop.admin_permissions.is_prometey_staff"},
-                    {"title": _("Налаштування"), "icon": "settings",        "link": reverse_lazy("admin:payment_paymentsettings_changelist"), "permission": "apps.demoshop.admin_permissions.is_prometey_staff"},
+                    {"title": _("Способи оплати"), "icon": "account_balance", "link": reverse_lazy("admin:payment_paymentmethod_changelist"), "permission": "apps.demoshop.admin_permissions.is_prometey_staff"},
+                    {"title": _("Налаштування (виконавець)"), "icon": "settings", "link": reverse_lazy("admin:payment_paymentsettings_changelist"), "permission": "apps.demoshop.admin_permissions.is_prometey_staff"},
+                    {"title": _("Тексти оплати / PDF"), "icon": "translate", "link": reverse_lazy("admin:payment_paymenttext_changelist"), "permission": "apps.demoshop.admin_permissions.is_prometey_staff"},
                 ],
             },
             {

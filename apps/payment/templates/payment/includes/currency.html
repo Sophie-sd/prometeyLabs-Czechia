@@ -1,4 +1,4 @@
-{% comment %} Simple currency include {% endcomment %}
+{% comment %} Simple currency include (unused; proposed for deletion) {% endcomment %}
 {% if amount %}
-<span class="currency">{{ amount }} грн</span>
+<span class="currency">{{ amount }}{% if currency %} {{ currency }}{% endif %}</span>
 {% endif %}

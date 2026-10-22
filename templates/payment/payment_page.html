@@ -1,18 +1,16 @@
 {% extends 'payment/base_payment.html' %}
 {% load static %}
-{% load i18n %}
 
-{% block title %}{% trans "Оплата" %}{% endblock %}
+{% block title %}{{ t.browser_title }}{% endblock %}
 
 {% block content %}
+{# All visible texts come from admin: Payments -> PaymentText (CS / EN). #}
 
-{% if payment_link %}
-
-<h2 class="pay-page-title">{% trans "Оплата за послуги" %}</h2>
+<h2 class="pay-page-title">{{ t.page_title }}</h2>
 
 <div class="pay-card">
 
-    <!-- Клієнт -->
+    <!-- Client -->
     <div class="pay-section pay-section--client">
         <p class="pay-client-name">{{ payment_link.client_name }}</p>
         {% if payment_link.description %}
@@ -20,279 +18,127 @@
         {% endif %}
     </div>
 
-    <!-- Сума -->
+    <!-- Amount (link currency) -->
     <div class="pay-section pay-section--amount">
-        <p class="section-label">{% trans "Сума до сплати" %}</p>
+        <p class="section-label">{{ t.amount_label }}</p>
         <div class="amount-row">
-            <span class="amount-uah">{{ payment_link.final_amount_uah }} <span class="amount-currency">UAH</span></span>
-            {% if payment_link.currency != 'UAH' %}
-            <span class="amount-usd">({{ payment_link.amount }} {{ payment_link.currency }})</span>
-            {% endif %}
+            <span class="amount-main">{{ amount_display }} <span class="amount-currency">{{ payment_link.currency }}</span></span>
         </div>
-        {% if payment_link.currency != 'UAH' %}
-        <p class="exchange-rate">
-            {% trans "Курс:" %} <strong>{{ payment_link.exchange_rate|floatformat:2 }} грн/{{ payment_link.currency }}</strong>
-        </p>
-        {% endif %}
     </div>
 
-    <!-- Таймер -->
     {% if expires_at_iso %}
     <div class="pay-section" id="countdown-container">
-        <p class="section-label">{% trans "Час на оплату" %}</p>
+        <p class="section-label">{{ t.countdown_label }}</p>
         <div class="countdown"
              data-countdown
              data-expires-at="{{ expires_at_iso }}"
-             data-disable="#pay-btn"
-             data-expired-text="{% trans 'ЧАС ВИЙШОВ' %}"
+             data-disable="#consent-btn"
+             data-expired-text="{{ t.countdown_expired }}"
              aria-live="polite">--:--:--</div>
     </div>
     {% endif %}
 
-    <!-- Документи (одразу після суми) -->
-    {% with files=payment_link.attached_files.all %}
+    <!-- Executor (supplier) -->
+    {% if executor.name %}
+    <div class="pay-section pay-section--executor">
+        <p class="section-label">{{ t.executor_label }}</p>
+        <p class="pay-executor-name">{{ executor.name }}</p>
+        {% if executor.address %}<p class="pay-executor-line">{{ executor.address }}</p>{% endif %}
+        {% if executor.registration_number %}<p class="pay-executor-line">{{ t.reg_no_label }}: {{ executor.registration_number }}</p>{% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Documents -->
     {% if files or payment_link.contract_file or payment_settings.default_contract_file %}
     <div class="pay-section">
-        <p class="section-label">{% trans "Документи" %}</p>
+        <p class="section-label">{{ t.documents_label }}</p>
         <div class="docs-list">
             {% for f in files %}
-            <a href="{{ f.file.url }}" class="btn-doc" download>
-                <svg class="doc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                </svg>
-                <span class="doc-name">{{ f.display_name }}</span>
-                <svg class="doc-dl-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-            </a>
+            {% include 'payment/partials/_doc_link.html' with url=f.url name=f.name %}
             {% endfor %}
             {% if payment_link.contract_file %}
-            <a href="{{ payment_link.contract_file.url }}" class="btn-doc" download>
-                <svg class="doc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                </svg>
-                <span class="doc-name">{% trans "Договір" %}</span>
-                <svg class="doc-dl-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-            </a>
+            {% include 'payment/partials/_doc_link.html' with url=payment_link.contract_file.url name=t.doc_contract %}
             {% elif not files and payment_settings.default_contract_file %}
-            <a href="{{ payment_settings.default_contract_file.url }}" class="btn-doc" download>
-                <svg class="doc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                </svg>
-                <span class="doc-name">{% trans "Типовий договір" %}</span>
-                <svg class="doc-dl-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                    <polyline points="7 10 12 15 17 10"/>
-                    <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-            </a>
+            {% include 'payment/partials/_doc_link.html' with url=payment_settings.default_contract_file.url name=t.doc_default_contract %}
             {% endif %}
         </div>
     </div>
     {% endif %}
-    {% endwith %}
 
-    <!-- Реквізити: Отримувач → IBAN → ІПН → Призначення → Сума, потім банк -->
-    {% if requisites_rows %}
-    <div class="pay-section">
-        <p class="section-label">{% trans "Реквізити для оплати" %}</p>
-        <div class="req-list">
-
-            <!-- Отримувач, IBAN, ІПН/ЄДРПОУ -->
-            {% for row in requisites_rows %}
-            {% if row.copyable %}
-            <div class="req-row">
-                <div class="req-info">
-                    {% if row.label %}<span class="req-label">{{ row.label }}</span>{% endif %}
-                    <span class="req-value">{{ row.value }}</span>
-                </div>
-                <button type="button"
-                        class="btn-copy-row"
-                        data-copy
-                        data-copy-value="{{ row.value }}"
-                        title="{% trans 'Скопіювати' %}"
-                        aria-label="{% trans 'Скопіювати' %}: {{ row.value }}"
-                        aria-pressed="false">
-                    <span data-copy-icon="default" aria-hidden="true">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2"/>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                        </svg>
-                    </span>
-                    <span data-copy-icon="done" aria-hidden="true" hidden>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-            {% endif %}
-            {% endfor %}
-
-            <!-- Призначення платежу -->
-            {% if payment_link.description %}
-            <div class="req-row">
-                <div class="req-info">
-                    <span class="req-label">{% trans "Призначення платежу" %}</span>
-                    <span class="req-value">{{ payment_link.description }}</span>
-                </div>
-                <button type="button"
-                        class="btn-copy-row"
-                        data-copy
-                        data-copy-value="{{ payment_link.description }}"
-                        title="{% trans 'Скопіювати' %}"
-                        aria-label="{% trans 'Скопіювати призначення платежу' %}"
-                        aria-pressed="false">
-                    <span data-copy-icon="default" aria-hidden="true">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2"/>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                        </svg>
-                    </span>
-                    <span data-copy-icon="done" aria-hidden="true" hidden>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-            {% endif %}
-
-            <!-- Сума -->
-            <div class="req-row">
-                <div class="req-info">
-                    <span class="req-label">{% trans "Сума до сплати" %}</span>
-                    <span class="req-value">{{ payment_link.final_amount_uah }} UAH</span>
-                </div>
-                <button type="button"
-                        class="btn-copy-row"
-                        data-copy
-                        data-copy-value="{{ payment_link.final_amount_uah }}"
-                        title="{% trans 'Скопіювати' %}"
-                        aria-label="{% trans 'Скопіювати суму' %}"
-                        aria-pressed="false">
-                    <span data-copy-icon="default" aria-hidden="true">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2"/>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                        </svg>
-                    </span>
-                    <span data-copy-icon="done" aria-hidden="true" hidden>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                    </span>
-                </button>
-            </div>
-
-        </div>
-
-        <!-- Банківський блок: без заголовку -->
-        {% if has_bank_rows %}
-        <div class="bank-info-block">
-            <div class="bank-info-grid">
-                {% for row in requisites_rows %}
-                {% if not row.copyable %}
-                <span class="bank-field-label">{{ row.label }}</span>
-                <span class="bank-field-value">{{ row.value }}</span>
-                {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-        {% endif %}
-
-        {{ requisites_payload|json_script:"pay-requisites-data" }}
-        <button type="button"
-                class="btn-copy-all"
-                data-copy-all
-                data-copy-source="#pay-requisites-data"
-                data-copy-done="{% trans '✓ Скопійовано' %}"
-                aria-pressed="false">
-            <span data-copy-label>{% trans "Скопіювати реквізити" %}</span>
-        </button>
-    </div>
-    {% endif %}
-
-    <!-- Еквайринг (перед інструкціями) -->
-    {% if payment_link.use_acquiring %}
-    <div class="pay-section pay-section--action">
-        <p class="pay-acquiring-title">{% trans "Або оплатіть онлайн" %}</p>
-        <p class="pay-acquiring-sub">{% trans "Картка · Apple Pay · Google Pay" %}</p>
-        <form method="post" action="{% url 'payment:create_invoice' unique_id=payment_link.unique_id %}">
-            {% csrf_token %}
-            {% include 'payment/partials/_checkout_consents.html' %}
-            <button type="submit" class="btn-pay" id="pay-btn">
-                {% trans "Перейти до оплати" %}
-            </button>
-        </form>
-        <div class="pay-methods">
-            <img src="{% static 'payment/images/paylogos/visa.png' %}" alt="Visa" class="pay-method-logo">
-            <img src="{% static 'payment/images/paylogos/mastercard.png' %}" alt="Mastercard" class="pay-method-logo">
-            <img src="{% static 'payment/images/paylogos/applepay.png' %}" alt="Apple Pay" class="pay-method-logo">
-            <img src="{% static 'payment/images/paylogos/gpay.png' %}" alt="Google Pay" class="pay-method-logo">
-        </div>
-    </div>
-    {% else %}
-    <div class="pay-section pay-section--action">
-        {% if payment_link.withdrawal_waiver_accepted_at %}
-        <p class="pay-acquiring-sub">{% trans "Умови підтверджено." %}</p>
-        {% else %}
+    {% if not consents_ok %}
+    <!-- Consent BEFORE payment details are revealed (§1837 NOZ) -->
+    <div class="pay-section pay-section--action" id="consent">
+        <p class="section-label">{{ t.consent_title }}</p>
+        {% if consent_error %}<p class="pay-consent-error" role="alert">{{ t.consent_error }}</p>{% endif %}
         <form method="post" action="{% url 'payment:record_consent' unique_id=payment_link.unique_id %}">
             {% csrf_token %}
             {% include 'payment/partials/_checkout_consents.html' %}
-            <button type="submit" class="btn-pay">
-                {% trans "Підтверджую умови" %}
-            </button>
+            <button type="submit" class="btn-pay" id="consent-btn">{{ t.consent_button }}</button>
         </form>
+        <p class="pay-consent-hint">{{ t.details_hidden_hint }}</p>
+    </div>
+    {% else %}
+    <!-- Payment details (shown only after consent) -->
+    <div class="pay-section" id="payment-details">
+        <p class="section-label">{{ t.details_label }}</p>
+        <p class="pay-consent-ok">✓ {{ t.consent_confirmed }}</p>
+
+        {% include 'payment/partials/_copy_row.html' with label=t.field_amount value=amount_plain display=amount_display suffix=payment_link.currency %}
+        {% if payment_link.description %}
+        {% include 'payment/partials/_copy_row.html' with label=t.field_purpose value=payment_link.description %}
         {% endif %}
+
+        {% for block in bank_blocks %}
+        <div class="pay-method" data-method-type="{{ block.type }}">
+            <p class="pay-method-title">{{ block.label }}</p>
+            <div class="req-list">
+                {% for row in block.rows %}
+                {% include 'payment/partials/_copy_row.html' with label=row.label value=row.value %}
+                {% endfor %}
+            </div>
+            {% if block.note %}<p class="pay-method-note">{{ block.note|linebreaksbr }}</p>{% endif %}
+            {{ block.copy_payload|json_script:block.dom_id }}
+            <button type="button"
+                    class="btn-copy-all"
+                    data-copy-all
+                    data-copy-source="#{{ block.dom_id }}"
+                    data-copy-done="{{ t.copied }}"
+                    aria-pressed="false">
+                <span data-copy-label>{{ t.copy_details }}</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        {% for block in paypal_blocks %}
+        <div class="pay-method pay-method--paypal" data-method-type="paypal">
+            <p class="pay-method-title">{{ block.label }}</p>
+            {% if block.rows %}
+            <div class="req-list">
+                {% for row in block.rows %}
+                {% include 'payment/partials/_copy_row.html' with label=row.label value=row.value %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if block.note %}<p class="pay-method-note">{{ block.note|linebreaksbr }}</p>{% endif %}
+            {% if block.paypal_url %}
+            <a href="{{ block.paypal_url }}" class="btn-paypal" target="_blank" rel="noopener">{{ t.paypal_button }}</a>
+            {% endif %}
+        </div>
+        {% endfor %}
     </div>
     {% endif %}
 
-    <!-- Інструкції (після еквайрингу) -->
+    <!-- How to pay -->
     <div class="pay-section pay-section--instructions">
-        <p class="section-label">{% trans "Як оплатити" %}</p>
-        {% if payment_link.use_acquiring %}
-        <p class="instructions-text">
-            {% blocktrans %}Оплату можна провести онлайн карткою, <strong>Apple Pay</strong> або <strong>Google Pay</strong>.
-            Також доступний банківський переказ за реквізитами вище.
-            Після оплати переказом — надішліть нам фото квитанції:{% endblocktrans %}
-        </p>
-        {% else %}
-        <p class="instructions-text">
-            {% blocktrans %}До посилання прикріплений рахунок — завантажте його або проведіть оплату вручну за реквізитами вище.
-            Після оплати — надішліть нам фото квитанції:{% endblocktrans %}
-        </p>
-        {% endif %}
-        <a href="https://t.me/prometeylabs" target="_blank" rel="noopener" class="btn-telegram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <p class="section-label">{{ t.howto_label }}</p>
+        <p class="instructions-text">{{ t.howto_text }}</p>
+        <a href="{{ t.telegram_url }}" target="_blank" rel="noopener" class="btn-telegram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.013l-2.95-.924c-.642-.204-.654-.642.136-.953l11.52-4.44c.535-.194 1.003.13.376.552z"/>
             </svg>
-            {% trans "Написати в Telegram" %}
+            {{ t.telegram_button }}
         </a>
     </div>
 
 </div>
-
-{% elif test_mode %}
-<div class="pay-card">
-    <div class="pay-section">
-        <p class="section-label">{% trans "Тестовий режим" %}</p>
-        <form method="post">
-            {% csrf_token %}
-            {% include 'payment/partials/_checkout_consents.html' %}
-            <button type="submit" class="btn-pay">{% trans "Створити тестовий інвойс" %}</button>
-        </form>
-    </div>
-</div>
-{% endif %}
-
 {% endblock %}

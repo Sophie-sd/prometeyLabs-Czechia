@@ -4,7 +4,6 @@ from datetime import date
 from decimal import Decimal, InvalidOperation
 from typing import List
 
-from django.contrib.admin.views.decorators import staff_member_required
 from django.http import (
     HttpRequest,
     HttpResponse,
@@ -15,17 +14,21 @@ from django.http import (
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.core.cache import cache
-from django.utils import timezone
-from django.utils.translation import gettext as _
+from django.utils import timezone, translation
+from django.utils.html import escape, format_html
+from django.utils.safestring import mark_safe
+from django.urls import reverse
 
+from .amount_words import format_money, plain_amount
 from .checkout import (
     has_checkout_consents,
     require_and_record_consents,
     send_payment_confirmation,
 )
-from .models import PaymentLink, PaymentSettings, SubscriptionCharge
+from .models import PaymentLink, PaymentSettings, SubscriptionCharge, method_public_block
 from .monobank_service import MonobankAcquiringService
 from .subscription_service import MonobankSubscriptionService
+from .texts import current_lang, get_texts
 
 logger = logging.getLogger('payment')
 
@@ -42,35 +45,44 @@ def get_payment_settings():
     return settings
 
 
-def parse_requisites(text: str) -> list:
-    """Splits company_info into structured rows {label, value, copyable}."""
-    rows = []
-    for line in (text or '').splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        if ':' in line:
-            label, _sep, value = line.partition(':')
-            rows.append({'label': label.strip(), 'value': value.strip(), 'copyable': True})
-        else:
-            rows.append({'label': '', 'value': line, 'copyable': True})
-    return rows
+def _status_context(request: HttpRequest, extra: dict | None = None) -> dict:
+    lang = current_lang()
+    ctx = {'t': get_texts(lang), 'lang': lang}
+    ctx.update(extra or {})
+    return ctx
 
 
-def _build_requisites_payload(requisites_rows: list, payment_link: PaymentLink) -> List[str]:
-    payload: List[str] = []
-    for row in requisites_rows:
-        if not row.get('copyable', True):
-            continue
-        value = row.get('value', '')
-        if not value:
-            continue
-        label = row.get('label') or ''
-        payload.append(f'{label}: {value}' if label else str(value))
-    if payment_link.description:
-        payload.append(f"{_('Призначення')}: {payment_link.description}")
-    payload.append(f"{_('Сума')}: {payment_link.final_amount_uah} UAH")
-    return payload
+def _render_inactive(request: HttpRequest, payment_link: PaymentLink):
+    return render(request, 'payment/link_inactive.html', _status_context(request, {
+        'payment_link': payment_link,
+        'is_paid': payment_link.status == PaymentLink.Status.PAID,
+    }))
+
+
+def _method_copy_payload(block: dict, texts: dict, purpose: str, amount_line: str) -> List[str]:
+    """Текст для кнопки «Kopírovat platební údaje / Copy payment details»."""
+    lines = [f"{row['label']}: {row['value']}" for row in block['rows']]
+    if block.get('paypal_url'):
+        lines.append(block['paypal_url'])
+    if purpose:
+        lines.append(f"{texts['field_purpose']}: {purpose}")
+    lines.append(f"{texts['field_amount']}: {amount_line}")
+    return lines
+
+
+def build_payment_blocks(payment_link: PaymentLink, texts: dict, lang: str) -> list:
+    purpose = (payment_link.description or '').strip()
+    amount_line = f'{plain_amount(payment_link.amount)} {payment_link.currency}'
+    blocks = []
+    for idx, method in enumerate(
+        payment_link.payment_methods.filter(is_active=True, currency=payment_link.currency).order_by('position', 'name'),
+        start=1,
+    ):
+        block = method_public_block(method.snapshot(), texts, lang)
+        block['dom_id'] = f'pay-method-{idx}'
+        block['copy_payload'] = _method_copy_payload(block, texts, purpose, amount_line)
+        blocks.append(block)
+    return blocks
 
 
 def _next_month_first(from_date: date) -> date:
@@ -158,90 +170,74 @@ def payment_page(request: HttpRequest, unique_id):
         PaymentLink.Status.DEACTIVATED,
         PaymentLink.Status.EXPIRED,
     )
-    if payment_link.status in inactive_statuses:
-        return render(request, 'payment/link_inactive.html', {'payment_link': payment_link})
+    # Legacy UAH links are not served on .cz (no UAH anywhere on the page).
+    if payment_link.status in inactive_statuses or payment_link.is_legacy_currency:
+        return _render_inactive(request, payment_link)
 
     payment_link.mark_first_open()
     if payment_link.is_expired():
         if payment_link.status != PaymentLink.Status.EXPIRED:
             payment_link.status = PaymentLink.Status.EXPIRED
             payment_link.save(update_fields=['status'])
-        return render(request, 'payment/link_inactive.html', {'payment_link': payment_link})
+        return _render_inactive(request, payment_link)
 
+    lang = current_lang()
+    texts = get_texts(lang)
     payment_settings = get_payment_settings()
+    executor = (payment_settings or PaymentSettings.get_solo()).executor_snapshot()
+    consents_ok = payment_link.has_checkout_consents
 
-    expires_at_iso = payment_link.expires_at.isoformat() if payment_link.expires_at else None
+    files = [
+        {'url': f.file.url, 'name': f.public_name(texts)}
+        for f in payment_link.attached_files.all()
+    ]
 
-    if payment_link.recipient:
-        requisites_rows = payment_link.recipient.as_requisites_rows()
-    else:
-        requisites_rows = parse_requisites(payment_link.company_info)
+    blocks = build_payment_blocks(payment_link, texts, lang) if consents_ok else []
+    bank_blocks = [b for b in blocks if not b['is_paypal']]
+    paypal_blocks = [b for b in blocks if b['is_paypal']]
 
-    has_bank_rows = any(not row.get('copyable', True) for row in requisites_rows)
-    requisites_payload = _build_requisites_payload(requisites_rows, payment_link)
+    privacy_url = reverse('privacy')
+    consent_data_html = mark_safe(escape(texts['consent_data']).replace(
+        '{privacy_link}',
+        format_html(
+            '<a href="{}" target="_blank" rel="noopener">{}</a>',
+            privacy_url, texts['consent_privacy_link'],
+        ),
+    ))
+
+    path_cs = path_en = ''
+    for code in ('cs', 'en'):
+        with translation.override(code):
+            url = reverse('payment:payment_page', kwargs={'unique_id': payment_link.unique_id})
+        if code == 'cs':
+            path_cs = url
+        else:
+            path_en = url
 
     return render(request, 'payment/payment_page.html', {
+        't': texts,
+        'lang': lang,
         'payment_link': payment_link,
         'payment_settings': payment_settings,
-        'expires_at_iso': expires_at_iso,
-        'requisites_rows': requisites_rows,
-        'requisites_payload': requisites_payload,
-        'has_bank_rows': has_bank_rows,
+        'executor': executor,
+        'expires_at_iso': payment_link.expires_at.isoformat() if payment_link.expires_at else None,
+        'amount_display': format_money(payment_link.amount, lang),
+        'amount_plain': plain_amount(payment_link.amount),
+        'files': files,
+        'consents_ok': consents_ok,
+        'consent_error': request.GET.get('consent') == 'missing',
+        'consent_data_html': consent_data_html,
+        'bank_blocks': bank_blocks,
+        'paypal_blocks': paypal_blocks,
+        'path_cs': path_cs,
+        'path_en': path_en,
     })
 
 
 def create_invoice(request: HttpRequest, unique_id):
-    if request.method != 'POST':
-        return HttpResponseBadRequest('Invalid method')
-
-    payment_link = get_object_or_404(PaymentLink, unique_id=unique_id)
-    inactive_statuses = (
-        PaymentLink.Status.PAID,
-        PaymentLink.Status.DEACTIVATED,
-        PaymentLink.Status.EXPIRED,
-    )
-    if payment_link.status in inactive_statuses or payment_link.is_expired():
-        return render(request, 'payment/link_inactive.html', {'payment_link': payment_link})
-
-    if not payment_link.use_acquiring:
-        return HttpResponseBadRequest('Acquiring disabled for this payment link')
-
-    consent_error = require_and_record_consents(request, payment_link)
-    if consent_error:
-        return consent_error
-
-    validity = payment_link.duration_minutes * 60 if payment_link.duration_minutes else 3600
-
-    if payment_link.is_subscription:
-        svc = MonobankSubscriptionService()
-        invoice_id, page_url = svc.create_invoice_with_save_card(
-            reference=str(payment_link.unique_id),
-            wallet_id=str(payment_link.unique_id),
-            amount_uah=payment_link.final_amount_uah,
-            destination=payment_link.description or 'Щомісячна підписка',
-            comment=f'Підписка: {payment_link.client_name}',
-            validity_seconds=validity,
-        )
-    else:
-        svc = MonobankAcquiringService()
-        invoice_id, page_url = svc.create_invoice(
-            reference=str(payment_link.unique_id),
-            amount_uah=payment_link.final_amount_uah,
-            destination=payment_link.description or 'Оплата послуг',
-            comment=f'Платіж від {payment_link.client_name}',
-            validity_seconds=validity,
-        )
-
-    if not invoice_id or not page_url:
-        return render(request, 'payment/payment_failure.html', {
-            'payment_link': payment_link,
-            'reason': 'Помилка створення інвойсу',
-        })
-
-    payment_link.monobank_invoice_id = invoice_id
-    payment_link.monobank_invoice_url = page_url
-    payment_link.save(update_fields=['monobank_invoice_id', 'monobank_invoice_url'])
-    return redirect(page_url)
+    """Онлайн-оплату (Monobank acquiring) на .cz вимкнено. Маршрут лишено для старих форм."""
+    texts = get_texts(current_lang())
+    return HttpResponse(texts['online_unavailable'], status=410, content_type='text/plain; charset=utf-8')
 
 
 def record_consent(request: HttpRequest, unique_id):
@@ -254,13 +250,23 @@ def record_consent(request: HttpRequest, unique_id):
         PaymentLink.Status.DEACTIVATED,
         PaymentLink.Status.EXPIRED,
     )
-    if payment_link.status in inactive_statuses or payment_link.is_expired():
-        return render(request, 'payment/link_inactive.html', {'payment_link': payment_link})
+    if payment_link.status in inactive_statuses or payment_link.is_expired() \
+            or payment_link.is_legacy_currency:
+        return _render_inactive(request, payment_link)
 
+    if not has_checkout_consents(request):
+        # Обидва чекбокси обов'язкові: повертаємо на сторінку з повідомленням.
+        page = reverse('payment:payment_page', kwargs={'unique_id': payment_link.unique_id})
+        return redirect(f'{page}?consent=missing#consent')
     consent_error = require_and_record_consents(request, payment_link)
     if consent_error:
         return consent_error
-    return redirect('payment:payment_page', unique_id=unique_id)
+    return redirect(payment_link_path_for_request(payment_link))
+
+
+def payment_link_path_for_request(payment_link: PaymentLink) -> str:
+    """Шлях сторінки оплати поточною мовою (cs без префікса, en → /en/)."""
+    return reverse('payment:payment_page', kwargs={'unique_id': payment_link.unique_id}) + '#payment-details'
 
 
 @csrf_exempt
@@ -336,34 +342,9 @@ def monobank_webhook(request: HttpRequest):
 
 def payment_success(request: HttpRequest, unique_id):
     payment_link = get_object_or_404(PaymentLink, unique_id=unique_id)
-    return render(request, 'payment/payment_success.html', {'payment_link': payment_link})
+    return render(request, 'payment/payment_success.html', _status_context(request, {'payment_link': payment_link}))
 
 
 def payment_failure(request: HttpRequest, unique_id):
     payment_link = get_object_or_404(PaymentLink, unique_id=unique_id)
-    return render(request, 'payment/payment_failure.html', {'payment_link': payment_link})
-
-
-@staff_member_required
-def test_monobank_api(request: HttpRequest):
-    if request.method == 'POST':
-        if not has_checkout_consents(request):
-            return HttpResponseBadRequest(
-                _('Підтвердіть обидва пункти: відмову від права відступлення та згоду на обробку даних.'),
-            )
-        svc = MonobankAcquiringService()
-        invoice_id, page_url = svc.create_invoice(
-            reference='test-reference',
-            amount_uah=Decimal('10.00'),
-            destination='Тестовий платіж',
-            comment='Тест API',
-            validity_seconds=600,
-        )
-        return render(request, 'payment/payment_success.html', {
-            'payment_link': None,
-            'invoice_id': invoice_id,
-            'page_url': page_url,
-            'test_mode': True,
-        })
-
-    return render(request, 'payment/payment_page.html', {'test_mode': True})
+    return render(request, 'payment/payment_failure.html', _status_context(request, {'payment_link': payment_link}))

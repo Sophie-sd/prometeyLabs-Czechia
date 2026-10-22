@@ -11,6 +11,5 @@ urlpatterns = [
     path('webhook/monobank/', views.monobank_webhook, name='monobank_webhook'),
     path('pay/<uuid:unique_id>/success/', views.payment_success, name='payment_success'),
     path('pay/<uuid:unique_id>/failure/', views.payment_failure, name='payment_failure'),
-    path('test/monobank-api/', views.test_monobank_api, name='test_monobank_api'),
 ]
 

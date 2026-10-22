@@ -5,25 +5,25 @@ from django import forms
 from django.contrib import admin, messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import path, reverse
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin as UnfoldModelAdmin, TabularInline as UnfoldTabularInline
 
+from .amount_words import format_money
 from .invoice_models import Invoice, InvoiceItem
-from .invoice_pdf import get_or_create_invoice_pdf
-from .models import RecipientProfile
+from .invoice_pdf import LegacyInvoiceError, get_or_create_invoice_pdf
+from .models import PaymentMethod, currency_mismatches
 
 
 CLIENT_HINTS_HTML = mark_safe(
     '<div class="invoice-client-hints">'
-    '<p class="invoice-client-hints__title">Що вказувати:</p>'
+    '<p class="invoice-client-hints__title">Замовник (ЄС / міжнародний клієнт):</p>'
     '<ul class="invoice-client-hints__list">'
-    '<li><strong>ФОП</strong> — ФОП Прізвище Імʼя По батькові, РНОКПП (10 цифр), '
-    'адреса за бажанням</li>'
-    '<li><strong>ТОВ / юрособа</strong> — повна назва (ТОВ «…»), ЄДРПОУ (8 цифр), '
-    'юридична адреса бажано</li>'
-    '<li><strong>Фізособа</strong> — ПІБ повністю, РНОКПП (якщо є), адреса за бажанням</li>'
+    '<li><strong>Назва</strong> — компанія (напр. «Example s.r.o.») або імʼя та прізвище</li>'
+    '<li><strong>IČO / Company ID</strong> — реєстраційний номер компанії (якщо є)</li>'
+    '<li><strong>DIČ / VAT ID</strong> — опційно, якщо клієнт платник ПДВ</li>'
+    '<li><strong>Адреса, країна, email</strong> — латиницею, як у реєстрі клієнта</li>'
     '</ul>'
     '</div>'
 )
@@ -89,37 +89,59 @@ class InvoiceAdminForm(forms.ModelForm):
     class Meta:
         model = Invoice
         fields = (
-            'recipient', 'client_name', 'client_tax_id', 'client_address',
-            'invoice_date', 'contract_number', 'contract_date',
+            'language', 'currency', 'payment_methods',
+            'client_name', 'client_tax_id', 'client_vat_id',
+            'client_address', 'client_country', 'client_email',
+            'invoice_date', 'valid_until', 'contract_number', 'contract_date',
+            'purpose_service',
         )
+        widgets = {
+            'payment_methods': forms.CheckboxSelectMultiple,
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if 'recipient' in self.fields:
-            self.fields['recipient'].queryset = RecipientProfile.objects.filter(
+        for name in ('language', 'currency'):
+            if name in self.fields:
+                self.fields[name].required = True
+                self.fields[name].choices = [
+                    c for c in self.fields[name].choices if c[0]
+                ]
+        if 'payment_methods' in self.fields:
+            self.fields['payment_methods'].queryset = PaymentMethod.objects.filter(
                 is_active=True
-            ).order_by('name')
-            self.fields['recipient'].label = _('Отримувач / Виконавець')
-            self.fields['recipient'].empty_label = _('— оберіть отримувача —')
+            ).order_by('position', 'name')
+            self.fields['payment_methods'].required = True
         if 'client_name' in self.fields:
-            self.fields['client_name'].label = _('Замовник (назва / ПІБ)')
             self.fields['client_name'].help_text = _(
-                'ФОП: ФОП Прізвище Імʼя По батькові · '
-                'ТОВ: повна назва (ТОВ «…») · '
-                'Фізособа: ПІБ повністю'
+                'Компанія (напр. «Example s.r.o.») або імʼя та прізвище — латиницею.'
             )
         if 'client_tax_id' in self.fields:
-            self.fields['client_tax_id'].label = _('РНОКПП / ЄДРПОУ')
-            self.fields['client_tax_id'].help_text = _(
-                'ФОП / фізособа — РНОКПП (10 цифр); ТОВ / юрособа — ЄДРПОУ (8 цифр)'
-            )
-        if 'client_address' in self.fields:
-            self.fields['client_address'].label = _('Адреса (опційно)')
-            self.fields['client_address'].help_text = _(
-                'Для ТОВ бажано юридичну адресу; для ФОП / фізособи — за бажанням'
-            )
+            self.fields['client_tax_id'].help_text = _('Реєстраційний номер компанії, якщо є.')
         if 'invoice_date' in self.fields and not self.instance.pk:
             self.fields['invoice_date'].initial = date.today()
+        if 'valid_until' in self.fields and not self.instance.pk:
+            self.fields['valid_until'].initial = Invoice.default_due_date(date.today())
+            self.fields['valid_until'].required = False
+
+    def clean(self):
+        cleaned = super().clean()
+        currency = cleaned.get('currency')
+        methods = cleaned.get('payment_methods')
+        if currency and methods is not None:
+            wrong = currency_mismatches(methods, currency)
+            if wrong:
+                self.add_error('payment_methods', _(
+                    'Валюта способу оплати не збігається з валютою рахунку (%(cur)s): %(names)s. '
+                    'Напр., для рахунку в USD не можна обрати реквізити в EUR.'
+                ) % {'cur': currency, 'names': ', '.join(m.name for m in wrong)})
+        invoice_date = cleaned.get('invoice_date')
+        due = cleaned.get('valid_until')
+        if invoice_date and not due:
+            cleaned['valid_until'] = Invoice.default_due_date(invoice_date)
+        elif invoice_date and due and due < invoice_date:
+            self.add_error('valid_until', _('Термін оплати не може бути раніше дати рахунку.'))
+        return cleaned
 
 
 @admin.register(Invoice)
@@ -128,11 +150,11 @@ class InvoiceAdmin(UnfoldModelAdmin):
     inlines = [InvoiceItemInline]
     list_filter_sheet = False
     list_display = (
-        'number', 'invoice_date', 'recipient_col', 'client_name',
+        'number', 'invoice_date', 'language_col', 'client_name',
         'total_col', 'contract_col', 'created_at_col', 'pdf_col',
     )
     list_display_links = ('number',)
-    search_fields = ('number', 'client_name', 'contract_number', 'client_tax_id')
+    search_fields = ('number', 'client_name', 'contract_number', 'client_tax_id', 'client_vat_id')
     ordering = ('-number',)
     list_per_page = 50
     change_form_template = 'admin/payment/invoice/change_form.html'
@@ -144,24 +166,32 @@ class InvoiceAdmin(UnfoldModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         if obj:
             return (
-                'number', 'invoice_date', 'valid_until', 'recipient',
-                'client_name', 'client_tax_id', 'client_address',
-                'contract_number', 'contract_date', 'total_amount',
+                'number', 'language', 'currency', 'invoice_date', 'valid_until',
+                'methods_readonly', 'payment_purpose_readonly',
+                'client_name', 'client_tax_id', 'client_vat_id', 'client_address',
+                'client_country', 'client_email',
+                'contract_number', 'contract_date', 'purpose_service', 'total_amount',
                 'created_at', 'created_by',
             )
-        return ('number', 'valid_until', 'total_amount')
+        return ('number', 'total_amount')
 
     def get_fieldsets(self, request, obj=None):
         if obj:
             return (
                 (_('Рахунок'), {
-                    'fields': ('number', 'invoice_date', 'valid_until', 'total_amount'),
+                    'fields': (
+                        'number', 'language', 'currency', 'invoice_date', 'valid_until',
+                        'total_amount',
+                    ),
                 }),
-                (_('Виконавець'), {
-                    'fields': ('recipient',),
+                (_('Способи оплати'), {
+                    'fields': ('methods_readonly', 'purpose_service', 'payment_purpose_readonly'),
                 }),
                 (_('Замовник'), {
-                    'fields': ('client_name', 'client_tax_id', 'client_address'),
+                    'fields': (
+                        'client_name', 'client_tax_id', 'client_vat_id',
+                        'client_address', 'client_country', 'client_email',
+                    ),
                 }),
                 (_('Договір'), {
                     'fields': ('contract_number', 'contract_date'),
@@ -172,27 +202,50 @@ class InvoiceAdmin(UnfoldModelAdmin):
                 }),
             )
         return (
-            (_('Виконавець'), {
-                'fields': ('recipient',),
+            (_('Рахунок'), {
+                'fields': ('language', 'currency', 'invoice_date', 'valid_until'),
                 'description': _(
-                    'Оберіть активний профіль отримувача — реквізити підставляться в PDF.'
+                    'Номер призначається автоматично. Термін оплати за замовчуванням — '
+                    'дата рахунку + 3 дні (можна змінити). PDF генерується мовою рахунку.'
+                ),
+            }),
+            (_('Способи оплати'), {
+                'fields': ('payment_methods', 'purpose_service'),
+                'description': _(
+                    'Оберіть один або кілька способів у валюті рахунку — реквізити кожного '
+                    'друкуються в PDF. Виконавець береться з «Платежі → Налаштування». '
+                    'Призначення платежу формується автоматично: «Payment for <послуга> by the '
+                    'invoice № <номер> from <дата>» (CS: «Platba za … dle faktury č. … ze dne …»).'
                 ),
             }),
             (_('Замовник'), {
-                    'fields': ('client_name', 'client_tax_id', 'client_address'),
-                    'description': CLIENT_HINTS_HTML,
-                }),
-                (_('Рахунок'), {
-                    'fields': ('invoice_date', 'valid_until'),
-                    'description': _(
-                        'Номер рахунку призначається автоматично при збереженні. '
-                        '«Доступний до» = дата рахунку + 3 дні.'
-                    ),
-                }),
+                'fields': (
+                    'client_name', 'client_tax_id', 'client_vat_id',
+                    'client_address', 'client_country', 'client_email',
+                ),
+                'description': CLIENT_HINTS_HTML,
+            }),
             (_('Договір'), {
                 'fields': ('contract_number', 'contract_date'),
             }),
         )
+
+    @admin.display(description=_('Способи оплати'))
+    def methods_readonly(self, obj):
+        data = obj.payment_methods_snapshot or [m.snapshot() for m in obj.payment_methods.all()]
+        if not data:
+            return '—'
+        return format_html_join(
+            mark_safe('<br>'), '{} · {} · {}',
+            ((d.get('type', ''), d.get('currency', ''), d.get('iban') or d.get('paypal_email') or '')
+             for d in data),
+        )
+
+    @admin.display(description=_('Призначення платежу'))
+    def payment_purpose_readonly(self, obj):
+        if obj.is_legacy:
+            return '—'
+        return obj.payment_purpose()
 
     def has_change_permission(self, request, obj=None):
         # Дозволяємо відкриття change для перегляду / PDF, але поля readonly.
@@ -218,6 +271,8 @@ class InvoiceAdmin(UnfoldModelAdmin):
                 # Перерахувати amount на випадок
                 item.save()
         invoice.recalculate_total()
+        if not change:
+            invoice.freeze_snapshots()
 
     def response_add(self, request, obj, post_url_continue=None):
         if '_save_and_pdf' in request.POST:
@@ -251,6 +306,14 @@ class InvoiceAdmin(UnfoldModelAdmin):
             return HttpResponseRedirect(reverse('admin:payment_invoice_changelist'))
         try:
             data, filename = get_or_create_invoice_pdf(invoice, force=True)
+        except LegacyInvoiceError:
+            messages.error(request, _(
+                'Архівний рахунок (до переходу на EUR/USD): збереженого PDF немає, '
+                'новий не генерується.'
+            ))
+            return HttpResponseRedirect(
+                reverse('admin:payment_invoice_change', args=[object_id])
+            )
         except Exception as exc:
             messages.error(request, _('Помилка генерації PDF: %s') % exc)
             return HttpResponseRedirect(
@@ -258,7 +321,7 @@ class InvoiceAdmin(UnfoldModelAdmin):
             )
         from urllib.parse import quote
         response = HttpResponse(data, content_type='application/pdf')
-        ascii_name = f'Invoice_{invoice.number}.pdf'
+        ascii_name = filename if filename.isascii() else f'Invoice_{invoice.number}.pdf'
         response['Content-Disposition'] = (
             f"attachment; filename=\"{ascii_name}\"; "
             f"filename*=UTF-8''{quote(filename)}"
@@ -279,19 +342,20 @@ class InvoiceAdmin(UnfoldModelAdmin):
             extra_context['invoice_is_readonly'] = False
         return super().changeform_view(request, object_id, form_url, extra_context)
 
-    @admin.display(description=_('Виконавець'))
-    def recipient_col(self, obj):
-        return obj.recipient_name_snapshot or (obj.recipient.name if obj.recipient else '—')
+    @admin.display(description=_('Мова'), ordering='language')
+    def language_col(self, obj):
+        return (obj.language or '—').upper()
 
     @admin.display(description=_('Сума'), ordering='total_amount')
     def total_col(self, obj):
-        from .amount_ua import format_money_ua
-        return f'{format_money_ua(obj.total_amount)} грн'
+        if obj.is_legacy:
+            return f'{format_money(obj.total_amount, "cs")} ({_("архів")})'
+        return f'{format_money(obj.total_amount, obj.language or "cs")} {obj.currency}'
 
     @admin.display(description=_('Договір'))
     def contract_col(self, obj):
         d = obj.contract_date.strftime('%d.%m.%Y') if obj.contract_date else ''
-        return f'№ {obj.contract_number} від {d}'
+        return f'{obj.contract_number} / {d}'
 
     @admin.display(description=_('Створено'), ordering='created_at')
     def created_at_col(self, obj):

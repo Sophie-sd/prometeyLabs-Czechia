@@ -1,13 +1,11 @@
 {% extends 'payment/base_payment.html' %}
-{% load i18n %}
 
-{% block title %}{% trans "Помилка оплати" %}{% endblock %}
+{% block title %}{{ t.failure_title }}{% endblock %}
 
 {% block content %}
 <div class="pay-status">
     <div class="pay-status-icon">❌</div>
-    <h1 class="pay-status-title">{% trans "Помилка" %}</h1>
-    <p class="pay-status-text">{% trans "Не вдалося здійснити оплату. Спробуйте ще раз або оберіть інший спосіб оплати." %}</p>
-    {% if reason %}<p class="pay-status-text pay-status-text--reason">{{ reason }}</p>{% endif %}
+    <h1 class="pay-status-title">{{ t.failure_title }}</h1>
+    <p class="pay-status-text">{{ t.failure_text }}</p>
 </div>
 {% endblock %}

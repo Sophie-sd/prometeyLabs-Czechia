@@ -7,22 +7,67 @@ from django.conf import settings
 from unfold.admin import ModelAdmin as UnfoldModelAdmin, TabularInline as UnfoldTabularInline
 from unfold.contrib.filters.admin import (
     ChoicesDropdownFilter,
-    DropdownFilter,
     RangeDateFilter,
-    RelatedDropdownFilter,
 )
 
-from .models import PaymentLink, PaymentLinkFile, PaymentSettings, RecipientProfile, SubscriptionCharge
-from .subscription_service import MonobankSubscriptionService
+from .models import (
+    PaymentLink,
+    PaymentLinkFile,
+    PaymentMethod,
+    PaymentSettings,
+    PaymentText,
+    currency_mismatches,
+)
+from .texts import DEFAULT_TEXTS
 from . import invoice_admin  # noqa: F401  — реєстрація InvoiceAdmin
 
+# LEGACY (не зареєстровано в адмінці, дані в БД збережено):
+#   RecipientProfile  — замінено на PaymentMethod (без МФО / ЄДРПОУ);
+#   SubscriptionCharge — розділ «Підписки» прибрано з адмінки .cz.
 
-# ── PaymentSettings ────────────────────────────────────────────────────────
+
+# ── PaymentSettings (+ Виконавець) ─────────────────────────────────────────
+
+class PaymentSettingsForm(forms.ModelForm):
+    class Meta:
+        model = PaymentSettings
+        fields = (
+            'executor_name', 'executor_address', 'executor_registration_number',
+            'executor_email', 'executor_website', 'default_contract_file',
+        )
+        widgets = {
+            'executor_name': forms.TextInput(attrs={'placeholder': 'FOP Dmytrenko Sofiia'}),
+            'executor_address': forms.TextInput(attrs={
+                'placeholder': 'TO FILL: street, building, Myrhorod, Poltava region, postcode, Ukraine (in English)',
+            }),
+            'executor_registration_number': forms.TextInput(attrs={
+                'placeholder': 'TO FILL: registration number of the FOP',
+            }),
+            'executor_website': forms.TextInput(attrs={'placeholder': 'prometeylabs.cz'}),
+        }
+
 
 @admin.register(PaymentSettings)
 class PaymentSettingsAdmin(UnfoldModelAdmin):
-    list_display = ('title',)
+    form = PaymentSettingsForm
+    list_display = ('executor_name', 'executor_registration_number', 'executor_email')
     list_filter_sheet = False
+    fieldsets = (
+        (_('Виконавець (постачальник) — PDF та сторінка оплати'), {
+            'fields': (
+                'executor_name', 'executor_address', 'executor_registration_number',
+                'executor_email', 'executor_website',
+            ),
+            'description': _(
+                'Друкується в рахунку (PDF) і показується на сторінці оплати. '
+                'Адресу та реєстраційний номер — латиницею / англійською. '
+                'Порожні поля не виводяться.'
+            ),
+        }),
+        (_('Документи'), {
+            'fields': ('default_contract_file',),
+        }),
+    )
 
     def has_add_permission(self, request):
         if PaymentSettings.objects.exists():
@@ -30,22 +75,88 @@ class PaymentSettingsAdmin(UnfoldModelAdmin):
         return super().has_add_permission(request)
 
 
-# ── RecipientProfile ───────────────────────────────────────────────────────
+# ── PaymentMethod (замість «Профіль отримувача») ───────────────────────────
 
-@admin.register(RecipientProfile)
-class RecipientProfileAdmin(UnfoldModelAdmin):
-    list_display = ('name', 'recipient', 'iban', 'ipn', 'bank', 'is_active')
-    list_editable = ('is_active',)
-    search_fields = ('name', 'recipient', 'iban')
+class PaymentMethodForm(forms.ModelForm):
+    class Meta:
+        model = PaymentMethod
+        fields = (
+            'name', 'method_type', 'currency', 'is_active', 'position',
+            'beneficiary', 'iban', 'swift_bic', 'bank_name', 'beneficiary_address',
+            'paypal_email', 'paypal_url', 'note_cs', 'note_en',
+        )
+        widgets = {
+            'note_cs': forms.Textarea(attrs={'rows': 2}),
+            'note_en': forms.Textarea(attrs={'rows': 2}),
+        }
+
+
+@admin.register(PaymentMethod)
+class PaymentMethodAdmin(UnfoldModelAdmin):
+    form = PaymentMethodForm
+    list_display = ('name', 'method_type', 'currency', 'beneficiary', 'iban', 'is_active', 'position')
+    list_editable = ('is_active', 'position')
+    list_filter = ('method_type', 'currency', 'is_active')
+    search_fields = ('name', 'beneficiary', 'iban', 'paypal_email')
     list_filter_sheet = False
     fieldsets = (
         (None, {
-            'fields': ('name', 'is_active'),
+            'fields': ('name', 'method_type', 'currency', 'is_active', 'position'),
+            'description': _(
+                'SEPA EUR / SWIFT EUR → EUR, SWIFT USD → USD. PayPal — EUR або USD. '
+                'Спосіб можна обрати лише для рахунку / посилання тієї ж валюти.'
+            ),
         }),
-        (_('Реквізити'), {
-            'fields': ('recipient', 'iban', 'ipn', 'bank', 'mfo', 'bank_edrpou'),
+        (_('Банківські реквізити (SEPA / SWIFT)'), {
+            'fields': ('beneficiary', 'iban', 'swift_bic', 'bank_name', 'beneficiary_address'),
+        }),
+        (_('PayPal'), {
+            'fields': ('paypal_email', 'paypal_url'),
+        }),
+        (_('Примітка для клієнта'), {
+            'fields': ('note_cs', 'note_en'),
+            'description': _('Показується під реквізитами на сторінці оплати та в PDF мовою клієнта.'),
         }),
     )
+
+    def has_delete_permission(self, request, obj=None):
+        # Не видаляємо реквізити, які вже використано (історія рахунків) — лише «Активний» = ні.
+        if obj is not None and (obj.invoices.exists() or obj.payment_links.exists()):
+            return False
+        return super().has_delete_permission(request, obj)
+
+
+# ── PaymentText (CMS-тексти сторінки оплати та PDF) ───────────────────────
+
+@admin.register(PaymentText)
+class PaymentTextAdmin(UnfoldModelAdmin):
+    list_display = ('key', 'description', 'text_cs', 'text_en')
+    search_fields = ('key', 'description', 'text_cs', 'text_en')
+    list_filter_sheet = False
+    list_per_page = 200
+    readonly_fields = ('key', 'description')
+    fields = ('key', 'description', 'text_cs', 'text_en')
+
+    def changelist_view(self, request, extra_context=None):
+        ensure_payment_texts()
+        return super().changelist_view(request, extra_context)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+def ensure_payment_texts():
+    """Додає відсутні ключі з дефолтними текстами (наявні не змінює)."""
+    existing = set(PaymentText.objects.values_list('key', flat=True))
+    missing = [
+        PaymentText(key=key, description=hint, text_cs=cs, text_en=en)
+        for key, (hint, cs, en) in DEFAULT_TEXTS.items() if key not in existing
+    ]
+    if missing:
+        PaymentText.objects.bulk_create(missing, ignore_conflicts=True)
 
 
 # ── PaymentLink form ───────────────────────────────────────────────────────
@@ -57,14 +168,49 @@ class PaymentLinkAdminForm(forms.ModelForm):
         required=False,
         max_length=500,
         help_text=_(
-            'Що саме замовлено. Це поле використовується як призначення платежу — '
+            'Мовою клієнта (CS / EN). Використовується як призначення платежу — '
             'клієнт зможе його скопіювати.'
         ),
     )
 
     class Meta:
         model = PaymentLink
-        fields = '__all__'
+        fields = (
+            'client_name', 'client_email', 'language', 'description',
+            'currency', 'amount', 'payment_methods',
+            'status', 'duration_minutes',
+        )
+        widgets = {
+            'payment_methods': forms.CheckboxSelectMultiple,
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'payment_methods' in self.fields:
+            qs = PaymentMethod.objects.filter(is_active=True)
+            if self.instance.pk:
+                qs = PaymentMethod.objects.filter(
+                    _active_or_selected_q(self.instance)
+                ).distinct()
+            self.fields['payment_methods'].queryset = qs.order_by('position', 'name')
+            self.fields['payment_methods'].required = True
+
+    def clean(self):
+        cleaned = super().clean()
+        currency = cleaned.get('currency')
+        methods = cleaned.get('payment_methods')
+        if currency and methods is not None:
+            wrong = currency_mismatches(methods, currency)
+            if wrong:
+                self.add_error('payment_methods', _(
+                    'Валюта способу оплати не збігається з валютою посилання (%(cur)s): %(names)s'
+                ) % {'cur': currency, 'names': ', '.join(m.name for m in wrong)})
+        return cleaned
+
+
+def _active_or_selected_q(instance):
+    from django.db.models import Q
+    return Q(is_active=True) | Q(payment_links=instance)
 
 
 # ── PaymentLink inline ─────────────────────────────────────────────────────
@@ -77,145 +223,48 @@ class PaymentLinkFileInline(UnfoldTabularInline):
     verbose_name_plural = _('Файли (договори, рахунки)')
 
 
-class SubscriptionChargeInline(UnfoldTabularInline):
-    model = SubscriptionCharge
-    extra = 0
-    can_delete = False
-    fields = ('created_at', 'charged_at', 'amount_uah', 'status', 'monobank_invoice_id', 'error_message')
-    readonly_fields = fields
-    verbose_name = _('Списання')
-    verbose_name_plural = _('Історія списань по підписці')
-
-    def has_add_permission(self, request, obj=None):
-        return False
-
-
-# ── List filters ───────────────────────────────────────────────────────────
-
-class AcquiringDropdownFilter(DropdownFilter):
-    title = _('Еквайринг')
-    parameter_name = 'use_acquiring'
-
-    def lookups(self, request, model_admin):
-        return (
-            ('1', _('Так')),
-            ('0', _('Ні')),
-        )
-
-    def queryset(self, request, queryset):
-        value = self.value()
-        if value == '1':
-            return queryset.filter(use_acquiring=True)
-        if value == '0':
-            return queryset.filter(use_acquiring=False)
-        return queryset
-
-
-class SubscriptionDropdownFilter(DropdownFilter):
-    title = _('Підписка')
-    parameter_name = 'is_subscription'
-
-    def lookups(self, request, model_admin):
-        return (
-            ('1', _('Так')),
-            ('0', _('Ні')),
-        )
-
-    def queryset(self, request, queryset):
-        value = self.value()
-        if value == '1':
-            return queryset.filter(is_subscription=True)
-        if value == '0':
-            return queryset.filter(is_subscription=False)
-        return queryset
-
-
-class SubscriptionStatusDropdownFilter(DropdownFilter):
-    title = _('Статус підписки')
-    parameter_name = 'subscription_status'
-
-    def lookups(self, request, model_admin):
-        return PaymentLink.SubscriptionStatus.choices
-
-    def queryset(self, request, queryset):
-        value = self.value()
-        if value:
-            return queryset.filter(subscription_status=value)
-        return queryset
-
-
-
-
 @admin.register(PaymentLink)
 class PaymentLinkAdmin(UnfoldModelAdmin):
     form = PaymentLinkAdminForm
     list_filter_sheet = False
     list_display = (
-        'client_name', 'recipient', 'amount', 'currency', 'amount_uah_display',
-        'status', 'subscription_badge', 'acquiring_enabled', 'created_at_compact',
+        'client_name', 'amount', 'currency', 'language',
+        'status', 'consent_col', 'created_at_compact',
         'client_link_cell',
     )
     list_filter = (
         ('status', ChoicesDropdownFilter),
-        AcquiringDropdownFilter,
-        SubscriptionDropdownFilter,
-        SubscriptionStatusDropdownFilter,
-        ('recipient', RelatedDropdownFilter),
+        'language',
+        'currency',
         ('created_at', RangeDateFilter),
     )
     search_fields = ('client_name', 'client_email', 'unique_id')
     readonly_fields = (
-        'final_amount_uah', 'company_info',
-        'first_opened_at', 'expires_at',
-        'monobank_invoice_id', 'monobank_invoice_url', 'payment_processed_at',
-        'subscription_status', 'card_token', 'next_charge_date', 'last_charged_at',
+        'client_link_readonly',
+        'first_opened_at', 'expires_at', 'payment_processed_at',
         'withdrawal_waiver_accepted_at', 'withdrawal_waiver_accepted_ip',
         'data_consent_accepted_at', 'data_consent_accepted_ip',
     )
-    inlines = [PaymentLinkFileInline, SubscriptionChargeInline]
-    actions = [
-        'mark_deactivated',
-        'activate_pending_subscriptions',
-        'charge_subscriptions_now',
-        'pause_subscriptions',
-        'resume_subscriptions',
-    ]
+    inlines = [PaymentLinkFileInline]
+    actions = ['mark_deactivated']
 
     fieldsets = (
         (_('Клієнт'), {
-            'fields': ('client_name', 'client_email'),
+            'fields': ('client_name', 'client_email', 'language', 'client_link_readonly'),
+            'description': _('Мова визначає версію сторінки (CS / EN), на яку веде посилання.'),
         }),
         (_('Замовлення / Призначення платежу'), {
             'fields': ('description',),
         }),
-        (_('Отримувач платежу'), {
-            'fields': ('recipient', 'company_info'),
-            'description': _(
-                'Оберіть профіль ФОП — реквізити на сторінці підставляться автоматично. '
-                'Поле «Реквізити» нижче — тільки для перегляду.'
-            ),
+        (_('Сума'), {
+            'fields': ('currency', 'amount'),
+            'description': _('Клієнт бачить суму у валюті посилання (EUR або USD).'),
         }),
-        (_('Еквайринг'), {
-            'fields': ('use_acquiring',),
+        (_('Способи оплати'), {
+            'fields': ('payment_methods',),
             'description': _(
-                'Якщо увімкнено — клієнт зможе оплатити карткою, Apple Pay або Google Pay '
-                'через Monobank acquiring.'
-            ),
-        }),
-        (_('Підписка'), {
-            'fields': ('is_subscription', 'subscription_status', 'next_charge_date', 'last_charged_at', 'card_token'),
-            'description': _(
-                'Якщо увімкнено — перший платіж збереже картку клієнта. '
-                'Після активації адмін може списувати кошти вручну через дії у списку. '
-                'Поля статусу, дати та токену заповнюються автоматично.'
-            ),
-        }),
-        (_('Сума та курс'), {
-            'fields': ('currency', 'amount', 'exchange_rate', 'final_amount_uah'),
-            'description': _(
-                'Для USD/EUR вкажіть суму та курс до UAH. '
-                'Для UAH — лише сума, курс ігнорується. '
-                'Підсумкова сума UAH розраховується автоматично при збереженні.'
+                'Оберіть один або кілька. Реквізити показуються окремими блоками '
+                'після того, як клієнт відмітить обидва чекбокси згоди.'
             ),
         }),
         (_('Налаштування посилання'), {
@@ -229,10 +278,7 @@ class PaymentLinkAdmin(UnfoldModelAdmin):
             'classes': ('collapse',),
         }),
         (_('Системна інформація'), {
-            'fields': (
-                'first_opened_at', 'expires_at', 'payment_processed_at',
-                'monobank_invoice_id', 'monobank_invoice_url',
-            ),
+            'fields': ('first_opened_at', 'expires_at', 'payment_processed_at'),
             'classes': ('collapse',),
         }),
     )
@@ -241,30 +287,9 @@ class PaymentLinkAdmin(UnfoldModelAdmin):
         css = {'all': ('payment/css/admin.css',)}
         js = ('payment/js/copy.js', 'payment/js/admin.js')
 
-    @admin.display(description=_('Сума UAH'), ordering='final_amount_uah')
-    def amount_uah_display(self, obj):
-        return obj.final_amount_uah
-
-    @admin.display(description=_('Еквайринг'), boolean=True)
-    def acquiring_enabled(self, obj):
-        return obj.use_acquiring
-
-    @admin.display(description=_('Підписка'))
-    def subscription_badge(self, obj):
-        if not obj.is_subscription:
-            return '—'
-        status_map = {
-            PaymentLink.SubscriptionStatus.PENDING_CARD: ('⏳', '#f59e0b'),
-            PaymentLink.SubscriptionStatus.ACTIVE:       ('✓', '#16a34a'),
-            PaymentLink.SubscriptionStatus.PAUSED:       ('⏸', '#6b7280'),
-            PaymentLink.SubscriptionStatus.CANCELLED:    ('✕', '#dc2626'),
-        }
-        icon, color = status_map.get(obj.subscription_status, ('?', '#6b7280'))
-        label = obj.get_subscription_status_display() if obj.subscription_status else '—'
-        return format_html(
-            '<span style="color:{color};font-weight:600">{icon} {label}</span>',
-            color=color, icon=icon, label=label,
-        )
+    @admin.display(description=_('Згода'), boolean=True)
+    def consent_col(self, obj):
+        return obj.has_checkout_consents
 
     @admin.display(description=_('Створено'), ordering='created_at')
     def created_at_compact(self, obj):
@@ -273,17 +298,15 @@ class PaymentLinkAdmin(UnfoldModelAdmin):
         local_dt = timezone.localtime(obj.created_at)
         return local_dt.strftime('%d.%m.%Y %H:%M')
 
-    def save_model(self, request, obj, form, change):
-        if obj.recipient:
-            rows = obj.recipient.as_requisites_rows()
-            obj.company_info = '\n'.join(
-                f"{r['label']}: {r['value']}" for r in rows
-            )
-        super().save_model(request, obj, form, change)
-
     def get_client_facing_link(self, obj) -> str:
-        base = getattr(settings, 'SITE_URL', '').rstrip('/') or 'https://prometeylabs.com'
-        return f"{base}/payment/pay/{obj.unique_id}/"
+        base = getattr(settings, 'SITE_URL', '').rstrip('/') or 'https://prometeylabs.cz'
+        return f"{base}{obj.client_path()}"
+
+    @admin.display(description=_('Посилання для клієнта'))
+    def client_link_readonly(self, obj):
+        if not obj or not obj.pk:
+            return '—'
+        return self.client_link_cell(obj)
 
     @admin.display(description=_('Посилання клієнта'))
     def client_link_cell(self, obj):
@@ -316,137 +339,3 @@ class PaymentLinkAdmin(UnfoldModelAdmin):
             status=PaymentLink.Status.DEACTIVATED
         )
         self.message_user(request, _('Деактивовано: %(n)s') % {'n': updated})
-
-    @admin.action(description=_('Отримати картку і активувати підписку'))
-    def activate_pending_subscriptions(self, request, queryset):
-        eligible = queryset.filter(
-            is_subscription=True,
-            subscription_status=PaymentLink.SubscriptionStatus.PENDING_CARD,
-            status=PaymentLink.Status.PAID,
-        )
-
-        if not eligible.exists():
-            self.message_user(
-                request,
-                _(
-                    'Серед вибраних немає оплачених підписок, що очікують прив\'язки картки.'
-                ),
-                level='warning',
-            )
-            return
-
-        svc = MonobankSubscriptionService()
-        activated_count = failed_count = 0
-
-        for pl in eligible:
-            cards = svc.get_wallet_cards(str(pl.unique_id)) or []
-            active = next((c for c in cards if c.get('status') == 'active'), None)
-            card_token = (active or {}).get('cardToken', '')
-
-            if not card_token:
-                failed_count += 1
-                continue
-
-            today = timezone.now().date()
-            if today.month == 12:
-                next_charge = today.replace(year=today.year + 1, month=1, day=1)
-            else:
-                next_charge = today.replace(month=today.month + 1, day=1)
-
-            pl.card_token = card_token
-            pl.subscription_status = PaymentLink.SubscriptionStatus.ACTIVE
-            pl.next_charge_date = next_charge
-            pl.save(update_fields=['card_token', 'subscription_status', 'next_charge_date'])
-            activated_count += 1
-
-        parts = []
-        if activated_count:
-            parts.append(_('Активовано: %(n)s') % {'n': activated_count})
-        if failed_count:
-            parts.append(_('Не вдалося: %(n)s') % {'n': failed_count})
-        level = 'error' if failed_count and not activated_count else 'success'
-        self.message_user(request, ' | '.join(parts), level=level)
-
-    @admin.action(description=_('Зарядити вибрані підписки зараз'))
-    def charge_subscriptions_now(self, request, queryset):
-        eligible = queryset.filter(
-            is_subscription=True,
-            subscription_status=PaymentLink.SubscriptionStatus.ACTIVE,
-        ).exclude(card_token='')
-
-        if not eligible.exists():
-            self.message_user(
-                request,
-                _('Серед вибраних немає активних підписок із прив\'язаною карткою.'),
-                level='warning',
-            )
-            return
-
-        svc = MonobankSubscriptionService()
-        success_count = failed_count = pending_count = 0
-
-        for pl in eligible:
-            charge = SubscriptionCharge.objects.create(
-                source_payment=pl,
-                amount_uah=pl.final_amount_uah,
-            )
-            invoice_id, api_status = svc.charge_wallet(
-                card_token=pl.card_token,
-                wallet_id=str(pl.unique_id),
-                amount_uah=pl.final_amount_uah,
-                reference=f'sub-charge-{charge.id}',
-                destination=pl.description or 'Щомісячна підписка',
-                comment=f'Підписка: {pl.client_name}',
-            )
-
-            if api_status == 'success':
-                now = timezone.now()
-                charge.status = SubscriptionCharge.Status.SUCCESS
-                charge.monobank_invoice_id = invoice_id or ''
-                charge.charged_at = now
-                charge.save(update_fields=['status', 'monobank_invoice_id', 'charged_at'])
-                pl.last_charged_at = now
-                next_date = pl.next_charge_date or now.date()
-                if next_date.month == 12:
-                    next_date = next_date.replace(year=next_date.year + 1, month=1, day=1)
-                else:
-                    next_date = next_date.replace(month=next_date.month + 1, day=1)
-                pl.next_charge_date = next_date
-                pl.save(update_fields=['last_charged_at', 'next_charge_date'])
-                success_count += 1
-            elif api_status in ('processing', 'created'):
-                charge.monobank_invoice_id = invoice_id or ''
-                charge.save(update_fields=['monobank_invoice_id'])
-                pending_count += 1
-            else:
-                err = api_status or 'unknown'
-                charge.status = SubscriptionCharge.Status.FAILED
-                charge.error_message = f'API status: {err}'
-                charge.save(update_fields=['status', 'error_message'])
-                failed_count += 1
-
-        parts = []
-        if success_count:
-            parts.append(_('Успішно: %(n)s') % {'n': success_count})
-        if pending_count:
-            parts.append(_('В обробці: %(n)s') % {'n': pending_count})
-        if failed_count:
-            parts.append(_('Помилок: %(n)s') % {'n': failed_count})
-        level = 'error' if failed_count and not success_count and not pending_count else 'success'
-        self.message_user(request, ' | '.join(parts) or _('Немає результатів'), level=level)
-
-    @admin.action(description=_('Призупинити підписки'))
-    def pause_subscriptions(self, request, queryset):
-        updated = queryset.filter(
-            is_subscription=True,
-            subscription_status=PaymentLink.SubscriptionStatus.ACTIVE,
-        ).update(subscription_status=PaymentLink.SubscriptionStatus.PAUSED)
-        self.message_user(request, _('Призупинено: %(n)s') % {'n': updated})
-
-    @admin.action(description=_('Відновити підписки'))
-    def resume_subscriptions(self, request, queryset):
-        updated = queryset.filter(
-            is_subscription=True,
-            subscription_status=PaymentLink.SubscriptionStatus.PAUSED,
-        ).update(subscription_status=PaymentLink.SubscriptionStatus.ACTIVE)
-        self.message_user(request, _('Відновлено: %(n)s') % {'n': updated})

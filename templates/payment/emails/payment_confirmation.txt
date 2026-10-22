@@ -1,15 +1,13 @@
-{% load i18n %}{% trans "Дякуємо за оплату." %}
+{% autoescape off %}
+{{ t.email_thanks }}
 
 {% if payment_link.client_name %}{{ payment_link.client_name }}
 {% endif %}{% if payment_link.description %}{{ payment_link.description }}
-{% endif %}{{ payment_link.final_amount_uah }} UAH
-
-{% trans "Згідно з §1824a NOZ та ст. 16 Directive 2011/83/EU ви втратили право на 14-денне відступлення від договору, оскільки надали явну попередню згоду на початок виконання індивідуальної послуги." %}
-
-Pursuant to §1824a of the Czech Civil Code and Art. 16 of Directive 2011/83/EU, you have lost the 14-day right of withdrawal because you gave express prior consent to the start of a custom-developed service.
-
-Podle §1824a NOZ a čl. 16 směrnice 2011/83/EU jste ztratili 14denní právo na odstoupení od smlouvy, protože jste výslovně předem souhlasili se zahájením plnění individuální služby.
+{% endif %}{% if show_currency %}{{ amount_display }} {{ payment_link.currency }}
+{% endif %}
+{{ t.success_waiver }}
 
 —
 PrometeyLabs
-https://prometeylabs.com
+{{ t.footer_site_url }}
+{% endautoescape %}

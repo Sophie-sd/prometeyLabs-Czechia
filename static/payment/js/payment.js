@@ -24,7 +24,7 @@
         if (isNaN(expiresAt)) return;
 
         var disableSel = el.getAttribute('data-disable');
-        var expiredText = el.getAttribute('data-expired-text') || 'ЧАС ВИЙШОВ';
+        var expiredText = el.getAttribute('data-expired-text') || 'TIME IS UP';
         var disableTarget = disableSel ? document.querySelector(disableSel) : null;
         var timerId = null;
 
