@@ -214,8 +214,8 @@ class InvoiceAdmin(UnfoldModelAdmin):
                 'description': _(
                     'Оберіть один або кілька способів у валюті рахунку — реквізити кожного '
                     'друкуються в PDF. Виконавець береться з «Платежі → Налаштування». '
-                    'Призначення платежу формується автоматично: «Payment for <послуга> by the '
-                    'invoice № <номер> from <дата>» (CS: «Platba za … dle faktury č. … ze dne …»).'
+                    'Призначення платежу формується автоматично: «Payment for <послуга> '
+                    'under invoice No. <номер> dated <дата>» (CS: «Platba za … dle faktury č. … ze dne …»).'
                 ),
             }),
             (_('Замовник'), {

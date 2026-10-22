@@ -1,25 +1,26 @@
-<div class="req-row">
-    <div class="req-info">
-        {% if label %}<span class="req-label">{{ label }}</span>{% endif %}
-        <span class="req-value">{% if display %}{{ display }}{% else %}{{ value }}{% endif %}{% if suffix %} {{ suffix }}{% endif %}</span>
-    </div>
-    <button type="button"
-            class="btn-copy-row"
-            data-copy
-            data-copy-value="{{ value }}"
-            title="{{ t.copy }}"
-            aria-label="{{ t.copy }}: {{ label }}"
-            aria-pressed="false">
-        <span data-copy-icon="default" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-            </svg>
-        </span>
-        <span data-copy-icon="done" aria-hidden="true" hidden>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="20 6 9 17 4 12"/>
-            </svg>
-        </span>
-    </button>
+<div class="pay-row{% if row_class %} {{ row_class }}{% endif %}">
+    <dt class="pay-row-label">{{ label }}</dt>
+    <dd class="pay-row-value">
+        <span class="pay-row-text">{% if display %}{{ display }}{% else %}{{ value }}{% endif %}{% if suffix %} {{ suffix }}{% endif %}</span>
+        <button type="button"
+                class="btn-copy-row"
+                data-copy
+                data-copy-value="{{ value }}"
+                data-copy-done="{{ t.copied }}"
+                title="{{ t.copy }}"
+                aria-label="{{ t.copy }}: {{ label }}"
+                aria-pressed="false">
+            <span data-copy-icon="default" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+            </span>
+            <span data-copy-icon="done" aria-hidden="true" hidden>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+            </span>
+        </button>
+    </dd>
 </div>

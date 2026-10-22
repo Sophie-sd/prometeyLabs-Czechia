@@ -62,6 +62,14 @@
             btn.textContent = doneText;
         }
 
+        // Icon-only buttons have no visible label: announce the result through
+        // the page's polite live region (labels with aria-live announce themselves).
+        var statusEl = document.querySelector('[data-copy-status]');
+        if (statusEl && doneText && !labelEl) {
+            statusEl.textContent = '';
+            window.setTimeout(function () { statusEl.textContent = doneText; }, 50);
+        }
+
         var iconDefault = btn.querySelector('[data-copy-icon="default"]');
         var iconDone = btn.querySelector('[data-copy-icon="done"]');
         if (iconDefault) iconDefault.hidden = true;
@@ -77,6 +85,7 @@
             }
             if (iconDefault) iconDefault.hidden = false;
             if (iconDone) iconDone.hidden = true;
+            if (statusEl && !labelEl) statusEl.textContent = '';
         }, COPIED_TIMEOUT_MS);
     }
 

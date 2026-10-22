@@ -149,7 +149,7 @@ class InvoiceTests(TestCase):
     def test_purpose_text_en_and_cs(self):
         en = self._invoice('en', 'USD', [self.swift_usd])
         self.assertEqual(en.payment_purpose(),
-                         f'Payment for website development by the invoice № {en.number} from 22.10.2026')
+                         f'Payment for website development under invoice No. {en.number} dated 22.10.2026')
         cs = self._invoice('cs', 'EUR', [self.sepa])
         self.assertEqual(cs.payment_purpose(),
                          f'Platba za website development dle faktury č. {cs.number} ze dne 22.10.2026')
@@ -158,7 +158,7 @@ class InvoiceTests(TestCase):
         inv = self._invoice('en', 'USD', [self.swift_usd])
         inv.purpose_service = ''
         inv.save()
-        self.assertIn('Payment for Website development by the invoice', inv.payment_purpose())
+        self.assertIn('Payment for Website development under invoice No.', inv.payment_purpose())
 
     def test_pdf_cs_eur_and_en_usd_have_no_ukrainian(self):
         from pypdf import PdfReader
@@ -176,6 +176,15 @@ class InvoiceTests(TestCase):
             text = '\n'.join(p.extract_text() or '' for p in PdfReader(io.BytesIO(pdf)).pages)
             assert_clean_public_text(self, text, f'PDF text {lang}')
             self.assertIn(cur, text)
+            self.assertEqual(len(PdfReader(io.BytesIO(pdf)).pages), 1, f'PDF {lang} fits one page')
+            if lang == 'en':
+                self.assertNotIn('№', html + text)
+                self.assertNotIn('Executor', html + text)
+                self.assertIn('SUPPLIER', text.upper())
+                self.assertIn('signature', text)
+                self.assertIn('under invoice No.', text)
+            else:
+                self.assertIn('podpis', text)
 
     def test_pdf_prints_each_method(self):
         inv = self._invoice('en', 'USD', [self.swift_usd, self.paypal_usd])
@@ -234,6 +243,14 @@ class PaymentPageTests(TestCase):
             self.assertNotIn('BE00 0000 0000 0000', html)
             self.assertNotIn('CMFGUS33', html)
             self.assertNotIn('paypal.me', html)
+            # before consent: no "How to pay" block, one action + small questions link
+            self.assertNotIn('pay-block--howto', html)
+            self.assertNotIn('Jak zaplatit', html)
+            self.assertNotIn('How to pay', html)
+            self.assertEqual(html.count('type="submit"'), 1)
+            self.assertIn('Máte otázky? Napište nám' if lang == 'cs' else 'Questions? Write to us', html)
+            self.assertIn('href="mailto:info@prometeylabs.com"', html)
+            self.assertNotIn('Executor', html)
             assert_clean_public_text(self, html, f'payment page {lang} before consent')
 
     def test_consent_missing_keeps_details_hidden(self):
@@ -255,12 +272,21 @@ class PaymentPageTests(TestCase):
         _url, response = self._page(self.link, 'cs')
         html = response.content.decode()
         self.assertIn('BE00 0000 0000 0000', html)
-        self.assertIn('Kopírovat platební údaje', html)
+        self.assertIn('Kopírovat údaje SEPA', html)
+        self.assertIn('data-copy-done="Zkopírováno ✓"', html)
+        self.assertIn('aria-live="polite"', html)
+        self.assertIn('Jak zaplatit', html)
+        # no nested frames: details are <dl> rows; amount + purpose are the first rows
+        self.assertIn('<dl class="pay-dl">', html)
+        self.assertNotIn('req-list', html)
+        dl = html[html.index('<dl class="pay-dl">'):]
+        self.assertLess(dl.index('pay-row--amount'), dl.index('Website development, invoice 85'))
+        self.assertLess(dl.index('Website development, invoice 85'), dl.index('BE00 0000 0000 0000'))
         self.assertIn('1\u00a0234,50', html)
         self.assertIn('EUR', html)
         self.assertIn('Poznámka CS', html)
         self.assertIn('href="https://prometeylabs.cz"', html)
-        self.assertNotIn('prometeylabs.com"', html)
+        self.assertNotIn('href="https://prometeylabs.com', html)
         assert_clean_public_text(self, html, 'payment page cs after consent')
 
     def test_consent_reveals_details_en_with_paypal_button(self):
@@ -269,8 +295,13 @@ class PaymentPageTests(TestCase):
         self.assertTrue(url.startswith('/en/'))
         html = response.content.decode()
         self.assertIn('CMFGUS33', html)
-        self.assertIn('Copy payment details', html)
+        self.assertIn('Copy SWIFT details', html)
+        self.assertIn('data-copy-done="Copied ✓"', html)
         self.assertIn('Pay with PayPal', html)
+        self.assertIn('Supplier', html)
+        self.assertNotIn('Executor', html)
+        self.assertIn('href="mailto:info@prometeylabs.com"', html)
+        self.assertIn('How to pay', html)
         self.assertIn('https://paypal.me/example', html)
         self.assertIn('2,500.00', html)
         self.assertIn('USD', html)
@@ -312,10 +343,13 @@ class PaymentPageTests(TestCase):
         assert_clean_public_text(self, response.content.decode(), 'legacy link page')
 
     def test_texts_are_editable_in_cms(self):
-        PaymentText.objects.update_or_create(key='copy_details', defaults={'text_cs': 'Zkopírovat vše', 'text_en': 'Copy all details'})
+        PaymentText.objects.update_or_create(key='copy_details', defaults={'text_cs': 'Zkopírovat vše', 'text_en': 'Copy all {method} data'})
+        PaymentText.objects.update_or_create(key='questions_link', defaults={'text_cs': 'Dotazy?', 'text_en': 'Need help?'})
+        _url, response = self._page(self.usd_link, 'en')
+        self.assertContains(response, 'Need help?')
         self._consent(self.usd_link, 'en')
         _url, response = self._page(self.usd_link, 'en')
-        self.assertContains(response, 'Copy all details')
+        self.assertContains(response, 'Copy all SWIFT data')
 
     def test_success_page_has_waiver_text(self):
         url = reverse('payment:payment_success', kwargs={'unique_id': self.link.unique_id})
@@ -358,6 +392,18 @@ class PaymentAdminTests(TestCase):
         inv_html = self.client.get(reverse('admin:payment_invoice_add')).content.decode()
         for word in ('РНОКПП', 'ЄДРПОУ', 'ФОП', 'ТОВ', 'МФО'):
             self.assertNotIn(word, inv_html)
+
+    def test_text_migration_updates_only_untouched_defaults(self):
+        import importlib
+        mig = importlib.import_module('apps.payment.migrations.0015_cz_texts_design_review')
+        from django.apps import apps as global_apps
+        PaymentText.objects.update_or_create(key='executor_label', defaults={'text_cs': 'Poskytovatel', 'text_en': 'Executor'})
+        PaymentText.objects.update_or_create(key='pdf_signature', defaults={'text_cs': 'Poskytovatel', 'text_en': 'Signed by owner'})
+        PaymentText.objects.filter(key='questions_link').delete()
+        mig.forwards(global_apps, None)
+        self.assertEqual(PaymentText.objects.get(key='executor_label').text_en, 'Supplier')
+        self.assertEqual(PaymentText.objects.get(key='pdf_signature').text_en, 'Signed by owner')
+        self.assertTrue(PaymentText.objects.filter(key='questions_link').exists())
 
     def test_payment_texts_seeded(self):
         self.client.get(reverse('admin:payment_paymenttext_changelist'))

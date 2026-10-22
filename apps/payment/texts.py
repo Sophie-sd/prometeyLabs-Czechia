@@ -24,7 +24,7 @@ DEFAULT_TEXTS = {
     'doc_invoice': ('Тип документа: рахунок', 'Faktura', 'Invoice'),
     'doc_other': ('Тип документа: інший', 'Dokument', 'Document'),
     'doc_default_contract': ('Типовий договір', 'Vzorová smlouva', 'Standard contract'),
-    'executor_label': ('Блок виконавця на сторінці', 'Poskytovatel', 'Executor'),
+    'executor_label': ('Блок виконавця на сторінці', 'Poskytovatel', 'Supplier'),
     'reg_no_label': ('Підпис реєстраційного номера', 'Registrační číslo', 'Registration No.'),
     # ── Consent (§1837 NOZ) ──────────────────────────────────────────────
     'consent_title': (
@@ -80,8 +80,15 @@ DEFAULT_TEXTS = {
     'method_swift_usd': ('Назва способу SWIFT USD', 'Mezinárodní převod SWIFT (USD)', 'SWIFT international transfer (USD)'),
     'method_paypal': ('Назва способу PayPal', 'PayPal', 'PayPal'),
     'copy': ('Кнопка копіювання рядка', 'Kopírovat', 'Copy'),
-    'copy_details': ('Кнопка копіювання блоку реквізитів', 'Kopírovat platební údaje', 'Copy payment details'),
-    'copied': ('Після копіювання', '✓ Zkopírováno', '✓ Copied'),
+    'copy_details': (
+        'Кнопка копіювання блоку реквізитів ({method} — коротка назва способу)',
+        'Kopírovat údaje {method}', 'Copy {method} details',
+    ),
+    'copied': ('Після копіювання (на кнопці, озвучується скрінрідером)', 'Zkopírováno ✓', 'Copied ✓'),
+    'method_short_sepa_eur': ('Коротка назва SEPA EUR (для кнопки копіювання)', 'SEPA', 'SEPA'),
+    'method_short_swift_eur': ('Коротка назва SWIFT EUR (для кнопки копіювання)', 'SWIFT', 'SWIFT'),
+    'method_short_swift_usd': ('Коротка назва SWIFT USD (для кнопки копіювання)', 'SWIFT', 'SWIFT'),
+    'method_short_paypal': ('Коротка назва PayPal (для кнопки копіювання)', 'PayPal', 'PayPal'),
     'paypal_button': ('Кнопка PayPal', 'Zaplatit přes PayPal', 'Pay with PayPal'),
     'howto_label': ('Заголовок «Як оплатити»', 'Jak zaplatit', 'How to pay'),
     'howto_text': (
@@ -91,7 +98,11 @@ DEFAULT_TEXTS = {
         'Pay the amount by transfer using the payment details above and include the payment purpose. '
         'After paying, please send us the payment confirmation:',
     ),
-    'telegram_button': ('Кнопка Telegram', 'Napsat na Telegram', 'Message us on Telegram'),
+    'telegram_button': ('Посилання Telegram (текст)', 'Napsat na Telegram', 'Message us on Telegram'),
+    'questions_link': (
+        'Посилання під кнопкою згоди (email з контактів сайту)',
+        'Máte otázky? Napište nám', 'Questions? Write to us',
+    ),
     'telegram_url': ('Посилання Telegram', 'https://t.me/prometeylabs', 'https://t.me/prometeylabs'),
     # ── Footer ───────────────────────────────────────────────────────────
     'footer_site_label': ('Футер: назва сайту', 'prometeylabs.cz', 'prometeylabs.cz'),
@@ -141,7 +152,7 @@ DEFAULT_TEXTS = {
     'pdf_number': ('PDF: номер', 'Číslo', 'No.'),
     'pdf_issue_date': ('PDF: дата виставлення', 'Datum vystavení', 'Issue date'),
     'pdf_due_date': ('PDF: термін оплати', 'Datum splatnosti', 'Due date'),
-    'pdf_executor': ('PDF: виконавець', 'Poskytovatel', 'Executor'),
+    'pdf_executor': ('PDF: виконавець', 'Poskytovatel', 'Supplier'),
     'pdf_customer': ('PDF: замовник', 'Objednatel', 'Customer'),
     'pdf_company_id': ('PDF: IČO / Company ID', 'IČO', 'Company ID'),
     'pdf_vat_id': ('PDF: DIČ / VAT ID', 'DIČ', 'VAT ID'),
@@ -165,7 +176,8 @@ DEFAULT_TEXTS = {
     'pdf_in_words': ('PDF: сума прописом', 'Slovy', 'In words'),
     'pdf_payment_details': ('PDF: платіжні реквізити', 'Platební údaje', 'Payment details'),
     'pdf_purpose': ('PDF: призначення платежу', 'Účel platby', 'Payment purpose'),
-    'pdf_signature': ('PDF: підпис', 'Poskytovatel', 'Executor'),
+    'pdf_signature': ('PDF: підпис (заголовок блоку)', 'Poskytovatel', 'Supplier'),
+    'pdf_signature_caption': ('PDF: підпис під лінією', 'podpis', 'signature'),
     'pdf_page_footer': (
         'PDF: нижній колонтитул ({email}, {website})',
         'PrometeyLabs · {email} · {website}', 'PrometeyLabs · {email} · {website}',
@@ -182,7 +194,7 @@ DEFAULT_TEXTS = {
     'purpose_template': (
         'Призначення платежу ({service}, {number}, {date})',
         'Platba za {service} dle faktury č. {number} ze dne {date}',
-        'Payment for {service} by the invoice № {number} from {date}',
+        'Payment for {service} under invoice No. {number} dated {date}',
     ),
 }
 

@@ -60,13 +60,14 @@ def _render_inactive(request: HttpRequest, payment_link: PaymentLink):
 
 
 def _method_copy_payload(block: dict, texts: dict, purpose: str, amount_line: str) -> List[str]:
-    """Текст для кнопки «Kopírovat platební údaje / Copy payment details»."""
-    lines = [f"{row['label']}: {row['value']}" for row in block['rows']]
-    if block.get('paypal_url'):
-        lines.append(block['paypal_url'])
+    """Текст для кнопки «Kopírovat údaje SEPA / Copy SWIFT details»."""
+    # Same order as on the page: amount, purpose, then the method details.
+    lines = [f"{texts['field_amount']}: {amount_line}"]
     if purpose:
         lines.append(f"{texts['field_purpose']}: {purpose}")
-    lines.append(f"{texts['field_amount']}: {amount_line}")
+    lines += [f"{row['label']}: {row['value']}" for row in block['rows']]
+    if block.get('paypal_url'):
+        lines.append(block['paypal_url'])
     return lines
 
 
@@ -81,6 +82,7 @@ def build_payment_blocks(payment_link: PaymentLink, texts: dict, lang: str) -> l
         block = method_public_block(method.snapshot(), texts, lang)
         block['dom_id'] = f'pay-method-{idx}'
         block['copy_payload'] = _method_copy_payload(block, texts, purpose, amount_line)
+        block['copy_label'] = texts['copy_details'].replace('{method}', block['short_label'])
         blocks.append(block)
     return blocks
 
@@ -214,8 +216,17 @@ def payment_page(request: HttpRequest, unique_id):
         else:
             path_en = url
 
+    contact_email = ''
+    try:
+        from apps.core.utils import get_site_contact_settings
+        contact_email = (get_site_contact_settings().email or '').strip()
+    except Exception:  # contacts table unavailable — fall back to executor email
+        logger.warning('Site contact settings unavailable for payment page', exc_info=True)
+    contact_email = contact_email or executor.get('email', '')
+
     return render(request, 'payment/payment_page.html', {
         't': texts,
+        'contact_email': contact_email,
         'lang': lang,
         'payment_link': payment_link,
         'payment_settings': payment_settings,

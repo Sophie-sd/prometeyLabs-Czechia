@@ -5,140 +5,110 @@
 
 {% block content %}
 {# All visible texts come from admin: Payments -> PaymentText (CS / EN). #}
+{# Layout rule: one card only; inside it grouping by spacing + headings, no nested frames. #}
 
-<h2 class="pay-page-title">{{ t.page_title }}</h2>
+<h1 class="pay-page-title">{{ t.page_title }}</h1>
 
 <div class="pay-card">
 
-    <!-- Client -->
-    <div class="pay-section pay-section--client">
+    <section class="pay-block pay-block--summary" aria-label="{{ t.amount_label }}">
         <p class="pay-client-name">{{ payment_link.client_name }}</p>
         {% if payment_link.description %}
         <p class="pay-client-desc">{{ payment_link.description }}</p>
         {% endif %}
-    </div>
-
-    <!-- Amount (link currency) -->
-    <div class="pay-section pay-section--amount">
-        <p class="section-label">{{ t.amount_label }}</p>
-        <div class="amount-row">
+        <p class="pay-amount">
+            <span class="pay-amount-label">{{ t.amount_label }}</span>
             <span class="amount-main">{{ amount_display }} <span class="amount-currency">{{ payment_link.currency }}</span></span>
-        </div>
-    </div>
+        </p>
+    </section>
 
     {% if expires_at_iso %}
-    <div class="pay-section" id="countdown-container">
-        <p class="section-label">{{ t.countdown_label }}</p>
+    <section class="pay-block" id="countdown-container">
+        <h2 class="pay-heading">{{ t.countdown_label }}</h2>
         <div class="countdown"
              data-countdown
              data-expires-at="{{ expires_at_iso }}"
              data-disable="#consent-btn"
              data-expired-text="{{ t.countdown_expired }}"
              aria-live="polite">--:--:--</div>
-    </div>
+    </section>
     {% endif %}
 
-    <!-- Executor (supplier) -->
     {% if executor.name %}
-    <div class="pay-section pay-section--executor">
-        <p class="section-label">{{ t.executor_label }}</p>
+    <section class="pay-block pay-block--executor">
+        <h2 class="pay-heading">{{ t.executor_label }}</h2>
         <p class="pay-executor-name">{{ executor.name }}</p>
         {% if executor.address %}<p class="pay-executor-line">{{ executor.address }}</p>{% endif %}
         {% if executor.registration_number %}<p class="pay-executor-line">{{ t.reg_no_label }}: {{ executor.registration_number }}</p>{% endif %}
-    </div>
+    </section>
     {% endif %}
 
-    <!-- Documents -->
     {% if files or payment_link.contract_file or payment_settings.default_contract_file %}
-    <div class="pay-section">
-        <p class="section-label">{{ t.documents_label }}</p>
-        <div class="docs-list">
+    <section class="pay-block">
+        <h2 class="pay-heading">{{ t.documents_label }}</h2>
+        <ul class="docs-list">
             {% for f in files %}
-            {% include 'payment/partials/_doc_link.html' with url=f.url name=f.name %}
+            <li>{% include 'payment/partials/_doc_link.html' with url=f.url name=f.name %}</li>
             {% endfor %}
             {% if payment_link.contract_file %}
-            {% include 'payment/partials/_doc_link.html' with url=payment_link.contract_file.url name=t.doc_contract %}
+            <li>{% include 'payment/partials/_doc_link.html' with url=payment_link.contract_file.url name=t.doc_contract %}</li>
             {% elif not files and payment_settings.default_contract_file %}
-            {% include 'payment/partials/_doc_link.html' with url=payment_settings.default_contract_file.url name=t.doc_default_contract %}
+            <li>{% include 'payment/partials/_doc_link.html' with url=payment_settings.default_contract_file.url name=t.doc_default_contract %}</li>
             {% endif %}
-        </div>
-    </div>
+        </ul>
+    </section>
     {% endif %}
 
     {% if not consents_ok %}
-    <!-- Consent BEFORE payment details are revealed (§1837 NOZ) -->
-    <div class="pay-section pay-section--action" id="consent">
-        <p class="section-label">{{ t.consent_title }}</p>
+    {# Before consent: the confirm button is the only action; below it only a small "Questions?" link. #}
+    <section class="pay-block pay-block--consent" id="consent">
+        <h2 class="pay-heading">{{ t.consent_title }}</h2>
         {% if consent_error %}<p class="pay-consent-error" role="alert">{{ t.consent_error }}</p>{% endif %}
         <form method="post" action="{% url 'payment:record_consent' unique_id=payment_link.unique_id %}">
             {% csrf_token %}
             {% include 'payment/partials/_checkout_consents.html' %}
             <button type="submit" class="btn-pay" id="consent-btn">{{ t.consent_button }}</button>
         </form>
-        <p class="pay-consent-hint">{{ t.details_hidden_hint }}</p>
-    </div>
+        {% if contact_email %}
+        <p class="pay-questions"><a href="mailto:{{ contact_email }}">{{ t.questions_link }}</a></p>
+        {% endif %}
+    </section>
     {% else %}
-    <!-- Payment details (shown only after consent) -->
-    <div class="pay-section" id="payment-details">
-        <p class="section-label">{{ t.details_label }}</p>
+    <section class="pay-block" id="payment-details">
+        <h2 class="pay-heading">{{ t.details_label }}</h2>
         <p class="pay-consent-ok">✓ {{ t.consent_confirmed }}</p>
 
-        {% include 'payment/partials/_copy_row.html' with label=t.field_amount value=amount_plain display=amount_display suffix=payment_link.currency %}
-        {% if payment_link.description %}
-        {% include 'payment/partials/_copy_row.html' with label=t.field_purpose value=payment_link.description %}
-        {% endif %}
-
         {% for block in bank_blocks %}
-        <div class="pay-method" data-method-type="{{ block.type }}">
-            <p class="pay-method-title">{{ block.label }}</p>
-            <div class="req-list">
-                {% for row in block.rows %}
-                {% include 'payment/partials/_copy_row.html' with label=row.label value=row.value %}
-                {% endfor %}
-            </div>
-            {% if block.note %}<p class="pay-method-note">{{ block.note|linebreaksbr }}</p>{% endif %}
-            {{ block.copy_payload|json_script:block.dom_id }}
-            <button type="button"
-                    class="btn-copy-all"
-                    data-copy-all
-                    data-copy-source="#{{ block.dom_id }}"
-                    data-copy-done="{{ t.copied }}"
-                    aria-pressed="false">
-                <span data-copy-label>{{ t.copy_details }}</span>
-            </button>
-        </div>
+        {% include 'payment/partials/_method.html' %}
         {% endfor %}
-
         {% for block in paypal_blocks %}
-        <div class="pay-method pay-method--paypal" data-method-type="paypal">
-            <p class="pay-method-title">{{ block.label }}</p>
-            {% if block.rows %}
-            <div class="req-list">
-                {% for row in block.rows %}
-                {% include 'payment/partials/_copy_row.html' with label=row.label value=row.value %}
-                {% endfor %}
-            </div>
-            {% endif %}
-            {% if block.note %}<p class="pay-method-note">{{ block.note|linebreaksbr }}</p>{% endif %}
-            {% if block.paypal_url %}
-            <a href="{{ block.paypal_url }}" class="btn-paypal" target="_blank" rel="noopener">{{ t.paypal_button }}</a>
-            {% endif %}
-        </div>
+        {% include 'payment/partials/_method.html' %}
         {% endfor %}
-    </div>
+    </section>
+
+    <section class="pay-block pay-block--howto">
+        <h2 class="pay-heading">{{ t.howto_label }}</h2>
+        <p class="instructions-text">{{ t.howto_text }}</p>
+        <p class="pay-contacts">
+            <a href="{{ t.telegram_url }}" target="_blank" rel="noopener" class="pay-contact-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.013l-2.95-.924c-.642-.204-.654-.642.136-.953l11.52-4.44c.535-.194 1.003.13.376.552z"/>
+                </svg>
+                {{ t.telegram_button }}
+            </a>
+            {% if contact_email %}
+            <a href="mailto:{{ contact_email }}" class="pay-contact-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 6-10 7L2 6"/>
+                </svg>
+                {{ contact_email }}
+            </a>
+            {% endif %}
+        </p>
+    </section>
     {% endif %}
 
-    <!-- How to pay -->
-    <div class="pay-section pay-section--instructions">
-        <p class="section-label">{{ t.howto_label }}</p>
-        <p class="instructions-text">{{ t.howto_text }}</p>
-        <a href="{{ t.telegram_url }}" target="_blank" rel="noopener" class="btn-telegram">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 14.013l-2.95-.924c-.642-.204-.654-.642.136-.953l11.52-4.44c.535-.194 1.003.13.376.552z"/>
-            </svg>
-            {{ t.telegram_button }}
-        </a>
-    </div>
-
 </div>
+<div class="sr-only" aria-live="polite" data-copy-status></div>
 {% endblock %}

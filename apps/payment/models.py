@@ -249,6 +249,7 @@ def method_public_block(data: dict, texts: dict, lang: str) -> dict:
         'type': mtype,
         'currency': data.get('currency', ''),
         'label': texts.get(f'method_{mtype}', mtype),
+        'short_label': texts.get(f'method_short_{mtype}', '') or texts.get(f'method_{mtype}', mtype),
         'is_paypal': is_paypal,
         'rows': rows,
         'note': note or '',

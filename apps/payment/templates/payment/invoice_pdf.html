@@ -123,15 +123,6 @@
       font-style: italic;
       margin: 6px 0 0;
     }
-    .sign-spacer {
-      width: 100%;
-      border: 0;
-      border-collapse: collapse;
-    }
-    .sign-spacer td {
-      height: 10mm;
-      border: 0;
-    }
     /* table-layout:fixed + HTML width, otherwise xhtml2pdf stretches the left
        column and shifts the signature block. */
     .bottom-row {
@@ -154,15 +145,12 @@
       border: 0;
     }
     .payment-text { font-weight: bold; margin: 0; font-size: 10.5pt; }
-    /* Name (NBSP) + signature line on one row; no nested table. */
-    .sign-row {
-      margin: 8px 0 0;
-      font-family: NotoSans, sans-serif;
-      font-size: 10.5pt;
-      font-weight: bold;
-      color: #2B2F33;
-      white-space: nowrap;
-    }
+    /* Signature: empty space to sign, a line, and under it a small name + caption. */
+    .sign-table { border-collapse: collapse; }
+    .sign-space { height: 12mm; border: 0; padding: 0; }
+    .sign-line { border: 0; border-top: 1px solid #2B2F33; padding: 3px 0 0; }
+    .sign-name { font-size: 8.5pt; color: #2B2F33; margin: 0; }
+    .sign-caption { font-size: 8pt; color: #5A6066; margin: 0; }
     .c-amount {
       width: 96px;
       text-align: right;
@@ -173,14 +161,15 @@
     .meta-label { font-size: 8.5pt; color: #5A6066; text-transform: uppercase; }
     .meta-value { font-size: 10.5pt; font-weight: bold; }
     .methods { width: 100%; border-collapse: collapse; margin: 4px 0 8px; }
+    /* Method = heading + thin top rule (no boxed cells). Details at body text size. */
     .method-cell {
       vertical-align: top;
-      padding: 6px 8px;
-      border: 1px solid #C8CCD0;
-      background-color: #FBFAF8;
+      padding: 5px 10px 4px 0;
+      border: 0;
+      border-top: 1px solid #C8CCD0;
     }
-    .method-title { font-weight: bold; font-size: 10pt; margin: 0 0 3px; color: #2B2F33; }
-    .method-line { font-size: 8.5pt; margin: 0; }
+    .method-title { font-weight: bold; font-size: 10pt; margin: 0 0 2px; color: #2B2F33; }
+    .method-line { font-size: 10pt; margin: 0; line-height: 1.35; }
     .method-note { font-size: 8.5pt; color: #5A6066; margin: 3px 0 0; }
     .purpose { font-size: 10pt; font-weight: bold; margin: 0 0 10px; }
     .footer-note { font-size: 8.5pt; color: #5A6066; margin: 10px 0 0; border-top: 1px solid #E5E7EA; padding-top: 6px; }
@@ -296,16 +285,18 @@
   <div class="section-label">{{ t.pdf_purpose }}</div>
   <p class="purpose">{{ purpose }}</p>
 
-  <table class="sign-spacer">
-    <tr><td></td></tr>
-  </table>
-
   <table class="bottom-row" width="100%">
     <tr>
       <td class="bottom-left" width="50%"></td>
       <td class="bottom-right" width="50%">
         <div class="section-label">{{ t.pdf_signature }}</div>
-        <p class="sign-row">{{ executor.name }}&nbsp;&nbsp;__________________</p>
+        <table class="sign-table" width="220">
+          <tr><td class="sign-space">&nbsp;</td></tr>
+          <tr><td class="sign-line">
+            <p class="sign-name">{{ executor.name }}</p>
+            <p class="sign-caption">{{ t.pdf_signature_caption }}</p>
+          </td></tr>
+        </table>
       </td>
     </tr>
   </table>
