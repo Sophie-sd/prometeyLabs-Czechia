@@ -85,9 +85,18 @@ def lead_site_and_lang(submission):
     return site, lang
 
 
+def normalize_api_key(raw):
+    """Захист від типових помилок вставки ключа в env: пробіли/переноси, лапки,
+    префікс 'Bearer ' (заголовок його додає сам)."""
+    key = (raw or '').strip().strip('"\'').strip()
+    if key[:7].lower() == 'bearer ':
+        key = key[7:].strip()
+    return key
+
+
 class KeyCRMService:
     def __init__(self):
-        self.api_key = getattr(settings, 'KEYCRM_API_KEY', '')
+        self.api_key = normalize_api_key(getattr(settings, 'KEYCRM_API_KEY', ''))
         self.pipeline_id = getattr(settings, 'KEYCRM_PIPELINE_ID', 1)
         self.gclid_field_uuid = getattr(settings, 'KEYCRM_GCLID_FIELD_UUID', '')
         # Опційні кастомні поля картки (UUID з KeyCRM). Порожньо → лише manager_comment.

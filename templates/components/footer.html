@@ -9,12 +9,13 @@
                     <span class="plf__acc-title">{% trans "Портфоліо" %}</span>
                     <span class="plf__dot" aria-hidden="true"></span>
                 </button>
+                {# Мобільні застосунки / реклама / SMM — окремих сторінок немає; ведуть на блок «Послуги» головної (#services, картки з модалками). #}
                 <div class="plf__list plf__acc-body">
                     <a href="{% url 'portfolio' %}" class="plf__link">{% trans "Розробка сайтів під ключ" %}</a>
-                    <a href="{% url 'portfolio' %}" class="plf__link">{% trans "Мобільні застосунки" %}</a>
+                    <a href="{% url 'home' %}#services" class="plf__link">{% trans "Мобільні застосунки" %}</a>
                     <a href="{% url 'telegram_bot' %}" class="plf__link">{% trans "Telegram-боти" %}</a>
-                    <a href="{% url 'calculator' %}" class="plf__link">{% trans "Реклама та просування" %}</a>
-                    <a href="{% url 'calculator' %}" class="plf__link">{% trans "Ведення соціальних мереж" %}</a>
+                    <a href="{% url 'home' %}#services" class="plf__link">{% trans "Реклама та просування" %}</a>
+                    <a href="{% url 'home' %}#services" class="plf__link">{% trans "Ведення соціальних мереж" %}</a>
                 </div>
             </div>
 

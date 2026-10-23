@@ -259,7 +259,21 @@ class WhatsAppPrefillTests(SimpleTestCase):
 
     def test_tagged_text_kept(self):
         self.assertEqual(self._text('cs', '?gclid=abc&utm_campaign=cz_eshopy'), 'Poptávka z Google Ads: E-shopy')
-        self.assertEqual(self._text('en', '?utm_campaign=corp', '/en/'), 'Google Ads enquiry: Corporate websites')
+        self.assertEqual(self._text('en', '?gclid=abc&utm_campaign=corp', '/en/'), 'Google Ads enquiry: Corporate websites')
+
+    def test_no_gclid_on_campaign_pages_no_text(self):
+        # Organic visitors on the campaign landing pages must not get the Google Ads prefill.
+        self.assertEqual(self._text('cs', '', '/internet-shop/'), '')
+        self.assertEqual(self._text('cs', '', '/corporate-website/'), '')
+        self.assertEqual(self._text('en', '?utm_campaign=cz_eshopy', '/en/internet-shop/'), '')
+        self.assertEqual(self._text('cs', '?utm_campaign=corp', '/corporate-website/'), '')
+
+    def test_gclid_capture_include_version(self):
+        for tpl in ('templates/base.html', 'templates/pages/home.html',
+                    'templates/pages/thank_you.html', 'templates/pages/internet-shop-v2.html'):
+            src = (ROOT / tpl).read_text(encoding='utf-8')
+            self.assertIn("gclid-capture.js' %}?v=6", src, tpl)
+            self.assertNotIn("gclid-capture.js' %}?v=5", src, tpl)
 
     def test_no_gclid_no_tag_no_text(self):
         self.assertEqual(self._text('cs', ''), '')

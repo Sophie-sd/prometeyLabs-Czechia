@@ -43,7 +43,17 @@ class Command(BaseCommand):
         out(f'  KEYCRM_SOURCE_CZ (eshopy/general/organic)='
             f'{settings.KEYCRM_SOURCE_CZ_ESHOPY}/{settings.KEYCRM_SOURCE_CZ_GENERAL}/{settings.KEYCRM_SOURCE_CZ_ORGANIC}')
 
-        if (settings.KEYCRM_API_KEY or '').strip():
+        raw_key = settings.KEYCRM_API_KEY or ''
+        if raw_key.strip():
+            # Лише ознаки формату (без значення): чи є зайві пробіли/лапки/'Bearer '.
+            stripped = raw_key.strip()
+            flags = {
+                'surrounding_whitespace': raw_key != stripped,
+                'quotes': stripped[:1] in ('"', "'"),
+                'bearer_prefix': stripped[:7].lower() == 'bearer ',
+            }
+            out('env_report: KEYCRM_API_KEY format: '
+                + ' '.join(f'{k}={"yes" if v else "no"}' for k, v in flags.items()))
             from apps.core.keycrm_service import KeyCRMService
             ok, statuses, error = KeyCRMService().get_pipeline_statuses()
             if ok:
@@ -52,3 +62,34 @@ class Command(BaseCommand):
                     out(f"  status id={st.get('id')} title={st.get('title') or st.get('name')}")
             else:
                 out(f'env_report: KeyCRM statuses not available: {(error or "")[:120]}')
+
+        self._smtp_check(out)
+
+    def _smtp_check(self, out):
+        """connect → STARTTLS → LOGIN → QUIT. Лист НЕ надсилається, значення не друкуються."""
+        import smtplib
+
+        if settings.EMAIL_BACKEND != 'django.core.mail.backends.smtp.EmailBackend':
+            out(f'env_report: SMTP check skipped (backend {settings.EMAIL_BACKEND})')
+            return
+        stage = 'connect'
+        try:
+            conn = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT, timeout=10)
+            try:
+                conn.ehlo()
+                if settings.EMAIL_USE_TLS:
+                    stage = 'starttls'
+                    conn.starttls()
+                    conn.ehlo()
+                stage = 'login'
+                conn.login(settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD)
+                out(f'env_report: SMTP check OK ({settings.EMAIL_HOST}:{settings.EMAIL_PORT} login accepted, no mail sent)')
+            finally:
+                try:
+                    conn.quit()
+                except Exception:
+                    pass
+        except Exception as exc:
+            code = getattr(exc, 'smtp_code', '')
+            out(f'env_report: SMTP check FAILED at {stage}: {exc.__class__.__name__}'
+                f'{" " + str(code) if code else ""} ({settings.EMAIL_HOST}:{settings.EMAIL_PORT})')

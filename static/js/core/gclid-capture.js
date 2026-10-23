@@ -226,12 +226,16 @@
         return '';
     }
 
-    /** Prefill text: tagged campaign → 'Poptávka z Google Ads: <tag>'; gclid without tag → generic; else none. */
+    /**
+     * Prefill text only for Google Ads visitors (gclid present):
+     * tagged campaign → 'Poptávka z Google Ads: <tag>'; gclid without tag → generic.
+     * No gclid (organic/direct, even on /internet-shop/ or /corporate-website/) → nothing.
+     */
     function messengerText() {
+        if (!read('_prm_gclid')) return '';
         const tag = campaignTag();
         if (tag) return MESSAGE_PREFIX + tag;
-        if (read('_prm_gclid')) return MESSAGE_GENERIC;
-        return '';
+        return MESSAGE_GENERIC;
     }
 
     function pushEvent(name, link) {
