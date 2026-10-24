@@ -125,7 +125,8 @@ DEFAULT_TEXTS = {
     'success_title': ('Успішна оплата: заголовок', 'Děkujeme!', 'Thank you!'),
     'success_text': (
         'Успішна оплата: текст',
-        'Platba byla úspěšná. Potvrzení jsme již obdrželi.', 'Payment completed successfully.',
+        'Platba byla úspěšná. Potvrzení jsme již obdrželi.',
+        'Payment completed successfully. We have already received the confirmation.',
     ),
     'success_waiver': (
         'Успішна оплата: текст про §1824a NOZ',
@@ -164,6 +165,10 @@ DEFAULT_TEXTS = {
         'PDF: рядок договору ({number}, {date})',
         'Smlouva č. {number} ze dne {date}', 'Contract No. {number} dated {date}',
     ),
+    'pdf_contract_line_nodate': (
+        'PDF: рядок договору без дати ({number})',
+        'Smlouva č. {number}', 'Contract No. {number}',
+    ),
     'pdf_services': ('PDF: заголовок послуг', 'Služby', 'Services'),
     'pdf_col_no': ('PDF: колонка №', 'Č.', 'No.'),
     'pdf_col_service': ('PDF: колонка послуга', 'Popis služby', 'Service'),
@@ -171,7 +176,7 @@ DEFAULT_TEXTS = {
     'pdf_col_qty': ('PDF: колонка к-сть', 'Počet', 'Qty'),
     'pdf_col_price': ('PDF: колонка ціна', 'Cena', 'Price'),
     'pdf_col_amount': ('PDF: колонка сума', 'Částka', 'Amount'),
-    'pdf_unit_default': ('PDF: одиниця за замовчуванням', 'služba', 'service'),
+    'pdf_unit_default': ('PDF: одиниця (фіксовано: služba / service)', 'služba', 'service'),
     'pdf_total': ('PDF: разом до сплати', 'Celkem k úhradě', 'Total due'),
     'pdf_in_words': ('PDF: сума прописом', 'Slovy', 'In words'),
     'pdf_payment_details': ('PDF: платіжні реквізити', 'Platební údaje', 'Payment details'),
@@ -194,8 +199,16 @@ DEFAULT_TEXTS = {
     'purpose_template': (
         'Призначення платежу ({service}, {number}, {date})',
         'Platba za {service} dle faktury č. {number} ze dne {date}',
-        'Payment for {service} under invoice No. {number} dated {date}',
+        'Payment for {service} by the invoice № {number} from {date}',
     ),
+}
+
+# Legally fixed wording: not overridable from the CMS (a DB value is ignored),
+# so a typo in admin cannot reach the PDF / payment page.
+LOCKED_TEXTS = {
+    'doc_invoice': {'cs': 'Faktura', 'en': 'Invoice'},
+    'doc_contract': {'cs': 'Smlouva', 'en': 'Contract'},
+    'pdf_unit_default': {'cs': 'služba', 'en': 'service'},
 }
 
 
@@ -227,4 +240,19 @@ def get_texts(lang: str | None = None) -> dict:
                 texts[key] = value
     except Exception:  # table missing during early migrations
         pass
+    for key, by_lang in LOCKED_TEXTS.items():
+        texts[key] = by_lang[lang]
     return texts
+
+
+def document_label(file_type: str, lang: str | None) -> str:
+    """Localized document name: CS «Faktura» / EN «Invoice», CS «Smlouva» / EN «Contract»."""
+    entry = LOCKED_TEXTS.get(f'doc_{file_type}')
+    if entry:
+        return entry[normalize_lang(lang)]
+    return default_text('doc_other', lang or 'cs')
+
+
+def service_unit(lang: str | None) -> str:
+    """PDF unit column is always «služba» (CS) / «service» (EN)."""
+    return LOCKED_TEXTS['pdf_unit_default'][normalize_lang(lang)]

@@ -13,8 +13,8 @@
 
     <section class="pay-block pay-block--summary" aria-label="{{ t.amount_label }}">
         <p class="pay-client-name">{{ payment_link.client_name }}</p>
-        {% if payment_link.description %}
-        <p class="pay-client-desc">{{ payment_link.description }}</p>
+        {% if purpose %}
+        <p class="pay-client-desc">{{ purpose }}</p>
         {% endif %}
         <p class="pay-amount">
             <span class="pay-amount-label">{{ t.amount_label }}</span>

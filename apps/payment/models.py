@@ -180,7 +180,8 @@ class PaymentMethod(models.Model):
         verbose_name_plural = _('Способи оплати')
 
     def __str__(self):
-        return f'{self.name} · {self.get_method_type_display()} · {self.currency}'
+        # Only the method name (admin checkboxes / lists) — no «name · type · currency» repeat.
+        return self.name or self.get_method_type_display()
 
     @property
     def is_paypal(self) -> bool:
@@ -210,6 +211,7 @@ class PaymentMethod(models.Model):
         """Незмінна копія реквізитів (для PDF рахунку та сторінки оплати)."""
         return {
             'id': self.pk,
+            'name': (self.name or '').strip(),
             'type': self.method_type,
             'currency': self.currency,
             'beneficiary': (self.beneficiary or '').strip(),
@@ -326,6 +328,16 @@ class PaymentLink(models.Model):
         verbose_name=_('Мова сторінки для клієнта'),
         help_text=_('Посилання для клієнта веде на версію сторінки цією мовою.'),
     )
+    # Link created from an invoice: amount / currency always equal the invoice,
+    # the payment purpose and the attached PDF come from the invoice.
+    invoice = models.ForeignKey(
+        'payment.Invoice',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='payment_links',
+        verbose_name=_('Рахунок'),
+    )
     payment_methods = models.ManyToManyField(
         'payment.PaymentMethod',
         blank=True,
@@ -428,7 +440,40 @@ class PaymentLink(models.Model):
     def __str__(self):
         return f'{self.client_name} — {self.amount} {self.currency}'
 
+    def sync_from_invoice(self) -> None:
+        """Server-side guarantee: a link tied to an invoice has the invoice amount/currency."""
+        if self.invoice_id:
+            invoice = self.invoice
+            self.amount = invoice.total_amount
+            if invoice.currency in self.Currency.values:
+                self.currency = invoice.currency
+
+    def clean(self):
+        super().clean()
+        if self.invoice_id:
+            invoice = self.invoice
+            errors = {}
+            if self.amount is not None and Decimal(self.amount) != invoice.total_amount:
+                errors['amount'] = _('Сума посилання має дорівнювати сумі рахунку (%(sum)s).') % {
+                    'sum': invoice.total_amount,
+                }
+            if self.currency and invoice.currency and self.currency != invoice.currency:
+                errors['currency'] = _('Валюта посилання має дорівнювати валюті рахунку (%(cur)s).') % {
+                    'cur': invoice.currency,
+                }
+            if errors:
+                raise ValidationError(errors)
+
+    def payment_purpose(self) -> str:
+        """«Účel platby / Payment purpose» on the page: from the invoice if the link
+        was created from one (same function as the PDF), otherwise the description."""
+        invoice = self.invoice if self.invoice_id else None
+        if invoice is not None and not invoice.is_legacy:
+            return invoice.payment_purpose()
+        return (self.description or '').strip()
+
     def save(self, *args, **kwargs):
+        self.sync_from_invoice()
         # final_amount_uah / exchange_rate — legacy-колонки (NOT NULL), значення
         # рахуються як і раніше, але ніде на .cz не показуються.
         if self.amount is not None:
@@ -530,9 +575,13 @@ class PaymentLinkFile(models.Model):
         return self.name or self.get_file_type_display()
 
     def public_name(self, texts: dict) -> str:
+        # Invoice / contract: always the localized document name
+        # (CS «Faktura» / «Smlouva», EN «Invoice» / «Contract»), never a free-text label.
+        if self.file_type in (self.FileType.INVOICE, self.FileType.CONTRACT):
+            return texts.get(f'doc_{self.file_type}') or texts.get('doc_other', '')
         if self.name:
             return self.name
-        return texts.get(f'doc_{self.file_type}') or texts.get('doc_other', '')
+        return texts.get('doc_other', '')
 
     def filename(self) -> str:
         return os.path.basename(self.file.name)

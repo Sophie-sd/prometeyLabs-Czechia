@@ -72,7 +72,7 @@ def _method_copy_payload(block: dict, texts: dict, purpose: str, amount_line: st
 
 
 def build_payment_blocks(payment_link: PaymentLink, texts: dict, lang: str) -> list:
-    purpose = (payment_link.description or '').strip()
+    purpose = payment_link.payment_purpose()
     amount_line = f'{plain_amount(payment_link.amount)} {payment_link.currency}'
     blocks = []
     for idx, method in enumerate(
@@ -230,6 +230,7 @@ def payment_page(request: HttpRequest, unique_id):
         'lang': lang,
         'payment_link': payment_link,
         'payment_settings': payment_settings,
+        'purpose': payment_link.payment_purpose(),
         'executor': executor,
         'expires_at_iso': payment_link.expires_at.isoformat() if payment_link.expires_at else None,
         'amount_display': format_money(payment_link.amount, lang),

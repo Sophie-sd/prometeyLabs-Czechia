@@ -149,7 +149,7 @@ class InvoiceTests(TestCase):
     def test_purpose_text_en_and_cs(self):
         en = self._invoice('en', 'USD', [self.swift_usd])
         self.assertEqual(en.payment_purpose(),
-                         f'Payment for website development under invoice No. {en.number} dated 22.10.2026')
+                         f'Payment for website development by the invoice № {en.number} from 22.10.2026')
         cs = self._invoice('cs', 'EUR', [self.sepa])
         self.assertEqual(cs.payment_purpose(),
                          f'Platba za website development dle faktury č. {cs.number} ze dne 22.10.2026')
@@ -158,7 +158,7 @@ class InvoiceTests(TestCase):
         inv = self._invoice('en', 'USD', [self.swift_usd])
         inv.purpose_service = ''
         inv.save()
-        self.assertIn('Payment for Website development under invoice No.', inv.payment_purpose())
+        self.assertIn('Payment for Website development by the invoice №', inv.payment_purpose())
 
     def test_pdf_cs_eur_and_en_usd_have_no_ukrainian(self):
         from pypdf import PdfReader
@@ -178,11 +178,12 @@ class InvoiceTests(TestCase):
             self.assertIn(cur, text)
             self.assertEqual(len(PdfReader(io.BytesIO(pdf)).pages), 1, f'PDF {lang} fits one page')
             if lang == 'en':
-                self.assertNotIn('№', html + text)
+                # «№» only in the bank purpose wording (block 4c), rendered by NotoSans
+                self.assertNotIn('№', html.replace(inv.payment_purpose(), ''))
                 self.assertNotIn('Executor', html + text)
                 self.assertIn('SUPPLIER', text.upper())
                 self.assertIn('signature', text)
-                self.assertIn('under invoice No.', text)
+                self.assertIn('by the invoice №', ' '.join(text.split()))
             else:
                 self.assertIn('podpis', text)
 

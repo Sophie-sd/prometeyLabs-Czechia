@@ -226,10 +226,12 @@
     </tr>
   </table>
 
+  {% if contract_line %}
   <div class="section-label">{{ t.pdf_contract }}</div>
   <div class="party-line">{{ contract_line }}</div>
+  {% endif %}
 
-  <div class="section-label" style="margin-top: 10px;">{{ t.pdf_services }}</div>
+  <div class="section-label"{% if contract_line %} style="margin-top: 10px;"{% endif %}>{{ t.pdf_services }}</div>
   <table class="items">
     <thead>
       <tr>

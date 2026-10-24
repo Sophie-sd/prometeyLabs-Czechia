@@ -147,8 +147,21 @@ class Invoice(models.Model):
         verbose_name=_('Послуга для призначення платежу'),
         help_text=_('Коротко, мовою рахунку (напр. «website development»). Порожнє — береться назва першої послуги.'),
     )
-    contract_number = models.CharField(max_length=100, verbose_name=_('Номер договору'))
-    contract_date = models.DateField(verbose_name=_('Дата договору'))
+    # Optional: .cz clients usually pay by public offer (no signed contract).
+    # Empty number -> the contract line is not printed at all (PDF / admin).
+    contract_number = models.CharField(
+        max_length=100,
+        blank=True,
+        default='',
+        verbose_name=_('Номер договору'),
+        help_text=_('Необовʼязково. Порожнє — рядок «Smlouva / Contract» у PDF не друкується.'),
+    )
+    contract_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name=_('Дата договору'),
+        help_text=_('Друкується лише разом із номером договору.'),
+    )
     total_amount = models.DecimalField(
         max_digits=14,
         decimal_places=2,
@@ -257,6 +270,8 @@ class Invoice(models.Model):
         return (first.title.strip().splitlines()[0] if first and first.title else '')
 
     def payment_purpose(self, texts: dict | None = None) -> str:
+        """Payment purpose in the invoice language — the ONLY source for the PDF
+        and for the payment page of a link created from this invoice."""
         from .texts import get_texts
         lang = self.language or self.Language.CS
         texts = texts or get_texts(lang)
@@ -272,11 +287,24 @@ class Invoice(models.Model):
         self.total_amount = total.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
         self.save(update_fields=['total_amount', 'updated_at'])
 
+    @property
+    def contract_number_clean(self) -> str:
+        """Contract number, or '' when empty / a placeholder dash."""
+        value = (self.contract_number or '').strip()
+        return '' if value.strip('-–—. ') == '' else value
+
     def contract_line(self, texts: dict | None = None) -> str:
+        """'' when there is no contract number (a date alone is never printed)."""
         from .texts import get_texts
+        number = self.contract_number_clean
+        if not number:
+            return ''
         texts = texts or get_texts(self.language or self.Language.CS)
-        d = self.contract_date.strftime('%d.%m.%Y') if self.contract_date else ''
-        return texts['pdf_contract_line'].format(number=self.contract_number, date=d)
+        if self.contract_date:
+            return texts['pdf_contract_line'].format(
+                number=number, date=self.contract_date.strftime('%d.%m.%Y'),
+            )
+        return texts['pdf_contract_line_nodate'].format(number=number)
 
 
 class InvoiceItem(models.Model):
@@ -293,7 +321,7 @@ class InvoiceItem(models.Model):
         blank=True,
         default='',
         verbose_name=_('Од.'),
-        help_text=_('Порожнє — у PDF «služba» / «service».'),
+        help_text=_('Не використовується: у PDF завжди «služba» / «service». Колонку збережено.'),
     )
     quantity = models.DecimalField(
         max_digits=12,

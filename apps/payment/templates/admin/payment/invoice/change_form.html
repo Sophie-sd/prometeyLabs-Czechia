@@ -6,9 +6,27 @@
 <link rel="stylesheet" href="{% static 'payment/css/invoice_admin.css' %}">
 {% endblock %}
 
+{% block form_after %}
+{{ block.super }}
+{% if invoice_is_readonly and can_create_payment_link and not existing_payment_link_url %}
+<form id="invoice-create-link-form" method="post" action="{{ create_payment_link_url }}" hidden>
+  {% csrf_token %}
+</form>
+{% endif %}
+{% endblock %}
+
 {% block submit_buttons_bottom %}
 {% if invoice_is_readonly %}
 <div class="submit-row invoice-view-actions">
+  {% if existing_payment_link_url %}
+  <a class="button" href="{{ existing_payment_link_url }}">{% trans "Відкрити платіжне посилання" %}</a>
+  {% elif can_create_payment_link %}
+  {# Submits the standalone form below (outside the admin change <form>). #}
+  <button type="submit" class="button default" id="invoice-create-payment-link"
+          form="invoice-create-link-form">
+    {% trans "Створити платіжне посилання з рахунку" %}
+  </button>
+  {% endif %}
   {% if invoice_pdf_url %}
   <a class="invoice-pdf-icon-btn" href="{{ invoice_pdf_url }}" title="{% trans 'Завантажити PDF' %}" aria-label="{% trans 'Завантажити PDF' %}">
     <span class="material-symbols-outlined" aria-hidden="true">download</span>

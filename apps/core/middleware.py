@@ -93,7 +93,10 @@ class AdminLocaleMiddleware:
 
         path = request.path_info or ""
         if path == "/admin" or path.startswith("/admin/"):
-            translation.activate("uk")
             request.LANGUAGE_CODE = "uk"
+            # override() restores the previous language after the response, so
+            # "uk" never leaks into later public requests / reverse() on the thread.
+            with translation.override("uk"):
+                return self.get_response(request)
         return self.get_response(request)
 

@@ -1,5 +1,8 @@
+from decimal import Decimal, InvalidOperation
+
 from django import forms
 from django.contrib import admin
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
@@ -18,7 +21,7 @@ from .models import (
     PaymentText,
     currency_mismatches,
 )
-from .texts import DEFAULT_TEXTS
+from .texts import DEFAULT_TEXTS, LOCKED_TEXTS
 from . import invoice_admin  # noqa: F401  — реєстрація InvoiceAdmin
 
 # LEGACY (не зареєстровано в адмінці, дані в БД збережено):
@@ -137,6 +140,12 @@ class PaymentTextAdmin(UnfoldModelAdmin):
     readonly_fields = ('key', 'description')
     fields = ('key', 'description', 'text_cs', 'text_en')
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj is not None and obj.key in LOCKED_TEXTS:
+            # Fixed wording (Faktura/Invoice, Smlouva/Contract, služba/service).
+            return ('key', 'description', 'text_cs', 'text_en')
+        return super().get_readonly_fields(request, obj)
+
     def changelist_view(self, request, extra_context=None):
         ensure_payment_texts()
         return super().changelist_view(request, extra_context)
@@ -194,9 +203,44 @@ class PaymentLinkAdminForm(forms.ModelForm):
                 ).distinct()
             self.fields['payment_methods'].queryset = qs.order_by('position', 'name')
             self.fields['payment_methods'].required = True
+        invoice = self.instance.invoice if self.instance.invoice_id else None
+        if invoice is not None:
+            # Amount / currency of a link created from an invoice are locked:
+            # disabled fields ignore POSTed values; clean() also rejects a tampered POST.
+            for name in ('amount', 'currency'):
+                if name in self.fields:
+                    self.fields[name].disabled = True
+                    self.fields[name].help_text = _(
+                        'З рахунку №%(n)s — не редагується (дорівнює сумі рахунку).'
+                    ) % {'n': invoice.number}
+            if 'description' in self.fields:
+                # The page / PDF purpose always comes from Invoice.payment_purpose().
+                self.fields['description'].disabled = True
+                self.fields['description'].help_text = _(
+                    'З рахунку №%(n)s: призначення платежу береться з рахунку (так само, як у PDF).'
+                ) % {'n': invoice.number}
 
     def clean(self):
         cleaned = super().clean()
+        invoice = self.instance.invoice if self.instance.invoice_id else None
+        if invoice is not None:
+            raw_amount = (self.data.get(self.add_prefix('amount')) or '').strip()
+            if raw_amount:
+                try:
+                    posted = Decimal(raw_amount.replace(',', '.'))
+                except InvalidOperation:
+                    posted = None
+                if posted != invoice.total_amount:
+                    self.add_error(None, _(
+                        'Сума посилання з рахунку не змінюється: має дорівнювати сумі рахунку (%(sum)s %(cur)s).'
+                    ) % {'sum': invoice.total_amount, 'cur': invoice.currency})
+            raw_currency = (self.data.get(self.add_prefix('currency')) or '').strip()
+            if raw_currency and raw_currency != invoice.currency:
+                self.add_error(None, _('Валюта посилання з рахунку не змінюється (%(cur)s).') % {
+                    'cur': invoice.currency,
+                })
+            cleaned['amount'] = invoice.total_amount
+            cleaned['currency'] = invoice.currency
         currency = cleaned.get('currency')
         methods = cleaned.get('payment_methods')
         if currency and methods is not None:
@@ -240,7 +284,7 @@ class PaymentLinkAdmin(UnfoldModelAdmin):
     )
     search_fields = ('client_name', 'client_email', 'unique_id')
     readonly_fields = (
-        'client_link_readonly',
+        'client_link_readonly', 'invoice_readonly',
         'first_opened_at', 'expires_at', 'payment_processed_at',
         'withdrawal_waiver_accepted_at', 'withdrawal_waiver_accepted_ip',
         'data_consent_accepted_at', 'data_consent_accepted_ip',
@@ -257,8 +301,11 @@ class PaymentLinkAdmin(UnfoldModelAdmin):
             'fields': ('description',),
         }),
         (_('Сума'), {
-            'fields': ('currency', 'amount'),
-            'description': _('Клієнт бачить суму у валюті посилання (EUR або USD).'),
+            'fields': ('invoice_readonly', 'currency', 'amount'),
+            'description': _(
+                'Клієнт бачить суму у валюті посилання (EUR або USD). Для посилання з рахунку '
+                'сума й валюта беруться з рахунку і не редагуються.'
+            ),
         }),
         (_('Способи оплати'), {
             'fields': ('payment_methods',),
@@ -286,6 +333,17 @@ class PaymentLinkAdmin(UnfoldModelAdmin):
     class Media:
         css = {'all': ('payment/css/admin.css',)}
         js = ('payment/js/copy.js', 'payment/js/admin.js')
+
+    @admin.display(description=_('Рахунок'))
+    def invoice_readonly(self, obj):
+        if not obj or not obj.invoice_id:
+            return '—'
+        invoice = obj.invoice
+        return format_html(
+            '<a href="{}">№{}</a> — {} {}',
+            reverse('admin:payment_invoice_change', args=[invoice.pk]),
+            invoice.number, invoice.total_amount, invoice.currency,
+        )
 
     @admin.display(description=_('Згода'), boolean=True)
     def consent_col(self, obj):

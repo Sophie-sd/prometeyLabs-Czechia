@@ -3,8 +3,8 @@
     <h3 class="pay-method-title" id="{{ block.dom_id }}-title">{{ block.label }}</h3>
     <dl class="pay-dl">
         {% include 'payment/partials/_copy_row.html' with label=t.field_amount value=amount_plain display=amount_display suffix=payment_link.currency row_class='pay-row--amount' %}
-        {% if payment_link.description %}
-        {% include 'payment/partials/_copy_row.html' with label=t.field_purpose value=payment_link.description %}
+        {% if purpose %}
+        {% include 'payment/partials/_copy_row.html' with label=t.field_purpose value=purpose %}
         {% endif %}
         {% for row in block.rows %}
         {% include 'payment/partials/_copy_row.html' with label=row.label value=row.value %}

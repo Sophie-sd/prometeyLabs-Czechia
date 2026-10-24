@@ -163,6 +163,7 @@ class TelegramBotFormTests(TestCase):
             'source_page': 'telegram-bot',
             'bot_task': 'leads-qualification',
             'details': 'Потрібен бот для запису',
+            'consent': '1',
         })
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content)
@@ -178,6 +179,7 @@ class TelegramBotFormTests(TestCase):
             'form_type': 'telegram_bot',
             'name': 'Олена Бот',
             'phone': '+380631234567',
+            'consent': '1',
         })
         self.assertEqual(response.status_code, 200)
         self.assertTrue(json.loads(response.content)['success'])

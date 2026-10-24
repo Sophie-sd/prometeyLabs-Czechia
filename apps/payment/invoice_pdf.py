@@ -19,7 +19,7 @@ from django.utils import translation
 
 from .amount_words import amount_in_words, format_money
 from .models import method_public_block
-from .texts import get_texts, normalize_lang
+from .texts import get_texts, normalize_lang, service_unit
 
 
 class LegacyInvoiceError(RuntimeError):
@@ -78,7 +78,7 @@ def invoice_context(invoice) -> dict:
         items.append({
             'position': item.position,
             'title': item.title,
-            'unit': (item.unit or '').strip() or texts['pdf_unit_default'],
+            'unit': service_unit(lang),  # always «služba» / «service» (item.unit is ignored)
             'quantity': format_money(item.quantity, lang).rstrip('0').rstrip(',.') if item.quantity is not None else '',
             'price_formatted': _nbsp(format_money(item.price, lang)),
             'amount_formatted': _nbsp(format_money(item.amount, lang)),
@@ -115,6 +115,7 @@ def invoice_context(invoice) -> dict:
         'executor': executor,
         'methods': methods,
         'method_rows': method_rows,
+        # Same function as the payment page (PaymentLink.payment_purpose) — one source.
         'purpose': invoice.payment_purpose(texts),
         'footer_note_lines': [ln for ln in texts['pdf_footer_note'].splitlines() if ln.strip()],
         'page_footer': page_footer,

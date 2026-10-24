@@ -78,9 +78,11 @@ class FormValidationTests(TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertFalse(json.loads(response.content)['success'])
 
-    def test_lead_rejects_missing_email(self):
+    def test_lead_rejects_missing_contact(self):
+        # Email is optional now: a lead needs phone OR email OR Telegram.
         data = _lead(form_type='footer-consultation')
         del data['email']
+        data['phone'] = ''
         response = self.client.post(self.submit_url, data)
         self.assertEqual(response.status_code, 400)
         self.assertFalse(json.loads(response.content)['success'])
@@ -160,6 +162,7 @@ class FormValidationTests(TestCase):
             'form_type': 'developer',
             'name': 'Тест Курс',
             'phone': '+380631234567',
+            'consent': '1',  # developer is a lead form now (GDPR consent required)
         }
         response = self.client.post(self.submit_url, data)
         self.assertEqual(response.status_code, 200)

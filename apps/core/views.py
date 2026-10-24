@@ -12,7 +12,7 @@ from .form_handlers import (
     has_lead_contact, validate_telegram,
     create_form_response, get_form_type_from_path,
     create_form_data, send_form_email, save_form_submission,
-    send_test_result_email, LEAD_FORM_TYPES, thank_you_url,
+    send_test_result_email, LEAD_FORM_TYPES, thank_you_url, resolve_lead_lang,
 )
 from .keycrm_service import sync_submission_to_keycrm
 from .quiz_options import humanize_details, resolve_lead_name
@@ -289,7 +289,7 @@ def handle_form_submission(request):
             return create_form_response(
                 True,
                 _('Дякуємо! Заявку на Telegram-бота отримано. Ми зв\'яжемося з вами найближчим часом.'),
-                redirect=thank_you_url()
+                redirect=thank_you_url(resolve_lead_lang(request))
             )
         name = request.POST.get('name', '').strip()
         # Приховані ключі-заглушки імені (free_analysis, стара кирилиця) → назва для CRM
@@ -623,6 +623,7 @@ def handle_test_submission(request):
             logger.error(f"Failed to save test_result submission: {save_error}")
             return create_form_response(False, _('Помилка при обробці тесту'))
 
+        test_data['page_language'] = form_data.get('page_language', '')
         _dispatch_async(
             submission_id,
             form_data,

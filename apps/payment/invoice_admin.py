@@ -12,6 +12,7 @@ from unfold.admin import ModelAdmin as UnfoldModelAdmin, TabularInline as Unfold
 
 from .amount_words import format_money
 from .invoice_models import Invoice, InvoiceItem
+from .invoice_links import InvoiceLinkError, create_payment_link_from_invoice, existing_link_for_invoice
 from .invoice_pdf import LegacyInvoiceError, get_or_create_invoice_pdf
 from .models import PaymentMethod, currency_mismatches
 
@@ -29,10 +30,22 @@ CLIENT_HINTS_HTML = mark_safe(
 )
 
 
+def method_name(data: dict) -> str:
+    """Only the payment method name (no «name · type · currency» repeat)."""
+    name = (data.get('name') or '').strip()
+    if not name and data.get('id'):
+        method = PaymentMethod.objects.filter(pk=data['id']).first()
+        name = method.name if method else ''
+    if not name:
+        name = dict(PaymentMethod.MethodType.choices).get(data.get('type', ''), data.get('type', ''))
+    return name
+
+
 class InvoiceItemForm(forms.ModelForm):
     class Meta:
         model = InvoiceItem
-        fields = ('title', 'unit', 'quantity', 'price', 'position')
+        # «Од.» is hidden: the PDF unit is always «služba» / «service» (DB column kept).
+        fields = ('title', 'quantity', 'price', 'position')
         widgets = {
             'title': forms.Textarea(attrs={
                 'rows': 2,
@@ -59,7 +72,7 @@ class InvoiceItemInline(UnfoldTabularInline):
     form = InvoiceItemForm
     extra = 1
     min_num = 1
-    fields = ('position', 'title', 'unit', 'quantity', 'price')
+    fields = ('position', 'title', 'quantity', 'price')
     ordering = ('position', 'id')
     verbose_name = _('Послуга')
     verbose_name_plural = _('Послуги')
@@ -118,6 +131,10 @@ class InvoiceAdminForm(forms.ModelForm):
             )
         if 'client_tax_id' in self.fields:
             self.fields['client_tax_id'].help_text = _('Реєстраційний номер компанії, якщо є.')
+        if 'contract_number' in self.fields:
+            self.fields['contract_number'].required = False
+        if 'contract_date' in self.fields:
+            self.fields['contract_date'].required = False
         if 'invoice_date' in self.fields and not self.instance.pk:
             self.fields['invoice_date'].initial = date.today()
         if 'valid_until' in self.fields and not self.instance.pk:
@@ -141,6 +158,14 @@ class InvoiceAdminForm(forms.ModelForm):
             cleaned['valid_until'] = Invoice.default_due_date(invoice_date)
         elif invoice_date and due and due < invoice_date:
             self.add_error('valid_until', _('Термін оплати не може бути раніше дати рахунку.'))
+        number = (cleaned.get('contract_number') or '').strip()
+        if number.strip('-–—. ') == '':
+            # A dash is not a contract number; a date alone is never printed.
+            cleaned['contract_number'] = ''
+            if cleaned.get('contract_date'):
+                self.add_error('contract_date', _(
+                    'Дата договору без номера не друкується — вкажіть номер договору або очистіть дату.'
+                ))
         return cleaned
 
 
@@ -158,6 +183,7 @@ class InvoiceAdmin(UnfoldModelAdmin):
     ordering = ('-number',)
     list_per_page = 50
     change_form_template = 'admin/payment/invoice/change_form.html'
+    actions = ['create_payment_links_action']
 
     class Media:
         css = {'all': ('payment/css/invoice_admin.css',)}
@@ -171,7 +197,7 @@ class InvoiceAdmin(UnfoldModelAdmin):
                 'client_name', 'client_tax_id', 'client_vat_id', 'client_address',
                 'client_country', 'client_email',
                 'contract_number', 'contract_date', 'purpose_service', 'total_amount',
-                'created_at', 'created_by',
+                'created_at', 'created_by', 'payment_links_readonly',
             )
         return ('number', 'total_amount')
 
@@ -196,6 +222,9 @@ class InvoiceAdmin(UnfoldModelAdmin):
                 (_('Договір'), {
                     'fields': ('contract_number', 'contract_date'),
                 }),
+                (_('Платіжні посилання'), {
+                    'fields': ('payment_links_readonly',),
+                }),
                 (_('Службове'), {
                     'fields': ('created_at', 'created_by'),
                     'classes': ('collapse',),
@@ -215,7 +244,7 @@ class InvoiceAdmin(UnfoldModelAdmin):
                     'Оберіть один або кілька способів у валюті рахунку — реквізити кожного '
                     'друкуються в PDF. Виконавець береться з «Платежі → Налаштування». '
                     'Призначення платежу формується автоматично: «Payment for <послуга> '
-                    'under invoice No. <номер> dated <дата>» (CS: «Platba za … dle faktury č. … ze dne …»).'
+                    'by the invoice № <номер> from <дата>» (CS: «Platba za … dle faktury č. … ze dne …»).'
                 ),
             }),
             (_('Замовник'), {
@@ -227,6 +256,10 @@ class InvoiceAdmin(UnfoldModelAdmin):
             }),
             (_('Договір'), {
                 'fields': ('contract_number', 'contract_date'),
+                'description': _(
+                    'Необовʼязково. Якщо номера договору немає — рядок «Smlouva / Contract» '
+                    'у PDF не друкується (дата без номера теж).'
+                ),
             }),
         )
 
@@ -235,10 +268,18 @@ class InvoiceAdmin(UnfoldModelAdmin):
         data = obj.payment_methods_snapshot or [m.snapshot() for m in obj.payment_methods.all()]
         if not data:
             return '—'
+        return format_html_join(mark_safe('<br>'), '{}', ((method_name(d),) for d in data))
+
+    @admin.display(description=_('Платіжні посилання'))
+    def payment_links_readonly(self, obj):
+        links = list(obj.payment_links.order_by('-created_at')) if obj and obj.pk else []
+        if not links:
+            return '—'
         return format_html_join(
-            mark_safe('<br>'), '{} · {} · {}',
-            ((d.get('type', ''), d.get('currency', ''), d.get('iban') or d.get('paypal_email') or '')
-             for d in data),
+            mark_safe('<br>'), '<a href="{}">{} — {}</a>',
+            ((reverse('admin:payment_paymentlink_change', args=[link.pk]),
+              link.get_status_display(), link.created_at.strftime('%d.%m.%Y %H:%M'))
+             for link in links),
         )
 
     @admin.display(description=_('Призначення платежу'))
@@ -296,6 +337,11 @@ class InvoiceAdmin(UnfoldModelAdmin):
                 self.admin_site.admin_view(self.download_pdf_view),
                 name='payment_invoice_download_pdf',
             ),
+            path(
+                '<path:object_id>/create-payment-link/',
+                self.admin_site.admin_view(self.create_payment_link_view),
+                name='payment_invoice_create_payment_link',
+            ),
         ]
         return custom + urls
 
@@ -328,9 +374,63 @@ class InvoiceAdmin(UnfoldModelAdmin):
         )
         return response
 
+    def _link_from_invoice(self, request, invoice):
+        try:
+            link, created = create_payment_link_from_invoice(invoice)
+        except InvoiceLinkError as exc:
+            messages.error(request, _('Рахунок №%(n)s: %(err)s') % {'n': invoice.number, 'err': exc})
+            return None
+        except Exception as exc:  # PDF / storage failure — nothing half-created (atomic)
+            messages.error(request, _('Рахунок №%(n)s: помилка — %(err)s') % {'n': invoice.number, 'err': exc})
+            return None
+        if created:
+            messages.success(request, _(
+                'Рахунок №%(n)s: платіжне посилання створено (сума %(sum)s %(cur)s, PDF рахунку додано).'
+            ) % {'n': invoice.number, 'sum': invoice.total_amount, 'cur': invoice.currency})
+        else:
+            messages.info(request, _(
+                'Рахунок №%(n)s: посилання вже існує — відкрито наявне (дублікат не створено).'
+            ) % {'n': invoice.number})
+        return link
+
+    def create_payment_link_view(self, request, object_id):
+        change_url = reverse('admin:payment_invoice_change', args=[object_id])
+        if request.method != 'POST':
+            return HttpResponseRedirect(change_url)
+        if not request.user.has_perm('payment.add_paymentlink'):
+            messages.error(request, _('Немає права створювати платіжні посилання.'))
+            return HttpResponseRedirect(change_url)
+        invoice = Invoice.objects.filter(pk=object_id).first()
+        if not invoice:
+            messages.error(request, _('Рахунок не знайдено.'))
+            return HttpResponseRedirect(reverse('admin:payment_invoice_changelist'))
+        link = self._link_from_invoice(request, invoice)
+        if link is None:
+            return HttpResponseRedirect(change_url)
+        return HttpResponseRedirect(reverse('admin:payment_paymentlink_change', args=[link.pk]))
+
+    @admin.action(description=_('Створити платіжне посилання з рахунку'), permissions=['add_payment_link'])
+    def create_payment_links_action(self, request, queryset):
+        for invoice in queryset.order_by('number'):
+            self._link_from_invoice(request, invoice)
+
+    def has_add_payment_link_permission(self, request):
+        return request.user.has_perm('payment.add_paymentlink')
+
     def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
         extra_context = extra_context or {}
         if object_id:
+            extra_context['create_payment_link_url'] = reverse(
+                'admin:payment_invoice_create_payment_link', args=[object_id]
+            )
+            invoice = Invoice.objects.filter(pk=object_id).first()
+            existing = existing_link_for_invoice(invoice) if invoice else None
+            extra_context['existing_payment_link_url'] = (
+                reverse('admin:payment_paymentlink_change', args=[existing.pk]) if existing else ''
+            )
+            extra_context['can_create_payment_link'] = bool(
+                invoice and not invoice.is_legacy and request.user.has_perm('payment.add_paymentlink')
+            )
             extra_context['show_save'] = False
             extra_context['show_save_and_continue'] = False
             extra_context['show_save_and_add_another'] = False
@@ -354,8 +454,11 @@ class InvoiceAdmin(UnfoldModelAdmin):
 
     @admin.display(description=_('Договір'))
     def contract_col(self, obj):
+        number = obj.contract_number_clean
+        if not number:
+            return '—'
         d = obj.contract_date.strftime('%d.%m.%Y') if obj.contract_date else ''
-        return f'{obj.contract_number} / {d}'
+        return f'{number} / {d}' if d else number
 
     @admin.display(description=_('Створено'), ordering='created_at')
     def created_at_col(self, obj):

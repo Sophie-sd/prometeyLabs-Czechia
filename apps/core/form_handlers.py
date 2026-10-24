@@ -458,7 +458,9 @@ def send_test_result_email(test_data):
         answers_section = '\n'.join(answers_text_lines) if answers_text_lines else ""
         
         # Email для команди
-        admin_subject = "[PrometeyLabs] Новий розрахунок проекту"
+        source = get_lead_source_domain()
+        lang_label = (test_data.get('page_language') or '').strip()
+        admin_subject = f"[{source}{' ' + lang_label if lang_label else ''}] Новий розрахунок проекту"
         admin_message = f"""
 Новий розрахунок проекту
 

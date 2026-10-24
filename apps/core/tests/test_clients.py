@@ -46,6 +46,11 @@ class ClientLogoFallbackTests(SimpleTestCase):
 
 
 class HomepageClientsTests(TestCase):
+    def setUp(self):
+        # Data migrations seed real clients (Coresync, …); hide them so the
+        # assertions only see clients created by the test itself.
+        Client.objects.update(is_active=False)
+
     def test_homepage_clients_returns_only_active_in_order(self):
         make_client('Alpha', order=2)
         make_client('Beta', order=1)

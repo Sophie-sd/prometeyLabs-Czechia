@@ -2,7 +2,7 @@
 {{ t.email_thanks }}
 
 {% if payment_link.client_name %}{{ payment_link.client_name }}
-{% endif %}{% if payment_link.description %}{{ payment_link.description }}
+{% endif %}{% if payment_link.payment_purpose %}{{ payment_link.payment_purpose }}
 {% endif %}{% if show_currency %}{{ amount_display }} {{ payment_link.currency }}
 {% endif %}
 {{ t.success_waiver }}
