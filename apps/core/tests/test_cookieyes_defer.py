@@ -1,3 +1,8 @@
+"""GTM / consent wiring (formerly CookieYes loader tests).
+
+CookieYes was replaced by the first-party banner (partials/consent_banner.html);
+GTM-MQBJTH87 now loads only after consent (Consent Mode v2 basic mode).
+"""
 from pathlib import Path
 
 from django.template.loader import render_to_string
@@ -10,54 +15,37 @@ PROPOSAL_BASE = ROOT / 'templates' / 'proposal' / 'base_proposal.html'
 GTM_NOSCRIPT = ROOT / 'templates' / 'partials' / 'gtm_noscript.html'
 
 
-class CookieYesDeferTests(SimpleTestCase):
-    """CookieYes тепер вантажиться одразу (без idle/gesture/12 s), Consent default — перед ним."""
-
-    def test_cmp_loads_immediately_after_consent_default(self):
-        text = GTM_HEAD.read_text(encoding='utf-8')
-        self.assertIn('function _loadCookieYes', text)
-        boot = text.split('window._loadGTM=_loadCookieYes;')[1]
-        self.assertTrue(boot.lstrip().startswith('_loadCookieYes();'))
-        for delayed in ('requestIdleCallback', 'setTimeout(_loadCookieYes', 'timeout:12000',
-                        "['click','touchstart','keydown']"):
-            self.assertNotIn(delayed, text)
-        self.assertIn('s.async=true;', text)
-        self.assertNotIn('rel="preconnect" href="https://cdn-cookieyes.com"', text)
-        self.assertLess(text.find("gtag('consent','default'"), text.find('function _loadCookieYes'))
-
-    def test_rendered_head_has_cmp_src_with_id(self):
+class GtmWiringTests(SimpleTestCase):
+    def test_no_cookieyes_script_loaded(self):
         html = render_to_string('partials/gtm_head.html', {'COOKIEYES_ID': 'testcy', 'csp_nonce': 'n'})
-        self.assertIn('cdn-cookieyes.com/client_data/testcy/script.js', html)
-        self.assertLess(html.find("gtag('consent','default'"), html.find('cdn-cookieyes.com/client_data'))
+        self.assertNotIn('cdn-cookieyes.com', html)
 
     def test_single_gtm_container_mqbjth87(self):
         text = GTM_HEAD.read_text(encoding='utf-8')
-        self.assertIn("'dataLayer','GTM-MQBJTH87'", text)
+        self.assertIn("GTM='GTM-MQBJTH87'", text)
         self.assertNotIn('GTM-K2FVPPTK', text)
         self.assertEqual(text.count("'gtm.start'"), 1)
-        # Consent Mode defaults first, then the GTM snippet, then the CMP loader
-        self.assertLess(text.find("gtag('consent','default'"), text.find('GTM-MQBJTH87'))
-        self.assertLess(text.find('GTM-MQBJTH87'), text.find('function _loadCookieYes'))
+        self.assertLess(text.find("gtag('consent','default'"), text.find('gtm.js?id='))
         # /thank-you/ still calls window._loadGTM()
-        self.assertIn('window._loadGTM=_loadCookieYes;', text)
-        noscript = GTM_NOSCRIPT.read_text(encoding='utf-8')
-        self.assertIn('ns.html?id=GTM-MQBJTH87', noscript)
-        self.assertNotIn('GTM-K2FVPPTK', noscript)
+        self.assertIn('w._loadGTM=function', text)
+
+    def test_noscript_has_no_tag_before_consent(self):
+        self.assertNotIn('<iframe', GTM_NOSCRIPT.read_text(encoding='utf-8'))
 
     def test_base_noscript_right_after_body(self):
         text = BASE_HTML.read_text(encoding='utf-8')
         after_body = text.split('<body', 1)[1].split('>', 1)[1].lstrip()
         self.assertTrue(after_body.startswith("{% include 'partials/gtm_noscript.html' %}"))
 
-    def test_public_and_proposal_bases_include_gtm(self):
+    def test_public_and_proposal_bases_include_gtm_and_banner(self):
         for path in (BASE_HTML, PROPOSAL_BASE):
             text = path.read_text(encoding='utf-8')
             self.assertIn("{% include 'partials/gtm_head.html' %}", text)
-            self.assertIn("{% include 'partials/gtm_noscript.html' %}", text)
+            self.assertIn("{% include 'partials/consent_banner.html' %}", text)
 
 
 class ProposalGtmCoverageTests(SimpleTestCase):
-    def test_proposal_base_renders_gtm_container(self):
+    def test_proposal_base_renders_consent_and_gtm_loader(self):
         html = render_to_string(
             'proposal/base_proposal.html',
             {
@@ -72,5 +60,5 @@ class ProposalGtmCoverageTests(SimpleTestCase):
         self.assertIn('GTM-MQBJTH87', html)
         self.assertNotIn('GTM-K2FVPPTK', html)
         self.assertIn("gtag('consent','default'", html)
-        self.assertIn("googletagmanager.com/gtm.js?id='+i+dl", html)
-        self.assertIn('googletagmanager.com/ns.html?id=GTM-MQBJTH87', html)
+        self.assertIn("googletagmanager.com/gtm.js?id='+GTM", html)
+        self.assertIn('id="pl-consent"', html)

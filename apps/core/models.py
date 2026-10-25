@@ -1135,3 +1135,4 @@ from .proposal_visual_models import (  # noqa: E402,F401
     ProposalArchNode,
     ProposalHighlight,
 )
+from .consent_models import ConsentLog  # noqa: E402,F401

@@ -1,45 +1,55 @@
-    <!-- Google Consent Mode v2 — default denied BEFORE CookieYes and GTM -->
+    <!-- Google Consent Mode v2 — default DENIED, inline, BEFORE any Google tag.
+         Basic mode (ZEK § 89 odst. 3 / GDPR / ePrivacy): GTM-MQBJTH87 (GA4 G-SQSPXXHZXP,
+         Ads AW-17304855905 + conversions) is NOT loaded at all until the visitor grants
+         analytics or marketing in our first-party banner (partials/consent_banner.html).
+         Choice is stored in the first-party cookie `pl_consent` (accept 12 m, reject 6 m). -->
     <script nonce="{{ csp_nonce }}">
     window.dataLayer=window.dataLayer||[];
     function gtag(){dataLayer.push(arguments);}
     gtag('consent','default',{
       ad_storage:'denied',
-      analytics_storage:'denied',
       ad_user_data:'denied',
       ad_personalization:'denied',
+      analytics_storage:'denied',
+      personalization_storage:'denied',
+      functionality_storage:'granted',
+      security_storage:'granted',
       wait_for_update:500
     });
-    </script>
-    <!-- Google Tag Manager GTM-MQBJTH87 (standard snippet, right after Consent Mode default) -->
-    <script nonce="{{ csp_nonce }}">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;j.setAttribute('nonce','{{ csp_nonce }}');f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MQBJTH87');</script>
-    <!-- End Google Tag Manager GTM-MQBJTH87 -->
-    {% if COOKIEYES_ID %}
-    {# Direct CMP only — do not add CookieYes in GTM. No preconnect: it raced LCP. #}
-    <link rel="dns-prefetch" href="https://cdn-cookieyes.com">
-    {% endif %}
-    <!-- CookieYes loads immediately on page open for every visitor (async, non-blocking).
-         Consent Mode default (denied) above always runs first. GTM container = GTM-MQBJTH87
-         (snippet above). _loadGTM() is kept as a compat alias (/thank-you/ calls it); the
-         window._cyL guard makes repeated calls no-ops. Do not cache HTML at Cloudflare while
-         GET still sets csrftoken. -->
-    <script nonce="{{ csp_nonce }}">
-    function _loadCookieYes(){
-      if(window._cyL)return;window._cyL=1;
-      {% if COOKIEYES_ID %}
-      var s=document.createElement('script');
-      s.id='cookieyes';
-      s.async=true;
-      s.src='https://cdn-cookieyes.com/client_data/{{ COOKIEYES_ID }}/script.js';
-      s.setAttribute('nonce','{{ csp_nonce }}');
-      s.nonce='{{ csp_nonce }}';
-      document.head.appendChild(s);
-      {% endif %}
-    }
-    window._loadCookieYes=_loadCookieYes;
-    window._loadGTM=_loadCookieYes;
-    _loadCookieYes();
+    gtag('set','ads_data_redaction',true);
+    (function(w,d){
+      var N='{{ csp_nonce }}',V=1,GTM='GTM-MQBJTH87';
+      function read(){
+        var m=d.cookie.match(/(?:^|; )pl_consent=([^;]*)/);
+        if(m){try{var o=JSON.parse(decodeURIComponent(m[1]));if(o&&o.v===V)return o;}catch(e){}}
+        /* one-time migration of an explicit CookieYes choice (action:yes) */
+        var y=d.cookie.match(/(?:^|; )cookieyes-consent=([^;]*)/);
+        if(y){var s=decodeURIComponent(y[1]);if(/action:yes/.test(s)){
+          return {v:V,a:/analytics:yes/.test(s)?1:0,m:/advertisement:yes/.test(s)?1:0,mig:1};}}
+        return null;
+      }
+      function loadGTM(){
+        if(w._gtmL)return;w._gtmL=1;
+        w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+        var j=d.createElement('script');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+GTM;
+        j.setAttribute('nonce',N);j.nonce=N;
+        var f=d.getElementsByTagName('script')[0];f.parentNode.insertBefore(j,f);
+      }
+      function apply(o){
+        var a=o&&o.a?'granted':'denied',m=o&&o.m?'granted':'denied';
+        gtag('consent','update',{analytics_storage:a,ad_storage:m,ad_user_data:m,ad_personalization:m});
+        w.dataLayer.push({event:'pl_consent_update',consent_analytics:a,consent_marketing:m});
+        if(o&&(o.a||o.m))loadGTM();
+      }
+      var st=read();
+      w.plConsent={version:V,read:read,apply:apply,loadGTM:loadGTM,state:st};
+      if(st)apply(st);
+      /* compat: /thank-you/ calls _loadGTM(); loads only when consent exists */
+      w._loadGTM=function(){var s=read();if(s&&(s.a||s.m))loadGTM();};
+      w._loadCookieYes=w._loadGTM;
+      /* compat for gclid-capture.js (former CookieYes API) */
+      w.getCkyConsent=function(){var s=read();return {isUserActionCompleted:!!s,
+        categories:{necessary:true,functional:true,analytics:!!(s&&s.a),performance:!!(s&&s.a),advertisement:!!(s&&s.m)}};};
+    })(window,document);
     </script>

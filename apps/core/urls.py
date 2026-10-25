@@ -2,6 +2,7 @@ from django.urls import path
 from django.utils.functional import lazy
 from django.utils.translation import get_language
 from django.views.generic import RedirectView
+from . import consent
 from . import proposal_views
 from . import tz_views
 from . import views
@@ -63,6 +64,9 @@ urlpatterns = [
     path('forms/tz/', tz_views.handle_tz_submission, name='tz_submit'),
     path('forms/tz/<str:token>/pdf/', tz_views.download_tz_pdf, name='tz_pdf'),
     path('forms/tz/<str:token>/upsell/', tz_views.handle_tz_upsell, name='tz_upsell'),
+
+    # Cookie consent audit trail (first-party banner)
+    path('consent/log/', consent.consent_log, name='consent_log'),
 
     # Webhooks
     path('webhook/keycrm/', webhooks.keycrm_webhook, name='keycrm_webhook'),

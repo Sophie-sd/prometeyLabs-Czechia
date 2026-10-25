@@ -693,3 +693,22 @@ class ClientAdmin(UnfoldModelAdmin):
             '<img src="{}" alt="" class="pl-admin-image-preview">',
             src,
         )
+
+
+from .consent_models import ConsentLog  # noqa: E402
+
+
+@admin.register(ConsentLog)
+class ConsentLogAdmin(UnfoldModelAdmin):
+    """Read-only audit trail of cookie banner choices (GDPR čl. 7 odst. 1)."""
+    list_display = ('created_at', 'consent_id', 'action', 'analytics', 'marketing', 'language', 'path')
+    list_filter = ('action', 'analytics', 'marketing', 'language')
+    search_fields = ('consent_id',)
+    date_hierarchy = 'created_at'
+    readonly_fields = [f.name for f in ConsentLog._meta.fields]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False

@@ -4,6 +4,7 @@ Context processors для глобальних змінних шаблонів
 from django.conf import settings
 from django.utils.translation import get_language
 
+from apps.core.consent import consent_texts
 from apps.core.utils import get_site_contact_settings
 
 
@@ -25,5 +26,6 @@ def global_settings(request):
         'csp_nonce': getattr(request, 'csp_nonce', ''),
         'site_contact': get_site_contact_settings(),
         'phone_placeholder': phone_placeholder,
+        'consent_ui': consent_texts(lang),
     }
 

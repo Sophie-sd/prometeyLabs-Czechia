@@ -83,7 +83,7 @@
                     {% trans "Захист даних:" %}
                     <a href="mailto:{{ site_contact.data_protection_email }}" class="plf__imp-link">{{ site_contact.data_protection_email }}</a>
                     <span class="plf__sep">·</span>
-                    <button type="button" class="plf__imp-link footer-cookie-settings-btn cky-banner-element" data-cookie-settings>{% trans "Налаштування cookie" %}</button>
+                    <button type="button" class="plf__imp-link footer-cookie-settings-btn" data-cookie-settings aria-controls="pl-consent">{% trans "Налаштування cookie" %}</button>
                 </p>
             </div>
             <p>&copy; {% now "Y" %} PrometeyLabs. {% trans "Усі права захищені." %}</p>

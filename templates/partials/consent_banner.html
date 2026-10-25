@@ -1,0 +1,93 @@
+{% comment %} First-party cookie banner (ZEK § 89 odst. 3, GDPR, ePrivacy, Consent Mode v2).
+   Server-rendered + inline CSS/JS → visible at first paint, no third-party CMP request.
+   position:fixed → no CLS. Accept / Reject have identical styling; nothing pre-ticked.
+   Consent Mode default + GTM loader live in partials/gtm_head.html (window.plConsent). {% endcomment %}
+{% with t=consent_ui %}
+<style>
+#pl-consent{position:fixed;left:0;right:0;bottom:0;z-index:10001;background:#111;color:#ededed;border-top:1px solid #2c2c2c;box-shadow:0 -8px 28px rgba(0,0,0,.4);font-family:inherit;font-size:14px;line-height:1.45;padding:14px max(16px,env(safe-area-inset-right)) calc(14px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));max-height:100vh;overflow-y:auto;-webkit-text-size-adjust:100%}
+#pl-consent[hidden]{display:none}
+#pl-consent .plc__in{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+#pl-consent .plc__txt{flex:1 1 460px;margin:0;color:#ededed}
+#pl-consent .plc__txt strong{color:#fff}
+#pl-consent a{color:#ffb27a;text-decoration:underline}
+#pl-consent .plc__btns{display:flex;flex-wrap:wrap;gap:8px}
+#pl-consent .plc__b{box-sizing:border-box;min-height:44px;min-width:150px;padding:10px 18px;border-radius:8px;border:1px solid #e65100;background:#e65100;color:#fff;-webkit-text-fill-color:#fff;font-family:inherit;font-weight:600;font-size:14px;line-height:1.2;cursor:pointer}
+#pl-consent .plc__b:hover{filter:brightness(1.08)}
+#pl-consent .plc__b:focus-visible,#pl-consent input:focus-visible{outline:2px solid #fff;outline-offset:2px}
+#pl-consent .plc__b--ghost{background:transparent;border-color:#bdbdbd}
+#pl-consent .plc__panel{flex:1 1 100%;display:grid;gap:10px;margin:0;padding:0;border:0}
+#pl-consent .plc__panel[hidden]{display:none}
+#pl-consent .plc__row{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid #2c2c2c;border-radius:8px}
+#pl-consent .plc__row input{width:20px;height:20px;margin:2px 0 0;flex:0 0 auto;accent-color:#e65100}
+#pl-consent .plc__row b{display:block;color:#fff}
+#pl-consent .plc__row small{color:#bdbdbd;font-size:13px}
+@media(max-width:640px){ #pl-consent{font-size:13px}#pl-consent .plc__btns{display:grid;grid-template-columns:1fr 1fr;width:100%}#pl-consent .plc__b{min-width:0;padding:10px 8px}#pl-consent .plc__b--set,#pl-consent .plc__b--save{grid-column:1/-1}}
+</style>
+<div id="pl-consent" role="region" aria-label="{{ t.aria }}" data-log-url="{% url 'consent_log' %}"{% if request.COOKIES.pl_consent %} hidden{% endif %}>
+  <div class="plc__in">
+    <p class="plc__txt" id="pl-consent-text"><strong>{{ t.title }}.</strong> {{ t.text }}
+      <a href="{% url 'cookies' %}">{{ t.cookies_link }}</a> ·
+      <a href="{% url 'privacy' %}">{{ t.privacy_link }}</a> ·
+      <a href="https://business.safety.google/privacy/" target="_blank" rel="noopener">{{ t.google_link }}</a></p>
+    <fieldset class="plc__panel" id="pl-consent-panel" hidden>
+      <label class="plc__row"><input type="checkbox" checked disabled><span><b>{{ t.necessary }} — {{ t.always }}</b><small>{{ t.necessary_desc }}</small></span></label>
+      <label class="plc__row"><input type="checkbox" name="analytics" data-plc="a"><span><b>{{ t.analytics }}</b><small>{{ t.analytics_desc }}</small></span></label>
+      <label class="plc__row"><input type="checkbox" name="marketing" data-plc="m"><span><b>{{ t.marketing }}</b><small>{{ t.marketing_desc }}</small></span></label>
+    </fieldset>
+    <div class="plc__btns">
+      <button type="button" class="plc__b" data-plc-act="reject_all">{{ t.reject }}</button>
+      <button type="button" class="plc__b" data-plc-act="accept_all">{{ t.accept }}</button>
+      <button type="button" class="plc__b plc__b--ghost plc__b--set" data-plc-act="settings" aria-controls="pl-consent-panel" aria-expanded="false">{{ t.settings }}</button>
+      <button type="button" class="plc__b plc__b--ghost plc__b--save" data-plc-act="custom" hidden>{{ t.save }}</button>
+    </div>
+  </div>
+</div>
+{% endwith %}
+<script nonce="{{ csp_nonce }}">
+(function(w,d){
+  var el=d.getElementById('pl-consent');if(!el)return;
+  var P=w.plConsent||{read:function(){return null;},apply:function(){},version:1};
+  var panel=d.getElementById('pl-consent-panel');
+  var setBtn=el.querySelector('[data-plc-act="settings"]'),saveBtn=el.querySelector('[data-plc-act="custom"]');
+  var boxA=el.querySelector('[data-plc="a"]'),boxM=el.querySelector('[data-plc="m"]');
+  var YEAR=31536000,HALF=15768000;
+  function rid(){try{var b=new Uint8Array(16);(w.crypto||w.msCrypto).getRandomValues(b);
+    return Array.prototype.map.call(b,function(x){return('0'+x.toString(16)).slice(-2);}).join('');}
+    catch(e){return(Date.now().toString(16)+Math.random().toString(16).slice(2)).slice(0,32);}}
+  function sec(){return location.protocol==='https:'?';Secure':'';}
+  function expire(name){var h=location.hostname,ds=['',';domain='+h,';domain=.'+h.replace(/^www\./,'')];
+    ds.forEach(function(x){d.cookie=name+'=;Max-Age=0;Path=/'+x;});}
+  function clearTracking(a,m){d.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();
+    if(!a&&/^_ga(_|$)|^_gid$|^_gat/.test(n))expire(n);
+    if(!m&&/^_gcl_|^_fbp$|^_fbc$/.test(n))expire(n);});}
+  function show(withPanel){el.hidden=false;if(withPanel)openPanel();}
+  function hide(){el.hidden=true;}
+  function openPanel(){var s=P.read();boxA.checked=!!(s&&s.a);boxM.checked=!!(s&&s.m);
+    panel.hidden=false;saveBtn.hidden=false;setBtn.hidden=true;setBtn.setAttribute('aria-expanded','true');}
+  function save(a,m,action){
+    var prev=P.read(),o={v:P.version||1,a:a?1:0,m:m?1:0,t:Date.now(),id:(prev&&prev.id)||rid()};
+    d.cookie='pl_consent='+encodeURIComponent(JSON.stringify(o))+';Max-Age='+((a||m)?YEAR:HALF)+';Path=/;SameSite=Lax'+sec();
+    expire('cookieyes-consent');
+    clearTracking(a,m);
+    P.state=o;P.apply(o);
+    var acc=['necessary'],rej=[];(a?acc:rej).push('analytics');(m?acc:rej).push('advertisement');
+    try{d.dispatchEvent(new CustomEvent('cookieyes_consent_update',{detail:{accepted:acc,rejected:rej}}));}catch(e){}
+    try{var url=el.getAttribute('data-log-url');if(url&&w.fetch)fetch(url,{method:'POST',keepalive:true,credentials:'omit',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify({id:o.id,action:action,a:o.a,m:o.m,
+      lang:d.documentElement.lang||'',path:location.pathname.slice(0,200)})}).catch(function(){});}catch(e){}
+    hide();
+  }
+  el.addEventListener('click',function(e){var b=e.target.closest('[data-plc-act]');if(!b)return;
+    var act=b.getAttribute('data-plc-act');
+    if(act==='accept_all')save(1,1,act);
+    else if(act==='reject_all')save(0,0,act);
+    else if(act==='settings')openPanel();
+    else if(act==='custom')save(boxA.checked,boxM.checked,act);});
+  d.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-cookie-settings]');
+    if(!b)return;e.preventDefault();show(true);var f=el.querySelector('[data-plc="a"]');if(f)f.focus();});
+  var st=P.read();
+  if(!st)show(false);
+  else if(st.mig)save(st.a,st.m,'migrated');
+  else hide();
+})(window,document);
+</script>

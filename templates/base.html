@@ -53,8 +53,7 @@
     <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
     <!-- Resource hints — before CSS for parallel DNS/TCP -->
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    {# No preconnect to googletagmanager.com: GTM loads only after consent (partials/gtm_head.html). #}
     <!-- Critical above-the-fold CSS (header + body + fixed widgets) — inline, eliminates render-blocking AND CLS -->
     <style>
 :root{--color-brand-orange:#E65100;--color-brand-purple:#7B2CBF;--color-black:#000;--color-white:#FFF;--color-beige:#bab8b7;--color-beige-alt:#FAF7F2;--color-gray:#F8F8F8;--font-medium:clamp(20px,3vw,24px);--font-base:14px;--space-xs:clamp(16px,2vw,20px);--transition-normal:300ms;--easing-default:ease-out;--radius-sm:8px;--z-navigation:1000;--z-burger-button:10001;--z-mobile-menu:10000;--z-modal-backdrop:10002;--pl-col:280px;--pl-container:calc(4 * var(--pl-col) + 3 * 14px);--pl-gutter:max(clamp(16px,4vw,20px),env(safe-area-inset-left));--pl-shell:calc(var(--pl-container) + 2 * var(--pl-gutter))}
@@ -173,6 +172,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 <body{% block body_attrs %}{% endblock %}>
     {% include 'partials/gtm_noscript.html' %}
+    {% include 'partials/consent_banner.html' %}
     <!-- Header & Navigation -->
     {% include 'components/header.html' %}
 
