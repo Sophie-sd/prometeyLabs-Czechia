@@ -16,6 +16,10 @@
                     {% if site_contact.telegram_url %}
                     <a class="pl-web__pill pl-web__pill--calc pl-web__pill--muted mobile-touch-target" href="{{ site_contact.telegram_url }}" target="_blank" rel="noopener noreferrer">{% trans "Napsat na Telegram" %}</a>
                     {% endif %}
+                    {# WhatsApp: same href + label as the lead modal (components/modals.html) #}
+                    {% if site_contact.get_whatsapp_href %}
+                    <a class="pl-web__pill pl-web__pill--calc pl-web__pill--muted mobile-touch-target" href="{{ site_contact.get_whatsapp_href }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WhatsApp</a>
+                    {% endif %}
                     {% if site_contact.email %}
                     <a class="pl-web__pill pl-web__pill--calc pl-web__pill--muted mobile-touch-target" href="mailto:{{ site_contact.email }}">{% trans "Napsat e-mail" %}</a>
                     {% endif %}

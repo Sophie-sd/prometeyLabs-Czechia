@@ -9305,7 +9305,7 @@ msgstr "Přejít na hlavní stránku"
 
 #: templates/pages/thank_you.html:32
 msgid "Перейти до контактів"
-msgstr "Přejít na kontakty"
+msgstr "Kontaktujte nás"
 
 #: templates/pages/tz-dlia-saitu.html:7
 msgid "Створити ТЗ для сайту безкоштовно за 3 хвилини | PrometeyLabs"

@@ -47,6 +47,7 @@
             <p class="pl-shop__hero-contacts">
                 {% if site_contact.email %}<a href="mailto:{{ site_contact.email }}" class="pl-shop__hero-contact">{{ site_contact.email }}</a>{% endif %}
                 <a href="{{ site_contact.telegram_url }}" class="pl-shop__hero-contact" target="_blank" rel="noopener noreferrer">Telegram</a>
+                {% if site_contact.get_whatsapp_href %}<a href="{{ site_contact.get_whatsapp_href }}" class="pl-shop__hero-contact" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WhatsApp</a>{% endif %}
             </p>
         </div>
     </div>

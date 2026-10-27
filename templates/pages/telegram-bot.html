@@ -125,6 +125,7 @@
                 <div class="tgf__cta-btns">
                     <a href="#pl-bot-form" class="tgf__btn tgf__btn--light mobile-touch-target">{% trans "Отримати прорахунок" %}</a>
                     <a href="{{ site_contact.telegram_url }}" class="tgf__btn tgf__btn--ghost mobile-touch-target" target="_blank" rel="noopener noreferrer">{% trans "Написати в Telegram" %}</a>
+                    {% if site_contact.get_whatsapp_href %}<a href="{{ site_contact.get_whatsapp_href }}" class="tgf__btn tgf__btn--ghost mobile-touch-target" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WhatsApp</a>{% endif %}
                 </div>
                 <p class="tgf__next">{% trans "Що далі: після брифу надішлемо орієнтир по сценарію та інтеграціях — без публічного прайса." %}<br>
                     <a href="{% url 'offer' %}">{% trans "Оферта" %}</a> · {% trans "після оплати код і токен — у замовника" %} · {% trans "гарантія 1 рік на багфікс" %}</p>
