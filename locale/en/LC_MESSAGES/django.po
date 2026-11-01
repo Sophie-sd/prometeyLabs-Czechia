@@ -7170,7 +7170,7 @@ msgstr "Step"
 #: templates/components/tz_generator/quiz.html:20 templates/pages/blog.html:194
 #: templates/pages/calculator.html:83
 msgid "з"
-msgstr "with"
+msgstr "of"
 
 #: templates/components/tz_generator/quiz.html:24
 msgid "Який тип сайту вам потрібен?"
@@ -9311,7 +9311,7 @@ msgstr "Go to homepage"
 
 #: templates/pages/thank_you.html:32
 msgid "Перейти до контактів"
-msgstr "Go to Payment Page"
+msgstr "Contact us"
 
 #: templates/pages/tz-dlia-saitu.html:7
 msgid "Створити ТЗ для сайту безкоштовно за 3 хвилини | PrometeyLabs"

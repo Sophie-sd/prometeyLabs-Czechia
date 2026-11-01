@@ -521,6 +521,21 @@ body.pl-shop-body .main-footer .container,
     text-decoration-thickness: 1px;
 }
 
+/* Mobile: e-mail on its own row, Telegram + WhatsApp side by side below (3 links do not fit one row at 390px) */
+@media (max-width: 767px) {
+    .pl-shop__hero-contacts {
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 24px;
+        row-gap: 12px;
+    }
+
+    .pl-shop__hero-contact[href^="mailto:"] {
+        flex-basis: 100%;
+        text-align: center;
+    }
+}
+
 @media (hover: hover) and (pointer: fine) {
     .pl-shop__hero-contact:hover {
         color: var(--pl-acc);
