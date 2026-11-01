@@ -10136,8 +10136,8 @@ msgstr "Language"
 #~ msgid "Чеська"
 #~ msgstr "Czech"
 
-#~ msgid "політики конфіденційності"
-#~ msgstr "privacy policy"
+msgid "політики конфіденційності"
+msgstr "privacy policy"
 
 #~ msgid "250–400 €"
 #~ msgstr "250–400 €"
@@ -11527,3 +11527,214 @@ msgstr "MVP for new projects"
 #: apps/core/views.py
 msgid "První verze za pár týdnů, další moduly podle reálných dat."
 msgstr "A first version in a few weeks, further modules based on real data."
+
+# CZ_RENOVA_FIT
+msgid "Доробка сайтів"
+msgstr "Website improvement"
+
+msgid "Zásilkovna / Packeta"
+msgstr "Packeta / Zásilkovna"
+
+msgid "Česká pošta"
+msgstr "Czech Post"
+
+msgid "Osobní odběr"
+msgstr "Personal pickup"
+
+msgid "Ulice, číslo popisné, PSČ"
+msgstr "Street, house number, postcode"
+
+msgid "Tvorba webů na klíč od 10 000 Kč"
+msgstr "Turnkey websites from CZK 10,000"
+
+msgid "Landing od 10 000 Kč za 3–7 dní, firemní web od 17 000 Kč, e-shop od 34 500 Kč. Cenu a termín zapisujeme do smlouvy. Doživotní záruka na kód, rok podpory zdarma, administrace zůstává vám."
+msgstr "Landing from CZK 10,000 in 3–7 days, corporate site from CZK 17,000, online store from CZK 34,500. Price and deadline go into the contract. Lifetime code warranty, a year of support included, you keep the admin."
+
+msgid "Spočítáme cenu vašeho webu"
+msgstr "We will calculate the price of your website"
+
+msgid "Tvorba webu · první obrazovka"
+msgstr "Website development · first screen"
+
+msgid "Stránka: Tvorba webu · Formulář na první obrazovce"
+msgstr "Page: Website development · Form on the first screen"
+
+msgid "Získat kalkulaci"
+msgstr "Get a quote"
+
+msgid "Cena a termín ve smlouvě · Administrace zůstává vám · 50+ spuštěných projektů · Odpovídáme do 15 minut"
+msgstr "Price and deadline in the contract · You keep the admin · 50+ launched projects · We reply within 15 minutes"
+# CZ_RENOVA_FIT rozrobka
+msgid "Орієнтир ціни"
+msgstr "Price guide"
+
+msgid "3–7 днів"
+msgstr "3–7 days"
+
+msgid "У сумі: макет, верстка, форма, адаптив"
+msgstr "Included: layout, frontend, form, responsive"
+
+msgid "Не входить: реклама, тексти з нуля, сторонні API"
+msgstr "Not included: ads, copy from scratch, third-party APIs"
+
+msgid "Корпоративні"
+msgstr "Corporate"
+
+msgid "7–14 днів"
+msgstr "7–14 days"
+
+msgid "У сумі: структура сторінок, CMS-основа, адаптив, базова SEO"
+msgstr "Included: page structure, CMS base, responsive, basic SEO"
+
+msgid "Не входить: наповнення контентом, реклама, складні інтеграції"
+msgstr "Not included: content population, ads, complex integrations"
+
+msgid "14–21 день"
+msgstr "14–21 days"
+
+msgid "У сумі: каталог, кошик, оплата/доставка-основа, адмінка замовлень"
+msgstr "Included: catalogue, cart, payment/shipping, order admin"
+
+msgid "Не входить: наповнення товарів, маркетинг, кастомні інтеграції"
+msgstr "Not included: product content, marketing, custom integrations"
+
+msgid "Платформи"
+msgstr "Platforms"
+
+msgid "14–30 днів"
+msgstr "14–30 days"
+
+msgid "У сумі: узгоджений MVP за брифом у діапазоні"
+msgstr "Included: agreed MVP from the brief in the range"
+
+msgid "Не входить: нові модулі після здачі, сторонні ліцензії"
+msgstr "Not included: extra modules after handover, third-party licences"
+
+msgid "Адмінка залишається у вас"
+msgstr "You keep the admin"
+
+msgid "Тексти, ціни, заявки і банери правите самі. Розробник не потрібен на кожну кому."
+msgstr "You edit texts, prices, leads and banners yourself. No developer for every comma."
+
+msgid "Демо адмінки: розділи"
+msgstr "Admin demo: sections"
+
+msgid "Сторінки"
+msgstr "Pages"
+
+msgid "Ціни"
+msgstr "Prices"
+
+msgid "Олена · Лендінг"
+msgstr "Elena · Landing"
+
+msgid "Нова"
+msgstr "New"
+
+msgid "Максим · Магазин"
+msgstr "Maxim · Store"
+
+msgid "Вчора"
+msgstr "Yesterday"
+
+msgid "Ірина · Корп. сайт"
+msgstr "Irena · Corporate site"
+
+msgid "Закрита"
+msgstr "Closed"
+
+msgid "Редагувати"
+msgstr "Edit"
+
+msgid "Ціни на розробку сайтів під ключ"
+msgstr "Turnkey website prices"
+
+msgid "Одна сторінка під рекламу: офер, форма, швидкий запуск."
+msgstr "One page for ads: offer, form, fast launch."
+
+msgid "Структура компанії, послуги і SEO-основа."
+msgstr "Company structure, services and SEO base."
+
+msgid "Каталог, оплата, доставка, замовлення в адмінці."
+msgstr "Catalogue, payment, shipping, orders in admin."
+
+msgid "Кабінети, ролі й інтеграції — коли сайту вже мало."
+msgstr "Accounts, roles and integrations — when a site is not enough."
+
+msgid "Заявки і CRM у чаті поруч із сайтом."
+msgstr "Leads and CRM in chat next to the site."
+
+msgid "Порахуйте бюджет до дзвінка"
+msgstr "Estimate the budget before the call"
+
+msgid "Чотири орієнтири — старт розмови. Точну суму і строк фіксуємо після брифу в договорі."
+msgstr "Four price guides to start the talk. Exact sum and deadline go into the contract after the brief."
+
+msgid "Відкрити калькулятор"
+msgstr "Open calculator"
+
+msgid "Зателефонувати прямо зараз"
+msgstr "Call now"
+
+msgid "Наші роботи"
+msgstr "Our work"
+
+msgid "Навігація портфоліо"
+msgstr "Portfolio navigation"
+
+msgid "Попередні роботи"
+msgstr "Previous work"
+
+msgid "Наступні роботи"
+msgstr "Next work"
+
+msgid "Кейс студії"
+msgstr "Studio case"
+
+msgid "Кейси студії зібрані в портфоліо."
+msgstr "Studio cases are in the portfolio."
+
+msgid "Дивитись портфоліо"
+msgstr "View portfolio"
+
+msgid "Даю згоду на обробку персональних даних згідно з"
+msgstr "I agree to personal data processing under the"
+
+msgid "оферта"
+msgstr "offer"
+
+#: templates/components/internet_shop_v2/dropshipping.html:6
+msgid "Окремий продукт"
+msgstr "Standalone product"
+
+#: templates/components/internet_shop_v2/dropshipping.html:7
+msgid "Дропшиппінг-платформа"
+msgstr "Dropshipping platform"
+
+#: templates/components/internet_shop_v2/dropshipping.html:7
+msgid "od 37 000 Kč"
+msgstr "from CZK 37,000"
+
+#: templates/components/internet_shop_v2/dropshipping.html:8
+msgid "Розробляємо дропшиппінг-платформи з парсингом постачальників, синхронізацією залишків і прокидуванням замовлень напряму до постачальника — під ключ."
+msgstr "We build dropshipping platforms with supplier parsing, stock synchronisation and order forwarding straight to the supplier — turnkey."
+
+#: templates/components/internet_shop_v2/dropshipping.html:12
+msgid "Парсинг постачальників"
+msgstr "Supplier parsing"
+
+#: templates/components/internet_shop_v2/dropshipping.html:13
+msgid "Оновлення цін і залишків"
+msgstr "Price and stock updates"
+
+#: templates/components/internet_shop_v2/dropshipping.html:14
+msgid "Передача замовлень"
+msgstr "Order forwarding"
+
+#: templates/components/internet_shop_v2/dropshipping.html:15
+msgid "Облік маржі"
+msgstr "Margin tracking"
+
+#: templates/components/internet_shop_v2/dropshipping.html:17
+msgid "Замовити дропшиппінг-платформу"
+msgstr "Order a dropshipping platform"

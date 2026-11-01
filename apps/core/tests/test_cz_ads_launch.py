@@ -123,22 +123,16 @@ class ThankYouAndJsRedirectTests(TestCase):
 
 
 class FooterServicesTests(TestCase):
-    LABELS = {
-        '/': ('Mobilní aplikace', 'Reklama a propagace', 'Správa sociálních sítí'),
-        '/en/': ('Mobile app', 'Advertising', 'Social media'),
-    }
-
-    def test_footer_service_links_target_existing_block(self):
-        for home in ('/', '/en/'):
-            html = self.client.get(home).content.decode()
-            self.assertIn('id="services"', html, home)
-            footer = html[html.index('<footer'):]
-            services = footer[:footer.index('plf__col--company')]
-            links = re.findall(r'<a href="([^"]+)" class="plf__link">([^<]+)</a>', services)
-            by_target = [href for href, _label in links if href.endswith('#services')]
-            self.assertEqual(len(by_target), 3, (home, links))
-            for href in by_target:
-                self.assertEqual(href, f'{home}#services')
-        cs_html = self.client.get('/').content.decode()
-        for label in self.LABELS['/']:
-            self.assertIn(label, cs_html)
+    def test_footer_service_links_target_pages(self):
+        html = self.client.get('/').content.decode()
+        footer = html[html.index('<footer'):]
+        services = footer[:footer.index('plf__col--company')]
+        self.assertIn('/tvorba-webu/', services)
+        self.assertIn('/uprava-webu/', services)
+        self.assertIn('/telegram-bot/', services)
+        self.assertNotIn('#services', services)
+        en = self.client.get('/en/').content.decode()
+        en_footer = en[en.index('<footer'):]
+        en_services = en_footer[:en_footer.index('plf__col--company')]
+        self.assertIn('/en/website-development/', en_services)
+        self.assertIn('/en/website-improvement/', en_services)

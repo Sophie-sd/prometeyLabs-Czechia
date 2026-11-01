@@ -1,0 +1,46 @@
+{% load i18n static %}
+<section class="pl-rs__section pl-rs__section--admin" aria-labelledby="pl-rs-admin-title">
+    <div class="pl-rs__inner pl-rs__admin">
+        <div class="pl-rs__admin-copy">
+            <h2 id="pl-rs-admin-title" class="pl-rs__h2 pl-rs__h2--admin">{% trans "Адмінка залишається у вас" %}</h2>
+            <p class="pl-rs__note">{% trans "Тексти, ціни, заявки і банери правите самі. Розробник не потрібен на кожну кому." %}</p>
+        </div>
+        {# Demo CMS window (Figma 1:120). Tabs = progressive enhancement: without JS the first pane shows. #}
+        <div class="pl-rs__screen" data-pl-rs-cms>
+            <img class="pl-rs__screen-rings pl-rs__screen-rings--a" src="{% static 'img/rozrobka-figma/rings-hero.svg' %}" alt="" width="183" height="183" decoding="async" aria-hidden="true">
+            <img class="pl-rs__screen-rings pl-rs__screen-rings--b" src="{% static 'img/rozrobka-figma/rings-hero.svg' %}" alt="" width="183" height="183" decoding="async" aria-hidden="true">
+            <div class="pl-rs__screen-bar" aria-hidden="true">
+                <span class="pl-rs__dot pl-rs__dot--acc"></span>
+                <span class="pl-rs__dot"></span>
+                <span class="pl-rs__dot"></span>
+                <em>cms</em>
+            </div>
+            <div class="pl-rs__screen-body">
+                <div class="pl-rs__screen-nav" role="tablist" aria-orientation="vertical" aria-label="{% trans "Демо адмінки: розділи" %}">
+                    <span class="pl-rs__screen-ind" aria-hidden="true" data-pl-rs-cms-ind></span>
+                    <button type="button" class="pl-rs__screen-tab is-on" role="tab" id="pl-rs-cms-tab-pages" aria-controls="pl-rs-cms-pane-pages" aria-selected="true" data-pl-rs-cms-tab>{% trans "Сторінки" %}</button>
+                    <button type="button" class="pl-rs__screen-tab" role="tab" id="pl-rs-cms-tab-leads" aria-controls="pl-rs-cms-pane-leads" aria-selected="false" tabindex="-1" data-pl-rs-cms-tab>{% trans "Заявки" %}</button>
+                    <button type="button" class="pl-rs__screen-tab" role="tab" id="pl-rs-cms-tab-prices" aria-controls="pl-rs-cms-pane-prices" aria-selected="false" tabindex="-1" data-pl-rs-cms-tab>{% trans "Ціни" %}</button>
+                </div>
+                <div class="pl-rs__screen-panes">
+                    <div class="pl-rs__screen-rows pl-rs__screen-pane is-on" role="tabpanel" id="pl-rs-cms-pane-pages" aria-labelledby="pl-rs-cms-tab-pages" data-pl-rs-cms-pane>
+                        <p><span class="pl-rs__screen-name">{% trans "Головна" %}</span><b>{% trans "Опубліковано" %}</b></p>
+                        <p><span class="pl-rs__screen-name">{% trans "Послуги" %}</span><b>{% trans "Опубліковано" %}</b></p>
+                        <p><span class="pl-rs__screen-name">{% trans "Ціни" %}</span><b>{% trans "Опубліковано" %}</b></p>
+                    </div>
+                    <div class="pl-rs__screen-rows pl-rs__screen-pane" role="tabpanel" id="pl-rs-cms-pane-leads" aria-labelledby="pl-rs-cms-tab-leads" data-pl-rs-cms-pane hidden>
+                        <p><span class="pl-rs__screen-name">{% trans "Олена · Лендінг" %}</span><small class="pl-rs__screen-time">10:24</small><b class="pl-rs__screen-st pl-rs__screen-st--new">{% trans "Нова" %}</b></p>
+                        <p><span class="pl-rs__screen-name">{% trans "Максим · Магазин" %}</span><small class="pl-rs__screen-time">{% trans "Вчора" %}</small><b class="pl-rs__screen-st pl-rs__screen-st--work">{% trans "В роботі" %}</b></p>
+                        <p><span class="pl-rs__screen-name">{% trans "Ірина · Корп. сайт" %}</span><small class="pl-rs__screen-time">12.09</small><b class="pl-rs__screen-st pl-rs__screen-st--done">{% trans "Закрита" %}</b></p>
+                    </div>
+                    <div class="pl-rs__screen-rows pl-rs__screen-pane" role="tabpanel" id="pl-rs-cms-pane-prices" aria-labelledby="pl-rs-cms-tab-prices" data-pl-rs-cms-pane hidden>
+                        {# Same lower bounds as the Soft ranges (250–400 / 500–700 / від 800); ids swap on FX change. #}
+                        <p><span class="pl-rs__screen-name">{% trans "Лендінг" %}</span><em class="pl-rs__screen-price">{{ web_prices.landing.czk_from }}</em><b class="pl-rs__screen-act">{% trans "Редагувати" %}</b></p>
+                        <p><span class="pl-rs__screen-name">{% trans "Корпоративний сайт" %}</span><em class="pl-rs__screen-price">{{ web_prices.corporate.czk_from }}</em><b class="pl-rs__screen-act">{% trans "Редагувати" %}</b></p>
+                        <p><span class="pl-rs__screen-name">{% trans "Інтернет-магазин" %}</span><em class="pl-rs__screen-price">{{ web_prices.shop.czk_from }}</em><b class="pl-rs__screen-act">{% trans "Редагувати" %}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

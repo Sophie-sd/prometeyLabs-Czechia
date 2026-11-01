@@ -2,6 +2,7 @@ from django.urls import path
 from django.utils.functional import lazy
 from django.utils.translation import get_language
 from django.views.generic import RedirectView
+from . import ads_views
 from . import consent
 from . import proposal_views
 from . import tz_views
@@ -41,15 +42,33 @@ urlpatterns = [
     # 301 зі старих v2-URL (query string зберігається; #anchor браузер переносить сам)
     path('internet-shop-v2/', RedirectView.as_view(pattern_name='internet_shop_v2', permanent=True, query_string=True)),
     path('corporate-website-v2/', RedirectView.as_view(pattern_name='corporate_website_v2', permanent=True, query_string=True)),
-    path('web-development/', views.WebDevelopmentView.as_view(), name='web_development'),
-    # Webové aplikace: /webove-aplikace/ (cs) · /en/web-applications/ (en).
-    # Same name on all three: Django's reverse() prefers the LAST pattern with a given
-    # name, so the language-dependent route must stay last. The literal aliases let
-    # resolve() / translate_path() accept the other language's slug; the view 301s
-    # such requests to the canonical URL.
-    path('webove-aplikace/', views.WebApplicationsView.as_view(), name='web_applications'),
-    path('web-applications/', views.WebApplicationsView.as_view(), name='web_applications'),
-    path(_route_per_language('webove-aplikace/', 'web-applications/'), views.WebApplicationsView.as_view(), name='web_applications'),
+    path(
+        'web-development/',
+        RedirectView.as_view(pattern_name='home', permanent=True, query_string=True),
+    ),
+    path(
+        'webove-aplikace/',
+        RedirectView.as_view(pattern_name='home', permanent=True, query_string=True),
+    ),
+    path(
+        'web-applications/',
+        RedirectView.as_view(pattern_name='home', permanent=True, query_string=True),
+    ),
+    # Language-specific slugs. reverse() uses the LAST pattern of a given name.
+    path('tvorba-webu/', views.RozrobkaSajtivView.as_view(), name='rozrobka_sajtiv'),
+    path('website-development/', views.RozrobkaSajtivView.as_view(), name='rozrobka_sajtiv'),
+    path(
+        _route_per_language('tvorba-webu/', 'website-development/'),
+        views.RozrobkaSajtivView.as_view(),
+        name='rozrobka_sajtiv',
+    ),
+    path('uprava-webu/', ads_views.DorobkaSajtuView.as_view(), name='dorobka_sajtu'),
+    path('website-improvement/', ads_views.DorobkaSajtuView.as_view(), name='dorobka_sajtu'),
+    path(
+        _route_per_language('uprava-webu/', 'website-improvement/'),
+        ads_views.DorobkaSajtuView.as_view(),
+        name='dorobka_sajtu',
+    ),
     path('tz-dlia-saitu/', tz_views.TzGeneratorView.as_view(), name='tz_generator'),
     path('thank-you/', views.ThankYouView.as_view(), name='thank_you'),
     path(

@@ -32,32 +32,8 @@ class MonobankAcquiringService:
 
     def create_invoice(self, reference: str, amount_uah: Decimal, destination: str, comment: str,
                        validity_seconds: int = 3600) -> Tuple[Optional[str], Optional[str]]:
-        try:
-            amount_kop = int(Decimal(amount_uah) * 100)
-            payload = {
-                'amount': amount_kop,
-                'ccy': 980,
-                'merchantPaymInfo': {
-                    'reference': str(reference),
-                    'destination': destination[:255],
-                    'comment': comment[:255],
-                },
-                'redirectUrl': f'{self.site_url}/payment/pay/{reference}/success/',
-                'webHookUrl': f'{self.site_url}/payment/webhook/monobank/',
-                'validity': validity_seconds,
-                'paymentType': 'debit',
-            }
-
-            url = f'{self.BASE_URL}/api/merchant/invoice/create'
-            resp = requests.post(url, headers=self._headers(), data=json.dumps(payload), timeout=20)
-            resp.raise_for_status()
-            data = resp.json()
-            page_url = data.get('pageUrl')
-            invoice_id = data.get('invoiceId')
-            return invoice_id, page_url
-        except Exception as e:
-            logger.exception('Failed to create monobank invoice: %s', e)
-            return None, None
+        logger.warning('Monobank acquiring is disabled on prometeylabs.cz')
+        return None, None
 
     def get_invoice_status(self, invoice_id: str) -> Optional[dict]:
         try:

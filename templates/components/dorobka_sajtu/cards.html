@@ -1,0 +1,13 @@
+<section class="pl-ads-cards pl-rs__section" id="what" aria-labelledby="pl-dorobka-cards-title">
+    <div class="pl-rs__inner pl-ads-wrap">
+        <h2 class="pl-rs__h2 pl-ads-h2" id="pl-dorobka-cards-title">{{ ads_copy.cards_h2 }}</h2>
+        <div class="pl-ads-cards__grid">
+            {% for title, text in ads_copy.cards %}
+            <article class="pl-ads-card">
+                <h3>{{ title }}</h3>
+                <p>{{ text }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>

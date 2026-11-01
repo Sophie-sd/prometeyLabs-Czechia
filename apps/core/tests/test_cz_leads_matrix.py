@@ -172,11 +172,13 @@ class EnvReportSmtpCheckTests(SimpleTestCase):
 
 
 class FooterLinksTests(TestCase):
-    def test_service_links_point_to_home_services(self):
-        for url, home in (('/contacts/', '/'), ('/en/contacts/', '/en/')):
-            html = self.client.get(url).content.decode()
-            footer = html[html.index('<footer'):]
-            services = footer[:footer.index('plf__col--company')]
-            self.assertEqual(services.count(f'href="{home}#services"'), 3, url)
-            self.assertNotIn('/calculator/', services, url)
-            self.assertNotIn(f'href="{home}portfolio/" class="plf__link">Mobil', services)
+    def test_service_links_point_to_service_pages(self):
+        html = self.client.get('/contacts/').content.decode()
+        footer = html[html.index('<footer'):]
+        services = footer[:footer.index('plf__col--company')]
+        self.assertIn('/tvorba-webu/', services)
+        self.assertIn('/calculator/', services)
+        self.assertNotIn('#services', services)
+        en = self.client.get('/en/contacts/').content.decode()
+        en_services = en[en.index('<footer'):en.index('plf__col--company')]
+        self.assertIn('/en/website-development/', en_services)

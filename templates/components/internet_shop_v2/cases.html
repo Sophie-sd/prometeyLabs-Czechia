@@ -1,0 +1,32 @@
+{% load i18n %}
+<section class="pl-ads-cases" id="shop-cases" aria-labelledby="pl-shop-cases-title">
+    <div class="pl-ads-wrap">
+        <h2 class="pl-ads-h2" id="pl-shop-cases-title">{{ ads_copy.portfolio_h2 }}</h2>
+        <p class="pl-ads-lead" id="pl-shop-cases-note">{{ ads_copy.shops_note }}</p>
+        <div class="pl-ads-cases__grid">
+            {% for project in shop_portfolio %}
+            <article class="pl-ads-case">
+                {% if project.ads_card_src %}
+                <img class="pl-ads-case__img" src="{{ project.ads_card_src }}" srcset="{{ project.ads_card_srcset }}"
+                     sizes="(max-width: 767px) 46vw, (max-width: 1099px) 45vw, 280px"
+                     alt="{{ project.get_card_alt }}" width="280" height="180" loading="lazy" decoding="async">
+                {% elif project.get_card_image_src %}
+                {% with preview=project.get_card_preview_srcset %}
+                <img class="pl-ads-case__img" src="{{ project.get_card_image_src }}"
+                     {% if preview %}srcset="{{ preview }}" sizes="(max-width: 767px) 46vw, (max-width: 1099px) 45vw, 280px"{% endif %}
+                     alt="{{ project.get_card_alt }}" width="280" height="180" loading="lazy" decoding="async">
+                {% endwith %}
+                {% endif %}
+                <p class="pl-ads-case__name">{{ project.get_localized_title }}</p>
+                {% if project.get_localized_subtitle %}
+                <p class="pl-ads-case__niche">{{ project.get_localized_subtitle }}</p>
+                {% endif %}
+                {% if project.get_integration_tags %}
+                <p class="pl-ads-case__tags">{{ project.get_integration_tags|join:" · " }}</p>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        <a class="pl-ads-btn" href="{% url 'portfolio' %}">{{ ads_copy.all_works }}</a>
+    </div>
+</section>

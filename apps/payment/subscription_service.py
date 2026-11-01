@@ -42,35 +42,8 @@ class MonobankSubscriptionService(MonobankAcquiringService):
 
         Returns (invoiceId, pageUrl) or (None, None) on failure.
         """
-        try:
-            amount_kop = int(Decimal(amount_uah) * 100)
-            payload = {
-                'amount': amount_kop,
-                'ccy': 980,
-                'merchantPaymInfo': {
-                    'reference': str(reference),
-                    'destination': destination[:255],
-                    'comment': comment[:255],
-                },
-                'redirectUrl': f'{self.site_url}/payment/pay/{reference}/success/',
-                'webHookUrl': f'{self.site_url}/payment/webhook/monobank/',
-                'validity': validity_seconds,
-                'paymentType': 'debit',
-                'saveCardData': {
-                    'saveCard': True,
-                    'walletId': str(wallet_id),
-                },
-            }
-            url = f'{self.BASE_URL}/api/merchant/invoice/create'
-            resp = requests.post(
-                url, headers=self._headers(), data=json.dumps(payload), timeout=20
-            )
-            resp.raise_for_status()
-            data = resp.json()
-            return data.get('invoiceId'), data.get('pageUrl')
-        except Exception as exc:
-            logger.exception('Failed to create monobank subscription invoice: %s', exc)
-            return None, None
+        logger.warning('Monobank subscriptions are disabled on prometeylabs.cz')
+        return None, None
 
     def charge_wallet(
         self,
@@ -88,30 +61,8 @@ class MonobankSubscriptionService(MonobankAcquiringService):
         Returns (invoiceId, status) or (None, None) on error.
         Possible statuses: 'success', 'processing', 'created', 'failure'.
         """
-        try:
-            amount_kop = int(Decimal(amount_uah) * 100)
-            payload = {
-                'cardToken': card_token,
-                'initiationKind': 'merchant',
-                'merchantPaymInfo': {
-                    'reference': str(reference),
-                    'destination': destination[:255],
-                    'comment': comment[:255],
-                },
-                'amount': amount_kop,
-                'ccy': 980,
-                'webHookUrl': f'{self.site_url}/payment/webhook/monobank/',
-            }
-            url = f'{self.BASE_URL}/api/merchant/wallet/payment'
-            resp = requests.post(
-                url, headers=self._headers(), data=json.dumps(payload), timeout=20
-            )
-            resp.raise_for_status()
-            data = resp.json()
-            return data.get('invoiceId'), data.get('status')
-        except Exception as exc:
-            logger.exception('Failed to charge wallet: %s', exc)
-            return None, None
+        logger.warning('Monobank wallet charge is disabled on prometeylabs.cz')
+        return None, None
 
     def get_wallet_cards(self, wallet_id: str) -> Optional[list]:
         """Returns a list of saved cards for the given walletId."""

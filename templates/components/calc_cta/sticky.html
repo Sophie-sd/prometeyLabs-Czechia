@@ -1,0 +1,4 @@
+{% load static %}<div class="pl-calc-sticky" data-calc-sticky{% if scroll_target %} data-calc-target="{{ scroll_target }}"{% endif %} aria-hidden="true">
+    <a href="{{ href }}" class="pl-calc-sticky__btn" data-calc-cta="sticky" data-calc-page="{{ page }}"{% if scroll_target %} data-calc-scroll="{{ scroll_target }}"{% endif %} tabindex="-1"><span class="pl-calc-cta__label">{{ label }}</span><span class="pl-calc-cta__arrow" aria-hidden="true">→</span></a>
+</div>
+<script src="{% static 'js/components/calc-cta.js' %}?v=3" nonce="{{ csp_nonce }}" defer></script>

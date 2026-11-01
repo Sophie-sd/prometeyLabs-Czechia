@@ -1,0 +1,22 @@
+{% load i18n static %}
+<section class="pl-rs__calc" id="pl-rs-calc" aria-labelledby="pl-rs-calc-title">
+    <div class="pl-rs__inner">
+        <div class="pl-rs__calc-card">
+            <img class="pl-rs__calc-rings pl-rs__calc-rings--a" src="{% static 'img/rozrobka-figma/rings-cta1.svg' %}" alt="" width="414" height="414" decoding="async" aria-hidden="true">
+            <img class="pl-rs__calc-rings pl-rs__calc-rings--b" src="{% static 'img/rozrobka-figma/rings-cta2.svg' %}" alt="" width="414" height="414" decoding="async" aria-hidden="true">
+            <div class="pl-rs__calc-body">
+                <h2 id="pl-rs-calc-title" class="pl-rs__h2 pl-rs__h2--calc">{% trans "Порахуйте бюджет до дзвінка" %}</h2>
+                <p class="pl-rs__note pl-rs__note--center">{% trans "Чотири орієнтири — старт розмови. Точну суму і строк фіксуємо після брифу в договорі." %}</p>
+                <div class="pl-rs__calc-actions">
+                    <a class="pl-rs__cta pl-rs__cta--calc mobile-touch-target" href="{% url 'calculator' %}">
+                        <span>{% trans "Відкрити калькулятор" %}</span>
+                        <img src="{% static 'img/rozrobka-figma/arrow-cta.svg' %}" alt="" width="24" height="24" decoding="async">
+                    </a>
+                    <a class="pl-rs__pill pl-rs__pill--calc pl-rs__pill--muted mobile-touch-target" href="{% url 'calculator' %}">{% trans "Розрахувати вартість" %}</a>
+                    <a class="pl-rs__pill pl-rs__pill--calc pl-rs__pill--muted mobile-touch-target" href="{{ site_contact.telegram_url }}" target="_blank" rel="noopener noreferrer">{% trans "Написати в Telegram" %}</a>
+                    {% if site_contact.get_tel_href %}<a class="pl-rs__pill pl-rs__pill--calc pl-rs__pill--muted mobile-touch-target" href="{{ site_contact.get_tel_href }}">{% trans "Зателефонувати прямо зараз" %}</a>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

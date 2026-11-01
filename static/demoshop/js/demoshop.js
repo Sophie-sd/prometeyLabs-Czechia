@@ -281,110 +281,38 @@ function initCheckout() {
     if (!form || form.dataset.bound) return;
     form.dataset.bound = '1';
 
-    const citiesUrl = document.body.getAttribute('data-np-cities-url');
-    const warehousesUrl = document.body.getAttribute('data-np-warehouses-url');
-    const cityInput = form.querySelector('[data-ds-np-city]');
-    const cityRef = form.querySelector('[data-ds-np-city-ref]');
-    const suggest = form.querySelector('[data-ds-np-suggest]');
-    const warehouseSelect = form.querySelector('[data-ds-np-warehouse]');
-    const warehouseName = form.querySelector('[data-ds-np-warehouse-name]');
-    const npBlock = form.querySelector('[data-ds-np-block]');
+    const cityInput = form.querySelector('#id_np_city');
     const addressBlock = form.querySelector('[data-ds-address-block]');
     const modal = document.querySelector('[data-ds-order-modal]');
 
-    function setDeliveryMode() {
-        const method = form.querySelector('[data-ds-delivery]:checked')?.value || 'np_warehouse';
-        const isNp = method === 'np_warehouse';
-        if (npBlock) npBlock.hidden = !isNp;
-        if (addressBlock) addressBlock.hidden = isNp;
-        if (cityInput) cityInput.required = isNp;
-        if (warehouseSelect) warehouseSelect.required = isNp;
-        const address = form.querySelector('#id_address');
-        if (address) address.required = !isNp;
+    function selectedCarrier() {
+        return form.querySelector('[data-ds-carrier]:checked');
     }
 
-    form.querySelectorAll('[data-ds-delivery]').forEach((radio) => {
+    function setDeliveryMode() {
+        const carrier = selectedCarrier()?.value || 'packeta';
+        const needsAddress = carrier === 'ppl' || carrier === 'ceska_posta';
+        if (addressBlock) addressBlock.hidden = !needsAddress;
+        const address = form.querySelector('#id_address');
+        if (address) address.required = needsAddress;
+        if (cityInput) cityInput.required = carrier !== 'pickup';
+    }
+
+    form.querySelectorAll('[data-ds-carrier]').forEach((radio) => {
         radio.addEventListener('change', setDeliveryMode);
     });
     setDeliveryMode();
 
-    const searchCities = debounce(async () => {
-        if (!citiesUrl || !cityInput || !suggest) return;
-        const q = cityInput.value.trim();
-        if (q.length < 1) {
-            suggest.hidden = true;
-            suggest.innerHTML = '';
-            return;
-        }
-        const res = await fetch(`${citiesUrl}?q=${encodeURIComponent(q)}`);
-        const data = await res.json();
-        suggest.innerHTML = '';
-        (data.results || []).forEach((city) => {
-            const li = document.createElement('li');
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.textContent = `${city.name}${city.area ? ` (${city.area})` : ''}`;
-            btn.addEventListener('click', async () => {
-                cityInput.value = city.name;
-                cityRef.value = city.ref;
-                suggest.hidden = true;
-                suggest.innerHTML = '';
-                await loadWarehouses(city.ref);
-            });
-            li.appendChild(btn);
-            suggest.appendChild(li);
-        });
-        suggest.hidden = !(data.results || []).length;
-    }, 220);
-
-    async function loadWarehouses(ref) {
-        if (!warehousesUrl || !warehouseSelect) return;
-        warehouseSelect.disabled = true;
-        const labelLoading = warehouseSelect.getAttribute('data-label-loading') || 'Завантаження…';
-        warehouseSelect.innerHTML = `<option value="">${labelLoading}</option>`;
-        const res = await fetch(`${warehousesUrl}?city_ref=${encodeURIComponent(ref)}`);
-        const data = await res.json();
-        const labelChoose = warehouseSelect.getAttribute('data-label-choose') || 'Оберіть відділення';
-        warehouseSelect.innerHTML = `<option value="">${labelChoose}</option>`;
-        (data.results || []).forEach((wh) => {
-            const opt = document.createElement('option');
-            opt.value = wh.ref;
-            opt.textContent = wh.description;
-            opt.dataset.name = wh.description;
-            warehouseSelect.appendChild(opt);
-        });
-        warehouseSelect.disabled = false;
-    }
-
-    if (cityInput) {
-        cityInput.addEventListener('input', () => {
-            if (cityRef) cityRef.value = '';
-            searchCities();
-        });
-    }
-    if (warehouseSelect) {
-        warehouseSelect.addEventListener('change', () => {
-            const opt = warehouseSelect.selectedOptions[0];
-            if (warehouseName) warehouseName.value = opt?.dataset.name || opt?.textContent || '';
-        });
-    }
-
-    document.addEventListener('click', (event) => {
-        if (suggest && !suggest.contains(event.target) && event.target !== cityInput) {
-            suggest.hidden = true;
-        }
-    });
-
     const openBtn = form.querySelector('[data-ds-checkout-open]');
     openBtn?.addEventListener('click', () => {
         if (!form.reportValidity()) return;
-        const method = form.querySelector('[data-ds-delivery]:checked')?.value || 'np_warehouse';
-        const deliveryLabel = method === 'np_warehouse'
-            ? (form.querySelector('[data-label-np]')?.textContent || 'Відділення Нової Пошти')
-            : (form.querySelector('[data-label-address]')?.textContent || 'Адресна доставка');
-        const place = method === 'np_warehouse'
-            ? `${cityInput?.value || ''} — ${warehouseSelect?.selectedOptions[0]?.textContent || ''}`.trim()
-            : (form.querySelector('#id_address')?.value || '');
+        const radio = selectedCarrier();
+        const deliveryLabel = radio?.closest('label')?.querySelector('span')?.textContent?.trim()
+            || radio?.value
+            || 'Packeta';
+        const city = cityInput?.value || '';
+        const address = form.querySelector('#id_address')?.value || '';
+        const place = [city, address].filter(Boolean).join(' — ');
         if (modal) {
             modal.querySelector('[data-ds-modal-delivery]').textContent = deliveryLabel;
             modal.querySelector('[data-ds-modal-place]').textContent = place || '—';

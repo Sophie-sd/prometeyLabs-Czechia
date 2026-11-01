@@ -1,0 +1,8 @@
+{% load i18n %}
+<section class="pl-ads-guarantee pl-rs__section" id="guarantee" aria-labelledby="pl-rs-guarantee-title">
+    <div class="pl-rs__inner pl-ads-wrap">
+        <h2 class="pl-rs__h2 pl-ads-h2" id="pl-rs-guarantee-title">{{ ads_copy.guarantee_h2 }}</h2>
+        <p>{{ ads_copy.guarantee }}</p>
+        <p class="pl-ads-offer-line">{{ ads_copy.offer_line }} — <a href="{% url 'offer' %}">{% trans "оферта" %}</a></p>
+    </div>
+</section>

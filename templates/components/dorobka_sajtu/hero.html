@@ -1,0 +1,44 @@
+{% load i18n static calc_cta_tags %}
+{% url 'privacy' as privacy_url %}
+<section class="pl-rs__hero pl-dorobka-hero" aria-labelledby="pl-dorobka-h1">
+    <div class="pl-rs__hero-bg" aria-hidden="true">
+        <img class="pl-rs__hero-bg-img" src="{% static 'img/rozrobka-figma/hero-bg.webp' %}" srcset="{% static 'img/rozrobka-figma/hero-bg-480w.webp' %} 480w, {% static 'img/rozrobka-figma/hero-bg-800w.webp' %} 800w, {% static 'img/rozrobka-figma/hero-bg.webp' %} 1983w" sizes="(max-width: 767px) 100vw, 100vw" alt="" width="1983" height="793" decoding="async" fetchpriority="high">
+    </div>
+    <div class="pl-rs__inner pl-rs__hero-stage">
+        <div class="pl-rs__hero-copy">
+            {% include 'components/ads/breadcrumbs.html' %}
+            <h1 id="pl-dorobka-h1" class="pl-rs__h1">{{ ads_copy.h1 }}</h1>
+            <p class="pl-rs__lead">{{ ads_copy.lead }}</p>
+            {% calc_cta 'dorobka' %}{% calc_cta_sticky 'dorobka' %}
+            <div class="pl-rs__hero-form-card">
+                <p class="pl-rs__hero-form-title">{{ ads_copy.form_title }}</p>
+                <form id="pl-dorobka-hero-form" class="plf-form pl-rs__hero-form" action="{% url 'form_submit' %}" method="post" data-form-type="site_request" data-source-label="{{ ads_copy.source_label }}" aria-label="{{ ads_copy.form_title }}">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="site_request">
+                    <input type="hidden" name="source_page" value="dorobka-sajtu">
+                    <input type="hidden" name="details" value="{{ ads_copy.details }}">
+                    <div class="plf-form__fields">
+                        <label class="plf-form__pill" for="pl-dorobka-hero-name">
+                            <input type="text" id="pl-dorobka-hero-name" name="name" class="plf-form__input" required autocomplete="given-name" placeholder="{% trans "Ім'я" %}" aria-label="{% trans "Ім'я" %}">
+                        </label>
+                        <label class="plf-form__pill" for="pl-dorobka-hero-phone">
+                            <input type="tel" id="pl-dorobka-hero-phone" name="phone" class="plf-form__input" required autocomplete="tel" inputmode="tel" placeholder="{% trans "Номер телефону" %}" aria-label="{% trans "Номер телефону" %}">
+                        </label>
+                        <label class="plf-form__pill" for="pl-dorobka-hero-website">
+                            <input type="url" id="pl-dorobka-hero-website" name="website" class="plf-form__input" autocomplete="url" inputmode="url" placeholder="{{ ads_copy.site_placeholder }}" aria-label="{{ ads_copy.site_label }}">
+                        </label>
+                    </div>
+                    <button type="submit" class="plf-form__submit">{{ ads_copy.submit }}</button>
+                    <label class="plf-form__consent">
+                        <input type="checkbox" name="consent" value="1" required class="plf-form__check">
+                        <span class="plf-form__tick" aria-hidden="true"></span>
+                        <span class="plf-form__consent-text">{% trans "Даю згоду на обробку персональних даних згідно з" %} <a href="{{ privacy_url }}" class="plf-form__policy" target="_blank" rel="noopener">{% trans "політики конфіденційності" %}</a></span>
+                    </label>
+                </form>
+                <p class="pl-rs__hero-form-note">{{ ads_copy.form_note }}</p>
+                <p class="pl-rs__hero-links"><a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">Telegram</a>{% if site_contact.email %} · <a href="mailto:{{ site_contact.email }}">{{ site_contact.email }}</a>{% endif %}</p>
+                <p class="pl-rs__hero-trust">{{ ads_copy.trust }}</p>
+            </div>
+        </div>
+    </div>
+</section>

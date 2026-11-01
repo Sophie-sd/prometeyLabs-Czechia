@@ -1,0 +1,78 @@
+{% load i18n static %}
+{# Each tile → existing page + most thematic section (#id present in UA and RU templates); reverse keeps /ru/. #}
+<section class="pl-rs__section pl-rs__section--services" aria-labelledby="pl-rs-products-title">
+    <div class="pl-rs__inner">
+        <h2 id="pl-rs-products-title" class="pl-rs__h2 pl-rs__h2--center">{% trans "Ціни на розробку сайтів під ключ" %}</h2>
+        <div class="pl-rs__products">
+            <a class="pl-rs__product" href="{% url 'corporate_website_v2' %}#scale" data-pl-rs-service="landing">
+                <img class="pl-rs__product-glow" src="{% static 'img/rozrobka-figma/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-rs__product-top">
+                    <div class="pl-rs__product-head">
+                        <span class="pl-rs__product-name">{% trans "Лендінги" %}</span>
+                        <span class="pl-rs__product-meta">{{ web_prices.landing.czk }}</span>
+                    </div>
+                    <span class="pl-rs__idx" aria-hidden="true">01</span>
+                </div>
+                <div class="pl-rs__product-bottom">
+                    <span class="pl-rs__product-text">{% trans "Одна сторінка під рекламу: офер, форма, швидкий запуск." %}</span>
+                    <span class="pl-rs__pill">{% trans "Детальніше" %}</span>
+                </div>
+            </a>
+            <a class="pl-rs__product" href="{% url 'corporate_website_v2' %}#economy" data-pl-rs-service="corporate">
+                <img class="pl-rs__product-glow" src="{% static 'img/rozrobka-figma/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-rs__product-top">
+                    <div class="pl-rs__product-head">
+                        <span class="pl-rs__product-name">{% trans "Корпоративні сайти" %}</span>
+                        <span class="pl-rs__product-meta">{{ web_prices.corporate.czk }}</span>
+                    </div>
+                    <span class="pl-rs__idx" aria-hidden="true">02</span>
+                </div>
+                <div class="pl-rs__product-bottom">
+                    <span class="pl-rs__product-text">{% trans "Структура компанії, послуги і SEO-основа." %}</span>
+                    <span class="pl-rs__pill">{% trans "Детальніше" %}</span>
+                </div>
+            </a>
+            <a class="pl-rs__product" href="{% url 'internet_shop_v2' %}#pakety" data-pl-rs-service="shop">
+                <img class="pl-rs__product-glow" src="{% static 'img/rozrobka-figma/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-rs__product-top">
+                    <div class="pl-rs__product-head">
+                        <span class="pl-rs__product-name">{% trans "Інтернет-магазини" %}</span>
+                        <span class="pl-rs__product-meta">{{ web_prices.shop.czk_from }}</span>
+                    </div>
+                    <span class="pl-rs__idx" aria-hidden="true">03</span>
+                </div>
+                <div class="pl-rs__product-bottom">
+                    <span class="pl-rs__product-text">{% trans "Каталог, оплата, доставка, замовлення в адмінці." %}</span>
+                    <span class="pl-rs__pill">{% trans "Детальніше" %}</span>
+                </div>
+            </a>
+            <a class="pl-rs__product pl-rs__product--wide" href="{% url 'corporate_website_v2' %}#tech" data-pl-rs-service="platform">
+                <img class="pl-rs__product-glow" src="{% static 'img/rozrobka-figma/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-rs__product-top">
+                    <div class="pl-rs__product-head">
+                        <span class="pl-rs__product-name">{% trans "Платформи" %}</span>
+                        <span class="pl-rs__product-meta">{{ web_prices.app.czk }}</span>
+                    </div>
+                    <span class="pl-rs__idx" aria-hidden="true">04</span>
+                </div>
+                <div class="pl-rs__product-bottom">
+                    <span class="pl-rs__product-text">{% trans "Кабінети, ролі й інтеграції — коли сайту вже мало." %}</span>
+                    <span class="pl-rs__pill">{% trans "Детальніше" %}</span>
+                </div>
+            </a>
+            <a class="pl-rs__product pl-rs__product--wide" href="{% url 'telegram_bot' %}#pakety" data-pl-rs-service="telegram">
+                <img class="pl-rs__product-glow" src="{% static 'img/rozrobka-figma/rings-services.svg' %}" alt="" width="181" height="181" decoding="async" aria-hidden="true">
+                <div class="pl-rs__product-top">
+                    <div class="pl-rs__product-head">
+                        <span class="pl-rs__product-name">{% trans "Telegram-боти" %}</span>
+                    </div>
+                    <span class="pl-rs__idx" aria-hidden="true">05</span>
+                </div>
+                <div class="pl-rs__product-bottom">
+                    <span class="pl-rs__product-text">{% trans "Заявки і CRM у чаті поруч із сайтом." %}</span>
+                    <span class="pl-rs__pill">{% trans "Детальніше" %}</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>

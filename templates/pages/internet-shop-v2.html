@@ -4,12 +4,13 @@
 
 {% block body_attrs %} class="pl-shop-body" data-modal-source-page="internet-shop-v2-modal"{% endblock %}
 
-{% block title %}{% trans "Інтернет-магазини під ключ — швидка розробка e-commerce | PrometeyLabs" %}{% endblock %}
-{% block description %}{% trans "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-commerce під ключ." %}{% endblock %}
-{% block og_title %}{% trans "Інтернет-магазини, що завантажуються швидше — PrometeyLabs" %}{% endblock %}
+{% block title %}{% if ads_tz %}{{ page_title }}{% else %}{% trans "Інтернет-магазини під ключ — швидка розробка e-commerce | PrometeyLabs" %}{% endif %}{% endblock %}
+{% block description %}{% if ads_tz %}{{ meta_description }}{% else %}{% trans "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-commerce під ключ." %}{% endif %}{% endblock %}
+{% block og_title %}{% if ads_tz %}{{ page_title }}{% else %}{% trans "Інтернет-магазини, що завантажуються швидше — PrometeyLabs" %}{% endif %}{% endblock %}
 
 {% block extra_head %}
 <meta name="robots" content="index, follow">
+{% include 'components/ads/json_ld.html' %}
 <link rel="preload" as="image" type="image/webp" href="{% static 'images/internet_shop_v2/figma/bg-hero-v3-mobile.webp' %}" media="(max-width: 767px)" fetchpriority="high">
 <link rel="preload" as="image" type="image/webp" href="{% static 'images/internet_shop_v2/figma/bg-hero-v3-1440.webp' %}" media="(min-width: 768px)" fetchpriority="high">
 {% endblock %}
@@ -19,54 +20,29 @@
 <link rel="stylesheet" href="{% static 'css/internet-shop-v2.css' %}?v=206">
 <link rel="stylesheet" href="{% static 'css/internet-shop-v2-cz.css' %}?v=3">
 <link rel="stylesheet" href="{% static 'css/components/clients-marquee.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/ads-landing.css' %}?v=3">
 {% endblock %}
 
 {% block content %}
 <div id="plShopRoot" class="pl-shop pl-shop-page">
     {% include 'components/internet_shop_v2/hero.html' %}
+    {% if ads_tz %}{% include 'components/internet_shop_v2/cases.html' %}{% endif %}
     {% include 'components/internet_shop_v2/clients.html' %}
-    {% include 'components/internet_shop_v2/svoboda.html' %}
     {% include 'components/internet_shop_v2/packages.html' %}
+    {% if ads_tz %}{% include 'components/ads/process.html' with process_title=ads_copy.process_h2 %}{% endif %}
+    {% include 'components/internet_shop_v2/svoboda.html' %}
+    {% include 'components/internet_shop_v2/dropshipping.html' %}
     {% include 'components/internet_shop_v2/admin.html' %}
     {% include 'components/internet_shop_v2/garantiya.html' %}
+    {% if ads_tz %}{% include 'components/ads/faq.html' %}{% endif %}
     {% include 'components/internet_shop_v2/brief.html' %}
+    {% if ads_tz %}{% include 'components/ads/contacts.html' %}{% endif %}
 </div>
 {% include 'components/internet_shop_v2/pkg_compare_modal.html' %}
 {% endblock %}
 
-{% block base_js %}
-<script src="{% static 'js/core/analytics.js' %}" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/gclid-capture.js' %}?v=6" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/ec-phone.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/utils.js' %}" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/phone-mask.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/core/phone-mask-intl.js' %}?v=3" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/mobile-core.js' %}?v=2" nonce="{{ csp_nonce }}" defer></script>
-<script src="{% static 'js/base.js' %}?v=37" nonce="{{ csp_nonce }}" defer></script>
-<script nonce="{{ csp_nonce }}">
-(function(){
-    function load(){
-        if(window._vsL)return;window._vsL=1;
-        var s=document.createElement('script');
-        s.src='{% static "js/video-system.js" %}';
-        s.defer=true;
-        s.setAttribute('nonce','{{ csp_nonce }}');
-        s.nonce='{{ csp_nonce }}';
-        document.head.appendChild(s);
-    }
-    function check(){if(document.querySelector('video'))load();}
-    if(document.readyState==='loading'){
-        document.addEventListener('DOMContentLoaded',check,{once:true});
-    }else{check();}
-})();
-</script>
-{% get_current_language as CURRENT_LANG %}
-{% if CURRENT_LANG == 'ru' %}
-<script src="{% static 'js/lang-suggest.js' %}?v=3" nonce="{{ csp_nonce }}" defer></script>
-{% endif %}
-{% endblock %}
-
 {% block extra_js %}
+<script src="{% static 'js/core/gclid-capture.js' %}?v=6" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/internet-shop-v2-admin-mock.js' %}?v=6" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/internet-shop-v2-quiz.js' %}?v=13" nonce="{{ csp_nonce }}" defer></script>
 <script src="{% static 'js/components/clients-marquee.js' %}?v=3" nonce="{{ csp_nonce }}" defer></script>

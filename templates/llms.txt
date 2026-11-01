@@ -1,0 +1,28 @@
+# PrometeyLabs Czechia
+
+> PrometeyLabs — studio pro weby na klíč, e-shopy a Telegram boty. Česko, ceny v Kč.
+
+Ceny níže odpovídají veřejným landingům (ne vymyšlené případové studie).
+
+## Services
+
+- [Firemní web](https://prometeylabs.cz/corporate-website/): 17 000–24 500 Kč
+- [E-shop](https://prometeylabs.cz/internet-shop/): od 34 500 Kč
+- [Telegram bot](https://prometeylabs.cz/telegram-bot/): individuální kalkulace po briefu (veřejný ceník není)
+- [Tvorba webu na klíč](https://prometeylabs.cz/tvorba-webu/): landing od 10 000 Kč / firemní od 17 000 Kč / e-shop od 34 500 Kč
+- [Úprava webu](https://prometeylabs.cz/uprava-webu/): cena po bezplatné analýze, ve smlouvě
+
+## Company
+
+- [Portfolio](https://prometeylabs.cz/portfolio/)
+- [Blog](https://prometeylabs.cz/blog/)
+- [Kontakty](https://prometeylabs.cz/contacts/): e-mail na webu, Praha
+- [Web](https://prometeylabs.cz/)
+
+## Optional
+
+- [Corporate website (EN)](https://prometeylabs.cz/en/corporate-website/)
+- [Online store (EN)](https://prometeylabs.cz/en/internet-shop/)
+- [Telegram bot (EN)](https://prometeylabs.cz/en/telegram-bot/)
+- [Website development (EN)](https://prometeylabs.cz/en/website-development/)
+- [Website improvement (EN)](https://prometeylabs.cz/en/website-improvement/)

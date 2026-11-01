@@ -1,0 +1,13 @@
+<section class="pl-ads-contacts" id="contacts" aria-labelledby="pl-ads-contacts-title">
+    <div class="pl-ads-wrap">
+        <h2 class="pl-ads-h2" id="pl-ads-contacts-title">{{ ads_contacts.h2 }}</h2>
+        <ul class="pl-ads-contacts__list">
+            {% if ads_contacts.phone %}<li><a href="tel:{{ ads_contacts.phone }}">{{ ads_contacts.phone }}</a></li>{% endif %}
+            <li><a href="mailto:{{ ads_contacts.email }}">{{ ads_contacts.email }}</a></li>
+            <li><a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">{{ ads_contacts.telegram }}</a></li>
+            <li>{{ ads_contacts.address }}</li>
+            <li>{{ ads_contacts.hours }}</li>
+        </ul>
+        <p class="pl-ads-contacts__legal">{{ ads_contacts.executor }} <a href="{% url 'offer' %}">{{ ads_contacts.offer_label }}</a></p>
+    </div>
+</section>

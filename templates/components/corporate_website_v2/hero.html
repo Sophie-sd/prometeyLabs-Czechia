@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n calc_cta_tags %}
 <section id="top" class="pl-corp__hero" aria-labelledby="pl-corp-hero-title">
     <picture class="pl-corp__hero-bg" aria-hidden="true">
         <source media="(max-width: 767px)" srcset="{% static 'images/corporate_website_v2/figma/bg-hero-m.webp' %}" width="393" height="347">
@@ -20,8 +20,9 @@
                 <li class="pl-corp__hero-offer">{% trans "Готові до SEO з першого дня запуску" %}</li>
                 <li class="pl-corp__hero-offer">{% trans "Аналітика і трекінг налаштовані разом із запуском" %}</li>
             </ul>
-            <a href="#calculator" class="pl-corp__btn pl-corp__btn--light mobile-touch-target">{% trans "Розрахувати вартість" %}</a>
+            {% calc_cta 'corp' 'btn' %}
             <button type="button" class="pl-corp__btn pl-corp__btn--glass mobile-touch-target" data-modal="call-request-modal">{% trans "Замовити консультацію" %}</button>
+            {% calc_cta 'corp' 'micro' %}{% calc_cta_sticky 'corp' %}
         </div>
     </div>
 </section>

@@ -1,59 +1,43 @@
 # -*- coding: utf-8 -*-
-import re
-
-from django.core.cache import cache
-from django.core.management import call_command
-from django.test import Client, TestCase
-from django.urls import reverse
+"""Removed /web-development/ and /web-applications/ — 301 to home."""
+from django.test import TestCase
+from django.urls import NoReverseMatch, reverse
 from django.utils import translation
 
 from apps.core.sitemaps import StaticViewSitemap
-from apps.core.utils import SITE_CONTACT_CACHE_KEY
 
 
-CYRILLIC_RE = re.compile(r'[А-Яа-яІіЇїЄєҐґ]')
+class RemovedServicePagesTests(TestCase):
+    def test_reverse_names_gone(self):
+        for name in ('web_development', 'web_applications'):
+            with self.assertRaises(NoReverseMatch):
+                reverse(name)
 
+    def test_old_slugs_301_to_home(self):
+        cases = (
+            ('/web-development/', '/'),
+            ('/en/web-development/', '/en/'),
+            ('/webove-aplikace/', '/'),
+            ('/en/webove-aplikace/', '/en/'),
+            ('/web-applications/', '/'),
+            ('/en/web-applications/', '/en/'),
+        )
+        for url, target in cases:
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 301, url)
+            self.assertEqual(response['Location'], target, url)
 
-class WebDevelopmentPageTests(TestCase):
-    def setUp(self):
-        # Migration 0010 creates an empty-ish SiteContact row; seed fills
-        # legal_name_cs / legal_name_en so the shared footer has no Cyrillic.
-        call_command('seed_site_contact_settings')
-        cache.delete(SITE_CONTACT_CACHE_KEY)
-        self.client = Client()
-
-    def test_reverse_slug(self):
-        with translation.override('cs'):
-            self.assertEqual(reverse('web_development'), '/web-development/')
-        with translation.override('en'):
-            self.assertEqual(reverse('web_development'), '/en/web-development/')
-
-    def test_cs_page_ok(self):
-        response = self.client.get('/web-development/')
-        self.assertEqual(response.status_code, 200)
-        html = response.content.decode('utf-8')
-        self.assertIn('<html lang="cs">', html)
-        self.assertIn('hreflang="cs"', html)
-        self.assertIn('hreflang="en"', html)
-        self.assertIn('hreflang="x-default"', html)
-        self.assertIn('css/web-development.css', html)
-        self.assertIn('js/web-development.js', html)
-        self.assertIn('action="/forms/submit/"', html)
-        self.assertIsNone(CYRILLIC_RE.search(html), msg='Cyrillic leaked into CS HTML')
-
-    def test_en_page_ok(self):
-        response = self.client.get('/en/web-development/')
-        self.assertEqual(response.status_code, 200)
-        html = response.content.decode('utf-8')
-        self.assertIn('<html lang="en">', html)
-        self.assertIn('hreflang="cs"', html)
-        self.assertIn('hreflang="en"', html)
-        self.assertIn('hreflang="x-default"', html)
-        self.assertIn('action="/en/forms/submit/"', html)
-        self.assertIn('Turnkey websites for projects of any complexity', html)
-        self.assertIn('Request a consultation', html)
-        self.assertIsNone(CYRILLIC_RE.search(html), msg='Cyrillic leaked into EN HTML')
-
-    def test_sitemap_includes_page(self):
+    def test_sitemap_excludes_removed_pages(self):
         names = set(StaticViewSitemap().items())
-        self.assertIn('web_development', names)
+        self.assertNotIn('web_development', names)
+        self.assertNotIn('web_applications', names)
+        self.assertIn('rozrobka_sajtiv', names)
+        self.assertIn('dorobka_sajtu', names)
+
+    def test_ads_slugs_reverse(self):
+        with translation.override('cs'):
+            self.assertEqual(reverse('rozrobka_sajtiv'), '/tvorba-webu/')
+            self.assertEqual(reverse('dorobka_sajtu'), '/uprava-webu/')
+        with translation.override('en'):
+            self.assertEqual(reverse('rozrobka_sajtiv'), '/en/website-development/')
+            self.assertEqual(reverse('dorobka_sajtu'), '/en/website-improvement/')

@@ -10,6 +10,7 @@ from django.conf import settings
 from unfold.admin import ModelAdmin as UnfoldModelAdmin, TabularInline as UnfoldTabularInline
 from unfold.contrib.filters.admin import (
     ChoicesDropdownFilter,
+    DropdownFilter,
     RangeDateFilter,
 )
 
@@ -257,6 +258,25 @@ def _active_or_selected_q(instance):
     return Q(is_active=True) | Q(payment_links=instance)
 
 
+class SubscriptionDropdownFilter(DropdownFilter):
+    title = _('Підписка')
+    parameter_name = 'is_subscription'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('1', _('Так')),
+            ('0', _('Ні')),
+        )
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if value == '1':
+            return queryset.filter(is_subscription=True)
+        if value == '0':
+            return queryset.filter(is_subscription=False)
+        return queryset
+
+
 # ── PaymentLink inline ─────────────────────────────────────────────────────
 
 class PaymentLinkFileInline(UnfoldTabularInline):
@@ -278,6 +298,7 @@ class PaymentLinkAdmin(UnfoldModelAdmin):
     )
     list_filter = (
         ('status', ChoicesDropdownFilter),
+        SubscriptionDropdownFilter,
         'language',
         'currency',
         ('created_at', RangeDateFilter),

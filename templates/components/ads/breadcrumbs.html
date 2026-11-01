@@ -1,0 +1,13 @@
+<nav class="pl-ads-crumbs" aria-label="breadcrumb">
+    <ol class="pl-ads-crumbs__list">
+        {% for item in ads_crumbs %}
+        <li class="pl-ads-crumbs__item">
+            {% if item.url and not forloop.last %}
+            <a class="pl-ads-crumbs__link" href="{{ item.url }}">{{ item.name }}</a>
+            {% else %}
+            <span class="pl-ads-crumbs__current"{% if forloop.last %} aria-current="page"{% endif %}>{{ item.name }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</nav>

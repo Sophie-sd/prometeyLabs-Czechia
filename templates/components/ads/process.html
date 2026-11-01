@@ -1,0 +1,17 @@
+<section class="pl-ads-process" id="process" aria-labelledby="pl-ads-process-title">
+    <div class="pl-ads-wrap">
+        <h2 class="pl-ads-h2" id="pl-ads-process-title">{% firstof process_title ads_process.title %}</h2>
+        <ol class="pl-ads-process__list">
+            {% for title, text in ads_process.steps %}
+            <li class="pl-ads-process__item">
+                <span class="pl-ads-process__num">{{ forloop.counter }}</span>
+                <h3 class="pl-ads-process__name">{{ title }}</h3>
+                <p class="pl-ads-process__text">{{ text }}</p>
+            </li>
+            {% endfor %}
+        </ol>
+        {% if ads_process.note %}
+        <p class="pl-ads-process__note">{{ ads_process.note }}</p>
+        {% endif %}
+    </div>
+</section>

@@ -1,0 +1,68 @@
+{% load i18n static %}
+{# Upper Portfolio Section only — Figma 1:164. Lower logo-gallery 1:198 DO NOT implement. #}
+{# Screens = same full-page shots + scroll-on-hover as /portfolio/ (data-pf-screen / data-pf-shot → js/portfolio-screen-scroll.js). #}
+<section class="pl-rs__section pl-rs__section--work" aria-labelledby="pl-rs-work-title" data-pl-rs-portfolio>
+    <div class="pl-rs__inner">
+        <div class="pl-rs__work-head">
+            <h2 id="pl-rs-work-title" class="pl-rs__h2 pl-rs__h2--work">{% trans "Наші роботи" %}</h2>
+            <div class="pl-rs__work-nav" role="group" aria-label="{% trans "Навігація портфоліо" %}">
+                <button type="button" class="pl-rs__work-btn" data-pl-rs-prev aria-label="{% trans "Попередні роботи" %}">
+                    <img src="{% static 'img/rozrobka-figma/arrow-nav.svg' %}" alt="" width="24" height="24" decoding="async" class="pl-rs__work-arrow pl-rs__work-arrow--prev">
+                </button>
+                <button type="button" class="pl-rs__work-btn" data-pl-rs-next aria-label="{% trans "Наступні роботи" %}">
+                    <img src="{% static 'img/rozrobka-figma/arrow-nav.svg' %}" alt="" width="24" height="24" decoding="async" class="pl-rs__work-arrow">
+                </button>
+            </div>
+        </div>
+
+        <div class="pl-rs__work-track" data-pl-rs-track tabindex="0">
+            {% if portfolio_strip %}
+                {% for project in portfolio_strip %}
+                <article class="pl-rs__work-card">
+                    {% if project.get_home_image_src %}
+                    <a class="pl-rs__work-shot pl-rs__work-shot--screen" href="{% url 'portfolio' %}" data-pf-screen>
+                        {# srcset: 720w variant of the same full-page shot (~2× card width) — same look, ~3× lighter. #}
+                        {% with shot_srcset=project.get_home_image_srcset %}
+                        <img src="{{ project.get_home_image_src }}"{% if shot_srcset %} srcset="{{ shot_srcset }}" sizes="358px"{% endif %} alt="{{ project.get_card_alt }}" width="358" height="234" loading="lazy" decoding="async" data-pf-shot>
+                        {% endwith %}
+                    </a>
+                    {% else %}
+                    <a class="pl-rs__work-shot" href="{% url 'portfolio' %}">
+                        <img src="{% static 'img/rozrobka-figma/card-feder.webp' %}" alt="{{ project.get_card_alt }}" width="358" height="234" loading="lazy" decoding="async">
+                    </a>
+                    {% endif %}
+                    <div class="pl-rs__work-foot">
+                        <p class="pl-rs__work-name">{{ project.get_localized_title }}</p>
+                        <p class="pl-rs__work-meta">{{ project.get_category_label }}{% if project.get_localized_subtitle %} · {{ project.get_localized_subtitle }}{% endif %}</p>
+                        <a class="pl-rs__pill pl-rs__pill--work" href="{% url 'portfolio' %}">{% trans "Детальніше" %}</a>
+                    </div>
+                </article>
+                {% endfor %}
+            {% else %}
+                <article class="pl-rs__work-card">
+                    <a class="pl-rs__work-shot" href="{% url 'portfolio' %}">
+                        <img src="{% static 'img/rozrobka-figma/card-feder.webp' %}" alt="{% trans "Кейс студії" %}" width="358" height="234" loading="lazy" decoding="async">
+                    </a>
+                    <div class="pl-rs__work-foot">
+                        <p class="pl-rs__work-name">{% trans "Кейси студії зібрані в портфоліо." %}</p>
+                        <a class="pl-rs__pill pl-rs__pill--work" href="{% url 'portfolio' %}">{% trans "Детальніше" %}</a>
+                    </div>
+                </article>
+                <article class="pl-rs__work-card">
+                    <a class="pl-rs__work-shot" href="{% url 'portfolio' %}">
+                        <img src="{% static 'img/rozrobka-figma/card-elit.webp' %}" alt="{% trans "Кейс студії" %}" width="358" height="234" loading="lazy" decoding="async">
+                    </a>
+                    <div class="pl-rs__work-foot">
+                        <p class="pl-rs__work-name">{% trans "Кейси студії зібрані в портфоліо." %}</p>
+                        <a class="pl-rs__pill pl-rs__pill--work" href="{% url 'portfolio' %}">{% trans "Детальніше" %}</a>
+                    </div>
+                </article>
+            {% endif %}
+        </div>
+
+        <a class="pl-rs__work-more" href="{% url 'portfolio' %}">
+            <span>{% trans "Дивитись портфоліо" %}</span>
+            <img src="{% static 'img/rozrobka-figma/arrow-orange.svg' %}" alt="" width="24" height="24" decoding="async">
+        </a>
+    </div>
+</section>

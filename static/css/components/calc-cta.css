@@ -1,0 +1,218 @@
+/* =====================================================================
+   Calc CTA — головна помаранчева кнопка-квіз «Розрахувати…» (Ads LP).
+   Один primary на першому екрані; форма/Telegram/консультація — вторинні.
+   Колір: #C44E00 (AA-варіант бренду, як .calc-cta-btn / lang-suggest) + білий
+   текст 4.73:1; hover #B8410C 5.53:1; рамка/світіння — бренд #E65100.
+   Чистий #E65100 + білий = 3.79:1 (FAIL AA), тому заливка темніша на півтону.
+   ===================================================================== */
+.pl-calc-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+    margin: 22px auto 0;
+    text-align: center;
+}
+
+.pl-calc-cta__btn,
+.pl-calc-sticky__btn {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 60px;
+    padding: 0 36px;
+    border: 1px solid #e65100;
+    border-radius: 999px;
+    background: #c44e00;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    text-align: center;
+    text-decoration: none !important;
+    white-space: normal;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.pl-calc-cta__btn:hover,
+.pl-calc-sticky__btn:hover,
+.pl-calc-cta__btn:active,
+.pl-calc-sticky__btn:active {
+    background: #b8410c;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.pl-calc-cta__btn:active,
+.pl-calc-sticky__btn:active { transform: scale(0.99); }
+
+.pl-calc-cta__btn:focus-visible,
+.pl-calc-sticky__btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+    background: #b8410c;
+}
+
+.pl-calc-cta__arrow {
+    display: inline-block;
+    font-size: 1.1em;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.pl-calc-cta__btn:hover .pl-calc-cta__arrow { transform: translateX(3px); }
+
+.pl-calc-cta__micro {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.35;
+    letter-spacing: -0.2px;
+    color: rgba(255, 255, 255, 0.86);
+    text-align: center;
+}
+
+/* ---------- per-page placement ---------- */
+
+/* Home: primary + micro on the first row, Telegram / заявка — ghost row under it */
+.hf-hero__actions.hf-hero__actions--calc {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 290px;
+}
+.hf-hero__actions--calc .pl-calc-cta { margin: 0; }
+.hf-hero__secondary {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* Shop v2: calc on top of the hero card, form below = secondary */
+.pl-shop__hero-card .pl-calc-cta { margin: 0 auto 6px; max-width: none; }
+.pl-shop__hero-card .pl-calc-cta__btn { width: 100%; }
+.pl-shop__hero-card .pl-shop__hero-submit {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #fff;
+}
+
+/* Rozrobka / dorobka: calc between lead and form card, form submit = outline */
+.pl-rs__hero-copy > .pl-calc-cta { margin: 18px auto 18px; }
+.pl-rs__hero-form-card .plf-form__submit {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    color: #fff;
+}
+.pl-rs__hero-form-card .plf-form__submit:hover,
+.pl-rs__hero-form-card .plf-form__submit:focus-visible {
+    background: #fff;
+    color: #111;
+}
+
+/* Corp v2: inline button in the flex card, micro as its own full row */
+.pl-corp__hero-card .pl-calc-cta__btn { width: 100%; }
+.pl-corp__hero-card .pl-calc-cta__micro--row { flex: 0 0 100%; margin-top: -4px; }
+@media (min-width: 1024px) {
+    .pl-corp__hero-card .pl-calc-cta__btn { width: auto; }
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 767px) {
+    .pl-calc-cta { max-width: 100%; }
+    .pl-calc-cta__btn,
+    .pl-calc-sticky__btn {
+        width: 100%;
+        min-height: 56px;
+        padding: 0 20px;
+        font-size: 17px;
+    }
+    .pl-calc-cta__micro { font-size: 13px; }
+
+    .hf-hero__actions.hf-hero__actions--calc { margin-top: 170px; gap: 14px; }
+    .hf-hero__secondary { flex-direction: column; width: 100%; gap: 12px; }
+    .hf-hero__secondary .hf-btn { width: 100%; }
+
+    .pl-rs__hero-copy > .pl-calc-cta { margin: 14px auto 14px; }
+    .pl-shop__hero-card .pl-calc-cta__btn { padding: 0 14px; gap: 8px; font-size: 16px; }
+}
+
+/* ---------- sticky (mobile only) ----------
+   v2: без підкладки/градієнта і без помаранчевого glow — лише кнопка з легкою тінню.
+   FAB дзвінка (67px, справа) у цей час стає 56px і стоїть в одному ряду з кнопкою
+   (кнопка звужується на ширину FAB + 12px), тож нічого не висить поверх карток. */
+.pl-calc-sticky { display: none; }
+
+@media (max-width: 767px) {
+    :root {
+        --pl-calc-sticky-h: 54px;
+        --pl-calc-sticky-gap: 12px;
+        --pl-calc-sticky-side: 16px;
+    }
+    .pl-calc-sticky {
+        display: block;
+        position: fixed;
+        left: var(--pl-calc-sticky-side);
+        right: var(--pl-calc-sticky-side);
+        bottom: calc(var(--pl-calc-sticky-gap) + env(safe-area-inset-bottom, 0px));
+        z-index: 9000;
+        box-sizing: border-box;
+        padding: 0;
+        background: none;
+        transform: translateY(calc(100% + 24px));
+        visibility: hidden;
+        pointer-events: none;
+        transition: transform 0.25s ease, visibility 0s linear 0.25s;
+    }
+    .pl-calc-sticky.is-visible {
+        transform: translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition: transform 0.25s ease, visibility 0s;
+    }
+    /* є FAB → кнопка звільняє місце справа під нього */
+    body.pl-calc-sticky-on.pl-calc-has-fab .pl-calc-sticky {
+        right: calc(var(--pl-calc-sticky-side) + var(--pl-calc-sticky-h) + var(--pl-calc-sticky-gap));
+    }
+    .pl-calc-sticky .pl-calc-sticky__btn {
+        width: 100%;
+        min-height: var(--pl-calc-sticky-h);
+        height: var(--pl-calc-sticky-h);
+        padding: 0 14px;
+        gap: 8px;
+        font-size: 17px;
+        line-height: 1;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+    .pl-calc-sticky .pl-calc-sticky__btn:hover,
+    .pl-calc-sticky .pl-calc-sticky__btn:active { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); }
+    .pl-calc-sticky .pl-calc-cta__label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pl-calc-sticky .pl-calc-cta__arrow { display: inline-flex; align-items: center; height: 1em; line-height: 1; transform: translateY(-0.04em); }
+
+    /* FAB у ряд із кнопкою: той самий низ і та сама висота */
+    body.pl-calc-sticky-on .mobile-contact-fab {
+        right: var(--pl-calc-sticky-side);
+        bottom: calc(var(--pl-calc-sticky-gap) + env(safe-area-inset-bottom, 0px));
+        width: var(--pl-calc-sticky-h);
+        height: var(--pl-calc-sticky-h);
+    }
+    /* останній контент не ховається під кнопкою */
+    body.pl-calc-sticky-on {
+        padding-bottom: calc(var(--pl-calc-sticky-h) + var(--pl-calc-sticky-gap) * 2 + env(safe-area-inset-bottom, 0px));
+    }
+    body.menu-open .pl-calc-sticky,
+    body.modal-open .pl-calc-sticky { visibility: hidden; pointer-events: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pl-calc-cta__btn, .pl-calc-sticky__btn, .pl-calc-cta__arrow, .pl-calc-sticky { transition: none; }
+}

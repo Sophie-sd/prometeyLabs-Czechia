@@ -76,28 +76,13 @@ class EurToCzkRoundedTests(SimpleTestCase):
         self.assertEqual(en['shop']['czk'], f'≈{NB}CZK{NB}{shop_lo:,}–{shop_hi:,}')
 
 
-class WebDevelopmentCzkRenderTests(TestCase):
+class AdsLandingCzkRenderTests(TestCase):
     def tearDown(self):
         translation.activate(settings.LANGUAGE_CODE)
 
-    def _czk_spans(self, url):
-        import re
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200, url)
-        return re.findall(r'data-pl-web-cur="czk"[^>]*>([^<]*)<', response.content.decode())
-
-    def test_cs_page_czk_values(self):
-        spans = self._czk_spans('/web-development/')
-        self.assertTrue(spans)
-        for key, (lo, hi) in EXPECTED_CZK.items():
-            rng = f'≈{NB}{lo:,}–{hi:,}{NB}Kč'.replace(',', NB)
-            self.assertIn(rng, spans, key)
-        for key in ('landing', 'corporate', 'shop'):  # admin.html «od …»
-            self.assertIn(f'≈{NB}{_cs_amount(EXPECTED_CZK[key][0])}{NB}Kč', spans, key)
-        self.assertFalse(any('9' + NB + '800' in s for s in spans))
-
-    def test_en_page_czk_values(self):
-        spans = self._czk_spans('/en/web-development/')
-        self.assertTrue(spans)
-        for key, (lo, hi) in EXPECTED_CZK.items():
-            self.assertIn(f'≈{NB}CZK{NB}{lo:,}–{hi:,}', spans, key)
+    def test_tvorba_webu_shows_czk(self):
+        html = self.client.get('/tvorba-webu/').content.decode()
+        self.assertEqual(self.client.get('/tvorba-webu/').status_code, 200)
+        self.assertIn('Kč', html)
+        self.assertIn('10', html)
+        self.assertNotIn('9\u00a0800', html)

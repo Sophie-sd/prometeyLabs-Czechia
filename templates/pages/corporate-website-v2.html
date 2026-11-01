@@ -10,6 +10,7 @@
 
 {% block extra_head %}
 <meta name="robots" content="index, follow">
+{% include 'components/ads/json_ld.html' %}
 {% endblock %}
 
 {% block page_css %}
@@ -17,6 +18,7 @@
 <link rel="preload" as="image" href="{% static 'images/corporate_website_v2/figma/bg-hero-1440.webp' %}" imagesrcset="{% static 'images/corporate_website_v2/figma/bg-hero-960.webp' %} 960w, {% static 'images/corporate_website_v2/figma/bg-hero-1440.webp' %} 1440w" imagesizes="100vw" media="(min-width: 768px)">
 <link rel="stylesheet" href="{% static 'css/corporate-website-v2.css' %}?v=44">
 <link rel="stylesheet" href="{% static 'css/corporate-website-v2-cz.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/ads-landing.css' %}?v=3">
 {% endblock %}
 
 {% block content %}
@@ -29,6 +31,7 @@
     {% include 'components/corporate_website_v2/admin_demo.html' %}
     {% include 'components/corporate_website_v2/calc_promo.html' %}
     {% include 'components/corporate_website_v2/scale.html' %}
+    {% include 'components/ads/faq.html' %}
     {% include 'components/corporate_website_v2/brief.html' %}
 </div>
 {% endblock %}

@@ -383,13 +383,13 @@ class PaymentAdminTests(TestCase):
             response = self.client.get(reverse(name))
             self.assertEqual(response.status_code, 200, name)
 
-    def test_acquiring_and_subscriptions_hidden(self):
+    def test_acquiring_hidden_subscriptions_sidebar(self):
         html = self.client.get(reverse('admin:payment_paymentlink_add')).content.decode()
-        for field in ('use_acquiring', 'exchange_rate', 'final_amount_uah', 'is_subscription',
-                      'monobank_invoice_id', 'card_token', 'name="recipient"'):
+        for field in ('use_acquiring', 'exchange_rate', 'final_amount_uah',
+                      'name="is_subscription"', 'monobank_invoice_id', 'card_token',
+                      'name="recipient"'):
             self.assertNotIn(field, html)
-        self.assertNotIn('is_subscription=1', html)
-        self.assertNotIn('Підписк', html)
+        self.assertIn('is_subscription=1', html)
         inv_html = self.client.get(reverse('admin:payment_invoice_add')).content.decode()
         for word in ('РНОКПП', 'ЄДРПОУ', 'ФОП', 'ТОВ', 'МФО'):
             self.assertNotIn(word, inv_html)

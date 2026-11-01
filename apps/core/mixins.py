@@ -85,6 +85,11 @@ def homepage_clients():
     return Client.objects.filter(is_active=True).order_by('order', 'name')
 
 
+def homepage_portfolio_strip(limit=6):
+    """Alias used by ads landings (same row as portfolio_strip)."""
+    return portfolio_strip(limit=limit)
+
+
 def portfolio_strip(limit=6):
     """Short row of cases: homepage picks first, otherwise published /portfolio/ order."""
     featured = list(

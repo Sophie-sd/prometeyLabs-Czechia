@@ -1,15 +1,44 @@
 """
 CSP (Content Security Policy) middleware.
 
-Generates a per-request nonce and adds a Content-Security-Policy response header.
-The nonce is exposed to templates via the `csp_nonce` context variable (see
-context_processors.py).  Every inline <script nonce="{{ csp_nonce }}"> tag must
-use this nonce — otherwise the browser will block it.
-
-Allowed external origins are kept conservative; extend the lists below if new
-third-party services are added.
+NoIndexPrivatePathsMiddleware: X-Robots-Tag on /proposal/ and /demo*.
 """
 import secrets
+
+_PRIVATE_ROOTS = (
+    '/proposal',
+    '/demo',
+    '/demo-landing',
+    '/demo-site',
+    '/k',
+)
+_LANG_PREFIXES = ('/en', '/cs', '/uk', '/ru')
+
+
+def is_private_index_path(path: str) -> bool:
+    """КП і демо-вітрини: не індексувати (AdsBot ігнорує meta robots)."""
+    stripped = path or ''
+    for lang in _LANG_PREFIXES:
+        if stripped == lang or stripped.startswith(lang + '/'):
+            stripped = stripped[len(lang):] or '/'
+            break
+    for root in _PRIVATE_ROOTS:
+        if stripped == root or stripped.startswith(root + '/'):
+            return True
+    return False
+
+
+class NoIndexPrivatePathsMiddleware:
+    """X-Robots-Tag на /proposal/ і /demo*, включно з CSS/HTML демо-тем."""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        if is_private_index_path(request.path_info or ''):
+            response['X-Robots-Tag'] = 'noindex, nofollow'
+        return response
 
 
 class CSPMiddleware:

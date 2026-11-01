@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block body_attrs %} class="pl-rs-body" data-modal-source-page="rozrobka-sajtiv"{% endblock %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ meta_description }}{% endblock %}
+
+{% block canonical %}<link rel="canonical" href="{{ ads_seo.canonical }}">{% endblock %}
+{% block hreflang %}{% include 'components/ads/hreflang.html' %}{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="index, follow">
+{% include 'components/ads/json_ld.html' %}
+{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/rozrobka-sajtiv.css' %}?v=16">
+<link rel="stylesheet" href="{% static 'css/ads-landing.css' %}?v=3">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/rozrobka-sajtiv.js' %}?v=5" nonce="{{ csp_nonce }}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div id="plRsRoot" class="pl-rs">
+    {% include 'components/rozrobka_sajtiv/hero.html' %}
+    {% include 'components/rozrobka_sajtiv/products.html' %}
+    {% if ads_tz %}{% include 'components/rozrobka_sajtiv/types.html' %}{% endif %}
+    {% include 'components/rozrobka_sajtiv/portfolio.html' %}
+    {% if ads_tz %}{% include 'components/ads/process.html' %}{% endif %}
+    {% if ads_tz %}{% include 'components/rozrobka_sajtiv/guarantee.html' %}{% endif %}
+    {% include 'components/rozrobka_sajtiv/admin.html' %}
+    {% if ads_tz %}{% include 'components/ads/faq.html' %}{% endif %}
+    {% include 'components/rozrobka_sajtiv/calc.html' %}
+    {% if ads_tz %}{% include 'components/ads/contacts.html' %}{% endif %}
+</div>
+{% endblock %}

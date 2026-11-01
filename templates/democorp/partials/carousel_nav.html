@@ -1,0 +1,5 @@
+{% load i18n %}
+<div class="dc-carousel-nav{% if mobile %} dc-carousel-nav--mobile{% else %} dc-carousel-nav--desktop{% endif %}" data-carousel-nav="{{ target }}">
+    <button type="button" class="dc-cf__nav" data-carousel-prev data-cf-prev aria-controls="{{ target }}" aria-label="{% trans 'Назад' %}"></button>
+    <button type="button" class="dc-cf__nav dc-cf__nav--next" data-carousel-next data-cf-next aria-controls="{{ target }}" aria-label="{% trans 'Далі' %}"></button>
+</div>

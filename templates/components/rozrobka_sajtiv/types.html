@@ -1,0 +1,16 @@
+{% load i18n %}
+<section class="pl-ads-types pl-rs__section" id="types" aria-labelledby="pl-rs-types-title">
+    <div class="pl-rs__inner pl-ads-wrap">
+        <h2 class="pl-rs__h2 pl-ads-h2" id="pl-rs-types-title">{{ ads_copy.types_h2 }}</h2>
+        {% for name, text, target in ads_copy.types %}
+        <p class="pl-ads-types__item">
+            <strong>{{ name }}.</strong> {{ text }} {{ ads_copy.more }}
+            {% if target == 'shop' %}
+            <a href="{% url 'internet_shop_v2' %}">{% trans "Інтернет-магазин" %}</a>.
+            {% else %}
+            <a href="{% url 'corporate_website_v2' %}">{% trans "Корпоративний сайт" %}</a>.
+            {% endif %}
+        </p>
+        {% endfor %}
+    </div>
+</section>

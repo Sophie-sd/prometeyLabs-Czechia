@@ -1,0 +1,13 @@
+<section class="pl-ads-process pl-rs__section" id="how" aria-labelledby="pl-dorobka-how-title">
+    <div class="pl-rs__inner pl-ads-wrap">
+        <h2 class="pl-rs__h2 pl-ads-h2" id="pl-dorobka-how-title">{{ ads_copy.how_h2 }}</h2>
+        <ol class="pl-ads-process__list">
+            {% for step in ads_copy.steps %}
+            <li class="pl-ads-process__item">
+                <span class="pl-ads-process__num">{{ forloop.counter }}</span>
+                <p class="pl-ads-process__text">{{ step }}</p>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</section>

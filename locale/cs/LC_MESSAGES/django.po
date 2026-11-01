@@ -4021,10 +4021,8 @@ msgid "Демо-сайти"
 msgstr "weby"
 
 #: config/settings.py:164
-#, fuzzy
-#| msgid "Магазин"
 msgid "Магазини"
-msgstr "Obchod"
+msgstr "E-shopy"
 
 #: config/settings.py:170 templates/pages/home.html:105
 #: templates/pages/home.html:127 templates/pages/telegram-bot.html:354
@@ -4032,10 +4030,8 @@ msgid "Корпоративні сайти"
 msgstr "Firemní weby"
 
 #: config/settings.py:176
-#, fuzzy
-#| msgid "Лендінги:"
 msgid "Лендінги"
-msgstr "Landing page:"
+msgstr "Landing page"
 
 #: config/settings.py:184
 msgid "Мій магазин"
@@ -10809,3 +10805,217 @@ msgstr "webové aplikace"
 #: templates/components/burger_menu.html
 msgid "Веб-застосунки"
 msgstr "Webové aplikace"
+
+# CZ_RENOVA_FIT
+msgid "Доробка сайтів"
+msgstr "Úprava webu"
+
+msgid "Zásilkovna / Packeta"
+msgstr "Zásilkovna / Packeta"
+
+msgid "Česká pošta"
+msgstr "Česká pošta"
+
+msgid "Osobní odběr"
+msgstr "Osobní odběr"
+
+msgid "Ulice, číslo popisné, PSČ"
+msgstr "Ulice, číslo popisné, PSČ"
+
+msgid "Tvorba webů na klíč od 10 000 Kč"
+msgstr "Tvorba webů na klíč od 10 000 Kč"
+
+msgid "Landing od 10 000 Kč za 3–7 dní, firemní web od 17 000 Kč, e-shop od 34 500 Kč. Cenu a termín zapisujeme do smlouvy. Doživotní záruka na kód, rok podpory zdarma, administrace zůstává vám."
+msgstr "Landing od 10 000 Kč za 3–7 dní, firemní web od 17 000 Kč, e-shop od 34 500 Kč. Cenu a termín zapisujeme do smlouvy. Doživotní záruka na kód, rok podpory zdarma, administrace zůstává vám."
+
+msgid "Spočítáme cenu vašeho webu"
+msgstr "Spočítáme cenu vašeho webu"
+
+msgid "Tvorba webu · první obrazovka"
+msgstr "Tvorba webu · první obrazovka"
+
+msgid "Stránka: Tvorba webu · Formulář na první obrazovce"
+msgstr "Stránka: Tvorba webu · Formulář na první obrazovce"
+
+msgid "Získat kalkulaci"
+msgstr "Získat kalkulaci"
+
+msgid "Cena a termín ve smlouvě · Administrace zůstává vám · 50+ spuštěných projektů · Odpovídáme do 15 minut"
+msgstr "Cena a termín ve smlouvě · Administrace zůstává vám · 50+ spuštěných projektů · Odpovídáme do 15 minut"
+# CZ_RENOVA_FIT rozrobka
+msgid "Орієнтир ціни"
+msgstr "Orientační ceny"
+
+msgid "3–7 днів"
+msgstr "3–7 dní"
+
+msgid "У сумі: макет, верстка, форма, адаптив"
+msgstr "V ceně: návrh, kód, formulář, responzivita"
+
+msgid "Не входить: реклама, тексти з нуля, сторонні API"
+msgstr "Není v ceně: reklama, texty od nuly, cizí API"
+
+msgid "Корпоративні"
+msgstr "Firemní weby"
+
+msgid "7–14 днів"
+msgstr "7–14 dní"
+
+msgid "У сумі: структура сторінок, CMS-основа, адаптив, базова SEO"
+msgstr "V ceně: struktura stránek, CMS základ, responzivita, základní SEO"
+
+msgid "Не входить: наповнення контентом, реклама, складні інтеграції"
+msgstr "Není v ceně: naplnění obsahem, reklama, složité integrace"
+
+msgid "14–21 день"
+msgstr "14–21 dní"
+
+msgid "У сумі: каталог, кошик, оплата/доставка-основа, адмінка замовлень"
+msgstr "V ceně: katalog, košík, platba/doprava, správa objednávek"
+
+msgid "Не входить: наповнення товарів, маркетинг, кастомні інтеграції"
+msgstr "Není v ceně: naplnění produktů, marketing, vlastní integrace"
+
+msgid "Платформи"
+msgstr "Platformy"
+
+msgid "14–30 днів"
+msgstr "14–30 dní"
+
+msgid "У сумі: узгоджений MVP за брифом у діапазоні"
+msgstr "V ceně: dohodnuté MVP podle briefu v daném rozmezí"
+
+msgid "Не входить: нові модулі після здачі, сторонні ліцензії"
+msgstr "Není v ceně: nové moduly po předání, cizí licence"
+
+msgid "Адмінка залишається у вас"
+msgstr "Administrace zůstává vám"
+
+msgid "Тексти, ціни, заявки і банери правите самі. Розробник не потрібен на кожну кому."
+msgstr "Texty, ceny, poptávky a bannery upravíte sami. Vývojář není potřeba kvůli každé čárce."
+
+msgid "Демо адмінки: розділи"
+msgstr "Ukázka administrace: sekce"
+
+msgid "Сторінки"
+msgstr "Stránky"
+
+msgid "Ціни"
+msgstr "Ceny"
+
+msgid "Олена · Лендінг"
+msgstr "Elena · Landing"
+
+msgid "Нова"
+msgstr "Nová"
+
+msgid "Максим · Магазин"
+msgstr "Maxim · E-shop"
+
+msgid "Вчора"
+msgstr "Včera"
+
+msgid "Ірина · Корп. сайт"
+msgstr "Irena · Firemní web"
+
+msgid "Закрита"
+msgstr "Uzavřená"
+
+msgid "Редагувати"
+msgstr "Upravit"
+
+msgid "Ціни на розробку сайтів під ключ"
+msgstr "Ceny tvorby webů na klíč"
+
+msgid "Одна сторінка під рекламу: офер, форма, швидкий запуск."
+msgstr "Jedna stránka pro reklamu: nabídka, formulář, rychlý start."
+
+msgid "Структура компанії, послуги і SEO-основа."
+msgstr "Struktura firmy, služby a SEO základ."
+
+msgid "Каталог, оплата, доставка, замовлення в адмінці."
+msgstr "Katalog, platba, doprava, objednávky v administraci."
+
+msgid "Кабінети, ролі й інтеграції — коли сайту вже мало."
+msgstr "Účty, role a integrace — když web nestačí."
+
+msgid "Заявки і CRM у чаті поруч із сайтом."
+msgstr "Poptávky a CRM v chatu vedle webu."
+
+msgid "Порахуйте бюджет до дзвінка"
+msgstr "Spočítejte rozpočet ještě před hovorem"
+
+msgid "Чотири орієнтири — старт розмови. Точну суму і строк фіксуємо після брифу в договорі."
+msgstr "Čtyři orientační ceny — začátek rozhovoru. Přesnou částku a termín zapíšeme po briefu do smlouvy."
+
+msgid "Відкрити калькулятор"
+msgstr "Otevřít kalkulačku"
+
+msgid "Зателефонувати прямо зараз"
+msgstr "Zavolat hned"
+
+msgid "Наші роботи"
+msgstr "Naše práce"
+
+msgid "Навігація портфоліо"
+msgstr "Navigace portfolia"
+
+msgid "Попередні роботи"
+msgstr "Předchozí práce"
+
+msgid "Наступні роботи"
+msgstr "Další práce"
+
+msgid "Кейс студії"
+msgstr "Ukázka realizace"
+
+msgid "Кейси студії зібрані в портфоліо."
+msgstr "Případy studia jsou v portfoliu."
+
+msgid "Дивитись портфоліо"
+msgstr "Zobrazit portfolio"
+
+msgid "політики конфіденційності"
+msgstr "zásad ochrany osobních údajů"
+
+msgid "оферта"
+msgstr "nabídka"
+
+msgid "Даю згоду на обробку персональних даних згідно з"
+msgstr "Souhlasím se zpracováním osobních údajů podle"
+
+#: templates/components/internet_shop_v2/dropshipping.html:6
+msgid "Окремий продукт"
+msgstr "Samostatný produkt"
+
+#: templates/components/internet_shop_v2/dropshipping.html:7
+msgid "Дропшиппінг-платформа"
+msgstr "Dropshippingová platforma"
+
+#: templates/components/internet_shop_v2/dropshipping.html:7
+msgid "od 37 000 Kč"
+msgstr "od 37 000 Kč"
+
+#: templates/components/internet_shop_v2/dropshipping.html:8
+msgid "Розробляємо дропшиппінг-платформи з парсингом постачальників, синхронізацією залишків і прокидуванням замовлень напряму до постачальника — під ключ."
+msgstr "Vyvíjíme dropshippingové platformy s parsováním dodavatelů, synchronizací zásob a předáváním objednávek přímo dodavateli — na klíč."
+
+#: templates/components/internet_shop_v2/dropshipping.html:12
+msgid "Парсинг постачальників"
+msgstr "Parsování dodavatelů"
+
+#: templates/components/internet_shop_v2/dropshipping.html:13
+msgid "Оновлення цін і залишків"
+msgstr "Aktualizace cen a zásob"
+
+#: templates/components/internet_shop_v2/dropshipping.html:14
+msgid "Передача замовлень"
+msgstr "Předávání objednávek"
+
+#: templates/components/internet_shop_v2/dropshipping.html:15
+msgid "Облік маржі"
+msgstr "Evidence marže"
+
+#: templates/components/internet_shop_v2/dropshipping.html:17
+msgid "Замовити дропшиппінг-платформу"
+msgstr "Objednat dropshippingovou platformu"

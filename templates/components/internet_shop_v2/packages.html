@@ -111,5 +111,6 @@
         </div>
 
         <button type="button" class="pl-shop__btn pl-shop__btn--outline pl-shop__pkg-compare" data-modal="pl-shop-pkg-compare-modal">{% trans "Порівняти пакети" %}</button>
+        {% if ads_tz %}{% include 'components/internet_shop_v2/scope.html' %}{% endif %}
     </div>
 </section>

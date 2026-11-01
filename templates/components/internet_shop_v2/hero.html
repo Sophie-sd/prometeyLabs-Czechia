@@ -1,17 +1,19 @@
-{% load static i18n %}
+{% load static i18n calc_cta_tags %}
 <section id="top" class="pl-shop__hero" aria-labelledby="pl-shop-hero-title">
     <picture class="pl-shop__hero-bg" aria-hidden="true">
         <source media="(max-width: 767px)" srcset="{% static 'images/internet_shop_v2/figma/bg-hero-v3-mobile.webp' %}" width="393" height="1440">
         <img src="{% static 'images/internet_shop_v2/figma/bg-hero-v3-1440.webp' %}" srcset="{% static 'images/internet_shop_v2/figma/bg-hero-v3-960.webp' %} 960w, {% static 'images/internet_shop_v2/figma/bg-hero-v3-1440.webp' %} 1440w" sizes="100vw" alt="" width="1440" height="1440" fetchpriority="high" decoding="async">
     </picture>
     <div class="pl-shop__inner pl-shop__hero-inner">
+        {% if ads_tz %}{% include 'components/ads/breadcrumbs.html' %}{% endif %}
         <div class="pl-shop__hero-head">
             <h1 id="pl-shop-hero-title" class="pl-shop__title pl-shop__title--hero">{% blocktrans trimmed %}Інтернет-магазини, що завантажуються <span class="pl-shop__accent">швидше, ніж клієнт встигає клікнути.</span>{% endblocktrans %}</h1>
-            <p class="pl-shop__hero-line">{% trans "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно." %}</p>
+            <p class="pl-shop__hero-line">{% if ads_tz %}{{ ads_copy.line }}{% else %}{% trans "Від 1 400 €. Гарантія на код 1 рік. 1 рік підтримки безкоштовно." %}{% endif %}</p>
             <p class="pl-shop__hero-lead">{% trans "Розробка інтернет-магазинів з нативною архітектурою без конструкторів. Міграція з Prom та OLX, SEO, пожиттєва гарантія на код. PrometeyLabs — e-commerce під ключ." %}</p>
         </div>
 
         <div class="pl-shop__hero-card">
+            {% calc_cta 'shop' %}{% calc_cta_sticky 'shop' %}
             <form
                 id="pl-shop-hero-form"
                 class="pl-shop__hero-form"

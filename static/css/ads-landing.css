@@ -1,0 +1,421 @@
+/* Shared TZ blocks for ads landings. Tokens follow Soft / pl-shop / pl-rs. */
+.pl-ads-wrap {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.pl-ads-h2 {
+    margin: 0 0 24px;
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: inherit;
+}
+
+.pl-ads-h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.pl-ads-lead {
+    margin: 0 0 28px;
+    max-width: 640px;
+    font-size: 16px;
+    line-height: 1.45;
+}
+
+.pl-ads-crumbs {
+    width: 100%;
+    margin: 0 0 16px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.pl-ads-crumbs__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pl-ads-crumbs__item + .pl-ads-crumbs__item::before {
+    content: "→";
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.pl-ads-crumbs__link,
+.pl-ads-crumbs__current {
+    color: inherit;
+}
+
+.pl-ads-faq,
+.pl-ads-contacts,
+.pl-ads-process,
+.pl-ads-cases,
+.pl-ads-scope,
+.pl-ads-types,
+.pl-ads-guarantee,
+.pl-ads-cards,
+.pl-ads-tech,
+.pl-ads-price {
+    padding: 48px 0;
+}
+
+/* TZ blocks must paint above absolutely positioned hero / calc glows (z-index: 0). */
+.pl-ads-faq,
+.pl-ads-contacts,
+.pl-ads-process,
+.pl-ads-cases,
+.pl-ads-scope,
+.pl-ads-types,
+.pl-ads-guarantee,
+.pl-ads-cards,
+.pl-ads-tech,
+.pl-ads-price {
+    position: relative;
+    z-index: 1;
+}
+
+.pl-ads-faq__item {
+    margin: 0 0 12px;
+    padding: 14px 18px;
+    border: 1px solid rgba(162, 162, 162, 0.28);
+    border-radius: 16px;
+}
+
+.pl-ads-faq__q {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.pl-ads-faq__a {
+    margin: 10px 0 0;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.pl-ads-contacts__list {
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.pl-ads-contacts__list a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pl-ads-contacts__legal {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.pl-ads-process__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pl-ads-process__item {
+    padding: 16px 18px;
+    border: 1px solid rgba(162, 162, 162, 0.28);
+    border-radius: 16px;
+}
+
+.pl-ads-process__num {
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #f60;
+}
+
+.pl-ads-process__name {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.pl-ads-process__text,
+.pl-ads-process__note {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.pl-ads-process__note {
+    margin-top: 20px;
+}
+
+.pl-ads-cases__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.pl-ads-case {
+    padding: 0 0 8px;
+}
+
+.pl-ads-case__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 280 / 180;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #141414;
+}
+
+.pl-ads-case__name {
+    margin: 10px 0 4px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.pl-ads-case__niche,
+.pl-ads-case__tags {
+    margin: 0 0 4px;
+    font-size: 13px;
+    line-height: 1.4;
+    opacity: 0.85;
+}
+
+.pl-ads-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    margin-top: 24px;
+    padding: 10px 22px;
+    border: 1px solid currentColor;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.pl-ads-scope__in,
+.pl-ads-scope__out {
+    margin: 0 0 20px;
+    max-width: 640px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.pl-ads-types__item {
+    margin: 0 0 18px;
+    max-width: 640px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.pl-ads-types__item a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pl-ads-guarantee p,
+.pl-ads-price p,
+.pl-ads-tech p {
+    margin: 0;
+    max-width: 720px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.pl-ads-cards__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.pl-ads-card {
+    padding: 18px;
+    border: 1px solid rgba(162, 162, 162, 0.28);
+    border-radius: 16px;
+}
+
+.pl-ads-card h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.pl-ads-card p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.pl-shop-body .pl-ads-h2,
+.pl-shop-body .pl-ads-h3,
+.pl-shop-body .pl-ads-lead,
+.pl-shop-body .pl-ads-faq,
+.pl-shop-body .pl-ads-contacts,
+.pl-shop-body .pl-ads-process,
+.pl-shop-body .pl-ads-cases,
+.pl-shop-body .pl-ads-scope {
+    color: #f5f5f5;
+}
+
+.pl-shop-body .pl-ads-crumbs {
+    color: #a2a2a2;
+}
+
+.pl-shop__hero-line {
+    white-space: normal;
+    max-width: 520px;
+    line-height: 1.35;
+    height: auto;
+}
+
+.pl-shop__hero-form-note,
+.pl-shop__hero-trust {
+    margin: 10px 0 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #a2a2a2;
+}
+
+.pl-shop__hero-form-note.pl-shop__hero-privacy {
+    margin-top: 6px;
+}
+
+.pl-shop__hero-privacy a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pl-ads-offer-line {
+    margin: 24px 0 0;
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.pl-ads-offer-line a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pl-rs__work-meta {
+    margin: 4px 0 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #a2a2a2;
+}
+
+.pl-dorobka-body .pl-rs__hero-form-card {
+    min-height: 360px;
+}
+
+.pl-dorobka-hero .pl-rs__floats {
+    display: none;
+}
+
+.pl-rs-body .pl-ads-h2,
+.pl-rs-body .pl-ads-h3,
+.pl-dorobka-body .pl-ads-h2,
+.pl-dorobka-body .pl-ads-h3 {
+    color: #f5f5f5;
+}
+
+.pl-rs-body .pl-ads-lead,
+.pl-rs-body .pl-ads-faq__a,
+.pl-rs-body .pl-ads-contacts,
+.pl-dorobka-body .pl-ads-lead,
+.pl-dorobka-body .pl-ads-faq__a,
+.pl-dorobka-body .pl-ads-contacts {
+    color: #d4d4d4;
+}
+
+@media (min-width: 768px) {
+    .pl-ads-wrap {
+        padding: 0 32px;
+    }
+
+    .pl-ads-faq,
+    .pl-ads-contacts,
+    .pl-ads-process,
+    .pl-ads-cases,
+    .pl-ads-scope,
+    .pl-ads-types,
+    .pl-ads-guarantee,
+    .pl-ads-cards,
+    .pl-ads-tech,
+    .pl-ads-price {
+        padding: 64px 0;
+    }
+
+    .pl-ads-process__list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pl-ads-cases__grid,
+    .pl-ads-cards__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1100px) {
+    .pl-ads-process__list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .pl-ads-cases__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .pl-ads-cards__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .pl-ads-wrap {
+        padding: 0 16px;
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+    }
+
+    .pl-ads-faq__q,
+    .pl-ads-faq__a,
+    .pl-ads-lead,
+    .pl-ads-contacts__list {
+        font-size: 16px;
+    }
+
+    /* 12 shop cards: two columns on phones keep the block short. */
+    .pl-ads-cases__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 12px;
+    }
+
+    .pl-ads-case__img {
+        border-radius: 12px;
+    }
+
+    .pl-ads-case__name {
+        font-size: 15px;
+    }
+
+    .pl-ads-case__niche,
+    .pl-ads-case__tags {
+        font-size: 12px;
+    }
+}

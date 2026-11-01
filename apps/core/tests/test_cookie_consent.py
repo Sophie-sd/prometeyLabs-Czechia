@@ -19,7 +19,7 @@ class ConsentDefaultBeforeTagsTests(TestCase):
         return r.content.decode('utf-8')
 
     def test_default_denied_before_gtm_on_cs_and_en(self):
-        for url in ('/', '/en/', '/web-development/', '/en/web-development/'):
+        for url in ('/', '/en/', '/internet-shop/', '/en/internet-shop/'):
             html = self._get(url)
             head = _head(html)
             i_default = head.find("gtag('consent','default'")
@@ -44,10 +44,10 @@ class ConsentDefaultBeforeTagsTests(TestCase):
         self.assertEqual(head.count('gtm.js?id='), 1)
 
     def test_banner_cs_and_en_equal_buttons_and_links(self):
-        cs = self._get('/web-development/')
+        cs = self._get('/')
         for s in ('Přijmout vše', 'Odmítnout vše', 'Nastavení', 'href="/cookies/"', 'id="pl-consent"'):
             self.assertIn(s, cs)
-        en = self._get('/en/web-development/')
+        en = self._get('/en/')
         for s in ('Accept all', 'Reject all', 'Settings', 'href="/en/cookies/"'):
             self.assertIn(s, en)
         # Accept and Reject share exactly the same class (equal prominence)

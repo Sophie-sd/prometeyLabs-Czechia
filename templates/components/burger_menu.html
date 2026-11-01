@@ -22,19 +22,14 @@
     <div class="plm__body">
         <div class="plm__nav">
             <a href="{% url 'home' %}" class="plm__link mobile-nav-link{% if rn == 'home' %} is-active{% endif %}">{% trans "Головна" %}<span class="plm__dot" aria-hidden="true"></span></a>
+            <a href="{% url 'corporate_website_v2' %}" class="plm__link mobile-nav-link{% if rn == 'corporate_website_v2' %} is-active{% endif %}">{% trans "Корпоративні сайти та лендінги" %}<span class="plm__dot" aria-hidden="true"></span></a>
+            <a href="{% url 'internet_shop_v2' %}" class="plm__link mobile-nav-link{% if rn == 'internet_shop_v2' %} is-active{% endif %}">{% trans "Інтернет-магазини" %}<span class="plm__dot" aria-hidden="true"></span></a>
+            <a href="{% url 'telegram_bot' %}" class="plm__link mobile-nav-link{% if rn == 'telegram_bot' %} is-active{% endif %}">{% trans "Telegram-боти" %}<span class="plm__dot" aria-hidden="true"></span></a>
+            <a href="{% url 'dorobka_sajtu' %}" class="plm__link mobile-nav-link{% if rn == 'dorobka_sajtu' %} is-active{% endif %}">{% trans "Доробка сайтів" %}<span class="plm__dot" aria-hidden="true"></span></a>
             <a href="{% url 'portfolio' %}" class="plm__link mobile-nav-link{% if rn == 'portfolio' %} is-active{% endif %}">{% trans "Портфоліо" %}<span class="plm__dot" aria-hidden="true"></span></a>
-            <div class="plm__group{% if rn == 'internet_shop_v2' or rn == 'corporate_website_v2' or rn == 'web_applications' or rn == 'telegram_bot' %} is-active{% endif %}">
-                <button type="button" class="plm__link plm__toggle" aria-expanded="false">{% trans "Послуги" %}<span class="plm__dot" aria-hidden="true"></span></button>
-                <div class="plm__sub">
-                    <a href="{% url 'internet_shop_v2' %}" class="plm__sublink mobile-nav-link{% if rn == 'internet_shop_v2' %} is-active{% endif %}">{% trans "Інтернет-магазини" %}</a>
-                    <a href="{% url 'corporate_website_v2' %}" class="plm__sublink mobile-nav-link{% if rn == 'corporate_website_v2' %} is-active{% endif %}">{% trans "Корпоративні сайти та лендінги" %}</a>
-                    <a href="{% url 'web_applications' %}" class="plm__sublink mobile-nav-link{% if rn == 'web_applications' %} is-active{% endif %}">{% trans "Веб-застосунки" %}</a>
-                    <a href="{% url 'telegram_bot' %}" class="plm__sublink mobile-nav-link{% if rn == 'telegram_bot' %} is-active{% endif %}">{% trans "Telegram-боти" %}</a>
-                </div>
-            </div>
+            <a href="{% url 'blog:blog_list' %}" class="plm__link mobile-nav-link{% if 'blog' in request.resolver_match.namespaces %} is-active{% endif %}">{% trans "Блог" %}<span class="plm__dot" aria-hidden="true"></span></a>
             <a href="{% url 'calculator' %}" class="plm__link mobile-nav-link{% if rn == 'calculator' %} is-active{% endif %}">{% trans "Розрахувати пропозицію" %}<span class="plm__dot" aria-hidden="true"></span></a>
             <a href="{% url 'contacts' %}" class="plm__link mobile-nav-link{% if rn == 'contacts' %} is-active{% endif %}">{% trans "Контакти" %}<span class="plm__dot" aria-hidden="true"></span></a>
-            <a href="{% url 'blog:blog_list' %}" class="plm__link mobile-nav-link{% if 'blog' in request.resolver_match.namespaces %} is-active{% endif %}">{% trans "Блог" %}<span class="plm__dot" aria-hidden="true"></span></a>
         </div>
 
         {% if request.resolver_match.url_name != 'thank_you' %}

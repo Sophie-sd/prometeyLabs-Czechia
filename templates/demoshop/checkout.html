@@ -21,55 +21,40 @@
                 <div class="ds-field">
                     <label for="id_customer_name">{% trans "Ім'я та прізвище" %}</label>
                     <input id="id_customer_name" type="text" name="customer_name" required
-                           autocomplete="name" placeholder="Олександр Коваленко">
+                           autocomplete="name" placeholder="Jan Novák">
                 </div>
                 <div class="ds-field">
                     <label for="id_phone">{% trans "Телефон" %}</label>
                     <input id="id_phone" type="tel" name="phone" required
-                           autocomplete="tel" inputmode="tel" placeholder="+38 (063) 000-00-00">
+                           autocomplete="tel" inputmode="tel" placeholder="+420 777 000 000">
                 </div>
                 <div class="ds-field">
                     <label for="id_email">Email</label>
                     <input id="id_email" type="email" name="email"
-                           autocomplete="email" placeholder="example@gmail.com">
+                           autocomplete="email" placeholder="jan@example.com">
                 </div>
             </fieldset>
 
             <fieldset class="ds-form-section">
-                <legend>{% trans "Доставка" %} <span class="ds-hint">({% trans "demo seznam výdejen" %})</span></legend>
+                <legend>{% trans "Доставка" %}</legend>
                 <div class="ds-delivery-methods">
+                    {% for value, label in checkout_carriers %}
                     <label class="ds-delivery-option">
-                        <input type="radio" name="delivery_method" value="np_warehouse" data-ds-delivery checked>
-                        <span data-label-np>{% trans "Výdejní místo" %}</span>
+                        <input type="radio" name="carrier" value="{{ value }}" data-ds-carrier{% if forloop.first %} checked{% endif %}>
+                        <span>{{ label }}</span>
                     </label>
-                    <label class="ds-delivery-option">
-                        <input type="radio" name="delivery_method" value="address" data-ds-delivery>
-                        <span data-label-address>{% trans "Адресна доставка" %}</span>
-                    </label>
+                    {% endfor %}
                 </div>
 
-                <div class="ds-delivery-details" id="ds-delivery-np" data-ds-np-block>
-                    <div class="ds-field ds-np-block">
-                        <label for="id_np_city">{% trans "Місто" %}</label>
-                        <input id="id_np_city" type="search" name="np_city_name" autocomplete="off" placeholder="{% trans "Почніть вводити місто…" %}" data-ds-np-city>
-                        <input type="hidden" name="np_city_ref" id="id_np_city_ref" data-ds-np-city-ref>
-                        <ul class="ds-np-suggest" data-ds-np-suggest hidden></ul>
-                    </div>
-                    <div class="ds-field" id="ds-warehouse-field">
-                        <label for="id_np_warehouse">{% trans "Відділення" %}</label>
-                        <select id="id_np_warehouse" name="np_warehouse_ref" disabled
-                                data-ds-np-warehouse
-                                data-label-loading="{% trans "Завантаження…" %}"
-                                data-label-choose="{% trans "Оберіть відділення" %}">
-                            <option value="">{% trans "Спочатку оберіть місто" %}</option>
-                        </select>
-                        <input type="hidden" name="np_warehouse_name" id="id_np_warehouse_name" data-ds-np-warehouse-name>
-                    </div>
+                <div class="ds-field" data-ds-city-block>
+                    <label for="id_np_city">{% trans "Місто" %}</label>
+                    <input id="id_np_city" type="text" name="np_city_name" autocomplete="address-level2"
+                           placeholder="{% trans "Praha" %}">
                 </div>
 
-                <div class="ds-field" id="ds-delivery-address" data-ds-address-block hidden>
+                <div class="ds-field" id="ds-delivery-address" data-ds-address-block>
                     <label for="id_address">{% trans "Адреса доставки" %}</label>
-                    <textarea id="id_address" name="address" rows="3" placeholder="{% trans "Вулиця, будинок, квартира" %}"></textarea>
+                    <textarea id="id_address" name="address" rows="3" placeholder="{% trans "Ulice, číslo popisné, PSČ" %}"></textarea>
                 </div>
             </fieldset>
 

@@ -50,9 +50,9 @@
     <div class="dc-container">
         <h2 data-reveal>{% tenant_text blocks_map registry "home" "catalog_teaser_title" %}</h2>
         <div class="dc-cf dc-cf--examples">
-            <button type="button" class="dc-cf__nav" data-cf-prev aria-label="{% trans 'Назад' %}"></button>
+            {% include 'democorp/partials/carousel_nav.html' with target='dc-home-catalog-track' %}
             <div class="cf" data-cf>
-                <div class="cf__track" data-cf-track>
+                <div class="cf__track" id="dc-home-catalog-track" data-cf-track>
                     {% for product in featured_products %}
                     <article class="cf__card">
                         <a class="dc-example-card" href="{% url 'democorp:product_detail' slug=site.slug product_slug=product.slug %}">
@@ -69,7 +69,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <button type="button" class="dc-cf__nav dc-cf__nav--next" data-cf-next aria-label="{% trans 'Далі' %}"></button>
+            {% include 'democorp/partials/carousel_nav.html' with target='dc-home-catalog-track' mobile=True %}
         </div>
     </div>
 </section>

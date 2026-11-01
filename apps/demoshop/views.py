@@ -6,7 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import translation, timezone
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext as _, gettext_lazy as _lazy
 from django.views.decorators.http import require_GET, require_POST
 
 from apps.core.i18n_content import localized_text
@@ -20,6 +20,14 @@ from .services import novaposhta as np_service
 from .theme import render_theme_css
 
 CATALOG_PAGE_SIZE = 12
+
+CHECKOUT_CARRIERS = (
+    ('packeta', _lazy('Zásilkovna / Packeta')),
+    ('ppl', _lazy('PPL')),
+    ('ceska_posta', _lazy('Česká pošta')),
+    ('pickup', _lazy('Osobní odběr')),
+)
+CHECKOUT_CARRIER_LABELS = dict(CHECKOUT_CARRIERS)
 
 
 def _get_active_shop(shop_slug: str) -> DemoShop:
@@ -252,18 +260,19 @@ def checkout(request, shop_slug):
 
     if request.method == 'POST':
         # SEC-02: total always from DB prices via cart_lines
-        delivery_method = request.POST.get('delivery_method', ShopOrder.DeliveryMethod.NP_WAREHOUSE)
-        if delivery_method not in ShopOrder.DeliveryMethod.values:
-            delivery_method = ShopOrder.DeliveryMethod.NP_WAREHOUSE
-
-        np_city_ref = request.POST.get('np_city_ref', '').strip()
-        np_warehouse_ref = request.POST.get('np_warehouse_ref', '').strip()
-        city = np_service.city_by_ref(np_city_ref) if np_city_ref else None
-        warehouse = np_service.warehouse_by_ref(np_warehouse_ref) if np_warehouse_ref else None
-
+        carrier = request.POST.get('carrier', 'packeta').strip()
+        if carrier not in CHECKOUT_CARRIER_LABELS:
+            carrier = 'packeta'
+        delivery_method = (
+            ShopOrder.DeliveryMethod.ADDRESS
+            if carrier == 'pickup'
+            else ShopOrder.DeliveryMethod.NP_WAREHOUSE
+        )
+        np_city_ref = ''
+        np_warehouse_ref = carrier
         lang = translation.get_language()
-        city_name = (city or {}).get('name', '') or request.POST.get('np_city_name', '').strip()
-        warehouse_name = (warehouse or {}).get('description', '') or request.POST.get('np_warehouse_name', '').strip()
+        city_name = request.POST.get('np_city_name', '').strip()
+        warehouse_name = str(CHECKOUT_CARRIER_LABELS[carrier])
         address = request.POST.get('address', '').strip()
 
         order_data = {
@@ -319,7 +328,7 @@ def checkout(request, shop_slug):
         return redirect('demoshop:order_success', shop_slug=shop.slug, order_id=order.pk)
 
     return render(request, 'demoshop/checkout.html', _base_context(
-        request, shop, cart_lines=lines, total=total,
+        request, shop, cart_lines=lines, total=total, checkout_carriers=CHECKOUT_CARRIERS,
     ))
 
 

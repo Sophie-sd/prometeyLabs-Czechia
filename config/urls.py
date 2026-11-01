@@ -26,6 +26,11 @@ urlpatterns = [
         name='robots_txt',
     ),
     path(
+        'llms.txt',
+        TemplateView.as_view(template_name='llms.txt', content_type='text/plain; charset=utf-8'),
+        name='llms_txt',
+    ),
+    path(
         'sitemap.xml',
         sitemap,
         {'sitemaps': sitemaps},
