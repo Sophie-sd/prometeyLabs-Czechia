@@ -82,8 +82,9 @@ class WhatsAppButtonWithMigratedUrlTests(TestCase):
         for path in ('/', '/en/', '/contacts/', '/en/contacts/'):
             html = self.client.get(path).content.decode()
             if path in ('/', '/en/'):
-                hero = re.search(r'<div class="hf-hero__actions">(.*?)</div>', html, re.S).group(1)
-                link = re.search(r'<a [^>]*href="' + re.escape(URL) + r'"[^>]*>(.*?)</a>', hero, re.S)
+                # Canon hero shows one quiz CTA + two ghost buttons; WhatsApp sits in the bottom CTA.
+                cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>\s*</div>', html, re.S).group(1)
+                link = re.search(r'<a [^>]*href="' + re.escape(URL) + r'"[^>]*>(.*?)</a>', cta, re.S)
                 self.assertIsNotNone(link, path)
                 self.assertEqual(link.group(1).strip(), 'WhatsApp')
             without_hrefs = re.sub(r'href="[^"]*"', 'href=""', html)

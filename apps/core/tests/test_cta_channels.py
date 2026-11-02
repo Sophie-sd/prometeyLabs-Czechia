@@ -1,4 +1,4 @@
-"""П.6: головний CTA — форма; WhatsApp лише якщо заповнено в адмінці."""
+"""Canon: the one primary hero CTA is the quiz; WhatsApp only when filled in the CMS."""
 import re
 
 from django.conf import settings
@@ -23,29 +23,31 @@ class HomeCtaChannelsTests(TestCase):
         translation.activate(settings.LANGUAGE_CODE)
 
     def _hero(self, html):
-        m = re.search(r'<div class="hf-hero__actions">(.*?)</div>', html, re.S)
-        self.assertIsNotNone(m)
-        return m.group(1)
+        start = html.index('<div class="hf-hero__actions')
+        return html[start:html.index('</section>', start)]
 
-    def test_primary_hero_cta_is_form(self):
-        html = self.client.get('/').content.decode()
-        hero = self._hero(html)
-        first_primary = re.search(r'<(?:a|button)[^>]*class="hf-btn hf-btn--light"[^>]*>', hero).group(0)
-        self.assertIn('data-modal="call-request-modal"', first_primary)
-        self.assertNotIn('t.me', first_primary)
+    def test_primary_hero_cta_is_the_quiz(self):
+        """One primary action on the first screen; Telegram and the modal are ghost buttons."""
+        hero = self._hero(self.client.get('/').content.decode())
+        primary = re.search(r'<a[^>]*class="pl-calc-cta__btn[^"]*"[^>]*>', hero)
+        self.assertIsNotNone(primary)
+        self.assertIn('data-calc-cta="hero"', primary.group(0))
+        self.assertNotIn('hf-btn--light', hero)
+        modal = re.search(r'<button[^>]*data-modal="call-request-modal"[^>]*>', hero).group(0)
+        self.assertIn('hf-btn--ghost', modal)
 
     def test_whatsapp_hidden_when_empty(self):
         html = self.client.get('/').content.decode()
-        self.assertNotIn('WhatsApp</a>', self._hero(html))
         self.assertNotIn('wa.me', html)
 
     def test_whatsapp_shown_when_filled_in_cms(self):
+        """The hero keeps three buttons; WhatsApp lives in the bottom CTA section."""
         self.contacts.whatsapp_url = 'https://wa.me/message/TESTONLY'
         self.contacts.save()
         cache.clear()
         html = self.client.get('/').content.decode()
-        self.assertIn('https://wa.me/message/TESTONLY', self._hero(html))
-        cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>', html, re.S).group(1)
+        self.assertNotIn('wa.me', self._hero(html))
+        cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>\s*</div>', html, re.S).group(1)
         self.assertIn('https://wa.me/message/TESTONLY', cta)
 
     def test_cta_section_primary_is_form(self):
@@ -84,8 +86,9 @@ class HomeWhatsAppOnlyFromUrlTests(TestCase):
         cache.clear()
 
     def _sections(self, html):
-        hero = re.search(r'<div class="hf-hero__actions">(.*?)</div>', html, re.S).group(1)
-        cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>', html, re.S).group(1)
+        start = html.index('<div class="hf-hero__actions')
+        hero = html[start:html.index('</section>', start)]
+        cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>\s*</div>', html, re.S).group(1)
         return hero, cta
 
     def test_absent_when_url_empty_even_if_phone_set(self):
@@ -96,15 +99,16 @@ class HomeWhatsAppOnlyFromUrlTests(TestCase):
             self.assertNotIn('wa.me', block)
 
     def test_present_with_wa_me_href_when_url_set(self):
+        """Canon hero has no WhatsApp button; the bottom CTA section still offers it."""
         url = f'https://wa.me/{self.FAKE_DIGITS}'
         self._save(whatsapp_url=url, phone_e164='', phone_display='')
         for path in ('/', '/en/'):
             hero, cta = self._sections(self.client.get(path).content.decode())
-            for block in (hero, cta):
-                link = re.search(r'<a [^>]*href="https://wa\.me/[^"]*"[^>]*>(.*?)</a>', block, re.S)
-                self.assertIsNotNone(link, path)
-                self.assertIn(f'href="{url}"', link.group(0))
-                self.assertEqual(link.group(1).strip(), 'WhatsApp')
+            self.assertNotIn('wa.me', hero, path)
+            link = re.search(r'<a [^>]*href="https://wa\.me/[^"]*"[^>]*>(.*?)</a>', cta, re.S)
+            self.assertIsNotNone(link, path)
+            self.assertIn(f'href="{url}"', link.group(0))
+            self.assertEqual(link.group(1).strip(), 'WhatsApp')
 
     def test_number_never_visible_outside_href(self):
         self._save(whatsapp_url=f'https://wa.me/{self.FAKE_DIGITS}', phone_e164='', phone_display='')

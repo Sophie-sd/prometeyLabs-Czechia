@@ -11825,3 +11825,7 @@ msgstr "Want an online store but don't know the price?"
 
 msgid "Odpovězte na 4 otázky — je to 1 minuta, zdarma a bez závazků. Ozveme se a řekneme cenu."
 msgstr "Answer 4 questions — it takes 1 minute, free and with no obligation. We will call back with the price."
+
+# home hero (step 3)
+msgid "Nechat poptávku"
+msgstr "Get in touch"

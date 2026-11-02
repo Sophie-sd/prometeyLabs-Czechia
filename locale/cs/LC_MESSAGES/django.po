@@ -11106,3 +11106,7 @@ msgstr ""
 
 msgid "Odpovězte na 4 otázky — je to 1 minuta, zdarma a bez závazků. Ozveme se a řekneme cenu."
 msgstr ""
+
+# home hero (step 3)
+msgid "Nechat poptávku"
+msgstr ""
