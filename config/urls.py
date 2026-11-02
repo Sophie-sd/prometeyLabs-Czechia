@@ -3,6 +3,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include, re_path
 from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView, RedirectView
+from apps.core.fx_views import set_currency
 from apps.core.i18n_views import set_language
 from django.views.static import serve
 from django.conf import settings
@@ -20,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('i18n/set_language/', set_language, name='set_language'),
+    path('i18n/set_currency/', set_currency, name='set_currency'),
     path(
         'robots.txt',
         TemplateView.as_view(template_name='robots.txt', content_type='text/plain'),

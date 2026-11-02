@@ -1,0 +1,15 @@
+{% load i18n %}
+<form id="fx-switch-{{ dom_id }}" class="fx-switch fx-switch--{{ variant }}" method="post" action="{% url 'set_currency' %}">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <p class="fx-switch__label" id="fx-switch-label-{{ dom_id }}">{% trans "Měna" %}</p>
+    <div class="fx-switch__track" role="group" aria-labelledby="fx-switch-label-{{ dom_id }}">
+        {% for item in choices %}
+            {% if item.current %}
+            <span class="fx-btn fx-btn--current" aria-current="true" aria-label="{{ item.name }}">{{ item.symbol }}</span>
+            {% else %}
+            <button type="submit" class="fx-btn mobile-touch-target" name="currency" value="{{ item.code }}" aria-label="{{ item.name }}">{{ item.symbol }}</button>
+            {% endif %}
+        {% endfor %}
+    </div>
+</form>

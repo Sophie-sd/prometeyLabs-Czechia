@@ -1,0 +1,6 @@
+{% load fx_tags %}
+{# The quiz result prices live in internet-shop-v2-quiz.js; it reads these when a currency is picked. #}
+<div id="fx-quiz-prices" hidden
+    data-fx-price-base="{% fx_from 1400 %}"
+    data-fx-price-premium="{% fx_from 2800 %}"
+    data-fx-price-platinum="{% fx_from 8000 %}"></div>

@@ -11156,3 +11156,16 @@ msgstr ""
 
 msgid "Blog"
 msgstr ""
+
+# currency switch (step 6)
+msgid "Měna"
+msgstr ""
+
+msgid "Koruna"
+msgstr ""
+
+msgid "Euro"
+msgstr ""
+
+msgid "od"
+msgstr ""

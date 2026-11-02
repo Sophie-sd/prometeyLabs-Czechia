@@ -76,6 +76,18 @@
     };
     var PKG_MAP = PKG_MAP_BY_LANG[lang] || PKG_MAP_BY_LANG.cs;
 
+    // The quiz result must quote the same currency the packages above show (#fx-quiz-prices).
+    (function applyQuizPrices() {
+        var node = document.getElementById('fx-quiz-prices');
+        if (!node) return;
+        ['base', 'premium', 'platinum'].forEach(function (key) {
+            var converted = node.getAttribute('data-fx-price-' + key);
+            if (converted && PKG_MAP[key]) {
+                PKG_MAP[key].price = converted;
+            }
+        });
+    }());
+
     var steps = Array.from(form.querySelectorAll('.pl-shop__quiz-step'));
     var progressBar = form.querySelector('[data-quiz-progress]');
     var stepNumEl = form.querySelector('[data-quiz-step-num]');

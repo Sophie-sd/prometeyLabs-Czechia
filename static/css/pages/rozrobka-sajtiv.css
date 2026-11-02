@@ -1,8 +1,8 @@
-/* /rozrobka-sajtiv/ (UA/RU/EN) — single render-blocking stylesheet.
-   Merged from components/currency.css + rozrobka-sajtiv.css + -2.css + -3.css (cascade order kept).
+/* /tvorba-webu/ (cs/en) — single render-blocking stylesheet.
+   Merged from components/currency.css + rozrobka-sajtiv.css (cascade order kept).
    The page skips the global currency.css link (base.html {% block currency_css %}), so the
    currency section below MUST stay identical to static/css/components/currency.css
-   (guarded by apps/core/tests/test_rozrobka_sajtiv_tiles.py). */
+   (guarded by apps/core/tests/test_currency_switch.py). */
 
 /* ==========================================================================
    components/currency.css (copy — keep in sync)
@@ -126,23 +126,13 @@
     }
 }
 
-.home-redesign .v2-why > .v2-intro {
-    margin-bottom: 20px;
-}
-
-.v2-why > .fx-switch,
-.pl-shop__section-head .fx-switch {
-    margin: 0 0 28px;
-}
-
-.pl-shop__section-head .fx-switch {
-    margin-bottom: 0;
-    margin-top: 20px;
-}
-
-.prop-mod__head .fx-switch {
+.hf-why__fx .fx-switch,
+.pl-shop__currency .fx-switch {
     margin: 0;
-    align-self: flex-end;
+}
+
+.pl-shop__section-head .fx-switch {
+    margin: 20px 0 0;
 }
 
 @media (max-width: 1024px) {
@@ -163,12 +153,6 @@
         min-height: 44px;
         padding: 0 8px;
         font-size: 16px;
-    }
-
-    .prop-mod__head .fx-switch {
-        flex: 1 1 100%;
-        align-self: stretch;
-        margin-top: 16px;
     }
 }
 

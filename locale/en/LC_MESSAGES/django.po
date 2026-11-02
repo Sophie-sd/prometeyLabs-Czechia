@@ -11875,3 +11875,16 @@ msgstr "Contacts"
 
 msgid "Blog"
 msgstr "Blog"
+
+# currency switch (step 6)
+msgid "Měna"
+msgstr "Currency"
+
+msgid "Koruna"
+msgstr "Czech koruna"
+
+msgid "Euro"
+msgstr "Euro"
+
+msgid "od"
+msgstr "from"

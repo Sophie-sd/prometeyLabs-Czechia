@@ -325,6 +325,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.csrf',
                 'apps.core.context_processors.global_settings',
+                'apps.core.fx.public_fx',
             ],
         },
     },

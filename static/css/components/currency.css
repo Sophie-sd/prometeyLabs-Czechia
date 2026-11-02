@@ -1,0 +1,169 @@
+.fx-switch {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: max-content;
+    max-width: 100%;
+    margin: 20px 0 28px;
+}
+
+.fx-switch__label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.fx-switch__track {
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 100%;
+    min-height: 44px;
+    padding: 3px;
+    border-radius: 999px;
+}
+
+.fx-btn {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    min-height: 38px;
+    margin: 0;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.fx-btn:focus-visible {
+    outline: 2px solid var(--color-brand-orange, #E65100);
+    outline-offset: 2px;
+}
+
+.fx-btn:active {
+    transform: scale(0.98);
+}
+
+.fx-switch--dark .fx-switch__label {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.fx-switch--dark .fx-switch__track {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.fx-switch--dark .fx-btn {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.fx-switch--light .fx-switch__label {
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.fx-switch--light .fx-switch__track {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.fx-switch--light .fx-btn {
+    color: rgba(0, 0, 0, 0.72);
+}
+
+.fx-switch--dark .fx-btn--current,
+.fx-switch--light .fx-btn--current,
+.fx-switch--dark .fx-btn--current:active,
+.fx-switch--light .fx-btn--current:active {
+    background: var(--color-brand-orange, #E65100);
+    color: #fff;
+    cursor: default;
+    transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .fx-switch--dark .fx-btn:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .fx-switch--light .fx-btn:hover {
+        color: #000;
+        background: rgba(0, 0, 0, 0.06);
+    }
+
+    .fx-switch--dark .fx-btn--current:hover,
+    .fx-switch--light .fx-btn--current:hover {
+        background: var(--color-brand-orange, #E65100);
+        color: #fff;
+    }
+}
+
+.hf-why__fx .fx-switch,
+.pl-shop__currency .fx-switch {
+    margin: 0;
+}
+
+.pl-shop__section-head .fx-switch {
+    margin: 20px 0 0;
+}
+
+@media (max-width: 1024px) {
+    .fx-btn {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .fx-switch,
+    .fx-switch__track {
+        width: 100%;
+    }
+
+    .fx-btn {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 44px;
+        padding: 0 8px;
+        font-size: 16px;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    @media (max-width: 1024px) {
+        .fx-switch__track {
+            min-height: 44px;
+        }
+
+        .fx-btn {
+            min-height: 44px;
+            font-size: 16px;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fx-btn,
+    .fx-btn:active {
+        transition: none;
+        transform: none;
+    }
+}

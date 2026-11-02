@@ -1,0 +1,7 @@
+{% load i18n fx_tags %}
+<ul id="fx-home-prices" class="hf-rows">
+    <li class="hf-row"><span class="hf-row__key">{% trans "Лендінги:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% fx_range 400 700 %}</span></li>
+    <li class="hf-row"><span class="hf-row__key">{% trans "Корпоративні сайти:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% fx_range 700 1000 %}</span></li>
+    <li class="hf-row"><span class="hf-row__key">{% trans "E-commerce:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% fx_from 1400 %}</span></li>
+    <li class="hf-row"><span class="hf-row__key">{% trans "Веб-додатки:" as rk %}{{ rk|cut:":" }}</span><span class="hf-row__val">{% fx_range 2800 8000 %}</span></li>
+</ul>
