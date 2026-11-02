@@ -70,8 +70,8 @@
     expire('cookieyes-consent');
     clearTracking(a,m);
     P.state=o;P.apply(o);
-    var acc=['necessary'],rej=[];(a?acc:rej).push('analytics');(m?acc:rej).push('advertisement');
-    try{d.dispatchEvent(new CustomEvent('cookieyes_consent_update',{detail:{accepted:acc,rejected:rej}}));}catch(e){}
+    /* gclid-capture.js listens: detail = pl_consent object {v,a,m,t,id} */
+    try{d.dispatchEvent(new CustomEvent('pl_consent_update',{detail:o}));}catch(e){}
     try{var url=el.getAttribute('data-log-url');if(url&&w.fetch)fetch(url,{method:'POST',keepalive:true,credentials:'omit',
       headers:{'Content-Type':'application/json'},body:JSON.stringify({id:o.id,action:action,a:o.a,m:o.m,
       lang:d.documentElement.lang||'',path:location.pathname.slice(0,200)})}).catch(function(){});}catch(e){}

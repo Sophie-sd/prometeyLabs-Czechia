@@ -1605,8 +1605,9 @@ class PrometeyApp {
                     this.restorePhonePrefixes(form);
                 }
 
+                // Редирект на /thank-you/ БЕЗ closeModal(): closeModal() → popBackState() →
+                // history.back() скасовувало навігацію (модалка просто закривалась).
                 this.handleFormSuccess(data);
-                this.closeModal();
             } else {
                 // При помилці від сервера - форма НЕ очищається, відповіді залишаються
                 // Обробляємо помилку від сервера
@@ -1772,9 +1773,19 @@ class PrometeyApp {
     }
 
     handleFormSuccess(data) {
-        if (data.redirect) {
-            window.location.href = data.redirect;
+        // Сервер завжди повертає redirect на /thank-you/ або /en/thank-you/ (мова ліда).
+        if (!data || !data.redirect) {
+            this.closeModal();
+            return;
         }
+        // Модалка поклала в history плашку plOverlay: не робимо history.back() (воно скасовувало
+        // навігацію), а замінюємо цей запис сторінкою подяки.
+        this._overlayPushed = false;
+        if (history.state && history.state.plOverlay) {
+            window.location.replace(data.redirect);
+            return;
+        }
+        window.location.href = data.redirect;
     }
 
     setupLanguageSwitcher() {
