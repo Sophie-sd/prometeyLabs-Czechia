@@ -1,0 +1,7 @@
+{% load calc_cta_tags %}
+{% comment %} «Proč si vybrat PrometeyLabs» = the home component as is (home_figma/why.html + home-figma.css).
+   H2 id = pl-rs-products-title (Ads sitelinks «Ceny od 10 000 Kč» / «Co je v ceně»); section id stays "why". {% endcomment %}
+<div class="hf pl-rs-hf">
+    {% include 'components/home_figma/why.html' with why_title_id='pl-rs-products-title' why_fx_slot='why' %}
+    <div class="pl-rs__inner">{% calc_cta 'rozrobka' 'wide' 'why' %}</div>
+</div>

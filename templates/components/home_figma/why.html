@@ -1,8 +1,10 @@
 {% load i18n static %}
-<section class="hf-why hf-wrap" id="why" aria-labelledby="hf-why-title">
+{# Reused on /tvorba-webu/: why_title_id = Ads anchor on the H2, why_fx_slot = the page's own currency switcher slot. #}
+{% with why_h2_id=why_title_id|default:"hf-why-title" %}
+<section class="hf-why hf-wrap" id="why" aria-labelledby="{{ why_h2_id }}">
     <div class="hf-why__intro">
         <div class="hf-why__text">
-            <h2 class="hf-h2 hf-why__title" id="hf-why-title">{% trans "ЧОМУ ВАРТО ОБРАТИ" as wt %}{{ wt|lower|capfirst }}<br><span class="hf-accent">PrometeyLabs</span></h2>
+            <h2 class="hf-h2 hf-why__title" id="{{ why_h2_id }}">{% trans "ЧОМУ ВАРТО ОБРАТИ" as wt %}{{ wt|lower|capfirst }}<br><span class="hf-accent">PrometeyLabs</span></h2>
             <p class="hf-why__lead">{% trans "Ми розробляємо сайти, якими справді легко керувати. Жодних обмежень шаблонних рішень — тільки чистий, оптимізований код та індивідуальна архітектура. Завдяки детальній розробці адміністративної частини, ви можете самостійно оновлювати весь контент сайту в кілька кліків, не залучаючи програмістів. Ми створюємо фундамент, який готовий до будь-яких інтеграцій та росту разом із вашим бізнесом." %}</p>
         </div>
         
@@ -62,3 +64,4 @@
             <p class="hf-ai__badge-text">{% trans "Спеціалісти PrometeyLabs мають роки практики у веб-розробці, дизайні, інтеграціях, мобільних додатках та інтернет-маркетингу. Це гарантує, що ваш проект буде реалізований системно, технологічно та з розумінням бізнес-задач." %}</p></div>
     </div>
 </section>
+{% endwith %}

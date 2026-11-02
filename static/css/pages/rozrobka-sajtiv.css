@@ -2240,3 +2240,78 @@
 .pl-rs__hero-links a{color:#f5f5f5;text-decoration:none;white-space:nowrap}
 .pl-rs__hero-links a:hover{color:#f60}
 .pl-rs__hero-trust{margin:8px 0 0;font-size:11px;line-height:1.45;color:#a2a2a2;text-align:center}
+
+/* ==========================================================================
+   Canon page order (hero → why → form №1 → economy → strip → work → form №2 → FAQ → calc)
+   ========================================================================== */
+/* hero lead accents */
+.pl-rs__hero .pl-rs__lead .pl-rs__acc { color: #ff8a3d; font-weight: 700; }
+
+/* Ads sitelink anchors: heading stays visible under the fixed header (80px) */
+#pl-rs-products-title,
+#pl-rs-admin-title,
+#pl-rs-work-title,
+#pl-rs-calc,
+#why,
+#economy,
+#faq {
+    scroll-margin-top: calc(var(--pl-header-offset, 80px) + 16px + env(safe-area-inset-top, 0px));
+}
+
+/* reused home «Proč si vybrat» (home-figma.css) on the black page */
+.pl-rs-hf { padding-bottom: 8px; }
+/* the AI-card badge hangs 136px below the card (as on the home page) — do not clip it */
+@media (min-width: 1100px) { .pl-rs-hf { padding-bottom: 56px; } }
+.pl-rs-hf .pl-calc-cta--wide { display: flex; justify-content: center; }
+.pl-rs-hf .pl-calc-cta--wide .pl-calc-cta__btn { min-width: min(420px, 100%); justify-content: center; }
+@media (max-width: 767px) {
+    .pl-rs-hf .pl-calc-cta--wide .pl-calc-cta__btn { width: 100%; min-width: 0; }
+}
+
+/* reused corp blocks (corporate-website-v2.css) */
+.pl-rs-corp { background: transparent; }
+.pl-rs-corp .pl-corp__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--pl-gray);
+    cursor: pointer;
+}
+.pl-rs-corp .pl-corp__consent-check {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--pl-orange, #d05300);
+}
+.pl-rs-corp .pl-corp__consent a { color: var(--pl-text); text-decoration: underline; text-underline-offset: 2px; }
+.pl-rs-strip .pl-corp__calc-promo-copy {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.pl-rs-strip .pl-corp__calc-promo-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.35;
+    color: var(--pl-gray);
+}
+.pl-rs-corp + .pl-rs__section--work { margin-top: 0; }
+
+/* sticky «Spočítejte cenu online»: 12px side gap on mobile */
+@media (max-width: 767px) {
+    body.pl-rs-body { --pl-calc-sticky-side: 12px; }
+}
+
+/* portfolio card: name + type·niche stacked on the left, «Detail» on the right */
+.pl-rs__work-copy{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.pl-rs__work-copy .pl-rs__work-name{max-width:none}
+.pl-rs__work-copy .pl-rs__work-meta{margin:0}
+@media (max-width:767px){.pl-rs__work-track{scroll-padding-inline:16px}} /* first card lines up with the H2 */
+
+/* without visible breadcrumbs the H1 slid under the header on mobile (checked at 390×844) */
+@media (max-width:767px){.pl-rs__h1{margin-top:33px}}

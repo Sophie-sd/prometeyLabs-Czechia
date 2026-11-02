@@ -1,21 +1,20 @@
 {% load i18n static %}
+{% comment %} The /calculator/ test embedded, open on question 1 (no «PROJÍT TEST» screen). Same markup + js/calculator.js (defer);
+   styles = css/components/calc-embed.css (scoped to .pl-rs-calc-embed; calculator.css is NOT loaded here — it restyles the site nav).
+   No price on any step: /forms/test/ answers with a redirect → /thank-you/. {% endcomment %}
 <section class="pl-rs__calc" id="pl-rs-calc" aria-labelledby="pl-rs-calc-title">
     <div class="pl-rs__inner">
         <div class="pl-rs__calc-card">
-            <img class="pl-rs__calc-rings pl-rs__calc-rings--a" src="{% static 'img/rozrobka-figma/rings-cta1.svg' %}" alt="" width="414" height="414" decoding="async" aria-hidden="true">
-            <img class="pl-rs__calc-rings pl-rs__calc-rings--b" src="{% static 'img/rozrobka-figma/rings-cta2.svg' %}" alt="" width="414" height="414" decoding="async" aria-hidden="true">
+            <img class="pl-rs__calc-rings pl-rs__calc-rings--a" src="{% static 'img/rozrobka-figma/rings-cta1.svg' %}" alt="" width="414" height="414" loading="lazy" decoding="async" aria-hidden="true">
+            <img class="pl-rs__calc-rings pl-rs__calc-rings--b" src="{% static 'img/rozrobka-figma/rings-cta2.svg' %}" alt="" width="414" height="414" loading="lazy" decoding="async" aria-hidden="true">
             <div class="pl-rs__calc-body">
-                <h2 id="pl-rs-calc-title" class="pl-rs__h2 pl-rs__h2--calc">{% trans "Порахуйте бюджет до дзвінка" %}</h2>
-                <p class="pl-rs__note pl-rs__note--center">{% trans "Чотири орієнтири — старт розмови. Точну суму і строк фіксуємо після брифу в договорі." %}</p>
-                <div class="pl-rs__calc-actions">
-                    <a class="pl-rs__cta pl-rs__cta--calc mobile-touch-target" href="{% url 'calculator' %}">
-                        <span>{% trans "Відкрити калькулятор" %}</span>
-                        <img src="{% static 'img/rozrobka-figma/arrow-cta.svg' %}" alt="" width="24" height="24" decoding="async">
-                    </a>
-                    <a class="pl-rs__pill pl-rs__pill--calc pl-rs__pill--muted mobile-touch-target" href="{% url 'calculator' %}">{% trans "Розрахувати вартість" %}</a>
-                    <a class="pl-rs__pill pl-rs__pill--calc pl-rs__pill--muted mobile-touch-target" href="{{ site_contact.telegram_url }}" target="_blank" rel="noopener noreferrer">{% trans "Написати в Telegram" %}</a>
-                    {% if site_contact.get_tel_href %}<a class="pl-rs__pill pl-rs__pill--calc pl-rs__pill--muted mobile-touch-target" href="{{ site_contact.get_tel_href }}">{% trans "Зателефонувати прямо зараз" %}</a>{% endif %}
+                <h2 id="pl-rs-calc-title" class="pl-rs__h2 pl-rs__h2--calc">{% trans "Spočítejte si rozpočet ještě před hovorem" %}</h2>
+                <p class="pl-rs__note pl-rs__note--center">{% trans "5 otázek · 2 minuty · zdarma, bez závazků. Přesnou částku a termín fixujeme po briefu ve smlouvě." %}</p>
+                <div class="calc-test pl-rs-calc-embed" id="test-section">
+                    {% trans "Stránka: Tvorba webu · Vložená kalkulačka" as calc_details %}{% trans "Nechte kontakt — ozveme se do 15 minut a řekneme cenu i termín." as calc_contact_note %}{% trans "Získat kalkulaci" as calc_submit_label %}
+                    {% include 'components/calculator/test_form.html' with calc_source_page='rozrobka-sajtiv' %}
                 </div>
+                <p class="pl-rs__calc-alt">{% trans "Je pro vás jednodušší napsat?" %} <a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">Telegram</a>{% if site_contact.email %} · <a href="mailto:{{ site_contact.email }}">{{ site_contact.email }}</a>{% endif %}{% if site_contact.get_tel_href %} · <a href="{{ site_contact.get_tel_href }}">{{ site_contact.phone }}</a>{% endif %}</p>
             </div>
         </div>
     </div>

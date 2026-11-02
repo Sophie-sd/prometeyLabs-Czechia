@@ -20,14 +20,21 @@ CALC_CTA = {
             'micro': '5 questions · 2 minutes · free, no obligation',
         },
     },
+    # Kvíz je vložený přímo na stránce (#pl-rs-calc); sticky i na desktopu,
+    # bez šipky, s vlastní událostí sticky_cta_click (není to konverze).
     'rozrobka': {
-        'target': 'calculator',
+        'target': '#pl-rs-calc',
+        'sticky_desktop': True,
+        'sticky_arrow': False,
+        'sticky_event': 'sticky_cta_click',
         'cs': {
-            'label': 'Spočítat cenu webu',
+            'label': 'Spočítat cenu online',
+            'sticky': 'Spočítejte cenu online',
             'micro': '5 otázek · 2 minuty · zdarma, bez závazků',
         },
         'en': {
-            'label': 'Calculate website cost',
+            'label': 'Calculate the price online',
+            'sticky': 'Calculate the price online',
             'micro': '5 questions · 2 minutes · free, no obligation',
         },
     },
@@ -72,10 +79,14 @@ CALC_START_QUERY = '?start=1'
 
 
 def calc_cta_copy(page, lang):
-    """Return {'label', 'sticky', 'micro', 'target'} for page × lang (cs fallback)."""
+    """Return {'label', 'sticky', 'micro', 'target', 'sticky_*'} for page × lang (cs fallback)."""
     entry = CALC_CTA[page]
     lang = 'en' if (lang or '').startswith('en') else 'cs'
     data = dict(entry[lang])
     data['target'] = entry['target']
+    # sticky options (shared component): defaults = mobile-only bar with arrow, cta_calc_click
+    data['sticky_desktop'] = entry.get('sticky_desktop', False)
+    data['sticky_arrow'] = entry.get('sticky_arrow', True)
+    data['sticky_event'] = entry.get('sticky_event', '')
     data.setdefault('sticky', data['label'])
     return data

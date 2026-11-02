@@ -1,0 +1,29 @@
+{% load static i18n %}{% comment %} Shared «phone + button» lead CTA (Figma 2:578 / 2:1032). Used by the /tvorba-webu/ forms №1/№2 and the /internet-shop/ mid-page form.
+   Vars: section_id, title_id, accent, title, text, form_type, source_page, lead_name, details (optional), phone_label, button, extra_class (optional), consent (optional: personal-data checkbox like the figma lead forms). {% endcomment %}
+<section id="{{ section_id }}" class="pl-corp__lead-cta{% if extra_class %} {{ extra_class }}{% endif %}" aria-labelledby="{{ title_id }}">
+    <div class="pl-corp__inner">
+        <div class="pl-corp__lead-cta-row" data-reveal>
+            <div class="pl-corp__lead-cta-copy">
+                <h2 id="{{ title_id }}" class="pl-corp__lead-cta-title"><span class="pl-corp__accent">{{ accent }}</span> {{ title }}</h2>
+                <p class="pl-corp__lead-cta-text">{{ text }}</p>
+            </div>
+            <form class="pl-corp__lead-cta-form" method="post" action="{% url 'form_submit' %}" data-form-type="{{ form_type }}">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="{{ form_type }}">
+                <input type="hidden" name="source_page" value="{{ source_page }}">
+                <input type="hidden" name="name" value="{{ lead_name }}">
+                {% if details %}<input type="hidden" name="details" value="{{ details }}">{% endif %}
+                <label class="pl-corp__field">
+                    <img class="pl-corp__field-icon" src="{% static 'images/corporate_website_v2/figma/icon-call.svg' %}" alt="" width="14" height="14">
+                    <span class="pl-corp__sr-only">{{ phone_label }}</span>
+                    <input type="tel" name="phone" class="pl-corp__field-input mobile-touch-target" autocomplete="tel" inputmode="tel" placeholder="{{ phone_placeholder|default:phone_label }}" required>
+                </label>
+                <button type="submit" class="pl-corp__btn pl-corp__btn--accent mobile-touch-target">{{ button }}</button>
+                {% if consent %}{% url 'privacy' as privacy_url %}<label class="pl-corp__consent">
+                    <input type="checkbox" name="consent" value="1" required class="pl-corp__consent-check">
+                    <span>{% blocktrans trimmed with privacy_url=privacy_url %}Souhlasím se zpracováním osobních údajů v souladu se <a href="{{ privacy_url }}" target="_blank" rel="noopener">zásadami ochrany osobních údajů</a>.{% endblocktrans %}</span>
+                </label>{% endif %}
+            </form>
+        </div>
+    </div>
+</section>

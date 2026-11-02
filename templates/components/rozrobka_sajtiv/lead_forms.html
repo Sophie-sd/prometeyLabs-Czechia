@@ -1,0 +1,10 @@
+{% load i18n %}
+{% comment %} Phone-only lead forms = the shared /corporate-website/ #free-analysis component.
+   POST /forms/submit/ (base.js), form_type=site_request → KeyCRM → /thank-you/. Hidden name: site_request requires one. {% endcomment %}
+{% if rs_form == 1 %}
+{% trans "Bezplatná konzultace" as lead_name %}{% trans "Telefonní číslo" as phone_label %}{% trans "Vytvořit web:" as accent %}{% trans "bezplatná konzultace a kalkulace ceny" as title %}{% trans "Nechte nám telefonní číslo — spočítáme cenu i termín vašeho webu a zavoláme s doporučeními. Ozveme se do 15 minut." as text %}{% trans "Získat konzultaci" as button %}{% trans "Stránka: Tvorba webu · Formulář č. 1 (po sekci Proč si vybrat PrometeyLabs)" as details %}
+{% include 'components/corporate_website_v2/_lead_cta.html' with section_id='rs-form-1' title_id='pl-rs-form1-title' extra_class='pl-rs-lead pl-rs-lead--1' form_type='site_request' source_page='rozrobka-sajtiv' consent=True %}
+{% else %}
+{% trans "Bezplatná konzultace" as lead_name %}{% trans "Telefonní číslo" as phone_label %}{% trans "Objednat web na klíč:" as accent %}{% trans "váš projekt probereme zdarma" as title %}{% trans "Nechte nám číslo — vybereme typ webu podle vašeho zadání, řekneme termín i cenu. Cenu a termín fixujeme ve smlouvě. Ozveme se do 15 minut." as text %}{% trans "Objednat hovor" as button %}{% trans "Stránka: Tvorba webu · Formulář č. 2 (po sekci Naše práce)" as details %}
+{% include 'components/corporate_website_v2/_lead_cta.html' with section_id='rs-form-2' title_id='pl-rs-form2-title' extra_class='pl-rs-lead pl-rs-lead--2' form_type='site_request' source_page='rozrobka-sajtiv' consent=True %}
+{% endif %}

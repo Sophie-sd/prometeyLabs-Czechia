@@ -213,6 +213,46 @@
     body.modal-open .pl-calc-sticky { visibility: hidden; pointer-events: none; }
 }
 
+/* ---------- wide (secondary button lower on the page: «Spočítat cenu online →») ---------- */
+.pl-calc-cta--wide { margin: 40px auto 0; }
+.pl-calc-cta--wide .pl-calc-cta__btn { min-height: 56px; }
+@media (max-width: 767px) {
+    .pl-calc-cta--wide { margin-top: 28px; }
+}
+
+/* ---------- sticky on desktop (opt-in: .pl-calc-sticky--desktop, e.g. /tvorba-webu/) ----------
+   Bottom right above the round contact button (#contact-widget-toggle: bottom 80px,
+   right 2%, 67px) with a 12px gap, aligned to its right edge; width follows the text. */
+@media (min-width: 768px) {
+    .pl-calc-sticky.pl-calc-sticky--desktop {
+        display: block;
+        position: fixed;
+        right: 2%;
+        bottom: calc(80px + 67px + 12px + env(safe-area-inset-bottom, 0px));
+        z-index: 9000;
+        opacity: 0;
+        transform: translateY(12px);
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+    }
+    .pl-calc-sticky.pl-calc-sticky--desktop.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
+    }
+    .pl-calc-sticky--desktop .pl-calc-sticky__btn {
+        min-height: 52px;
+        padding: 0 24px;
+        font-size: 16px;
+        white-space: nowrap;
+    }
+    body.menu-open .pl-calc-sticky--desktop,
+    body.modal-open .pl-calc-sticky--desktop { visibility: hidden; pointer-events: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .pl-calc-cta__btn, .pl-calc-sticky__btn, .pl-calc-cta__arrow, .pl-calc-sticky { transition: none; }
 }

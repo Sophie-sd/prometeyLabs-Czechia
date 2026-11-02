@@ -1,0 +1,175 @@
+{% load i18n %}{% comment %} The 5-question test of /calculator/ (form#calculator-test, js/calculator.js). Single source for /calculator/ and the embed on /tvorba-webu/.
+   Optional: calc_source_page, calc_details (hidden fields for KeyCRM), calc_contact_note, calc_submit_label. No price is ever rendered here — the server answers with a redirect to /thank-you/. {% endcomment %}
+                    <form id="calculator-test" class="calc-form" data-form-type="test"
+                          data-question-label="{% trans 'Питання' %}"
+                          data-of-label="{% trans 'з' %}">
+                        {% csrf_token %}
+                        {% if calc_source_page %}<input type="hidden" name="source_page" value="{{ calc_source_page }}">{% endif %}
+                        {% if calc_details %}<input type="hidden" name="details" value="{{ calc_details }}">{% endif %}
+
+                        <div class="calc-question">
+                            <div class="calc-question__header">
+                                <span class="calc-question__number">01</span>
+                                <h3 class="calc-question__title">{% trans "Який сайт необхідно розробити?" %}</h3>
+                            </div>
+                            <div class="calc-options" data-question-type="radio">
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_1" value="A" required>
+                                    <span class="calc-option__text">{% trans "Лендінг (одна сторінка)" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_1" value="B" required>
+                                    <span class="calc-option__text">{% trans "Розширений лендінг / промо-сайт (багатосторінковий)" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_1" value="C" required>
+                                    <span class="calc-option__text">{% trans "Корпоративний сайт або сайт послуг" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_1" value="D" required>
+                                    <span class="calc-option__text">{% trans "Інтернет-магазин" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_1" value="E" required>
+                                    <span class="calc-option__text">{% trans "Веб-додаток / PWA" %}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="calc-question">
+                            <div class="calc-question__header">
+                                <span class="calc-question__number">02</span>
+                                <h3 class="calc-question__title">{% trans "Як мають надходити та оброблятися заявки з сайту?" %}</h3>
+                            </div>
+                            <div class="calc-options" data-question-type="checkbox">
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_2" value="A">
+                                    <span class="calc-option__text">{% trans "На email" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_2" value="B">
+                                    <span class="calc-option__text">{% trans "У месенджер (Telegram / WhatsApp / Viber)" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_2" value="C">
+                                    <span class="calc-option__text">{% trans "В адмін-панель сайту (простий кабінет / CRM)" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_2" value="D">
+                                    <span class="calc-option__text">{% trans "В існуючу CRM" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_2" value="E">
+                                    <span class="calc-option__text">{% trans "Відправка заявок не потрібна" %}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="calc-question">
+                            <div class="calc-question__header">
+                                <span class="calc-question__number">03</span>
+                                <h3 class="calc-question__title">{% trans "За скільки днів потрібно запустити сайт?" %}</h3>
+                            </div>
+                            <div class="calc-options" data-question-type="radio">
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_3" value="A" required>
+                                    <span class="calc-option__text">{% trans "Терміново (3–14 днів)" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_3" value="B" required>
+                                    <span class="calc-option__text">{% trans "Стандартно (7–21 день)" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_3" value="C" required>
+                                    <span class="calc-option__text">{% trans "Не поспішаю (14–28 днів)" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_3" value="D" required>
+                                    <span class="calc-option__text">{% trans "Гнучкий графік, можна підлаштуватися" %}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="calc-question">
+                            <div class="calc-question__header">
+                                <span class="calc-question__number">04</span>
+                                <h3 class="calc-question__title">{% trans "Чи потрібні онлайн-оплати на сайті?" %}</h3>
+                            </div>
+                            <div class="calc-options" data-question-type="radio">
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_4" value="A" required>
+                                    <span class="calc-option__text">{% trans "Ні, оплата на сайті не потрібна" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_4" value="B" required>
+                                    <span class="calc-option__text">{% trans "Так, оплата карткою онлайн" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_4" value="C" required>
+                                    <span class="calc-option__text">{% trans "Так, оплата за рахунком / інвойсом" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--radio">
+                                    <input type="radio" name="question_4" value="D" required>
+                                    <span class="calc-option__text">{% trans "Так, кілька способів оплати (картка + рахунок тощо)" %}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="calc-question">
+                            <div class="calc-question__header">
+                                <span class="calc-question__number">05</span>
+                                <h3 class="calc-question__title">{% trans "Яка поточна готовність проєкту?" %}</h3>
+                            </div>
+                            <div class="calc-options" data-question-type="checkbox">
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_5" value="A">
+                                    <span class="calc-option__text">{% trans "Є тільки ідея, потрібна консультація" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_5" value="B">
+                                    <span class="calc-option__text">{% trans "Є повне, чітко сформульоване технічне завдання" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_5" value="C">
+                                    <span class="calc-option__text">{% trans "Є макети/дизайн" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_5" value="D">
+                                    <span class="calc-option__text">{% trans "Є логотип та брендинг" %}</span>
+                                </label>
+                                <label class="calc-option calc-option--checkbox">
+                                    <input type="checkbox" name="question_5" value="E">
+                                    <span class="calc-option__text">{% trans "Є соціальні мережи та контент" %}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="calc-step-nav" id="calc-step-nav" hidden>
+                            <button type="button" class="calc-step-nav__prev" hidden>{% trans "← Назад" %}</button>
+                            <button type="button" class="calc-step-nav__skip">{% trans "Пропустити" %}</button>
+                            <button type="button" class="calc-step-nav__next" disabled>{% trans "Далі →" %}</button>
+                        </div>
+
+                        <div class="calc-user-data">
+                            {% if calc_contact_note %}<p class="calc-user-data__note">{{ calc_contact_note }}</p>{% endif %}
+                            <div class="calc-user-data__fields">
+                                <div class="calc-field">
+                                    <label for="test-name" class="calc-field__label">{% trans "Ваше ім'я" %}</label>
+                                    <input type="text" id="test-name" name="name" class="calc-field__input" placeholder="{% trans "Введіть ваше ім'я" %}" required>
+                                    <span class="calc-field__error" id="name-error"></span>
+                                </div>
+
+                                <div class="calc-field">
+                                    <label for="test-phone" class="calc-field__label">{% trans "Телефон" %}</label>
+                                    <input type="tel" id="test-phone" name="phone" class="calc-field__input" placeholder="{{ phone_placeholder }}" required>
+                                    <span class="calc-field__error" id="phone-error"></span>
+                                </div>
+                            </div>
+
+                            {% include 'components/lead_gdpr_min.html' with prefix='calc-test' input_class='calc-field__input' wrap_class='calc-user-data__gdpr' email_optional=True %}
+
+                            <button type="submit" class="calc-submit-btn">
+                                <span class="calc-submit-btn__text">{% if calc_submit_label %}{{ calc_submit_label }}{% else %}{% trans "ОТРИМАТИ РОЗРАХУНОК" %}{% endif %}</span>
+                            </button>
+                        </div>
+                    </form>

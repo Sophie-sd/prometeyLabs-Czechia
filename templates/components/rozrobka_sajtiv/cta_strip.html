@@ -1,0 +1,4 @@
+{% load i18n %}
+{# CTA strip = the shared /corporate-website/ #calc-promo component with its own copy; scrolls to the embedded calculator. #}
+{% trans "Chcete web, ale neznáte rozpočet?" as title %}{% trans "Odpovězte na 5 otázek — jsou to 2 minuty, zdarma a bez závazků." as text %}{% trans "Spočítat cenu online →" as button %}
+{% include 'components/corporate_website_v2/_calc_promo.html' with section_id='rs-calc-strip' title_id='pl-rs-strip-title' href='#pl-rs-calc' scroll='#pl-rs-calc' cta_position='mid' cta_page='rozrobka' extra_class='pl-rs-strip' %}

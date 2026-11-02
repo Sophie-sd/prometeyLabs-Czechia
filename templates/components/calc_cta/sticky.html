@@ -1,4 +1,4 @@
-{% load static %}<div class="pl-calc-sticky" data-calc-sticky{% if scroll_target %} data-calc-target="{{ scroll_target }}"{% endif %} aria-hidden="true">
-    <a href="{{ href }}" class="pl-calc-sticky__btn" data-calc-cta="sticky" data-calc-page="{{ page }}"{% if scroll_target %} data-calc-scroll="{{ scroll_target }}"{% endif %} tabindex="-1"><span class="pl-calc-cta__label">{{ label }}</span><span class="pl-calc-cta__arrow" aria-hidden="true">→</span></a>
+{% load static %}<div class="pl-calc-sticky pl-calc-sticky--{{ page }}{% if sticky_desktop %} pl-calc-sticky--desktop{% endif %}" data-calc-sticky{% if sticky_desktop %} data-calc-sticky-desktop{% endif %}{% if scroll_target %} data-calc-target="{{ scroll_target }}"{% endif %} aria-hidden="true">
+    <a href="{{ href }}" class="pl-calc-sticky__btn" data-calc-cta="sticky" data-calc-page="{{ page }}"{% if sticky_event %} data-calc-event="{{ sticky_event }}"{% endif %}{% if scroll_target %} data-calc-scroll="{{ scroll_target }}"{% endif %} tabindex="-1"><span class="pl-calc-cta__label">{{ label }}</span>{% if sticky_arrow %}<span class="pl-calc-cta__arrow" aria-hidden="true">→</span>{% endif %}</a>
 </div>
-<script src="{% static 'js/components/calc-cta.js' %}?v=3" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/components/calc-cta.js' %}?v=4" nonce="{{ csp_nonce }}" defer></script>

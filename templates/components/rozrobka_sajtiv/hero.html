@@ -4,73 +4,14 @@
         <img class="pl-rs__hero-bg-img" src="{% static 'img/rozrobka-figma/hero-bg.webp' %}" srcset="{% static 'img/rozrobka-figma/hero-bg-480w.webp' %} 480w, {% static 'img/rozrobka-figma/hero-bg-800w.webp' %} 800w, {% static 'img/rozrobka-figma/hero-bg.webp' %} 1983w" sizes="(max-width: 767px) 100vw, 100vw" alt="" width="1983" height="793" decoding="async" fetchpriority="high">
     </div>
     <div class="pl-rs__inner pl-rs__hero-stage">
+        {# Price floats moved out of the hero — prices now live in «Proč si vybrat» right below. #}
         <div class="pl-rs__hero-copy">
-            {% if ads_tz %}{% include 'components/ads/breadcrumbs.html' %}{% endif %}
-            <div class="pl-rs__kicker">
-                <p class="pl-rs__eyebrow">{% trans "Договір" %}</p>
-            </div>
+            {# Visible breadcrumbs dropped; the BreadcrumbList JSON-LD in <head> stays. #}
             <h1 id="pl-rs-h1" class="pl-rs__h1">{% trans "Tvorba webů na klíč od 10 000 Kč" %}</h1>
-            <p class="pl-rs__lead">{% trans "Landing od 10 000 Kč za 3–7 dní, firemní web od 17 000 Kč, e-shop od 34 500 Kč. Cenu a termín zapisujeme do smlouvy. Doživotní záruka na kód, rok podpory zdarma, administrace zůstává vám." %}</p>
-            {% calc_cta 'rozrobka' %}{% calc_cta_sticky 'rozrobka' %}
-            <div class="pl-rs__hero-form-card">
-                <p class="pl-rs__hero-form-title">{% trans "Spočítáme cenu vašeho webu" %}</p>
-                <form id="pl-rs-hero-form" class="plf-form pl-rs__hero-form" action="{% url 'form_submit' %}" method="post" data-form-type="site_request" data-source-label="{% trans "Tvorba webu · první obrazovka" %}" aria-label="{% trans "Spočítáme cenu vašeho webu" %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="form_type" value="site_request">
-                    <input type="hidden" name="source_page" value="rozrobka-sajtiv">
-                    <input type="hidden" name="details" value="{% trans "Stránka: Tvorba webu · Formulář na první obrazovce" %}">
-                    {% trans "Získat kalkulaci" as submit_label %}{% include 'components/figma_lead_fields.html' with p='pl-rs-hero' submit_label=submit_label %}
-                </form>
-                <p class="pl-rs__hero-links"><a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">{% trans "Написати в Telegram" %}</a>{% if site_contact.email %} · <a href="mailto:{{ site_contact.email }}">{{ site_contact.email }}</a>{% endif %}</p>
-                <p class="pl-rs__hero-trust">{% trans "Cena a termín ve smlouvě · Administrace zůstává vám · 50+ spuštěných projektů · Odpovídáme do 15 minut" %}</p>
-            </div>
-        </div>
-
-        <div class="pl-rs__floats" role="list" aria-label="{% trans "Орієнтир ціни" %}">
-            <div class="pl-rs__float pl-rs__float--tl" role="listitem">
-                <img class="pl-rs__float-rings" src="{% static 'img/rozrobka-figma/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
-                <p class="pl-rs__float-title">{% trans "Лендінги" %}</p>
-                <p class="pl-rs__float-num">{{ web_prices.landing.czk }}</p>
-                <p class="pl-rs__float-chip">
-                    <img src="{% static 'img/rozrobka-figma/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
-                    <span>{% trans "3–7 днів" %}</span>
-                </p>
-                <p class="pl-rs__scope-in">{% trans "У сумі: макет, верстка, форма, адаптив" %}</p>
-                <p class="pl-rs__scope-out">{% trans "Не входить: реклама, тексти з нуля, сторонні API" %}</p>
-            </div>
-            <div class="pl-rs__float pl-rs__float--tr" role="listitem">
-                <img class="pl-rs__float-rings" src="{% static 'img/rozrobka-figma/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
-                <p class="pl-rs__float-title">{% trans "Корпоративні" %}</p>
-                <p class="pl-rs__float-num">{{ web_prices.corporate.czk }}</p>
-                <p class="pl-rs__float-chip">
-                    <img src="{% static 'img/rozrobka-figma/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
-                    <span>{% trans "7–14 днів" %}</span>
-                </p>
-                <p class="pl-rs__scope-in">{% trans "У сумі: структура сторінок, CMS-основа, адаптив, базова SEO" %}</p>
-                <p class="pl-rs__scope-out">{% trans "Не входить: наповнення контентом, реклама, складні інтеграції" %}</p>
-            </div>
-            <div class="pl-rs__float pl-rs__float--bl" role="listitem">
-                <img class="pl-rs__float-rings" src="{% static 'img/rozrobka-figma/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
-                <p class="pl-rs__float-title">{% trans "Магазини" %}</p>
-                <p class="pl-rs__float-num">{{ web_prices.shop.czk_from }}</p>
-                <p class="pl-rs__float-chip">
-                    <img src="{% static 'img/rozrobka-figma/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
-                    <span>{% trans "14–21 день" %}</span>
-                </p>
-                <p class="pl-rs__scope-in">{% trans "У сумі: каталог, кошик, оплата/доставка-основа, адмінка замовлень" %}</p>
-                <p class="pl-rs__scope-out">{% trans "Не входить: наповнення товарів, маркетинг, кастомні інтеграції" %}</p>
-            </div>
-            <div class="pl-rs__float pl-rs__float--br" role="listitem">
-                <img class="pl-rs__float-rings" src="{% static 'img/rozrobka-figma/rings-hero.svg' %}" alt="" width="181" height="181" decoding="async">
-                <p class="pl-rs__float-title">{% trans "Платформи" %}</p>
-                <p class="pl-rs__float-num">{{ web_prices.app.czk }}</p>
-                <p class="pl-rs__float-chip">
-                    <img src="{% static 'img/rozrobka-figma/ellipse.svg' %}" alt="" width="6" height="6" decoding="async">
-                    <span>{% trans "14–30 днів" %}</span>
-                </p>
-                <p class="pl-rs__scope-in">{% trans "У сумі: узгоджений MVP за брифом у діапазоні" %}</p>
-                <p class="pl-rs__scope-out">{% trans "Не входить: нові модулі після здачі, сторонні ліцензії" %}</p>
-            </div>
+            <p class="pl-rs__lead">{% blocktrans trimmed %}Vytvořte web pro svůj byznys: landing <span class="pl-rs__acc">od 10 000 Kč za 3–7 dní</span>, firemní web <span class="pl-rs__acc">od 17 000 Kč</span>, e-shop <span class="pl-rs__acc">od 34 500 Kč</span>. Doživotní záruka na kód, <span class="pl-rs__acc">rok podpory zdarma</span>.{% endblocktrans %}</p>
+            {% calc_cta 'rozrobka' 'block' 'hero' %}{% calc_cta_sticky 'rozrobka' %}
+            <p class="pl-rs__hero-links"><a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">{% trans "Napsat na Telegram" %}</a>{% if site_contact.email %} · <a href="mailto:{{ site_contact.email }}">{{ site_contact.email }}</a>{% endif %}{% if site_contact.get_tel_href %} · <a href="{{ site_contact.get_tel_href }}">{{ site_contact.phone }}</a>{% endif %}</p>
+            <p class="pl-rs__hero-trust">{% trans "Cena a termín ve smlouvě · Administrace zůstává vám · 50+ spuštěných projektů · Odpovídáme do 15 minut" %}</p>
         </div>
     </div>
 </section>

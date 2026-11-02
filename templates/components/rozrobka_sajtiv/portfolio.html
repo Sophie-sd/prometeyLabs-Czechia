@@ -1,10 +1,10 @@
 {% load i18n static %}
 {# Upper Portfolio Section only — Figma 1:164. Lower logo-gallery 1:198 DO NOT implement. #}
 {# Screens = same full-page shots + scroll-on-hover as /portfolio/ (data-pf-screen / data-pf-shot → js/portfolio-screen-scroll.js). #}
-<section class="pl-rs__section pl-rs__section--work" aria-labelledby="pl-rs-work-title" data-pl-rs-portfolio>
+<section id="portfolio" class="pl-rs__section pl-rs__section--work" aria-labelledby="pl-rs-work-title" data-pl-rs-portfolio>
     <div class="pl-rs__inner">
         <div class="pl-rs__work-head">
-            <h2 id="pl-rs-work-title" class="pl-rs__h2 pl-rs__h2--work">{% trans "Наші роботи" %}</h2>
+            <h2 id="pl-rs-work-title" class="pl-rs__h2 pl-rs__h2--work">{% trans "Naše práce — weby od studia PrometeyLabs" %}</h2>
             <div class="pl-rs__work-nav" role="group" aria-label="{% trans "Навігація портфоліо" %}">
                 <button type="button" class="pl-rs__work-btn" data-pl-rs-prev aria-label="{% trans "Попередні роботи" %}">
                     <img src="{% static 'img/rozrobka-figma/arrow-nav.svg' %}" alt="" width="24" height="24" decoding="async" class="pl-rs__work-arrow pl-rs__work-arrow--prev">
@@ -32,8 +32,10 @@
                     </a>
                     {% endif %}
                     <div class="pl-rs__work-foot">
-                        <p class="pl-rs__work-name">{{ project.get_localized_title }}</p>
-                        <p class="pl-rs__work-meta">{{ project.get_category_label }}{% if project.get_localized_subtitle %} · {{ project.get_localized_subtitle }}{% endif %}</p>
+                        <div class="pl-rs__work-copy">
+                            <p class="pl-rs__work-name">{{ project.get_localized_title }}</p>
+                            <p class="pl-rs__work-meta">{{ project.get_category_label }}{% if project.get_localized_subtitle %} · {{ project.get_localized_subtitle }}{% endif %}</p>
+                        </div>
                         <a class="pl-rs__pill pl-rs__pill--work" href="{% url 'portfolio' %}">{% trans "Детальніше" %}</a>
                     </div>
                 </article>

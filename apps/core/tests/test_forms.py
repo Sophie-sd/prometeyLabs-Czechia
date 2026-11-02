@@ -302,7 +302,10 @@ ROOT = Path(__file__).resolve().parents[3]
 
 class CalculatorMarkupTests(SimpleTestCase):
     def test_email_is_optional_in_calculator_template(self):
-        text = (ROOT / 'templates/pages/calculator.html').read_text(encoding='utf-8')
+        """The 5-question test lives in one partial, shared by /calculator/ and /tvorba-webu/."""
+        page = (ROOT / 'templates/pages/calculator.html').read_text(encoding='utf-8')
+        self.assertIn('components/calculator/test_form.html', page)
+        text = (ROOT / 'templates/components/calculator/test_form.html').read_text(encoding='utf-8')
         self.assertIn('email_optional=True', text)
 
     def test_result_modal_removed_from_modals(self):

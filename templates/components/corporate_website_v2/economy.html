@@ -1,7 +1,7 @@
 {% load static i18n %}
-<section id="economy" class="pl-corp__section pl-corp__dev" aria-labelledby="pl-corp-economy-title">
+<section id="economy" class="pl-corp__section pl-corp__dev" aria-labelledby="{{ economy_title_id|default:'pl-corp-economy-title' }}">
     <div class="pl-corp__inner">
-        <h2 id="pl-corp-economy-title" class="pl-corp__title pl-corp__title--center pl-corp__dev-title" data-reveal>{% trans "Що входить у розробку під ключ" %}</h2>
+        <h2 id="{{ economy_title_id|default:'pl-corp-economy-title' }}" class="pl-corp__title pl-corp__title--center pl-corp__dev-title" data-reveal>{% trans "Що входить у розробку під ключ" %}</h2>
 
         <div class="pl-corp__dev-grid">
             <article class="pl-corp__dev-card" data-reveal>

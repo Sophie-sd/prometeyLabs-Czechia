@@ -1,0 +1,10 @@
+{% comment %} Shared calc-promo strip (title + optional text + button). Used by calc_promo.html and the /tvorba-webu/ mid-page CTA.
+   Vars: section_id, title_id, title, text (optional), href, button, scroll (optional data-calc-scroll),
+   cta_position + cta_page (optional analytics), extra_class (optional). {% endcomment %}
+<section id="{{ section_id }}" class="pl-corp__section pl-corp__calc-promo{% if extra_class %} {{ extra_class }}{% endif %}" aria-labelledby="{{ title_id }}">
+    <div class="pl-corp__inner pl-corp__calc-promo-row" data-reveal>
+        {% if text %}<div class="pl-corp__calc-promo-copy">{% endif %}<h2 id="{{ title_id }}" class="pl-corp__title pl-corp__calc-promo-title">{{ title }}</h2>{% if text %}
+        <p class="pl-corp__calc-promo-text">{{ text }}</p></div>{% endif %}
+        <a href="{{ href }}" class="pl-corp__btn pl-corp__btn--accent pl-corp__calc-promo-btn mobile-touch-target"{% if scroll %} data-calc-scroll="{{ scroll }}"{% endif %}{% if cta_position %} data-calc-cta="{{ cta_position }}" data-calc-page="{{ cta_page }}"{% endif %}>{{ button }}</a>
+    </div>
+</section>

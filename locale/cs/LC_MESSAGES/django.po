@@ -11019,3 +11019,74 @@ msgstr "Evidence marže"
 #: templates/components/internet_shop_v2/dropshipping.html:17
 msgid "Замовити дропшиппінг-платформу"
 msgstr "Objednat dropshippingovou platformu"
+
+# tvorba-webu → canon /rozrobka-sajtiv/ (step 1)
+#, python-format
+msgid "Souhlasím se zpracováním osobních údajů v souladu se <a href=\"%(privacy_url)s\" target=\"_blank\" rel=\"noopener\">zásadami ochrany osobních údajů</a>."
+msgstr ""
+
+msgid "Získejte bezplatnou kalkulaci ceny vašeho webu"
+msgstr ""
+
+msgid "Kalkulačka ceny"
+msgstr ""
+
+msgid "5 otázek · 2 minuty · zdarma, bez závazků. Přesnou částku a termín fixujeme po briefu ve smlouvě."
+msgstr ""
+
+msgid "Stránka: Tvorba webu · Vložená kalkulačka"
+msgstr ""
+
+msgid "Nechte kontakt — ozveme se do 15 minut a řekneme cenu i termín."
+msgstr ""
+
+msgid "Je pro vás jednodušší napsat?"
+msgstr ""
+
+msgid "Chcete web, ale neznáte rozpočet?"
+msgstr ""
+
+msgid "Odpovězte na 5 otázek — jsou to 2 minuty, zdarma a bez závazků."
+msgstr ""
+
+msgid "Spočítat cenu online →"
+msgstr ""
+
+msgid "Vytvořte web pro svůj byznys: landing <span class=\"pl-rs__acc\">od 10 000 Kč za 3–7 dní</span>, firemní web <span class=\"pl-rs__acc\">od 17 000 Kč</span>, e-shop <span class=\"pl-rs__acc\">od 34 500 Kč</span>. Doživotní záruka na kód, <span class=\"pl-rs__acc\">rok podpory zdarma</span>."
+msgstr ""
+
+msgid "Bezplatná konzultace"
+msgstr ""
+
+msgid "Telefonní číslo"
+msgstr ""
+
+msgid "Vytvořit web:"
+msgstr ""
+
+msgid "bezplatná konzultace a kalkulace ceny"
+msgstr ""
+
+msgid "Nechte nám telefonní číslo — spočítáme cenu i termín vašeho webu a zavoláme s doporučeními. Ozveme se do 15 minut."
+msgstr ""
+
+msgid "Stránka: Tvorba webu · Formulář č. 1 (po sekci Proč si vybrat PrometeyLabs)"
+msgstr ""
+
+msgid "Objednat web na klíč:"
+msgstr ""
+
+msgid "váš projekt probereme zdarma"
+msgstr ""
+
+msgid "Nechte nám číslo — vybereme typ webu podle vašeho zadání, řekneme termín i cenu. Cenu a termín fixujeme ve smlouvě. Ozveme se do 15 minut."
+msgstr ""
+
+msgid "Objednat hovor"
+msgstr ""
+
+msgid "Stránka: Tvorba webu · Formulář č. 2 (po sekci Naše práce)"
+msgstr ""
+
+msgid "Naše práce — weby od studia PrometeyLabs"
+msgstr ""

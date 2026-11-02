@@ -412,6 +412,16 @@ let calculatorInstance = null;
 document.addEventListener('DOMContentLoaded', () => {
     calculatorInstance = new ProjectCalculator();
     window.calculatorInstance = calculatorInstance;
+    // Calc CTA from the ads landings: /calculator/?start=1 opens the test straight away.
+    // The embed on /tvorba-webu/ is never .hidden, so it is already open on question 1.
+    try {
+        if (new URLSearchParams(window.location.search).get('start') === '1') {
+            calculatorInstance.showTestForm();
+            document.getElementById('test-section')?.scrollIntoView({ block: 'start' });
+        }
+    } catch (error) {
+        console.error('Calc autostart failed:', error);
+    }
 });
 
 window.CalculatorUtils = {
