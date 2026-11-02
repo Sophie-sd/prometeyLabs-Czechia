@@ -48,8 +48,5 @@
       /* compat: /thank-you/ calls _loadGTM(); loads only when consent exists */
       w._loadGTM=function(){var s=read();if(s&&(s.a||s.m))loadGTM();};
       w._loadCookieYes=w._loadGTM;
-      /* compat for gclid-capture.js (former CookieYes API) */
-      w.getCkyConsent=function(){var s=read();return {isUserActionCompleted:!!s,
-        categories:{necessary:true,functional:true,analytics:!!(s&&s.a),performance:!!(s&&s.a),advertisement:!!(s&&s.m)}};};
     })(window,document);
     </script>

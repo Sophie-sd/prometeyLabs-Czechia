@@ -272,8 +272,8 @@ class WhatsAppPrefillTests(SimpleTestCase):
         for tpl in ('templates/base.html', 'templates/pages/home.html',
                     'templates/pages/thank_you.html', 'templates/pages/internet-shop-v2.html'):
             src = (ROOT / tpl).read_text(encoding='utf-8')
-            self.assertIn("gclid-capture.js' %}?v=6", src, tpl)
-            self.assertNotIn("gclid-capture.js' %}?v=5", src, tpl)
+            self.assertIn("gclid-capture.js' %}?v=7", src, tpl)
+            self.assertNotIn("gclid-capture.js' %}?v=6", src, tpl)
 
     def test_no_gclid_no_tag_no_text(self):
         self.assertEqual(self._text('cs', ''), '')

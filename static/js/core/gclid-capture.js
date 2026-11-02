@@ -5,12 +5,16 @@
  * (via `appendToFormData`) and end up in `FormSubmission.gclid/utm_*` and
  * `extra_data.source_page / landing_page / landing_referrer` (KeyCRM attribution).
  *
- * Consent (CookieYes, see /cookies/): `_prm_*` cookies are written ONLY after the
- * visitor accepts the "advertisement" or "analytics" category. Before that, values
- * live in sessionStorage / memory for the current session only (forms still get
- * them). When consent arrives (`cookieyes_consent_update` / `cookieyes_banner_load`
- * or an existing consent via `getCkyConsent()`), session values are persisted to
- * cookies; when consent is withdrawn, the cookies are expired again.
+ * Consent (first-party banner #pl-consent, cookie `pl_consent` = JSON {v,a,m,t,id},
+ * see templates/partials/consent_banner.html + partials/gtm_head.html, /cookies/ čl. 7):
+ *  - before Marketing consent (m=1) values live ONLY in page memory (`memoryStore`);
+ *    nothing is written to sessionStorage or cookies;
+ *  - after Marketing consent they are copied to sessionStorage (`prm_*`, until the tab closes);
+ *  - on withdrawal sessionStorage is cleared again (memory keeps the current page's values).
+ * Forms always get the in-memory/session values via `appendToFormData`, so gclid/utm reach
+ * KeyCRM with the lead even without consent (same as before). Consent changes arrive via the
+ * `pl_consent_update` DOM event dispatched by the banner (detail = the pl_consent object).
+ * Legacy `_prm_*` cookies (older versions) are moved to memory/session and expired.
  *
  * Clicks on tel: / t.me / wa.me / m.me are pushed to dataLayer (GTM) as
  * `phone_click` / `messenger_click`; wa.me / t.me / mailto: clicks also push
@@ -19,7 +23,6 @@
 (function () {
     'use strict';
 
-    const COOKIE_DAYS = 90;
     const TRACKING_PARAMS = ['gclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
     const LANDING_KEYS = ['landing_path', 'landing_referrer'];
     // Messenger prefill tag (cs default, en on /en/ pages).
@@ -38,102 +41,22 @@
 
     const SESSION_PREFIX = 'prm_';
     const memoryStore = {};
-    let consentGranted = false;
-
-    function sessionGet(name) {
-        try {
-            const v = window.sessionStorage.getItem(SESSION_PREFIX + name);
-            if (v !== null) return v;
-        } catch (e) { /* storage blocked */ }
-        return memoryStore[name] || '';
-    }
-
-    function sessionSet(name, value) {
-        memoryStore[name] = value;
-        try { window.sessionStorage.setItem(SESSION_PREFIX + name, value); } catch (e) { /* storage blocked */ }
-    }
-
-    function sessionRemove(name) {
-        delete memoryStore[name];
-        try { window.sessionStorage.removeItem(SESSION_PREFIX + name); } catch (e) { /* storage blocked */ }
-    }
-
-    function deleteCookie(name) {
-        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax`;
-    }
+    let marketingGranted = false;
 
     function allKeys() {
         return TRACKING_PARAMS.concat(LANDING_KEYS).map((k) => '_prm_' + k);
     }
 
-    /** Read: cookie (consented, earlier visit) → session/memory. */
-    function read(name) {
-        return getCookie(name) || sessionGet(name);
+    function sessionRead(name) {
+        try { return window.sessionStorage.getItem(SESSION_PREFIX + name) || ''; } catch (e) { return ''; }
     }
 
-    /** Write: cookie only with consent, otherwise session/memory. */
-    function store(name, value) {
-        if (consentGranted) {
-            setCookie(name, value, COOKIE_DAYS);
-            sessionRemove(name);
-        } else {
-            sessionSet(name, value);
-        }
+    function sessionWrite(name, value) {
+        try { window.sessionStorage.setItem(SESSION_PREFIX + name, value); } catch (e) { /* storage blocked */ }
     }
 
-    function consentFromCategories(categories) {
-        if (!categories) return false;
-        return !!(categories.advertisement || categories.analytics);
-    }
-
-    function consentFromList(list) {
-        return Array.isArray(list) && (list.indexOf('advertisement') !== -1 || list.indexOf('analytics') !== -1);
-    }
-
-    function applyConsent(granted) {
-        consentGranted = !!granted;
-        allKeys().forEach((name) => {
-            if (consentGranted) {
-                const v = sessionGet(name);
-                if (v && !getCookie(name)) setCookie(name, v, COOKIE_DAYS);
-                if (v) sessionRemove(name);
-            } else {
-                const c = getCookie(name);
-                if (c) {
-                    sessionSet(name, c); // keep for this session's forms only
-                    deleteCookie(name);
-                }
-            }
-        });
-    }
-
-    function checkExistingConsent() {
-        try {
-            if (typeof window.getCkyConsent === 'function') {
-                const c = window.getCkyConsent();
-                if (c && c.categories) applyConsent(consentFromCategories(c.categories));
-            }
-        } catch (e) { /* CookieYes not ready */ }
-    }
-
-    function listenConsent() {
-        document.addEventListener('cookieyes_consent_update', (e) => {
-            const d = (e && e.detail) || {};
-            applyConsent(consentFromList(d.accepted));
-        });
-        document.addEventListener('cookieyes_banner_load', (e) => {
-            const d = (e && e.detail) || {};
-            if (d.categories) applyConsent(consentFromCategories(d.categories));
-            else checkExistingConsent();
-        });
-    }
-
-    function setCookie(name, value, days) {
-        const date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        const expires = 'expires=' + date.toUTCString();
-        const secure = location.protocol === 'https:' ? ';Secure' : '';
-        document.cookie = `${name}=${encodeURIComponent(value)};${expires};path=/${secure};SameSite=Lax`;
+    function sessionRemove(name) {
+        try { window.sessionStorage.removeItem(SESSION_PREFIX + name); } catch (e) { /* storage blocked */ }
     }
 
     function getCookie(name) {
@@ -142,10 +65,63 @@
         for (let i = 0; i < cookies.length; i++) {
             const c = cookies[i].trim();
             if (c.indexOf(prefix) === 0) {
-                return decodeURIComponent(c.substring(prefix.length));
+                try { return decodeURIComponent(c.substring(prefix.length)); } catch (e) { return ''; }
             }
         }
         return '';
+    }
+
+    function deleteCookie(name) {
+        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax`;
+    }
+
+    /** Read: page memory → sessionStorage (filled only after Marketing consent). */
+    function read(name) {
+        return memoryStore[name] || (marketingGranted ? sessionRead(name) : '');
+    }
+
+    /** Write: always page memory; sessionStorage only with Marketing consent. */
+    function store(name, value) {
+        memoryStore[name] = value;
+        if (marketingGranted) sessionWrite(name, value);
+    }
+
+    /** pl_consent cookie -> {a,m,...} or null (format owned by partials/gtm_head.html). */
+    function readConsent() {
+        try {
+            if (window.plConsent && typeof window.plConsent.read === 'function') {
+                return window.plConsent.read();
+            }
+        } catch (e) { /* fall through */ }
+        const raw = getCookie('pl_consent');
+        if (!raw) return null;
+        try { return JSON.parse(raw); } catch (e) { return null; }
+    }
+
+    function applyConsent(state) {
+        marketingGranted = !!(state && state.m);
+        allKeys().forEach((name) => {
+            const legacy = getCookie(name);
+            if (legacy) {
+                if (!memoryStore[name]) memoryStore[name] = legacy;
+                deleteCookie(name);
+            }
+            if (marketingGranted) {
+                const v = memoryStore[name] || sessionRead(name);
+                if (v) {
+                    memoryStore[name] = v;
+                    sessionWrite(name, v);
+                }
+            } else {
+                sessionRemove(name);
+            }
+        });
+    }
+
+    function listenConsent() {
+        document.addEventListener('pl_consent_update', (e) => {
+            applyConsent((e && e.detail) || readConsent());
+        });
     }
 
     function captureFromURL() {
@@ -301,8 +277,8 @@
 
     /**
      * contact_click: WhatsApp / Telegram / e-mail links. One delegated listener on
-     * `document`, attached as soon as this script runs (not behind the CookieYes
-     * idle/gesture delay), so clicks are queued in dataLayer even before GTM loads.
+     * `document`, attached as soon as this script runs (not behind the consent
+     * banner), so clicks are queued in dataLayer even before GTM loads.
      */
     function contactChannel(link) {
         const h = (link.getAttribute('href') || '').trim().toLowerCase();
@@ -325,7 +301,7 @@
 
     trackContactClicks();
     listenConsent();
-    checkExistingConsent();
+    applyConsent(readConsent());
     captureFromURL();
     captureFirstTouch();
 

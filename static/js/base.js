@@ -621,7 +621,8 @@ class PrometeyApp {
                 // (не чіпає ec_phone — потрібен на /thank-you/ для Google Ads)
                 this.clearUserData();
 
-                this.closeModal();
+                // Редирект на /thank-you/ (/en/thank-you/) БЕЗ closeModal(): closeModal() →
+                // popBackState() → history.back(), що скасовувало навігацію (модалка просто закривалась).
                 this.handleFormSuccess(data);
             } else {
                 // При помилці від сервера - форма НЕ очищається, відповіді залишаються
@@ -855,9 +856,19 @@ class PrometeyApp {
     }
 
     handleFormSuccess(data) {
-        if (data.redirect) {
-            window.location.href = data.redirect;
+        // Сервер завжди повертає redirect на /thank-you/ або /en/thank-you/ (мова ліда).
+        if (!data || !data.redirect) {
+            this.closeModal();
+            return;
         }
+        // Модалка поклала в history плашку plOverlay: не робимо history.back() (воно скасовувало
+        // навігацію), а замінюємо цей запис сторінкою подяки.
+        this._overlayPushed = false;
+        if (history.state && history.state.plOverlay) {
+            window.location.replace(data.redirect);
+            return;
+        }
+        window.location.href = data.redirect;
     }
 
     // ===== LANGUAGE SWITCHER =====
