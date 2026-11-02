@@ -674,7 +674,7 @@ class ClientAdmin(UnfoldModelAdmin):
 
     fieldsets = (
         (_('Основне'), {
-            'fields': ('name', 'logo', 'logo_preview', 'order', 'is_active'),
+            'fields': ('name', 'site_url', 'logo', 'logo_alt', 'logo_preview', 'order', 'is_active'),
         }),
         (_('Службове'), {
             'fields': ('created_at', 'updated_at'),

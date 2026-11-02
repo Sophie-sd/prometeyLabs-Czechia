@@ -32,16 +32,29 @@ HOME_LOGO_STATIC = {
 
 # Клієнти для секції «Наші клієнти» на головній (seed_clients) — той самий
 # набір лого, що й раніше на /portfolio/, до заміни на живі знімки.
+# site_url: live address of the client's site, taken from PORTFOLIO_PROJECTS —
+# the circle links there (dofollow, new tab) instead of /portfolio/.
+# TODO(clients): Coresync, Adiabatic, RedRabbit, Pulvas Store and Airinua have no
+# address anywhere in the repo; fill site_url in the admin or here when it is known.
 HOME_CLIENTS = [
-    {'name': 'Coresync', 'order': 0, 'static_home': HOME_LOGO_STATIC['Coresync']},
-    {'name': 'SpeakUp', 'order': 1, 'static_home': HOME_LOGO_STATIC['SpeakUp']},
-    {'name': 'Play Vision', 'order': 2, 'static_home': HOME_LOGO_STATIC['Play Vision']},
-    {'name': 'BeautyShop', 'order': 3, 'static_home': HOME_LOGO_STATIC['BeautyShop']},
-    {'name': 'Adiabatic', 'order': 4, 'static_home': HOME_LOGO_STATIC['Adiabatic']},
-    {'name': 'RedRabbit', 'order': 5, 'static_home': HOME_LOGO_STATIC['RedRabbit']},
-    {'name': 'Polygraph', 'order': 6, 'static_home': HOME_LOGO_STATIC['Polygraph']},
-    {'name': 'Pulvas Store', 'order': 7, 'static_home': HOME_LOGO_STATIC['Pulvas Store']},
-    {'name': 'Airinua', 'order': 8, 'static_home': HOME_LOGO_STATIC['Airinua']},
+    {'name': 'Coresync', 'order': 0, 'static_home': HOME_LOGO_STATIC['Coresync'],
+     'site_url': ''},
+    {'name': 'SpeakUp', 'order': 1, 'static_home': HOME_LOGO_STATIC['SpeakUp'],
+     'site_url': 'https://speak-up.com.ua/'},
+    {'name': 'Play Vision', 'order': 2, 'static_home': HOME_LOGO_STATIC['Play Vision'],
+     'site_url': 'https://www.playvision.com.ua/'},
+    {'name': 'BeautyShop', 'order': 3, 'static_home': HOME_LOGO_STATIC['BeautyShop'],
+     'site_url': 'https://www.beauty-opt.com.ua/'},
+    {'name': 'Adiabatic', 'order': 4, 'static_home': HOME_LOGO_STATIC['Adiabatic'],
+     'site_url': ''},
+    {'name': 'RedRabbit', 'order': 5, 'static_home': HOME_LOGO_STATIC['RedRabbit'],
+     'site_url': ''},
+    {'name': 'Polygraph', 'order': 6, 'static_home': HOME_LOGO_STATIC['Polygraph'],
+     'site_url': 'https://polygraph.website/'},
+    {'name': 'Pulvas Store', 'order': 7, 'static_home': HOME_LOGO_STATIC['Pulvas Store'],
+     'site_url': ''},
+    {'name': 'Airinua', 'order': 8, 'static_home': HOME_LOGO_STATIC['Airinua'],
+     'site_url': ''},
 ]
 
 # №45 (аудит 19.10.2026): проєкти для клієнтів в Україні — під карткою підпис

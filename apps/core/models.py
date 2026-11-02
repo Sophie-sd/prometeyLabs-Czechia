@@ -1086,7 +1086,19 @@ class Client(models.Model):
     """Клієнт для секції «Наші клієнти» на головній сторінці."""
 
     name = models.CharField(max_length=100, verbose_name=_('Назва'))
+    site_url = models.URLField(
+        blank=True,
+        verbose_name=_('Web klienta'),
+        help_text=_('Plná https adresa živého webu. Kolečko v pásu vede sem (nová záložka). '
+                    'Prázdné — vede na /portfolio/.'),
+    )
     logo = models.ImageField(upload_to='clients/', verbose_name=_('Логотип'))
+    logo_alt = models.CharField(
+        max_length=200,
+        blank=True,
+        verbose_name=_('Alt logotypu'),
+        help_text=_('Prázdné — «<Název> — web od PrometeyLabs» v jazyce stránky.'),
+    )
     order = models.PositiveIntegerField(default=0, verbose_name=_('Порядок'))
     is_active = models.BooleanField(default=True, verbose_name=_('Показувати на головній'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Створено'))
@@ -1118,6 +1130,20 @@ class Client(models.Model):
         from .portfolio_images import resolve_client_logo_webp_url
 
         return resolve_client_logo_webp_url(self, 456)
+
+    def get_logo_alt(self) -> str:
+        if self.logo_alt:
+            return self.logo_alt
+        from django.utils.translation import get_language
+
+        suffix = CLIENT_ALT_SUFFIX.get((get_language() or 'cs')[:2], CLIENT_ALT_SUFFIX['cs'])
+        return f'{self.name} — {suffix}'
+
+
+CLIENT_ALT_SUFFIX = {
+    'cs': 'web od PrometeyLabs',
+    'en': 'website by PrometeyLabs',
+}
 
 
 def feature_block_upload_to(instance, filename: str) -> str:

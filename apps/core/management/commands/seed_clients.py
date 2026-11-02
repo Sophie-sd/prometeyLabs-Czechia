@@ -35,6 +35,8 @@ class Command(BaseCommand):
                 'order': item.get('order', 0),
                 'is_active': True,
             }
+            # Fill-only: never overwrite an address an editor typed in the admin.
+            site_url = item.get('site_url') or ''
             client, was_created = Client.objects.get_or_create(
                 name=name,
                 defaults=defaults,
@@ -46,6 +48,8 @@ class Command(BaseCommand):
                     setattr(client, key, value)
                 updated += 1
 
+            if site_url and not client.site_url:
+                client.site_url = site_url
             self._attach_logo(client, item, static_root, force_images)
             client.save()
 

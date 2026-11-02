@@ -1,11 +1,16 @@
-<a href="{% url 'portfolio' %}" class="project-story v3-client{% if is_clone %} story-clone{% endif %}"{% if is_clone %} data-clone="true" aria-hidden="true" tabindex="-1"{% else %} role="listitem" aria-label="{{ client.name }}"{% endif %}>
-    <div class="v3-client-halo" aria-hidden="true"></div>
-    <div class="v3-client-ring">
-        <div class="v3-client-inner">
-            {% if client.get_logo_url %}
-            <img src="{{ client.get_logo_url }}" alt="{{ client.name }}" width="296" height="296" loading="lazy" decoding="async">
-            {% endif %}
+{# Kolečko klienta v běžícím pásu: odkaz na živý web klienta (dofollow), jinak /portfolio/. Klony pásu — aria-hidden + tabindex=-1. #}
+{% with logo_url=client.get_logo_url logo_alt=client.get_logo_alt %}
+<div class="project-story-wrap"{% if is_clone %} aria-hidden="true"{% else %} role="listitem"{% endif %}>
+    <a href="{% if client.site_url %}{{ client.site_url }}{% else %}{% url 'portfolio' %}{% endif %}"{% if client.site_url %} target="_blank" rel="noopener"{% endif %} class="project-story v3-client{% if is_clone %} story-clone{% endif %}"{% if is_clone %} data-clone="true" tabindex="-1"{% elif not logo_url %} aria-label="{{ logo_alt }}"{% endif %}>
+        <div class="v3-client-halo" aria-hidden="true"></div>
+        <div class="v3-client-ring">
+            <div class="v3-client-inner">
+                {% if logo_url %}
+                <img src="{{ logo_url }}" alt="{% if not is_clone %}{{ logo_alt }}{% endif %}" width="296" height="296" loading="lazy" decoding="async">
+                {% endif %}
+            </div>
         </div>
-    </div>
-    <span class="project-story-name v3-client-name">{{ client.name }}</span>
-</a>
+        <span class="project-story-name v3-client-name">{{ client.name }}</span>
+    </a>
+</div>
+{% endwith %}
