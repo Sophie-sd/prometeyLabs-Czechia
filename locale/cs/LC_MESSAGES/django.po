@@ -11090,3 +11090,19 @@ msgstr ""
 
 msgid "Naše práce — weby od studia PrometeyLabs"
 msgstr ""
+
+# internet-shop -> canon (step 2)
+msgid "Vytvořit e-shop:"
+msgstr ""
+
+msgid "Nechte nám telefonní číslo — ozveme se do 15 minut, řekneme cenu i termín vašeho e-shopu. Cenu a termín fixujeme ve smlouvě."
+msgstr ""
+
+msgid "Stránka: E-shopy · Formulář č. 1 (po sekci Vyrostli jste ze Shoptetu)"
+msgstr ""
+
+msgid "Chcete e-shop, ale neznáte cenu?"
+msgstr ""
+
+msgid "Odpovězte na 4 otázky — je to 1 minuta, zdarma a bez závazků. Ozveme se a řekneme cenu."
+msgstr ""

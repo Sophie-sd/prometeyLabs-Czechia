@@ -1,0 +1,7 @@
+{% load i18n %}
+{% comment %} Mid-page phone form = the same shared partial (and wrapper) as section#rs-form-1 on /tvorba-webu/.
+   POST /forms/submit/ (base.js), form_type=site_request → KeyCRM → /thank-you/. {% endcomment %}
+<div class="pl-corp pl-corp-page pl-rs-corp">
+{% trans "Bezplatná konzultace" as lead_name %}{% trans "Telefonní číslo" as phone_label %}{% trans "Vytvořit e-shop:" as accent %}{% trans "bezplatná konzultace a kalkulace ceny" as title %}{% trans "Nechte nám telefonní číslo — ozveme se do 15 minut, řekneme cenu i termín vašeho e-shopu. Cenu a termín fixujeme ve smlouvě." as text %}{% trans "Získat konzultaci" as button %}{% trans "Stránka: E-shopy · Formulář č. 1 (po sekci Vyrostli jste ze Shoptetu)" as details %}
+{% include 'components/corporate_website_v2/_lead_cta.html' with section_id='forma-1' title_id='pl-shop-form1-title' extra_class='pl-rs-lead pl-rs-lead--1' form_type='site_request' source_page='internet-shop-v2' consent=True %}
+</div>

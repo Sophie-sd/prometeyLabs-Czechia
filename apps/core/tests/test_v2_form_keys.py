@@ -66,8 +66,11 @@ class RenderedV2FormsTests(TestCase):
         self.assertIn('data-source-label="corporate_website_v2"', corp)
         shop = self.client.get('/en/internet-shop/').content.decode()
         self.assertIn('data-source-label="internet_shop_v2"', shop)
-        self.assertIn('data-source-label="internet_shop_v2_hero"', shop)
-        self.assertIn('name="details" value="page: internet_shop_v2_hero"', shop)
+        # Canon hero carries one action (the quiz CTA), not a form; the phone form
+        # is the mid-page section#forma-1 built from the shared lead CTA partial.
+        self.assertNotIn('data-source-label="internet_shop_v2_hero"', shop)
+        self.assertIn('id="forma-1"', shop)
+        self.assertIn('<input type="hidden" name="source_page" value="internet-shop-v2">', shop)
 
 
 class QuizJsStringsTests(SimpleTestCase):

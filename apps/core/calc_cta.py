@@ -38,16 +38,21 @@ CALC_CTA = {
             'micro': '5 questions · 2 minutes · free, no obligation',
         },
     },
+    # Kvíz je na stejné stránce (#calculator); sticky i na desktopu, bez šipky,
+    # s vlastní událostí sticky_cta_click (stejně jako /tvorba-webu/).
     'shop': {
         'target': '#calculator',
+        'sticky_desktop': True,
+        'sticky_arrow': False,
+        'sticky_event': 'sticky_cta_click',
         'cs': {
             'label': 'Spočítat cenu e-shopu',
-            'sticky': 'Spočítat cenu e-shopu',
+            'sticky': 'Spočítejte cenu online',
             'micro': '4 otázky · 1 minuta · vybereme balíček od 34 500 Kč',
         },
         'en': {
             'label': 'Calculate store cost',
-            'sticky': 'Calculate store cost',
+            'sticky': 'Calculate the price online',
             'micro': '4 questions · 1 minute · we pick a package from CZK 34,500',
         },
     },

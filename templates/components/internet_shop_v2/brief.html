@@ -1,9 +1,6 @@
 {% load static i18n %}
 <section id="calculator" class="pl-shop__section pl-shop__calc" aria-labelledby="pl-shop-calc-title">
-    <picture class="pl-shop__calc-bg" aria-hidden="true">
-        <source media="(max-width: 767px)" srcset="{% static 'images/internet_shop_v2/figma/bg-calc-v3-mobile.webp' %}" width="393" height="826">
-        <img src="{% static 'images/internet_shop_v2/figma/bg-calc-v3-1440.webp' %}" srcset="{% static 'images/internet_shop_v2/figma/bg-calc-v3-960.webp' %} 960w, {% static 'images/internet_shop_v2/figma/bg-calc-v3-1440.webp' %} 1440w" sizes="100vw" alt="" width="1440" height="921" loading="lazy" decoding="async">
-    </picture>
+    {# The flame background belongs to slot №10 (components/internet_shop_v2/cta_strip.html), not to the quiz: the quiz is now the last block, after the FAQ. #}
     <div class="pl-shop__inner pl-shop__calc-inner">
         <div class="pl-shop__calc-head" data-reveal>
             <h2 id="pl-shop-calc-title" class="pl-shop__title">{% trans "Розрахуйте вартість" %}<br>{% trans "інтернет-магазину" %}</h2>

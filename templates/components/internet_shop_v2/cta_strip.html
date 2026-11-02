@@ -1,0 +1,12 @@
+{% load static i18n %}
+{# CTA strip = the same shared partial as section#rs-calc-strip on /tvorba-webu/; scrolls to the quiz. The flame background belongs to this slot (Figma position №10). #}
+<div class="pl-shop__slot10">
+    <picture class="pl-shop__calc-bg" aria-hidden="true">
+        <source media="(max-width: 767px)" srcset="{% static 'images/internet_shop_v2/figma/bg-calc-v3-mobile.webp' %}" width="393" height="826">
+        <img src="{% static 'images/internet_shop_v2/figma/bg-calc-v3-1440.webp' %}" srcset="{% static 'images/internet_shop_v2/figma/bg-calc-v3-960.webp' %} 960w, {% static 'images/internet_shop_v2/figma/bg-calc-v3-1440.webp' %} 1440w" sizes="100vw" alt="" width="1440" height="921" loading="lazy" decoding="async">
+    </picture>
+    <div class="pl-corp pl-corp-page pl-rs-corp">
+{% trans "Chcete e-shop, ale neznáte cenu?" as title %}{% trans "Odpovězte na 4 otázky — je to 1 minuta, zdarma a bez závazků. Ozveme se a řekneme cenu." as text %}{% trans "Spočítat cenu online →" as button %}
+    {% include 'components/corporate_website_v2/_calc_promo.html' with section_id='rozrahunok' title_id='pl-shop-strip-title' href='#calculator' scroll='#calculator' cta_position='mid' cta_page='shop' extra_class='pl-rs-strip' %}
+    </div>
+</div>

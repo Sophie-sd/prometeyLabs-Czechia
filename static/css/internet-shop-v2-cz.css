@@ -17,3 +17,47 @@
   .pl-shop__title{max-width:860px}
   .pl-shop__title--hero{max-width:980px}
 }
+
+/* ==========================================================================
+   Canon order: hero -> clients -> packages -> svoboda -> lead form -> admin ->
+   dropshipping -> guarantee -> CTA strip (slot 10) -> FAQ -> quiz
+   ========================================================================== */
+/* Slot 10 carries the flame background; the CTA strip sits above it. */
+.pl-shop-body .pl-shop__slot10 { position: relative; }
+.pl-shop-body .pl-shop__slot10 > .pl-corp { position: relative; z-index: 1; }
+/* Flame size as in slot 10 of the Figma layout, so the image is not squashed
+   into a strip under the shorter content; the bottom fades the same way. */
+.pl-shop-body .pl-shop__slot10 > .pl-shop__calc-bg { bottom: auto; height: 899px; }
+@media (min-width: 1024px) {
+    .pl-shop-body .pl-shop__slot10 > .pl-shop__calc-bg { height: 1081px; }
+}
+
+/* The hero background no longer hangs under the logos: clip it at the bottom of
+   the hero with a soft fade, so the clients heading sits on the page background. */
+.pl-shop-body .pl-shop__hero { overflow: clip; }
+.pl-shop-body .pl-shop__hero-bg {
+    bottom: 0;
+    -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent);
+    mask-image: linear-gradient(to bottom, #000 78%, transparent);
+}
+.pl-shop-body .pl-shop__hero-bg img { height: 100%; object-fit: cover; object-position: center top; }
+
+/* Logos get their own block (less top padding — the hero already gives air). */
+.pl-shop-body .pl-shop__clients { z-index: 1; padding-top: 50px; }
+/* The quiz is the last block before the footer. */
+.pl-shop-body .pl-shop__calc { padding-bottom: 60px; }
+@media (min-width: 1024px) {
+    .pl-shop-body .pl-shop__clients { padding-top: 70px; }
+    .pl-shop-body .pl-shop__calc { padding-bottom: 120px; }
+}
+
+/* Hero trust line (one action on the first screen, no hero form) */
+.pl-shop-body .pl-shop__hero-trust {
+    margin: 12px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(245, 245, 245, 0.72);
+}
+@media (max-width: 767px) {
+    .pl-shop-body .pl-shop__hero-trust { font-size: 12px; }
+}

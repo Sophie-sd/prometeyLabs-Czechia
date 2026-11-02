@@ -11809,3 +11809,19 @@ msgstr "Page: Website development · Form 2 (after Our work)"
 
 msgid "Naše práce — weby od studia PrometeyLabs"
 msgstr "Our work — websites by PrometeyLabs studio"
+
+# internet-shop -> canon (step 2)
+msgid "Vytvořit e-shop:"
+msgstr "Build an online store:"
+
+msgid "Nechte nám telefonní číslo — ozveme se do 15 minut, řekneme cenu i termín vašeho e-shopu. Cenu a termín fixujeme ve smlouvě."
+msgstr "Leave us your phone number — we will call back within 15 minutes with the price and the timeline for your store. Both are fixed in the contract."
+
+msgid "Stránka: E-shopy · Formulář č. 1 (po sekci Vyrostli jste ze Shoptetu)"
+msgstr "Page: Online stores · Form 1 (after Outgrown Shoptet)"
+
+msgid "Chcete e-shop, ale neznáte cenu?"
+msgstr "Want an online store but don't know the price?"
+
+msgid "Odpovězte na 4 otázky — je to 1 minuta, zdarma a bez závazků. Ozveme se a řekneme cenu."
+msgstr "Answer 4 questions — it takes 1 minute, free and with no obligation. We will call back with the price."
