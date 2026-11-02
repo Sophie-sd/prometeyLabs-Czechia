@@ -86,7 +86,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .modal{position:fixed;inset:0;z-index:var(--z-modal-backdrop);display:flex;opacity:0;visibility:hidden;pointer-events:none}
 .modal.active{opacity:1;visibility:visible;pointer-events:auto}
 .service-modal-content{background:#000;color:#fff}
-.contact-widget{position:fixed;bottom:80px;right:2%;z-index:10000}
+.contact-widget{position:fixed;bottom:80px;right:2%;z-index:10000;pointer-events:none}
+.contact-widget__toggle{pointer-events:auto}body.modal-open .contact-widget__toggle,body.menu-open .contact-widget__toggle{pointer-events:none}
 .mobile-contact-fab{display:none}
 @media(max-width:767px){.contact-widget{display:none}.mobile-contact-fab,.mobile-contact-fab.mobile-touch-target{display:flex!important;align-items:center;justify-content:center;position:fixed;right:clamp(16px,4vw,24px);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:9999;width:67px;height:67px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.15);color:#fff;box-shadow:0 4px 24px rgba(0,0,0,.2)}body.menu-open .mobile-contact-fab,body.modal-open .mobile-contact-fab{visibility:hidden;pointer-events:none;opacity:0}}
 .lang-suggest{position:fixed;top:76px;left:50%;transform:translate(-50%,-16px);z-index:1500;display:none;pointer-events:none}
@@ -95,9 +96,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     </style>
 
     <!-- CSS Base Bundle — non-blocking (preload + media-print swap on load) -->
-    <link rel="preload" href="{% static 'css/base-bundle.css' %}?v=36" as="style">
-    <link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=36" media="print" data-async-css>
-    <noscript><link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=36"></noscript>
+    <link rel="preload" href="{% static 'css/base-bundle.css' %}?v=37" as="style">
+    <link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=37" media="print" data-async-css>
+    <noscript><link rel="stylesheet" href="{% static 'css/base-bundle.css' %}?v=37"></noscript>
     <link rel="preload" href="{% static 'css/components/lead-form.css' %}?v=4" as="style">
     <link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=4" media="print" data-async-css>
     <noscript><link rel="stylesheet" href="{% static 'css/components/lead-form.css' %}?v=4"></noscript>
@@ -190,6 +191,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
     <!-- Modals -->
     {% if request.resolver_match.url_name != 'thank_you' %}{% include 'components/modals.html' %}{% endif %}
+
+    <!-- Desktop contact widget (opens the same call-request modal as the mobile FAB) -->
+    {% if request.resolver_match.url_name != 'thank_you' %}
+    <div class="contact-widget" id="contact-widget">
+        <button class="contact-widget__toggle mobile-touch-target" id="contact-widget-toggle" type="button"
+            data-modal="call-request-modal" aria-haspopup="dialog"
+            aria-label="{% trans 'Nezávazná poptávka' %}">
+            <svg class="contact-widget__icon contact-widget__icon--open" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z" fill="currentColor"/>
+            </svg>
+        </button>
+    </div>
+    {% endif %}
 
     <!-- Mobile contact FAB (leads-pack) -->
     {% if request.resolver_match.url_name != 'thank_you' %}{% include 'components/mobile_contact_fab.html' %}{% endif %}
