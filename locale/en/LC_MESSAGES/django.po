@@ -11829,3 +11829,49 @@ msgstr "Answer 4 questions — it takes 1 minute, free and with no obligation. W
 # home hero (step 3)
 msgid "Nechat poptávku"
 msgstr "Get in touch"
+
+# header + burger menu (step 4)
+msgid "domů"
+msgstr "home"
+
+msgid "portfolio"
+msgstr "portfolio"
+
+msgid "služby"
+msgstr "services"
+
+msgid "e-shopy"
+msgstr "online stores"
+
+msgid "firemní weby a landing page"
+msgstr "corporate sites & landing pages"
+
+msgid "Úprava webu"
+msgstr "Website improvement"
+
+msgid "spočítat cenu webu"
+msgstr "calculate website price"
+
+msgid "blog"
+msgstr "blog"
+
+msgid "kontakty"
+msgstr "contacts"
+
+msgid "Domů"
+msgstr "Home"
+
+msgid "Portfolio"
+msgstr "Portfolio"
+
+msgid "Firemní weby a landing page"
+msgstr "Corporate sites & landing pages"
+
+msgid "Spočítat cenu webu"
+msgstr "Calculate website price"
+
+msgid "Kontakty"
+msgstr "Contacts"
+
+msgid "Blog"
+msgstr "Blog"

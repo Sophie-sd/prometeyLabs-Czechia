@@ -60,7 +60,9 @@ class MenuAndFooterFitTests(TestCase):
         self.assertIn('/internet-shop/', header)
         self.assertIn('/telegram-bot/', header)
         self.assertIn('/calculator/', header)
-        self.assertNotIn('nav-dropdown', header)
+        # Canon header: the four service pages live under the "Služby" dropdown.
+        self.assertIn('nav-dropdown__menu', header)
+        self.assertIn('aria-controls="nav-services-menu"', header)
 
     def test_footer_services_point_to_pages(self):
         html = self.client.get('/').content.decode('utf-8')

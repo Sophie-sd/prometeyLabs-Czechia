@@ -9,17 +9,41 @@
             </a>
         </div>
 
-        <!-- Desktop Navigation -->
+        <!-- Desktop Navigation: home → portfolio → services dropdown → calculator → blog → contacts -->
         <nav class="nav-menu" role="navigation" aria-label="{% trans 'Основне меню' %}">
-            <a href="{% url 'home' %}" class="nav-link{% if request.resolver_match.url_name == 'home' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'home' %} aria-current="page"{% endif %}>{% trans "головна" as nl %}{{ nl|capfirst }}</a>
-            <a href="{% url 'corporate_website_v2' %}" class="nav-link{% if request.resolver_match.url_name == 'corporate_website_v2' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'corporate_website_v2' %} aria-current="page"{% endif %}>{% trans "корпоративні сайти та лендінги" as nl %}{{ nl|capfirst }}</a>
-            <a href="{% url 'internet_shop_v2' %}" class="nav-link{% if request.resolver_match.url_name == 'internet_shop_v2' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'internet_shop_v2' %} aria-current="page"{% endif %}>{% trans "інтернет-магазини" as nl %}{{ nl|capfirst }}</a>
-            <a href="{% url 'telegram_bot' %}" class="nav-link{% if request.resolver_match.url_name == 'telegram_bot' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'telegram_bot' %} aria-current="page"{% endif %}>{% trans "Telegram-боти" %}</a>
-            <a href="{% url 'dorobka_sajtu' %}" class="nav-link{% if request.resolver_match.url_name == 'dorobka_sajtu' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'dorobka_sajtu' %} aria-current="page"{% endif %}>{% trans "Доробка сайтів" %}</a>
-            <a href="{% url 'portfolio' %}" class="nav-link{% if request.resolver_match.url_name == 'portfolio' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'portfolio' %} aria-current="page"{% endif %}>{% trans "портфоліо" as nl %}{{ nl|capfirst }}</a>
-            <a href="{% url 'blog:blog_list' %}" class="nav-link{% if request.resolver_match.namespace == 'blog' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.namespace == 'blog' %} aria-current="page"{% endif %}>{% trans "блог" as nl %}{{ nl|capfirst }}</a>
-            <a href="{% url 'calculator' %}" class="nav-link{% if request.resolver_match.url_name == 'calculator' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'calculator' %} aria-current="page"{% endif %}>{% trans "розрахувати пропозицію" as nl %}{{ nl|capfirst }}</a>
-            <a href="{% url 'contacts' %}" class="nav-link{% if request.resolver_match.url_name == 'contacts' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'contacts' %} aria-current="page"{% endif %}>{% trans "контакти" as nl %}{{ nl|capfirst }}</a>
+            <a href="{% url 'home' %}" class="nav-link{% if request.resolver_match.url_name == 'home' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'home' %} aria-current="page"{% endif %}>{% trans "domů" as nl %}{{ nl|capfirst }}</a>
+            <a href="{% url 'portfolio' %}" class="nav-link{% if request.resolver_match.url_name == 'portfolio' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'portfolio' %} aria-current="page"{% endif %}>{% trans "portfolio" as nl %}{{ nl|capfirst }}</a>
+            {% with svc=request.resolver_match.url_name %}
+            <div class="nav-dropdown{% if svc == 'internet_shop_v2' or svc == 'corporate_website_v2' or svc == 'telegram_bot' or svc == 'dorobka_sajtu' or svc == 'rozrobka_sajtiv' %} is-active{% endif %}">
+                <button type="button"
+                    class="nav-link nav-dropdown__toggle mobile-touch-target mobile-focus-visible"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    aria-controls="nav-services-menu">
+                    {% trans "služby" as nl %}{{ nl|capfirst }}
+                    <svg class="nav-dropdown__icon" width="10" height="10" viewBox="0 0 12 12" aria-hidden="true">
+                        <path d="M2.5 4.5 6 8 9.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="nav-dropdown__menu" id="nav-services-menu" role="menu">
+                    <a href="{% url 'internet_shop_v2' %}"
+                        class="nav-dropdown__link{% if svc == 'internet_shop_v2' %} is-active{% endif %} mobile-touch-target mobile-focus-visible"
+                        role="menuitem"{% if svc == 'internet_shop_v2' %} aria-current="page"{% endif %}>{% trans "e-shopy" as nl %}{{ nl|capfirst }}</a>
+                    <a href="{% url 'corporate_website_v2' %}"
+                        class="nav-dropdown__link{% if svc == 'corporate_website_v2' %} is-active{% endif %} mobile-touch-target mobile-focus-visible"
+                        role="menuitem"{% if svc == 'corporate_website_v2' %} aria-current="page"{% endif %}>{% trans "firemní weby a landing page" as nl %}{{ nl|capfirst }}</a>
+                    <a href="{% url 'telegram_bot' %}"
+                        class="nav-dropdown__link{% if svc == 'telegram_bot' %} is-active{% endif %} mobile-touch-target mobile-focus-visible"
+                        role="menuitem"{% if svc == 'telegram_bot' %} aria-current="page"{% endif %}>{% trans "Telegram boti" %}</a>
+                    <a href="{% url 'dorobka_sajtu' %}"
+                        class="nav-dropdown__link{% if svc == 'dorobka_sajtu' %} is-active{% endif %} mobile-touch-target mobile-focus-visible"
+                        role="menuitem"{% if svc == 'dorobka_sajtu' %} aria-current="page"{% endif %}>{% trans "Úprava webu" %}</a>
+                </div>
+            </div>
+            {% endwith %}
+            <a href="{% url 'calculator' %}" class="nav-link{% if request.resolver_match.url_name == 'calculator' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'calculator' %} aria-current="page"{% endif %}>{% trans "spočítat cenu webu" as nl %}{{ nl|capfirst }}</a>
+            <a href="{% url 'blog:blog_list' %}" class="nav-link{% if request.resolver_match.namespace == 'blog' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.namespace == 'blog' %} aria-current="page"{% endif %}>{% trans "blog" as nl %}{{ nl|capfirst }}</a>
+            <a href="{% url 'contacts' %}" class="nav-link{% if request.resolver_match.url_name == 'contacts' %} is-current{% endif %} mobile-touch-target mobile-focus-visible"{% if request.resolver_match.url_name == 'contacts' %} aria-current="page"{% endif %}>{% trans "kontakty" as nl %}{{ nl|capfirst }}</a>
         </nav>
 
         <!-- Desktop Language Switcher (CZ default / EN), plain links -->

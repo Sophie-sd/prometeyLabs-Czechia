@@ -11110,3 +11110,49 @@ msgstr ""
 # home hero (step 3)
 msgid "Nechat poptávku"
 msgstr ""
+
+# header + burger menu (step 4)
+msgid "domů"
+msgstr ""
+
+msgid "portfolio"
+msgstr ""
+
+msgid "služby"
+msgstr ""
+
+msgid "e-shopy"
+msgstr ""
+
+msgid "firemní weby a landing page"
+msgstr ""
+
+msgid "Úprava webu"
+msgstr ""
+
+msgid "spočítat cenu webu"
+msgstr ""
+
+msgid "blog"
+msgstr ""
+
+msgid "kontakty"
+msgstr ""
+
+msgid "Domů"
+msgstr ""
+
+msgid "Portfolio"
+msgstr ""
+
+msgid "Firemní weby a landing page"
+msgstr ""
+
+msgid "Spočítat cenu webu"
+msgstr ""
+
+msgid "Kontakty"
+msgstr ""
+
+msgid "Blog"
+msgstr ""
