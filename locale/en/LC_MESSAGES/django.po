@@ -1414,7 +1414,7 @@ msgstr "commercial proposal request"
 
 #: apps/core/proposal_models.py:173
 msgid "Переглянути демо магазину"
-msgstr "View Training Programs"
+msgstr "View shop demo"
 
 #: apps/core/proposal_models.py:174
 msgid "Переглянути демо лендінгу"

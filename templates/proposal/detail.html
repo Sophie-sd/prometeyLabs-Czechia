@@ -5,6 +5,17 @@
 {% block description %}{{ proposal.get_localized_lead }}{% endblock %}
 
 {% block content %}
+<div style="position:fixed;top:20px;right:20px;z-index:1000;background:#fff;padding:8px 12px;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+    {% get_current_language as CURRENT_LANG %}
+    <form action="{% url 'set_language' %}" method="post" style="margin:0;">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <select name="language" onchange="this.form.submit()" style="border:1px solid #ddd;padding:4px 8px;border-radius:3px;font-size:14px;cursor:pointer;">
+            <option value="cs" {% if CURRENT_LANG == 'cs' %}selected{% endif %}>CS</option>
+            <option value="en" {% if CURRENT_LANG == 'en' %}selected{% endif %}>EN</option>
+        </select>
+    </form>
+</div>
 <section id="prop-hero" class="prop-hero" aria-labelledby="prop-hero-title">
     {% if proposal.hero_image %}
     <img class="prop-hero__img"

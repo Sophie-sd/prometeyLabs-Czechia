@@ -1,5 +1,6 @@
 """Тенант демо-магазину, що генерується з комерційної пропозиції (КП)."""
 import secrets
+import unicodedata
 
 from django.contrib.auth.models import User
 from django.core.cache import cache
@@ -126,7 +127,10 @@ class DemoShop(models.Model):
 
     @staticmethod
     def generate_slug(base: str) -> str:
-        stem = slugify(base, allow_unicode=True)[:120] or 'shop'
+        # Strip diacritics: NFKD decompose + keep ASCII only
+        normalized = unicodedata.normalize('NFKD', base)
+        ascii_base = normalized.encode('ascii', 'ignore').decode('ascii')
+        stem = slugify(ascii_base, allow_unicode=False)[:120] or 'shop'
         return f'{stem}-{secrets.token_hex(3)}'
 
     @staticmethod
