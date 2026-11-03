@@ -31,7 +31,7 @@ class ClientLogoFallbackTests(SimpleTestCase):
         client = Client(name='Play Vision')
         client.logo.name = 'clients/playvision_missing.png'
         src = resolve_client_logo_url(client)
-        self.assertIn('/static/images/portfolio/playvision.png', src)
+        self.assertIn('/static/images/clients/playvision.webp', src)
         self.assertNotIn('/media/', src)
 
     def test_homepage_renders_static_logo_src(self):
@@ -103,3 +103,4 @@ class ClientAdminTests(TestCase):
     def test_admin_add_form_accessible(self):
         response = self.client.get(reverse('admin:core_client_add'))
         self.assertEqual(response.status_code, 200)
+

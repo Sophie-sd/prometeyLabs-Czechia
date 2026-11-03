@@ -39,3 +39,22 @@
     .pl-web__hero-stage { gap: clamp(12px, 2svh, 20px); }
     .pl-web__prices { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+
+/* Full-bleed hero backgrounds (owner 2026-11-03: «ширина полмана»).
+   Root cause: the home/developer (.hf-hero__bg 1586px) and portfolio (.pfg-hero__bg 1483px) hero
+   images use fixed Figma-artboard pixel widths, so on screens wider than the artboard the image
+   stops short and black bands show left/right. Below the artboard width nothing changes;
+   above it the image grows with the viewport (same aspect ratio, same centring). */
+@media (min-width: 768px) {
+    .hf-hero__bg {
+        width: max(1586px, calc(100vw + 30px));
+        height: max(992px, calc((100vw + 30px) * 0.62547));
+    }
+}
+@media (min-width: 1484px) {
+    .pfg-hero__bg {
+        left: 0;
+        width: 100%;
+        height: max(871px, calc(100vw * 0.58732));
+    }
+}

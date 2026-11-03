@@ -10,7 +10,11 @@ from django.core.files import File
 from django.core.management.base import BaseCommand
 
 from apps.core.models import Client
-from apps.core.portfolio_seed_data import HOME_CLIENTS
+from apps.core.portfolio_seed_data import (
+    HOME_CLIENTS,
+    LEGACY_CLIENT_SITE_URLS,
+    RETIRED_HOME_CLIENTS,
+)
 
 
 class Command(BaseCommand):
@@ -48,13 +52,17 @@ class Command(BaseCommand):
                     setattr(client, key, value)
                 updated += 1
 
-            if site_url and not client.site_url:
+            if site_url and (not client.site_url or client.site_url in LEGACY_CLIENT_SITE_URLS):
                 client.site_url = site_url
             self._attach_logo(client, item, static_root, force_images)
             client.save()
 
+        # Hide (never delete) clients that left the canon strip.
+        hidden = Client.objects.filter(name__in=RETIRED_HOME_CLIENTS, is_active=True).update(is_active=False)
+
         self.stdout.write(
             self.style.SUCCESS(
+                f'Skryto: {hidden}. '
                 f'Клієнти: створено {created}, оновлено {updated}, '
                 f'всього {Client.objects.count()} записів.'
             )
