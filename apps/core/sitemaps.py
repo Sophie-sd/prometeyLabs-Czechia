@@ -16,8 +16,8 @@ SITE_DOMAIN = urlparse(
 
 # Сторінки, які лишаються маршрутизованими, але НЕ потрапляють у sitemap:
 #   developer    — /developer/ та /en/developer/ роблять 302 на головну (№16, №76);
-#   tz_generator — /tz-dlia-saitu/ ще не перекладена (№16, B-7).
-SITEMAP_EXCLUDED_PAGES = frozenset({'developer', 'tz_generator'})
+#   (tz_generator /tz-dlia-saitu/ is now fully CS+EN, so it is listed like on the canon.)
+SITEMAP_EXCLUDED_PAGES = frozenset({'developer'})
 
 
 class AbsoluteSitemap(Sitemap):
