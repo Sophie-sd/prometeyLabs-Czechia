@@ -69,10 +69,11 @@ def published_portfolio_queryset():
 
 
 def portfolio_page_projects():
+    """Czech/EU cases first; `is_ukraine_client` rows follow, each group by `order`."""
     projects = list(
         published_portfolio_queryset()
         .filter(show_on_portfolio=True)
-        .order_by('order', 'title')
+        .order_by('is_ukraine_client', 'order', 'title')
     )
     for index, project in enumerate(projects):
         project.snap_index = index
