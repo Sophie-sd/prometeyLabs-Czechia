@@ -1,0 +1,168 @@
+{
+  "slug": "bukacek-katalog-recenzi-7k2m",
+  "client_name": "Jaroslav Bukáček",
+  "kind": "shop",
+  "issued_on": "2026-11-03",
+  "is_published": true,
+  "title": "Minimalistický katalog recenzí — návrh spolupráce",
+  "title_en": "Minimalist review catalogue — proposal",
+  "lead": "Čistý, rychlý web s katalogem recenzí na vaší doméně u Forpsi. Pevná cena za spuštění, jednoduchá administrace a hodinová sazba pro pozdější úpravy — náklady máte vždy pod kontrolou a na všechno máte jednoho člověka.",
+  "lead_en": "A clean, fast website with a review catalogue on your Forpsi domain. Fixed launch price, simple admin and an hourly rate for later edits — costs under control and one person on hand.",
+  "recommendations_lead": "Co doporučujeme, aby web zůstal jednoduchý, levný na provoz a snadno se rozšiřoval.",
+  "recommendations_lead_en": "What we recommend so the site stays simple, cheap to run and easy to extend.",
+  "cta_label": "Probrat projekt",
+  "cta_label_en": "Discuss the project",
+  "intro_html": "<p>Jsme PrometeyLabs — malý tým, který staví weby na míru v Djangu. Žádné šablonové buildery, žádné měsíční licence za pluginy: kód je váš.</p><p>Pro váš projekt navrhujeme minimalistický katalog recenzí: přehledné karty, kategorie, vyhledávání a detail recenze. Obsah spravujete sami v jednoduché administraci.</p><p>Doménu ponecháte u Forpsi — jen nasměrujeme DNS na hosting webu.</p>",
+  "intro_html_en": "<p>We are PrometeyLabs — a small team building custom Django websites. No template builders, no monthly plugin licences: the code is yours.</p><p>For your project we propose a minimalist review catalogue: clear cards, categories, search and a review detail page. You manage content yourself in a simple admin.</p><p>Your domain stays at Forpsi — we only point the DNS to the site hosting.</p>",
+  "guarantee_html": "<p>Po spuštění opravujeme chyby v dodaném kódu bez dalších poplatků.</p><p>Další úpravy a nové funkce účtujeme hodinovou sazbou 440 Kč/h — předem vám řekneme odhad hodin, abyste věděl, kolik zaplatíte.</p>",
+  "guarantee_html_en": "<p>After launch we fix bugs in the delivered code free of charge.</p><p>Extra edits and features are billed at 440 CZK/h — we always give you an hour estimate up front.</p>",
+  "highlights": [
+    {
+      "title": "Pevná cena za spuštění",
+      "title_en": "Fixed launch price"
+    },
+    {
+      "title": "Jednoduchá administrace",
+      "title_en": "Simple admin"
+    },
+    {
+      "title": "Jeden člověk na vše",
+      "title_en": "One person on hand"
+    }
+  ],
+  "arch_nodes": [
+    {
+      "title": "Administrace",
+      "title_en": "Admin",
+      "caption": "",
+      "is_accent": false
+    },
+    {
+      "title": "Katalog recenzí",
+      "title_en": "Review catalogue",
+      "caption": "Kategorie a hledání",
+      "caption_en": "Categories & search",
+      "is_accent": true
+    },
+    {
+      "title": "Doména Forpsi",
+      "title_en": "Forpsi domain",
+      "caption": "DNS → hosting",
+      "caption_en": "DNS → hosting",
+      "is_accent": false
+    }
+  ],
+  "modules": [
+    {
+      "title": "Katalog recenzí",
+      "title_en": "Review catalogue",
+      "description": "Karty recenzí s fotkou, hodnocením a krátkým textem; stránkování a řazení.",
+      "description_en": "Review cards with photo, rating and short text; pagination and sorting."
+    },
+    {
+      "title": "Kategorie a vyhledávání",
+      "title_en": "Categories & search",
+      "description": "Filtrování podle kategorií a fulltextové hledání v recenzích.",
+      "description_en": "Category filters and full-text search in reviews."
+    },
+    {
+      "title": "Detail recenze",
+      "title_en": "Review detail",
+      "description": "Samostatná stránka recenze s galerií a odkazy na související recenze.",
+      "description_en": "A dedicated review page with gallery and related reviews."
+    },
+    {
+      "title": "Jednoduchá administrace",
+      "title_en": "Simple admin",
+      "description": "Přidávání a úprava recenzí, kategorií a textů bez programátora.",
+      "description_en": "Add and edit reviews, categories and texts without a developer."
+    },
+    {
+      "title": "SEO a rychlost",
+      "title_en": "SEO & speed",
+      "description": "Meta tagy, sitemap, čisté URL a optimalizované obrázky pro mobil.",
+      "description_en": "Meta tags, sitemap, clean URLs and optimised images for mobile."
+    },
+    {
+      "title": "Spuštění na vaší doméně",
+      "title_en": "Launch on your domain",
+      "description": "Nastavení DNS u Forpsi, SSL certifikát a předání přístupů.",
+      "description_en": "Forpsi DNS setup, SSL certificate and handover of access."
+    }
+  ],
+  "packages": [
+    {
+      "name": "Spuštění webu (pevná cena)",
+      "name_en": "Website launch (fixed price)",
+      "scope": "Katalog recenzí, kategorie, hledání, detail recenze, administrace, SEO základ, nasazení na doménu Forpsi.",
+      "scope_en": "Review catalogue, categories, search, review detail, admin, SEO basics, deployment on the Forpsi domain.",
+      "duration": "3 týdny",
+      "duration_en": "3 weeks",
+      "price": "9700",
+      "currency": "Kč",
+      "is_recommended": true
+    },
+    {
+      "name": "Další úpravy (hodinová sazba)",
+      "name_en": "Extra tasks (hourly rate)",
+      "scope": "Úpravy obsahu i funkcí po spuštění; vždy s předběžným odhadem hodin.",
+      "scope_en": "Content and feature edits after launch; always with an hour estimate up front.",
+      "duration": "dle potřeby",
+      "duration_en": "as needed",
+      "price": "440",
+      "currency": "Kč/h",
+      "is_recommended": false
+    }
+  ],
+  "specs": [
+    {
+      "kind": "spec",
+      "title": "Rozsah",
+      "title_en": "Scope",
+      "body": "Minimalistický design, mobilní verze, čeština (angličtina volitelně). Obsah recenzí dodá klient nebo jej vložíme dle podkladů.",
+      "body_en": "Minimalist design, mobile version, Czech (English optional). Review content supplied by the client or entered from materials."
+    },
+    {
+      "kind": "spec",
+      "title": "Doména a hosting",
+      "title_en": "Domain & hosting",
+      "body": "Doména zůstává u Forpsi; nasměrujeme DNS na hosting webu.",
+      "body_en": "The domain stays at Forpsi; we point its DNS to the site hosting."
+    },
+    {
+      "kind": "payment",
+      "title": "9 700 Kč",
+      "title_en": "9,700 CZK",
+      "body": "Pevná cena za spuštění webu (400 € dle kurzu ČNB k 03.11.2026: 24,340 Kč/€). Dodání do 3 týdnů. Záloha a splatnost: za domluvou.",
+      "body_en": "Fixed price for the website launch (€400 at the ČNB rate of 03.11.2026: CZK 24.340/€). Delivery within 3 weeks. Prepayment and payment terms: by agreement."
+    },
+    {
+      "kind": "payment",
+      "title": "440 Kč/h",
+      "title_en": "440 CZK/h",
+      "body": "Další úpravy po spuštění (18 €/h dle kurzu ČNB k 03.11.2026), vždy s předběžným odhadem hodin.",
+      "body_en": "Extra tasks after launch (€18/h at the ČNB rate of 03.11.2026), always with an hour estimate up front."
+    },
+    {
+      "kind": "payment",
+      "title": "Fakturace úprav",
+      "title_en": "Invoicing of edits",
+      "body": "Úpravy fakturujeme podle skutečně odpracovaných hodin.",
+      "body_en": "Edits are invoiced by hours actually worked."
+    },
+    {
+      "kind": "recommendation",
+      "title": "Začít jednoduše",
+      "title_en": "Start simple",
+      "body": "Spustit s jádrem katalogu a další funkce (např. hodnocení návštěvníků) přidat až podle reálné potřeby.",
+      "body_en": "Launch with the catalogue core and add features (e.g. visitor ratings) only when really needed."
+    },
+    {
+      "kind": "recommendation",
+      "title": "Obsah v administraci",
+      "title_en": "Content in the admin",
+      "body": "Recenze vkládat přímo v administraci — bez placených úprav za každý nový text.",
+      "body_en": "Add reviews directly in the admin — no paid edits for every new text."
+    }
+  ]
+}

@@ -71,4 +71,7 @@ python manage.py seed_site_contact_settings
 echo "📄 Seeding B2B Parts commercial proposal..."
 python manage.py seed_proposal_b2b_parts
 
+echo "📄 Seeding Bukáček commercial proposal..."
+python manage.py seed_proposal_bukacek
+
 echo "✅ Build complete!"
