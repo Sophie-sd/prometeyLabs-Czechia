@@ -61,3 +61,15 @@
 @media (max-width: 767px) {
     .pl-shop-body .pl-shop__hero-trust { font-size: 12px; }
 }
+
+/* The slot-10 flame is brightest exactly where the strip copy sits (worst at 390,
+   where the image is scaled up). Canon's own remedy for copy on a bright photo —
+   the scrim from .hf-cta__text in home-figma.css — with the same values, so the
+   canon type scale and colour tokens stay untouched. */
+.pl-shop-body .pl-shop__slot10 .pl-corp__calc-promo-title,
+.pl-shop-body .pl-shop__slot10 .pl-corp__calc-promo-text {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .55), 0 0 18px rgba(0, 0, 0, .35);
+}
+.pl-shop-body .pl-shop__slot10 .pl-corp__calc-promo-text {
+    color: rgba(255, 255, 255, .92);
+}

@@ -193,7 +193,8 @@ body.pl-corp-body .main-footer .container,
 }
 
 .pl-corp__btn--accent {
-    background: var(--pl-acc);
+    /* Canon: #c44e00, not --pl-acc — white label on #f60 is only 2.9:1 */
+    background: #c44e00;
     color: #fff;
 }
 
@@ -217,7 +218,7 @@ body.pl-corp-body .main-footer .container,
     }
 
     .pl-corp__btn--accent:hover {
-        background: #ff7a1f;
+        background: #b84800;
         box-shadow: 0 10px 30px rgba(255, 102, 0, 0.35);
     }
 

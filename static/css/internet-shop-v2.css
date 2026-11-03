@@ -2782,3 +2782,104 @@ body.pl-shop-body .main-footer .container,
         overflow-x: auto;
     }
 }
+
+/* =========================================================
+   FAQ (shared components/ads/faq.html) — canon shop skin.
+   The slot-10 flame runs behind this section, so every item sits on a solid
+   --pl-panel plate and the summary marker is a +/− pair, not the UA triangle.
+   ========================================================= */
+.pl-shop-body .pl-ads-faq {
+    padding: var(--pl-section-gap) 0 0;
+}
+.pl-shop-body .pl-ads-faq .pl-ads-wrap {
+    max-width: calc(1330px + 2 * var(--pl-gutter));
+    padding: 0 var(--pl-gutter);
+    padding-left: max(var(--pl-gutter), env(safe-area-inset-left));
+    padding-right: max(var(--pl-gutter), env(safe-area-inset-right));
+}
+.pl-shop-body .pl-ads-faq .pl-ads-h2 {
+    max-width: 630px;
+    margin: 0 0 var(--pl-head-gap);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+.pl-shop-body .pl-ads-faq__list {
+    display: grid;
+    gap: 12px;
+}
+.pl-shop-body .pl-ads-faq__item {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 20px;
+    background: var(--pl-panel);
+    transition: background-color 0.2s var(--pl-ease);
+}
+.pl-shop-body .pl-ads-faq__item[open] {
+    background: var(--pl-grad), var(--pl-panel);
+}
+.pl-shop-body .pl-ads-faq__q {
+    position: relative;
+    display: block;
+    padding: 20px 64px 20px 20px;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    list-style: none;
+}
+.pl-shop-body .pl-ads-faq__q::-webkit-details-marker {
+    display: none;
+}
+.pl-shop-body .pl-ads-faq__q::before,
+.pl-shop-body .pl-ads-faq__q::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    width: 16px;
+    height: 2px;
+    margin-top: -1px;
+    border-radius: 2px;
+    background: var(--pl-acc, #f60);
+    transition: transform 0.2s var(--pl-ease);
+}
+.pl-shop-body .pl-ads-faq__q::after {
+    transform: rotate(90deg);
+}
+.pl-shop-body .pl-ads-faq__item[open] > .pl-ads-faq__q::after {
+    transform: rotate(0deg);
+}
+.pl-shop-body .pl-ads-faq__q:focus-visible {
+    outline: 2px solid var(--pl-acc, #f60);
+    outline-offset: 2px;
+}
+.pl-shop-body .pl-ads-faq__a {
+    max-width: 860px;
+    margin: 0;
+    padding: 0 20px 22px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #c8c8c8;
+}
+@media (min-width: 1024px) {
+    .pl-shop-body .pl-ads-faq .pl-ads-h2 {
+        font-size: 50px;
+    }
+    .pl-shop-body .pl-ads-faq__q {
+        padding: 26px 80px 26px 30px;
+        font-size: 20px;
+    }
+    .pl-shop-body .pl-ads-faq__q::before,
+    .pl-shop-body .pl-ads-faq__q::after {
+        right: 32px;
+        width: 18px;
+    }
+    .pl-shop-body .pl-ads-faq__a {
+        padding: 0 30px 28px;
+        font-size: 17px;
+    }
+}
