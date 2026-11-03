@@ -16,6 +16,27 @@ class SiteContactSettingsTests(TestCase):
         with self.assertRaises(ValidationError):
             duplicate.save()
 
+    def test_public_phone_never_ukrainian(self):
+        self.settings_obj.phone_display = '+38 (063) 952-05-65'
+        self.settings_obj.phone_e164 = '380639520565'
+        self.assertFalse(self.settings_obj.has_public_phone)
+        self.settings_obj.phone_display = ''
+        self.settings_obj.phone_e164 = ''
+        self.assertFalse(self.settings_obj.has_public_phone)
+        self.settings_obj.phone_display = '+420 777 123 456'
+        self.settings_obj.phone_e164 = '420777123456'
+        self.assertTrue(self.settings_obj.has_public_phone)
+
+    def test_ukrainian_phone_in_db_is_not_rendered(self):
+        self.settings_obj.phone_display = '+38 (063) 952-05-65'
+        self.settings_obj.phone_e164 = '380639520565'
+        self.settings_obj.save()
+        for path in ('/', '/en/', '/contacts/', '/tvorba-webu/', '/internet-shop/'):
+            with self.subTest(path=path):
+                html = self.client.get(path).content.decode()
+                self.assertNotIn('tel:+380', html)
+                self.assertNotIn('952-05-65', html)
+
     def test_whatsapp_href_default_from_phone(self):
         self.settings_obj.phone_e164 = '380639520565'
         self.settings_obj.whatsapp_url = ''

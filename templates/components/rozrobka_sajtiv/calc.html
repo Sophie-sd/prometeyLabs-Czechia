@@ -14,7 +14,7 @@
                     {% trans "Stránka: Tvorba webu · Vložená kalkulačka" as calc_details %}{% trans "Nechte kontakt — ozveme se do 15 minut a řekneme cenu i termín." as calc_contact_note %}{% trans "Získat kalkulaci" as calc_submit_label %}
                     {% include 'components/calculator/test_form.html' with calc_source_page='rozrobka-sajtiv' %}
                 </div>
-                <p class="pl-rs__calc-alt">{% trans "Je pro vás jednodušší napsat?" %} <a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">Telegram</a>{% if site_contact.email %} · <a href="mailto:{{ site_contact.email }}">{{ site_contact.email }}</a>{% endif %}{% if site_contact.get_tel_href %} · <a href="{{ site_contact.get_tel_href }}">{{ site_contact.phone }}</a>{% endif %}</p>
+                <p class="pl-rs__calc-alt">{% trans "Je pro vás jednodušší napsat?" %} <a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">Telegram</a>{% if site_contact.email %} · <a href="mailto:{{ site_contact.email }}">{{ site_contact.email }}</a>{% endif %}{% if site_contact.has_public_phone %} · <a href="{{ site_contact.get_tel_href }}">{{ site_contact.phone_display }}</a>{% endif %}</p>
             </div>
         </div>
     </div>

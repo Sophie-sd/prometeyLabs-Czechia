@@ -21,7 +21,7 @@
             <p class="modal-separator-text">{% trans "Nebo napište hned:" %}</p>
             {# TODO(contacts): no Czech phone number exists yet — fill phone_display/phone_e164
                in SiteContactSettings and the canon tel: link below starts rendering. #}
-            {% if site_contact.phone_display %}
+            {% if site_contact.has_public_phone %}
             <a href="{{ site_contact.get_tel_href }}" class="modal-phone-link">
                 {{ site_contact.phone_display }}
             </a>

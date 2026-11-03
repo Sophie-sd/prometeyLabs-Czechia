@@ -639,6 +639,13 @@ class SiteContactSettings(models.Model):
         digits = (self.phone_e164 or '').strip()
         return f'tel:+{digits}' if digits else ''
 
+    @property
+    def has_public_phone(self):
+        """True only for a real non-Ukrainian number: the .cz site never shows a +380 phone,
+        even if an old row still carries one (the canon tel: slots are gated on this)."""
+        digits = (self.phone_e164 or '').strip().lstrip('+')
+        return bool((self.phone_display or '').strip() and digits and not digits.startswith('380'))
+
     def get_whatsapp_href(self):
         if self.whatsapp_url:
             return self.whatsapp_url

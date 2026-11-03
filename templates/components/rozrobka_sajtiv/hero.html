@@ -10,7 +10,7 @@
             <h1 id="pl-rs-h1" class="pl-rs__h1">{% trans "Tvorba webů na klíč od 10 000 Kč" %}</h1>
             <p class="pl-rs__lead">{% blocktrans trimmed %}Vytvořte web pro svůj byznys: landing <span class="pl-rs__acc">od 10 000 Kč za 3–7 dní</span>, firemní web <span class="pl-rs__acc">od 17 000 Kč</span>, e-shop <span class="pl-rs__acc">od 34 500 Kč</span>. Doživotní záruka na kód, <span class="pl-rs__acc">rok podpory zdarma</span>.{% endblocktrans %}</p>
             {% calc_cta 'rozrobka' 'block' 'hero' %}{% calc_cta_sticky 'rozrobka' %}
-            <p class="pl-rs__hero-links"><a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">{% trans "Napsat na Telegram" %}</a>{% if site_contact.email %} · <a href="mailto:{{ site_contact.email }}">{{ site_contact.email }}</a>{% endif %}{% if site_contact.get_tel_href %} · <a href="{{ site_contact.get_tel_href }}">{{ site_contact.phone }}</a>{% endif %}</p>
+            <p class="pl-rs__hero-links"><a href="{{ site_contact.telegram_url|default:'https://t.me/prometeylabs' }}" target="_blank" rel="noopener noreferrer">{% trans "Napsat na Telegram" %}</a>{% if site_contact.email %} · <a href="mailto:{{ site_contact.email }}">{{ site_contact.email }}</a>{% endif %}{% if site_contact.has_public_phone %} · <a href="{{ site_contact.get_tel_href }}">{{ site_contact.phone_display }}</a>{% endif %}</p>
             <p class="pl-rs__hero-trust">{% trans "Cena a termín ve smlouvě · Administrace zůstává vám · 50+ spuštěných projektů · Odpovídáme do 15 minut" %}</p>
         </div>
     </div>
