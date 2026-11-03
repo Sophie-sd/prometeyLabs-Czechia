@@ -11888,3 +11888,13 @@ msgstr "Euro"
 
 msgid "od"
 msgstr "from"
+
+# step 10 corporate free-analysis
+msgid "Bezplatná"
+msgstr "Free"
+
+msgid "analýza webu a konzultace"
+msgstr "website analysis and consultation"
+
+msgid "Nechte nám telefonní číslo — připravíme krátkou analýzu vašeho webu a zavoláme s doporučeními."
+msgstr "Leave your phone number — we will prepare a short analysis of your website and call you with recommendations."

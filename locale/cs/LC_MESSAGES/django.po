@@ -11169,3 +11169,13 @@ msgstr ""
 
 msgid "od"
 msgstr ""
+
+# step 10 corporate free-analysis
+msgid "Bezplatná"
+msgstr ""
+
+msgid "analýza webu a konzultace"
+msgstr ""
+
+msgid "Nechte nám telefonní číslo — připravíme krátkou analýzu vašeho webu a zavoláme s doporučeními."
+msgstr ""
