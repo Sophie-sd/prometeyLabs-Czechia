@@ -11,6 +11,12 @@ from apps.core.portfolio_seed_projects_3 import PORTFOLIO_PROJECTS_3
 
 PORTFOLIO_PROJECTS = PORTFOLIO_PROJECTS_1 + PORTFOLIO_PROJECTS_2 + PORTFOLIO_PROJECTS_3
 
+# `site_url` points at the client's English version wherever one exists (hreflang en,
+# a language switch, or /en/ answering 200 with genuinely English content). The same
+# address is used on the Czech and the English page. Two sites were checked and
+# deliberately left on their original URL: carpet-haus.com.ua/en/ serves the Ukrainian
+# page with only `lang="en"` swapped, and the four client logos in the home strip have
+# no English version at all. See round2/link_mapping.md for the full audit.
 IMAGE_FIELD_MAP = (
     ('static_card', 'card_image'),
     ('static_card_mobile', 'card_image_mobile'),

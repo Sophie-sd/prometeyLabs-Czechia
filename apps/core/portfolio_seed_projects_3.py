@@ -220,7 +220,7 @@ PORTFOLIO_PROJECTS_3 = [
         desc='Корпоративний сайт компанії цифрових товарів і LED-рішень: каталог, заявка, контакти.',
         desc_ru='Корпоративный сайт компании цифровых товаров и LED-решений: каталог, заявка, контакты.',
         tags=CORP_TAGS,
-        site_url='https://led-leader.com.ua/',
+        site_url='https://led-leader.com.ua/en/',
         order=45,
     ),
     card(

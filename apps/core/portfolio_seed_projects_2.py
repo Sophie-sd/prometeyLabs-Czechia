@@ -59,7 +59,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc='Інтернет-магазин комп’ютерної техніки та комплектуючих: каталог, кошик і онлайн-оплата.',
         desc_ru='Интернет-магазин компьютерной техники и комплектующих: каталог, корзина и онлайн-оплата.',
         tags=SHOP_TAGS,
-        site_url='https://svitpc.com.ua/',
+        site_url='https://svitpc.com.ua/en/',
         order=9,
     ),
     card(
@@ -144,7 +144,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc='Корпоративний каталог виробника коробок і упаковки: продукція, прорахунок замовлення, контакти.',
         desc_ru='Корпоративный каталог производителя коробок и упаковки: продукция, расчёт заказа, контакты.',
         tags=CATALOG_TAGS,
-        site_url='https://magnum-tpc.com/uk/',
+        site_url='https://magnum-tpc.com/en/',
         order=30,
     ),
     card(
@@ -168,7 +168,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc='Каталог силового обладнання для залів: тренажери, прорахунок поставки, контакти виробника.',
         desc_ru='Каталог силового оборудования для залов: тренажёры, расчёт поставки, контакты производителя.',
         tags=CATALOG_TAGS,
-        site_url='https://recharge4gym.com.ua/uk/',
+        site_url='https://recharge4gym.com.ua/en/',
         order=32,
     ),
     card(
@@ -204,7 +204,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc='Каталог нот і музичних матеріалів: вітрина видань, замовлення, контакти.',
         desc_ru='Каталог нот и музыкальных материалов: витрина изданий, заказ, контакты.',
         tags=CATALOG_TAGS,
-        site_url='https://notenhaus.com.ua/',
+        site_url='https://notenhaus.com.ua/en/',
         order=93,
         show_on_portfolio=False,
     ),
