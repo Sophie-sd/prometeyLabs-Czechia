@@ -2,7 +2,7 @@
 from django.contrib import messages
 from django.contrib.auth import logout as auth_logout
 from django.core.paginator import Paginator
-from django.http import HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import translation, timezone
@@ -357,8 +357,8 @@ def np_warehouses(request, shop_slug):
 
 @require_GET
 def admin_access(request, shop_slug):
-    shop = _get_active_shop(shop_slug)
-    return render(request, 'demoshop/admin_access.html', _base_context(request, shop))
+    # CZ-DEMO-01: public page leaked demo credentials; closed.
+    raise Http404
 
 
 @require_GET
