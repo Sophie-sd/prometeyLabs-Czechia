@@ -11179,3 +11179,7 @@ msgstr ""
 
 msgid "Nechte nám telefonní číslo — připravíme krátkou analýzu vašeho webu a zavoláme s doporučeními."
 msgstr ""
+
+# round2 step 1: canon final-CTA hint
+msgid "Odpověď během pracovního dne"
+msgstr ""

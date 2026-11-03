@@ -11898,3 +11898,7 @@ msgstr "website analysis and consultation"
 
 msgid "Nechte nám telefonní číslo — připravíme krátkou analýzu vašeho webu a zavoláme s doporučeními."
 msgstr "Leave your phone number — we will prepare a short analysis of your website and call you with recommendations."
+
+# round2 step 1: canon final-CTA hint
+msgid "Odpověď během pracovního dne"
+msgstr "We reply within one business day"

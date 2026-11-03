@@ -47,7 +47,7 @@ class HomeCtaChannelsTests(TestCase):
         cache.clear()
         html = self.client.get('/').content.decode()
         self.assertNotIn('wa.me', self._hero(html))
-        cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>\s*</div>', html, re.S).group(1)
+        cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>', html, re.S).group(1)
         self.assertIn('https://wa.me/message/TESTONLY', cta)
 
     def test_cta_section_primary_is_form(self):
@@ -56,6 +56,27 @@ class HomeCtaChannelsTests(TestCase):
         first = re.search(r'<(?:a|button)[^>]*>', cta).group(0)
         self.assertIn('data-modal="call-request-modal"', first)
         self.assertIn('hf-btn--light', first)
+
+    def test_cta_matches_canon_shape(self):
+        """Canon final CTA: single title msgid, four 220px channels, reply hint under them."""
+        for path, title, hint in (
+            ('/', 'Připraveni začít?', 'Odpověď během pracovního dne'),
+            ('/en/', 'Ready to start?', 'We reply within one business day'),
+        ):
+            html = self.client.get(path).content.decode()
+            section = html[html.index('<section class="hf-cta"'):]
+            section = section[:section.index('</section>')]
+            self.assertIn(f'>{title}</h2>', section, path)
+            self.assertIn(f'<p class="hf-cta__hint">{hint}</p>', section, path)
+            self.assertEqual(section.count('hf-btn--lg'), 3, path)  # WhatsApp off in setUp
+
+    def test_cta_actions_grid_is_centred(self):
+        """The 2x2 button grid uses canon's 460px track, centred — not flush left."""
+        css = (settings.BASE_DIR / 'static' / 'css' / 'home-figma' / 'home-figma.css').read_text()
+        actions = re.search(r'\.hf-cta__actions\s*\{(.*?)\}', css, re.S).group(1)
+        self.assertIn('justify-content: center', actions)
+        self.assertIn('width: 460px', actions)
+        self.assertIn('.hf-cta .hf-btn--light { color: #b84800; }', css)
 
     def test_cs_telegram_casing(self):
         html = self.client.get('/').content.decode()
@@ -88,7 +109,7 @@ class HomeWhatsAppOnlyFromUrlTests(TestCase):
     def _sections(self, html):
         start = html.index('<div class="hf-hero__actions')
         hero = html[start:html.index('</section>', start)]
-        cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>\s*</div>', html, re.S).group(1)
+        cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>', html, re.S).group(1)
         return hero, cta
 
     def test_absent_when_url_empty_even_if_phone_set(self):

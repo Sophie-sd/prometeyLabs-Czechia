@@ -83,7 +83,7 @@ class WhatsAppButtonWithMigratedUrlTests(TestCase):
             html = self.client.get(path).content.decode()
             if path in ('/', '/en/'):
                 # Canon hero shows one quiz CTA + two ghost buttons; WhatsApp sits in the bottom CTA.
-                cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>\s*</div>', html, re.S).group(1)
+                cta = re.search(r'<div class="hf-cta__actions">(.*?)</div>', html, re.S).group(1)
                 link = re.search(r'<a [^>]*href="' + re.escape(URL) + r'"[^>]*>(.*?)</a>', cta, re.S)
                 self.assertIsNotNone(link, path)
                 self.assertEqual(link.group(1).strip(), 'WhatsApp')

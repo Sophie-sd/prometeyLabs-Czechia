@@ -1,7 +1,7 @@
 {% load i18n %}
 <section class="hf-cta" id="contact" aria-labelledby="hf-cta-title">
     <div class="hf-card hf-cta__card">
-        <h2 class="hf-cta__title" id="hf-cta-title">{% trans "ГОТОВІ" as a %}{% trans "ПОЧАТИ?" as b %}{{ a|lower|capfirst }} {{ b|lower }}</h2>
+        <h2 class="hf-cta__title" id="hf-cta-title">{% trans "Готові почати?" %}</h2>
         <p class="hf-cta__text">{% trans "Зв'яжіться з нами для безкоштовної консультації та розрахунку вартості проєкту" %}</p>
         <div class="hf-cta__actions">
             {# п.6: головний CTA — форма заявки #}
@@ -12,5 +12,6 @@
             <a href="{{ site_contact.whatsapp_url }}" class="hf-btn hf-btn--ghost hf-btn--lg" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             {% endif %}
         </div>
+        <p class="hf-cta__hint">{% trans "Odpověď během pracovního dne" %}</p>
     </div>
 </section>
