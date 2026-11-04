@@ -56,6 +56,8 @@ class StaticViewSitemap(AbsoluteSitemap):
         'internet_shop_v2': (0.9, 'weekly'),
         'corporate_website_v2': (0.9, 'weekly'),
         'telegram_bot': (0.9, 'weekly'),
+        'web_development': (0.9, 'weekly'),
+        'web_applications': (0.9, 'weekly'),
         'rozrobka_sajtiv': (0.9, 'weekly'),
         'dorobka_sajtu': (0.9, 'weekly'),
         'tz_generator': (0.9, 'weekly'),

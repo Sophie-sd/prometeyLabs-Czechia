@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load seo_tags %}
+{% load i18n %}
+{# Service page cloned from pages/web-development.html (same pl-web CSS/JS). CS: /webove-aplikace/, EN: /en/web-applications/. #}
+
+{% block body_attrs %} class="pl-web-body" data-modal-source-page="web-applications-modal"{% endblock %}
+
+{% block title %}{% trans "Webové aplikace na míru | PrometeyLabs" %}{% endblock %}
+{% block description %}{% trans "Vývoj webových aplikací na míru: klientské zóny, interní systémy, rezervace a integrace. Orientačně 2 800–8 000 €, cena a termín ve smlouvě, doživotní záruka na kód a 1 rok bezplatné podpory." %}{% endblock %}
+{% block keywords %}{% trans "webová aplikace na míru, vývoj webových aplikací, klientská zóna, interní systém, MVP, PrometeyLabs" %}{% endblock %}
+{% block og_title %}{% trans "Webové aplikace na míru | PrometeyLabs" %}{% endblock %}
+{% block og_description %}{% trans "Vývoj webových aplikací na míru: klientské zóny, interní systémy, rezervace a integrace. Orientačně 2 800–8 000 €, cena a termín ve smlouvě, doživotní záruka na kód a 1 rok bezplatné podpory." %}{% endblock %}
+
+{% block extra_head %}
+<meta name="robots" content="index, follow">
+<link rel="preload" href="{% static 'fonts/inter/inter-400-adb775.woff2' %}" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{% filter escapejs %}{% trans "Webové aplikace na míru" %}{% endfilter %}",
+  "serviceType": "{% filter escapejs %}{% trans "Vývoj webových aplikací" %}{% endfilter %}",
+  "description": "{% filter escapejs %}{% trans "Klientské zóny, interní systémy, rezervace a integrace – když běžný web nestačí. Rozpočet a termíny zakotvíme ve smlouvě. Doživotní záruka na kód a 1 rok bezplatné podpory." %}{% endfilter %}",
+  "provider": {
+    "@type": "Organization",
+    "name": "PrometeyLabs",
+    "url": "{% site_url '/' %}"
+  },
+  "areaServed": "CZ",
+  "url": "{% canonical_url %}",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "{% filter escapejs %}{% trans "Webové aplikace" %}{% endfilter %}",
+      "priceSpecification": {"@type": "PriceSpecification", "minPrice": {{ web_prices.app.low }}, "maxPrice": {{ web_prices.app.high }}, "priceCurrency": "EUR"}
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/web-development.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/components/clients-marquee.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/web-development-figma.css' %}?v=2">
+{% endblock %}
+
+{% block content %}
+<div id="plWebRoot" class="pl-web pl-web--apps">
+    {% include 'components/web_applications/hero.html' %}
+    {% include 'components/web_applications/scope.html' %}
+    {% include 'components/web_development/admin.html' %}
+    {% include 'components/web_development/portfolio.html' %}
+    {% include 'components/web_development/clients.html' %}
+    {% include 'components/web_applications/calc.html' %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/web-development.js' %}?v=1" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/portfolio-screen-scroll.js' %}?v=screen2" nonce="{{ csp_nonce }}" defer></script>
+<script src="{% static 'js/components/clients-marquee.js' %}?v=3" nonce="{{ csp_nonce }}" defer></script>
+{% endblock %}
