@@ -1655,7 +1655,7 @@ msgstr "Co je součástí (RU)"
 #: apps/core/proposal_models.py:309
 #: templates/proposal/partials/package_card.html:14
 msgid "Термін"
-msgstr "Termín"
+msgstr "Termín dodání"
 
 #: apps/core/proposal_models.py:314
 msgid "Термін (RU)"
@@ -9989,7 +9989,7 @@ msgstr "Sekce"
 
 #: templates/proposal/base_proposal.html:64
 msgid "Документ конфіденційний. Не для публічного поширення."
-msgstr "Dokument je důvěrný. Není určen k veřejnému šíření."
+msgstr "Dokument je důvěrný a není určen ke zveřejnění."
 
 #: templates/proposal/detail.html:58
 msgid "Підготовлено"
@@ -10005,7 +10005,7 @@ msgstr "Porozumění"
 
 #: templates/proposal/detail.html:114
 msgid "Про компанію та стек"
-msgstr "O firmě a technologiích"
+msgstr "O nás a technologiích"
 
 #: templates/proposal/detail.html:126
 msgid "03 / Solution"
@@ -10013,7 +10013,7 @@ msgstr "03 / Řešení"
 
 #: templates/proposal/detail.html:127
 msgid "Ключові модулі платформи"
-msgstr "Klíčové moduly platformy"
+msgstr "Klíčové moduly řešení"
 
 #: templates/proposal/detail.html:138
 msgid "modules"
@@ -10025,7 +10025,7 @@ msgstr "05 / Expertíza"
 
 #: templates/proposal/detail.html:176
 msgid "Рекомендації від PrometeyLabs"
-msgstr "Doporučení od PrometeyLabs"
+msgstr "Doporučení PrometeyLabs"
 
 #: templates/proposal/detail.html:204
 msgid ""
@@ -10052,11 +10052,11 @@ msgstr "Spolehlivost a záruka"
 
 #: templates/proposal/detail.html:253
 msgid "08 / Timeline"
-msgstr "08 / Harmonogram"
+msgstr "08 / HARMONOGRAM"
 
 #: templates/proposal/detail.html:279
 msgid "Готові розпочати?"
-msgstr "Jste připraveni začít?"
+msgstr "Můžeme začít?"
 
 #: templates/proposal/detail.html:283
 msgid ""
@@ -10071,7 +10071,7 @@ msgstr "Rychlá akce"
 
 #: templates/proposal/partials/package_card.html:5
 msgid "Рекомендовано"
-msgstr "Doporučeno"
+msgstr "Doporučujeme"
 
 #: templates/unfold/helpers/app_list.html:73
 msgid "All applications"
