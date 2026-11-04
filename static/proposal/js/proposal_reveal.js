@@ -117,13 +117,11 @@
     if (!nav) return;
 
     const hero = document.getElementById('prop-hero');
-    /* Renova live: count only visible sections with .prop-eyebrow (hero/header/footer excluded) */
+    /* Renova live logic: hero is not counted; total = visible numbered sections
+       (CZ marks them with data-prop-section 01..09/10, not all carry .prop-eyebrow). */
     const rest = Array.prototype.filter.call(
-      document.querySelectorAll('section[id^="prop-"]'),
-      function (el) {
-        const eb = el.querySelector('.prop-eyebrow');
-        return !!eb && el.getClientRects().length > 0;
-      }
+      document.querySelectorAll('section[data-prop-section]'),
+      function (el) { return el.getClientRects().length > 0; }
     );
     const items = [];
     if (hero) items.push(hero);

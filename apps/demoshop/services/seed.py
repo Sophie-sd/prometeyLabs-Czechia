@@ -224,6 +224,16 @@ HERO_SLIDES_SEED = [
 GIFT_PROMO_SLUGS = {'wireless-headphones', 'aroma-candle'}
 
 
+def _file_missing(field) -> bool:
+    """Поле порожнє або файлу немає у storage (Render без persistent disk губить media при деплої)."""
+    if not field:
+        return True
+    try:
+        return not field.storage.exists(field.name)
+    except Exception:
+        return True
+
+
 def _seed_blocks(shop, force_images: bool = False) -> None:
     for entry in BLOCK_REGISTRY:
         block, created = ShopBlock.objects.get_or_create(
@@ -251,7 +261,7 @@ def _seed_blocks(shop, force_images: bool = False) -> None:
             block.save(update_fields=['value_text_cs'])
         if entry['type'] != 'image':
             continue
-        need_image = created or force_images or not block.value_image
+        need_image = created or force_images or _file_missing(block.value_image)
         if need_image and entry['key'] == 'about_image':
             block.value_image = load_seed_image(
                 'about/about.webp', fallback_label=shop.name, size=(2560, 1440),
@@ -297,8 +307,10 @@ def _seed_categories(shop) -> list:
 
 def _attach_product_image(product: ShopProduct, asset_slug: str, force: bool = False) -> None:
     existing = product.images.filter(is_main=True).first() or product.images.first()
-    if existing and not force:
+    if existing and not force and not _file_missing(existing.image):
         return
+    if existing:
+        force = True
     image_file = load_seed_image(
         f'products/{asset_slug}.webp',
         fallback_label=product.name,
@@ -323,6 +335,14 @@ def _attach_gallery_extras(product: ShopProduct, asset_slug: str, force: bool = 
     extras = product.images.filter(is_main=False)
     if force:
         extras.delete()
+    for extra in product.images.filter(is_main=False):
+        if _file_missing(extra.image):
+            slug = extra_slugs[(max(extra.order, 1) - 1) % len(extra_slugs)] if extra_slugs else asset_slug
+            extra.image.save(
+                f'{slug}.webp',
+                load_seed_image(f'products/{slug}.webp', fallback_label=product.name, size=(800, 800)),
+                save=True,
+            )
     have = product.images.filter(is_main=False).count()
     if have >= 3:
         return
@@ -460,7 +480,10 @@ def _seed_hero_slides(shop, force_images: bool = False) -> None:
             if slide_fields:
                 slide.save(update_fields=slide_fields)
 
-        need_images = created or force_images or not slide.image or not slide.image_narrow
+        need_images = (
+            created or force_images
+            or _file_missing(slide.image) or _file_missing(slide.image_narrow)
+        )
         if need_images:
             wide = load_seed_image(wide_path, fallback_label=title, size=(2560, 1440))
             narrow = load_seed_image(narrow_path, fallback_label=title, size=(1080, 1620))

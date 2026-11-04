@@ -10,6 +10,9 @@ python manage.py seed_clients
 echo "📍 Ensuring site contact settings (address/map)..."
 python manage.py seed_site_contact_settings
 
+echo "🛍️  Restoring demo-shop seed images missing on disk (no persistent disk)..."
+python manage.py reseed_demoshops || echo "reseed_demoshops failed (non-fatal)"
+
 echo "🧹 Purging consent logs older than 3 years..."
 python manage.py purge_consent_logs || echo "purge_consent_logs failed (non-fatal)"
 
