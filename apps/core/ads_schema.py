@@ -15,16 +15,18 @@ def dumps(obj):
 
 
 def breadcrumb_ld(items):
-    elements = []
-    for index, item in enumerate(items, start=1):
-        entry = {
+    """Google requires `item` on every ListItem except the last; crumbs without a URL
+    (e.g. the unlinked "Services" label) stay visible but are left out of JSON-LD."""
+    linked = [item for item in items if item.get('url')]
+    elements = [
+        {
             '@type': 'ListItem',
             'position': index,
             'name': item['name'],
+            'item': item['url'],
         }
-        if item.get('url'):
-            entry['item'] = item['url']
-        elements.append(entry)
+        for index, item in enumerate(linked, start=1)
+    ]
     return {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
