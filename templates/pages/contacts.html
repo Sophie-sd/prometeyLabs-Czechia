@@ -34,8 +34,8 @@
                             <img class="ctf-card__icon" src="{% static 'images/ct-figma/call.svg' %}" alt="" width="24" height="24">
                         </div>
                         <div class="ctf-card__body">
-                            {# TODO(contacts): no Czech phone number exists yet — fill phone_display/phone_e164
-                               in SiteContactSettings and the canon tel: link starts rendering. #}
+                            {% comment %} TODO(contacts): no Czech phone number exists yet — fill phone_display/phone_e164
+                               in SiteContactSettings and the canon tel: link starts rendering. {% endcomment %}
                             {% if site_contact.has_public_phone %}<a href="{{ site_contact.get_tel_href }}" class="ctf-card__link">{{ site_contact.phone_display }}</a>{% endif %}
                             {% if site_contact.email %}<a href="mailto:{{ site_contact.email }}" class="ctf-card__link contact-link--email">{{ site_contact.email }}</a>{% endif %}
                         </div>
@@ -78,7 +78,8 @@
                 <h2 class="ctf-form__title">{% trans "Nezávazná poptávka" %}</h2>
                 <p class="ctf-form__text">{% trans "Vyplňte formulář — ozveme se vám co nejdříve." %}</p>
             </div>
-            <form id="contactForm" class="ctf-form__form contact-form" data-form-type="contact" action="{% url 'form_submit' %}" method="post">
+            <form data-qa="lead-form" id="contactForm" class="ctf-form__form contact-form" data-form-type="contact" action="{% url 'form_submit' %}" method="post">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="contact">
                 <input type="hidden" name="source_page" value="contacts">

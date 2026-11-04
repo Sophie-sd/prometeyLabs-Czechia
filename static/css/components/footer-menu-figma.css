@@ -224,3 +224,8 @@ body.menu-open{overflow:hidden}
 @media (min-width:1280px){.plf__cols{column-gap:24px}.plf__col{flex-shrink:0}}
 /* columns grow to fit their (nowrap) heading in every language; Figma widths stay the minimum */
 @media (min-width:1280px){.plf__cols{column-gap:20px}.plf__col--services{width:216px}.plf__col--company{width:120px}.plf__col--legal{width:240px}.plf__col--contacts{width:210px}.plf__col--form{width:262px}}
+
+/* a11y (axe color-contrast >=4.5:1) */
+.footer-form .plf-form__submit{background:#b84000}
+.footer-form .plf-form__submit:hover,.footer-form .plf-form__submit:focus-visible{background:#9a3600}
+.plf-form--menu .plf-form__submit{color:#b84000}

@@ -2883,3 +2883,8 @@ body.pl-shop-body .main-footer .container,
         font-size: 17px;
     }
 }
+
+/* a11y (axe color-contrast): package CTAs + Svoboda CTA need >=4.5:1 */
+.pl-shop__btn--light.pl-shop__pkg-cta { color: #b84000; }
+.pl-shop__btn--accent.pl-shop__pkg-cta,
+.pl-shop__svoboda-cta { background: #c24400; color: #fff; }

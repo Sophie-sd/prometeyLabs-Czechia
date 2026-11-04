@@ -319,10 +319,11 @@
                         </div>
                     </div>
                     <div class="is-hero__cta">
-                        <form class="is-hero__inline-form"
+                        <form data-qa="lead-form" class="is-hero__inline-form"
                               method="post"
                               action="{% url 'form_submit' %}"
                               data-form-type="call_request">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                             {% csrf_token %}
                             <input type="hidden" name="form_type" value="call_request">
                             <input type="hidden" name="source_page" value="internet-shop-hero">
@@ -809,7 +810,8 @@
             <h2 class="is-section__title">Розрахуйте вартість онлайн</h2>
             <p class="is-section__subtitle">5 коротких запитань — і ми підберемо рішення під ваш проєкт.</p>
 
-            <form class="is-quiz" id="internet-shop-quiz-form" method="post" action="{% url 'form_submit' %}" data-form-type="site_request">
+            <form data-qa="lead-form" class="is-quiz" id="internet-shop-quiz-form" method="post" action="{% url 'form_submit' %}" data-form-type="site_request">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="site_request">
                 <input type="hidden" name="source_page" value="internet-shop">

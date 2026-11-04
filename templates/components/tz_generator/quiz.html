@@ -10,7 +10,8 @@
         </div>
 
         <div class="pl-tz__quiz-wrap" data-reveal>
-        <form id="pl-tz-quiz-form" class="pl-tz__quiz" data-quiz-form novalidate>
+        <form data-qa="lead-form" id="pl-tz-quiz-form" class="pl-tz__quiz" data-quiz-form novalidate>
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
             {% csrf_token %}
 
             <div class="pl-tz__quiz-header">

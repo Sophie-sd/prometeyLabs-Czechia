@@ -1,8 +1,9 @@
 {% load i18n %}{% comment %} The 5-question test of /calculator/ (form#calculator-test, js/calculator.js). Single source for /calculator/ and the embed on /tvorba-webu/.
    Optional: calc_source_page, calc_details (hidden fields for KeyCRM), calc_contact_note, calc_submit_label. No price is ever rendered here — the server answers with a redirect to /thank-you/. {% endcomment %}
-                    <form id="calculator-test" class="calc-form" data-form-type="test"
+                    <form data-qa="lead-form" id="calculator-test" class="calc-form" data-form-type="test"
                           data-question-label="{% trans 'Питання' %}"
                           data-of-label="{% trans 'з' %}">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                         {% csrf_token %}
                         {% if calc_source_page %}<input type="hidden" name="source_page" value="{{ calc_source_page }}">{% endif %}
                         {% if calc_details %}<input type="hidden" name="details" value="{{ calc_details }}">{% endif %}

@@ -379,9 +379,9 @@
 
             var rows = '';
             state.orders.forEach(function (order, i) {
-                rows += '<div class="pl-shop__admin-table-row pl-shop__admin-table-row--clickable" role="button" tabindex="0" data-admin-order="' +
+                rows += '<div class="pl-shop__admin-table-row pl-shop__admin-table-row--clickable" data-admin-order="' +
                     escapeHtml(order.id) + '" style="--admin-row-i:' + i + '">' +
-                    '<span class="pl-shop__admin-col-order">#' + escapeHtml(order.id) + ' · ' + escapeHtml(order.customer) + '</span>' +
+                    '<span class="pl-shop__admin-col-order" role="button" tabindex="0" data-admin-order="' + escapeHtml(order.id) + '">#' + escapeHtml(order.id) + ' · ' + escapeHtml(order.customer) + '</span>' +
                     '<span class="pl-shop__admin-col-sum">' + escapeHtml(order.sum) + '</span>' +
                     '<span class="pl-shop__admin-col-status">' + renderStatusButton(order) + '</span>' +
                     '</div>';

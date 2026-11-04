@@ -292,10 +292,11 @@
                         </div>
                     </div>
                     <div class="is-hero__cta">
-                        <form class="is-hero__inline-form"
+                        <form data-qa="lead-form" class="is-hero__inline-form"
                               method="post"
                               action="{% url 'form_submit' %}"
                               data-form-type="call_request">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                             {% csrf_token %}
                             <input type="hidden" name="form_type" value="call_request">
                             <input type="hidden" name="source_page" value="internet-shop-ru-hero">
@@ -779,7 +780,8 @@
             <h2 class="is-section__title">Рассчитайте стоимость онлайн</h2>
             <p class="is-section__subtitle">5 коротких вопросов — и мы подберём решение под ваш проект.</p>
 
-            <form class="is-quiz" id="internet-shop-quiz-form" method="post" action="{% url 'form_submit' %}" data-form-type="site_request" data-source-label="Интернет-магазин" data-page-prefix="Страница" data-quiz-labels='{"q_need":"Что нужно","q_products":"Количество товаров","q_automation":"Автоматизация","q_accounts":"Личные кабинеты","q_timeline":"Сроки"}'>
+            <form data-qa="lead-form" class="is-quiz" id="internet-shop-quiz-form" method="post" action="{% url 'form_submit' %}" data-form-type="site_request" data-source-label="Интернет-магазин" data-page-prefix="Страница" data-quiz-labels='{"q_need":"Что нужно","q_products":"Количество товаров","q_automation":"Автоматизация","q_accounts":"Личные кабинеты","q_timeline":"Сроки"}'>
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="site_request">
                 <input type="hidden" name="source_page" value="internet-shop-ru">

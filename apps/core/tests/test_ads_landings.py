@@ -27,3 +27,21 @@ class AdsLandingPagesTests(TestCase):
         for canon in ADS_LANDINGS.values():
             with self.subTest(canon=canon):
                 self.assertIn(f'<loc>https://prometeylabs.cz{canon}</loc>', xml)
+
+
+class LeadFormHoneypotTests(TestCase):
+    def test_filled_honeypot_fake_success_no_save(self):
+        from apps.core.models import FormSubmission
+        before = FormSubmission.objects.count()
+        r = self.client.post('/forms/submit/', {
+            'form_type': 'call_request', 'name': 'Bot', 'phone': '+420777123456',
+            'consent': 'on', 'honeypot': 'http://spam.example',
+        }, secure=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertTrue(r.json().get('success'))
+        self.assertEqual(FormSubmission.objects.count(), before)
+
+    def test_no_multiline_hash_comments_render(self):
+        for path in ('/', '/en/', '/contacts/'):
+            with self.subTest(path=path):
+                self.assertNotIn('TODO(contacts)', self.client.get(path, secure=True).content.decode())

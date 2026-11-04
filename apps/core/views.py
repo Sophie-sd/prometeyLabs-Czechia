@@ -317,12 +317,13 @@ def handle_form_submission(request):
     try:
         # Отримуємо тип форми з data-form-type або окремого поля
         form_type = request.POST.get('form_type') or get_form_type_from_path(request)
-        if form_type in ('telegram-bot', 'telegram_bot') and request.POST.get('honeypot'):
-            return create_form_response(
-                True,
-                _('Дякуємо! Заявку на Telegram-бота отримано. Ми зв\'яжемося з вами найближчим часом.'),
-                redirect=thank_you_url(resolve_lead_lang(request))
-            )
+        # Honeypot (hidden "honeypot" field on every public lead form): bots that fill it
+        # get a fake success and nothing is stored or sent.
+        if request.POST.get('honeypot', '').strip():
+            msg = (_('Дякуємо! Заявку на Telegram-бота отримано. Ми зв\'яжемося з вами найближчим часом.')
+                   if form_type in ('telegram-bot', 'telegram_bot')
+                   else _('Дякуємо! Ми зв\'яжемося з вами найближчим часом.'))
+            return create_form_response(True, msg, redirect=thank_you_url(resolve_lead_lang(request)))
         name = request.POST.get('name', '').strip()
         # Приховані ключі-заглушки імені (free_analysis, стара кирилиця) → назва для CRM
         name = resolve_lead_name(name)

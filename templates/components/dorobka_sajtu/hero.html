@@ -12,7 +12,8 @@
             {% calc_cta 'dorobka' %}{% calc_cta_sticky 'dorobka' %}
             <div class="pl-rs__hero-form-card">
                 <p class="pl-rs__hero-form-title">{{ ads_copy.form_title }}</p>
-                <form id="pl-dorobka-hero-form" class="plf-form pl-rs__hero-form" action="{% url 'form_submit' %}" method="post" data-form-type="site_request" data-source-label="{{ ads_copy.source_label }}" aria-label="{{ ads_copy.form_title }}">
+                <form data-qa="lead-form" id="pl-dorobka-hero-form" class="plf-form pl-rs__hero-form" action="{% url 'form_submit' %}" method="post" data-form-type="site_request" data-source-label="{{ ads_copy.source_label }}" aria-label="{{ ads_copy.form_title }}">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                     {% csrf_token %}
                     <input type="hidden" name="form_type" value="site_request">
                     <input type="hidden" name="source_page" value="dorobka-sajtu">

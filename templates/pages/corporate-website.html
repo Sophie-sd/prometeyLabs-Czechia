@@ -165,10 +165,11 @@
                         <li>Запуск за 7 днів</li>
                     </ul>
 
-                    <form class="cw-hero__inline-form"
+                    <form data-qa="lead-form" class="cw-hero__inline-form"
                           method="post"
                           action="{% url 'form_submit' %}"
                           data-form-type="call_request">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                         {% csrf_token %}
                         <input type="hidden" name="form_type" value="call_request">
                         <input type="hidden" name="source_page" value="corporate-website-hero">
@@ -680,7 +681,8 @@
             <h2 class="cw-section__title">Розрахуйте вартість онлайн</h2>
             <p class="cw-section__subtitle">5 коротких запитань — і ми підберемо рішення під ваш бізнес.</p>
 
-            <form class="cw-quiz" id="corporate-website-quiz-form" method="post" action="{% url 'form_submit' %}" data-form-type="site_request" data-source-label="Корпоративний сайт">
+            <form data-qa="lead-form" class="cw-quiz" id="corporate-website-quiz-form" method="post" action="{% url 'form_submit' %}" data-form-type="site_request" data-source-label="Корпоративний сайт">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="site_request">
                 <input type="hidden" name="source_page" value="corporate-website">

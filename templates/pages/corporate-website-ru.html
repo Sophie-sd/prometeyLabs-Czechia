@@ -165,10 +165,11 @@
                         <li>Запуск за 7 дней</li>
                     </ul>
 
-                    <form class="cw-hero__inline-form"
+                    <form data-qa="lead-form" class="cw-hero__inline-form"
                           method="post"
                           action="{% url 'form_submit' %}"
                           data-form-type="call_request">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                         {% csrf_token %}
                         <input type="hidden" name="form_type" value="call_request">
                         <input type="hidden" name="source_page" value="corporate-website-hero-ru">
@@ -680,7 +681,8 @@
             <h2 class="cw-section__title">Рассчитайте стоимость онлайн</h2>
             <p class="cw-section__subtitle">5 коротких вопросов — и мы подберём решение под ваш бизнес.</p>
 
-            <form class="cw-quiz" id="corporate-website-quiz-form" method="post" action="{% url 'form_submit' %}" data-form-type="site_request" data-source-label="Корпоративный сайт" data-page-prefix="Страница" data-quiz-labels='{"q_business_type":"Тип бизнеса","q_pages":"Количество страниц","q_marketing":"Маркетинг-пакет","q_integrations":"Интеграции","q_timeline":"Сроки"}'>
+            <form data-qa="lead-form" class="cw-quiz" id="corporate-website-quiz-form" method="post" action="{% url 'form_submit' %}" data-form-type="site_request" data-source-label="Корпоративный сайт" data-page-prefix="Страница" data-quiz-labels='{"q_business_type":"Тип бизнеса","q_pages":"Количество страниц","q_marketing":"Маркетинг-пакет","q_integrations":"Интеграции","q_timeline":"Сроки"}'>
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="site_request">
                 <input type="hidden" name="source_page" value="corporate-website-ru">

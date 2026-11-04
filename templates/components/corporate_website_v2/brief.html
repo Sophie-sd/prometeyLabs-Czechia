@@ -14,7 +14,7 @@
             </p>
         </div>
 
-        <form
+        <form data-qa="lead-form"
             id="pl-corp-quiz-form"
             class="pl-corp__quiz"
             method="post"
@@ -25,6 +25,7 @@
             data-error-phone-invalid="{% trans 'Введіть коректний номер телефону' %}"
             data-reveal
         >
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
             {% csrf_token %}
             <input type="hidden" name="form_type" value="site_request">
             <input type="hidden" name="source_page" value="corporate-website-v2">

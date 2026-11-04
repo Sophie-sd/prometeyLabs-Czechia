@@ -40,7 +40,8 @@
         {% if request.resolver_match.url_name != 'thank_you' %}
         <div class="plm__form-wrap">
             <p class="plm__form-title">{% trans "Отримати консультацію" %}</p>
-            <form class="plf-form plf-form--menu" data-form-type="footer-consultation" novalidate>
+            <form data-qa="lead-form" class="plf-form plf-form--menu" data-form-type="footer-consultation" novalidate>
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                 {% csrf_token %}
                 <input type="hidden" name="form_type" value="footer-consultation">
                 {% trans "Відправити" as submit_label %}{% include 'components/figma_lead_fields.html' with p='menu' submit_label=submit_label %}

@@ -52,8 +52,8 @@
                     <span class="plf__dot" aria-hidden="true"></span>
                 </button>
                 <div class="plf__list plf__acc-body">
-                    {# TODO(contacts): no Czech phone number exists yet — fill phone_display/phone_e164
-                       in SiteContactSettings and the canon tel: link starts rendering. #}
+                    {% comment %} TODO(contacts): no Czech phone number exists yet — fill phone_display/phone_e164
+                       in SiteContactSettings and the canon tel: link starts rendering. {% endcomment %}
                     {% if site_contact.has_public_phone %}<a href="{{ site_contact.get_tel_href }}" class="plf__accent">{{ site_contact.phone_display }}</a>{% endif %}
                     {% if site_contact.email %}<a href="mailto:{{ site_contact.email }}" class="plf__accent">{{ site_contact.email }}</a>{% endif %}
                     <span class="plf__small">{% trans "Графік роботи: Цілодобово" %}</span>
@@ -64,7 +64,8 @@
             {% if request.resolver_match.url_name != 'thank_you' %}
             <div class="plf__col plf__col--form">
                 <p class="plf__title plf__title--form">{% trans "Отримати консультацію" %}</p>
-                <form class="plf-form footer-form" data-form-type="footer-consultation" novalidate>
+                <form data-qa="lead-form" class="plf-form footer-form" data-form-type="footer-consultation" novalidate>
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
                     {% csrf_token %}
                     <input type="hidden" name="form_type" value="footer-consultation">
                     {% trans "Відправити" as submit_label %}{% include 'components/figma_lead_fields.html' with p='footer' submit_label=submit_label %}

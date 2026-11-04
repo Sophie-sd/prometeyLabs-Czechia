@@ -19,8 +19,8 @@
 
         <div class="modal-direct-contact">
             <p class="modal-separator-text">{% trans "Nebo napište hned:" %}</p>
-            {# TODO(contacts): no Czech phone number exists yet — fill phone_display/phone_e164
-               in SiteContactSettings and the canon tel: link below starts rendering. #}
+            {% comment %} TODO(contacts): no Czech phone number exists yet — fill phone_display/phone_e164
+               in SiteContactSettings and the canon tel: link below starts rendering. {% endcomment %}
             {% if site_contact.has_public_phone %}
             <a href="{{ site_contact.get_tel_href }}" class="modal-phone-link">
                 {{ site_contact.phone_display }}
@@ -50,7 +50,8 @@
             </div>
         </div>
 
-        <form class="modal-form" id="call-request-form" method="post" data-form-type="call_request" action="{% url 'form_submit' %}">
+        <form data-qa="lead-form" class="modal-form" id="call-request-form" method="post" data-form-type="call_request" action="{% url 'form_submit' %}">
+<div class="lead-hp" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"><label>Website<input type="text" name="honeypot" value="" tabindex="-1" autocomplete="off"></label></div>
             {% csrf_token %}
             <input type="hidden" name="form_type" value="call_request">
             <input type="hidden" name="source_page" id="call-modal-source-page" value="">

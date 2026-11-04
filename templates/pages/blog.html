@@ -16,6 +16,9 @@
 {% block content %}
 <!-- Blog Hero with background video -->
 <section class="blog-hero full-height">
+    {% comment %} QA: hero videos disabled — figma-pages.css hides .blog-hero .video-background
+       (Figma artwork replaces them), yet both MP4s (~7.8 MB) were still fetched by autoplay and then
+       aborted (net::ERR_ABORTED). Kept here, not deleted, for a possible return of the video hero.
     <!-- Background videos for desktop and mobile -->
     <video class="video-background desktop-video" autoplay muted loop playsinline>
         <source src="{% static 'videos/desktop/blog.mp4' %}" type="video/mp4">
@@ -24,6 +27,7 @@
         <source src="{% static 'videos/mobile/blogmobile.mp4' %}" type="video/mp4">
     </video>
 
+    {% endcomment %}
     <!-- Overlay for better readability -->
     <div class="video-overlay"></div>
 
