@@ -132,6 +132,10 @@ def demo_open_link(request, shop_slug, kp_token):
     
     # Expiry <= 8 годин (має бути ПІСЛЯ auth_login)
     request.session.set_expiry(8 * 3600)
+    # Мова demo admin з КП (cs за замовчуванням, en з /en/ КП)
+    from apps.core.middleware import DEMO_ADMIN_LANG_SESSION_KEY, DEMO_ADMIN_LANGUAGES
+    lang = request.GET.get('lang')
+    request.session[DEMO_ADMIN_LANG_SESSION_KEY] = lang if lang in DEMO_ADMIN_LANGUAGES else 'cs'
     request.session.modified = True
     
     # Редірект на demo admin без токену в URL

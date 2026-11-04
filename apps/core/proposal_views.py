@@ -50,5 +50,21 @@ class ProposalDetailView(DetailView):
             'recommendation_items': [
                 s for s in specs if s.kind == ProposalSpec.Kind.RECOMMENDATION
             ],
+            'kp_demo_admin_url': self._demo_admin_url(proposal),
         })
         return context
+
+    def _demo_admin_url(self, proposal):
+        """Fresh signed KP link per request (never stored/logged); None without an active DemoShop."""
+        from django.urls import reverse
+        from django.utils.translation import get_language
+        try:
+            shop = proposal.demo_shop
+        except Exception:
+            return None
+        if not shop or not shop.is_active:
+            return None
+        lang = (get_language() or 'cs')[:2]
+        lang = lang if lang in ('cs', 'en') else 'cs'
+        url = reverse('demo_open_link', kwargs={'shop_slug': shop.slug, 'kp_token': shop.get_kp_token()})
+        return f'{url}?lang={lang}'

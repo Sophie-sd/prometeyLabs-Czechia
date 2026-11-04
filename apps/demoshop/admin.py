@@ -52,10 +52,11 @@ class DemoShopAdmin(UnfoldModelAdmin):
 
     @admin.display(description=_('Demo Admin'))
     def demo_admin_link(self, obj):
-        # TODO: Генерувати КП-лінк з kp_token
-        # url = reverse('demo_open_link', kwargs={'shop_slug': obj.slug, 'kp_token': '...'})
-        url = f'/demo/{obj.slug}/open/GENERATE_KP_TOKEN'
+        if not obj.pk or not obj.is_active:
+            return '—'
+        # Свіжий підписаний КП-лінк (генерується на кожен рендер, не зберігається)
+        url = reverse('demo_open_link', kwargs={'shop_slug': obj.slug, 'kp_token': obj.get_kp_token()})
         return format_html(
-            '<a href="{}" target="_blank" rel="noopener">КП-лінк (TODO: gen token)</a>',
-            url
+            '<a href="{}?lang=cs" target="_blank" rel="noopener noreferrer">{}</a>',
+            url, _('КП-лінк у demo admin'),
         )

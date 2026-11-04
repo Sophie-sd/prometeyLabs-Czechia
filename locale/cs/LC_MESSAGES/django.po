@@ -10144,3 +10144,7 @@ msgstr "Náhled obrázku"
 #: templates/unfold/widgets/clearable_file_input.html:26
 msgid "Choose file to upload"
 msgstr "Vyberte soubor k odeslání"
+
+#: templates/proposal/detail.html
+msgid "Vstoupit do administrace dema"
+msgstr "Vstoupit do administrace dema"

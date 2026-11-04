@@ -49,11 +49,13 @@
                        target="_blank" rel="noopener">
                         {% if LANGUAGE_CODE == 'cs' %}Zobrazit demo obchodu{% else %}View shop demo{% endif %}
                     </a>
+                    {% if kp_demo_admin_url %}
                     <a class="prop-cta prop-cta--secondary"
-                       href="{% url 'demo_open_link' shop_slug=proposal.demo_shop.slug kp_token=proposal.demo_shop.get_kp_token %}"
-                       target="_blank" rel="noopener">
-                        {% if LANGUAGE_CODE == 'cs' %}Otevřít demo administraci{% else %}Open demo admin{% endif %}
+                       href="{{ kp_demo_admin_url }}"
+                       target="_blank" rel="noopener noreferrer" data-qa="kp-demo-admin">
+                        {% trans "Vstoupit do administrace dema" %}
                     </a>
+                    {% endif %}
                     {% endif %}
                 </div>
             </div>

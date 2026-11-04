@@ -10161,3 +10161,7 @@ msgstr "Image preview"
 #: templates/unfold/widgets/clearable_file_input.html:26
 msgid "Choose file to upload"
 msgstr "Choose file to upload"
+
+#: templates/proposal/detail.html
+msgid "Vstoupit do administrace dema"
+msgstr "Open demo admin"
