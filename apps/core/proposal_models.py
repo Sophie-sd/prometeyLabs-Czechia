@@ -169,11 +169,22 @@ class Proposal(models.Model):
 
     @property
     def demo_cta_label(self) -> str:
-        return {
+        """Renova parity: label follows the actual demo tenant type, then falls back to kind."""
+        labels = {
             self.DemoKind.SHOP: _('Переглянути демо магазину'),
             self.DemoKind.LANDING: _('Переглянути демо лендінгу'),
             self.DemoKind.CORPORATE: _('Переглянути демо сайту'),
-        }.get(self.kind, _('Переглянути демо'))
+        }
+        by_model = {
+            'demoshop': self.DemoKind.SHOP,
+            'landingsite': self.DemoKind.LANDING,
+            'corpsite': self.DemoKind.CORPORATE,
+        }
+        kind = self.kind
+        tenant = self.demo_tenant
+        if tenant is not None:
+            kind = by_model.get(tenant._meta.model_name, kind)
+        return labels.get(kind, _('Переглянути демо'))
 
     def get_localized_title(self) -> str:
         from .i18n_content import localized_text

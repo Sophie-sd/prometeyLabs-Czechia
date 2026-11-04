@@ -1520,7 +1520,7 @@ msgstr "View landing demo"
 
 #: apps/core/proposal_models.py:175
 msgid "Переглянути демо сайту"
-msgstr "View all articles"
+msgstr "View website demo"
 
 #: apps/core/proposal_models.py:176
 msgid "Переглянути демо"
@@ -10165,3 +10165,9 @@ msgstr "Choose file to upload"
 #: templates/proposal/detail.html
 msgid "Vstoupit do administrace dema"
 msgstr "Open demo admin"
+
+msgid "Демо вже зібране"
+msgstr "The demo is ready"
+
+msgid "Це не версія вашого сайту і не макет у Figma. Це стандартний демо-сайт із функціоналом, який ви отримаєте для тестування: сторінки, заявки, адмінка."
+msgstr "This is not a version of your site or a Figma mockup. It is a standard demo site with the features you will get to test: pages, enquiries, admin."

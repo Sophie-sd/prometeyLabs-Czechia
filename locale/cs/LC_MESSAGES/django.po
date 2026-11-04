@@ -1561,22 +1561,16 @@ msgid "Переглянути демо магазину"
 msgstr "Zobrazit demo obchodu"
 
 #: apps/core/proposal_models.py:174
-#, fuzzy
-#| msgid "Переглянути демо магазину"
 msgid "Переглянути демо лендінгу"
-msgstr "Zobrazit demo obchodu"
+msgstr "Zobrazit demo landing page"
 
 #: apps/core/proposal_models.py:175
-#, fuzzy
-#| msgid "Переглянути демо магазину"
 msgid "Переглянути демо сайту"
-msgstr "Zobrazit demo obchodu"
+msgstr "Zobrazit demo webu"
 
 #: apps/core/proposal_models.py:176
-#, fuzzy
-#| msgid "Переглянути демо магазину"
 msgid "Переглянути демо"
-msgstr "Zobrazit demo obchodu"
+msgstr "Zobrazit demo"
 
 #: apps/core/proposal_models.py:233 apps/core/proposal_models.py:284
 #: apps/core/proposal_models.py:387 apps/core/proposal_visual_models.py:15
@@ -10148,3 +10142,9 @@ msgstr "Vyberte soubor k odeslání"
 #: templates/proposal/detail.html
 msgid "Vstoupit do administrace dema"
 msgstr "Vstoupit do administrace dema"
+
+msgid "Демо вже зібране"
+msgstr "Demo je připravené"
+
+msgid "Це не версія вашого сайту і не макет у Figma. Це стандартний демо-сайт із функціоналом, який ви отримаєте для тестування: сторінки, заявки, адмінка."
+msgstr "Nejde o verzi vašeho webu ani o návrh ve Figmě. Je to standardní demo web s funkcemi, které dostanete k vyzkoušení: stránky, poptávky, administrace."

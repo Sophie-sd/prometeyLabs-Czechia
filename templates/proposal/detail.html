@@ -43,19 +43,19 @@
                        href="{% if contacts.telegram_url %}{{ contacts.telegram_url }}{% else %}mailto:{{ contacts.email }}{% endif %}">
                         {{ proposal.get_localized_cta_label }}
                     </a>
-                    {% if proposal.demo_shop.is_active %}
+                    {% if proposal.demo_tenant.is_active %}
                     <a class="prop-cta prop-cta--ghost"
-                       href="{{ proposal.demo_shop.get_absolute_url }}"
-                       target="_blank" rel="noopener">
-                        {% if LANGUAGE_CODE == 'cs' %}Zobrazit demo obchodu{% else %}View shop demo{% endif %}
+                       href="{{ proposal.demo_tenant.get_absolute_url }}"
+                       target="_blank" rel="noopener" data-qa="kp-demo-view">
+                        {{ proposal.demo_cta_label }}
                     </a>
+                    {% endif %}
                     {% if kp_demo_admin_url %}
                     <a class="prop-cta prop-cta--secondary"
                        href="{{ kp_demo_admin_url }}"
                        target="_blank" rel="noopener noreferrer" data-qa="kp-demo-admin">
                         {% trans "Vstoupit do administrace dema" %}
                     </a>
-                    {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -280,9 +280,35 @@
 </section>
 {% endif %}
 
-<section id="prop-cta" class="prop-section prop-section--alt prop-cta-sec" data-prop-section="09" aria-labelledby="prop-final-title">
-    <div class="prop-glow prop-glow--cta" aria-hidden="true"></div>
+{% if proposal.demo_tenant.is_active %}
+<section id="prop-demo" class="prop-section prop-demo-sec" data-prop-section="09" aria-labelledby="prop-demo-title">
     <p class="prop-cta-sec__num">09</p>
+    <div class="prop-demo-sec__grid">
+        <h2 id="prop-demo-title" class="prop-demo-sec__title prop-reveal" data-prop-reveal>{% trans "Демо вже зібране" %}</h2>
+        <div>
+            <p class="prop-demo-sec__lead">
+                {% blocktrans %}Це не версія вашого сайту і не макет у Figma. Це стандартний демо-сайт із функціоналом, який ви отримаєте для тестування: сторінки, заявки, адмінка.{% endblocktrans %}
+            </p>
+            <a class="prop-cta prop-cta--fill"
+               href="{{ proposal.demo_tenant.get_absolute_url }}"
+               target="_blank" rel="noopener">
+                {{ proposal.demo_cta_label }}
+            </a>
+            {% if kp_demo_admin_url %}
+            <a class="prop-cta prop-cta--secondary"
+               href="{{ kp_demo_admin_url }}"
+               target="_blank" rel="noopener noreferrer" data-qa="kp-demo-admin-section">
+                {% trans "Vstoupit do administrace dema" %}
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section id="prop-cta" class="prop-section prop-section--alt prop-cta-sec" data-prop-section="{% if proposal.demo_tenant.is_active %}10{% else %}09{% endif %}" aria-labelledby="prop-final-title">
+    <div class="prop-glow prop-glow--cta" aria-hidden="true"></div>
+    <p class="prop-cta-sec__num">{% if proposal.demo_tenant.is_active %}10{% else %}09{% endif %}</p>
     <h2 id="prop-final-title" class="prop-cta-sec__title prop-reveal" data-prop-reveal>{% trans "Готові розпочати?" %}</h2>
     <div class="prop-cta-sec__grid">
         <div>

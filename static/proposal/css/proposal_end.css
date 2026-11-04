@@ -357,3 +357,19 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Renova parity: "Demo is ready" section (#prop-demo) */
+.prop-demo-sec { padding-bottom: clamp(3rem, 8vh, 5.625rem); }
+.prop-demo-sec__grid { display: grid; gap: clamp(1.75rem, 4vw, 4rem); align-items: end; }
+.prop-demo-sec__title {
+    margin: clamp(1.25rem, 3vh, 2rem) 0 0; max-width: 8ch; font-family: var(--prop-display);
+    font-weight: 300; font-size: clamp(2.25rem, 6.5vw, 6.5rem); line-height: 0.9; letter-spacing: -0.04em;
+}
+.prop-demo-sec__lead {
+    margin: 0 0 2rem; max-width: 36ch; font-size: clamp(0.9375rem, 1.15vw, 1.125rem);
+    line-height: 1.7; color: var(--prop-muted);
+}
+.prop-demo-sec .prop-cta + .prop-cta { margin-left: 0.75rem; }
+@media (min-width: 64rem) {
+    .prop-demo-sec__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
