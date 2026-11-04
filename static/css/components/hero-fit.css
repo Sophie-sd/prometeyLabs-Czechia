@@ -3,33 +3,55 @@
    Portfolio hero intentionally excluded (owned by another worker). */
 @media (min-width: 1024px) {
     /* Home (hf-hero) */
+    .hf-hero { box-sizing: border-box; height: 100svh; display: flex; flex-direction: column; justify-content: center;
+        padding-top: var(--hf-header, 84px); padding-bottom: 0; }
+    .hf-hero .hf-hero__content { top: 0; }
     .hf-hero__actions { margin-top: clamp(28px, calc(100svh - 520px), 340px); }
 
-    /* Corporate website */
-    .pl-corp__hero { padding-top: clamp(84px, 15svh, 120px); }
-    .pl-corp__hero-inner { gap: clamp(14px, 3.4svh, 40px); }
-    .pl-corp__hero-copy { gap: clamp(10px, 2.6svh, 30px); }
-    .pl-corp__hero-copy .pl-corp__hero-proof { margin-top: clamp(-10px, calc(-1svh + 2px), 0px); }
-    .pl-corp__hero-title { font-size: clamp(40px, 7.4svh, 70px); letter-spacing: -0.05em; }
-    .pl-corp__hero-card { max-width: 760px; gap: clamp(8px, 1.4svh, 14px); padding: clamp(10px, 1.8svh, 16px) 23px clamp(12px, 2svh, 20px); }
-    .pl-corp__hero-offers { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1.3svh, 14px); }
-    .pl-corp__hero-offer { min-height: clamp(36px, 5.4svh, 50px); }
+    /* Corporate website — original (HEAD/live) look: glass card, its padding, type sizes untouched.
+       Fit via spacing only (owner 16.10). Hero = exactly the first screen; header overlays it. */
+    .pl-corp__hero { box-sizing: border-box; min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
+        padding-top: var(--hf-header, 84px); padding-bottom: 0; }
+    .pl-corp__hero-inner { gap: clamp(8px, 2.4svh, 40px); }
+    .pl-corp__hero-copy { gap: clamp(4px, 1.6svh, 30px); }
+    .pl-corp__hero-card { row-gap: clamp(6px, 1.2svh, 14px); padding-top: clamp(8px, 1.6svh, 16px); padding-bottom: clamp(10px, 2svh, 20px); }
+    .pl-corp__hero-offers { gap: clamp(6px, 1.2svh, 10px); }
 
-    /* Internet shop */
-    .pl-shop__hero { padding-top: clamp(88px, 17svh, 180px); }
-    .pl-shop__hero-inner { gap: clamp(12px, 2.6svh, 30px); }
-    .pl-shop__hero-head { gap: clamp(8px, 2.4svh, 30px); }
-    .pl-shop__title--hero { font-size: clamp(40px, 7.4svh, 70px); }
-    .pl-shop__hero-card { max-width: 640px; width: 100%; gap: clamp(10px, 2.2svh, 30px); padding-top: clamp(12px, 2svh, 20px); padding-bottom: clamp(12px, 2svh, 20px); }
-    .pl-shop__hero-form { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1.4svh, 14px); }
-    .pl-shop__hero-form > :not(.pl-shop__field) { grid-column: 1 / -1; }
-    .pl-shop__field, .pl-shop__hero-submit { min-height: clamp(42px, 6svh, 50px); height: auto; }
+    /* Internet shop — original markup & card (stacked fields, 520px). Hero = exactly the first screen. */
+    .pl-shop__hero { box-sizing: border-box; min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
+        padding-top: var(--hf-header, 84px); padding-bottom: 0; }
+    .pl-shop__hero > .pl-shop__inner, .pl-shop__hero-inner { width: 100%; }
+    .pl-shop__hero-inner { gap: clamp(8px, 2.4svh, 40px); }
+    .pl-shop__hero-head { gap: clamp(4px, 1.6svh, 30px); }
+    .pl-shop__hero-card { row-gap: clamp(6px, 1.2svh, 14px); padding-top: clamp(8px, 1.6svh, 16px); padding-bottom: clamp(10px, 2svh, 20px); }
+    .pl-shop__field, .pl-shop__hero-submit { height: clamp(40px, 5.4svh, 50px); min-height: 0; }
+
+    /* Rozrobka sajtiv: hero at least the first screen, content centred, next section below the fold */
+    .pl-rs__hero { box-sizing: border-box; min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
+        padding-top: var(--hf-header, 84px); padding-bottom: 0; }
+    .pl-rs__hero > .pl-rs__hero-stage { min-height: 0; padding: clamp(6px, 1.5svh, 20px) 0; justify-content: center; }
+    .pl-rs__hero-copy { gap: clamp(6px, 1.4svh, 16px); }
+    .pl-rs__h1 { font-size: clamp(34px, 6.4svh, 70px); max-width: 16ch; }
+    .pl-rs__lead { font-size: clamp(13px, 2svh, 16px); margin-top: 0; margin-bottom: 0; }
+    .pl-rs__hero-form-card { margin-top: clamp(4px, 1svh, 24px); padding-top: clamp(10px, 1.8svh, 22px); padding-bottom: clamp(10px, 1.8svh, 22px); }
+    .pl-rs__hero-form-title { margin-bottom: clamp(6px, 1.2svh, 12px); }
+    .pl-rs__hero-form.plf-form, .pl-rs__hero-form .plf-form__fields { gap: clamp(6px, 1.1svh, 10px); }
+    .pl-rs__hero-form .plf-form__pill, .pl-rs__hero-form .plf-form__submit { height: clamp(38px, 5.4svh, 46px); }
+    .pl-rs__hero-links { margin-top: clamp(6px, 1.2svh, 12px); }
+    .pl-rs__hero-trust { margin-top: clamp(4px, .8svh, 8px); }
+    @media (max-height: 620px) { .pl-rs__hero > .pl-rs__hero-stage { padding: 0; } .pl-rs__h1 { font-size: 34px; letter-spacing: -1.6px; max-width: 24ch; margin-top: 0; margin-bottom: 0; } .pl-rs__hero-form .plf-form__pill, .pl-rs__hero-form .plf-form__submit { height: 36px; } }
+    /* price chips: visually hidden on desktop as at ≥1100 (kept in DOM for a11y/tests) */
+    .pl-rs__prices { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* Very short desktop screens only (≤700px tall): spacing alone can't fit the 3-line H1 under the header */
+    @media (max-height: 700px) { .pl-corp__hero-title { font-size: clamp(44px, 8.6svh, 70px); } .pl-shop__title--hero { font-size: clamp(44px, 8.6svh, 70px); } }
 
     /* Contacts (info column; the form is page content, stacked below at 1024) */
     .ctf__inner { padding-top: clamp(96px, 17svh, 120px); }
     .ctf__info { gap: clamp(24px, 5svh, 50px); }
 }
 
+/* CZ-only additions (kept): pl-web 1024–1099 + full-bleed hero backgrounds */
 /* Web development: 1024–1099 shows the price cards inside the hero (floats take over ≥1100) */
 @media (min-width: 1024px) and (max-width: 1099px) {
     .pl-web__hero { padding-top: clamp(84px, 14svh, 112px); }

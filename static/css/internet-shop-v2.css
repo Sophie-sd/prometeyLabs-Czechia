@@ -552,7 +552,7 @@ body.pl-shop-body .main-footer .container,
 .pl-shop__clients-track {
     width: 100%;
     margin-top: var(--pl-head-gap);
-    padding-left: max(var(--pl-gutter), calc((100% - 1330px) / 2));
+    padding-left: 0; /* безшовна стрічка від краю до краю */
     overflow: hidden;
 }
 
@@ -560,7 +560,6 @@ body.pl-shop-body .main-footer .container,
     display: flex;
     gap: 14px;
     width: max-content;
-    pointer-events: none;
     user-select: none;
     transform: translate3d(0, 0, 0);
 }
