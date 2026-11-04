@@ -13,5 +13,5 @@ def show(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = [('core', '0039_client_site_url_and_logo_alt')]
+    dependencies = [('core', '0041_unlink_beauty_opt')]
     operations = [migrations.RunPython(hide, show)]
