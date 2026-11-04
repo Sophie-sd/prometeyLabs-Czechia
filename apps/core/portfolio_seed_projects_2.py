@@ -11,7 +11,7 @@ PORTFOLIO_PROJECTS_2 = [
         desc='Оптовий інтернет-магазин косметики: каталог брендів, швидке оформлення замовлення та доставка по Україні.',
         desc_ru='Оптовый интернет-магазин косметики: каталог брендов, быстрое оформление заказа и доставка по Украине.',
         tags=SHOP_TAGS,
-        site_url='https://www.beauty-opt.com.ua/',
+        site_url='',  # beauty-opt.com.ua is dead (TLS error / 500): name kept as plain text
         order=23,
     ),
     card(
