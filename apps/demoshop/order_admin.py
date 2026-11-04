@@ -35,7 +35,7 @@ class ShopOrderAdmin(ShopScopedAdminMixin, UnfoldModelAdmin):
     )
     fieldsets = (
         (_('Клієнт'), {'fields': ('shop', 'customer_name', 'phone', 'email', 'status', 'total', 'created_at')}),
-        (_('Доставка (тестовий довідник НП)'), {
+        (_('Доставка'), {
             'fields': (
                 'delivery_method',
                 'np_city_name', 'np_city_name_ru', 'np_city_name_en', 'np_city_name_cs', 'np_city_ref',
@@ -52,6 +52,24 @@ class ShopOrderAdmin(ShopScopedAdminMixin, UnfoldModelAdmin):
         if not request.user.is_superuser and 'shop' in fields:
             fields.remove('shop')
         return fields
+
+    # Technical / per-language delivery columns (legacy Nova Poshta schema): kept in the
+    # DB, hidden from the client's CZ demo admin so it only sees one city + pickup point.
+    CLIENT_HIDDEN_FIELDS = frozenset({
+        'np_city_name_ru', 'np_city_name_en', 'np_city_name_cs', 'np_city_ref',
+        'np_warehouse_name_ru', 'np_warehouse_name_en', 'np_warehouse_name_cs', 'np_warehouse_ref',
+        'address_ru', 'address_en', 'address_cs',
+    })
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super().get_fieldsets(request, obj)
+        if request.user.is_superuser:
+            return fieldsets
+        hidden = self.CLIENT_HIDDEN_FIELDS | {'shop'}
+        return tuple(
+            (title, {**opts, 'fields': tuple(f for f in opts['fields'] if f not in hidden)})
+            for title, opts in fieldsets
+        )
 
     def has_add_permission(self, request):
         return False

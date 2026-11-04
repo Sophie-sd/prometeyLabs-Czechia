@@ -117,6 +117,10 @@ class CSPMiddleware:
         return response
 
 
+DEMO_ADMIN_LANG_SESSION_KEY = "demo_admin_lang"
+DEMO_ADMIN_LANGUAGES = ("cs", "en")
+
+
 class AdminLocaleMiddleware:
     """Force Ukrainian for Django/Unfold admin without touching public CS/EN i18n.
 
@@ -132,10 +136,22 @@ class AdminLocaleMiddleware:
 
         path = request.path_info or ""
         if path == "/admin" or path.startswith("/admin/"):
+            # Agency staff admin stays Ukrainian.
             request.LANGUAGE_CODE = "uk"
-            # override() restores the previous language after the response, so
-            # "uk" never leaks into later public requests / reverse() on the thread.
             with translation.override("uk"):
+                return self.get_response(request)
+        if path == "/demo-admin" or path.startswith("/demo-admin/"):
+            # Client demo admin (Oleg's DemoAdminSite, signed-token login) follows the
+            # client's language: explicit session choice, else public cs/en, else cs.
+            session = getattr(request, "session", None)
+            lang = session.get(DEMO_ADMIN_LANG_SESSION_KEY) if session is not None else None
+            if lang not in DEMO_ADMIN_LANGUAGES:
+                lang = getattr(request, "LANGUAGE_CODE", None)
+            if lang not in DEMO_ADMIN_LANGUAGES:
+                lang = "cs"
+            request.LANGUAGE_CODE = lang
+            # override() restores the previous language after the response.
+            with translation.override(lang):
                 return self.get_response(request)
         return self.get_response(request)
 
