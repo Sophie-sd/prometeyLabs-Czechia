@@ -9997,11 +9997,11 @@ msgstr "Připraveno"
 
 #: templates/proposal/detail.html:75
 msgid "01 / Architecture"
-msgstr ""
+msgstr "01 / Architektura"
 
 #: templates/proposal/detail.html:111
 msgid "Understanding"
-msgstr ""
+msgstr "Porozumění"
 
 #: templates/proposal/detail.html:114
 msgid "Про компанію та стек"
@@ -10009,7 +10009,7 @@ msgstr "O firmě a technologiích"
 
 #: templates/proposal/detail.html:126
 msgid "03 / Solution"
-msgstr ""
+msgstr "03 / Řešení"
 
 #: templates/proposal/detail.html:127
 msgid "Ключові модулі платформи"
@@ -10017,11 +10017,11 @@ msgstr "Klíčové moduly platformy"
 
 #: templates/proposal/detail.html:138
 msgid "modules"
-msgstr ""
+msgstr "modulů"
 
 #: templates/proposal/detail.html:175
 msgid "05 / Expertise"
-msgstr ""
+msgstr "05 / Expertíza"
 
 #: templates/proposal/detail.html:176
 msgid "Рекомендації від PrometeyLabs"
@@ -10036,7 +10036,7 @@ msgstr ""
 
 #: templates/proposal/detail.html:213
 msgid "06 / Investment"
-msgstr ""
+msgstr "06 / Investice"
 
 #: templates/proposal/detail.html:214
 msgid "Кошторис та пакети"
@@ -10044,7 +10044,7 @@ msgstr "Rozpočet a balíčky"
 
 #: templates/proposal/detail.html:229
 msgid "07 / Guarantee"
-msgstr ""
+msgstr "07 / Záruka"
 
 #: templates/proposal/detail.html:230
 msgid "Надійність та гарантія"
@@ -10052,7 +10052,7 @@ msgstr "Spolehlivost a záruka"
 
 #: templates/proposal/detail.html:253
 msgid "08 / Timeline"
-msgstr ""
+msgstr "08 / Harmonogram"
 
 #: templates/proposal/detail.html:279
 msgid "Готові розпочати?"
