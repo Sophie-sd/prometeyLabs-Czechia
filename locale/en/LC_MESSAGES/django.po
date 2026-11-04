@@ -10231,3 +10231,7 @@ msgstr "Demo Admin"
 #: apps/demoshop/admin_i18n.py
 msgid "Manage Your Demo Shop"
 msgstr "Manage Your Demo Shop"
+
+#: templates/demoshop/base.html:10
+msgid "Demo obchod"
+msgstr "Demo Shop"

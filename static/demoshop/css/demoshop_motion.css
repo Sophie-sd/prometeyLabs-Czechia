@@ -69,6 +69,9 @@
     max-width: min(38rem, 100%);
     min-width: 0;
     padding-inline: clamp(2.5rem, 6vw, 5.5rem) clamp(1.5rem, 4vw, 3rem);
+    /* Stats are sized from this column, not from the viewport (it is ~1/2 of it). */
+    container-type: inline-size;
+    container-name: ds-about-copy;
 }
 .ds-about__blind {
     overflow: hidden;
@@ -118,6 +121,9 @@
     column-gap: clamp(8px, 1.6vw, 24px);
     align-items: start;
     width: 100%;
+    /* Same measure as the paragraph above: keeps the accent number and its slab
+       shadow away from the viewport edge and from the floating sales helper. */
+    max-width: min(100%, 32rem);
     margin: var(--ds-sp-7) 0 0;
     padding: var(--ds-sp-5) 0 1.25rem;
     border-top: 1px solid var(--ds-border);
@@ -150,6 +156,8 @@
     --slab-elevation: color-mix(in srgb, var(--slab-shadow) 6%, transparent);
     margin: 0;
     font-size: clamp(0.95rem, 2.2vw, 1.85rem);
+    /* Progressive enhancement: iOS Safari < 16 keeps the vw line above. */
+    font-size: clamp(0.95rem, 5cqi, 1.85rem);
     font-weight: 400;
     letter-spacing: -0.03em;
     line-height: 0.9;
@@ -220,6 +228,7 @@
     }
     .ds-about__stat-num {
         font-size: clamp(0.78rem, 4vw, 1.05rem);
+        font-size: clamp(0.78rem, 4.4cqi, 1.15rem);
         --slab-depth: 0.06em;
         filter:
             drop-shadow(calc(var(--slab-x) * 0.39em) calc(var(--slab-y) * 0.39em) 0.3em var(--slab-elevation-tight))
