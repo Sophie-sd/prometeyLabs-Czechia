@@ -1,3 +1,4 @@
+from io import StringIO
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client as DjangoTestClient, SimpleTestCase, TestCase, override_settings
@@ -104,3 +105,20 @@ class ClientAdminTests(TestCase):
         response = self.client.get(reverse('admin:core_client_add'))
         self.assertEqual(response.status_code, 200)
 
+
+
+class HiddenClientsWithoutSiteTests(TestCase):
+    """04.11.2026: clients with no live site are hidden from the strip, rows kept."""
+
+    def test_seed_hides_clients_without_site_and_shows_33(self):
+        from django.core.management import call_command
+        from apps.core.mixins import homepage_clients
+        names = ('Coresync', 'Adiabatic', 'RedRabbit', 'Pulvas Store')
+        for name in names:
+            Client.objects.update_or_create(name=name, defaults={'is_active': True})
+        call_command('seed_clients', stdout=StringIO())
+        shown = list(homepage_clients())
+        self.assertEqual(len(shown), 33)
+        self.assertFalse(any(c.name in names for c in shown))
+        self.assertTrue(all(c.site_url for c in shown))
+        self.assertEqual(Client.objects.filter(name__in=names, is_active=False).count(), 4)

@@ -74,8 +74,7 @@ HOME_LOGO_STATIC = {
 # набір лого, що й раніше на /portfolio/, до заміни на живі знімки.
 # site_url: live address of the client's site, taken from PORTFOLIO_PROJECTS —
 # the circle links there (dofollow, new tab) instead of /portfolio/.
-# TODO(clients): Coresync, Adiabatic, RedRabbit, Pulvas Store and Airinua have no
-# address anywhere in the repo; fill site_url in the admin or here when it is known.
+# Coresync, Adiabatic, RedRabbit, Pulvas Store (no site) are hidden via RETIRED_HOME_CLIENTS.
 HOME_CLIENTS = [
     {'name': 'FPSU', 'order': 0, 'static_home': HOME_LOGO_STATIC['FPSU'],
      'site_url': 'https://www.fpsu.org.ua/en/'},
@@ -144,14 +143,14 @@ HOME_CLIENTS = [
     {'name': 'Umantransbud', 'order': 32, 'static_home': HOME_LOGO_STATIC['Umantransbud'],
      'site_url': 'https://vezhi-rozhnovskogo.com.ua/'},
     # Not in canon, kept at the end until the owner decides (no English site known).
-    {'name': 'Coresync', 'order': 100, 'static_home': HOME_LOGO_STATIC['Coresync'], 'site_url': ''},
-    {'name': 'Adiabatic', 'order': 101, 'static_home': HOME_LOGO_STATIC['Adiabatic'], 'site_url': ''},
-    {'name': 'RedRabbit', 'order': 102, 'static_home': HOME_LOGO_STATIC['RedRabbit'], 'site_url': ''},
-    {'name': 'Pulvas Store', 'order': 103, 'static_home': HOME_LOGO_STATIC['Pulvas Store'], 'site_url': ''},
 ]
 
 # Ukrainian clients that canon no longer shows: seed_clients hides them (is_active=False), never deletes.
-RETIRED_HOME_CLIENTS = ('SpeakUp', 'BeautyShop', 'Polygraph')
+# 04.11.2026 (Oleg): Coresync, Adiabatic, RedRabbit, Pulvas Store — no live site, hidden from the strip.
+RETIRED_HOME_CLIENTS = (
+    'SpeakUp', 'BeautyShop', 'Polygraph',
+    'Coresync', 'Adiabatic', 'RedRabbit', 'Pulvas Store',
+)
 
 # Earlier seeded addresses that the seed may replace with the canon/English one
 # (any other address typed in the admin is left alone).
