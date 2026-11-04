@@ -86,6 +86,61 @@ class DemoAdminCzechLoginTests(TestCase):
         r = self.client.get(reverse('demoshop:admin_access', kwargs={'shop_slug': self.shop.slug}))
         self.assertEqual(r.status_code, 404)
 
+    def test_demo_admin_never_links_to_staff_admin(self):
+        """Жодне посилання demo-admin не веде на /admin/ (staff-only, 302 на логін)."""
+        self._login()
+        urls = [
+            '/demo-admin/',
+            reverse('demo_admin:demoshop_shopblock_changelist'),
+            reverse('demo_admin:demoshop_shopproduct_changelist'),
+            reverse('demo_admin:demoshop_shopcategory_changelist'),
+        ]
+        for url in urls:
+            with self.subTest(url=url):
+                html = self.client.get(url).content.decode()
+                self.assertNotIn('href="/admin/', html)
+
+    def test_client_forms_hide_ru_and_legacy_base_fields(self):
+        """Клієнт бачить лише CS/EN поля — без *_ru і без мовно-нейтральної бази."""
+        self._login()
+        add_pages = (
+            (reverse('demo_admin:demoshop_shopproduct_add'),
+             ('name_cs', 'name_en', 'short_description_cs', 'description_en'),
+             ('name_ru', 'short_description_ru', 'description_ru', 'gift_promo_text_ru')),
+            (reverse('demo_admin:demoshop_shopcategory_add'),
+             ('name_cs', 'name_en'),
+             ('name_ru',)),
+        )
+        for url, expected, forbidden in add_pages:
+            html = self.client.get(url).content.decode()
+            for field in expected:
+                with self.subTest(url=url, field=field):
+                    self.assertIn(f'name="{field}"', html)
+            for field in forbidden + ('name="shop"',):
+                with self.subTest(url=url, field=field):
+                    self.assertNotIn(f'name="{field}"'.replace('name="name="', 'name="'), html)
+
+    def test_product_name_mirrors_cs_into_base_column(self):
+        """Прихована база заповнюється з CS — slug і localized_text лишаються робочими."""
+        self._login()
+        self.client.post(reverse('demo_admin:demoshop_shopproduct_add'), {
+            'name_cs': 'Nový produkt', 'name_en': 'New product', 'slug': '',
+            'price': '100', 'order': '0',
+            'images-TOTAL_FORMS': '0', 'images-INITIAL_FORMS': '0',
+            'images-MIN_NUM_FORMS': '0', 'images-MAX_NUM_FORMS': '1000',
+        })
+        product = ShopProduct.objects.filter(shop=self.shop, name_cs='Nový produkt').first()
+        self.assertIsNotNone(product)
+        self.assertEqual(product.name, 'Nový produkt')
+        self.assertTrue(product.slug)
+
+    def test_category_filter_lists_only_own_shop(self):
+        """Фільтр категорій показує лише свої категорії (чужі демо не протікають)."""
+        self._login()
+        html = self.client.get(reverse('demo_admin:demoshop_shopproduct_changelist')).content.decode()
+        self.assertIn(f'category__id__exact={self.cat.pk}', html)
+        self.assertNotIn(f'category__id__exact={self.other_cat.pk}', html)
+
     def test_order_admin_hides_np_technical_fields(self):
         self._login()
         from apps.demoshop.order_models import ShopOrder

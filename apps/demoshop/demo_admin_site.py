@@ -59,6 +59,18 @@ class DemoAdminSite(UnfoldAdminSite):
         
         return True
     
+    def get_app_list(self, request, app_label=None):
+        """Client-facing naming: the agency's «Демо-магазини» app is *their* shop."""
+        app_list = super().get_app_list(request, app_label)
+        for app in app_list:
+            if app.get('app_label') != 'demoshop':
+                continue
+            app['name'] = _('Мій магазин')
+            for model in app.get('models', []):
+                if model.get('object_name') == 'ShopBlock':
+                    model['name'] = _('Контент і кольори')
+        return app_list
+
     def login(self, request, extra_context=None):
         """Redirect до home якщо немає прав (не показувати форму логіну)."""
         from django.shortcuts import redirect

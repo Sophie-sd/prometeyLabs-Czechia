@@ -404,8 +404,9 @@ class DemoAdminSitePermissionsTests(TestCase):
         self.assertEqual(response.status_code, 200, 
                         f'/demo-admin/ returned {response.status_code}, expected 200')
         
-        # Перевіряємо що це Unfold HTML
-        self.assertContains(response, 'Manage Your Demo Shop')
+        # Перевіряємо що це Unfold HTML, а index_title локалізований (cs за замовчуванням)
+        self.assertContains(response, 'Správa vašeho demo obchodu')
+        self.assertNotContains(response, 'Manage Your Demo Shop')
         self.assertContains(response, 'unfold')
     
     def test_demo_admin_changelist_renders_200(self):

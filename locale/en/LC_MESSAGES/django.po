@@ -3368,9 +3368,8 @@ msgid ""
 "Město a výdejní místo se napovídají. V demu testovací seznam, v provozu živý "
 "adresář dopravce."
 msgstr ""
-"City and pickup point autocomplete. Demo uses a test list; production uses "
-"the live carrier directory.City and branch suggest themselves. In the demo — "
-"a test list; in production — the live directory."
+"City and pickup point autocomplete. The demo uses a test list; production "
+"uses the live carrier directory."
 
 #: apps/demoshop/sales_notes.py:93
 msgid "Оплата на ваш рахунок"
@@ -4395,7 +4394,7 @@ msgstr "Landings:"
 
 #: config/settings.py:185
 msgid "Мій магазин"
-msgstr "E-commerce store"
+msgstr "My shop"
 
 #: config/settings.py:188
 msgid "Контент і кольори"
@@ -10131,6 +10130,7 @@ msgid ""
 "This page yielded into no results. Create a new item or reset your filters."
 msgstr ""
 "This page returned no results. Create a new item or reset your filters."
+"This page returned no results. Create a new item or reset your filters."
 
 #: templates/unfold/helpers/popup_header.html:14
 #, python-format
@@ -10171,3 +10171,63 @@ msgstr "The demo is ready"
 
 msgid "Це не версія вашого сайту і не макет у Figma. Це стандартний демо-сайт із функціоналом, який ви отримаєте для тестування: сторінки, заявки, адмінка."
 msgstr "This is not a version of your site or a Figma mockup. It is a standard demo site with the features you will get to test: pages, enquiries, admin."
+
+#: apps/demoshop/admin_i18n.py
+msgid "Search apps and models..."
+msgstr "Search apps and models..."
+
+#: apps/demoshop/admin_i18n.py
+msgid "Type to search"
+msgstr "Type to search"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Light"
+msgstr "Light"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Dark"
+msgstr "Dark"
+
+#: apps/demoshop/admin_i18n.py
+msgid "System"
+msgstr "System"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Toggle sidebar"
+msgstr "Toggle sidebar"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Toggle dark/light mode"
+msgstr "Toggle dark/light mode"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Select value"
+msgstr "Select value"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Clear all filters"
+msgstr "Clear all filters"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Apply Filters"
+msgstr "Apply Filters"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Show counts"
+msgstr "Show counts"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Hide counts"
+msgstr "Hide counts"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Demo Shop Administration"
+msgstr "Demo Shop Administration"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Demo Admin"
+msgstr "Demo Admin"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Manage Your Demo Shop"
+msgstr "Manage Your Demo Shop"

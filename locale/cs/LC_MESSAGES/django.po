@@ -3417,9 +3417,8 @@ msgid ""
 "Město a výdejní místo se napovídají. V demu testovací seznam, v provozu živý "
 "adresář dopravce."
 msgstr ""
-"Město a výdejní místo se napovídají. V demu testovací seznam, v provozu živý "
-"adresář dopravce.Město i pobočka se napoví samy. V demu testovací seznam, v "
-"provozu živý adresář."
+"Město i výdejní místo se napovídají. V demu testovací seznam, v provozu živý "
+"adresář dopravce."
 
 #: apps/demoshop/sales_notes.py:93
 msgid "Оплата на ваш рахунок"
@@ -10106,6 +10105,8 @@ msgstr "Nebyly nalezeny žádné výsledky"
 msgid ""
 "This page yielded into no results. Create a new item or reset your filters."
 msgstr ""
+"Tato stránka nevrátila žádné výsledky. Vytvořte novou položku nebo zrušte "
+"filtry."
 
 #: templates/unfold/helpers/popup_header.html:14
 #, python-format
@@ -10148,3 +10149,63 @@ msgstr "Demo je připravené"
 
 msgid "Це не версія вашого сайту і не макет у Figma. Це стандартний демо-сайт із функціоналом, який ви отримаєте для тестування: сторінки, заявки, адмінка."
 msgstr "Nejde o verzi vašeho webu ani o návrh ve Figmě. Je to standardní demo web s funkcemi, které dostanete k vyzkoušení: stránky, poptávky, administrace."
+
+#: apps/demoshop/admin_i18n.py
+msgid "Search apps and models..."
+msgstr "Hledat aplikace a modely…"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Type to search"
+msgstr "Zadejte hledaný výraz"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Light"
+msgstr "Světlý"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Dark"
+msgstr "Tmavý"
+
+#: apps/demoshop/admin_i18n.py
+msgid "System"
+msgstr "Systémový"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Toggle sidebar"
+msgstr "Zobrazit/skrýt postranní panel"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Toggle dark/light mode"
+msgstr "Přepnout světlý/tmavý režim"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Select value"
+msgstr "Vyberte hodnotu"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Clear all filters"
+msgstr "Zrušit všechny filtry"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Apply Filters"
+msgstr "Použít filtry"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Show counts"
+msgstr "Zobrazit počty"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Hide counts"
+msgstr "Skrýt počty"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Demo Shop Administration"
+msgstr "Správa demo obchodu"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Demo Admin"
+msgstr "Demo administrace"
+
+#: apps/demoshop/admin_i18n.py
+msgid "Manage Your Demo Shop"
+msgstr "Správa vašeho demo obchodu"
