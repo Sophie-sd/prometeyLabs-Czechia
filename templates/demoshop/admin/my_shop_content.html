@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load static i18n %}
+{% load static i18n demoshop_admin_nav %}
 
 {% block extrastyle %}
 {{ block.super }}
@@ -15,10 +15,10 @@
         <a class="dt-admin-chip dt-admin-chip--accent" href="{% url 'demoshop:home' shop_slug=shop.slug %}" target="_blank" rel="noopener">{% trans "Переглянути вітрину" %}</a>
     </div>
     <nav class="dt-admin-chips" aria-label="{% trans 'Каталог і замовлення' %}">
-        <a class="dt-admin-chip" href="{% url 'admin:demoshop_shopproduct_changelist' %}">{% trans "Товари" %}</a>
-        <a class="dt-admin-chip" href="{% url 'admin:demoshop_shopcategory_changelist' %}">{% trans "Категорії" %}</a>
-        <a class="dt-admin-chip" href="{% url 'admin:demoshop_shopreview_changelist' %}">{% trans "Відгуки" %}</a>
-        <a class="dt-admin-chip" href="{% url 'admin:demoshop_shoporder_changelist' %}">{% trans "Замовлення" %}</a>
+        <a class="dt-admin-chip" href="{% admin_url 'demoshop_shopproduct_changelist' %}">{% trans "Товари" %}</a>
+        <a class="dt-admin-chip" href="{% admin_url 'demoshop_shopcategory_changelist' %}">{% trans "Категорії" %}</a>
+        <a class="dt-admin-chip" href="{% admin_url 'demoshop_shopreview_changelist' %}">{% trans "Відгуки" %}</a>
+        <a class="dt-admin-chip" href="{% admin_url 'demoshop_shoporder_changelist' %}">{% trans "Замовлення" %}</a>
     </nav>
     <aside class="ds-admin-sales">
         <p class="ds-admin-sales__title">{% trans "Тексти без квитка розробнику" %}</p>

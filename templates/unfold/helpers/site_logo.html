@@ -1,6 +1,7 @@
-{% load i18n %}
+{% load i18n demoshop_admin_nav %}
 
-<a href="{% url 'admin:index' %}" class="pl-admin-sidebar-logo">
+{# `admin:index` would send a demo client from /demo-admin/ to the staff login. #}
+<a href="{% admin_url 'index' %}" class="pl-admin-sidebar-logo">
     {% if site_logo.light and site_logo.dark %}
         <img src="{{ site_logo.dark }}" alt="{% trans 'Головна адмінпанелі' %}" class="pl-admin-sidebar-logo__img pl-admin-sidebar-logo__img--dark" width="40" height="40" decoding="async">
         <img src="{{ site_logo.light }}" alt="{% trans 'Головна адмінпанелі' %}" class="pl-admin-sidebar-logo__img pl-admin-sidebar-logo__img--light" width="40" height="40" decoding="async">

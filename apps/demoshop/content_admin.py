@@ -10,18 +10,25 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin as UnfoldModelAdmin
 
+from .admin_fields import mirror_cs_into_base
+from .admin_nav import resolve_admin_url
 from .block_defaults import BLOCK_REGISTRY, PAGE_LABELS
 from .content_models import ShopBlock, ShopHeroSlide
 from .models import DEFAULT_THEME_COLORS, DemoShop
 
 HEX_WIDGET = forms.TextInput(attrs={'type': 'color'})
 
+# cs + en only: the language-less base columns (and every `_ru` one) stay in the
+# DB but are mirrored from the Czech value in `_save_slide` instead of being edited.
+HERO_SLIDE_CS_MIRROR = {'title': 'title_cs', 'subtitle': 'subtitle_cs', 'cta_label': 'cta_label_cs'}
+
 HeroSlideFormSet = modelformset_factory(
     ShopHeroSlide,
     fields=(
-        'image', 'image_narrow', 'title', 'title_cs', 'title_en',
-        'subtitle', 'subtitle_cs', 'subtitle_en',
-        'cta_label', 'cta_label_cs', 'cta_label_en',
+        'image', 'image_narrow',
+        'title_cs', 'title_en',
+        'subtitle_cs', 'subtitle_en',
+        'cta_label_cs', 'cta_label_en',
         'is_active', 'order'
     ),
     extra=1,
@@ -128,7 +135,7 @@ class ShopContentAdmin(UnfoldModelAdmin):
         shop = _owned_shop_or_none(request)
         if shop is None:
             messages.error(request, _('До вашого акаунту не привʼязано жодного демо-магазину.'))
-            return redirect('admin:index')
+            return redirect(resolve_admin_url(request, 'index'))
 
         block_form, blocks = _build_block_form(shop)
         theme_form = ShopThemeForm(instance=shop)
@@ -171,6 +178,7 @@ class ShopContentAdmin(UnfoldModelAdmin):
                         continue
                     slide = form.save(commit=False)
                     slide.shop = shop
+                    mirror_cs_into_base(slide, HERO_SLIDE_CS_MIRROR)
                     slide.save()
                 for form in slide_formset.deleted_forms:
                     if form.instance.pk:

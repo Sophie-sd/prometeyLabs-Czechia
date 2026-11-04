@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.templatetags.static import static
 from django.utils.translation import gettext_lazy as _
 
+from apps.demoshop.admin_nav import admin_site_url
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -185,11 +187,11 @@ UNFOLD = {
                 "title": _("Мій магазин"),
                 "separator": True,
                 "items": [
-                    {"title": _("Контент і кольори"), "icon": "palette", "link": reverse_lazy("admin:demoshop_shopblock_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
-                    {"title": _("Товари"), "icon": "inventory_2", "link": reverse_lazy("admin:demoshop_shopproduct_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
-                    {"title": _("Категорії"), "icon": "category", "link": reverse_lazy("admin:demoshop_shopcategory_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
-                    {"title": _("Відгуки"), "icon": "star", "link": reverse_lazy("admin:demoshop_shopreview_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
-                    {"title": _("Замовлення"), "icon": "receipt_long", "link": reverse_lazy("admin:demoshop_shoporder_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
+                    {"title": _("Контент і кольори"), "icon": "palette", "link": admin_site_url("demoshop_shopblock_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
+                    {"title": _("Товари"), "icon": "inventory_2", "link": admin_site_url("demoshop_shopproduct_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
+                    {"title": _("Категорії"), "icon": "category", "link": admin_site_url("demoshop_shopcategory_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
+                    {"title": _("Відгуки"), "icon": "star", "link": admin_site_url("demoshop_shopreview_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
+                    {"title": _("Замовлення"), "icon": "receipt_long", "link": admin_site_url("demoshop_shoporder_changelist"), "permission": "apps.demoshop.admin_permissions.is_demo_client"},
                 ],
             },
             {
