@@ -442,7 +442,8 @@
 .hf-clients__track {
     width: 100%;
     margin-top: 60px;
-    padding-left: max(var(--hf-pad), calc((100% - 1330px) / 2));
+    /* Без padding-left: стрічка безшовна від краю до краю — без порожнього «старту» зліва. */
+    padding-left: 0;
     overflow: hidden;
     box-sizing: border-box;
 }

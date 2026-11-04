@@ -7,78 +7,78 @@
 (function () {
     'use strict';
 
-    function waitForImages(container) {
-        return new Promise(function (resolve, reject) {
-            var images = container.querySelectorAll('img');
-            if (!images.length) {
-                resolve();
-                return;
-            }
-
-            var loadedCount = 0;
-            var totalImages = images.length;
-            var timeout = setTimeout(function () { reject(new Error('timeout')); }, 3000);
-
-            function done() {
-                loadedCount += 1;
-                if (loadedCount === totalImages) {
-                    clearTimeout(timeout);
-                    resolve();
-                }
-            }
-
-            images.forEach(function (img) {
-                if (img.complete) {
-                    done();
-                } else {
-                    img.addEventListener('load', done, { once: true });
-                    img.addEventListener('error', done, { once: true });
-                }
-            });
-        });
-    }
+    var SECONDS_PER_ITEM = 40 / 9;
 
     function initClientsMarquee(container) {
         if (!container) return;
 
-        function initMarqueeAnimation() {
+        // Lazy-завантаження не бачить кола за overflow:hidden доріжки, тож вони вантажились
+        // лише при вʼїзді в кадр (білі кола). Щойно стрічка в полі зору — тягнемо всі логотипи.
+        function loadAllLogos() {
+            container.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+                img.loading = 'eager';
+            });
+        }
+
+        function initMarqueeAnimation(isResize) {
             var stories = container.querySelectorAll('.project-story:not(.story-clone)');
             if (!stories.length) return;
 
-            var containerStyles = window.getComputedStyle(container);
-            var gap = parseFloat(containerStyles.gap) || 24;
-            var firstStory = stories[0];
-            var lastStory = stories[stories.length - 1];
-            var setWidth = (lastStory.offsetLeft + lastStory.offsetWidth + gap) - firstStory.offsetLeft;
+            // Відстань циклу = точний зсув першого клона від першого оригіналу
+            // (getBoundingClientRect, бо offsetWidth округлює 76.478px → шов на мобільному).
+            var firstClone = container.querySelector('.project-story.story-clone');
+            var setWidth = firstClone
+                ? firstClone.getBoundingClientRect().left - stories[0].getBoundingClientRect().left
+                : 0;
+            if (!setWidth) {
+                var containerStyles = window.getComputedStyle(container);
+                var gap = parseFloat(containerStyles.columnGap || containerStyles.gap) || 24;
+                var lastStory = stories[stories.length - 1];
+                setWidth = lastStory.getBoundingClientRect().right + gap - stories[0].getBoundingClientRect().left;
+            }
 
-            container.style.setProperty('--marquee-distance', setWidth + 'px');
+            // Швидкість як у старої стрічки з 9 клієнтів (40s на сет): 40/9 s на одне коло,
+            // тобто ~33 px/s на десктопі та ~20 px/s на мобільному, незалежно від кількості клієнтів.
+            container.style.setProperty('--marquee-distance', (Math.round(setWidth * 1000) / 1000) + 'px');
+            container.style.setProperty('--marquee-duration', (stories.length * SECONDS_PER_ITEM).toFixed(2) + 's');
             var lang = (document.documentElement.lang || '').toLowerCase();
             var marqueeLabels = { cs: 'Naši klienti — automatická ukázka', en: 'Our clients — automatic showcase' };
             container.setAttribute('aria-label', marqueeLabels[lang.slice(0, 2)] || marqueeLabels.cs);
             // Не перезаписуємо role: контейнер уже має role="list" у шаблоні.
             // role="marquee" — невалідна ARIA-роль і ламає list/listitem.
 
+            if (isResize) return;
+
             if ('IntersectionObserver' in window) {
                 var observer = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
+                            loadAllLogos();
                             requestAnimationFrame(function () {
                                 container.classList.add('marquee-active');
                             });
                             observer.unobserve(container);
                         }
                     });
-                }, { threshold: 0.1, rootMargin: '50px' });
+                }, { threshold: 0, rootMargin: '50px' });
                 observer.observe(container);
             } else {
+                loadAllLogos();
                 requestAnimationFrame(function () {
                     container.classList.add('marquee-active');
                 });
             }
         }
 
-        waitForImages(container).then(initMarqueeAnimation).catch(function () {
-            setTimeout(initMarqueeAnimation, 500);
+        // Розміри кіл задані в CSS (img має width/height), тож не чекаємо картинок:
+        // з loading="lazy" ті, що за краєм екрана, не вантажаться і блокували старт на 3.5s.
+        initMarqueeAnimation();
+
+        // Брейкпоінт (128px ↔ 76px) змінює ширину сету — перераховуємо відстань.
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () { initMarqueeAnimation(true); }, 150);
         });
     }
 
