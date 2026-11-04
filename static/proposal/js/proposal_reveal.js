@@ -132,6 +132,9 @@
       const a = document.createElement('a');
       a.href = '#' + el.id;
       a.setAttribute('data-prop-rail', String(i));
+      const h = el.querySelector('h1, h2, h3');
+      const label = (el.getAttribute('aria-label') || (h && h.textContent) || el.id).trim().replace(/\s+/g, ' ');
+      a.setAttribute('aria-label', label);
       a.appendChild(document.createElement('span'));
       nav.appendChild(a);
     });

@@ -215,6 +215,11 @@
     color: var(--prop-text);
 }
 
+/* Glows bleed past the viewport on mobile; clip horizontally only (no scroll container, sticky stays intact). */
+.prop-main {
+    overflow-x: clip;
+}
+
 .prop-glow {
     position: absolute;
     border-radius: 50%;

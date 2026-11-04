@@ -14,6 +14,7 @@
 
 .ds-header__capsule {
     position: relative;
+    box-sizing: border-box;
     width: min(100%, var(--ds-capsule-max));
     margin-inline: auto;
     padding-inline: var(--ds-capsule-pad-x);

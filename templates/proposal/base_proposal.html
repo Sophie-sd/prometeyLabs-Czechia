@@ -14,10 +14,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_tokens.css' %}?v=27">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_tokens.css' %}?v=28">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_layout.css' %}?v=27">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_sections.css' %}?v=27">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_tree.css' %}?v=27">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_tree.css' %}?v=28">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_extras.css' %}?v=27">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_end.css' %}?v=27">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_motion.css' %}?v=27">
@@ -49,7 +49,7 @@
         </header>
 
         <nav class="prop-rail" aria-label="{% trans 'Секції' %}">
-            <a href="#prop-hero" data-prop-rail="0"><span></span></a>
+            <a href="#prop-hero" data-prop-rail="0" aria-label="{{ proposal.get_localized_title|default:'Intro' }}"><span></span></a>
         </nav>
 
         <main id="prop-main" class="prop-main">
@@ -66,7 +66,8 @@
     </div>
 
     {% block page_js %}
-    <script src="{% static 'proposal/js/proposal_reveal.js' %}?v=27" nonce="{{ csp_nonce }}" defer></script>
+    <script src="{% static 'proposal/js/proposal_lang.js' %}?v=1" nonce="{{ csp_nonce }}" defer></script>
+    <script src="{% static 'proposal/js/proposal_reveal.js' %}?v=28" nonce="{{ csp_nonce }}" defer></script>
     {% endblock %}
 </body>
 </html>
