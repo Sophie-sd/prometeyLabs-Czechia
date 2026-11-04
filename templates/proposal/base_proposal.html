@@ -15,8 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_tokens.css' %}?v=28">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_layout.css' %}?v=27">
-    <link rel="stylesheet" href="{% static 'proposal/css/proposal_sections.css' %}?v=27">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_layout.css' %}?v=29">
+    <link rel="stylesheet" href="{% static 'proposal/css/proposal_sections.css' %}?v=28">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_tree.css' %}?v=28">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_extras.css' %}?v=27">
     <link rel="stylesheet" href="{% static 'proposal/css/proposal_end.css' %}?v=27">
@@ -35,10 +35,15 @@
     <div class="prop-page">
         <header class="prop-header">
             <div class="prop-header__row">
-                <a class="prop-logo" href="{% url 'home' %}" aria-label="PrometeyLabs">
-                    <img src="{% static 'proposal/img/logo-lockup.png' %}" alt="PrometeyLabs" class="prop-logo__img" width="148" height="20">
-                </a>
+                <a class="prop-logo" href="{% url 'home' %}" rel="noopener">Prometey<span class="prop-logo__labs">Labs</span></a>
                 <div class="prop-header__meta">
+                    {% get_current_language as CURRENT_LANG %}
+                    <form class="prop-lang" action="{% url 'set_language' %}" method="post" aria-label="{% trans 'Мова' %} / Language">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <button type="submit" name="language" value="cs" class="prop-lang__btn{% if CURRENT_LANG == 'cs' %} is-active{% endif %}"{% if CURRENT_LANG == 'cs' %} aria-current="true"{% endif %}>CS</button>
+                        <button type="submit" name="language" value="en" class="prop-lang__btn{% if CURRENT_LANG == 'en' %} is-active{% endif %}"{% if CURRENT_LANG == 'en' %} aria-current="true"{% endif %}>EN</button>
+                    </form>
                     <p class="prop-header__count" data-prop-navcount>01 / 09</p>
                     <span class="prop-header__live" aria-hidden="true"></span>
                 </div>

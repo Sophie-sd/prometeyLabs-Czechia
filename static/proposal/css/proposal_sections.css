@@ -155,18 +155,23 @@
     background: var(--prop-bg);
 }
 
-.prop-hero__img {
+.prop-hero__visual {
     position: absolute;
-    right: -6%;
-    bottom: -14%;
-    width: min(70vw, 21.25rem);
-    height: auto;
+    right: -4%;
+    top: 50%;
     z-index: 0;
+    width: min(62vw, 18.75rem);
     pointer-events: none;
-    filter: grayscale(1) brightness(0.75) contrast(1.05);
-    opacity: 0.3;
-    mask-image: radial-gradient(circle at 55% 60%, #000 40%, transparent 74%);
-    -webkit-mask-image: radial-gradient(circle at 55% 60%, #000 40%, transparent 74%);
+    transform: translateY(-50%);
+}
+
+.prop-hero__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0.42;
+    mask-image: radial-gradient(circle at 50% 48%, #000 58%, transparent 82%);
+    -webkit-mask-image: radial-gradient(circle at 50% 48%, #000 58%, transparent 82%);
 }
 
 .prop-hero__inner {
@@ -299,7 +304,7 @@
 }
 
 @media (min-width: 48rem) {
-    .prop-hero__img {
+    .prop-hero__visual {
         width: clamp(15rem, 34vw, 32.5rem);
     }
 

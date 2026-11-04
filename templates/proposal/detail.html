@@ -5,27 +5,19 @@
 {% block description %}{{ proposal.get_localized_lead }}{% endblock %}
 
 {% block content %}
-<div style="position:fixed;top:20px;right:20px;z-index:1000;background:#fff;padding:8px 12px;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-    {% get_current_language as CURRENT_LANG %}
-    <form action="{% url 'set_language' %}" method="post" style="margin:0;">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.get_full_path }}">
-        <select name="language" data-prop-lang aria-label="{% trans 'Мова' %} / Language" style="border:1px solid #ddd;padding:4px 8px;border-radius:3px;font-size:14px;cursor:pointer;">
-            <option value="cs" {% if CURRENT_LANG == 'cs' %}selected{% endif %}>CS</option>
-            <option value="en" {% if CURRENT_LANG == 'en' %}selected{% endif %}>EN</option>
-        </select>
-    </form>
-</div>
 <section id="prop-hero" class="prop-hero" aria-labelledby="prop-hero-title">
-    {% if proposal.hero_image %}
-    <img class="prop-hero__img"
-         data-prop-hero-img
-         src="{{ proposal.hero_image.url }}"
-         alt=""
-         width="520"
-         height="520"
-         decoding="async">
-    {% endif %}
+    <div class="prop-hero__visual" aria-hidden="true">
+        {% if proposal.hero_image %}
+        <img class="prop-hero__img" data-prop-hero-img src="{{ proposal.hero_image.url }}" alt="" width="520" height="520" fetchpriority="high" decoding="async">
+        {% else %}
+        <img class="prop-hero__img"
+             data-prop-hero-img
+             src="{% static 'proposal/img/seal-on-dark-900w.webp' %}"
+             srcset="{% static 'proposal/img/seal-on-dark-360w.webp' %} 360w, {% static 'proposal/img/seal-on-dark-600w.webp' %} 600w, {% static 'proposal/img/seal-on-dark-900w.webp' %} 900w"
+             sizes="(max-width: 47.9375rem) min(62vw, 300px), min(34vw, 520px)"
+             alt="" width="897" height="901" fetchpriority="high" decoding="async">
+        {% endif %}
+    </div>
     <div class="prop-hero__inner">
         <div class="prop-hero__meta">
             <span class="prop-hero__client">{{ proposal.client_name }}</span>
@@ -187,7 +179,7 @@
         </div>
         <aside class="prop-expert__seal" aria-hidden="true">
             <img class="prop-expert__seal-img"
-                 src="{% static 'proposal/img/emblem.png' %}"
+                 src="{% static 'proposal/img/seal-on-dark-360w.webp' %}"
                  alt=""
                  width="180"
                  height="180"
@@ -238,10 +230,10 @@
             <div class="prop-seal" aria-hidden="true">
                 <div class="prop-seal__ring"></div>
                 <img class="prop-seal__img"
-                     src="{% static 'proposal/img/emblem.png' %}"
+                     src="{% static 'proposal/img/shield-on-dark.webp' %}"
                      alt=""
                      width="140"
-                     height="140"
+                     height="164"
                      loading="lazy"
                      decoding="async">
             </div>
