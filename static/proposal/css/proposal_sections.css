@@ -3,6 +3,9 @@
 .prop-section {
     position: relative;
     padding: clamp(3.5rem, 10vh, 8.75rem) var(--prop-pad);
+    overflow: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 .prop-section--alt {
@@ -120,6 +123,18 @@
     background: transparent;
     color: var(--prop-text);
     border-bottom-color: var(--prop-text);
+}
+
+.prop-cta--secondary {
+    background: transparent;
+    color: var(--prop-accent);
+    border: 1px solid var(--prop-accent);
+}
+
+.prop-cta--secondary:hover,
+.prop-cta--secondary:focus-visible {
+    background: var(--prop-accent);
+    color: #fff;
 }
 
 .prop-cta--block {

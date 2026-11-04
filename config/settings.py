@@ -247,6 +247,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'apps.demoshop.demo_rate_limit.DemoAuthRateLimitMiddleware',  # Rate limit demo auth
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -473,6 +474,11 @@ if not DEBUG:
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'redact_demo_token': {
+            '()': 'apps.demoshop.logging_filters.RedactDemoTokenFilter',
+        },
+    },
     'formatters': {
         'verbose': {
             'format': '{levelname} {asctime} {module} {message}',
@@ -483,7 +489,8 @@ LOGGING = {
         'console': {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
+            'formatter': 'verbose',
+            'filters': ['redact_demo_token'],
         },
     },
     'loggers': {
@@ -521,6 +528,7 @@ if DEBUG:
         'class': 'logging.FileHandler',
         'filename': os.path.join(BASE_DIR, 'debug.log'),
         'formatter': 'verbose',
+        'filters': ['redact_demo_token'],
     }
     for logger in ['django', 'apps']:
         LOGGING['loggers'][logger]['handlers'].append('file')

@@ -189,3 +189,9 @@ class ShopContentAdmin(UnfoldModelAdmin):
             'block_groups': _group_blocks_for_template(block_form, blocks),
         }
         return render(request, 'demoshop/admin/my_shop_content.html', context)
+
+
+# Реєстрація у DemoAdminSite
+from .demo_admin_site import demo_admin_site
+
+demo_admin_site.register(ShopBlock, ShopContentAdmin)

@@ -10,6 +10,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from apps.core.sitemaps import sitemaps
+from apps.demoshop.demo_admin_site import demo_admin_site
+from apps.demoshop import demo_auth_views
 
 # URL без префіксу мови
 urlpatterns = [
@@ -19,6 +21,12 @@ urlpatterns = [
         name='favicon',
     ),
     path('admin/', admin.site.urls),
+    # Demo Admin token exchange (має бути ПЕРЕД demo-admin/ щоб не потребувати автентифікації)
+    path('demo/<str:shop_slug>/open/<str:kp_token>/', demo_auth_views.demo_open_link, name='demo_open_link'),
+    path('demo-admin/<str:shop_slug>/exchange/', demo_auth_views.demo_token_exchange, name='demo_token_exchange'),
+    path('demo-admin/<str:shop_slug>/', demo_auth_views.demo_admin_index, name='demo_admin_index'),
+    # Demo Admin Site (окремий admin для демо-клієнтів з signed-token автологіном)
+    path('demo-admin/', demo_admin_site.urls),
     path('tinymce/', include('tinymce.urls')),
     path('i18n/set_language/', set_language, name='set_language'),
     path('i18n/set_currency/', set_currency, name='set_currency'),

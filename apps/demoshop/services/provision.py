@@ -8,12 +8,16 @@ DEMO_CLIENT_GROUP = 'DemoClient'
 
 
 def _create_owner_user(shop: DemoShop) -> None:
+    """Створює demo user без пароля (unusable_password, is_staff=False).
+    
+    Логін тільки через signed one-time tokens (demo_auth_views).
+    demo_password поле більше не використовується (security spec).
+    """
     username = f'shop-{shop.slug}'[:150]
-    password = DemoShop.generate_password()
     user, _created = User.objects.get_or_create(username=username)
-    user.is_staff = True
+    user.is_staff = False  # Головний /admin/ заборонений
     user.is_active = True
-    user.set_password(password)
+    user.set_unusable_password()  # Логін тільки через tokens
     user.save()
 
     group, _created = Group.objects.get_or_create(name=DEMO_CLIENT_GROUP)
@@ -21,7 +25,7 @@ def _create_owner_user(shop: DemoShop) -> None:
 
     shop.owner_user = user
     shop.demo_login = username
-    shop.demo_password = password
+    # shop.demo_password більше не встановлюється (порожній рядок за дефолтом)
 
 
 def provision_demo_shop(proposal) -> DemoShop:

@@ -124,6 +124,23 @@ class DemoShop(models.Model):
         from django.urls import reverse
 
         return reverse('demoshop:home', kwargs={'shop_slug': self.slug})
+    
+    def get_kp_token(self) -> str:
+        """Генерує довгий КП-токен для proposal link.
+        
+        TTL = термін дії демо (90 днів), відкликається коли demo.is_active=False.
+        Payload: {proposal_id, demo_id, v:1}
+        """
+        from django.core.signing import TimestampSigner
+        import json
+        
+        signer = TimestampSigner(salt='demo-admin-login.v1:kp')
+        payload = json.dumps({
+            'proposal_id': self.proposal_id,
+            'demo_id': self.pk,
+            'v': 1,
+        }, separators=(',', ':'))
+        return signer.sign(payload)
 
     @staticmethod
     def generate_slug(base: str) -> str:
@@ -136,6 +153,59 @@ class DemoShop(models.Model):
     @staticmethod
     def generate_password() -> str:
         return secrets.token_urlsafe(9)
+
+
+class DemoLoginToken(models.Model):
+    """One-time токен для автологіну у DemoAdminSite.
+    
+    Токен видається на /demo/<slug>/open/<kp_token> (довгий КП-лінк, TTL = термін демо)
+    і обмінюється на цій же сторінці на свіжий one-time токен (TTL 60-120s, jti в БД,
+    consumed атомарно). Так КП можна відкривати повторно, але викрадений токен марний.
+    """
+    
+    jti = models.CharField(
+        max_length=64,
+        unique=True,
+        db_index=True,
+        verbose_name=_('Token ID (jti)'),
+        help_text=_('UUID/hex для унікальності та відкликання'),
+    )
+    demo_shop = models.ForeignKey(
+        'DemoShop',
+        on_delete=models.CASCADE,
+        related_name='login_tokens',
+        verbose_name=_('Демо-магазин'),
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        db_index=True,
+        verbose_name=_('Створено'),
+    )
+    used_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        db_index=True,
+        verbose_name=_('Використано'),
+    )
+    ip_address = models.GenericIPAddressField(
+        blank=True,
+        null=True,
+        verbose_name=_('IP адреса'),
+    )
+    user_agent = models.CharField(
+        max_length=300,
+        blank=True,
+        verbose_name=_('User Agent'),
+    )
+    
+    class Meta:
+        ordering = ('-created_at',)
+        verbose_name = _('Демо-токен автологіну')
+        verbose_name_plural = _('Демо-токени автологіну')
+    
+    def __str__(self):
+        status = 'використаний' if self.used_at else 'активний'
+        return f'{self.jti[:8]}... ({self.demo_shop.name}, {status})'
 
 
 from .content_models import ShopBlock, ShopHeroSlide  # noqa: E402,F401

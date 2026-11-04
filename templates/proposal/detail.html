@@ -43,11 +43,16 @@
                        href="{% if contacts.telegram_url %}{{ contacts.telegram_url }}{% else %}mailto:{{ contacts.email }}{% endif %}">
                         {{ proposal.get_localized_cta_label }}
                     </a>
-                    {% if proposal.demo_tenant.is_active %}
+                    {% if proposal.demo_shop.is_active %}
                     <a class="prop-cta prop-cta--ghost"
-                       href="{{ proposal.demo_tenant.get_absolute_url }}"
+                       href="{{ proposal.demo_shop.get_absolute_url }}"
                        target="_blank" rel="noopener">
-                        {{ proposal.demo_cta_label }}
+                        {% if LANGUAGE_CODE == 'cs' %}Zobrazit demo obchodu{% else %}View shop demo{% endif %}
+                    </a>
+                    <a class="prop-cta prop-cta--secondary"
+                       href="{% url 'demo_open_link' shop_slug=proposal.demo_shop.slug kp_token=proposal.demo_shop.get_kp_token %}"
+                       target="_blank" rel="noopener">
+                        {% if LANGUAGE_CODE == 'cs' %}Otevřít demo administraci{% else %}Open demo admin{% endif %}
                     </a>
                     {% endif %}
                 </div>
@@ -294,7 +299,7 @@
             {% if contacts.phone_display %}
             <li><a href="tel:+{{ contacts.phone_e164 }}">{{ contacts.phone_display }}</a></li>
             {% endif %}
-            <li><a href="https://www.prometeylabs.com/" rel="noopener">www.prometeylabs.com</a></li>
+            <li><a href="{% url 'home' %}" rel="noopener">prometeylabs.cz</a></li>
         </ul>
     </div>
 </section>

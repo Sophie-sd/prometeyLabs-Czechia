@@ -35,7 +35,7 @@
     <div class="prop-page">
         <header class="prop-header">
             <div class="prop-header__row">
-                <a class="prop-logo" href="https://www.prometeylabs.com/" rel="noopener" aria-label="PrometeyLabs">
+                <a class="prop-logo" href="{% url 'home' %}" aria-label="PrometeyLabs">
                     <img src="{% static 'proposal/img/logo-lockup.png' %}" alt="PrometeyLabs" class="prop-logo__img" width="148" height="20">
                 </a>
                 <div class="prop-header__meta">
@@ -59,7 +59,7 @@
         <footer class="prop-footer">
             <p>
                 © {{ current_year }} PrometeyLabs ·
-                <a href="https://www.prometeylabs.com/" rel="noopener">prometeylabs.com</a>
+                <a href="{% url 'home' %}" rel="noopener">prometeylabs.cz</a>
             </p>
             <p>{% trans "Документ конфіденційний. Не для публічного поширення." %}</p>
         </footer>

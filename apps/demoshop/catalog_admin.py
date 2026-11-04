@@ -129,3 +129,11 @@ class ShopReviewAdmin(ShopScopedAdminMixin, UnfoldModelAdmin):
         if not request.user.is_superuser and 'shop' in fields:
             fields.remove('shop')
         return fields
+
+
+# Реєстрація у DemoAdminSite для демо-клієнтів
+from .demo_admin_site import demo_admin_site
+
+demo_admin_site.register(ShopCategory, ShopCategoryAdmin)
+demo_admin_site.register(ShopProduct, ShopProductAdmin)
+demo_admin_site.register(ShopReview, ShopReviewAdmin)

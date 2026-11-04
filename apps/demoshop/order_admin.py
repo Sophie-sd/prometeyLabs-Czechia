@@ -58,3 +58,9 @@ class ShopOrderAdmin(ShopScopedAdminMixin, UnfoldModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return request.user.is_superuser
+
+
+# Реєстрація у DemoAdminSite
+from .demo_admin_site import demo_admin_site
+
+demo_admin_site.register(ShopOrder, ShopOrderAdmin)

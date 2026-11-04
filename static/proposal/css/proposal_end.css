@@ -152,9 +152,9 @@
 
 .prop-seal__img {
     position: absolute;
-    inset: 14%;
-    width: 72%;
-    height: 72%;
+    inset: 10%;
+    width: 80%;
+    height: 80%;
     object-fit: contain;
 }
 

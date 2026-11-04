@@ -18,13 +18,17 @@ class DemoShopAdmin(UnfoldModelAdmin):
     list_filter = ('is_active',)
     search_fields = ('name', 'slug', 'demo_login')
     readonly_fields = (
-        'proposal', 'slug', 'owner_user', 'demo_login', 'demo_password',
-        'created_at', 'updated_at', 'storefront_link', 'admin_access_link',
+        'proposal', 'slug', 'owner_user', 'demo_login',
+        'created_at', 'updated_at', 'storefront_link', 'demo_admin_link',
     )
     fieldsets = (
         (_('Магазин'), {'fields': ('name', 'slug', 'proposal', 'is_active')}),
         (_('Доступ клієнта'), {
-            'fields': ('owner_user', 'demo_login', 'demo_password', 'storefront_link', 'admin_access_link'),
+            'fields': ('owner_user', 'demo_login', 'storefront_link', 'demo_admin_link'),
+            'description': _(
+                'Клієнт отримує signed token link для автологіну у demo-admin. '
+                'Пароль не використовується (unusable_password).'
+            ),
         }),
         (_('Кольори теми'), {
             'fields': ('color_primary', 'color_primary_hover', 'color_accent', 'color_surface', 'color_text'),
@@ -46,7 +50,12 @@ class DemoShopAdmin(UnfoldModelAdmin):
         url = reverse('demoshop:home', kwargs={'shop_slug': obj.slug})
         return format_html('<a href="{}" target="_blank" rel="noopener">{}</a>', url, url)
 
-    @admin.display(description=_('Вхід клієнта'))
-    def admin_access_link(self, obj):
-        url = reverse('demoshop:admin_access', kwargs={'shop_slug': obj.slug})
-        return format_html('<a href="{}" target="_blank" rel="noopener">{}</a>', url, url)
+    @admin.display(description=_('Demo Admin'))
+    def demo_admin_link(self, obj):
+        # TODO: Генерувати КП-лінк з kp_token
+        # url = reverse('demo_open_link', kwargs={'shop_slug': obj.slug, 'kp_token': '...'})
+        url = f'/demo/{obj.slug}/open/GENERATE_KP_TOKEN'
+        return format_html(
+            '<a href="{}" target="_blank" rel="noopener">КП-лінк (TODO: gen token)</a>',
+            url
+        )

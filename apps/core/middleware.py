@@ -64,6 +64,16 @@ class CSPMiddleware:
         path = request.path_info or ''
         if path.startswith('/admin/') or path == '/admin':
             return response
+        # Demo admin (Unfold, same bundle as /admin/): same-origin only CSP,
+        # no third-party scripts, inline handlers allowed for Unfold/Alpine.
+        if path.startswith('/demo-admin/') and not response.has_header('Content-Security-Policy'):
+            response['Content-Security-Policy'] = (
+                "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; "
+                "style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; "
+                "font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; "
+                "base-uri 'self'; form-action 'self'"
+            )
+            return response
 
         # Google Fonts load via protocol-relative URLs (//…).
         # On http://localhost that becomes http://, so both schemes must be allowed.

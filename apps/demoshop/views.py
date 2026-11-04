@@ -1,6 +1,5 @@
 """Публічна вітрина демо-магазину: home, каталог, товар, кошик, checkout, wishlist, NP stub."""
 from django.contrib import messages
-from django.contrib.auth import logout as auth_logout
 from django.core.paginator import Paginator
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -357,18 +356,22 @@ def np_warehouses(request, shop_slug):
 
 @require_GET
 def admin_access(request, shop_slug):
-    # CZ-DEMO-01: public page leaked demo credentials; closed.
-    raise Http404
+    """DEPRECATED: сторінка з plaintext паролем видалена (security spec).
+    
+    Клієнт отримує signed КП-лінк, який видає one-time token для автологіну.
+    Route залишається для backward compatibility (404).
+    """
+    raise Http404('Admin access page deprecated. Use signed token link.')
 
 
 @require_GET
 def admin_login(request, shop_slug):
-    """Веде саме у скоуп власника ЦЬОГО магазину."""
-    shop = _get_active_shop(shop_slug)
-    if request.user.is_authenticated and request.user.pk != shop.owner_user_id:
-        auth_logout(request)
-    admin_index = reverse('admin:index')
-    return redirect(f'{reverse("admin:login")}?next={admin_index}')
+    """DEPRECATED: автологін через GET заборонений (security spec).
+    
+    Логін тільки через POST exchange one-time token (demo_auth_views).
+    Route залишається для backward compatibility (404).
+    """
+    raise Http404('Admin login deprecated. Use signed token exchange.')
 
 
 @require_GET

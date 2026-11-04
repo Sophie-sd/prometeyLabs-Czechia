@@ -58,6 +58,7 @@ class Command(BaseCommand):
                 ProposalSpec.objects.create(proposal=p, order=i, **_cs(r, ['title', 'body']))
             shop = provision_demo_shop(p)
 
+        kp_token = shop.get_kp_token()
         self.stdout.write(f'Created proposal: {HOST}/proposal/{slug}/  (EN: {HOST}/en/proposal/{slug}/)')
         self.stdout.write(f'Demo shop: {HOST}{shop.get_absolute_url()}  login user: {shop.demo_login}')
-        self.stdout.write(f'Demo admin login: {HOST}/demo/{shop.slug}/admin-login/')
+        self.stdout.write(f'Demo admin entry: {HOST}/demo/{shop.slug}/open/{kp_token}/')
