@@ -117,8 +117,13 @@
     if (!nav) return;
 
     const hero = document.getElementById('prop-hero');
-    const rest = Array.prototype.slice.call(
-      document.querySelectorAll('[data-prop-section]')
+    /* Renova live: count only visible sections with .prop-eyebrow (hero/header/footer excluded) */
+    const rest = Array.prototype.filter.call(
+      document.querySelectorAll('section[id^="prop-"]'),
+      function (el) {
+        const eb = el.querySelector('.prop-eyebrow');
+        return !!eb && el.getClientRects().length > 0;
+      }
     );
     const items = [];
     if (hero) items.push(hero);
@@ -140,7 +145,8 @@
     });
 
     const rail = nav.querySelectorAll('[data-prop-rail]');
-    const total = items.length;
+    const lead = hero ? 1 : 0;
+    const total = Math.max(1, items.length - lead);
 
     function setRail(i) {
       rail.forEach(function (a) {
@@ -163,7 +169,7 @@
           if (!entry.isIntersecting) return;
           const i = items.indexOf(entry.target);
           if (i < 0) return;
-          setCount(i + 1);
+          setCount(Math.max(1, i + 1 - lead));
           setRail(i);
         });
       },

@@ -10011,7 +10011,7 @@ msgstr "Confidential document. Not for public distribution."
 
 #: templates/proposal/detail.html:58
 msgid "Підготовлено"
-msgstr "Updated"
+msgstr "Prepared"
 
 #: templates/proposal/detail.html:75
 msgid "01 / Architecture"
